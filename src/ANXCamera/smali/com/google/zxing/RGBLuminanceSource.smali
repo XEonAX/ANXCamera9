@@ -17,7 +17,7 @@
 
 # direct methods
 .method public constructor <init>(II[I)V
-    .locals 10
+    .registers 14
     .param p1, "width"    # I
     .param p2, "height"    # I
     .param p3, "pixels"    # [I
@@ -50,8 +50,8 @@
     const/4 v0, 0x0
 
     .local v0, "y":I
-    :goto_0
-    if-lt v0, p2, :cond_0
+    :goto_13
+    if-lt v0, p2, :cond_16
 
     .line 61
     .end local v0    # "y":I
@@ -59,7 +59,7 @@
 
     .line 46
     .restart local v0    # "y":I
-    :cond_0
+    :cond_16
     mul-int v1, v0, p1
 
     .line 47
@@ -67,20 +67,20 @@
     const/4 v2, 0x0
 
     .local v2, "x":I
-    :goto_1
-    if-lt v2, p1, :cond_1
+    :goto_19
+    if-lt v2, p1, :cond_1e
 
     .line 45
     .end local v1    # "offset":I
     .end local v2    # "x":I
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_0
+    goto :goto_13
 
     .line 48
     .restart local v1    # "offset":I
     .restart local v2    # "x":I
-    :cond_1
+    :cond_1e
     add-int v3, v1, v2
 
     aget v3, p3, v3
@@ -103,9 +103,9 @@
 
     .line 52
     .local v6, "b":I
-    if-ne v4, v5, :cond_2
+    if-ne v4, v5, :cond_38
 
-    if-ne v5, v6, :cond_2
+    if-ne v5, v6, :cond_38
 
     .line 54
     iget-object v7, p0, Lcom/google/zxing/RGBLuminanceSource;->luminances:[B
@@ -117,10 +117,10 @@
     aput-byte v9, v7, v8
 
     .line 55
-    goto :goto_2
+    goto :goto_45
 
     .line 57
-    :cond_2
+    :cond_38
     iget-object v7, p0, Lcom/google/zxing/RGBLuminanceSource;->luminances:[B
 
     add-int v8, v1, v2
@@ -144,14 +144,14 @@
     .end local v4    # "r":I
     .end local v5    # "g":I
     .end local v6    # "b":I
-    :goto_2
+    :goto_45
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_1
+    goto :goto_19
 .end method
 
 .method private constructor <init>([BIIIIII)V
-    .locals 2
+    .registers 10
     .param p1, "pixels"    # [B
     .param p2, "dataWidth"    # I
     .param p3, "dataHeight"    # I
@@ -166,11 +166,11 @@
     .line 71
     add-int v0, p4, p6
 
-    if-gt v0, p2, :cond_0
+    if-gt v0, p2, :cond_16
 
     add-int v0, p5, p7
 
-    if-gt v0, p3, :cond_0
+    if-gt v0, p3, :cond_16
 
     .line 74
     iput-object p1, p0, Lcom/google/zxing/RGBLuminanceSource;->luminances:[B
@@ -191,7 +191,7 @@
     return-void
 
     .line 72
-    :cond_0
+    :cond_16
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "Crop rectangle does not fit within image data."
@@ -204,7 +204,7 @@
 
 # virtual methods
 .method public crop(IIII)Lcom/google/zxing/LuminanceSource;
-    .locals 9
+    .registers 14
     .param p1, "left"    # I
     .param p2, "top"    # I
     .param p3, "width"    # I
@@ -250,7 +250,7 @@
 .end method
 
 .method public getMatrix()[B
-    .locals 9
+    .registers 10
 
     .line 97
     invoke-virtual {p0}, Lcom/google/zxing/RGBLuminanceSource;->getWidth()I
@@ -267,11 +267,11 @@
     .local v1, "height":I
     iget v2, p0, Lcom/google/zxing/RGBLuminanceSource;->dataWidth:I
 
-    if-ne v0, v2, :cond_0
+    if-ne v0, v2, :cond_13
 
     iget v2, p0, Lcom/google/zxing/RGBLuminanceSource;->dataHeight:I
 
-    if-ne v1, v2, :cond_0
+    if-ne v1, v2, :cond_13
 
     .line 103
     iget-object v2, p0, Lcom/google/zxing/RGBLuminanceSource;->luminances:[B
@@ -279,7 +279,7 @@
     return-object v2
 
     .line 106
-    :cond_0
+    :cond_13
     mul-int v2, v0, v1
 
     .line 107
@@ -302,7 +302,7 @@
     .local v4, "inputOffset":I
     iget v5, p0, Lcom/google/zxing/RGBLuminanceSource;->dataWidth:I
 
-    if-ne v0, v5, :cond_1
+    if-ne v0, v5, :cond_2a
 
     .line 112
     iget-object v5, p0, Lcom/google/zxing/RGBLuminanceSource;->luminances:[B
@@ -315,7 +315,7 @@
     return-object v3
 
     .line 117
-    :cond_1
+    :cond_2a
     iget-object v5, p0, Lcom/google/zxing/RGBLuminanceSource;->luminances:[B
 
     .line 118
@@ -323,8 +323,8 @@
     const/4 v6, 0x0
 
     .local v6, "y":I
-    :goto_0
-    if-lt v6, v1, :cond_2
+    :goto_2d
+    if-lt v6, v1, :cond_30
 
     .line 123
     .end local v6    # "y":I
@@ -332,7 +332,7 @@
 
     .line 119
     .restart local v6    # "y":I
-    :cond_2
+    :cond_30
     mul-int v7, v6, v0
 
     .line 120
@@ -348,22 +348,22 @@
     .end local v7    # "outputOffset":I
     add-int/lit8 v6, v6, 0x1
 
-    goto :goto_0
+    goto :goto_2d
 .end method
 
 .method public getRow(I[B)[B
-    .locals 4
+    .registers 7
     .param p1, "y"    # I
     .param p2, "row"    # [B
 
     .line 83
-    if-ltz p1, :cond_2
+    if-ltz p1, :cond_23
 
     invoke-virtual {p0}, Lcom/google/zxing/RGBLuminanceSource;->getHeight()I
 
     move-result v0
 
-    if-ge p1, v0, :cond_2
+    if-ge p1, v0, :cond_23
 
     .line 86
     invoke-virtual {p0}, Lcom/google/zxing/RGBLuminanceSource;->getWidth()I
@@ -372,18 +372,18 @@
 
     .line 87
     .local v0, "width":I
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_11
 
     array-length v1, p2
 
-    if-ge v1, v0, :cond_1
+    if-ge v1, v0, :cond_13
 
     .line 88
-    :cond_0
+    :cond_11
     new-array p2, v0, [B
 
     .line 90
-    :cond_1
+    :cond_13
     iget v1, p0, Lcom/google/zxing/RGBLuminanceSource;->top:I
 
     add-int/2addr v1, p1
@@ -410,7 +410,7 @@
     .line 84
     .end local v0    # "width":I
     .end local v1    # "offset":I
-    :cond_2
+    :cond_23
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -431,7 +431,7 @@
 .end method
 
 .method public isCropSupported()Z
-    .locals 1
+    .registers 2
 
     .line 128
     const/4 v0, 0x1

@@ -1,5 +1,6 @@
 package com.android.camera.network.live;
 
+import com.android.camera.fragment.CtaNoticeFragment.CTA;
 import com.android.camera.log.Log;
 import com.android.camera.network.net.base.ErrorCode;
 import com.android.camera.network.net.base.ResponseListener;
@@ -8,14 +9,16 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
-import okhttp3.Request.Builder;
+import okhttp3.OkHttpClient.Builder;
+import okhttp3.Request;
 import okhttp3.Response;
 
 public abstract class BaseRequest<T> {
-    protected static final OkHttpClient CLIENT = new OkHttpClient();
+    protected static final OkHttpClient CLIENT = new Builder().connectTimeout(10, TimeUnit.SECONDS).writeTimeout(10, TimeUnit.SECONDS).readTimeout(10, TimeUnit.SECONDS).build();
     protected static final String TAG = "BaseRequest";
     protected Map<String, String> mParams = new HashMap();
     protected String mUrl;
@@ -31,30 +34,34 @@ public abstract class BaseRequest<T> {
     }
 
     public void execute(final ResponseListener responseListener) {
-        CLIENT.newCall(new Builder().get().url(appendUrlParams()).build()).enqueue(new Callback() {
-            public void onFailure(Call call, IOException iOException) {
-                Log.e(BaseRequest.TAG, "execute failed", iOException);
-                responseListener.onResponseError(ErrorCode.NET_ERROR, iOException.getMessage(), iOException);
-            }
-
-            public void onResponse(Call call, Response response) {
-                if (response.isSuccessful()) {
-                    try {
-                        Object process = BaseRequest.this.process(response.body().string());
-                        responseListener.onResponse(process);
-                    } catch (Throwable e) {
-                        Log.e(BaseRequest.TAG, "execute process failed", e);
-                        responseListener.onResponseError(e.getErrorCode(), e.getMessage(), response);
-                    } catch (Throwable e2) {
-                        Log.e(BaseRequest.TAG, "execute process failed", e2);
-                        responseListener.onResponseError(ErrorCode.NET_ERROR, e2.getMessage(), response);
-                    }
-                } else {
-                    responseListener.onResponseError(ErrorCode.SERVER_ERROR, response.message(), response);
+        if (CTA.canConnectNetwork()) {
+            CLIENT.newCall(new Request.Builder().get().url(appendUrlParams()).build()).enqueue(new Callback() {
+                public void onFailure(Call call, IOException iOException) {
+                    Log.e(BaseRequest.TAG, "execute failed", iOException);
+                    responseListener.onResponseError(ErrorCode.NET_ERROR, iOException.getMessage(), iOException);
                 }
-                response.close();
-            }
-        });
+
+                public void onResponse(Call call, Response response) {
+                    if (response.isSuccessful()) {
+                        try {
+                            Object process = BaseRequest.this.process(response.body().string());
+                            responseListener.onResponse(process);
+                        } catch (Throwable e) {
+                            Log.e(BaseRequest.TAG, "execute process failed", e);
+                            responseListener.onResponseError(e.getErrorCode(), e.getMessage(), response);
+                        } catch (Throwable e2) {
+                            Log.e(BaseRequest.TAG, "execute process failed", e2);
+                            responseListener.onResponseError(ErrorCode.NET_ERROR, e2.getMessage(), response);
+                        }
+                    } else {
+                        responseListener.onResponseError(ErrorCode.SERVER_ERROR, response.message(), response);
+                    }
+                    response.close();
+                }
+            });
+            return;
+        }
+        responseListener.onResponseError(ErrorCode.NETWORK_NOT_CONNECTED, "CTA not confirmed.", null);
     }
 
     private String appendUrlParams() {

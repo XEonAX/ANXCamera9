@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 25
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method static add(Landroid/content/Context;Landroid/app/Notification;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Landroid/widget/RemoteViews;ILandroid/app/PendingIntent;Landroid/app/PendingIntent;Landroid/graphics/Bitmap;)Landroid/app/Notification;
-    .locals 4
+    .registers 14
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "n"    # Landroid/app/Notification;
     .param p2, "contentTitle"    # Ljava/lang/CharSequence;
@@ -89,16 +89,16 @@
 
     const/4 v3, 0x1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_41
 
     move v1, v3
 
-    goto :goto_0
+    goto :goto_42
 
-    :cond_0
+    :cond_41
     move v1, v2
 
-    :goto_0
+    :goto_42
     invoke-virtual {v0, v1}, Landroid/app/Notification$Builder;->setOngoing(Z)Landroid/app/Notification$Builder;
 
     move-result-object v0
@@ -107,16 +107,16 @@
 
     and-int/lit8 v1, v1, 0x8
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_4e
 
     move v1, v3
 
-    goto :goto_1
+    goto :goto_4f
 
-    :cond_1
+    :cond_4e
     move v1, v2
 
-    :goto_1
+    :goto_4f
     invoke-virtual {v0, v1}, Landroid/app/Notification$Builder;->setOnlyAlertOnce(Z)Landroid/app/Notification$Builder;
 
     move-result-object v0
@@ -125,16 +125,16 @@
 
     and-int/lit8 v1, v1, 0x10
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_5b
 
     move v1, v3
 
-    goto :goto_2
+    goto :goto_5c
 
-    :cond_2
+    :cond_5b
     move v1, v2
 
-    :goto_2
+    :goto_5c
     invoke-virtual {v0, v1}, Landroid/app/Notification$Builder;->setAutoCancel(Z)Landroid/app/Notification$Builder;
 
     move-result-object v0
@@ -171,13 +171,13 @@
 
     and-int/lit16 v1, v1, 0x80
 
-    if-eqz v1, :cond_3
+    if-eqz v1, :cond_84
 
     move v2, v3
 
     nop
 
-    :cond_3
+    :cond_84
     invoke-virtual {v0, p8, v2}, Landroid/app/Notification$Builder;->setFullScreenIntent(Landroid/app/PendingIntent;Z)Landroid/app/Notification$Builder;
 
     move-result-object v0

@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/ss/android/medialib/TTRecorder$2;)V
     .locals 0
 
-    .line 685
+    .line 700
     iput-object p1, p0, Lcom/ss/android/medialib/TTRecorder$2$1;->this$1:Lcom/ss/android/medialib/TTRecorder$2;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -36,28 +36,9 @@
 
 # virtual methods
 .method public onFrameAvailable(Landroid/graphics/SurfaceTexture;)V
-    .locals 4
+    .locals 6
 
-    .line 689
-    iget-object p1, p0, Lcom/ss/android/medialib/TTRecorder$2$1;->this$1:Lcom/ss/android/medialib/TTRecorder$2;
-
-    iget-object p1, p1, Lcom/ss/android/medialib/TTRecorder$2;->this$0:Lcom/ss/android/medialib/TTRecorder;
-
-    invoke-static {p1}, Lcom/ss/android/medialib/TTRecorder;->access$000(Lcom/ss/android/medialib/TTRecorder;)J
-
-    move-result-wide v0
-
-    const-wide/16 v2, 0x0
-
-    cmp-long p1, v0, v2
-
-    if-eqz p1, :cond_0
-
-    .line 691
-    iget-object p1, p0, Lcom/ss/android/medialib/TTRecorder$2$1;->this$1:Lcom/ss/android/medialib/TTRecorder$2;
-
-    iget-object p1, p1, Lcom/ss/android/medialib/TTRecorder$2;->this$0:Lcom/ss/android/medialib/TTRecorder;
-
+    .line 704
     iget-object v0, p0, Lcom/ss/android/medialib/TTRecorder$2$1;->this$1:Lcom/ss/android/medialib/TTRecorder$2;
 
     iget-object v0, v0, Lcom/ss/android/medialib/TTRecorder$2;->this$0:Lcom/ss/android/medialib/TTRecorder;
@@ -66,33 +47,79 @@
 
     move-result-wide v0
 
-    iget-object v2, p0, Lcom/ss/android/medialib/TTRecorder$2$1;->this$1:Lcom/ss/android/medialib/TTRecorder$2;
+    const-wide/16 v2, 0x0
 
-    iget-object v2, v2, Lcom/ss/android/medialib/TTRecorder$2;->this$0:Lcom/ss/android/medialib/TTRecorder;
+    cmp-long v0, v0, v2
 
-    invoke-static {v2}, Lcom/ss/android/medialib/TTRecorder;->access$300(Lcom/ss/android/medialib/TTRecorder;)Lcom/ss/android/medialib/camera/TextureHolder;
+    if-eqz v0, :cond_0
 
-    move-result-object v2
+    .line 706
+    iget-object v0, p0, Lcom/ss/android/medialib/TTRecorder$2$1;->this$1:Lcom/ss/android/medialib/TTRecorder$2;
 
-    invoke-virtual {v2}, Lcom/ss/android/medialib/camera/TextureHolder;->getSurfaceTextureID()I
+    iget-object v0, v0, Lcom/ss/android/medialib/TTRecorder$2;->this$0:Lcom/ss/android/medialib/TTRecorder;
 
-    move-result v2
+    iget-object v1, p0, Lcom/ss/android/medialib/TTRecorder$2$1;->this$1:Lcom/ss/android/medialib/TTRecorder$2;
+
+    iget-object v1, v1, Lcom/ss/android/medialib/TTRecorder$2;->this$0:Lcom/ss/android/medialib/TTRecorder;
+
+    invoke-static {v1}, Lcom/ss/android/medialib/TTRecorder;->access$000(Lcom/ss/android/medialib/TTRecorder;)J
+
+    move-result-wide v1
 
     iget-object v3, p0, Lcom/ss/android/medialib/TTRecorder$2$1;->this$1:Lcom/ss/android/medialib/TTRecorder$2;
 
     iget-object v3, v3, Lcom/ss/android/medialib/TTRecorder$2;->this$0:Lcom/ss/android/medialib/TTRecorder;
 
-    invoke-static {v3}, Lcom/ss/android/medialib/TTRecorder;->access$300(Lcom/ss/android/medialib/TTRecorder;)Lcom/ss/android/medialib/camera/TextureHolder;
+    invoke-static {v3}, Lcom/ss/android/medialib/TTRecorder;->access$400(Lcom/ss/android/medialib/TTRecorder;)Lcom/ss/android/medialib/camera/TextureHolder;
 
     move-result-object v3
 
-    invoke-virtual {v3}, Lcom/ss/android/medialib/camera/TextureHolder;->getMPV()[F
+    invoke-virtual {v3}, Lcom/ss/android/medialib/camera/TextureHolder;->getSurfaceTextureID()I
 
-    move-result-object v3
+    move-result v3
 
-    invoke-static {p1, v0, v1, v2, v3}, Lcom/ss/android/medialib/TTRecorder;->access$400(Lcom/ss/android/medialib/TTRecorder;JI[F)I
+    iget-object v4, p0, Lcom/ss/android/medialib/TTRecorder$2$1;->this$1:Lcom/ss/android/medialib/TTRecorder$2;
 
-    .line 693
+    iget-object v4, v4, Lcom/ss/android/medialib/TTRecorder$2;->this$0:Lcom/ss/android/medialib/TTRecorder;
+
+    invoke-static {v4}, Lcom/ss/android/medialib/TTRecorder;->access$400(Lcom/ss/android/medialib/TTRecorder;)Lcom/ss/android/medialib/camera/TextureHolder;
+
+    move-result-object v4
+
+    invoke-virtual {v4}, Lcom/ss/android/medialib/camera/TextureHolder;->getMPV()[F
+
+    move-result-object v4
+
+    invoke-static {v0, v1, v2, v3, v4}, Lcom/ss/android/medialib/TTRecorder;->access$500(Lcom/ss/android/medialib/TTRecorder;JI[F)I
+
+    .line 709
     :cond_0
+    iget-object v0, p0, Lcom/ss/android/medialib/TTRecorder$2$1;->this$1:Lcom/ss/android/medialib/TTRecorder$2;
+
+    iget-object v0, v0, Lcom/ss/android/medialib/TTRecorder$2;->this$0:Lcom/ss/android/medialib/TTRecorder;
+
+    iget-object v1, p0, Lcom/ss/android/medialib/TTRecorder$2$1;->this$1:Lcom/ss/android/medialib/TTRecorder$2;
+
+    iget-object v1, v1, Lcom/ss/android/medialib/TTRecorder$2;->this$0:Lcom/ss/android/medialib/TTRecorder;
+
+    invoke-static {v1}, Lcom/ss/android/medialib/TTRecorder;->access$000(Lcom/ss/android/medialib/TTRecorder;)J
+
+    move-result-wide v1
+
+    iget-object v3, p0, Lcom/ss/android/medialib/TTRecorder$2$1;->this$1:Lcom/ss/android/medialib/TTRecorder$2;
+
+    iget-object v3, v3, Lcom/ss/android/medialib/TTRecorder$2;->this$0:Lcom/ss/android/medialib/TTRecorder;
+
+    invoke-virtual {p1}, Landroid/graphics/SurfaceTexture;->getTimestamp()J
+
+    move-result-wide v4
+
+    invoke-static {v3, v4, v5}, Lcom/ss/android/medialib/TTRecorder;->access$600(Lcom/ss/android/medialib/TTRecorder;J)D
+
+    move-result-wide v3
+
+    invoke-static {v0, v1, v2, v3, v4}, Lcom/ss/android/medialib/TTRecorder;->access$700(Lcom/ss/android/medialib/TTRecorder;JD)I
+
+    .line 710
     return-void
 .end method

@@ -18,7 +18,7 @@ import android.view.ViewGroup.MarginLayoutParams;
 import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
-import com.aeonax.camera.R;
+import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.CameraAction;

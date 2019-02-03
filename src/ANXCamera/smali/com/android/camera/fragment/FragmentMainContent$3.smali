@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/camera/fragment/FragmentMainContent;->notifyDataChanged(II)V
+    value = Lcom/android/camera/fragment/FragmentMainContent;->setCenterHint(ILjava/lang/String;Ljava/lang/String;I)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/FragmentMainContent;)V
     .locals 0
 
-    .line 972
+    .line 1114
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentMainContent$3;->this$0:Lcom/android/camera/fragment/FragmentMainContent;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,27 +38,17 @@
 .method public run()V
     .locals 2
 
-    .line 975
+    .line 1117
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent$3;->this$0:Lcom/android/camera/fragment/FragmentMainContent;
 
-    invoke-virtual {v0}, Lcom/android/camera/fragment/FragmentMainContent;->isAdded()Z
-
-    move-result v0
-
-    if-eqz v0, :cond_0
-
-    .line 976
-    iget-object v0, p0, Lcom/android/camera/fragment/FragmentMainContent$3;->this$0:Lcom/android/camera/fragment/FragmentMainContent;
-
-    invoke-static {v0}, Lcom/android/camera/fragment/FragmentMainContent;->access$300(Lcom/android/camera/fragment/FragmentMainContent;)Lcom/android/camera/ui/V6PreviewFrame;
+    invoke-static {v0}, Lcom/android/camera/fragment/FragmentMainContent;->access$300(Lcom/android/camera/fragment/FragmentMainContent;)Landroid/view/ViewGroup;
 
     move-result-object v0
 
-    const/4 v1, 0x4
+    const/16 v1, 0x8
 
-    invoke-virtual {v0, v1}, Lcom/android/camera/ui/V6PreviewFrame;->sendAccessibilityEvent(I)V
+    invoke-virtual {v0, v1}, Landroid/view/ViewGroup;->setVisibility(I)V
 
-    .line 978
-    :cond_0
+    .line 1118
     return-void
 .end method

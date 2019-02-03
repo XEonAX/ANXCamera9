@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/lib/compatibility/util/CompatibilityUtils$PackageInstallerListener;)V
     .locals 0
 
-    .line 29
+    .line 40
     iput-object p1, p0, Lcom/android/camera/lib/compatibility/related/v28/V28Utils$1;->val$installedListener:Lcom/android/camera/lib/compatibility/util/CompatibilityUtils$PackageInstallerListener;
 
     invoke-direct {p0}, Landroid/content/pm/IPackageInstallObserver2$Stub;-><init>()V
@@ -40,7 +40,7 @@
         }
     .end annotation
 
-    .line 40
+    .line 51
     const-string p4, "V28Utils"
 
     new-instance v0, Ljava/lang/StringBuilder;
@@ -71,12 +71,12 @@
 
     invoke-static {p4, p3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 43
+    .line 54
     iget-object p3, p0, Lcom/android/camera/lib/compatibility/related/v28/V28Utils$1;->val$installedListener:Lcom/android/camera/lib/compatibility/util/CompatibilityUtils$PackageInstallerListener;
 
     if-eqz p3, :cond_1
 
-    .line 44
+    .line 55
     iget-object p3, p0, Lcom/android/camera/lib/compatibility/related/v28/V28Utils$1;->val$installedListener:Lcom/android/camera/lib/compatibility/util/CompatibilityUtils$PackageInstallerListener;
 
     const/4 p4, 0x1
@@ -91,7 +91,7 @@
     :goto_0
     invoke-interface {p3, p1, p4}, Lcom/android/camera/lib/compatibility/util/CompatibilityUtils$PackageInstallerListener;->onPackageInstalled(Ljava/lang/String;Z)V
 
-    .line 46
+    .line 57
     :cond_1
     return-void
 .end method
@@ -99,6 +99,6 @@
 .method public onUserActionRequired(Landroid/content/Intent;)V
     .locals 0
 
-    .line 33
+    .line 44
     return-void
 .end method

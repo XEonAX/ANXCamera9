@@ -29,7 +29,7 @@
 
 
 # instance fields
-.field private final JB:Ljava/lang/Class;
+.field private final JL:Ljava/lang/Class;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/lang/Class<",
@@ -38,7 +38,7 @@
     .end annotation
 .end field
 
-.field private final JC:Lmiui/util/concurrent/ConcurrentRingQueue;
+.field private final JN:Lmiui/util/concurrent/ConcurrentRingQueue;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lmiui/util/concurrent/ConcurrentRingQueue<",
@@ -50,7 +50,7 @@
 
 # direct methods
 .method constructor <init>(Ljava/lang/Class;I)V
-    .locals 2
+    .registers 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -63,7 +63,7 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 126
-    iput-object p1, p0, Lmiui/util/Pools$InstanceHolder;->JB:Ljava/lang/Class;
+    iput-object p1, p0, Lmiui/util/Pools$InstanceHolder;->JL:Ljava/lang/Class;
 
     .line 127
     new-instance p1, Lmiui/util/concurrent/ConcurrentRingQueue;
@@ -74,7 +74,7 @@
 
     invoke-direct {p1, p2, v0, v1}, Lmiui/util/concurrent/ConcurrentRingQueue;-><init>(IZZ)V
 
-    iput-object p1, p0, Lmiui/util/Pools$InstanceHolder;->JC:Lmiui/util/concurrent/ConcurrentRingQueue;
+    iput-object p1, p0, Lmiui/util/Pools$InstanceHolder;->JN:Lmiui/util/concurrent/ConcurrentRingQueue;
 
     .line 128
     return-void
@@ -82,8 +82,8 @@
 
 
 # virtual methods
-.method public dD()Ljava/lang/Class;
-    .locals 1
+.method public dE()Ljava/lang/Class;
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -93,13 +93,13 @@
     .end annotation
 
     .line 132
-    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JB:Ljava/lang/Class;
+    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JL:Ljava/lang/Class;
 
     return-object v0
 .end method
 
 .method public get()Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()TT;"
@@ -107,7 +107,7 @@
     .end annotation
 
     .line 159
-    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JC:Lmiui/util/concurrent/ConcurrentRingQueue;
+    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JN:Lmiui/util/concurrent/ConcurrentRingQueue;
 
     invoke-virtual {v0}, Lmiui/util/concurrent/ConcurrentRingQueue;->get()Ljava/lang/Object;
 
@@ -117,10 +117,10 @@
 .end method
 
 .method public getSize()I
-    .locals 1
+    .registers 2
 
     .line 137
-    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JC:Lmiui/util/concurrent/ConcurrentRingQueue;
+    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JN:Lmiui/util/concurrent/ConcurrentRingQueue;
 
     invoke-virtual {v0}, Lmiui/util/concurrent/ConcurrentRingQueue;->getCapacity()I
 
@@ -130,7 +130,7 @@
 .end method
 
 .method public put(Ljava/lang/Object;)Z
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)Z"
@@ -138,7 +138,7 @@
     .end annotation
 
     .line 164
-    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JC:Lmiui/util/concurrent/ConcurrentRingQueue;
+    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JN:Lmiui/util/concurrent/ConcurrentRingQueue;
 
     invoke-virtual {v0, p1}, Lmiui/util/concurrent/ConcurrentRingQueue;->put(Ljava/lang/Object;)Z
 
@@ -148,13 +148,13 @@
 .end method
 
 .method public declared-synchronized resize(I)V
-    .locals 2
+    .registers 4
 
     monitor-enter p0
 
     .line 142
-    :try_start_0
-    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JC:Lmiui/util/concurrent/ConcurrentRingQueue;
+    :try_start_1
+    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JN:Lmiui/util/concurrent/ConcurrentRingQueue;
 
     invoke-virtual {v0}, Lmiui/util/concurrent/ConcurrentRingQueue;->getCapacity()I
 
@@ -163,24 +163,24 @@
     add-int/2addr p1, v0
 
     .line 143
-    if-gtz p1, :cond_0
+    if-gtz p1, :cond_20
 
     .line 144
-    invoke-static {}, Lmiui/util/Pools;->dB()Ljava/util/HashMap;
+    invoke-static {}, Lmiui/util/Pools;->dC()Ljava/util/HashMap;
 
     move-result-object p1
 
     monitor-enter p1
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_1
+    :try_end_f
+    .catchall {:try_start_1 .. :try_end_f} :catchall_30
 
     .line 145
-    :try_start_1
-    invoke-static {}, Lmiui/util/Pools;->dB()Ljava/util/HashMap;
+    :try_start_f
+    invoke-static {}, Lmiui/util/Pools;->dC()Ljava/util/HashMap;
 
     move-result-object v0
 
-    invoke-virtual {p0}, Lmiui/util/Pools$InstanceHolder;->dD()Ljava/lang/Class;
+    invoke-virtual {p0}, Lmiui/util/Pools$InstanceHolder;->dE()Ljava/lang/Class;
 
     move-result-object v1
 
@@ -188,8 +188,8 @@
 
     .line 146
     monitor-exit p1
-    :try_end_1
-    .catchall {:try_start_1 .. :try_end_1} :catchall_0
+    :try_end_1b
+    .catchall {:try_start_f .. :try_end_1b} :catchall_1d
 
     .line 147
     monitor-exit p0
@@ -197,46 +197,46 @@
     return-void
 
     .line 146
-    :catchall_0
+    :catchall_1d
     move-exception v0
 
-    :try_start_2
+    :try_start_1e
     monitor-exit p1
-    :try_end_2
-    .catchall {:try_start_2 .. :try_end_2} :catchall_0
+    :try_end_1f
+    .catchall {:try_start_1e .. :try_end_1f} :catchall_1d
 
-    :try_start_3
+    :try_start_1f
     throw v0
 
     .line 150
-    :cond_0
-    if-lez p1, :cond_1
+    :cond_20
+    if-lez p1, :cond_28
 
     .line 151
-    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JC:Lmiui/util/concurrent/ConcurrentRingQueue;
+    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JN:Lmiui/util/concurrent/ConcurrentRingQueue;
 
     invoke-virtual {v0, p1}, Lmiui/util/concurrent/ConcurrentRingQueue;->increaseCapacity(I)V
 
-    goto :goto_0
+    goto :goto_2e
 
     .line 153
-    :cond_1
-    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JC:Lmiui/util/concurrent/ConcurrentRingQueue;
+    :cond_28
+    iget-object v0, p0, Lmiui/util/Pools$InstanceHolder;->JN:Lmiui/util/concurrent/ConcurrentRingQueue;
 
     neg-int p1, p1
 
     invoke-virtual {v0, p1}, Lmiui/util/concurrent/ConcurrentRingQueue;->decreaseCapacity(I)V
-    :try_end_3
-    .catchall {:try_start_3 .. :try_end_3} :catchall_1
+    :try_end_2e
+    .catchall {:try_start_1f .. :try_end_2e} :catchall_30
 
     .line 155
-    :goto_0
+    :goto_2e
     monitor-exit p0
 
     return-void
 
     .line 141
-    :catchall_1
+    :catchall_30
     move-exception p1
 
     monitor-exit p0

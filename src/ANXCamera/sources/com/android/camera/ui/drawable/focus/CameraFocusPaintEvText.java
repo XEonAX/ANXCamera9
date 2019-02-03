@@ -5,7 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint.Align;
 import android.graphics.Paint.Style;
-import com.aeonax.camera.R;
+import com.android.camera.R;
 import com.android.camera.ui.drawable.CameraPaintBase;
 import java.util.Locale;
 

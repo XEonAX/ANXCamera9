@@ -21,7 +21,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 30
     invoke-direct {p0}, Landroid/support/v4/media/routing/MediaRouterJellybean;-><init>()V
@@ -31,7 +31,7 @@
 .end method
 
 .method public static createCallback(Landroid/support/v4/media/routing/MediaRouterJellybeanMr1$Callback;)Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .param p0, "callback"    # Landroid/support/v4/media/routing/MediaRouterJellybeanMr1$Callback;
 
     .line 34

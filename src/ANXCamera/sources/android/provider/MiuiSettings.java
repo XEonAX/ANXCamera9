@@ -65,6 +65,7 @@ import org.json.JSONObject;
 
 public class MiuiSettings {
     public static final String ACTION_ACCOUNT_LIST = "android.settings.ACCOUNT_LIST";
+    public static String APP_LOCK_USE_FACE_UNLOCK_STATE = "com_miui_applicatinlock_use_face_unlock_state";
     public static String APP_LOCK_USE_FINGERPRINT_STATE = "com_miui_applicatinlock_use_fingerprint_state";
     public static final Set<String> CROSS_PROFILE_SETTINGS = new ArraySet();
     private static final String DISCOVER_AUTO_UPDATE_ENABLED = "com.xiaomi.discover.auto_update_enabled";
@@ -834,8 +835,11 @@ public class MiuiSettings {
     public static final class Key {
         public static final String CLOSE_APP = "close_app";
         public static final String CLOSE_TALKBACK = "close_talkback";
+        public static final int DISABLE_THREE_GESTURE = 0;
         public static final String DOUBLE_CLICK_POWER_KEY = "double_click_power_key";
         public static final String DUMP_LOG = "dump_log";
+        public static final int ENABLE_THREE_GESTURE = 1;
+        public static final String ENABLE_THREE_GESTURE_KEY = "enable_three_gesture";
         public static final String GO_TO_SLEEP = "go_to_sleep";
         public static final String KEY_AI_BUTTON_SETTINGS = "key_ai_button_settings";
         public static final String KEY_BANK_CARD = "key_bank_card_in_ese";
@@ -1035,6 +1039,10 @@ public class MiuiSettings {
         public static final int FLAG_SUPPORT_ENHANCE_MODE = 2;
         public static final int FLAG_SUPPORT_MONOCHROME_MODE = 8;
         public static final int FLAG_SUPPORT_STANDARD_MODE = 4;
+        public static final String GAME_HDR_LEVEL = "game_hdr_level";
+        public static final String GAME_MODE = "screen_game_mode";
+        public static final int GAME_MODE_DISABLE_EYECARE = 1;
+        public static final int GAME_MODE_ENABLE_HDR = 2;
         public static final int MONOCHROME_MODE_DEFAULT = 2;
         public static final int MONOCHROME_MODE_GLOBAL = 1;
         public static final int MONOCHROME_MODE_LOCAL = 2;
@@ -1100,7 +1108,7 @@ public class MiuiSettings {
 
         private static int getDefaultSaturation() {
             int defaultSaturation = 10;
-            if (FeatureParser.getBoolean(d.rZ, false)) {
+            if (FeatureParser.getBoolean(d.su, false)) {
                 defaultSaturation = 11;
             }
             return FeatureParser.getInteger("display_ce", defaultSaturation);
@@ -3354,18 +3362,19 @@ public class MiuiSettings {
     }
 
     public static void getConfigurationForUser(ContentResolver cr, Configuration outConfig, int userHandle) {
-        boolean isLargeUiMode = true;
+        boolean isAndroidO = true;
         int scaleMode = android.provider.Settings.System.getInt(cr, System.UI_MODE_SCALE, 1) & 15;
-        if (!(scaleMode == 12 || scaleMode == 13 || scaleMode == 14 || scaleMode == 15 || scaleMode == 11)) {
-            isLargeUiMode = false;
-        }
-        if (!isLargeUiMode) {
-            return;
-        }
-        if (Build.IS_TABLET) {
-            outConfig.fontScale = MiuiConfiguration.getFontScale(scaleMode);
-        } else {
-            outConfig.fontScale = MiuiFontSizeUtils.getFontScaleV2(scaleMode, MiuiDisplayMetrics.DENSITY_DEVICE);
+        boolean isLargeUiMode = scaleMode == 12 || scaleMode == 13 || scaleMode == 14 || scaleMode == 15 || scaleMode == 11;
+        if (isLargeUiMode) {
+            int version = VERSION.SDK_INT;
+            if (!(version == 26 || version == 27)) {
+                isAndroidO = false;
+            }
+            if (isAndroidO || Build.IS_TABLET) {
+                outConfig.fontScale = MiuiConfiguration.getFontScale(scaleMode);
+            } else {
+                outConfig.fontScale = MiuiFontSizeUtils.getFontScaleV2(scaleMode, MiuiDisplayMetrics.DENSITY_DEVICE);
+            }
         }
     }
 }

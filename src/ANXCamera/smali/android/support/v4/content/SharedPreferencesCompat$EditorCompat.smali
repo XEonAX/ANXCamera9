@@ -32,7 +32,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .locals 3
+    .registers 4
 
     .line 51
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -44,7 +44,7 @@
 
     const/16 v2, 0x9
 
-    if-lt v0, v2, :cond_0
+    if-lt v0, v2, :cond_12
 
     .line 53
     new-instance v0, Landroid/support/v4/content/SharedPreferencesCompat$EditorCompat$EditorHelperApi9Impl;
@@ -53,10 +53,10 @@
 
     iput-object v0, p0, Landroid/support/v4/content/SharedPreferencesCompat$EditorCompat;->mHelper:Landroid/support/v4/content/SharedPreferencesCompat$EditorCompat$Helper;
 
-    goto :goto_0
+    goto :goto_19
 
     .line 55
-    :cond_0
+    :cond_12
     new-instance v0, Landroid/support/v4/content/SharedPreferencesCompat$EditorCompat$EditorHelperBaseImpl;
 
     invoke-direct {v0, v1}, Landroid/support/v4/content/SharedPreferencesCompat$EditorCompat$EditorHelperBaseImpl;-><init>(Landroid/support/v4/content/SharedPreferencesCompat$1;)V
@@ -64,17 +64,17 @@
     iput-object v0, p0, Landroid/support/v4/content/SharedPreferencesCompat$EditorCompat;->mHelper:Landroid/support/v4/content/SharedPreferencesCompat$EditorCompat$Helper;
 
     .line 57
-    :goto_0
+    :goto_19
     return-void
 .end method
 
 .method public static getInstance()Landroid/support/v4/content/SharedPreferencesCompat$EditorCompat;
-    .locals 1
+    .registers 1
 
     .line 60
     sget-object v0, Landroid/support/v4/content/SharedPreferencesCompat$EditorCompat;->sInstance:Landroid/support/v4/content/SharedPreferencesCompat$EditorCompat;
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_b
 
     .line 61
     new-instance v0, Landroid/support/v4/content/SharedPreferencesCompat$EditorCompat;
@@ -84,7 +84,7 @@
     sput-object v0, Landroid/support/v4/content/SharedPreferencesCompat$EditorCompat;->sInstance:Landroid/support/v4/content/SharedPreferencesCompat$EditorCompat;
 
     .line 63
-    :cond_0
+    :cond_b
     sget-object v0, Landroid/support/v4/content/SharedPreferencesCompat$EditorCompat;->sInstance:Landroid/support/v4/content/SharedPreferencesCompat$EditorCompat;
 
     return-object v0
@@ -93,7 +93,7 @@
 
 # virtual methods
 .method public apply(Landroid/content/SharedPreferences$Editor;)V
-    .locals 1
+    .registers 3
     .param p1, "editor"    # Landroid/content/SharedPreferences$Editor;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation

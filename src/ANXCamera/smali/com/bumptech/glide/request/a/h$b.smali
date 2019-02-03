@@ -18,7 +18,7 @@
 
 
 # instance fields
-.field private final oZ:I
+.field private final oY:I
 
 
 # direct methods
@@ -29,7 +29,7 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 72
-    iput p1, p0, Lcom/bumptech/glide/request/a/h$b;->oZ:I
+    iput p1, p0, Lcom/bumptech/glide/request/a/h$b;->oY:I
 
     .line 73
     return-void
@@ -37,11 +37,11 @@
 
 
 # virtual methods
-.method public m(Landroid/content/Context;)Landroid/view/animation/Animation;
+.method public l(Landroid/content/Context;)Landroid/view/animation/Animation;
     .locals 1
 
     .line 77
-    iget v0, p0, Lcom/bumptech/glide/request/a/h$b;->oZ:I
+    iget v0, p0, Lcom/bumptech/glide/request/a/h$b;->oY:I
 
     invoke-static {p1, v0}, Landroid/view/animation/AnimationUtils;->loadAnimation(Landroid/content/Context;I)Landroid/view/animation/Animation;
 

@@ -6,15 +6,15 @@
 # static fields
 .field private static final TAG:Ljava/lang/String; = "ThumbStreamOpener"
 
-.field private static final dI:Lcom/bumptech/glide/load/a/a/a;
+.field private static final dJ:Lcom/bumptech/glide/load/a/a/a;
 
 
 # instance fields
-.field private final dJ:Lcom/bumptech/glide/load/a/a/a;
+.field private final dK:Lcom/bumptech/glide/load/a/a/a;
 
-.field private final dK:Lcom/bumptech/glide/load/a/a/d;
+.field private final dL:Lcom/bumptech/glide/load/a/a/d;
 
-.field private final dL:Ljava/util/List;
+.field private final dM:Ljava/util/List;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/List<",
@@ -24,9 +24,9 @@
     .end annotation
 .end field
 
-.field private final du:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+.field private final dv:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
-.field private final dv:Landroid/content/ContentResolver;
+.field private final dw:Landroid/content/ContentResolver;
 
 
 # direct methods
@@ -38,7 +38,7 @@
 
     invoke-direct {v0}, Lcom/bumptech/glide/load/a/a/a;-><init>()V
 
-    sput-object v0, Lcom/bumptech/glide/load/a/a/e;->dI:Lcom/bumptech/glide/load/a/a/a;
+    sput-object v0, Lcom/bumptech/glide/load/a/a/e;->dJ:Lcom/bumptech/glide/load/a/a/a;
 
     return-void
 .end method
@@ -63,19 +63,19 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 41
-    iput-object p2, p0, Lcom/bumptech/glide/load/a/a/e;->dJ:Lcom/bumptech/glide/load/a/a/a;
+    iput-object p2, p0, Lcom/bumptech/glide/load/a/a/e;->dK:Lcom/bumptech/glide/load/a/a/a;
 
     .line 42
-    iput-object p3, p0, Lcom/bumptech/glide/load/a/a/e;->dK:Lcom/bumptech/glide/load/a/a/d;
+    iput-object p3, p0, Lcom/bumptech/glide/load/a/a/e;->dL:Lcom/bumptech/glide/load/a/a/d;
 
     .line 43
-    iput-object p4, p0, Lcom/bumptech/glide/load/a/a/e;->du:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iput-object p4, p0, Lcom/bumptech/glide/load/a/a/e;->dv:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     .line 44
-    iput-object p5, p0, Lcom/bumptech/glide/load/a/a/e;->dv:Landroid/content/ContentResolver;
+    iput-object p5, p0, Lcom/bumptech/glide/load/a/a/e;->dw:Landroid/content/ContentResolver;
 
     .line 45
-    iput-object p1, p0, Lcom/bumptech/glide/load/a/a/e;->dL:Ljava/util/List;
+    iput-object p1, p0, Lcom/bumptech/glide/load/a/a/e;->dM:Ljava/util/List;
 
     .line 46
     return-void
@@ -97,7 +97,7 @@
     .end annotation
 
     .line 32
-    sget-object v2, Lcom/bumptech/glide/load/a/a/e;->dI:Lcom/bumptech/glide/load/a/a/a;
+    sget-object v2, Lcom/bumptech/glide/load/a/a/e;->dJ:Lcom/bumptech/glide/load/a/a/a;
 
     move-object v0, p0
 
@@ -119,7 +119,7 @@
     .locals 4
 
     .line 108
-    iget-object v0, p0, Lcom/bumptech/glide/load/a/a/e;->dJ:Lcom/bumptech/glide/load/a/a/a;
+    iget-object v0, p0, Lcom/bumptech/glide/load/a/a/e;->dK:Lcom/bumptech/glide/load/a/a/a;
 
     invoke-virtual {v0, p1}, Lcom/bumptech/glide/load/a/a/a;->exists(Ljava/io/File;)Z
 
@@ -129,7 +129,7 @@
 
     const-wide/16 v0, 0x0
 
-    iget-object v2, p0, Lcom/bumptech/glide/load/a/a/e;->dJ:Lcom/bumptech/glide/load/a/a/a;
+    iget-object v2, p0, Lcom/bumptech/glide/load/a/a/e;->dK:Lcom/bumptech/glide/load/a/a/a;
 
     invoke-virtual {v2, p1}, Lcom/bumptech/glide/load/a/a/a;->d(Ljava/io/File;)J
 
@@ -160,7 +160,7 @@
     .end annotation
 
     .line 93
-    iget-object v0, p0, Lcom/bumptech/glide/load/a/a/e;->dK:Lcom/bumptech/glide/load/a/a/d;
+    iget-object v0, p0, Lcom/bumptech/glide/load/a/a/e;->dL:Lcom/bumptech/glide/load/a/a/d;
 
     invoke-interface {v0, p1}, Lcom/bumptech/glide/load/a/a/d;->g(Landroid/net/Uri;)Landroid/database/Cursor;
 
@@ -234,7 +234,7 @@
     const/4 v0, 0x0
 
     :try_start_0
-    iget-object v1, p0, Lcom/bumptech/glide/load/a/a/e;->dv:Landroid/content/ContentResolver;
+    iget-object v1, p0, Lcom/bumptech/glide/load/a/a/e;->dw:Landroid/content/ContentResolver;
 
     invoke-virtual {v1, p1}, Landroid/content/ContentResolver;->openInputStream(Landroid/net/Uri;)Ljava/io/InputStream;
 
@@ -246,9 +246,9 @@
 
     .line 52
     :try_start_1
-    iget-object v0, p0, Lcom/bumptech/glide/load/a/a/e;->dL:Ljava/util/List;
+    iget-object v0, p0, Lcom/bumptech/glide/load/a/a/e;->dM:Ljava/util/List;
 
-    iget-object v2, p0, Lcom/bumptech/glide/load/a/a/e;->du:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iget-object v2, p0, Lcom/bumptech/glide/load/a/a/e;->dv:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     invoke-static {v0, v1, v2}, Lcom/bumptech/glide/load/b;->b(Ljava/util/List;Ljava/io/InputStream;Lcom/bumptech/glide/load/engine/bitmap_recycle/b;)I
 
@@ -417,7 +417,7 @@
 
     .line 76
     :cond_0
-    iget-object v1, p0, Lcom/bumptech/glide/load/a/a/e;->dJ:Lcom/bumptech/glide/load/a/a/a;
+    iget-object v1, p0, Lcom/bumptech/glide/load/a/a/e;->dK:Lcom/bumptech/glide/load/a/a/a;
 
     invoke-virtual {v1, v0}, Lcom/bumptech/glide/load/a/a/a;->h(Ljava/lang/String;)Ljava/io/File;
 
@@ -441,7 +441,7 @@
 
     .line 83
     :try_start_0
-    iget-object v1, p0, Lcom/bumptech/glide/load/a/a/e;->dv:Landroid/content/ContentResolver;
+    iget-object v1, p0, Lcom/bumptech/glide/load/a/a/e;->dw:Landroid/content/ContentResolver;
 
     invoke-virtual {v1, v0}, Landroid/content/ContentResolver;->openInputStream(Landroid/net/Uri;)Ljava/io/InputStream;
 

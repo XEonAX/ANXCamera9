@@ -39,24 +39,24 @@
 .method public constructor <init>()V
     .locals 1
 
-    .line 46
+    .line 48
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 47
+    .line 49
     new-instance v0, Lmiui/view/animation/QuarticEaseInInterpolator;
 
     invoke-direct {v0}, Lmiui/view/animation/QuarticEaseInInterpolator;-><init>()V
 
     iput-object v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mQuartEaseIn:Landroid/view/animation/Interpolator;
 
-    .line 48
+    .line 50
     new-instance v0, Lmiui/view/animation/QuarticEaseOutInterpolator;
 
     invoke-direct {v0}, Lmiui/view/animation/QuarticEaseOutInterpolator;-><init>()V
 
     iput-object v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mQuartEaseOut:Landroid/view/animation/Interpolator;
 
-    .line 49
+    .line 51
     return-void
 .end method
 
@@ -73,26 +73,26 @@
         }
     .end annotation
 
-    .line 169
+    .line 171
     iget-boolean v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mShown:Z
 
     if-eqz v0, :cond_0
 
-    .line 170
+    .line 172
     return-void
 
-    .line 173
+    .line 175
     :cond_0
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mShown:Z
 
-    .line 175
+    .line 177
     iget-object v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mHidedViews:Ljava/util/List;
 
     if-nez v0, :cond_1
 
-    .line 176
+    .line 178
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
@@ -101,13 +101,13 @@
 
     goto :goto_0
 
-    .line 178
+    .line 180
     :cond_1
     iget-object v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mHidedViews:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->clear()V
 
-    .line 180
+    .line 182
     :goto_0
     invoke-interface {p2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
@@ -126,7 +126,7 @@
 
     check-cast v0, Landroid/view/View;
 
-    .line 182
+    .line 184
     invoke-virtual {v0}, Landroid/view/View;->getTag()Ljava/lang/Object;
 
     move-result-object v1
@@ -139,10 +139,10 @@
 
     if-ne v1, p1, :cond_2
 
-    .line 183
+    .line 185
     goto :goto_1
 
-    .line 186
+    .line 188
     :cond_2
     invoke-virtual {v0}, Landroid/view/View;->getVisibility()I
 
@@ -150,10 +150,10 @@
 
     if-eqz v1, :cond_3
 
-    .line 187
+    .line 189
     goto :goto_1
 
-    .line 190
+    .line 192
     :cond_3
     invoke-virtual {v0}, Landroid/view/View;->getAlpha()F
 
@@ -165,33 +165,33 @@
 
     if-nez v1, :cond_4
 
-    .line 191
+    .line 193
     goto :goto_1
 
-    .line 194
+    .line 196
     :cond_4
     iget-object v1, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mHidedViews:Ljava/util/List;
 
     invoke-interface {v1, v0}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 196
+    .line 198
     const/high16 v1, 0x3f800000    # 1.0f
 
     invoke-static {v0, v1}, Landroid/support/v4/view/ViewCompat;->setAlpha(Landroid/view/View;F)V
 
-    .line 197
+    .line 199
     invoke-static {v0}, Landroid/support/v4/view/ViewCompat;->animate(Landroid/view/View;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v1
 
     const-wide/16 v3, 0x0
 
-    .line 198
+    .line 200
     invoke-virtual {v1, v3, v4}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setStartDelay(J)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v1
 
-    .line 199
+    .line 201
     iget v3, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mShowDelay:I
 
     if-lez v3, :cond_5
@@ -208,7 +208,7 @@
 
     move-result-object v1
 
-    .line 200
+    .line 202
     invoke-virtual {v1, v2}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->alpha(F)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v1
@@ -217,12 +217,12 @@
 
     int-to-float v2, v2
 
-    .line 201
+    .line 203
     invoke-virtual {v1, v2}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->translationXBy(F)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v1
 
-    .line 202
+    .line 204
     iget v2, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mShowDelay:I
 
     if-lez v2, :cond_6
@@ -239,18 +239,18 @@
 
     move-result-object v1
 
-    .line 203
+    .line 205
     invoke-virtual {v1}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->start()V
 
-    .line 204
+    .line 206
     const/4 v1, 0x0
 
     invoke-virtual {v0, v1}, Landroid/view/View;->setEnabled(Z)V
 
-    .line 206
+    .line 208
     goto :goto_1
 
-    .line 207
+    .line 209
     :cond_7
     return-void
 .end method
@@ -258,21 +258,21 @@
 .method public reverse(Z)Z
     .locals 11
 
-    .line 64
+    .line 66
     iget-boolean v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mShown:Z
 
     const/4 v1, 0x0
 
     if-nez v0, :cond_0
 
-    .line 65
+    .line 67
     return v1
 
-    .line 68
+    .line 70
     :cond_0
     iput-boolean v1, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mShown:Z
 
-    .line 70
+    .line 72
     iget-object v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mHidedViews:Ljava/util/List;
 
     const/4 v1, 0x1
@@ -287,7 +287,7 @@
 
     if-eqz v0, :cond_3
 
-    .line 71
+    .line 73
     iget-object v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mHidedViews:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
@@ -307,84 +307,84 @@
 
     check-cast v8, Landroid/view/View;
 
-    .line 72
+    .line 74
     if-eqz p1, :cond_1
 
-    .line 79
+    .line 81
     invoke-static {v8, v7}, Landroid/support/v4/view/ViewCompat;->setAlpha(Landroid/view/View;F)V
 
-    .line 80
+    .line 82
     invoke-static {v8}, Landroid/support/v4/view/ViewCompat;->animate(Landroid/view/View;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v9
 
-    .line 81
+    .line 83
     invoke-virtual {v9, v5, v6}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setStartDelay(J)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v9
 
-    .line 82
+    .line 84
     invoke-virtual {v9, v3, v4}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setDuration(J)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v9
 
     const/high16 v10, 0x3f800000    # 1.0f
 
-    .line 83
+    .line 85
     invoke-virtual {v9, v10}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->alpha(F)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v9
 
-    .line 84
+    .line 86
     invoke-virtual {v9, v7}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->translationX(F)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v9
 
     iget-object v10, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mQuartEaseOut:Landroid/view/animation/Interpolator;
 
-    .line 85
+    .line 87
     invoke-virtual {v9, v10}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setInterpolator(Landroid/view/animation/Interpolator;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v9
 
-    .line 86
+    .line 88
     invoke-virtual {v9}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->start()V
 
-    .line 87
+    .line 89
     invoke-virtual {v8, v1}, Landroid/view/View;->setEnabled(Z)V
 
     goto :goto_1
 
-    .line 89
+    .line 91
     :cond_1
     invoke-static {v8, v7}, Landroid/support/v4/view/ViewCompat;->setTranslationX(Landroid/view/View;F)V
 
-    .line 90
+    .line 92
     invoke-static {v8}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 93
+    .line 95
     :goto_1
     goto :goto_0
 
-    .line 94
+    .line 96
     :cond_2
     iget-object v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mHidedViews:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->clear()V
 
-    .line 95
+    .line 97
     iput-object v2, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mHidedViews:Ljava/util/List;
 
-    .line 99
+    .line 101
     :cond_3
     iget-object v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mAnchorView:Landroid/view/View;
 
     if-eqz v0, :cond_5
 
-    .line 100
+    .line 102
     if-eqz p1, :cond_4
 
-    .line 101
+    .line 103
     iget-object v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mAnchorView:Landroid/view/View;
 
     invoke-static {v0}, Landroid/support/v4/view/ViewCompat;->animate(Landroid/view/View;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
@@ -395,7 +395,7 @@
 
     iget-object v9, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mAnchorView:Landroid/view/View;
 
-    .line 102
+    .line 104
     invoke-virtual {v9}, Landroid/view/View;->getLeft()I
 
     move-result v9
@@ -408,29 +408,29 @@
 
     move-result-object v0
 
-    .line 103
+    .line 105
     invoke-virtual {v0, v5, v6}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setStartDelay(J)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v0
 
-    .line 104
+    .line 106
     invoke-virtual {v0, v3, v4}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setDuration(J)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v0
 
     iget-object v8, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mQuartEaseOut:Landroid/view/animation/Interpolator;
 
-    .line 105
+    .line 107
     invoke-virtual {v0, v8}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setInterpolator(Landroid/view/animation/Interpolator;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v0
 
-    .line 106
+    .line 108
     invoke-virtual {v0}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->start()V
 
     goto :goto_2
 
-    .line 109
+    .line 111
     :cond_4
     iget-object v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mAnchorView:Landroid/view/View;
 
@@ -446,27 +446,27 @@
 
     invoke-static {v0, v8}, Lcom/android/camera/animation/type/TranslateXOnSubscribe;->directSetResult(Landroid/view/View;I)V
 
-    .line 111
+    .line 113
     :goto_2
     iput-object v2, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mAnchorView:Landroid/view/View;
 
-    .line 115
+    .line 117
     :cond_5
     if-eqz p1, :cond_6
 
-    .line 116
+    .line 118
     iget-object p1, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     invoke-static {p1}, Landroid/support/v4/view/ViewCompat;->animate(Landroid/view/View;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object p1
 
-    .line 117
+    .line 119
     invoke-virtual {p1, v5, v6}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setStartDelay(J)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object p1
 
-    .line 118
+    .line 120
     invoke-virtual {p1, v7}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->alpha(F)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object p1
@@ -475,7 +475,7 @@
 
     iget-object v2, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
-    .line 119
+    .line 121
     invoke-virtual {v2}, Landroid/support/v7/widget/RecyclerView;->getLeft()I
 
     move-result v2
@@ -488,14 +488,14 @@
 
     move-result-object p1
 
-    .line 120
+    .line 122
     invoke-virtual {p1, v3, v4}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setDuration(J)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object p1
 
     iget-object v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mQuartEaseOut:Landroid/view/animation/Interpolator;
 
-    .line 121
+    .line 123
     invoke-virtual {p1, v0}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setInterpolator(Landroid/view/animation/Interpolator;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object p1
@@ -504,23 +504,23 @@
 
     invoke-direct {v0, p0}, Lcom/android/camera/fragment/top/LastAnimationComponent$1;-><init>(Lcom/android/camera/fragment/top/LastAnimationComponent;)V
 
-    .line 122
+    .line 124
     invoke-virtual {p1, v0}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->withEndAction(Ljava/lang/Runnable;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object p1
 
-    .line 130
+    .line 132
     invoke-virtual {p1}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->start()V
 
     goto :goto_3
 
-    .line 132
+    .line 134
     :cond_6
     iget-object p1, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     invoke-static {p1, v7}, Landroid/support/v4/view/ViewCompat;->setAlpha(Landroid/view/View;F)V
 
-    .line 133
+    .line 135
     iget-object p1, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     iget v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mReverseRecyclerViewLeft:I
@@ -537,17 +537,17 @@
 
     invoke-static {p1, v0}, Landroid/support/v4/view/ViewCompat;->setTranslationX(Landroid/view/View;F)V
 
-    .line 134
+    .line 136
     iget-object p1, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     const/4 v0, 0x4
 
     invoke-virtual {p1, v0}, Landroid/support/v7/widget/RecyclerView;->setVisibility(I)V
 
-    .line 135
+    .line 137
     iput-object v2, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
-    .line 139
+    .line 141
     :goto_3
     return v1
 .end method
@@ -555,38 +555,38 @@
 .method public setExpandGravity(I)V
     .locals 1
 
-    .line 52
+    .line 54
     iput p1, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mGravity:I
 
-    .line 53
+    .line 55
     const/4 v0, 0x3
 
     if-ne p1, v0, :cond_0
 
-    .line 54
+    .line 56
     const/16 p1, -0xc8
 
     iput p1, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mExpandOffset:I
 
-    .line 55
+    .line 57
     const/4 p1, 0x0
 
     iput p1, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mShowDelay:I
 
     goto :goto_0
 
-    .line 57
+    .line 59
     :cond_0
     const/16 p1, 0xc8
 
     iput p1, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mExpandOffset:I
 
-    .line 58
+    .line 60
     const/16 p1, 0x8c
 
     iput p1, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mShowDelay:I
 
-    .line 60
+    .line 62
     :goto_0
     return-void
 .end method
@@ -594,21 +594,21 @@
 .method public showExtraView(II)V
     .locals 2
 
-    .line 156
+    .line 158
     iget-object v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     const/4 v1, 0x0
 
     invoke-static {v0, v1}, Landroid/support/v4/view/ViewCompat;->setAlpha(Landroid/view/View;F)V
 
-    .line 157
+    .line 159
     iget-object v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     int-to-float p1, p1
 
     invoke-static {v0, p1}, Landroid/support/v4/view/ViewCompat;->setTranslationX(Landroid/view/View;F)V
 
-    .line 158
+    .line 160
     iget-object p1, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     invoke-static {p1}, Landroid/support/v4/view/ViewCompat;->animate(Landroid/view/View;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
@@ -619,12 +619,12 @@
 
     int-to-long v0, v0
 
-    .line 159
+    .line 161
     invoke-virtual {p1, v0, v1}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setStartDelay(J)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object p1
 
-    .line 160
+    .line 162
     const/high16 v0, 0x3f800000    # 1.0f
 
     invoke-virtual {p1, v0}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->alpha(F)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
@@ -633,12 +633,12 @@
 
     int-to-float p2, p2
 
-    .line 161
+    .line 163
     invoke-virtual {p1, p2}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->translationX(F)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object p1
 
-    .line 162
+    .line 164
     const-wide/16 v0, 0x118
 
     invoke-virtual {p1, v0, v1}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setDuration(J)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
@@ -647,22 +647,22 @@
 
     iget-object p2, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mQuartEaseOut:Landroid/view/animation/Interpolator;
 
-    .line 163
+    .line 165
     invoke-virtual {p1, p2}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setInterpolator(Landroid/view/animation/Interpolator;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object p1
 
-    .line 164
+    .line 166
     invoke-virtual {p1}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->start()V
 
-    .line 165
+    .line 167
     return-void
 .end method
 
 .method public translateAnchorView(I)V
     .locals 2
 
-    .line 146
+    .line 148
     iget-object v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mAnchorView:Landroid/view/View;
 
     invoke-static {v0}, Landroid/support/v4/view/ViewCompat;->animate(Landroid/view/View;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
@@ -671,7 +671,7 @@
 
     int-to-float p1, p1
 
-    .line 147
+    .line 149
     invoke-virtual {v0, p1}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->translationX(F)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object p1
@@ -680,12 +680,12 @@
 
     int-to-long v0, v0
 
-    .line 148
+    .line 150
     invoke-virtual {p1, v0, v1}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setStartDelay(J)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object p1
 
-    .line 149
+    .line 151
     const-wide/16 v0, 0x118
 
     invoke-virtual {p1, v0, v1}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setDuration(J)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
@@ -694,14 +694,14 @@
 
     iget-object v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mQuartEaseOut:Landroid/view/animation/Interpolator;
 
-    .line 150
+    .line 152
     invoke-virtual {p1, v0}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setInterpolator(Landroid/view/animation/Interpolator;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object p1
 
-    .line 151
+    .line 153
     invoke-virtual {p1}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->start()V
 
-    .line 152
+    .line 154
     return-void
 .end method

@@ -20,6 +20,12 @@
 
 .field private mJsonConverter:Lcom/ss/android/ugc/effectmanager/common/listener/IJsonConverter;
 
+.field private mRemoteIp:Ljava/lang/String;
+
+.field private mRequestedUrl:Ljava/lang/String;
+
+.field private mSelectedHost:Ljava/lang/String;
+
 .field private panel:Ljava/lang/String;
 
 
@@ -27,18 +33,18 @@
 .method public constructor <init>(Lcom/ss/android/ugc/effectmanager/context/EffectContext;Ljava/lang/String;Ljava/lang/String;Landroid/os/Handler;)V
     .locals 1
 
-    .line 66
+    .line 73
     const-string v0, "NETWORK"
 
     invoke-direct {p0, p4, p3, v0}, Lcom/ss/android/ugc/effectmanager/common/task/NormalTask;-><init>(Landroid/os/Handler;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 67
+    .line 74
     iput-object p2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->panel:Ljava/lang/String;
 
-    .line 68
+    .line 75
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
-    .line 69
+    .line 76
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -47,7 +53,7 @@
 
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
-    .line 70
+    .line 77
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/EffectConfiguration;->getCache()Lcom/ss/android/ugc/effectmanager/common/listener/ICache;
@@ -56,7 +62,7 @@
 
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mFileCache:Lcom/ss/android/ugc/effectmanager/common/listener/ICache;
 
-    .line 71
+    .line 78
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/EffectConfiguration;->getJsonConverter()Lcom/ss/android/ugc/effectmanager/common/listener/IJsonConverter;
@@ -65,7 +71,7 @@
 
     iput-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mJsonConverter:Lcom/ss/android/ugc/effectmanager/common/listener/IJsonConverter;
 
-    .line 72
+    .line 79
     iget-object p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/EffectConfiguration;->getRetryCount()I
@@ -74,19 +80,19 @@
 
     iput p1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mCurCnt:I
 
-    .line 73
+    .line 80
     return-void
 .end method
 
 .method private buildEffectListRequest()Lcom/ss/android/ugc/effectmanager/common/EffectRequest;
     .locals 3
 
-    .line 287
+    .line 298
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
-    .line 289
+    .line 300
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
     invoke-virtual {v1}, Lcom/ss/android/ugc/effectmanager/EffectConfiguration;->getAccessKey()Ljava/lang/String;
@@ -99,7 +105,7 @@
 
     if-nez v1, :cond_0
 
-    .line 290
+    .line 301
     const-string v1, "access_key"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -110,7 +116,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 292
+    .line 303
     :cond_0
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
@@ -124,7 +130,7 @@
 
     if-nez v1, :cond_1
 
-    .line 293
+    .line 304
     const-string v1, "app_version"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -135,7 +141,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 295
+    .line 306
     :cond_1
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
@@ -149,7 +155,7 @@
 
     if-nez v1, :cond_2
 
-    .line 296
+    .line 307
     const-string v1, "sdk_version"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -160,7 +166,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 298
+    .line 309
     :cond_2
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
@@ -174,7 +180,7 @@
 
     if-nez v1, :cond_3
 
-    .line 299
+    .line 310
     const-string v1, "channel"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -185,7 +191,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 301
+    .line 312
     :cond_3
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->panel:Ljava/lang/String;
 
@@ -195,14 +201,14 @@
 
     if-nez v1, :cond_4
 
-    .line 302
+    .line 313
     const-string v1, "panel"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->panel:Ljava/lang/String;
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 304
+    .line 315
     :cond_4
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
@@ -216,7 +222,7 @@
 
     if-nez v1, :cond_5
 
-    .line 305
+    .line 316
     const-string v1, "device_platform"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -227,7 +233,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 307
+    .line 318
     :cond_5
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
@@ -241,7 +247,7 @@
 
     if-nez v1, :cond_6
 
-    .line 308
+    .line 319
     const-string v1, "device_id"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -252,7 +258,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 310
+    .line 321
     :cond_6
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
@@ -266,7 +272,7 @@
 
     if-nez v1, :cond_7
 
-    .line 311
+    .line 322
     const-string v1, "region"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -277,7 +283,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 313
+    .line 324
     :cond_7
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
@@ -291,7 +297,7 @@
 
     if-nez v1, :cond_8
 
-    .line 314
+    .line 325
     const-string v1, "device_type"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -302,7 +308,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 317
+    .line 328
     :cond_8
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
@@ -316,7 +322,7 @@
 
     if-nez v1, :cond_9
 
-    .line 318
+    .line 329
     const-string v1, "aid"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -327,7 +333,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 320
+    .line 331
     :cond_9
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
@@ -341,7 +347,7 @@
 
     if-nez v1, :cond_a
 
-    .line 321
+    .line 332
     const-string v1, "app_language"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -352,7 +358,7 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 323
+    .line 334
     :cond_a
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
@@ -366,7 +372,7 @@
 
     if-nez v1, :cond_b
 
-    .line 324
+    .line 335
     const-string v1, "language"
 
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
@@ -377,21 +383,26 @@
 
     invoke-virtual {v0, v1, v2}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 327
+    .line 338
     :cond_b
+    iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
+
+    invoke-virtual {v1}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getLinkSelector()Lcom/ss/android/ugc/effectmanager/link/LinkSelector;
+
+    move-result-object v1
+
+    invoke-virtual {v1}, Lcom/ss/android/ugc/effectmanager/link/LinkSelector;->getBestHostUrl()Ljava/lang/String;
+
+    move-result-object v1
+
+    iput-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mSelectedHost:Ljava/lang/String;
+
+    .line 339
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
 
-    iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
-
-    invoke-virtual {v2}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getLinkSelector()Lcom/ss/android/ugc/effectmanager/link/LinkSelector;
-
-    move-result-object v2
-
-    invoke-virtual {v2}, Lcom/ss/android/ugc/effectmanager/link/LinkSelector;->getBestHostUrl()Ljava/lang/String;
-
-    move-result-object v2
+    iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mSelectedHost:Ljava/lang/String;
 
     invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
@@ -415,7 +426,58 @@
 
     move-result-object v0
 
-    .line 328
+    .line 340
+    iput-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mRequestedUrl:Ljava/lang/String;
+
+    .line 343
+    :try_start_0
+    new-instance v1, Ljava/net/URL;
+
+    invoke-direct {v1, v0}, Ljava/net/URL;-><init>(Ljava/lang/String;)V
+
+    .line 344
+    invoke-virtual {v1}, Ljava/net/URL;->getHost()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v1}, Ljava/net/InetAddress;->getByName(Ljava/lang/String;)Ljava/net/InetAddress;
+
+    move-result-object v1
+
+    .line 345
+    invoke-virtual {v1}, Ljava/net/InetAddress;->getHostAddress()Ljava/lang/String;
+
+    move-result-object v1
+
+    iput-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mRemoteIp:Ljava/lang/String;
+    :try_end_0
+    .catch Ljava/net/UnknownHostException; {:try_start_0 .. :try_end_0} :catch_1
+    .catch Ljava/net/MalformedURLException; {:try_start_0 .. :try_end_0} :catch_0
+
+    goto :goto_0
+
+    .line 348
+    :catch_0
+    move-exception v1
+
+    .line 349
+    invoke-virtual {v1}, Ljava/net/MalformedURLException;->printStackTrace()V
+
+    goto :goto_1
+
+    .line 346
+    :catch_1
+    move-exception v1
+
+    .line 347
+    invoke-virtual {v1}, Ljava/net/UnknownHostException;->printStackTrace()V
+
+    .line 350
+    :goto_0
+    nop
+
+    .line 351
+    :goto_1
     new-instance v1, Lcom/ss/android/ugc/effectmanager/common/EffectRequest;
 
     const-string v2, "GET"
@@ -428,52 +490,52 @@
 .method private dealResponse(Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;)Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;
     .locals 2
 
-    .line 112
+    .line 123
     new-instance v0, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;
 
     invoke-direct {v0}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;-><init>()V
 
-    .line 113
+    .line 124
     iget-object v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->panel:Ljava/lang/String;
 
     invoke-virtual {v0, v1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;->setPanel(Ljava/lang/String;)V
 
-    .line 114
+    .line 125
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;->getVersion()Ljava/lang/String;
 
     move-result-object v1
 
     invoke-virtual {v0, v1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;->setVersion(Ljava/lang/String;)V
 
-    .line 115
+    .line 126
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;->getEffects()Ljava/util/List;
 
     move-result-object v1
 
     invoke-virtual {v0, v1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;->setAllCategoryEffects(Ljava/util/List;)V
 
-    .line 116
+    .line 127
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;->getCollection()Ljava/util/List;
 
     move-result-object v1
 
     invoke-virtual {v0, v1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;->setCollections(Ljava/util/List;)V
 
-    .line 117
+    .line 128
     invoke-direct {p0, p1}, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->initCategory(Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;)Ljava/util/List;
 
     move-result-object v1
 
     invoke-virtual {v0, v1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;->setCategoryResponseList(Ljava/util/List;)V
 
-    .line 119
+    .line 130
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;->getPanel()Lcom/ss/android/ugc/effectmanager/effect/model/EffectPanelModel;
 
     move-result-object v1
 
     invoke-virtual {v0, v1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;->setPanelModel(Lcom/ss/android/ugc/effectmanager/effect/model/EffectPanelModel;)V
 
-    .line 121
+    .line 132
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;->getFront_effect_id()Ljava/lang/String;
 
     move-result-object v1
@@ -484,7 +546,7 @@
 
     invoke-virtual {v0, v1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;->setFrontEffect(Lcom/ss/android/ugc/effectmanager/effect/model/Effect;)V
 
-    .line 122
+    .line 133
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;->getRear_effect_id()Ljava/lang/String;
 
     move-result-object v1
@@ -495,31 +557,31 @@
 
     invoke-virtual {v0, v1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;->setRearEffect(Lcom/ss/android/ugc/effectmanager/effect/model/Effect;)V
 
-    .line 123
+    .line 134
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;->getEffects()Ljava/util/List;
 
     move-result-object v1
 
     invoke-direct {p0, v1}, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->fillEffectPath(Ljava/util/List;)V
 
-    .line 124
+    .line 135
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;->getCollection()Ljava/util/List;
 
     move-result-object v1
 
     invoke-direct {p0, v1}, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->fillEffectPath(Ljava/util/List;)V
 
-    .line 125
+    .line 136
     invoke-direct {p0, p1}, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->saveEffectList(Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;)V
 
-    .line 126
+    .line 137
     return-object v0
 .end method
 
 .method private deleteEffect(Lcom/ss/android/ugc/effectmanager/effect/model/Effect;)V
     .locals 2
 
-    .line 272
+    .line 283
     invoke-static {p1}, Lcom/ss/android/ugc/effectmanager/common/utils/EffectUtils;->isEffectValid(Lcom/ss/android/ugc/effectmanager/effect/model/Effect;)Z
 
     move-result v0
@@ -528,7 +590,7 @@
 
     return-void
 
-    .line 273
+    .line 284
     :cond_0
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mFileCache:Lcom/ss/android/ugc/effectmanager/common/listener/ICache;
 
@@ -538,7 +600,7 @@
 
     invoke-interface {v0, v1}, Lcom/ss/android/ugc/effectmanager/common/listener/ICache;->remove(Ljava/lang/String;)Z
 
-    .line 274
+    .line 285
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mFileCache:Lcom/ss/android/ugc/effectmanager/common/listener/ICache;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -561,7 +623,7 @@
 
     invoke-interface {v0, p1}, Lcom/ss/android/ugc/effectmanager/common/listener/ICache;->remove(Ljava/lang/String;)Z
 
-    .line 275
+    .line 286
     return-void
 .end method
 
@@ -576,7 +638,7 @@
         }
     .end annotation
 
-    .line 278
+    .line 289
     if-eqz p1, :cond_2
 
     invoke-interface {p1}, Ljava/util/List;->isEmpty()Z
@@ -587,7 +649,7 @@
 
     goto :goto_1
 
-    .line 280
+    .line 291
     :cond_0
     invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
@@ -606,7 +668,7 @@
 
     check-cast v0, Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
 
-    .line 281
+    .line 292
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -639,7 +701,7 @@
 
     invoke-virtual {v0, v1}, Lcom/ss/android/ugc/effectmanager/effect/model/Effect;->setZipPath(Ljava/lang/String;)V
 
-    .line 282
+    .line 293
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -668,14 +730,14 @@
 
     invoke-virtual {v0, v1}, Lcom/ss/android/ugc/effectmanager/effect/model/Effect;->setUnzipPath(Ljava/lang/String;)V
 
-    .line 283
+    .line 294
     goto :goto_0
 
-    .line 284
+    .line 295
     :cond_1
     return-void
 
-    .line 278
+    .line 289
     :cond_2
     :goto_1
     return-void
@@ -698,7 +760,7 @@
         }
     .end annotation
 
-    .line 219
+    .line 230
     if-eqz p1, :cond_5
 
     invoke-interface {p1}, Ljava/util/List;->isEmpty()Z
@@ -709,16 +771,16 @@
 
     goto :goto_2
 
-    .line 222
+    .line 233
     :cond_0
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    .line 223
+    .line 234
     nop
 
-    .line 224
+    .line 235
     invoke-interface {p2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object p2
@@ -740,7 +802,7 @@
 
     check-cast v3, Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
 
-    .line 225
+    .line 236
     invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v4
@@ -758,41 +820,41 @@
 
     check-cast v5, Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
 
-    .line 226
+    .line 237
     invoke-virtual {v3, v5}, Lcom/ss/android/ugc/effectmanager/effect/model/Effect;->equals(Ljava/lang/Object;)Z
 
     move-result v5
 
     if-eqz v5, :cond_1
 
-    .line 227
+    .line 238
     const/4 v2, 0x0
 
-    .line 229
+    .line 240
     :cond_1
     goto :goto_1
 
-    .line 230
+    .line 241
     :cond_2
     if-eqz v2, :cond_3
 
-    .line 231
+    .line 242
     invoke-interface {v0, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 232
+    .line 243
     nop
 
-    .line 234
+    .line 245
     move v2, v1
 
     :cond_3
     goto :goto_0
 
-    .line 235
+    .line 246
     :cond_4
     return-object v0
 
-    .line 220
+    .line 231
     :cond_5
     :goto_2
     return-object p2
@@ -814,12 +876,12 @@
         }
     .end annotation
 
-    .line 205
+    .line 216
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    .line 206
+    .line 217
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryModel;->getEffects()Ljava/util/List;
 
     move-result-object p1
@@ -841,7 +903,7 @@
 
     check-cast v1, Ljava/lang/String;
 
-    .line 208
+    .line 219
     invoke-interface {p2, v1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v1
@@ -850,14 +912,14 @@
 
     if-eqz v1, :cond_0
 
-    .line 209
+    .line 220
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 211
+    .line 222
     :cond_0
     goto :goto_0
 
-    .line 212
+    .line 223
     :cond_1
     return-object v0
 .end method
@@ -879,12 +941,12 @@
         }
     .end annotation
 
-    .line 242
+    .line 253
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    .line 243
+    .line 254
     if-eqz p1, :cond_5
 
     invoke-interface {p1}, Ljava/util/List;->isEmpty()Z
@@ -895,11 +957,11 @@
 
     goto :goto_2
 
-    .line 246
+    .line 257
     :cond_0
     nop
 
-    .line 247
+    .line 258
     invoke-interface {p1}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object p1
@@ -921,7 +983,7 @@
 
     check-cast v3, Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
 
-    .line 248
+    .line 259
     invoke-interface {p2}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v4
@@ -939,41 +1001,41 @@
 
     check-cast v5, Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
 
-    .line 249
+    .line 260
     invoke-virtual {v3, v5}, Lcom/ss/android/ugc/effectmanager/effect/model/Effect;->equals(Ljava/lang/Object;)Z
 
     move-result v5
 
     if-eqz v5, :cond_1
 
-    .line 250
+    .line 261
     const/4 v2, 0x0
 
-    .line 252
+    .line 263
     :cond_1
     goto :goto_1
 
-    .line 253
+    .line 264
     :cond_2
     if-eqz v2, :cond_3
 
-    .line 254
+    .line 265
     invoke-interface {v0, v3}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 257
+    .line 268
     nop
 
-    .line 259
+    .line 270
     move v2, v1
 
     :cond_3
     goto :goto_0
 
-    .line 260
+    .line 271
     :cond_4
     return-object v0
 
-    .line 244
+    .line 255
     :cond_5
     :goto_2
     return-object v0
@@ -982,10 +1044,10 @@
 .method private getEffect(Ljava/lang/String;Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;)Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
     .locals 3
 
-    .line 192
+    .line 203
     nop
 
-    .line 193
+    .line 204
     invoke-virtual {p2}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;->getEffects()Ljava/util/List;
 
     move-result-object p2
@@ -1009,7 +1071,7 @@
 
     check-cast v1, Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
 
-    .line 194
+    .line 205
     invoke-virtual {v1}, Lcom/ss/android/ugc/effectmanager/effect/model/Effect;->getEffectId()Ljava/lang/String;
 
     move-result-object v2
@@ -1020,16 +1082,16 @@
 
     if-eqz v2, :cond_0
 
-    .line 195
+    .line 206
     nop
 
-    .line 197
+    .line 208
     move-object v0, v1
 
     :cond_0
     goto :goto_0
 
-    .line 198
+    .line 209
     :cond_1
     return-object v0
 .end method
@@ -1047,17 +1109,17 @@
         }
     .end annotation
 
-    .line 139
+    .line 150
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    .line 143
+    .line 154
     new-instance v1, Ljava/util/HashMap;
 
     invoke-direct {v1}, Ljava/util/HashMap;-><init>()V
 
-    .line 144
+    .line 155
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;->getEffects()Ljava/util/List;
 
     move-result-object v2
@@ -1079,17 +1141,17 @@
 
     check-cast v3, Lcom/ss/android/ugc/effectmanager/effect/model/Effect;
 
-    .line 145
+    .line 156
     invoke-virtual {v3}, Lcom/ss/android/ugc/effectmanager/effect/model/Effect;->getEffectId()Ljava/lang/String;
 
     move-result-object v4
 
     invoke-interface {v1, v4, v3}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 146
+    .line 157
     goto :goto_0
 
-    .line 147
+    .line 158
     :cond_0
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;->getCategory()Ljava/util/List;
 
@@ -1101,7 +1163,7 @@
 
     if-nez v2, :cond_3
 
-    .line 148
+    .line 159
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;->getCategory()Ljava/util/List;
 
     move-result-object v2
@@ -1123,26 +1185,26 @@
 
     check-cast v3, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryModel;
 
-    .line 165
+    .line 176
     new-instance v4, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryResponse;
 
     invoke-direct {v4}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryResponse;-><init>()V
 
-    .line 166
+    .line 177
     invoke-virtual {v3}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryModel;->getId()Ljava/lang/String;
 
     move-result-object v5
 
     invoke-virtual {v4, v5}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryResponse;->setId(Ljava/lang/String;)V
 
-    .line 167
+    .line 178
     invoke-virtual {v3}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryModel;->getName()Ljava/lang/String;
 
     move-result-object v5
 
     invoke-virtual {v4, v5}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryResponse;->setName(Ljava/lang/String;)V
 
-    .line 168
+    .line 179
     invoke-virtual {v3}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryModel;->getIcon()Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryIconsModel;
 
     move-result-object v5
@@ -1159,7 +1221,7 @@
 
     if-nez v5, :cond_1
 
-    .line 169
+    .line 180
     invoke-virtual {v3}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryModel;->getIcon()Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryIconsModel;
 
     move-result-object v5
@@ -1176,7 +1238,7 @@
 
     invoke-virtual {v4, v5}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryResponse;->setIcon_normal_url(Ljava/lang/String;)V
 
-    .line 171
+    .line 182
     :cond_1
     invoke-virtual {v3}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryModel;->getIcon_selected()Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryIconsModel;
 
@@ -1192,7 +1254,7 @@
 
     if-nez v5, :cond_2
 
-    .line 172
+    .line 183
     invoke-virtual {v3}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryModel;->getIcon_selected()Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryIconsModel;
 
     move-result-object v5
@@ -1209,43 +1271,43 @@
 
     invoke-virtual {v4, v5}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryResponse;->setIcon_selected_url(Ljava/lang/String;)V
 
-    .line 175
+    .line 186
     :cond_2
     invoke-direct {p0, v3, v1}, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->getCategoryAllEffects(Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryModel;Ljava/util/Map;)Ljava/util/List;
 
     move-result-object v5
 
-    .line 178
+    .line 189
     invoke-virtual {v4, v5}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryResponse;->setTotalEffects(Ljava/util/List;)V
 
-    .line 182
+    .line 193
     invoke-virtual {v3}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryModel;->getTags()Ljava/util/List;
 
     move-result-object v5
 
     invoke-virtual {v4, v5}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryResponse;->setTags(Ljava/util/List;)V
 
-    .line 183
+    .line 194
     invoke-virtual {v3}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryModel;->getTagsUpdated()Ljava/lang/String;
 
     move-result-object v3
 
     invoke-virtual {v4, v3}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryResponse;->setTagsUpdateTime(Ljava/lang/String;)V
 
-    .line 184
+    .line 195
     invoke-virtual {p1}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;->getCollection()Ljava/util/List;
 
     move-result-object v3
 
     invoke-virtual {v4, v3}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectCategoryResponse;->setCollectionEffect(Ljava/util/List;)V
 
-    .line 185
+    .line 196
     invoke-interface {v0, v4}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 186
+    .line 197
     goto :goto_1
 
-    .line 188
+    .line 199
     :cond_3
     return-object v0
 .end method
@@ -1253,7 +1315,7 @@
 .method private saveEffectList(Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;)V
     .locals 3
 
-    .line 267
+    .line 278
     iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mFileCache:Lcom/ss/android/ugc/effectmanager/common/listener/ICache;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -1280,7 +1342,7 @@
 
     invoke-interface {v0, v1, p1}, Lcom/ss/android/ugc/effectmanager/common/listener/ICache;->save(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 268
+    .line 279
     return-void
 .end method
 
@@ -1289,12 +1351,12 @@
 .method public execute()V
     .locals 7
 
-    .line 77
+    .line 84
     invoke-direct {p0}, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->buildEffectListRequest()Lcom/ss/android/ugc/effectmanager/common/EffectRequest;
 
     move-result-object v0
 
-    .line 78
+    .line 85
     :goto_0
     iget v1, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mCurCnt:I
 
@@ -1304,7 +1366,7 @@
 
     if-eqz v1, :cond_4
 
-    .line 80
+    .line 87
     const/16 v1, 0xe
 
     :try_start_0
@@ -1314,29 +1376,39 @@
 
     if-eqz v2, :cond_0
 
-    .line 81
-    new-instance v2, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectChannelTaskResult;
+    .line 88
+    new-instance v2, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;
 
-    new-instance v3, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;
+    const/16 v3, 0x2711
 
-    iget-object v4, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->panel:Ljava/lang/String;
+    invoke-direct {v2, v3}, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;-><init>(I)V
 
-    invoke-direct {v3, v4}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;-><init>(Ljava/lang/String;)V
+    .line 89
+    iget-object v3, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mRequestedUrl:Ljava/lang/String;
 
-    new-instance v4, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;
+    iget-object v4, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mSelectedHost:Ljava/lang/String;
 
-    const/16 v5, 0x2711
+    iget-object v5, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mRemoteIp:Ljava/lang/String;
 
-    invoke-direct {v4, v5}, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;-><init>(I)V
+    invoke-virtual {v2, v3, v4, v5}, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;->setTrackParams(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 
-    invoke-direct {v2, v3, v4}, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectChannelTaskResult;-><init>(Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
+    .line 90
+    new-instance v3, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectChannelTaskResult;
 
-    invoke-virtual {p0, v1, v2}, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->sendMessage(ILcom/ss/android/ugc/effectmanager/common/task/BaseTaskResult;)V
+    new-instance v4, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;
 
-    .line 82
+    iget-object v5, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->panel:Ljava/lang/String;
+
+    invoke-direct {v4, v5}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;-><init>(Ljava/lang/String;)V
+
+    invoke-direct {v3, v4, v2}, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectChannelTaskResult;-><init>(Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
+
+    invoke-virtual {p0, v1, v3}, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->sendMessage(ILcom/ss/android/ugc/effectmanager/common/task/BaseTaskResult;)V
+
+    .line 91
     goto/16 :goto_2
 
-    .line 84
+    .line 93
     :cond_0
     iget-object v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mConfiguration:Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
@@ -1354,54 +1426,64 @@
 
     check-cast v2, Lcom/ss/android/ugc/effectmanager/effect/model/net/EffectNetListResponse;
 
-    .line 85
+    .line 94
     invoke-virtual {v2}, Lcom/ss/android/ugc/effectmanager/effect/model/net/EffectNetListResponse;->checkValued()Z
 
     move-result v3
 
     if-nez v3, :cond_1
 
-    .line 86
+    .line 95
     iget v2, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mCurCnt:I
 
     if-nez v2, :cond_2
 
-    .line 87
-    new-instance v2, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectChannelTaskResult;
+    .line 96
+    new-instance v2, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;
 
-    new-instance v3, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;
+    const/16 v3, 0x2712
 
-    iget-object v4, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->panel:Ljava/lang/String;
+    invoke-direct {v2, v3}, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;-><init>(I)V
 
-    invoke-direct {v3, v4}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;-><init>(Ljava/lang/String;)V
+    .line 97
+    iget-object v3, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mRequestedUrl:Ljava/lang/String;
 
-    new-instance v4, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;
+    iget-object v4, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mSelectedHost:Ljava/lang/String;
 
-    const/16 v5, 0x2712
+    iget-object v5, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mRemoteIp:Ljava/lang/String;
 
-    invoke-direct {v4, v5}, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;-><init>(I)V
+    invoke-virtual {v2, v3, v4, v5}, Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;->setTrackParams(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
 
-    invoke-direct {v2, v3, v4}, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectChannelTaskResult;-><init>(Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
+    .line 98
+    new-instance v3, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectChannelTaskResult;
 
-    invoke-virtual {p0, v1, v2}, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->sendMessage(ILcom/ss/android/ugc/effectmanager/common/task/BaseTaskResult;)V
+    new-instance v4, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;
 
-    .line 88
+    iget-object v5, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->panel:Ljava/lang/String;
+
+    invoke-direct {v4, v5}, Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;-><init>(Ljava/lang/String;)V
+
+    invoke-direct {v3, v4, v2}, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectChannelTaskResult;-><init>(Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;Lcom/ss/android/ugc/effectmanager/common/task/ExceptionResult;)V
+
+    invoke-virtual {p0, v1, v3}, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->sendMessage(ILcom/ss/android/ugc/effectmanager/common/task/BaseTaskResult;)V
+
+    .line 99
     goto :goto_2
 
-    .line 91
+    .line 102
     :cond_1
     invoke-virtual {v2}, Lcom/ss/android/ugc/effectmanager/effect/model/net/EffectNetListResponse;->getData()Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;
 
     move-result-object v2
 
-    .line 92
+    .line 103
     new-instance v3, Lcom/ss/android/ugc/effectmanager/effect/model/BuildEffectChannelResponse;
 
     iget-object v4, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->panel:Ljava/lang/String;
 
     iget-object v5, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mEffectContext:Lcom/ss/android/ugc/effectmanager/context/EffectContext;
 
-    .line 93
+    .line 104
     invoke-virtual {v5}, Lcom/ss/android/ugc/effectmanager/context/EffectContext;->getEffectConfiguration()Lcom/ss/android/ugc/effectmanager/EffectConfiguration;
 
     move-result-object v5
@@ -1418,15 +1500,15 @@
 
     invoke-direct {v3, v4, v5, v6}, Lcom/ss/android/ugc/effectmanager/effect/model/BuildEffectChannelResponse;-><init>(Ljava/lang/String;Ljava/lang/String;Z)V
 
-    .line 94
+    .line 105
     invoke-virtual {v3, v2}, Lcom/ss/android/ugc/effectmanager/effect/model/BuildEffectChannelResponse;->buildChannelResponse(Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;)Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelResponse;
 
     move-result-object v3
 
-    .line 95
+    .line 106
     invoke-direct {p0, v2}, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->saveEffectList(Lcom/ss/android/ugc/effectmanager/effect/model/EffectChannelModel;)V
 
-    .line 96
+    .line 107
     new-instance v2, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectChannelTaskResult;
 
     const/4 v4, 0x0
@@ -1437,14 +1519,14 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 97
+    .line 108
     goto :goto_2
 
-    .line 99
+    .line 110
     :catch_0
     move-exception v2
 
-    .line 100
+    .line 111
     iget v3, p0, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->mCurCnt:I
 
     if-eqz v3, :cond_3
@@ -1455,11 +1537,11 @@
 
     goto :goto_1
 
-    .line 104
+    .line 115
     :cond_2
     goto/16 :goto_0
 
-    .line 101
+    .line 112
     :cond_3
     :goto_1
     new-instance v0, Lcom/ss/android/ugc/effectmanager/effect/task/result/EffectChannelTaskResult;
@@ -1478,10 +1560,10 @@
 
     invoke-virtual {p0, v1, v0}, Lcom/ss/android/ugc/effectmanager/effect/task/task/FetchEffectChannelTask;->sendMessage(ILcom/ss/android/ugc/effectmanager/common/task/BaseTaskResult;)V
 
-    .line 102
+    .line 113
     nop
 
-    .line 106
+    .line 117
     :cond_4
     :goto_2
     return-void

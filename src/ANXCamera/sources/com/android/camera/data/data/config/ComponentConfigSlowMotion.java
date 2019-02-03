@@ -2,7 +2,7 @@ package com.android.camera.data.data.config;
 
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
-import com.aeonax.camera.R;
+import com.android.camera.R;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;
@@ -14,13 +14,13 @@ public class ComponentConfigSlowMotion extends ComponentData {
     public static final String DATA_CONFIG_NEW_SLOW_MOTION_240 = "slow_motion_240";
     public static final String DATA_CONFIG_NEW_SLOW_MOTION_960 = "slow_motion_960";
     public static final String DATA_CONFIG_NEW_SLOW_MOTION_KEY = "key_new_slow_motion";
-    private static final String[] SLOW_MOTIO_MODE;
+    private static final String[] SLOW_MOTION_MODE;
 
     static {
-        if (DataRepository.dataItemFeature().fp()) {
-            SLOW_MOTIO_MODE = new String[]{DATA_CONFIG_NEW_SLOW_MOTION_960, DATA_CONFIG_NEW_SLOW_MOTION_120, DATA_CONFIG_NEW_SLOW_MOTION_240};
+        if (DataRepository.dataItemFeature().fs()) {
+            SLOW_MOTION_MODE = new String[]{DATA_CONFIG_NEW_SLOW_MOTION_960, DATA_CONFIG_NEW_SLOW_MOTION_120, DATA_CONFIG_NEW_SLOW_MOTION_240};
         } else {
-            SLOW_MOTIO_MODE = new String[]{DATA_CONFIG_NEW_SLOW_MOTION_120, DATA_CONFIG_NEW_SLOW_MOTION_240};
+            SLOW_MOTION_MODE = new String[]{DATA_CONFIG_NEW_SLOW_MOTION_120, DATA_CONFIG_NEW_SLOW_MOTION_240};
         }
     }
 
@@ -38,7 +38,7 @@ public class ComponentConfigSlowMotion extends ComponentData {
 
     @NonNull
     public String getDefaultValue(int i) {
-        return SLOW_MOTIO_MODE[0];
+        return SLOW_MOTION_MODE[0];
     }
 
     public List<ComponentDataItem> getItems() {
@@ -49,16 +49,20 @@ public class ComponentConfigSlowMotion extends ComponentData {
         setComponentValue(172, str);
     }
 
+    public boolean isSlowMotionFps120() {
+        return DATA_CONFIG_NEW_SLOW_MOTION_120.equals(getComponentValue(172));
+    }
+
     public boolean isSlowMotionFps960() {
         return DATA_CONFIG_NEW_SLOW_MOTION_960.equals(getComponentValue(172));
     }
 
     public String getNextValue(int i) {
         CharSequence componentValue = getComponentValue(i);
-        int length = SLOW_MOTIO_MODE.length;
+        int length = SLOW_MOTION_MODE.length;
         for (int i2 = 0; i2 < length; i2++) {
-            if (TextUtils.equals(SLOW_MOTIO_MODE[i2], componentValue)) {
-                return SLOW_MOTIO_MODE[(i2 + 1) % length];
+            if (TextUtils.equals(SLOW_MOTION_MODE[i2], componentValue)) {
+                return SLOW_MOTION_MODE[(i2 + 1) % length];
             }
         }
         return getDefaultValue(i);

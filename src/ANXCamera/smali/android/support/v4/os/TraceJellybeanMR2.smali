@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 18
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static beginSection(Ljava/lang/String;)V
-    .locals 0
+    .registers 1
     .param p0, "section"    # Ljava/lang/String;
 
     .line 20
@@ -25,7 +25,7 @@
 .end method
 
 .method public static endSection()V
-    .locals 0
+    .registers 0
 
     .line 24
     invoke-static {}, Landroid/os/Trace;->endSection()V

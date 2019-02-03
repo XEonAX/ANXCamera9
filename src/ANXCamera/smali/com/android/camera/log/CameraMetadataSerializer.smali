@@ -31,10 +31,10 @@
     return-void
 .end method
 
-.method public constructor <init>()V
+.method private constructor <init>()V
     .locals 0
 
-    .line 22
+    .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -54,17 +54,17 @@
 .method private static dumpMetadata(Lcom/android/camera/log/CameraMetadataSerializer$Writable;Ljava/io/Writer;)V
     .locals 2
 
-    .line 136
+    .line 141
     :try_start_0
     invoke-interface {p0, p1}, Lcom/android/camera/log/CameraMetadataSerializer$Writable;->write(Ljava/io/Writer;)V
     :try_end_0
     .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_1
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 141
+    .line 146
     if-eqz p1, :cond_0
 
-    .line 142
+    .line 147
     :try_start_1
     invoke-virtual {p1}, Ljava/io/Writer;->close()V
     :try_end_1
@@ -72,36 +72,36 @@
 
     goto :goto_0
 
-    .line 144
+    .line 149
     :catch_0
     move-exception p0
 
-    .line 145
+    .line 150
     sget-object p1, Lcom/android/camera/log/CameraMetadataSerializer;->TAG:Ljava/lang/String;
 
     const-string v0, "dumpMetadata - Failed to close writer."
 
     invoke-static {p1, v0, p0}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 147
+    .line 152
     goto :goto_1
 
-    .line 146
+    .line 151
     :cond_0
     :goto_0
     goto :goto_1
 
-    .line 140
+    .line 145
     :catchall_0
     move-exception p0
 
     goto :goto_2
 
-    .line 137
+    .line 142
     :catch_1
     move-exception p0
 
-    .line 138
+    .line 143
     :try_start_2
     sget-object v0, Lcom/android/camera/log/CameraMetadataSerializer;->TAG:Ljava/lang/String;
 
@@ -111,10 +111,10 @@
     :try_end_2
     .catchall {:try_start_2 .. :try_end_2} :catchall_0
 
-    .line 141
+    .line 146
     if-eqz p1, :cond_0
 
-    .line 142
+    .line 147
     :try_start_3
     invoke-virtual {p1}, Ljava/io/Writer;->close()V
     :try_end_3
@@ -122,18 +122,18 @@
 
     goto :goto_0
 
-    .line 148
+    .line 153
     :goto_1
     return-void
 
-    .line 140
+    .line 145
     :goto_2
     nop
 
-    .line 141
+    .line 146
     if-eqz p1, :cond_1
 
-    .line 142
+    .line 147
     :try_start_4
     invoke-virtual {p1}, Ljava/io/Writer;->close()V
     :try_end_4
@@ -141,11 +141,11 @@
 
     goto :goto_3
 
-    .line 144
+    .line 149
     :catch_2
     move-exception p1
 
-    .line 145
+    .line 150
     sget-object v0, Lcom/android/camera/log/CameraMetadataSerializer;->TAG:Ljava/lang/String;
 
     const-string v1, "dumpMetadata - Failed to close writer."
@@ -154,7 +154,7 @@
 
     nop
 
-    .line 146
+    .line 151
     :cond_1
     :goto_3
     throw p0
@@ -163,53 +163,53 @@
 .method private static dumpMetadata(Ljava/lang/String;Landroid/hardware/camera2/CaptureRequest;Ljava/io/Writer;)V
     .locals 1
 
-    .line 58
+    .line 63
     new-instance v0, Lcom/android/camera/log/CameraMetadataSerializer$1;
 
     invoke-direct {v0, p1, p0}, Lcom/android/camera/log/CameraMetadataSerializer$1;-><init>(Landroid/hardware/camera2/CaptureRequest;Ljava/lang/String;)V
 
-    .line 72
+    .line 77
     new-instance p0, Ljava/io/BufferedWriter;
 
     invoke-direct {p0, p2}, Ljava/io/BufferedWriter;-><init>(Ljava/io/Writer;)V
 
     invoke-static {v0, p0}, Lcom/android/camera/log/CameraMetadataSerializer;->dumpMetadata(Lcom/android/camera/log/CameraMetadataSerializer$Writable;Ljava/io/Writer;)V
 
-    .line 73
+    .line 78
     return-void
 .end method
 
 .method private static dumpMetadata(Ljava/lang/String;Landroid/hardware/camera2/CaptureResult;Ljava/io/Writer;)V
     .locals 1
 
-    .line 81
+    .line 86
     new-instance v0, Lcom/android/camera/log/CameraMetadataSerializer$2;
 
     invoke-direct {v0, p1, p0}, Lcom/android/camera/log/CameraMetadataSerializer$2;-><init>(Landroid/hardware/camera2/CaptureResult;Ljava/lang/String;)V
 
-    .line 95
+    .line 100
     new-instance p0, Ljava/io/BufferedWriter;
 
     invoke-direct {p0, p2}, Ljava/io/BufferedWriter;-><init>(Ljava/io/Writer;)V
 
     invoke-static {v0, p0}, Lcom/android/camera/log/CameraMetadataSerializer;->dumpMetadata(Lcom/android/camera/log/CameraMetadataSerializer$Writable;Ljava/io/Writer;)V
 
-    .line 96
+    .line 101
     return-void
 .end method
 
 .method private static metadataValueToString(Ljava/lang/Object;)Ljava/lang/String;
     .locals 4
 
-    .line 99
+    .line 104
     if-nez p0, :cond_0
 
-    .line 100
+    .line 105
     const-string p0, "<null>"
 
     return-object p0
 
-    .line 102
+    .line 107
     :cond_0
     invoke-virtual {p0}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
@@ -221,75 +221,75 @@
 
     if-eqz v0, :cond_3
 
-    .line 103
+    .line 108
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 104
+    .line 109
     const-string v1, "["
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 106
+    .line 111
     invoke-static {p0}, Ljava/lang/reflect/Array;->getLength(Ljava/lang/Object;)I
 
     move-result v1
 
-    .line 107
+    .line 112
     const/4 v2, 0x0
 
     :goto_0
     if-ge v2, v1, :cond_2
 
-    .line 108
+    .line 113
     invoke-static {p0, v2}, Ljava/lang/reflect/Array;->get(Ljava/lang/Object;I)Ljava/lang/Object;
 
     move-result-object v3
 
-    .line 109
+    .line 114
     invoke-static {v3}, Lcom/android/camera/log/CameraMetadataSerializer;->metadataValueToString(Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v3
 
     invoke-virtual {v0, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 111
+    .line 116
     add-int/lit8 v3, v1, -0x1
 
     if-eq v2, v3, :cond_1
 
-    .line 112
+    .line 117
     const-string v3, ", "
 
     invoke-virtual {v0, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 107
+    .line 112
     :cond_1
     add-int/lit8 v2, v2, 0x1
 
     goto :goto_0
 
-    .line 115
+    .line 120
     :cond_2
     const/16 p0, 0x5d
 
     invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    .line 117
+    .line 122
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object p0
 
     return-object p0
 
-    .line 121
+    .line 126
     :cond_3
     instance-of v0, p0, Landroid/hardware/camera2/params/LensShadingMap;
 
     if-eqz v0, :cond_4
 
-    .line 122
+    .line 127
     check-cast p0, Landroid/hardware/camera2/params/LensShadingMap;
 
     invoke-static {p0}, Lcom/android/camera/log/CameraMetadataSerializer;->toString(Landroid/hardware/camera2/params/LensShadingMap;)Ljava/lang/String;
@@ -298,13 +298,13 @@
 
     return-object p0
 
-    .line 123
+    .line 128
     :cond_4
     instance-of v0, p0, Landroid/util/Pair;
 
     if-eqz v0, :cond_5
 
-    .line 124
+    .line 129
     check-cast p0, Landroid/util/Pair;
 
     invoke-static {p0}, Lcom/android/camera/log/CameraMetadataSerializer;->toString(Landroid/util/Pair;)Ljava/lang/String;
@@ -313,7 +313,7 @@
 
     return-object p0
 
-    .line 126
+    .line 131
     :cond_5
     invoke-virtual {p0}, Ljava/lang/Object;->toString()Ljava/lang/String;
 
@@ -335,7 +335,7 @@
         }
     .end annotation
 
-    .line 36
+    .line 41
     :try_start_0
     new-instance v0, Ljava/io/FileWriter;
 
@@ -343,41 +343,41 @@
 
     invoke-direct {v0, p2, v1}, Ljava/io/FileWriter;-><init>(Ljava/io/File;Z)V
 
-    .line 37
+    .line 42
     instance-of p2, p1, Landroid/hardware/camera2/CaptureRequest;
 
     if-eqz p2, :cond_0
 
-    .line 38
+    .line 43
     check-cast p1, Landroid/hardware/camera2/CaptureRequest;
 
     invoke-static {p0, p1, v0}, Lcom/android/camera/log/CameraMetadataSerializer;->dumpMetadata(Ljava/lang/String;Landroid/hardware/camera2/CaptureRequest;Ljava/io/Writer;)V
 
     goto :goto_0
 
-    .line 39
+    .line 44
     :cond_0
     instance-of p2, p1, Landroid/hardware/camera2/CaptureResult;
 
     if-eqz p2, :cond_1
 
-    .line 40
+    .line 45
     check-cast p1, Landroid/hardware/camera2/CaptureResult;
 
     invoke-static {p0, p1, v0}, Lcom/android/camera/log/CameraMetadataSerializer;->dumpMetadata(Ljava/lang/String;Landroid/hardware/camera2/CaptureResult;Ljava/io/Writer;)V
 
-    .line 46
+    .line 51
     :goto_0
     invoke-virtual {v0}, Ljava/io/FileWriter;->close()V
 
-    .line 49
+    .line 54
     goto :goto_1
 
-    .line 42
+    .line 47
     :cond_1
     invoke-virtual {v0}, Ljava/io/FileWriter;->close()V
 
-    .line 43
+    .line 48
     new-instance p0, Ljava/lang/IllegalArgumentException;
 
     new-instance p2, Ljava/lang/StringBuilder;
@@ -388,7 +388,7 @@
 
     invoke-virtual {p2, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 44
+    .line 49
     invoke-virtual {p1}, Ljava/lang/Object;->getClass()Ljava/lang/Class;
 
     move-result-object p1
@@ -409,18 +409,18 @@
     :try_end_0
     .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 47
+    .line 52
     :catch_0
     move-exception p0
 
-    .line 48
+    .line 53
     sget-object p1, Lcom/android/camera/log/CameraMetadataSerializer;->TAG:Ljava/lang/String;
 
     const-string p2, "Could not write capture data to file."
 
     invoke-static {p1, p2, p0}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 50
+    .line 55
     :goto_1
     return-void
 .end method
@@ -428,17 +428,17 @@
 .method private static toString(Landroid/hardware/camera2/params/LensShadingMap;)Ljava/lang/String;
     .locals 9
 
-    .line 151
+    .line 156
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 152
+    .line 157
     const-string v1, "LensShadingMap{"
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 154
+    .line 159
     const-string v1, "R"
 
     const-string v2, "G_even"
@@ -451,20 +451,20 @@
 
     move-result-object v1
 
-    .line 155
+    .line 160
     invoke-virtual {p0}, Landroid/hardware/camera2/params/LensShadingMap;->getRowCount()I
 
     move-result v2
 
-    .line 156
+    .line 161
     invoke-virtual {p0}, Landroid/hardware/camera2/params/LensShadingMap;->getColumnCount()I
 
     move-result v3
 
-    .line 157
+    .line 162
     nop
 
-    .line 159
+    .line 164
     const/4 v4, 0x0
 
     move v5, v4
@@ -474,108 +474,108 @@
 
     if-ge v5, v6, :cond_5
 
-    .line 160
+    .line 165
     aget-object v6, v1, v5
 
     invoke-virtual {v0, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 161
+    .line 166
     const-string v6, ":("
 
     invoke-virtual {v0, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 163
+    .line 168
     move v6, v4
 
     :goto_1
     if-ge v6, v2, :cond_3
 
-    .line 164
+    .line 169
     const-string v7, "["
 
     invoke-virtual {v0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 165
+    .line 170
     move v7, v4
 
     :goto_2
     if-ge v7, v3, :cond_1
 
-    .line 166
+    .line 171
     invoke-virtual {p0, v5, v7, v6}, Landroid/hardware/camera2/params/LensShadingMap;->getGainFactor(III)F
 
     move-result v8
 
-    .line 167
+    .line 172
     invoke-virtual {v0, v8}, Ljava/lang/StringBuilder;->append(F)Ljava/lang/StringBuilder;
 
-    .line 168
+    .line 173
     add-int/lit8 v8, v3, -0x1
 
     if-ge v7, v8, :cond_0
 
-    .line 169
+    .line 174
     const-string v8, ", "
 
     invoke-virtual {v0, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 165
+    .line 170
     :cond_0
     add-int/lit8 v7, v7, 0x1
 
     goto :goto_2
 
-    .line 172
+    .line 177
     :cond_1
     const-string v7, "]"
 
     invoke-virtual {v0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 173
+    .line 178
     add-int/lit8 v7, v2, -0x1
 
     if-ge v6, v7, :cond_2
 
-    .line 174
+    .line 179
     const-string v7, ", "
 
     invoke-virtual {v0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 163
+    .line 168
     :cond_2
     add-int/lit8 v6, v6, 0x1
 
     goto :goto_1
 
-    .line 178
+    .line 183
     :cond_3
     const-string v6, ")"
 
     invoke-virtual {v0, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 179
+    .line 184
     const/4 v6, 0x3
 
     if-ge v5, v6, :cond_4
 
-    .line 180
+    .line 185
     const-string v6, ", "
 
     invoke-virtual {v0, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 159
+    .line 164
     :cond_4
     add-int/lit8 v5, v5, 0x1
 
     goto :goto_0
 
-    .line 184
+    .line 189
     :cond_5
     const-string p0, "}"
 
     invoke-virtual {v0, p0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 185
+    .line 190
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
     move-result-object p0
@@ -594,7 +594,7 @@
         }
     .end annotation
 
-    .line 189
+    .line 194
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
@@ -617,7 +617,7 @@
 
     iget-object p0, p0, Landroid/util/Pair;->second:Ljava/lang/Object;
 
-    .line 190
+    .line 195
     invoke-static {p0}, Lcom/android/camera/log/CameraMetadataSerializer;->metadataValueToString(Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object p0
@@ -628,6 +628,6 @@
 
     move-result-object p0
 
-    .line 189
+    .line 194
     return-object p0
 .end method

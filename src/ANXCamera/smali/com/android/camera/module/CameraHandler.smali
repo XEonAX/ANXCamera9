@@ -66,9 +66,9 @@
 
 .field public static final MSG_UPDATE_FACE_VIEW:I = 0x23
 
-.field public static final MSG_UPDATE_FPS960_HINT:I = 0x36
+.field public static final MSG_UPDATE_FOCUS_VIEW:I = 0x38
 
-.field public static final MSG_WAITING_BEFORE_CLOSE_FINISH:I = 0x2f
+.field public static final MSG_UPDATE_FPS960_HINT:I = 0x36
 
 .field public static final MSG_WAIT_STOP_CALLBACK_TIMEOUT:I = 0x2e
 
@@ -121,17 +121,17 @@
 .method public constructor <init>(Lcom/android/camera/Camera;)V
     .locals 1
 
-    .line 87
+    .line 89
     invoke-direct {p0}, Landroid/os/Handler;-><init>()V
 
-    .line 88
+    .line 90
     new-instance v0, Ljava/lang/ref/WeakReference;
 
     invoke-direct {v0, p1}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
 
     iput-object v0, p0, Lcom/android/camera/module/CameraHandler;->activityRef:Ljava/lang/ref/WeakReference;
 
-    .line 89
+    .line 91
     return-void
 .end method
 
@@ -140,9 +140,9 @@
 .method public handleMessage(Landroid/os/Message;)V
     .locals 0
 
-    .line 93
+    .line 95
     invoke-super {p0, p1}, Landroid/os/Handler;->handleMessage(Landroid/os/Message;)V
 
-    .line 94
+    .line 96
     return-void
 .end method

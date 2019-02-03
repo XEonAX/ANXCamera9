@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/widget/MaterialProgressDrawable;)V
-    .locals 0
+    .registers 2
 
     .line 450
     iput-object p1, p0, Landroid/support/v4/widget/MaterialProgressDrawable$3;->this$0:Landroid/support/v4/widget/MaterialProgressDrawable;
@@ -36,7 +36,7 @@
 
 # virtual methods
 .method public invalidateDrawable(Landroid/graphics/drawable/Drawable;)V
-    .locals 1
+    .registers 3
     .param p1, "d"    # Landroid/graphics/drawable/Drawable;
 
     .line 453
@@ -49,7 +49,7 @@
 .end method
 
 .method public scheduleDrawable(Landroid/graphics/drawable/Drawable;Ljava/lang/Runnable;J)V
-    .locals 1
+    .registers 6
     .param p1, "d"    # Landroid/graphics/drawable/Drawable;
     .param p2, "what"    # Ljava/lang/Runnable;
     .param p3, "when"    # J
@@ -64,7 +64,7 @@
 .end method
 
 .method public unscheduleDrawable(Landroid/graphics/drawable/Drawable;Ljava/lang/Runnable;)V
-    .locals 1
+    .registers 4
     .param p1, "d"    # Landroid/graphics/drawable/Drawable;
     .param p2, "what"    # Ljava/lang/Runnable;
 

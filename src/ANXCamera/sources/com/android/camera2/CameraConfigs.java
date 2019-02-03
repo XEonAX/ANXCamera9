@@ -20,22 +20,25 @@ public class CameraConfigs {
     private boolean mAELocked;
     private MeteringRectangle[] mAERegions;
     private MeteringRectangle[] mAFRegions;
+    private int mASDScene = -2;
     private boolean mAWBLocked;
     private boolean mAiSceneDetectEnabled;
     private int mAiSceneDetectPeriod;
-    private int mAntiBanding;
+    private int mAntiBanding = -1;
+    private int mAutoZoomMode;
+    private float mAutoZoomScaleOffset;
     private int mAwbCustomValue;
-    private int mAwbMode;
+    private int mAwbMode = 1;
     private BeautyValues mBeautyValues;
     private boolean mBokehEnabled;
     private boolean mCameraAi30Enabled;
-    private int mColorEffect;
-    private int mContrastLevel;
-    private int mDeviceOrientation;
+    private int mColorEffect = -1;
+    private int mContrastLevel = -1;
+    private int mDeviceOrientation = -1;
     private boolean mDualCamWaterMarkEnabled = false;
     private boolean mEISEnabled;
     private int mExposureCompensationIndex;
-    private int mExposureMeteringMode;
+    private int mExposureMeteringMode = -1;
     private long mExposureTime;
     private int mEyeLightType = Integer.parseInt(EyeLightConstant.OFF);
     private String mFNumber;
@@ -44,17 +47,18 @@ public class CameraConfigs {
     private boolean mFaceScoreEnabled;
     private boolean mFaceWaterMarkEnabled = false;
     private String mFaceWaterMarkFormat = null;
-    private int mFlashMode;
-    private float mFocusDistance;
-    private int mFocusMode;
+    private int mFlashMode = -1;
+    private float mFocusDistance = -1.0f;
+    private int mFocusMode = -1;
     private boolean mFrontMirror;
     private Location mGpsLocation;
     private boolean mHDRCheckerEnabled;
     private boolean mHDREnabled;
     private boolean mHHTEnabled;
+    private boolean mIsQcfaEnabled = false;
     private int mIso;
-    private int mJpegQuality;
-    private int mJpegRotation;
+    private int mJpegQuality = -1;
+    private int mJpegRotation = -1;
     private boolean mLensDirtyDetectEnabled;
     private boolean mMfnrEnabled;
     private boolean mNeedFlash;
@@ -71,9 +75,9 @@ public class CameraConfigs {
     private int mPreviewMaxImages = 1;
     private CameraSize mPreviewSize;
     private boolean mRecordingHintEnabled;
-    private int mSaturationLevel;
+    private int mSaturationLevel = -1;
     private int mSceneMode;
-    private int mSharpnessLevel;
+    private int mSharpnessLevel = -1;
     private String mShotPath = null;
     private int mShotType = 0;
     private CameraSize mSubPhotoSize;
@@ -108,6 +112,22 @@ public class CameraConfigs {
 
     public BeautyValues getBeautyValues() {
         return this.mBeautyValues;
+    }
+
+    public void setAutoZoomMode(int i) {
+        this.mAutoZoomMode = i;
+    }
+
+    public void setAutoZoomScaleOffset(float f) {
+        this.mAutoZoomScaleOffset = f;
+    }
+
+    public int getAutoZoomMode() {
+        return this.mAutoZoomMode;
+    }
+
+    public float getAutoZoomScaleOffset() {
+        return this.mAutoZoomScaleOffset;
     }
 
     public boolean setEyeLight(int i) {
@@ -906,11 +926,31 @@ public class CameraConfigs {
         return this.mFrontMirror;
     }
 
+    public void setQcfaEnable(boolean z) {
+        this.mIsQcfaEnabled = z;
+    }
+
+    public boolean isQcfaEnable() {
+        return this.mIsQcfaEnabled;
+    }
+
     public void setFNumber(String str) {
         this.mFNumber = str;
     }
 
     public String getFNumber() {
         return this.mFNumber;
+    }
+
+    public boolean setASDScene(int i) {
+        if (this.mASDScene == i) {
+            return false;
+        }
+        this.mASDScene = i;
+        return true;
+    }
+
+    public int getASDScene() {
+        return this.mASDScene;
     }
 }

@@ -27,8 +27,8 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.aeonax.camera.R;
 import com.android.camera.CameraSettings;
+import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.ComponentDataItem;
@@ -37,7 +37,6 @@ import com.android.camera.effect.EffectController;
 import com.android.camera.effect.FilterInfo;
 import com.android.camera.log.Log;
 import com.android.camera.protocol.ModeCoordinatorImpl;
-import com.android.camera.protocol.ModeProtocol.BottomPopupTips;
 import com.android.camera.protocol.ModeProtocol.CameraAction;
 import com.android.camera.protocol.ModeProtocol.ConfigChanges;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
@@ -55,6 +54,7 @@ public class FragmentFilter extends BaseFragment implements OnClickListener {
     private CubicEaseOutInterpolator mCubicEaseOut;
     private int mCurrentIndex = -1;
     private EffectItemAdapter mEffectItemAdapter;
+    private EffectItemPadding mEffectItemPadding;
     private int mHolderWidth;
     private boolean mIgnoreSameItemClick = true;
     private int mIsShowIndex = -1;
@@ -214,7 +214,10 @@ public class FragmentFilter extends BaseFragment implements OnClickListener {
         this.mLayoutManager.setOrientation(0);
         this.mRecyclerView.getRecycledViewPool().setMaxRecycledViews(0, EffectController.getInstance().getEffectCount(1));
         this.mRecyclerView.setLayoutManager(this.mLayoutManager);
-        this.mRecyclerView.addItemDecoration(new EffectItemPadding());
+        if (this.mEffectItemPadding == null) {
+            this.mEffectItemPadding = new EffectItemPadding();
+            this.mRecyclerView.addItemDecoration(this.mEffectItemPadding);
+        }
         this.mRecyclerView.setAdapter(this.mEffectItemAdapter);
         this.mRecyclerView.addOnScrollListener(new OnScrollListener() {
             public void onScrollStateChanged(RecyclerView recyclerView, int i) {
@@ -361,16 +364,6 @@ public class FragmentFilter extends BaseFragment implements OnClickListener {
             persistFilter(intValue);
             selectItem(i);
             configChanges.setFilter(intValue);
-            if (Util.UI_DEBUG()) {
-                BottomPopupTips bottomPopupTips = (BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175);
-                if (intValue == FilterInfo.FILTER_ID_NONE || intValue <= 0) {
-                    if (bottomPopupTips != null) {
-                        bottomPopupTips.selectFilterTipImage(false);
-                    }
-                } else if (bottomPopupTips != null) {
-                    bottomPopupTips.selectFilterTipImage(true);
-                }
-            }
         } catch (NumberFormatException e) {
             String str3 = TAG;
             StringBuilder stringBuilder2 = new StringBuilder();
@@ -443,7 +436,7 @@ public class FragmentFilter extends BaseFragment implements OnClickListener {
         return 250;
     }
 
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        super.provideAnimateElement(i, list, z);
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        super.provideAnimateElement(i, list, i2);
     }
 }

@@ -15,7 +15,7 @@
 
 
 # static fields
-.field private static final CAMERA_PACKAGE:Ljava/lang/String; = "com.aeonax.camera"
+.field private static final CAMERA_PACKAGE:Ljava/lang/String; = "com.android.camera"
 
 .field private static final CATEGORY_PERFORMANCE:Ljava/lang/String; = "Performance"
 
@@ -64,7 +64,7 @@
     :try_start_0
     new-instance v0, Landroid/os/statistics/E2EScenario;
 
-    const-string v1, "com.aeonax.camera"
+    const-string v1, "com.android.camera"
 
     const-string v2, "Performance"
 

@@ -2,7 +2,7 @@ package com.android.camera.fragment.live;
 
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
-import com.aeonax.camera.R;
+import com.android.camera.R;
 import com.android.camera.animation.FragmentAnimationFactory;
 import com.android.camera.fragment.BaseFragment;
 import com.android.camera.protocol.ModeCoordinatorImpl;
@@ -55,8 +55,8 @@ public abstract class FragmentLiveBase extends BaseFragment implements HandleBac
         unRegisterBackStack(modeCoordinator, this);
     }
 
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        super.provideAnimateElement(i, list, z);
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        super.provideAnimateElement(i, list, i2);
         onBackEvent(4);
     }
 

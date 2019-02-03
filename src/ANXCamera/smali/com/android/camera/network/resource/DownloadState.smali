@@ -20,7 +20,9 @@
 
 .field public static final STATE_EXIST:I = 0x1
 
-.field public static final STATE_NEED_DOWNLOAD:I
+.field public static final STATE_NEED_DOWNLOAD:I = 0x0
+
+.field public static final STATE_VERIFIED:I = 0x5
 
 
 # direct methods

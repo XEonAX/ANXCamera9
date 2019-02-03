@@ -29,17 +29,17 @@
 .method constructor <init>(Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;)V
     .locals 0
 
-    .line 237
+    .line 242
     iput-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$5;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 238
+    .line 243
     const/high16 p1, -0x40800000    # -1.0f
 
     iput p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$5;->mTouchDownX:F
 
-    .line 240
+    .line 245
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$5;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
     invoke-virtual {p1}, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;->getResources()Landroid/content/res/Resources;
@@ -64,7 +64,7 @@
 .method public onTouch(Landroid/view/View;Landroid/view/MotionEvent;)Z
     .locals 5
 
-    .line 244
+    .line 249
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$5;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
     invoke-static {p1}, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;->access$700(Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;)Z
@@ -75,21 +75,21 @@
 
     if-nez p1, :cond_0
 
-    .line 245
+    .line 250
     return v0
 
-    .line 248
+    .line 253
     :cond_0
     invoke-virtual {p2}, Landroid/view/MotionEvent;->getX()F
 
     move-result p1
 
-    .line 249
+    .line 254
     invoke-virtual {p2}, Landroid/view/MotionEvent;->getY()F
 
     move-result v1
 
-    .line 250
+    .line 255
     iget-object v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$5;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
     invoke-static {v2}, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;->access$800(Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;)I
@@ -100,14 +100,14 @@
 
     if-ne v2, v3, :cond_1
 
-    .line 252
+    .line 257
     neg-float v1, v1
 
     invoke-virtual {p2, v1, p1}, Landroid/view/MotionEvent;->setLocation(FF)V
 
     goto :goto_0
 
-    .line 253
+    .line 258
     :cond_1
     iget-object v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$5;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
@@ -119,7 +119,7 @@
 
     if-ne v2, v3, :cond_2
 
-    .line 255
+    .line 260
     neg-float p1, p1
 
     neg-float v1, v1
@@ -128,7 +128,7 @@
 
     goto :goto_0
 
-    .line 256
+    .line 261
     :cond_2
     iget-object v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$5;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
@@ -140,10 +140,10 @@
 
     if-ne v2, v3, :cond_3
 
-    .line 258
+    .line 263
     invoke-virtual {p2, v1, p1}, Landroid/view/MotionEvent;->setLocation(FF)V
 
-    .line 264
+    .line 269
     :cond_3
     :goto_0
     invoke-virtual {p2}, Landroid/view/MotionEvent;->getAction()I
@@ -158,7 +158,7 @@
 
     goto :goto_1
 
-    .line 266
+    .line 271
     :pswitch_0
     iget p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$5;->mTouchDownX:F
 
@@ -166,17 +166,17 @@
 
     if-nez p1, :cond_4
 
-    .line 267
+    .line 272
     invoke-virtual {p2}, Landroid/view/MotionEvent;->getX()F
 
     move-result p1
 
     iput p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$5;->mTouchDownX:F
 
-    .line 268
+    .line 273
     invoke-virtual {p2, v0}, Landroid/view/MotionEvent;->setAction(I)V
 
-    .line 269
+    .line 274
     iget p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$5;->mMiddleX:I
 
     int-to-float p1, p1
@@ -187,7 +187,7 @@
 
     invoke-virtual {p2, p1, v0}, Landroid/view/MotionEvent;->setLocation(FF)V
 
-    .line 270
+    .line 275
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$5;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
     invoke-static {p1}, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;->access$1100(Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;)Lcom/android/camera/ui/HorizontalSlideView;
@@ -198,7 +198,7 @@
 
     goto :goto_1
 
-    .line 272
+    .line 277
     :cond_4
     iget p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$5;->mMiddleX:I
 
@@ -220,7 +220,7 @@
 
     invoke-virtual {p2, p1, v0}, Landroid/view/MotionEvent;->setLocation(FF)V
 
-    .line 273
+    .line 278
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$5;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
     invoke-static {p1}, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;->access$1100(Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;)Lcom/android/camera/ui/HorizontalSlideView;
@@ -229,7 +229,7 @@
 
     invoke-virtual {p1, p2}, Lcom/android/camera/ui/HorizontalSlideView;->onTouchEvent(Landroid/view/MotionEvent;)Z
 
-    .line 274
+    .line 279
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$5;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
     invoke-static {p1}, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;->access$1200(Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;)Landroid/view/View$OnTouchListener;
@@ -238,10 +238,10 @@
 
     invoke-interface {p1, v1, p2}, Landroid/view/View$OnTouchListener;->onTouch(Landroid/view/View;Landroid/view/MotionEvent;)Z
 
-    .line 276
+    .line 281
     goto :goto_1
 
-    .line 280
+    .line 285
     :pswitch_1
     iget p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$5;->mMiddleX:I
 
@@ -263,7 +263,7 @@
 
     invoke-virtual {p2, p1, v3}, Landroid/view/MotionEvent;->setLocation(FF)V
 
-    .line 281
+    .line 286
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$5;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
     invoke-static {p1}, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;->access$1100(Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;)Lcom/android/camera/ui/HorizontalSlideView;
@@ -272,7 +272,7 @@
 
     invoke-virtual {p1, p2}, Lcom/android/camera/ui/HorizontalSlideView;->onTouchEvent(Landroid/view/MotionEvent;)Z
 
-    .line 282
+    .line 287
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$5;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
     invoke-static {p1}, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;->access$1200(Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;)Landroid/view/View$OnTouchListener;
@@ -281,15 +281,15 @@
 
     invoke-interface {p1, v1, p2}, Landroid/view/View$OnTouchListener;->onTouch(Landroid/view/View;Landroid/view/MotionEvent;)Z
 
-    .line 283
+    .line 288
     iget-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$5;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
     invoke-static {p1, v0}, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;->access$702(Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;Z)Z
 
-    .line 284
+    .line 289
     iput v2, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$5;->mTouchDownX:F
 
-    .line 288
+    .line 293
     :goto_1
     const/4 p1, 0x1
 

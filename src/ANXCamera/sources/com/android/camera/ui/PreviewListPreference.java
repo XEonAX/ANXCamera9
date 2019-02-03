@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ public class PreviewListPreference extends ListPreference {
     private CharSequence[] mDefaultValues;
     private int mExtraPaddingEnd;
     private CharSequence[] mLabels;
+    private boolean mShowArrow;
 
     class PreviewListAdapter implements ListAdapter {
         private ListAdapter mAdapter;
@@ -93,12 +95,17 @@ public class PreviewListPreference extends ListPreference {
         }
         TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.PreviewListPreference, 0, 0);
         this.mLabels = obtainStyledAttributes.getTextArray(0);
-        this.mExtraPaddingEnd = context.getResources().getDimensionPixelSize(com.aeonax.camera.R.dimen.preference_entry_padding_end);
+        this.mShowArrow = obtainStyledAttributes.getBoolean(1, true);
+        this.mExtraPaddingEnd = context.getResources().getDimensionPixelSize(R.dimen.preference_entry_padding_end);
         obtainStyledAttributes.recycle();
     }
 
     public PreviewListPreference(Context context) {
         this(context, null);
+    }
+
+    public void setShowArrow(boolean z) {
+        this.mShowArrow = z;
     }
 
     protected Object onGetDefaultValue(TypedArray typedArray, int i) {
@@ -150,20 +157,24 @@ public class PreviewListPreference extends ListPreference {
 
     protected void onBindView(View view) {
         super.onBindView(view);
-        TextView textView = (TextView) view.findViewById(com.aeonax.camera.R.id.value_right);
+        TextView textView = (TextView) view.findViewById(R.id.value_right);
+        ImageView imageView = (ImageView) view.findViewById(R.id.arrow_right);
         if (textView != null) {
-            CharSequence entry;
-            if (this.mLabels == null) {
-                entry = getEntry();
-            } else {
-                entry = getLabel();
-            }
+            CharSequence entry = this.mLabels == null ? getEntry() : getLabel();
             if (TextUtils.isEmpty(entry)) {
                 textView.setVisibility(8);
-                return;
+            } else {
+                textView.setText(String.valueOf(entry));
+                textView.setVisibility(0);
             }
-            textView.setText(String.valueOf(entry));
-            textView.setVisibility(0);
+        }
+        if (imageView == null) {
+            return;
+        }
+        if (this.mShowArrow) {
+            imageView.setVisibility(0);
+        } else {
+            imageView.setVisibility(4);
         }
     }
 

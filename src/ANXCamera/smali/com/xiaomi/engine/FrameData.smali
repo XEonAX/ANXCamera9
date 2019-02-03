@@ -24,7 +24,9 @@
 
 .field private mFrameStatusCallback:Lcom/xiaomi/engine/FrameData$FrameStatusCallback;
 
-.field private mStreamIndex:I
+.field private mImageFlag:I
+
+.field private mSequenceId:I
 
 
 # direct methods
@@ -43,25 +45,28 @@
     return-void
 .end method
 
-.method public constructor <init>(IJLandroid/os/Parcelable;Landroid/media/Image;)V
+.method public constructor <init>(IIJLandroid/os/Parcelable;Landroid/media/Image;)V
     .locals 0
 
-    .line 45
+    .line 46
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 46
-    iput p1, p0, Lcom/xiaomi/engine/FrameData;->mStreamIndex:I
-
     .line 47
-    iput-wide p2, p0, Lcom/xiaomi/engine/FrameData;->mFrameNumber:J
+    iput p1, p0, Lcom/xiaomi/engine/FrameData;->mImageFlag:I
 
     .line 48
-    iput-object p4, p0, Lcom/xiaomi/engine/FrameData;->mCaptureResultMetadataNative:Landroid/os/Parcelable;
+    iput p2, p0, Lcom/xiaomi/engine/FrameData;->mSequenceId:I
 
     .line 49
-    iput-object p5, p0, Lcom/xiaomi/engine/FrameData;->mBufferImage:Landroid/media/Image;
+    iput-wide p3, p0, Lcom/xiaomi/engine/FrameData;->mFrameNumber:J
 
     .line 50
+    iput-object p5, p0, Lcom/xiaomi/engine/FrameData;->mCaptureResultMetadataNative:Landroid/os/Parcelable;
+
+    .line 51
+    iput-object p6, p0, Lcom/xiaomi/engine/FrameData;->mBufferImage:Landroid/media/Image;
+
+    .line 52
     return-void
 .end method
 
@@ -70,7 +75,7 @@
 .method public getBufferImage()Landroid/media/Image;
     .locals 1
 
-    .line 92
+    .line 102
     iget-object v0, p0, Lcom/xiaomi/engine/FrameData;->mBufferImage:Landroid/media/Image;
 
     return-object v0
@@ -79,7 +84,7 @@
 .method public getCaptureResultMetaDataNative()Landroid/os/Parcelable;
     .locals 1
 
-    .line 84
+    .line 94
     iget-object v0, p0, Lcom/xiaomi/engine/FrameData;->mCaptureResultMetadataNative:Landroid/os/Parcelable;
 
     return-object v0
@@ -88,7 +93,7 @@
 .method public getFrameCallback()Lcom/xiaomi/engine/FrameData$FrameStatusCallback;
     .locals 1
 
-    .line 100
+    .line 110
     iget-object v0, p0, Lcom/xiaomi/engine/FrameData;->mFrameStatusCallback:Lcom/xiaomi/engine/FrameData$FrameStatusCallback;
 
     return-object v0
@@ -97,17 +102,26 @@
 .method public getFrameNumber()J
     .locals 2
 
-    .line 76
+    .line 78
     iget-wide v0, p0, Lcom/xiaomi/engine/FrameData;->mFrameNumber:J
 
     return-wide v0
 .end method
 
-.method public getStreamIndex()I
+.method public getImageFlag()I
     .locals 1
 
-    .line 68
-    iget v0, p0, Lcom/xiaomi/engine/FrameData;->mStreamIndex:I
+    .line 70
+    iget v0, p0, Lcom/xiaomi/engine/FrameData;->mImageFlag:I
+
+    return v0
+.end method
+
+.method public getSequenceId()I
+    .locals 1
+
+    .line 86
+    iget v0, p0, Lcom/xiaomi/engine/FrameData;->mSequenceId:I
 
     return v0
 .end method
@@ -115,12 +129,12 @@
 .method public release()V
     .locals 3
 
-    .line 56
+    .line 58
     iget-object v0, p0, Lcom/xiaomi/engine/FrameData;->mBufferImage:Landroid/media/Image;
 
     if-eqz v0, :cond_0
 
-    .line 57
+    .line 59
     sget-object v0, Lcom/xiaomi/engine/FrameData;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -141,24 +155,24 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 58
+    .line 60
     iget-object v0, p0, Lcom/xiaomi/engine/FrameData;->mBufferImage:Landroid/media/Image;
 
     invoke-virtual {v0}, Landroid/media/Image;->close()V
 
-    .line 59
+    .line 61
     iget-object v0, p0, Lcom/xiaomi/engine/FrameData;->mFrameStatusCallback:Lcom/xiaomi/engine/FrameData$FrameStatusCallback;
 
     if-eqz v0, :cond_0
 
-    .line 60
+    .line 62
     iget-object v0, p0, Lcom/xiaomi/engine/FrameData;->mFrameStatusCallback:Lcom/xiaomi/engine/FrameData$FrameStatusCallback;
 
     iget-object v1, p0, Lcom/xiaomi/engine/FrameData;->mBufferImage:Landroid/media/Image;
 
     invoke-interface {v0, v1}, Lcom/xiaomi/engine/FrameData$FrameStatusCallback;->onFrameImageClosed(Landroid/media/Image;)V
 
-    .line 64
+    .line 66
     :cond_0
     return-void
 .end method
@@ -166,66 +180,76 @@
 .method public setBufferImage(Landroid/media/Image;)V
     .locals 0
 
-    .line 96
+    .line 106
     iput-object p1, p0, Lcom/xiaomi/engine/FrameData;->mBufferImage:Landroid/media/Image;
 
-    .line 97
+    .line 107
     return-void
 .end method
 
 .method public setCaptureResultMetaDataNative(Landroid/os/Parcelable;)V
     .locals 0
 
-    .line 88
+    .line 98
     iput-object p1, p0, Lcom/xiaomi/engine/FrameData;->mCaptureResultMetadataNative:Landroid/os/Parcelable;
 
-    .line 89
+    .line 99
     return-void
 .end method
 
 .method public setFrameCallback(Lcom/xiaomi/engine/FrameData$FrameStatusCallback;)V
     .locals 0
 
-    .line 104
+    .line 114
     iput-object p1, p0, Lcom/xiaomi/engine/FrameData;->mFrameStatusCallback:Lcom/xiaomi/engine/FrameData$FrameStatusCallback;
 
-    .line 105
+    .line 115
     return-void
 .end method
 
 .method public setFrameNumber(J)V
     .locals 0
 
-    .line 80
+    .line 82
     iput-wide p1, p0, Lcom/xiaomi/engine/FrameData;->mFrameNumber:J
 
-    .line 81
+    .line 83
     return-void
 .end method
 
-.method public setStreamIndex(I)V
+.method public setImageFlag(I)V
     .locals 0
 
-    .line 72
-    iput p1, p0, Lcom/xiaomi/engine/FrameData;->mStreamIndex:I
+    .line 74
+    iput p1, p0, Lcom/xiaomi/engine/FrameData;->mImageFlag:I
 
-    .line 73
+    .line 75
+    return-void
+.end method
+
+.method public setSequenceId(I)V
+    .locals 0
+
+    .line 90
+    iput p1, p0, Lcom/xiaomi/engine/FrameData;->mSequenceId:I
+
+    .line 91
     return-void
 .end method
 
 .method public toString()Ljava/lang/String;
     .locals 3
 
-    .line 109
+    .line 119
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
 
-    const-string v1, "FrameData{ mStreamIndex="
+    const-string v1, "FrameData{ mImageFlag="
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    iget v1, p0, Lcom/xiaomi/engine/FrameData;->mStreamIndex:I
+    iget v1, p0, Lcom/xiaomi/engine/FrameData;->mImageFlag:I
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
 

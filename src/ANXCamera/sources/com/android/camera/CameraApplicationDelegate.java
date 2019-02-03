@@ -2,6 +2,8 @@ package com.android.camera;
 
 import android.app.Activity;
 import android.content.Context;
+import com.android.camera.constant.GlobalConstant;
+import com.android.camera.module.loader.camera2.Camera2DataContainer;
 import com.android.camera.statistic.CameraStat;
 import java.util.Stack;
 import miui.external.ApplicationDelegate;
@@ -18,6 +20,11 @@ public class CameraApplicationDelegate extends ApplicationDelegate {
 
     public void onCreate() {
         super.onCreate();
+        GlobalConstant.sCameraSetupScheduler.scheduleDirect(new Runnable() {
+            public void run() {
+                Camera2DataContainer.getInstance();
+            }
+        });
         Util.initialize(this);
         CameraStat.initialize(getAndroidContext());
         this.mActivities = new Stack();

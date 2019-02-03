@@ -43,9 +43,9 @@ public class EffectNetWorkerWrapper {
         if (execute == null) {
             this.mLinkSelector.onApiError(effectRequest.getUrl());
             if (this.mLinkSelector.isNetworkAvailable()) {
-                throw new Exception(ErrorConstants.EXCEPTION_NO_NETWORK);
+                throw new NetworkErrorException(ErrorConstants.EXCEPTION_DOWNLOAD_ERROR);
             }
-            throw new NetworkErrorException(ErrorConstants.EXCEPTION_DOWNLOAD_ERROR);
+            throw new Exception(ErrorConstants.EXCEPTION_NO_NETWORK);
         }
         BaseNetResponse baseNetResponse = (BaseNetResponse) iJsonConverter.convertJsonToObj(execute, cls);
         if (baseNetResponse != null) {

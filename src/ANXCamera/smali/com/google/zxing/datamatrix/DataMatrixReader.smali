@@ -16,7 +16,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 45
     const/4 v0, 0x0
@@ -29,7 +29,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 43
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -46,7 +46,7 @@
 .end method
 
 .method private static extractPureBits(Lcom/google/zxing/common/BitMatrix;)Lcom/google/zxing/common/BitMatrix;
-    .locals 15
+    .registers 16
     .param p0, "image"    # Lcom/google/zxing/common/BitMatrix;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -67,9 +67,9 @@
 
     .line 106
     .local v1, "rightBottomBlack":[I
-    if-eqz v0, :cond_4
+    if-eqz v0, :cond_55
 
-    if-eqz v1, :cond_4
+    if-eqz v1, :cond_55
 
     .line 110
     invoke-static {v0, p0}, Lcom/google/zxing/datamatrix/DataMatrixReader;->moduleSize([ILcom/google/zxing/common/BitMatrix;)I
@@ -114,9 +114,9 @@
 
     .line 119
     .local v9, "matrixHeight":I
-    if-lez v8, :cond_3
+    if-lez v8, :cond_50
 
-    if-lez v9, :cond_3
+    if-lez v9, :cond_50
 
     .line 126
     div-int/lit8 v3, v2, 0x2
@@ -148,8 +148,8 @@
 
     .end local v4    # "y":I
     .local v13, "y":I
-    :goto_0
-    if-lt v13, v9, :cond_0
+    :goto_34
+    if-lt v13, v9, :cond_37
 
     .line 140
     .end local v13    # "y":I
@@ -157,7 +157,7 @@
 
     .line 133
     .restart local v13    # "y":I
-    :cond_0
+    :cond_37
     mul-int v4, v13, v2
 
     add-int v14, v10, v4
@@ -167,20 +167,20 @@
     const/4 v4, 0x0
 
     .local v4, "x":I
-    :goto_1
-    if-lt v4, v8, :cond_1
+    :goto_3c
+    if-lt v4, v8, :cond_41
 
     .line 132
     .end local v4    # "x":I
     .end local v14    # "iOffset":I
     add-int/lit8 v13, v13, 0x1
 
-    goto :goto_0
+    goto :goto_34
 
     .line 135
     .restart local v4    # "x":I
     .restart local v14    # "iOffset":I
-    :cond_1
+    :cond_41
     mul-int v7, v4, v2
 
     add-int/2addr v7, v11
@@ -189,16 +189,16 @@
 
     move-result v7
 
-    if-eqz v7, :cond_2
+    if-eqz v7, :cond_4d
 
     .line 136
     invoke-virtual {v12, v4, v13}, Lcom/google/zxing/common/BitMatrix;->set(II)V
 
     .line 134
-    :cond_2
+    :cond_4d
     add-int/lit8 v4, v4, 0x1
 
-    goto :goto_1
+    goto :goto_3c
 
     .line 120
     .end local v3    # "nudge":I
@@ -209,7 +209,7 @@
     .end local v14    # "iOffset":I
     .local v4, "top":I
     .restart local v7    # "left":I
-    :cond_3
+    :cond_50
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v3
@@ -224,7 +224,7 @@
     .end local v7    # "left":I
     .end local v8    # "matrixWidth":I
     .end local v9    # "matrixHeight":I
-    :cond_4
+    :cond_55
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v2
@@ -233,7 +233,7 @@
 .end method
 
 .method private static moduleSize([ILcom/google/zxing/common/BitMatrix;)I
-    .locals 5
+    .registers 7
     .param p0, "leftTopBlack"    # [I
     .param p1, "image"    # Lcom/google/zxing/common/BitMatrix;
     .annotation system Ldalvik/annotation/Throws;
@@ -261,27 +261,27 @@
 
     .line 147
     .local v3, "y":I
-    :goto_0
-    if-ge v2, v0, :cond_1
+    :goto_a
+    if-ge v2, v0, :cond_16
 
     invoke-virtual {p1, v2, v3}, Lcom/google/zxing/common/BitMatrix;->get(II)Z
 
     move-result v4
 
-    if-nez v4, :cond_0
+    if-nez v4, :cond_13
 
-    goto :goto_1
+    goto :goto_16
 
     .line 148
-    :cond_0
+    :cond_13
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_a
 
     .line 150
-    :cond_1
-    :goto_1
-    if-eq v2, v0, :cond_3
+    :cond_16
+    :goto_16
+    if-eq v2, v0, :cond_24
 
     .line 154
     aget v1, p0, v1
@@ -290,13 +290,13 @@
 
     .line 155
     .local v1, "moduleSize":I
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_1f
 
     .line 158
     return v1
 
     .line 156
-    :cond_2
+    :cond_1f
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v4
@@ -305,7 +305,7 @@
 
     .line 151
     .end local v1    # "moduleSize":I
-    :cond_3
+    :cond_24
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v1
@@ -316,7 +316,7 @@
 
 # virtual methods
 .method public decode(Lcom/google/zxing/BinaryBitmap;)Lcom/google/zxing/Result;
-    .locals 1
+    .registers 3
     .param p1, "image"    # Lcom/google/zxing/BinaryBitmap;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -337,7 +337,7 @@
 .end method
 
 .method public decode(Lcom/google/zxing/BinaryBitmap;Ljava/util/Map;)Lcom/google/zxing/Result;
-    .locals 6
+    .registers 9
     .param p1, "image"    # Lcom/google/zxing/BinaryBitmap;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -360,7 +360,7 @@
 
     .line 67
     .local p2, "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_1b
 
     sget-object v0, Lcom/google/zxing/DecodeHintType;->PURE_BARCODE:Lcom/google/zxing/DecodeHintType;
 
@@ -368,7 +368,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1b
 
     .line 68
     invoke-virtual {p1}, Lcom/google/zxing/BinaryBitmap;->getBlackMatrix()Lcom/google/zxing/common/BitMatrix;
@@ -393,12 +393,12 @@
 
     .line 71
     .local v0, "points":[Lcom/google/zxing/ResultPoint;
-    goto :goto_0
+    goto :goto_36
 
     .line 72
     .end local v0    # "points":[Lcom/google/zxing/ResultPoint;
     .end local v1    # "decoderResult":Lcom/google/zxing/common/DecoderResult;
-    :cond_0
+    :cond_1b
     new-instance v0, Lcom/google/zxing/datamatrix/detector/Detector;
 
     invoke-virtual {p1}, Lcom/google/zxing/BinaryBitmap;->getBlackMatrix()Lcom/google/zxing/common/BitMatrix;
@@ -431,7 +431,7 @@
 
     .line 76
     .local v0, "points":[Lcom/google/zxing/ResultPoint;
-    :goto_0
+    :goto_36
     new-instance v2, Lcom/google/zxing/Result;
 
     invoke-virtual {v1}, Lcom/google/zxing/common/DecoderResult;->getText()Ljava/lang/String;
@@ -456,7 +456,7 @@
 
     .line 79
     .local v3, "byteSegments":Ljava/util/List;, "Ljava/util/List<[B>;"
-    if-eqz v3, :cond_1
+    if-eqz v3, :cond_50
 
     .line 80
     sget-object v4, Lcom/google/zxing/ResultMetadataType;->BYTE_SEGMENTS:Lcom/google/zxing/ResultMetadataType;
@@ -464,14 +464,14 @@
     invoke-virtual {v2, v4, v3}, Lcom/google/zxing/Result;->putMetadata(Lcom/google/zxing/ResultMetadataType;Ljava/lang/Object;)V
 
     .line 82
-    :cond_1
+    :cond_50
     invoke-virtual {v1}, Lcom/google/zxing/common/DecoderResult;->getECLevel()Ljava/lang/String;
 
     move-result-object v4
 
     .line 83
     .local v4, "ecLevel":Ljava/lang/String;
-    if-eqz v4, :cond_2
+    if-eqz v4, :cond_5b
 
     .line 84
     sget-object v5, Lcom/google/zxing/ResultMetadataType;->ERROR_CORRECTION_LEVEL:Lcom/google/zxing/ResultMetadataType;
@@ -479,12 +479,12 @@
     invoke-virtual {v2, v5, v4}, Lcom/google/zxing/Result;->putMetadata(Lcom/google/zxing/ResultMetadataType;Ljava/lang/Object;)V
 
     .line 86
-    :cond_2
+    :cond_5b
     return-object v2
 .end method
 
 .method public reset()V
-    .locals 0
+    .registers 1
 
     .line 92
     return-void

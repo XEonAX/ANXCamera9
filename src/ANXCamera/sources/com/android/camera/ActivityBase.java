@@ -21,7 +21,6 @@ import android.view.KeyEvent;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.aeonax.camera.R;
 import com.android.camera.CameraScreenNail.NailListener;
 import com.android.camera.CameraScreenNail.RequestRenderListener;
 import com.android.camera.data.DataRepository;
@@ -52,6 +51,7 @@ import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 public abstract class ActivityBase extends FragmentActivity implements AppController, SurfaceStateListener {
     public static final int MSG_CAMERA_OPEN_EXCEPTION = 10;
@@ -113,13 +113,7 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
                 int i = message.what;
                 if (i == 10) {
                     i = message.arg1;
-                    String str = ActivityBase.TAG;
-                    StringBuilder stringBuilder = new StringBuilder();
-                    stringBuilder.append("msg = ");
-                    stringBuilder.append(message);
-                    stringBuilder.append(", exception = ");
-                    stringBuilder.append(i);
-                    Log.d(str, stringBuilder.toString());
+                    Log.d(ActivityBase.TAG, String.format(Locale.ENGLISH, "msg = %s , exception = 0x%x", new Object[]{message, Integer.valueOf(i)}));
                     switch (i) {
                         case 226:
                         case 228:
@@ -194,20 +188,12 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
     }
 
     public void onCreate(Bundle bundle) {
-        int i;
         if (Util.isNotchDevice) {
             CompatibilityUtils.setCutoutModeShortEdges(getWindow());
         }
         getWindow().addFlags(1024);
-        if ((getIntent().getFlags() & 8388608) == 0) {
-            i = 1;
-        } else {
-            i = 0;
-        }
-        if (i != 0) {
-            getWindow().addFlags(2097152);
-        }
         super.onCreate(bundle);
+        int i = 1;
         setVolumeControlStream(1);
         this.mScreenHint = new ScreenHint(this);
         this.mThumbnailUpdater = new ThumbnailUpdater(this);
@@ -215,6 +201,13 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
         this.mStartFromKeyguard = getKeyguardFlag();
         if (this.mStartFromKeyguard) {
             this.mKeyguardSecureLocked = this.mKeyguardManager.isKeyguardSecure();
+        }
+        if (!(this.mStartFromKeyguard && (getIntent().getFlags() & 8388608) == 0)) {
+            i = 0;
+        }
+        if (i != 0) {
+            Log.d(TAG, "onCreate: addFlag --> FLAG_TURN_SCREEN_ON");
+            getWindow().addFlags(2097152);
         }
         this.mApplication.addActivity(this);
         this.mCameraBrightness = new CameraBrightness(this);
@@ -289,6 +282,20 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
                     }
                 });
             }
+        }
+    }
+
+    public void dismissBlurCover() {
+        if (this.mGLCoverView != null && this.mGLCoverView.getVisibility() != 8) {
+            this.mGLCoverView.post(new Runnable() {
+                public void run() {
+                    ActivityBase.this.mGLCoverView.animate().alpha(0.0f).withEndAction(new Runnable() {
+                        public void run() {
+                            ActivityBase.this.mGLCoverView.setVisibility(8);
+                        }
+                    }).start();
+                }
+            });
         }
     }
 
@@ -399,6 +406,7 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
         }
         pause();
         if (startFromKeyguard() && this.mIsFinishInKeyguard) {
+            Log.d(TAG, "onPause: clearFlag --> FLAG_TURN_SCREEN_ON");
             getWindow().clearFlags(2097152);
             if (this.mJumpFlag == 0) {
                 finish();
@@ -476,11 +484,13 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
     protected void onDestroy() {
         if (this.mCameraScreenNail != null) {
             final Bitmap lastFrameGaussianBitmap = this.mCameraScreenNail.getLastFrameGaussianBitmap();
-            Schedulers.io().scheduleDirect(new Runnable() {
-                public void run() {
-                    Util.saveLastFrameGaussian2File(lastFrameGaussianBitmap);
-                }
-            });
+            if (lastFrameGaussianBitmap != null) {
+                Schedulers.io().scheduleDirect(new Runnable() {
+                    public void run() {
+                        Util.saveLastFrameGaussian2File(lastFrameGaussianBitmap);
+                    }
+                });
+            }
         }
         PopupManager.removeInstance(this);
         this.mApplication.removeActivity(this);
@@ -502,11 +512,15 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
                 }
 
                 public void onSurfaceTextureUpdated(DrawExtTexAttribute drawExtTexAttribute) {
-                    ActivityBase.this.mCurrentModule.onSurfaceTextureUpdated(drawExtTexAttribute);
+                    if (ActivityBase.this.mCurrentModule != null) {
+                        ActivityBase.this.mCurrentModule.onSurfaceTextureUpdated(drawExtTexAttribute);
+                    }
                 }
 
                 public void onSurfaceTextureReleased() {
-                    ActivityBase.this.mCurrentModule.onSurfaceTextureReleased();
+                    if (ActivityBase.this.mCurrentModule != null) {
+                        ActivityBase.this.mCurrentModule.onSurfaceTextureReleased();
+                    }
                 }
 
                 public void onPreviewTextureCopied() {
@@ -543,17 +557,7 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
                         }
                         ActivityBase.this.mAppStartTime = 0;
                     }
-                    if (ActivityBase.this.mGLCoverView != null) {
-                        ActivityBase.this.mGLCoverView.post(new Runnable() {
-                            public void run() {
-                                ActivityBase.this.mGLCoverView.animate().alpha(0.0f).withEndAction(new Runnable() {
-                                    public void run() {
-                                        ActivityBase.this.mGLCoverView.setVisibility(8);
-                                    }
-                                }).start();
-                            }
-                        });
-                    }
+                    ActivityBase.this.dismissBlurCover();
                     ActivityBase.this.notifyOnFirstFrameArrived(i);
                 }
 
@@ -613,7 +617,14 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
         return this.mThumbnailUpdater;
     }
 
-    public void addSecureUri(Uri uri) {
+    public void onNewUriArrived(Uri uri, String str) {
+        if (this.mCurrentModule != null) {
+            this.mCurrentModule.onNewUriArrived(uri, str);
+        }
+        addSecureUriIfNecessary(uri);
+    }
+
+    private void addSecureUriIfNecessary(Uri uri) {
         if (this.mSecureUriList != null) {
             if (this.mSecureUriList.size() == 100) {
                 this.mSecureUriList.remove(0);
@@ -670,8 +681,8 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
                         Intent intent = new Intent(Util.REVIEW_ACTION, uri);
                         intent.setPackage(Util.REVIEW_ACTIVITY_PACKAGE);
                         intent.putExtra(Util.KEY_REVIEW_FROM_MIUICAMERA, true);
-                        if (b.fU()) {
-                            if (!b.hF()) {
+                        if (b.go()) {
+                            if (!b.hW()) {
                                 intent.putExtra(Util.KEY_CAMERA_BRIGHTNESS, this.mCameraBrightness.getCurrentBrightness());
                             } else if (this.mCameraBrightness.getCurrentBrightnessManual() != -1) {
                                 intent.putExtra(Util.KEY_CAMERA_BRIGHTNESS_MANUAL, this.mCameraBrightness.getCurrentBrightnessManual());

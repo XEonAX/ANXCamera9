@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.view.Surface;
 import com.android.camera.log.Log;
 import com.android.camera.storage.ImageSaver;
+import com.mi.config.b;
 import com.xiaomi.camera.core.ParallelTaskData;
 import com.xiaomi.camera.core.PostProcessor;
 import com.xiaomi.camera.core.PostProcessor.PostProcessStatusCallback;
@@ -25,7 +26,9 @@ public class LocalParallelService extends Service {
     private LocalBinder mLocalBinder;
     private PostProcessStatusCallback mPostProcessStatusCallback = new PostProcessStatusCallback() {
         public void onImagePostProcessStart(ParallelTaskData parallelTaskData) {
-            LocalParallelService.this.mServiceStatusListener.onImagePostProcessStart(parallelTaskData);
+            if (LocalParallelService.this.mServiceStatusListener != null) {
+                LocalParallelService.this.mServiceStatusListener.onImagePostProcessStart(parallelTaskData);
+            }
         }
 
         public void onPostProcessorClosed(PostProcessor postProcessor) {
@@ -44,6 +47,9 @@ public class LocalParallelService extends Service {
 
         LocalBinder() {
             JpegEncoder.instance().init(LocalParallelService.this);
+            if (b.qV) {
+                JpegEncoder.instance().setVTCameraIds("5", "6");
+            }
             MiCameraAlgo.init(LocalParallelService.this);
         }
 
@@ -57,6 +63,7 @@ public class LocalParallelService extends Service {
                 this.mCurrentParams = list;
                 Log.d(LocalParallelService.TAG, "configCaptureOutputBuffer: create a new PostProcessor");
                 this.mCurrentPostProcessor = new PostProcessor(LocalParallelService.this, LocalParallelService.this.mPostProcessStatusCallback);
+                this.mCurrentBufferFormat = null;
                 this.mAlivePostProcessor.add(this.mCurrentPostProcessor);
                 return this.mCurrentPostProcessor.configHALOutputSurface(list);
             } else {
@@ -96,24 +103,28 @@ public class LocalParallelService extends Service {
             }
             this.mCurrentBufferFormat = bufferFormat;
             long currentTimeMillis = System.currentTimeMillis();
-            this.mCurrentPostProcessor.configCaptureSession(this.mCurrentBufferFormat, 0);
+            this.mCurrentPostProcessor.configCaptureSession(this.mCurrentBufferFormat);
             String access$300 = LocalParallelService.TAG;
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("configCaptureSession: create session cost : ");
+            stringBuilder.append("configCaptureSession: create session cost: ");
             stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
             Log.d(access$300, stringBuilder.toString());
         }
 
-        public void onCaptureStart(ParallelTaskData parallelTaskData) {
-            this.mCurrentPostProcessor.onCaptureStarted(parallelTaskData);
+        public void setJpegOutputSize(int i, int i2) {
+            JpegEncoder.instance().setJpegOutputSize(i, i2);
         }
 
-        public void onCaptureCompleted(List<ICustomCaptureResult> list) {
-            this.mCurrentPostProcessor.onCaptureCompleted(list);
+        public void onCaptureStarted(ParallelTaskData parallelTaskData) {
+            this.mCurrentPostProcessor.getCaptureStatusListener().onCaptureStarted(parallelTaskData);
         }
 
-        public void onCaptureFailed(String str, int i) {
-            this.mCurrentPostProcessor.onCaptureFailed(str, i);
+        public void onCaptureCompleted(ICustomCaptureResult iCustomCaptureResult, boolean z) {
+            this.mCurrentPostProcessor.getCaptureStatusListener().onCaptureCompleted(iCustomCaptureResult, z);
+        }
+
+        public void onCaptureFailed(long j, int i) {
+            this.mCurrentPostProcessor.getCaptureStatusListener().onCaptureFailed(j, i);
         }
 
         public void onServiceDestroy() {

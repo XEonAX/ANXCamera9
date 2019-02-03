@@ -27,7 +27,7 @@
 .method constructor <init>(Lcom/ss/android/vesdk/VEEditor;Lcom/ss/android/vesdk/VECommonCallback;)V
     .locals 0
 
-    .line 482
+    .line 509
     iput-object p1, p0, Lcom/ss/android/vesdk/VEEditor$4;->this$0:Lcom/ss/android/vesdk/VEEditor;
 
     iput-object p2, p0, Lcom/ss/android/vesdk/VEEditor$4;->val$callback:Lcom/ss/android/vesdk/VECommonCallback;
@@ -42,11 +42,11 @@
 .method public onCallback(IIFLjava/lang/String;)V
     .locals 1
 
-    .line 486
+    .line 513
     iget-object v0, p0, Lcom/ss/android/vesdk/VEEditor$4;->val$callback:Lcom/ss/android/vesdk/VECommonCallback;
 
     invoke-interface {v0, p1, p2, p3, p4}, Lcom/ss/android/vesdk/VECommonCallback;->onCallback(IIFLjava/lang/String;)V
 
-    .line 487
+    .line 514
     return-void
 .end method

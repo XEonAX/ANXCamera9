@@ -15,19 +15,19 @@
 
 
 # static fields
-.field public static final backgroundColor:I = 0x7f010010
+.field public static final backgroundColor:I = 0x7f010011
 
-.field public static final backgroundStrokeColor:I = 0x7f010011
+.field public static final backgroundStrokeColor:I = 0x7f010012
 
-.field public static final backgroundStrokeWidth:I = 0x7f010012
+.field public static final backgroundStrokeWidth:I = 0x7f010013
 
 .field public static final cameraTitle:I = 0x7f010004
 
-.field public static final checked:I = 0x7f01001f
+.field public static final checked:I = 0x7f010020
 
 .field public static final defaultValue:I = 0x7f010006
 
-.field public static final duration:I = 0x7f01001e
+.field public static final duration:I = 0x7f01001f
 
 .field public static final entries:I = 0x7f010008
 
@@ -51,40 +51,42 @@
 
 .field public static final reverseLayout:I = 0x7f010002
 
+.field public static final showArrow:I = 0x7f010010
+
 .field public static final singleIcon:I = 0x7f01000c
 
 .field public static final spanCount:I = 0x7f010001
 
 .field public static final stackFromEnd:I = 0x7f010003
 
-.field public static final textOff:I = 0x7f010019
+.field public static final textOff:I = 0x7f01001a
 
-.field public static final textOffColor:I = 0x7f01001a
+.field public static final textOffColor:I = 0x7f01001b
 
-.field public static final textOffShadowColor:I = 0x7f01001b
+.field public static final textOffShadowColor:I = 0x7f01001c
 
-.field public static final textOffShadowRadius:I = 0x7f01001d
+.field public static final textOffShadowRadius:I = 0x7f01001e
 
-.field public static final textOn:I = 0x7f010017
+.field public static final textOn:I = 0x7f010018
 
-.field public static final textOnColor:I = 0x7f010018
+.field public static final textOnColor:I = 0x7f010019
 
-.field public static final textSize:I = 0x7f01001c
+.field public static final textSize:I = 0x7f01001d
 
-.field public static final thumbColor:I = 0x7f010014
+.field public static final thumbColor:I = 0x7f010015
 
-.field public static final thumbPadding:I = 0x7f010013
+.field public static final thumbPadding:I = 0x7f010014
 
-.field public static final thumbShadowColor:I = 0x7f010015
+.field public static final thumbShadowColor:I = 0x7f010016
 
-.field public static final thumbShadowRadius:I = 0x7f010016
+.field public static final thumbShadowRadius:I = 0x7f010017
 
 
 # direct methods
 .method public constructor <init>()V
     .locals 0
 
-    .line 123
+    .line 134
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

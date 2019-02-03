@@ -342,6 +342,21 @@
     return p1
 .end method
 
+.method public getConfigItem(I)Lcom/android/camera/data/data/config/TopConfigItem;
+    .locals 1
+
+    .line 119
+    iget-object v0, p0, Lcom/android/camera/data/data/config/SupportedConfigs;->mConfigs:Ljava/util/List;
+
+    invoke-interface {v0, p1}, Ljava/util/List;->get(I)Ljava/lang/Object;
+
+    move-result-object p1
+
+    check-cast p1, Lcom/android/camera/data/data/config/TopConfigItem;
+
+    return-object p1
+.end method
+
 .method public getConfigTypeForViewPosition(I)I
     .locals 3
 
@@ -384,23 +399,6 @@
     const/16 p1, 0xc6
 
     return p1
-.end method
-
-.method public getConfigs()Ljava/util/List;
-    .locals 1
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "()",
-            "Ljava/util/List<",
-            "Lcom/android/camera/data/data/config/TopConfigItem;",
-            ">;"
-        }
-    .end annotation
-
-    .line 119
-    iget-object v0, p0, Lcom/android/camera/data/data/config/SupportedConfigs;->mConfigs:Ljava/util/List;
-
-    return-object v0
 .end method
 
 .method public getConfigsSize()I

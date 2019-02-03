@@ -1,5 +1,6 @@
 package okhttp3;
 
+import com.ss.android.ugc.effectmanager.effect.model.ComposerHelper;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -297,7 +298,7 @@ public final class Cookie {
                         z4 = false;
                     } catch (IllegalArgumentException e3) {
                     }
-                } else if (trimSubstring3.equalsIgnoreCase("path")) {
+                } else if (trimSubstring3.equalsIgnoreCase(ComposerHelper.CONFIG_PATH)) {
                     cookie = trimSubstring4;
                 } else if (trimSubstring3.equalsIgnoreCase("secure")) {
                     z = true;

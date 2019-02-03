@@ -11,9 +11,9 @@ import android.provider.MiuiSettings.Key;
 import android.provider.Settings.Secure;
 import android.provider.Settings.System;
 import android.widget.Toast;
-import com.aeonax.camera.R;
 import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.ui.PreviewListPreference;
+import com.android.camera2.DetachableClickListener;
 import com.mi.config.b;
 
 public class CameraPreferenceActivity extends BasePreferenceActivity {
@@ -51,7 +51,7 @@ public class CameraPreferenceActivity extends BasePreferenceActivity {
     }
 
     public void changeRequestOrientation() {
-        if (b.hk()) {
+        if (b.hC()) {
             if (CameraSettings.isFrontCamera()) {
                 setRequestedOrientation(7);
             } else {
@@ -62,7 +62,7 @@ public class CameraPreferenceActivity extends BasePreferenceActivity {
 
     private void bringUpDoubleConfirmDlg(final PreviewListPreference previewListPreference, final String str) {
         if (this.mDoubleConfirmActionChooseDialog == null) {
-            OnClickListener anonymousClass1 = new OnClickListener() {
+            Object wrap = DetachableClickListener.wrap(new OnClickListener() {
                 public void onClick(DialogInterface dialogInterface, int i) {
                     if (i == -1) {
                         CameraPreferenceActivity.this.mDoubleConfirmActionChooseDialog = null;
@@ -74,8 +74,9 @@ public class CameraPreferenceActivity extends BasePreferenceActivity {
                         CameraPreferenceActivity.this.mDoubleConfirmActionChooseDialog = null;
                     }
                 }
-            };
-            this.mDoubleConfirmActionChooseDialog = new Builder(this).setTitle(R.string.title_snap_double_confirm).setMessage(R.string.message_snap_double_confirm).setPositiveButton(R.string.snap_confirmed, anonymousClass1).setNegativeButton(R.string.snap_cancel, anonymousClass1).setCancelable(false).create();
+            });
+            this.mDoubleConfirmActionChooseDialog = new Builder(this).setTitle(R.string.title_snap_double_confirm).setMessage(R.string.message_snap_double_confirm).setPositiveButton(R.string.snap_confirmed, wrap).setNegativeButton(R.string.snap_cancel, wrap).setCancelable(false).create();
+            wrap.clearOnDetach(this.mDoubleConfirmActionChooseDialog);
             this.mDoubleConfirmActionChooseDialog.show();
         }
     }

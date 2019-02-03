@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/snap/SnapCamera;)V
     .locals 0
 
-    .line 766
+    .line 764
     iput-object p1, p0, Lcom/android/camera/snap/SnapCamera$7;->this$0:Lcom/android/camera/snap/SnapCamera;
 
     invoke-direct {p0}, Landroid/hardware/camera2/CameraCaptureSession$CaptureCallback;-><init>()V
@@ -33,7 +33,7 @@
 .method private process(Landroid/hardware/camera2/CaptureResult;)V
     .locals 4
 
-    .line 784
+    .line 782
     iget-object v0, p0, Lcom/android/camera/snap/SnapCamera$7;->this$0:Lcom/android/camera/snap/SnapCamera;
 
     invoke-static {v0}, Lcom/android/camera/snap/SnapCamera;->access$000(Lcom/android/camera/snap/SnapCamera;)Landroid/hardware/camera2/CameraDevice;
@@ -42,10 +42,10 @@
 
     if-nez v0, :cond_0
 
-    .line 785
+    .line 783
     return-void
 
-    .line 787
+    .line 785
     :cond_0
     iget-object v0, p0, Lcom/android/camera/snap/SnapCamera$7;->this$0:Lcom/android/camera/snap/SnapCamera;
 
@@ -65,7 +65,7 @@
 
     goto :goto_0
 
-    .line 791
+    .line 789
     :cond_1
     sget-object v0, Landroid/hardware/camera2/CaptureResult;->CONTROL_AF_STATE:Landroid/hardware/camera2/CaptureResult$Key;
 
@@ -75,7 +75,7 @@
 
     check-cast v0, Ljava/lang/Integer;
 
-    .line 792
+    .line 790
     invoke-static {}, Lcom/android/camera/snap/SnapCamera;->access$100()Ljava/lang/String;
 
     move-result-object v1
@@ -96,7 +96,7 @@
 
     sget-object v3, Landroid/hardware/camera2/CaptureResult;->CONTROL_AE_STATE:Landroid/hardware/camera2/CaptureResult$Key;
 
-    .line 793
+    .line 791
     invoke-virtual {p1, v3}, Landroid/hardware/camera2/CaptureResult;->get(Landroid/hardware/camera2/CaptureResult$Key;)Ljava/lang/Object;
 
     move-result-object p1
@@ -119,10 +119,10 @@
 
     move-result-object p1
 
-    .line 792
+    .line 790
     invoke-static {v1, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 794
+    .line 792
     const/4 p1, 0x2
 
     invoke-virtual {v0}, Ljava/lang/Integer;->intValue()I
@@ -131,14 +131,14 @@
 
     if-ne p1, v0, :cond_2
 
-    .line 795
+    .line 793
     iget-object p1, p0, Lcom/android/camera/snap/SnapCamera$7;->this$0:Lcom/android/camera/snap/SnapCamera;
 
     const/4 v0, 0x1
 
     invoke-static {p1, v0}, Lcom/android/camera/snap/SnapCamera;->access$602(Lcom/android/camera/snap/SnapCamera;Z)Z
 
-    .line 796
+    .line 794
     iget-object p1, p0, Lcom/android/camera/snap/SnapCamera$7;->this$0:Lcom/android/camera/snap/SnapCamera;
 
     invoke-static {p1}, Lcom/android/camera/snap/SnapCamera;->access$1400(Lcom/android/camera/snap/SnapCamera;)Landroid/os/Handler;
@@ -147,11 +147,11 @@
 
     invoke-virtual {p1, v0}, Landroid/os/Handler;->removeMessages(I)V
 
-    .line 798
+    .line 796
     :cond_2
     return-void
 
-    .line 788
+    .line 786
     :cond_3
     :goto_0
     return-void
@@ -162,10 +162,10 @@
 .method public onCaptureCompleted(Landroid/hardware/camera2/CameraCaptureSession;Landroid/hardware/camera2/CaptureRequest;Landroid/hardware/camera2/TotalCaptureResult;)V
     .locals 0
 
-    .line 772
+    .line 770
     invoke-direct {p0, p3}, Lcom/android/camera/snap/SnapCamera$7;->process(Landroid/hardware/camera2/CaptureResult;)V
 
-    .line 773
+    .line 771
     return-void
 .end method
 
@@ -184,10 +184,10 @@
         .end annotation
     .end param
 
-    .line 779
+    .line 777
     invoke-super {p0, p1, p2, p3}, Landroid/hardware/camera2/CameraCaptureSession$CaptureCallback;->onCaptureFailed(Landroid/hardware/camera2/CameraCaptureSession;Landroid/hardware/camera2/CaptureRequest;Landroid/hardware/camera2/CaptureFailure;)V
 
-    .line 780
+    .line 778
     invoke-static {}, Lcom/android/camera/snap/SnapCamera;->access$100()Ljava/lang/String;
 
     move-result-object p1
@@ -196,6 +196,6 @@
 
     invoke-static {p1, p2}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 781
+    .line 779
     return-void
 .end method

@@ -48,7 +48,7 @@
     aput v1, p1, v0
 
     .line 246
-    invoke-static {}, Lcom/mi/config/b;->hn()Z
+    invoke-static {}, Lcom/mi/config/b;->hE()Z
 
     move-result v1
 
@@ -79,7 +79,7 @@
     const/4 v1, 0x3
 
     .line 247
-    invoke-static {}, Lcom/mi/config/b;->hn()Z
+    invoke-static {}, Lcom/mi/config/b;->hE()Z
 
     move-result v4
 
@@ -104,7 +104,7 @@
     aput v1, p1, v4
 
     .line 248
-    invoke-static {}, Lcom/mi/config/b;->hn()Z
+    invoke-static {}, Lcom/mi/config/b;->hE()Z
 
     move-result v1
 

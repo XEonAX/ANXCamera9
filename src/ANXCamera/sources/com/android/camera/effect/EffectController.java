@@ -1,12 +1,14 @@
 package com.android.camera.effect;
 
+import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.text.TextUtils;
 import android.util.SparseArray;
-import com.aeonax.camera.R;
 import com.android.camera.CameraSettings;
 import com.android.camera.EffectChangedListenerController;
+import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.data.DataRepository;
 import com.android.camera.effect.renders.BeautificationWrapperRender;
@@ -30,6 +32,7 @@ import com.android.camera.effect.renders.YGaussianEffectRender;
 import com.android.camera.effect.renders.YTiltShiftEffectRender;
 import com.android.camera.effect.renders.YuvToRgbRender;
 import com.android.camera.fragment.beauty.BeautyParameters;
+import com.android.camera.fragment.beauty.LiveBeautyFilterFragment.LiveFilterItem;
 import com.android.camera.log.Log;
 import com.android.camera.module.ModuleManager;
 import com.android.gallery3d.ui.GLCanvas;
@@ -74,6 +77,7 @@ public class EffectController {
     private EffectRectAttribute mEffectRectAttribute = new EffectRectAttribute();
     private SparseArray<ArrayList<FilterInfo>> mFilterInfoMap;
     private boolean mIsDrawMainFrame = true;
+    private List<LiveFilterItem> mLiveFilters;
     private boolean mNeedDestroyMakeup = false;
     private int mOrientation;
     private int mOverrideAiEffectIndex = -1;
@@ -336,16 +340,16 @@ public class EffectController {
     public boolean hasEffect() {
         boolean z;
         synchronized (this) {
-            boolean fI = b.fI();
+            boolean gb = b.gb();
             z = false;
             boolean z2 = (this.mEffectId == FilterInfo.FILTER_ID_NONE || FilterInfo.getCategory(this.mEffectId) == 6) ? false : true;
             boolean isSquareModule = ModuleManager.isSquareModule();
             boolean isGradienterOn = CameraSettings.isGradienterOn();
             boolean isTiltShiftOn = CameraSettings.isTiltShiftOn();
-            boolean fc = DataRepository.dataItemFeature().fc();
+            boolean fe = DataRepository.dataItemFeature().fe();
             boolean z3 = CameraSettings.isDualCameraWaterMarkOpen() || CameraSettings.isTimeWaterMarkOpen() || CameraSettings.isAgeGenderWaterMarkOpen() || CameraSettings.isMagicMirrorWaterMarkOpen();
-            fc = fc && z3;
-            if (fI && (z2 || isSquareModule || isGradienterOn || isTiltShiftOn || fc)) {
+            fe = fe && z3;
+            if (gb && (z2 || isSquareModule || isGradienterOn || isTiltShiftOn || fe)) {
                 z = true;
             }
         }
@@ -453,7 +457,7 @@ public class EffectController {
         this.mFilterInfoMap.put(0, initPrivateFilterInfo());
         this.mFilterInfoMap.put(1, initNormalFilterInfoNew());
         this.mFilterInfoMap.put(6, initLightingFilterInfo());
-        if (b.hl()) {
+        if (DataRepository.dataItemFeature().eU()) {
             this.mFilterInfoMap.put(2, BeautyInfoFactory.initIndiaBeautyFilterInfo());
         } else {
             this.mFilterInfoMap.put(2, BeautyInfoFactory.initBeautyFilterInfo());
@@ -678,7 +682,7 @@ public class EffectController {
     }
 
     public RenderGroup getEffectGroup(GLCanvas gLCanvas, RenderGroup renderGroup, boolean z, boolean z2, int i) {
-        if (!b.fI()) {
+        if (!b.gb()) {
             return null;
         }
         if (!z && !renderGroup.isNeedInit(i)) {
@@ -766,7 +770,7 @@ public class EffectController {
             renderGroup2.addRender(pipeRenderPair);
             i2 = 1;
         }
-        if (renderGroup2.getRender(FilterInfo.FILTER_ID_TILTSHIFT) == null && b.gN() && (z || i3 == FilterInfo.FILTER_ID_TILTSHIFT || (i3 < 0 && r0 == 0))) {
+        if (renderGroup2.getRender(FilterInfo.FILTER_ID_TILTSHIFT) == null && b.hf() && (z || i3 == FilterInfo.FILTER_ID_TILTSHIFT || (i3 < 0 && r0 == 0))) {
             if (z || i3 == FilterInfo.FILTER_ID_TILTSHIFT || renderGroup2.isPartComplete(3)) {
                 renderGroup2.addRender(new PipeRenderPair(gLCanvas2, FilterInfo.FILTER_ID_TILTSHIFT, new PipeRenderPair(gLCanvas2, renderGroup2.getPartRender(0) != null ? renderGroup2.getPartRender(0) : new XTiltShiftEffectRender(gLCanvas2), renderGroup2.getPartRender(1) != null ? renderGroup2.getPartRender(1) : new YTiltShiftEffectRender(gLCanvas2), false), renderGroup2.getPartRender(2) != null ? renderGroup2.getPartRender(2) : new TiltShiftMaskEffectRender(gLCanvas2), false));
                 renderGroup.clearPartRenders();
@@ -779,7 +783,7 @@ public class EffectController {
             }
             i2 = 1;
         }
-        if (d.getBoolean(d.sG, false) || renderGroup2.getRender(FilterInfo.FILTER_ID_GAUSSIAN) != null || (!z && i3 != FilterInfo.FILTER_ID_GAUSSIAN && (i3 >= 0 || i2 != 0))) {
+        if (d.getBoolean(d.tb, false) || renderGroup2.getRender(FilterInfo.FILTER_ID_GAUSSIAN) != null || (!z && i3 != FilterInfo.FILTER_ID_GAUSSIAN && (i3 >= 0 || i2 != 0))) {
             i4 = i2;
         } else if (z || i3 == FilterInfo.FILTER_ID_GAUSSIAN || renderGroup2.isPartComplete(3)) {
             renderGroup2.addRender(new PipeRenderPair(gLCanvas2, FilterInfo.FILTER_ID_GAUSSIAN, new PipeRenderPair(gLCanvas2, renderGroup2.getPartRender(0) != null ? renderGroup2.getPartRender(0) : new XGaussianEffectRender(gLCanvas2), renderGroup2.getPartRender(1) != null ? renderGroup2.getPartRender(1) : new YGaussianEffectRender(gLCanvas2), false), renderGroup2.getPartRender(2) != null ? renderGroup2.getPartRender(2) : new GaussianMaskEffectRender(gLCanvas2), false));
@@ -791,7 +795,7 @@ public class EffectController {
         } else if (renderGroup2.getPartRender(2) == null) {
             renderGroup2.addPartRender(new GaussianMaskEffectRender(gLCanvas2));
         }
-        if (renderGroup2.getRender(FilterInfo.FILTER_ID_PEAKINGMF) == null && b.gC() && !z2 && (z || i3 == FilterInfo.FILTER_ID_PEAKINGMF || (i3 < 0 && i4 == 0))) {
+        if (renderGroup2.getRender(FilterInfo.FILTER_ID_PEAKINGMF) == null && b.gU() && !z2 && (z || i3 == FilterInfo.FILTER_ID_PEAKINGMF || (i3 < 0 && i4 == 0))) {
             renderGroup2.addRender(new FocusPeakingRender(gLCanvas2, FilterInfo.FILTER_ID_PEAKINGMF));
         }
         if (renderGroup2.getRender(FilterInfo.FILTER_ID_STICKER) == null && (z || i3 == FilterInfo.FILTER_ID_STICKER || (i3 < 0 && i4 == 0))) {
@@ -961,5 +965,37 @@ public class EffectController {
             default:
                 return FilterScene.NONE;
         }
+    }
+
+    public List<LiveFilterItem> getLiveFilterList(Context context) {
+        if (this.mLiveFilters == null) {
+            TypedArray obtainTypedArray = context.getResources().obtainTypedArray(R.array.live_filter_icon);
+            String[] stringArray = context.getResources().getStringArray(R.array.live_filter_name);
+            String[] stringArray2 = context.getResources().getStringArray(R.array.live_filter_directory_name);
+            this.mLiveFilters = new ArrayList();
+            for (int i = 0; i < obtainTypedArray.length(); i++) {
+                LiveFilterItem liveFilterItem = new LiveFilterItem();
+                liveFilterItem.id = i;
+                liveFilterItem.imageViewRes = obtainTypedArray.getDrawable(i);
+                liveFilterItem.name = stringArray[i];
+                liveFilterItem.directoryName = stringArray2[i];
+                this.mLiveFilters.add(liveFilterItem);
+            }
+            obtainTypedArray.recycle();
+        }
+        return this.mLiveFilters;
+    }
+
+    public LiveFilterItem findLiveFilter(Context context, int i) {
+        List<LiveFilterItem> liveFilterList = getLiveFilterList(context);
+        if (liveFilterList == null) {
+            return null;
+        }
+        for (LiveFilterItem liveFilterItem : liveFilterList) {
+            if (liveFilterItem.id == i) {
+                return liveFilterItem;
+            }
+        }
+        return null;
     }
 }

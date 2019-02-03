@@ -4,6 +4,7 @@ import android.content.Context;
 import com.android.camera.CameraAppImpl;
 import com.android.camera.db.greendao.DaoMaster;
 import com.android.camera.db.greendao.DaoMaster.DevOpenHelper;
+import com.android.camera.db.greendao.DaoMaster.OpenHelper;
 import com.android.camera.db.greendao.DaoSession;
 
 public class DbContainer {
@@ -48,7 +49,9 @@ public class DbContainer {
             if (this.context == null) {
                 this.context = CameraAppImpl.getAndroidContext();
             }
-            this.daoMaster = new DaoMaster(new DevOpenHelper(this.context, "camera.db", null).getWritableDb());
+            OpenHelper devOpenHelper = new DevOpenHelper(this.context, "camera.db", null);
+            devOpenHelper.setLoadSQLCipherNativeLibs(false);
+            this.daoMaster = new DaoMaster(devOpenHelper.getWritableDb());
         }
         return this.daoMaster;
     }

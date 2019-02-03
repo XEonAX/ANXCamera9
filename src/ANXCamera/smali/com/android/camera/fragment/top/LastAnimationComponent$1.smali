@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/top/LastAnimationComponent;)V
     .locals 0
 
-    .line 122
+    .line 124
     iput-object p1, p0, Lcom/android/camera/fragment/top/LastAnimationComponent$1;->this$0:Lcom/android/camera/fragment/top/LastAnimationComponent;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public run()V
     .locals 2
 
-    .line 125
+    .line 127
     iget-object v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent$1;->this$0:Lcom/android/camera/fragment/top/LastAnimationComponent;
 
     iget-object v0, v0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
@@ -47,13 +47,13 @@
 
     invoke-virtual {v0, v1}, Landroid/support/v7/widget/RecyclerView;->setVisibility(I)V
 
-    .line 126
+    .line 128
     iget-object v0, p0, Lcom/android/camera/fragment/top/LastAnimationComponent$1;->this$0:Lcom/android/camera/fragment/top/LastAnimationComponent;
 
     const/4 v1, 0x0
 
     iput-object v1, v0, Lcom/android/camera/fragment/top/LastAnimationComponent;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
-    .line 128
+    .line 130
     return-void
 .end method

@@ -6,14 +6,17 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.view.animation.Animation;
 import android.widget.SeekBar;
-import com.aeonax.camera.R;
+import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.animation.FragmentAnimationFactory;
 import com.android.camera.animation.type.SlideInOnSubscribe;
 import com.android.camera.animation.type.SlideOutOnSubscribe;
 import com.android.camera.fragment.BaseFragment;
+import com.android.camera.fragment.beauty.BeautyParameters.Type;
 import com.android.camera.log.Log;
+import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.MakeupProtocol;
+import com.android.camera.protocol.ModeProtocol.MiBeautyProtocol;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
 import com.android.camera.ui.SeekBarCompat;
 import com.android.camera.ui.SeekBarCompat.OnSeekBarCompatChangeListener;
@@ -65,7 +68,8 @@ public class FragmentPopupMakeup extends BaseFragment implements MakeupProtocol,
         this.mActiveProgress = BeautyHelper.getProgress() * 1;
         this.mSeekBar = (SeekBarCompat) view.findViewById(R.id.makeup_params_level);
         CameraBeautyParameterType currentBeautyParameterType = BeautyHelper.getCurrentBeautyParameterType();
-        if (BeautyParameters.isSupportTwoWayAdjustable(currentBeautyParameterType.beautyParamType)) {
+        Type type = currentBeautyParameterType.beautyParamType;
+        if (type != null ? BeautyParameters.isSupportTwoWayAdjustable(type) : false) {
             setSeekBarMode(2);
         } else {
             setSeekBarMode(1);
@@ -151,15 +155,15 @@ public class FragmentPopupMakeup extends BaseFragment implements MakeupProtocol,
         return 252;
     }
 
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        super.provideAnimateElement(i, list, z);
-        if (i == 163 || i == 165) {
-            i = 1;
-        } else {
-            i = -1;
-        }
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        super.provideAnimateElement(i, list, i2);
+        i = (i == 163 || i == 165) ? 1 : -1;
         if (getView().getTag() == null || ((Integer) getView().getTag()).intValue() != i) {
             getView().setTag(Integer.valueOf(i));
+            MiBeautyProtocol miBeautyProtocol = (MiBeautyProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(194);
+            if (miBeautyProtocol == null || !miBeautyProtocol.isBeautyPanelShow()) {
+                i = -1;
+            }
             if (i == 1) {
                 if (getView().getVisibility() != 0) {
                     getView().setVisibility(0);

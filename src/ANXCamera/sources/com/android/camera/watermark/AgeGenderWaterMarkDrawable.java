@@ -3,7 +3,7 @@ package com.android.camera.watermark;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.drawable.Drawable;
-import com.aeonax.camera.R;
+import com.android.camera.R;
 import java.util.List;
 
 public class AgeGenderWaterMarkDrawable extends BaseWaterMarkDrawable {

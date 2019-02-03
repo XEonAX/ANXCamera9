@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 200
     invoke-direct {p0}, Landroid/support/v4/view/MenuItemCompat$HoneycombMenuVersionImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public collapseActionView(Landroid/view/MenuItem;)Z
-    .locals 1
+    .registers 3
     .param p1, "item"    # Landroid/view/MenuItem;
 
     .line 208
@@ -39,7 +39,7 @@
 .end method
 
 .method public expandActionView(Landroid/view/MenuItem;)Z
-    .locals 1
+    .registers 3
     .param p1, "item"    # Landroid/view/MenuItem;
 
     .line 203
@@ -51,7 +51,7 @@
 .end method
 
 .method public isActionViewExpanded(Landroid/view/MenuItem;)Z
-    .locals 1
+    .registers 3
     .param p1, "item"    # Landroid/view/MenuItem;
 
     .line 213
@@ -63,12 +63,12 @@
 .end method
 
 .method public setOnActionExpandListener(Landroid/view/MenuItem;Landroid/support/v4/view/MenuItemCompat$OnActionExpandListener;)Landroid/view/MenuItem;
-    .locals 1
+    .registers 4
     .param p1, "item"    # Landroid/view/MenuItem;
     .param p2, "listener"    # Landroid/support/v4/view/MenuItemCompat$OnActionExpandListener;
 
     .line 219
-    if-nez p2, :cond_0
+    if-nez p2, :cond_8
 
     .line 220
     const/4 v0, 0x0
@@ -80,7 +80,7 @@
     return-object v0
 
     .line 227
-    :cond_0
+    :cond_8
     new-instance v0, Landroid/support/v4/view/MenuItemCompat$IcsMenuVersionImpl$1;
 
     invoke-direct {v0, p0, p2}, Landroid/support/v4/view/MenuItemCompat$IcsMenuVersionImpl$1;-><init>(Landroid/support/v4/view/MenuItemCompat$IcsMenuVersionImpl;Landroid/support/v4/view/MenuItemCompat$OnActionExpandListener;)V

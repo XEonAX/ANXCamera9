@@ -4,22 +4,22 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorListenerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-import com.aeonax.camera.R;
 import com.android.camera.CameraSettings;
+import com.android.camera.R;
 import com.android.camera.data.DataRepository;
 import com.android.camera.fragment.beauty.MakeupSingleCheckAdapter.MakeupItem;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.BaseDelegate;
 import com.android.camera.protocol.ModeProtocol.MakeupProtocol;
 import com.android.camera.protocol.ModeProtocol.MiBeautyProtocol;
+import com.android.camera.ui.ColorImageView;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MakeupBeautyFragment extends BaseBeautyMakeupFragment {
     private static final String TAG = "MakeupBeautyFragment";
-    private ImageView mHeaderImageView;
+    private ColorImageView mHeaderImageView;
 
     protected List<MakeupItem> initItems() {
         int currentCameraId = DataRepository.dataItemGlobal().getCurrentCameraId();
@@ -27,7 +27,7 @@ public class MakeupBeautyFragment extends BaseBeautyMakeupFragment {
         arrayList.add(new MakeupItem(R.drawable.icon_eyebrow_dye_n, R.string.edit_eyebrow_dye, CameraBeautyParameterType.EYEBROW_DYE_RATIO));
         arrayList.add(new MakeupItem(R.drawable.icon_pupil_line_n, R.string.edit_pupil_line, CameraBeautyParameterType.PUPIL_LINE_RATIO));
         arrayList.add(new MakeupItem(R.drawable.icon_jelly_lips_n, R.string.edit_jelly_lips, CameraBeautyParameterType.JELLY_LIPS_RATIO));
-        if (1 == currentCameraId && DataRepository.dataItemFeature().fq()) {
+        if (1 == currentCameraId && DataRepository.dataItemFeature().ft()) {
             arrayList.add(new MakeupItem(R.drawable.icon_eye_light, R.string.eye_light, CameraBeautyParameterType.EYE_LIGHT));
         }
         arrayList.add(new MakeupItem(R.drawable.icon_blusher_n, R.string.edit_blusher, CameraBeautyParameterType.BLUSHER_RATIO));
@@ -74,7 +74,8 @@ public class MakeupBeautyFragment extends BaseBeautyMakeupFragment {
 
     protected View getHeaderView() {
         View inflate = LayoutInflater.from(getContext()).inflate(R.layout.beauty_header_layout, null);
-        this.mHeaderImageView = (ImageView) inflate.findViewById(R.id.makeup_item_icon);
+        this.mHeaderImageView = (ColorImageView) inflate.findViewById(R.id.makeup_item_icon);
+        this.mHeaderImageView.setColor(getResources().getColor(R.color.beautycamera_beauty_advanced_item_backgroud_normal));
         this.mHeaderImageView.setImageResource(R.drawable.icon_beauty_reset);
         ((TextView) inflate.findViewById(R.id.makeup_item_name)).setText(R.string.beauty_reset);
         return inflate;

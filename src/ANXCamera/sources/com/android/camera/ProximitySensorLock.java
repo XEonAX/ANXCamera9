@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.FrameLayout;
-import com.aeonax.camera.R;
 import com.android.camera.log.Log;
 import com.android.camera.statistic.CameraStat;
 import com.android.camera.statistic.CameraStatUtil;
@@ -83,7 +82,7 @@ public class ProximitySensorLock implements SensorEventListener {
     }
 
     public static boolean supported() {
-        return b.hm();
+        return b.hD();
     }
 
     public static boolean enabled() {

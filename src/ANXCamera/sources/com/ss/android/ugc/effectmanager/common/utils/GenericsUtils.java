@@ -4,11 +4,11 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
 public class GenericsUtils {
-    public static Class getSuperClassGenricType(Class cls) {
-        return getSuperClassGenricType(cls, 0);
+    public static Class getSuperClassGenericType(Class cls) {
+        return getSuperClassGenericType(cls, 0);
     }
 
-    public static Class getSuperClassGenricType(Class cls, int i) throws IndexOutOfBoundsException {
+    public static Class getSuperClassGenericType(Class cls, int i) throws IndexOutOfBoundsException {
         Type genericSuperclass = cls.getGenericSuperclass();
         if (!(genericSuperclass instanceof ParameterizedType)) {
             return Object.class;

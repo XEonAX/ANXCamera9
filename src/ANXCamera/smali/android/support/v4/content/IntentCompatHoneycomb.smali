@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 22
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static makeMainActivity(Landroid/content/ComponentName;)Landroid/content/Intent;
-    .locals 1
+    .registers 2
     .param p0, "mainActivity"    # Landroid/content/ComponentName;
 
     .line 24
@@ -26,7 +26,7 @@
 .end method
 
 .method public static makeRestartActivityTask(Landroid/content/ComponentName;)Landroid/content/Intent;
-    .locals 1
+    .registers 2
     .param p0, "mainActivity"    # Landroid/content/ComponentName;
 
     .line 28

@@ -44,6 +44,11 @@ public class FilterFactory {
     private static final String LOOKUP_TABLE_PATH_BEAUTY_FAIRYTALE = "filter/beauty/B-FAIRYTALE.png";
     private static final String LOOKUP_TABLE_PATH_BEAUTY_INDIA_MEMORY = "filter/beauty_india/BI-MEMORY.png";
     private static final String LOOKUP_TABLE_PATH_BEAUTY_INDIA_MONO = "filter/beauty_india/BI-MONO.png";
+    private static final String LOOKUP_TABLE_PATH_BEAUTY_INDIA_M_DUSK = "filter/beauty_india/BI-M-DUSK.png";
+    private static final String LOOKUP_TABLE_PATH_BEAUTY_INDIA_M_LILT = "filter/beauty_india/BI-M-LILT.png";
+    private static final String LOOKUP_TABLE_PATH_BEAUTY_INDIA_M_SEPIA = "filter/beauty_india/BI-M-SEPIA.png";
+    private static final String LOOKUP_TABLE_PATH_BEAUTY_INDIA_M_TEA = "filter/beauty_india/BI-M-TEA.png";
+    private static final String LOOKUP_TABLE_PATH_BEAUTY_INDIA_M_WHITEANDBLACK = "filter/beauty_india/BI-M-WHITEANDBLACK.png";
     private static final String LOOKUP_TABLE_PATH_BEAUTY_INDIA_PINK = "filter/beauty_india/BI-PINK.png";
     private static final String LOOKUP_TABLE_PATH_BEAUTY_INDIA_PORTRAIT = "filter/beauty_india/BI-PORTRAIT.png";
     private static final String LOOKUP_TABLE_PATH_BEAUTY_INDIA_RETRO = "filter/beauty_india/BI-RETRO.png";
@@ -58,6 +63,10 @@ public class FilterFactory {
     private static final String LOOKUP_TABLE_PATH_BEAUTY_MINT = "filter/beauty/B-MINT.png";
     private static final String LOOKUP_TABLE_PATH_BEAUTY_MOOD = "filter/beauty/B-HEART.png";
     private static final String LOOKUP_TABLE_PATH_BEAUTY_MOVIE = "filter/beauty/B-MOVIE.png";
+    private static final String LOOKUP_TABLE_PATH_BEAUTY_M_LILT = "filter/beauty/B-M-LILT.png";
+    private static final String LOOKUP_TABLE_PATH_BEAUTY_M_SEPIA = "filter/beauty/B-M-SEPIA.png";
+    private static final String LOOKUP_TABLE_PATH_BEAUTY_M_TEA = "filter/beauty/B-M-TEA.png";
+    private static final String LOOKUP_TABLE_PATH_BEAUTY_M_WHITEANDBLACK = "filter/beauty/B-M-WHITEANDBLACK.png";
     private static final String LOOKUP_TABLE_PATH_BEAUTY_NATURE = "filter/beauty/B-NATURE.png";
     private static final String LOOKUP_TABLE_PATH_BEAUTY_PINK = "filter/beauty/B-PINK.png";
     private static final String LOOKUP_TABLE_PATH_BEAUTY_RIDDLE = "filter/beauty/B-RIDDLE.png";
@@ -239,6 +248,14 @@ public class FilterFactory {
                 return new ColorLookupFilter(LOOKUP_TABLE_PATH_BEAUTY_RIDDLE);
             case B_MOVIE:
                 return new ColorLookupFilter(LOOKUP_TABLE_PATH_BEAUTY_MOVIE);
+            case B_M_TEA:
+                return new ColorLookupFilter(LOOKUP_TABLE_PATH_BEAUTY_M_TEA);
+            case B_M_LILT:
+                return new ColorLookupFilter(LOOKUP_TABLE_PATH_BEAUTY_M_LILT);
+            case B_M_SEPIA:
+                return new ColorLookupFilter(LOOKUP_TABLE_PATH_BEAUTY_M_SEPIA);
+            case B_M_WHITEANDBLACK:
+                return new ColorLookupFilter(LOOKUP_TABLE_PATH_BEAUTY_M_WHITEANDBLACK);
             case S_FILM:
                 return new ColorLookupFilter(LOOKUP_TABLE_PATH_STICKER_FILM);
             case S_YEARS:
@@ -274,6 +291,16 @@ public class FilterFactory {
                 return new ColorLookupFilter(LOOKUP_TABLE_PATH_BEAUTY_INDIA_ROMANTIC);
             case BI_MONO:
                 return new ColorLookupFilter(LOOKUP_TABLE_PATH_BEAUTY_INDIA_MONO);
+            case BI_M_DUSK:
+                return new ColorLookupFilter(LOOKUP_TABLE_PATH_BEAUTY_INDIA_M_DUSK);
+            case BI_M_LILT:
+                return new ColorLookupFilter(LOOKUP_TABLE_PATH_BEAUTY_INDIA_M_LILT);
+            case BI_M_TEA:
+                return new ColorLookupFilter(LOOKUP_TABLE_PATH_BEAUTY_INDIA_M_TEA);
+            case BI_M_SEPIA:
+                return new ColorLookupFilter(LOOKUP_TABLE_PATH_BEAUTY_INDIA_M_SEPIA);
+            case BI_M_WHITEANDBLACK:
+                return new ColorLookupFilter(LOOKUP_TABLE_PATH_BEAUTY_INDIA_M_WHITEANDBLACK);
             default:
                 return null;
         }

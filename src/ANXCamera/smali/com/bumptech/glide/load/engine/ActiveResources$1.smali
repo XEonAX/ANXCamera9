@@ -18,7 +18,7 @@
 
 
 # instance fields
-.field final synthetic dS:Lcom/bumptech/glide/load/engine/ActiveResources;
+.field final synthetic dT:Lcom/bumptech/glide/load/engine/ActiveResources;
 
 
 # direct methods
@@ -26,7 +26,7 @@
     .locals 0
 
     .line 26
-    iput-object p1, p0, Lcom/bumptech/glide/load/engine/ActiveResources$1;->dS:Lcom/bumptech/glide/load/engine/ActiveResources;
+    iput-object p1, p0, Lcom/bumptech/glide/load/engine/ActiveResources$1;->dT:Lcom/bumptech/glide/load/engine/ActiveResources;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -46,7 +46,7 @@
     if-ne v0, v1, :cond_0
 
     .line 30
-    iget-object v0, p0, Lcom/bumptech/glide/load/engine/ActiveResources$1;->dS:Lcom/bumptech/glide/load/engine/ActiveResources;
+    iget-object v0, p0, Lcom/bumptech/glide/load/engine/ActiveResources$1;->dT:Lcom/bumptech/glide/load/engine/ActiveResources;
 
     iget-object p1, p1, Landroid/os/Message;->obj:Ljava/lang/Object;
 

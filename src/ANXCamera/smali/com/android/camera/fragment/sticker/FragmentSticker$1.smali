@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/sticker/FragmentSticker;)V
     .locals 0
 
-    .line 54
+    .line 55
     iput-object p1, p0, Lcom/android/camera/fragment/sticker/FragmentSticker$1;->this$0:Lcom/android/camera/fragment/sticker/FragmentSticker;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,26 +38,26 @@
 .method public onPageScrollStateChanged(I)V
     .locals 0
 
-    .line 73
+    .line 74
     return-void
 .end method
 
 .method public onPageScrolled(IFI)V
     .locals 0
 
-    .line 57
+    .line 58
     return-void
 .end method
 
 .method public onPageSelected(I)V
     .locals 1
 
-    .line 61
+    .line 62
     packed-switch p1, :pswitch_data_0
 
     goto :goto_0
 
-    .line 66
+    .line 67
     :pswitch_0
     iget-object p1, p0, Lcom/android/camera/fragment/sticker/FragmentSticker$1;->this$0:Lcom/android/camera/fragment/sticker/FragmentSticker;
 
@@ -65,13 +65,13 @@
 
     move-result-object p1
 
-    const v0, 0x7f0d0082
+    const v0, 0x7f0d0098
 
     invoke-virtual {p1, v0}, Landroid/widget/RadioGroup;->check(I)V
 
     goto :goto_0
 
-    .line 63
+    .line 64
     :pswitch_1
     iget-object p1, p0, Lcom/android/camera/fragment/sticker/FragmentSticker$1;->this$0:Lcom/android/camera/fragment/sticker/FragmentSticker;
 
@@ -79,14 +79,14 @@
 
     move-result-object p1
 
-    const v0, 0x7f0d0081
+    const v0, 0x7f0d0097
 
     invoke-virtual {p1, v0}, Landroid/widget/RadioGroup;->check(I)V
 
-    .line 64
+    .line 65
     nop
 
-    .line 69
+    .line 70
     :goto_0
     return-void
 

@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v7/util/MessageThreadUtil$1;)V
-    .locals 0
+    .registers 2
 
     .line 57
     .local p0, "this":Landroid/support/v7/util/MessageThreadUtil$1$1;, "Landroid/support/v7/util/MessageThreadUtil$1.1;"
@@ -37,12 +37,13 @@
 
 # virtual methods
 .method public run()V
-    .locals 4
+    .registers 5
 
     .line 60
     .local p0, "this":Landroid/support/v7/util/MessageThreadUtil$1$1;, "Landroid/support/v7/util/MessageThreadUtil$1.1;"
     iget-object v0, p0, Landroid/support/v7/util/MessageThreadUtil$1$1;->this$1:Landroid/support/v7/util/MessageThreadUtil$1;
 
+    # getter for: Landroid/support/v7/util/MessageThreadUtil$1;->mQueue:Landroid/support/v7/util/MessageThreadUtil$MessageQueue;
     invoke-static {v0}, Landroid/support/v7/util/MessageThreadUtil$1;->access$000(Landroid/support/v7/util/MessageThreadUtil$1;)Landroid/support/v7/util/MessageThreadUtil$MessageQueue;
 
     move-result-object v0
@@ -53,13 +54,13 @@
 
     .line 61
     .local v0, "msg":Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;
-    :goto_0
-    if-eqz v0, :cond_0
+    :goto_a
+    if-eqz v0, :cond_5b
 
     .line 62
     iget v1, v0, Landroid/support/v7/util/MessageThreadUtil$SyncQueueItem;->what:I
 
-    packed-switch v1, :pswitch_data_0
+    packed-switch v1, :pswitch_data_5c
 
     .line 74
     const-string v1, "ThreadUtil"
@@ -82,10 +83,10 @@
 
     invoke-static {v1, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    goto :goto_1
+    goto :goto_50
 
     .line 71
-    :pswitch_0
+    :pswitch_2a
     iget-object v1, p0, Landroid/support/v7/util/MessageThreadUtil$1$1;->this$1:Landroid/support/v7/util/MessageThreadUtil$1;
 
     iget-object v1, v1, Landroid/support/v7/util/MessageThreadUtil$1;->val$callback:Landroid/support/v7/util/ThreadUtil$MainThreadCallback;
@@ -97,10 +98,10 @@
     invoke-interface {v1, v2, v3}, Landroid/support/v7/util/ThreadUtil$MainThreadCallback;->removeTile(II)V
 
     .line 72
-    goto :goto_1
+    goto :goto_50
 
     .line 68
-    :pswitch_1
+    :pswitch_36
     iget-object v1, p0, Landroid/support/v7/util/MessageThreadUtil$1$1;->this$1:Landroid/support/v7/util/MessageThreadUtil$1;
 
     iget-object v1, v1, Landroid/support/v7/util/MessageThreadUtil$1;->val$callback:Landroid/support/v7/util/ThreadUtil$MainThreadCallback;
@@ -114,10 +115,10 @@
     invoke-interface {v1, v2, v3}, Landroid/support/v7/util/ThreadUtil$MainThreadCallback;->addTile(ILandroid/support/v7/util/TileList$Tile;)V
 
     .line 69
-    goto :goto_1
+    goto :goto_50
 
     .line 64
-    :pswitch_2
+    :pswitch_44
     iget-object v1, p0, Landroid/support/v7/util/MessageThreadUtil$1$1;->this$1:Landroid/support/v7/util/MessageThreadUtil$1;
 
     iget-object v1, v1, Landroid/support/v7/util/MessageThreadUtil$1;->val$callback:Landroid/support/v7/util/ThreadUtil$MainThreadCallback;
@@ -132,9 +133,10 @@
     nop
 
     .line 76
-    :goto_1
+    :goto_50
     iget-object v1, p0, Landroid/support/v7/util/MessageThreadUtil$1$1;->this$1:Landroid/support/v7/util/MessageThreadUtil$1;
 
+    # getter for: Landroid/support/v7/util/MessageThreadUtil$1;->mQueue:Landroid/support/v7/util/MessageThreadUtil$MessageQueue;
     invoke-static {v1}, Landroid/support/v7/util/MessageThreadUtil$1;->access$000(Landroid/support/v7/util/MessageThreadUtil$1;)Landroid/support/v7/util/MessageThreadUtil$MessageQueue;
 
     move-result-object v1
@@ -143,16 +145,16 @@
 
     move-result-object v0
 
-    goto :goto_0
+    goto :goto_a
 
     .line 78
-    :cond_0
+    :cond_5b
     return-void
 
-    :pswitch_data_0
+    :pswitch_data_5c
     .packed-switch 0x1
-        :pswitch_2
-        :pswitch_1
-        :pswitch_0
+        :pswitch_44
+        :pswitch_36
+        :pswitch_2a
     .end packed-switch
 .end method

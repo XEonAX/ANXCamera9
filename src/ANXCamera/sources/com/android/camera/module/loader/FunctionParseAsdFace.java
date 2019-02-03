@@ -10,7 +10,6 @@ import io.reactivex.functions.Function;
 import java.lang.ref.WeakReference;
 
 public class FunctionParseAsdFace implements Function<CaptureResult, CaptureResult> {
-    private static final String TAG = "FunctionParseAsdScene";
     private WeakReference<FaceDetectionCallback> mFaceCallbackReference;
     private FaceAnalyzeInfo mFaceInfo;
     private boolean mNeedFaceInfo;

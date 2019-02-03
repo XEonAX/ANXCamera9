@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.media.Image;
 import android.text.format.DateFormat;
-import android.util.Log;
+import com.android.camera.log.Log;
 import com.android.camera.panorama.MorphoSensorFusion.SensorData;
 import java.io.FileDescriptor;
 import java.lang.reflect.Field;
@@ -363,7 +363,7 @@ public class MorphoPanoramaGP3 {
                 format = TAG;
                 objArr = new Object[i7];
                 objArr[0] = Long.valueOf(nanoTime - j);
-                com.android.camera.log.Log.v(format, String.format(Locale.US, "Performance.JNI %1$,3d nsec", objArr));
+                Log.v(format, String.format(Locale.US, "Performance.JNI %1$,3d nsec", objArr));
                 this.mAttachCount++;
                 if (this.mAttachCount > 1) {
                     this.mIntervalArray.add(Long.valueOf(nanoTime - this.mAttachLastNanoTime));
@@ -379,7 +379,7 @@ public class MorphoPanoramaGP3 {
         format = TAG;
         objArr = new Object[i7];
         objArr[0] = Long.valueOf(nanoTime - j);
-        com.android.camera.log.Log.v(format, String.format(Locale.US, "Performance.JNI %1$,3d nsec", objArr));
+        Log.v(format, String.format(Locale.US, "Performance.JNI %1$,3d nsec", objArr));
         this.mAttachCount++;
         if (this.mAttachCount > 1) {
         }
@@ -487,7 +487,7 @@ public class MorphoPanoramaGP3 {
         stringBuilder.append("Performance.JNI ");
         stringBuilder.append(currentTimeMillis2 - currentTimeMillis);
         stringBuilder.append(" msec");
-        com.android.camera.log.Log.v(str3, stringBuilder.toString());
+        Log.v(str3, stringBuilder.toString());
         this.mAttachCount++;
         return nativeSaveYuv;
     }
@@ -501,7 +501,7 @@ public class MorphoPanoramaGP3 {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("nativeGetGain error. ret=");
             stringBuilder.append(nativeGetGain);
-            com.android.camera.log.Log.e(str, stringBuilder.toString());
+            Log.e(str, stringBuilder.toString());
             return 1.0d;
         }
         dArr[0] = GAIN_COEF * dArr[0];
@@ -517,7 +517,7 @@ public class MorphoPanoramaGP3 {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("MorphoPanoramaGP3.getDirection error. ret=");
                 stringBuilder.append(nativeGetDirection);
-                com.android.camera.log.Log.e(str, stringBuilder.toString());
+                Log.e(str, stringBuilder.toString());
             }
         }
         return iArr[0];
@@ -671,7 +671,7 @@ public class MorphoPanoramaGP3 {
         return -2147483646;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:3:0x0011 A:{ExcHandler: java.lang.NoSuchFieldException (e java.lang.NoSuchFieldException), Splitter: B:0:0x0000} */
+    /* JADX WARNING: Removed duplicated region for block: B:3:0x0011 A:{Splitter: B:0:0x0000, ExcHandler: java.lang.NoSuchFieldException (e java.lang.NoSuchFieldException)} */
     /* JADX WARNING: Missing block: B:5:0x0013, code:
             return -1;
      */
@@ -808,7 +808,7 @@ public class MorphoPanoramaGP3 {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("nativeSaveNotPanorama error. ret=");
             stringBuilder.append(nativeSaveNotPanorama);
-            com.android.camera.log.Log.e(str2, stringBuilder.toString());
+            Log.e(str2, stringBuilder.toString());
         }
         return nativeSaveNotPanorama;
     }

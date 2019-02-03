@@ -6,8 +6,8 @@ import android.opengl.EGLConfig;
 import android.opengl.EGLContext;
 import android.opengl.EGLDisplay;
 import android.opengl.EGLSurface;
-import android.util.Log;
 import android.view.Surface;
+import com.android.camera.log.Log;
 
 public final class EglCore {
     private static final int EGL_RECORDABLE_ANDROID = 12610;

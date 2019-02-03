@@ -13,28 +13,28 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
     .line 28
     const/4 v0, 0x4
 
     new-array v1, v0, [C
 
-    fill-array-data v1, :array_0
+    fill-array-data v1, :array_18
 
     sput-object v1, Lcom/google/zxing/oned/CodaBarWriter;->START_END_CHARS:[C
 
     .line 29
     new-array v1, v0, [C
 
-    fill-array-data v1, :array_1
+    fill-array-data v1, :array_20
 
     sput-object v1, Lcom/google/zxing/oned/CodaBarWriter;->ALT_START_END_CHARS:[C
 
     .line 30
     new-array v0, v0, [C
 
-    fill-array-data v0, :array_2
+    fill-array-data v0, :array_28
 
     sput-object v0, Lcom/google/zxing/oned/CodaBarWriter;->CHARS_WHICH_ARE_TEN_LENGTH_EACH_AFTER_DECODED:[C
 
@@ -42,7 +42,7 @@
 
     nop
 
-    :array_0
+    :array_18
     .array-data 2
         0x41s
         0x42s
@@ -50,7 +50,7 @@
         0x44s
     .end array-data
 
-    :array_1
+    :array_20
     .array-data 2
         0x54s
         0x4es
@@ -58,7 +58,7 @@
         0x45s
     .end array-data
 
-    :array_2
+    :array_28
     .array-data 2
         0x2fs
         0x3as
@@ -68,7 +68,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 26
     invoke-direct {p0}, Lcom/google/zxing/oned/OneDimensionalCodeWriter;-><init>()V
@@ -79,7 +79,7 @@
 
 # virtual methods
 .method public encode(Ljava/lang/String;)[Z
-    .locals 17
+    .registers 19
     .param p1, "contents"    # Ljava/lang/String;
 
     .line 35
@@ -91,7 +91,7 @@
 
     const/4 v2, 0x2
 
-    if-lt v1, v2, :cond_16
+    if-lt v1, v2, :cond_15c
 
     .line 39
     const/4 v1, 0x0
@@ -130,7 +130,7 @@
 
     move-result v5
 
-    if-eqz v5, :cond_0
+    if-eqz v5, :cond_32
 
     .line 43
     sget-object v5, Lcom/google/zxing/oned/CodaBarWriter;->START_END_CHARS:[C
@@ -139,26 +139,26 @@
 
     move-result v5
 
-    if-eqz v5, :cond_0
+    if-eqz v5, :cond_32
 
     .line 41
     move v5, v4
 
-    goto :goto_0
+    goto :goto_33
 
-    :cond_0
+    :cond_32
     move v5, v1
 
     .line 45
     .local v5, "startsEndsNormal":Z
-    :goto_0
+    :goto_33
     sget-object v6, Lcom/google/zxing/oned/CodaBarWriter;->ALT_START_END_CHARS:[C
 
     invoke-static {v6, v2}, Lcom/google/zxing/oned/CodaBarReader;->arrayContains([CC)Z
 
     move-result v6
 
-    if-eqz v6, :cond_1
+    if-eqz v6, :cond_45
 
     .line 46
     sget-object v6, Lcom/google/zxing/oned/CodaBarWriter;->ALT_START_END_CHARS:[C
@@ -167,27 +167,27 @@
 
     move-result v6
 
-    if-eqz v6, :cond_1
+    if-eqz v6, :cond_45
 
     .line 44
     move v6, v4
 
-    goto :goto_1
+    goto :goto_46
 
-    :cond_1
+    :cond_45
     move v6, v1
 
     .line 47
     .local v6, "startsEndsAlt":Z
-    :goto_1
-    if-nez v5, :cond_3
+    :goto_46
+    if-nez v5, :cond_73
 
-    if-eqz v6, :cond_2
+    if-eqz v6, :cond_4b
 
-    goto :goto_2
+    goto :goto_73
 
     .line 48
-    :cond_2
+    :cond_4b
     new-instance v1, Ljava/lang/IllegalArgumentException;
 
     .line 49
@@ -229,8 +229,8 @@
     throw v1
 
     .line 54
-    :cond_3
-    :goto_2
+    :cond_73
+    :goto_73
     const/16 v7, 0x14
 
     .line 55
@@ -238,14 +238,14 @@
     const/4 v8, 0x1
 
     .local v8, "i":I
-    :goto_3
+    :goto_76
     invoke-virtual/range {p1 .. p1}, Ljava/lang/String;->length()I
 
     move-result v9
 
     sub-int/2addr v9, v4
 
-    if-lt v8, v9, :cond_12
+    if-lt v8, v9, :cond_10e
 
     .line 65
     .end local v8    # "i":I
@@ -279,12 +279,12 @@
     .end local v8    # "index":I
     .local v11, "index":I
     .local v12, "position":I
-    :goto_4
+    :goto_8a
     invoke-virtual/range {p1 .. p1}, Ljava/lang/String;->length()I
 
     move-result v7
 
-    if-lt v11, v7, :cond_4
+    if-lt v11, v7, :cond_91
 
     .line 115
     .end local v11    # "index":I
@@ -292,7 +292,7 @@
 
     .line 70
     .restart local v11    # "index":I
-    :cond_4
+    :cond_91
     invoke-virtual {v0, v11}, Ljava/lang/String;->charAt(I)C
 
     move-result v7
@@ -303,7 +303,7 @@
 
     .line 71
     .local v7, "c":C
-    if-eqz v11, :cond_5
+    if-eqz v11, :cond_a2
 
     invoke-virtual/range {p1 .. p1}, Ljava/lang/String;->length()I
 
@@ -311,68 +311,68 @@
 
     sub-int/2addr v8, v4
 
-    if-ne v11, v8, :cond_6
+    if-ne v11, v8, :cond_b2
 
     .line 73
-    :cond_5
+    :cond_a2
     const/16 v8, 0x2a
 
-    if-eq v7, v8, :cond_a
+    if-eq v7, v8, :cond_bd
 
     const/16 v8, 0x45
 
-    if-eq v7, v8, :cond_9
+    if-eq v7, v8, :cond_ba
 
     const/16 v8, 0x4e
 
-    if-eq v7, v8, :cond_8
+    if-eq v7, v8, :cond_b7
 
     const/16 v8, 0x54
 
-    if-eq v7, v8, :cond_7
+    if-eq v7, v8, :cond_b4
 
     .line 88
     .end local v7    # "c":C
     .local v13, "c":C
-    :cond_6
-    :goto_5
+    :cond_b2
+    :goto_b2
     move v13, v7
 
-    goto :goto_6
+    goto :goto_c0
 
     .line 75
     .end local v13    # "c":C
     .restart local v7    # "c":C
-    :cond_7
+    :cond_b4
     const/16 v7, 0x41
 
     .line 76
-    goto :goto_5
+    goto :goto_b2
 
     .line 78
-    :cond_8
+    :cond_b7
     const/16 v7, 0x42
 
     .line 79
-    goto :goto_5
+    goto :goto_b2
 
     .line 84
-    :cond_9
+    :cond_ba
     const/16 v7, 0x44
 
-    goto :goto_5
+    goto :goto_b2
 
     .line 81
-    :cond_a
+    :cond_bd
     const/16 v7, 0x43
 
     .line 82
-    goto :goto_5
+    goto :goto_b2
 
     .line 88
     .end local v7    # "c":C
     .restart local v13    # "c":C
-    :goto_6
+    :goto_c0
     const/4 v14, 0x0
 
     .line 89
@@ -380,32 +380,32 @@
     const/4 v7, 0x0
 
     .local v7, "i":I
-    :goto_7
+    :goto_c2
     sget-object v8, Lcom/google/zxing/oned/CodaBarReader;->ALPHABET:[C
 
     array-length v8, v8
 
-    if-lt v7, v8, :cond_b
+    if-lt v7, v8, :cond_c9
 
     .line 96
     .end local v7    # "i":I
     .end local v14    # "code":I
     .local v8, "code":I
-    :goto_8
+    :goto_c7
     move v8, v14
 
-    goto :goto_9
+    goto :goto_d4
 
     .line 91
     .end local v8    # "code":I
     .restart local v7    # "i":I
     .restart local v14    # "code":I
-    :cond_b
+    :cond_c9
     sget-object v8, Lcom/google/zxing/oned/CodaBarReader;->ALPHABET:[C
 
     aget-char v8, v8, v7
 
-    if-ne v13, v8, :cond_11
+    if-ne v13, v8, :cond_10b
 
     .line 92
     sget-object v8, Lcom/google/zxing/oned/CodaBarReader;->CHARACTER_ENCODINGS:[I
@@ -413,13 +413,13 @@
     aget v14, v8, v7
 
     .line 93
-    goto :goto_8
+    goto :goto_c7
 
     .line 96
     .end local v7    # "i":I
     .end local v14    # "code":I
     .restart local v8    # "code":I
-    :goto_9
+    :goto_d4
     const/4 v7, 0x1
 
     .line 97
@@ -432,10 +432,10 @@
 
     .line 99
     .local v15, "bit":I
-    :goto_a
+    :goto_d7
     const/4 v1, 0x7
 
-    if-lt v15, v1, :cond_d
+    if-lt v15, v1, :cond_eb
 
     .line 110
     invoke-virtual/range {p1 .. p1}, Ljava/lang/String;->length()I
@@ -444,7 +444,7 @@
 
     sub-int/2addr v1, v4
 
-    if-ge v11, v1, :cond_c
+    if-ge v11, v1, :cond_e7
 
     .line 111
     const/4 v1, 0x0
@@ -459,16 +459,16 @@
     .end local v13    # "c":C
     .end local v14    # "counter":I
     .end local v15    # "bit":I
-    goto :goto_b
+    goto :goto_e8
 
     .line 69
-    :cond_c
+    :cond_e7
     const/4 v1, 0x0
 
-    :goto_b
+    :goto_e8
     add-int/lit8 v11, v11, 0x1
 
-    goto :goto_4
+    goto :goto_8a
 
     .line 100
     .restart local v7    # "color":Z
@@ -476,7 +476,7 @@
     .restart local v13    # "c":C
     .restart local v14    # "counter":I
     .restart local v15    # "bit":I
-    :cond_d
+    :cond_eb
     const/4 v1, 0x0
 
     aput-boolean v7, v10, v12
@@ -491,31 +491,31 @@
 
     and-int/lit8 v16, v16, 0x1
 
-    if-eqz v16, :cond_f
+    if-eqz v16, :cond_fe
 
-    if-ne v14, v4, :cond_e
+    if-ne v14, v4, :cond_fb
 
-    goto :goto_c
+    goto :goto_fe
 
     .line 107
-    :cond_e
+    :cond_fb
     add-int/lit8 v14, v14, 0x1
 
-    goto :goto_a
+    goto :goto_d7
 
     .line 103
-    :cond_f
-    :goto_c
-    if-eqz v7, :cond_10
+    :cond_fe
+    :goto_fe
+    if-eqz v7, :cond_103
 
     move/from16 v16, v1
 
-    goto :goto_d
+    goto :goto_105
 
-    :cond_10
+    :cond_103
     move/from16 v16, v4
 
-    :goto_d
+    :goto_105
     move/from16 v7, v16
 
     .line 104
@@ -525,17 +525,17 @@
     const/4 v14, 0x0
 
     .line 106
-    goto :goto_a
+    goto :goto_d7
 
     .line 89
     .end local v8    # "code":I
     .end local v15    # "bit":I
     .local v7, "i":I
     .local v14, "code":I
-    :cond_11
+    :cond_10b
     add-int/lit8 v7, v7, 0x1
 
-    goto :goto_7
+    goto :goto_c2
 
     .line 56
     .end local v9    # "resultLength":I
@@ -546,7 +546,7 @@
     .end local v14    # "code":I
     .local v7, "resultLength":I
     .local v8, "i":I
-    :cond_12
+    :cond_10e
     invoke-virtual {v0, v8}, Ljava/lang/String;->charAt(I)C
 
     move-result v9
@@ -555,7 +555,7 @@
 
     move-result v9
 
-    if-nez v9, :cond_15
+    if-nez v9, :cond_155
 
     invoke-virtual {v0, v8}, Ljava/lang/String;->charAt(I)C
 
@@ -563,7 +563,7 @@
 
     const/16 v10, 0x2d
 
-    if-eq v9, v10, :cond_15
+    if-eq v9, v10, :cond_155
 
     invoke-virtual {v0, v8}, Ljava/lang/String;->charAt(I)C
 
@@ -571,12 +571,12 @@
 
     const/16 v10, 0x24
 
-    if-ne v9, v10, :cond_13
+    if-ne v9, v10, :cond_129
 
-    goto :goto_e
+    goto :goto_155
 
     .line 58
-    :cond_13
+    :cond_129
     sget-object v9, Lcom/google/zxing/oned/CodaBarWriter;->CHARS_WHICH_ARE_TEN_LENGTH_EACH_AFTER_DECODED:[C
 
     invoke-virtual {v0, v8}, Ljava/lang/String;->charAt(I)C
@@ -587,16 +587,16 @@
 
     move-result v9
 
-    if-eqz v9, :cond_14
+    if-eqz v9, :cond_138
 
     .line 59
     add-int/lit8 v7, v7, 0xa
 
     .line 60
-    goto :goto_f
+    goto :goto_158
 
     .line 61
-    :cond_14
+    :cond_138
     new-instance v1, Ljava/lang/IllegalArgumentException;
 
     new-instance v4, Ljava/lang/StringBuilder;
@@ -624,18 +624,18 @@
     throw v1
 
     .line 57
-    :cond_15
-    :goto_e
+    :cond_155
+    :goto_155
     add-int/lit8 v7, v7, 0x9
 
     .line 58
     nop
 
     .line 55
-    :goto_f
+    :goto_158
     add-int/lit8 v8, v8, 0x1
 
-    goto/16 :goto_3
+    goto/16 :goto_76
 
     .line 36
     .end local v2    # "firstChar":C
@@ -644,7 +644,7 @@
     .end local v6    # "startsEndsAlt":Z
     .end local v7    # "resultLength":I
     .end local v8    # "i":I
-    :cond_16
+    :cond_15c
     new-instance v1, Ljava/lang/IllegalArgumentException;
 
     const-string v2, "Codabar should start/end with start/stop symbols"

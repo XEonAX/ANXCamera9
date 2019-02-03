@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
-import com.aeonax.camera.R;
 import com.android.camera.Camera;
+import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.data.DataRepository;
 import com.android.camera.log.Log;
@@ -29,7 +29,7 @@ public class PortraitNewbieDialogFragment extends BaseDialogFragment {
     @Nullable
     public View onCreateView(LayoutInflater layoutInflater, @Nullable ViewGroup viewGroup, @Nullable Bundle bundle) {
         View inflate;
-        if (DataRepository.dataItemFeature().eX()) {
+        if (DataRepository.dataItemFeature().eZ()) {
             inflate = layoutInflater.inflate(R.layout.fragment_dialog_portait_lighting_hint, viewGroup, false);
         } else {
             inflate = layoutInflater.inflate(R.layout.fragment_dialog_portait_hint, viewGroup, false);

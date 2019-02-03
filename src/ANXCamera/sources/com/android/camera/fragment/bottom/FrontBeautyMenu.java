@@ -7,9 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
-import com.aeonax.camera.R;
 import com.android.camera.CameraAppImpl;
 import com.android.camera.CameraSettings;
+import com.android.camera.R;
 import com.android.camera.constant.ColorConstant;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.global.DataItemGlobal;
@@ -79,7 +79,7 @@ public class FrontBeautyMenu extends AbBottomMenu implements OnClickListener {
         String string = CameraAppImpl.getAndroidContext().getString(R.string.beauty_fragment_tab_name_beauty);
         String string2 = CameraAppImpl.getAndroidContext().getString(R.string.beauty_fragment_tab_name_makeup);
         String string3 = CameraAppImpl.getAndroidContext().getString(R.string.beauty_fragment_tab_name_3d_makeup);
-        if (b.hA()) {
+        if (b.hR()) {
             string = CameraAppImpl.getAndroidContext().getString(R.string.beauty_fragment_tab_name_3d_beauty);
             string2 = CameraAppImpl.getAndroidContext().getString(R.string.beauty_fragment_tab_name_3d_remodeling);
         }
@@ -93,11 +93,10 @@ public class FrontBeautyMenu extends AbBottomMenu implements OnClickListener {
         menuItem2.number = 1;
         this.mFrontBeautyMenuTabList.put(1, menuItem);
         this.mFrontBeautyMenuTabList.put(2, menuItem2);
-        if (DataRepository.dataItemFeature().fl() && CameraSettings.isSupportBeautyMakeup()) {
+        if (DataRepository.dataItemFeature().fn() && CameraSettings.isSupportBeautyMakeup()) {
             menuItem2 = new MenuItem();
             menuItem2.type = 3;
             menuItem2.text = string3;
-            menuItem2.redDot = CameraSettings.isBeautyMakeupClicked() ^ true;
             menuItem2.number = 2;
             this.mFrontBeautyMenuTabList.put(3, menuItem2);
         }

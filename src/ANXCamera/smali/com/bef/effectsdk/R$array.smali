@@ -19,7 +19,13 @@
 
 .field public static final ai_scene_names:I = 0x7f0e0000
 
-.field public static final beauty_level_list:I = 0x7f0e0028
+.field public static final beauty_level_list:I = 0x7f0e002a
+
+.field public static final live_filter_directory_name:I = 0x7f0e002d
+
+.field public static final live_filter_icon:I = 0x7f0e002b
+
+.field public static final live_filter_name:I = 0x7f0e002c
 
 .field public static final pref_camera_antibanding_entries:I = 0x7f0e001b
 
@@ -39,9 +45,9 @@
 
 .field public static final pref_camera_jpegquality_entryvalues:I = 0x7f0e0010
 
-.field public static final pref_camera_long_press_shutter_feature_entries:I = 0x7f0e0026
+.field public static final pref_camera_long_press_shutter_feature_entries:I = 0x7f0e0028
 
-.field public static final pref_camera_long_press_shutter_feature_entryvalues:I = 0x7f0e0027
+.field public static final pref_camera_long_press_shutter_feature_entryvalues:I = 0x7f0e0029
 
 .field public static final pref_camera_saturation_entries:I = 0x7f0e0016
 
@@ -61,11 +67,15 @@
 
 .field public static final pref_camera_volumekey_function_entryvalues:I = 0x7f0e0020
 
-.field public static final pref_front_mirror_entries:I = 0x7f0e0023
+.field public static final pref_front_mirror_entries:I = 0x7f0e0025
 
-.field public static final pref_front_mirror_entryvalues:I = 0x7f0e0024
+.field public static final pref_front_mirror_entryvalues:I = 0x7f0e0026
 
-.field public static final pref_front_mirror_labels:I = 0x7f0e0025
+.field public static final pref_front_mirror_labels:I = 0x7f0e0027
+
+.field public static final pref_live_volumekey_function_entries:I = 0x7f0e0023
+
+.field public static final pref_live_volumekey_function_entryvalues:I = 0x7f0e0024
 
 .field public static final pref_video_encoder_entries:I = 0x7f0e0004
 

@@ -11,7 +11,7 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
-import com.aeonax.camera.R;
+import com.android.camera.R;
 import com.android.camera.animation.FragmentAnimationFactory;
 import com.android.camera.fragment.BaseFragment;
 import com.android.camera.fragment.CtaNoticeFragment;
@@ -84,10 +84,10 @@ public class FragmentSticker extends BaseFragment implements HandleBackTrace {
         this.mRadioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
                 switch (i) {
-                    case R.id.radio_button_sticker_one /*2131558529*/:
+                    case R.id.radio_button_sticker_one /*2131558551*/:
                         FragmentSticker.this.mViewPager.setCurrentItem(0, false);
                         break;
-                    case R.id.radio_button_sticker_two /*2131558530*/:
+                    case R.id.radio_button_sticker_two /*2131558552*/:
                         FragmentSticker.this.mViewPager.setCurrentItem(1, false);
                         break;
                 }
@@ -127,8 +127,8 @@ public class FragmentSticker extends BaseFragment implements HandleBackTrace {
         return 255;
     }
 
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        super.provideAnimateElement(i, list, z);
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        super.provideAnimateElement(i, list, i2);
     }
 
     public void setOnRadioButtonChangedListener(OnRadioButtonChangedListener onRadioButtonChangedListener) {

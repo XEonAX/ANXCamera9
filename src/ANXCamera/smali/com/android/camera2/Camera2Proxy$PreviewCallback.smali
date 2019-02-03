@@ -15,5 +15,5 @@
 
 
 # virtual methods
-.method public abstract onPreviewFrame(Landroid/media/Image;Lcom/android/camera2/Camera2Proxy;)V
+.method public abstract onPreviewFrame(Landroid/media/Image;Lcom/android/camera2/Camera2Proxy;I)V
 .end method

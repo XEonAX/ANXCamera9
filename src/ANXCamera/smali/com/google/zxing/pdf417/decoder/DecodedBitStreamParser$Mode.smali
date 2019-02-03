@@ -40,7 +40,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 8
+    .registers 8
 
     .line 38
     new-instance v0, Lcom/google/zxing/pdf417/decoder/DecodedBitStreamParser$Mode;
@@ -143,7 +143,7 @@
 .end method
 
 .method private constructor <init>(Ljava/lang/String;I)V
-    .locals 0
+    .registers 3
 
     .line 37
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
@@ -152,7 +152,7 @@
 .end method
 
 .method public static valueOf(Ljava/lang/String;)Lcom/google/zxing/pdf417/decoder/DecodedBitStreamParser$Mode;
-    .locals 1
+    .registers 2
 
     .line 1
     const-class v0, Lcom/google/zxing/pdf417/decoder/DecodedBitStreamParser$Mode;
@@ -167,7 +167,7 @@
 .end method
 
 .method public static values()[Lcom/google/zxing/pdf417/decoder/DecodedBitStreamParser$Mode;
-    .locals 4
+    .registers 4
 
     .line 1
     sget-object v0, Lcom/google/zxing/pdf417/decoder/DecodedBitStreamParser$Mode;->ENUM$VALUES:[Lcom/google/zxing/pdf417/decoder/DecodedBitStreamParser$Mode;

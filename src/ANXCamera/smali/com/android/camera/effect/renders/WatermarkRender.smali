@@ -4,10 +4,13 @@
 
 
 # virtual methods
-.method public abstract drawFaceWaterMarkInfos(IIIIILjava/util/List;)V
+.method public abstract drawFaceWaterMarkInfos(Landroid/util/Size;Landroid/util/Size;ILjava/util/List;)V
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "(IIIII",
+            "(",
+            "Landroid/util/Size;",
+            "Landroid/util/Size;",
+            "I",
             "Ljava/util/List<",
             "Lcom/android/camera/watermark/WaterMarkData;",
             ">;)V"

@@ -18,32 +18,32 @@
 
 
 # instance fields
-.field private final mTask:Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$Cancellable;
+.field private final mTask:Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$CancellableTask;
 
 .field final synthetic this$0:Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler;
 
 
 # direct methods
-.method private constructor <init>(Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler;Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$Cancellable;)V
+.method private constructor <init>(Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler;Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$CancellableTask;)V
     .locals 0
 
-    .line 50
+    .line 74
     iput-object p1, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$BackgroundTaskContainer;->this$0:Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 51
-    iput-object p2, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$BackgroundTaskContainer;->mTask:Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$Cancellable;
+    .line 75
+    iput-object p2, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$BackgroundTaskContainer;->mTask:Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$CancellableTask;
 
-    .line 52
+    .line 76
     return-void
 .end method
 
-.method synthetic constructor <init>(Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler;Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$Cancellable;Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$1;)V
+.method synthetic constructor <init>(Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler;Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$CancellableTask;Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$1;)V
     .locals 0
 
-    .line 47
-    invoke-direct {p0, p1, p2}, Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$BackgroundTaskContainer;-><init>(Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler;Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$Cancellable;)V
+    .line 71
+    invoke-direct {p0, p1, p2}, Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$BackgroundTaskContainer;-><init>(Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler;Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$CancellableTask;)V
 
     return-void
 .end method
@@ -51,7 +51,7 @@
 .method static synthetic access$100(Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$BackgroundTaskContainer;)V
     .locals 0
 
-    .line 47
+    .line 71
     invoke-direct {p0}, Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$BackgroundTaskContainer;->cancel()V
 
     return-void
@@ -60,12 +60,12 @@
 .method private cancel()V
     .locals 1
 
-    .line 55
-    iget-object v0, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$BackgroundTaskContainer;->mTask:Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$Cancellable;
+    .line 79
+    iget-object v0, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$BackgroundTaskContainer;->mTask:Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$CancellableTask;
 
-    invoke-interface {v0}, Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$Cancellable;->cancel()V
+    invoke-virtual {v0}, Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$CancellableTask;->setCancelled()V
 
-    .line 56
+    .line 80
     return-void
 .end method
 
@@ -74,7 +74,7 @@
 .method public run()V
     .locals 3
 
-    .line 60
+    .line 84
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$BackgroundTaskContainer;->this$0:Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler;
 
     invoke-static {v0}, Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler;->access$200(Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler;)Ljava/util/List;
@@ -83,7 +83,7 @@
 
     monitor-enter v0
 
-    .line 61
+    .line 85
     :try_start_0
     iget-object v1, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$BackgroundTaskContainer;->this$0:Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler;
 
@@ -97,7 +97,7 @@
 
     if-nez v1, :cond_0
 
-    .line 62
+    .line 86
     invoke-static {}, Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler;->access$300()Ljava/lang/String;
 
     move-result-object v1
@@ -106,21 +106,21 @@
 
     invoke-static {v1, v2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 64
+    .line 88
     :cond_0
     monitor-exit v0
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 66
-    iget-object v0, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$BackgroundTaskContainer;->mTask:Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$Cancellable;
+    .line 90
+    iget-object v0, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$BackgroundTaskContainer;->mTask:Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$CancellableTask;
 
-    invoke-interface {v0}, Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$Cancellable;->run()V
+    invoke-virtual {v0}, Lcom/xiaomi/camera/liveshot/util/BackgroundTaskScheduler$CancellableTask;->run()V
 
-    .line 67
+    .line 91
     return-void
 
-    .line 64
+    .line 88
     :catchall_0
     move-exception v1
 

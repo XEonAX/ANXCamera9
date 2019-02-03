@@ -22,10 +22,16 @@
 
 
 # virtual methods
+.method public abstract getSaveContentValues()Landroid/content/ContentValues;
+.end method
+
 .method public abstract hideScreenLight()V
 .end method
 
 .method public abstract isLiveRecordPreviewShown()Z
+.end method
+
+.method public abstract onLiveSaveToLocalFinished(Landroid/net/Uri;)V
 .end method
 
 .method public abstract quitLiveRecordPreview(Z)V

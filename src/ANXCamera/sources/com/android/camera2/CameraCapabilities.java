@@ -20,15 +20,19 @@ import com.android.camera.Util;
 import com.android.camera.constant.MiCameraCharacteristics;
 import com.android.camera.fragment.beauty.BeautyParameters.Type;
 import com.android.camera.log.Log;
-import com.android.camera.module.loader.camera2.Camera2DataContainer;
+import com.android.camera.module.BaseModule;
 import com.android.camera2.compat.MiCameraCompat;
 import com.android.camera2.compat.MiCameraCompatBaseImpl;
 import com.mi.config.b;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 @TargetApi(21)
 public class CameraCapabilities {
@@ -38,8 +42,11 @@ public class CameraCapabilities {
     private static final Key<StreamConfiguration[]> LIMIT_STREAM_CONFIGURATIONS = MiCameraCharacteristics.SCALER_AVAILABLE_LIMIT_STREAM_CONFIGURATIONS;
     private static final Key<Rect> QCFA_ACTIVE_ARRAY_SIZE = new Key("org.codeaurora.qcamera3.quadra_cfa.activeArraySize", Rect.class);
     private static final Key<StreamConfiguration[]> QCFA_STREAM_CONFIGURATIONS = new Key("org.codeaurora.qcamera3.quadra_cfa.availableStreamConfigurations", StreamConfiguration[].class);
-    public static final int SESSION_OPERATION_MODE_ALGO_UP = 36864;
-    public static final int SESSION_OPERATION_MODE_ALGO_UP_SINGLE = 36866;
+    public static final int SESSION_OPERATION_MODE_ALGO_UP_DUAL_BOKEH = 36864;
+    public static final int SESSION_OPERATION_MODE_ALGO_UP_QCFA = 36865;
+    public static final int SESSION_OPERATION_MODE_ALGO_UP_SAT = 36866;
+    public static final int SESSION_OPERATION_MODE_ALGO_UP_SINGLE_BOKEH = 36867;
+    public static final int SESSION_OPERATION_MODE_AUTO_ZOOM = 33012;
     public static final int SESSION_OPERATION_MODE_FOVC = 61456;
     public static final int SESSION_OPERATION_MODE_FRONT_PORTRAIT = 33009;
     public static final int SESSION_OPERATION_MODE_HFR_120 = 32888;
@@ -49,24 +56,39 @@ public class CameraCapabilities {
     public static final int SESSION_OPERATION_MODE_MIUI_BACK = 32769;
     public static final int SESSION_OPERATION_MODE_MIUI_FRONT = 32773;
     public static final int SESSION_OPERATION_MODE_NORMAL = 0;
+    public static final int SESSION_OPERATION_MODE_NORMAL_ULTRA_PIXEL_PHOTOGRAPHY = 33011;
     public static final int SESSION_OPERATION_MODE_PANORMA = 32776;
     public static final int SESSION_OPERATION_MODE_PORTRAIT = 32770;
+    public static final int SESSION_OPERATION_MODE_PROFESSIONAL_ULTRA_PIXEL_PHOTOGRAPHY = 33013;
     public static final int SESSION_OPERATION_MODE_QCFA = 32775;
     public static final int SESSION_OPERATION_MODE_SUPER_NIGHT = 32778;
     public static final int SESSION_OPERATION_MODE_VIDEO = 32772;
     public static final int SESSION_OPERATION_MODE_VIDEO_BEAUTY = 32777;
     private static final String TAG = CameraCapabilities.class.getSimpleName();
-    private static final int ULTRA_PIXEL_PICTURE_SIZE_H = 6000;
-    private static final int ULTRA_PIXEL_PICTURE_SIZE_W = 8000;
-    private int mCameraId;
+    public static final int ULTRA_PIXEL_32M = 32275200;
+    public static final int ULTRA_PIXEL_48M = 48000000;
+    public static final Map<Integer, Size> ULTRA_PIXEL_SIZE_LIST = new HashMap<Integer, Size>() {
+        {
+            put(Integer.valueOf(CameraCapabilities.ULTRA_PIXEL_32M), new Size(6560, 4920));
+            put(Integer.valueOf(CameraCapabilities.ULTRA_PIXEL_48M), new Size(BaseModule.LENS_DIRTY_DETECT_HINT_DURATION, 6000));
+        }
+    };
+    private static final List<Key<StreamConfiguration[]>> ULTRA_PIXEL_STREAM_CONFIGURATIONS_VENDOR_KEYS = new ArrayList<Key<StreamConfiguration[]>>(3) {
+    };
+    private final int mCameraId;
     private final HashSet<String> mCaptureRequestVendorKeys;
     private final CameraCharacteristics mCharacteristics;
     private int mOperatingMode;
     private SparseArray<StreamConfigurationMap> mStreamConfigurationMap;
 
-    public CameraCapabilities(CameraCharacteristics cameraCharacteristics) {
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface OperationMode {
+    }
+
+    public CameraCapabilities(CameraCharacteristics cameraCharacteristics, int i) {
         if (cameraCharacteristics != null) {
             this.mCharacteristics = cameraCharacteristics;
+            this.mCameraId = i;
             if (((Integer) this.mCharacteristics.get(CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL)).intValue() == 2) {
                 this.mCaptureRequestVendorKeys = new HashSet();
                 return;
@@ -87,10 +109,6 @@ public class CameraCapabilities {
 
     public int getOperatingMode() {
         return this.mOperatingMode;
-    }
-
-    public void setCameraId(int i) {
-        this.mCameraId = i;
     }
 
     public int getCameraId() {
@@ -231,6 +249,18 @@ public class CameraCapabilities {
         return convertToPictureSize((Size[]) this.mCharacteristics.get(CameraCharacteristics.JPEG_AVAILABLE_THUMBNAIL_SIZES));
     }
 
+    private boolean isSupportedAndroidScalerStream() {
+        return "grus".equals(b.pE) && getFacing() == 1;
+    }
+
+    private boolean isQcfaMode() {
+        return this.mOperatingMode == 32775 || this.mOperatingMode == SESSION_OPERATION_MODE_ALGO_UP_QCFA;
+    }
+
+    private boolean isUltraPixelPhotographyMode() {
+        return this.mOperatingMode == SESSION_OPERATION_MODE_NORMAL_ULTRA_PIXEL_PHOTOGRAPHY || this.mOperatingMode == SESSION_OPERATION_MODE_PROFESSIONAL_ULTRA_PIXEL_PHOTOGRAPHY;
+    }
+
     private StreamConfigurationMap getStreamConfigurationMap() {
         if (this.mStreamConfigurationMap == null) {
             this.mStreamConfigurationMap = new SparseArray(5);
@@ -238,25 +268,33 @@ public class CameraCapabilities {
         if (this.mStreamConfigurationMap.get(this.mOperatingMode) == null) {
             List arrayList = new ArrayList();
             boolean contains = this.mCaptureRequestVendorKeys.contains(MiCameraCharacteristics.SCALER_AVAILABLE_LIMIT_STREAM_CONFIGURATIONS.getName());
+            boolean contains2 = this.mCaptureRequestVendorKeys.contains(MiCameraCharacteristics.XIAOMI_SCALER_AVAILABLE_SR_STREAM_CONFIGURATIONS.getName());
             String str;
             StringBuilder stringBuilder;
-            if (isSupportedQcfa() && this.mCaptureRequestVendorKeys.contains(QCFA_STREAM_CONFIGURATIONS.getName()) && (this.mOperatingMode == 32775 || !contains)) {
+            if (isSupportedQcfa() && contains2 && isUltraPixelPhotographyMode()) {
+                arrayList.addAll(Arrays.asList((StreamConfiguration[]) this.mCharacteristics.get(MiCameraCharacteristics.XIAOMI_SCALER_AVAILABLE_SR_STREAM_CONFIGURATIONS)));
+                str = TAG;
+                stringBuilder = new StringBuilder();
+                stringBuilder.append("getStreamConfigurationMap: sr stream configs size = ");
+                stringBuilder.append(arrayList.size());
+                Log.d(str, stringBuilder.toString());
+            } else if (isSupportedQcfa() && this.mCaptureRequestVendorKeys.contains(QCFA_STREAM_CONFIGURATIONS.getName()) && (isQcfaMode() || ((!contains && !isSupportedAndroidScalerStream()) || isUltraPixelPhotographyMode()))) {
                 arrayList.addAll(Arrays.asList((StreamConfiguration[]) this.mCharacteristics.get(QCFA_STREAM_CONFIGURATIONS)));
                 if (contains) {
                     arrayList.addAll(Arrays.asList((StreamConfiguration[]) this.mCharacteristics.get(MiCameraCharacteristics.SCALER_AVAILABLE_LIMIT_STREAM_CONFIGURATIONS)));
                 } else {
-                    arrayList.addAll(Arrays.asList((StreamConfiguration[]) this.mCharacteristics.get(CameraCharacteristics.SCALER_AVAILABLE_STREAM_CONFIGURATIONS)));
+                    arrayList.addAll(Arrays.asList((StreamConfiguration[]) this.mCharacteristics.get(MiCameraCharacteristics.SCALER_AVAILABLE_STREAM_CONFIGURATIONS)));
                 }
                 str = TAG;
                 stringBuilder = new StringBuilder();
-                stringBuilder.append("getStreamConfigurationMap: qcfa configs size = ");
+                stringBuilder.append("getStreamConfigurationMap: qcfa stream configs size = ");
                 stringBuilder.append(arrayList.size());
                 Log.d(str, stringBuilder.toString());
             } else if (contains) {
                 arrayList.addAll(Arrays.asList((StreamConfiguration[]) this.mCharacteristics.get(MiCameraCharacteristics.SCALER_AVAILABLE_LIMIT_STREAM_CONFIGURATIONS)));
                 str = TAG;
                 stringBuilder = new StringBuilder();
-                stringBuilder.append("getStreamConfigurationMap: limit configs size = ");
+                stringBuilder.append("getStreamConfigurationMap: limit stream configs size = ");
                 stringBuilder.append(arrayList.size());
                 Log.d(str, stringBuilder.toString());
             }
@@ -405,15 +443,17 @@ public class CameraCapabilities {
             if (sizeF != null) {
                 float height = z ? sizeF.getHeight() : sizeF.getWidth();
                 if (height > 0.0f) {
-                    f = (float) (2.0d * Math.toDegrees(Math.atan((0.5d * ((double) height)) / ((double) f))));
+                    height = (float) (2.0d * Math.toDegrees(Math.atan((0.5d * ((double) height)) / ((double) f))));
                     String str = TAG;
                     Locale locale = Locale.US;
-                    String str2 = "%s view angle: %.2f";
-                    Object[] objArr = new Object[2];
+                    String str2 = "%s view angle: %.2f, size = %s, focalLength = %.4f";
+                    Object[] objArr = new Object[4];
                     objArr[0] = z ? "vertical" : "horizontal";
-                    objArr[1] = Float.valueOf(f);
+                    objArr[1] = Float.valueOf(height);
+                    objArr[2] = sizeF;
+                    objArr[3] = Float.valueOf(f);
                     Log.d(str, String.format(locale, str2, objArr));
-                    return f;
+                    return height;
                 }
             }
         }
@@ -597,38 +637,23 @@ public class CameraCapabilities {
         return this.mCaptureRequestVendorKeys.contains(CaptureResultParser.FAST_ZOOM_RESULT.getName());
     }
 
-    public boolean isUltraPixelPhotographySupported() {
-        if (this.mCameraId != Camera2DataContainer.getInstance().getMainBackCameraId() || !isSupportedQcfa() || !this.mCaptureRequestVendorKeys.contains(QCFA_STREAM_CONFIGURATIONS.getName())) {
+    public boolean isUltraPixelPhotographySupported(int i) {
+        Size size = (Size) ULTRA_PIXEL_SIZE_LIST.get(Integer.valueOf(i));
+        if (size == null || !isSupportedQcfa()) {
             return false;
         }
-        StreamConfiguration[] streamConfigurationArr = (StreamConfiguration[]) this.mCharacteristics.get(QCFA_STREAM_CONFIGURATIONS);
-        if (streamConfigurationArr == null || streamConfigurationArr.length == 0) {
-            return false;
-        }
-        int format;
-        int width;
-        int height;
-        for (StreamConfiguration streamConfiguration : streamConfigurationArr) {
-            format = streamConfiguration.getFormat();
-            width = streamConfiguration.getWidth();
-            height = streamConfiguration.getHeight();
-            if (format == 33 && width == 8000 && height == ULTRA_PIXEL_PICTURE_SIZE_H) {
-                return true;
-            }
-        }
-        if (!this.mCaptureRequestVendorKeys.contains(LIMIT_STREAM_CONFIGURATIONS.getName())) {
-            return false;
-        }
-        streamConfigurationArr = (StreamConfiguration[]) this.mCharacteristics.get(LIMIT_STREAM_CONFIGURATIONS);
-        if (streamConfigurationArr == null || streamConfigurationArr.length == 0) {
-            return false;
-        }
-        for (StreamConfiguration streamConfiguration2 : streamConfigurationArr) {
-            format = streamConfiguration2.getFormat();
-            width = streamConfiguration2.getWidth();
-            height = streamConfiguration2.getHeight();
-            if (format == 33 && width == 8000 && height == ULTRA_PIXEL_PICTURE_SIZE_H) {
-                return true;
+        for (Key key : ULTRA_PIXEL_STREAM_CONFIGURATIONS_VENDOR_KEYS) {
+            if (this.mCaptureRequestVendorKeys.contains(key.getName())) {
+                StreamConfiguration[] streamConfigurationArr = (StreamConfiguration[]) this.mCharacteristics.get(key);
+                if (streamConfigurationArr == null) {
+                    continue;
+                } else if (streamConfigurationArr.length > 0) {
+                    for (StreamConfiguration streamConfiguration : streamConfigurationArr) {
+                        if (streamConfiguration.getFormat() == 33 && streamConfiguration.getWidth() == size.getWidth() && streamConfiguration.getHeight() == size.getHeight()) {
+                            return true;
+                        }
+                    }
+                }
             }
         }
         return false;
@@ -654,5 +679,31 @@ public class CameraCapabilities {
 
     public boolean isSupportBokehAdjust() {
         return this.mCaptureRequestVendorKeys.contains(MiCameraCompatBaseImpl.BOKEH_F_NUMBER.getName());
+    }
+
+    public boolean isEISPreviewSupported() {
+        boolean z = false;
+        if (this.mCaptureRequestVendorKeys == null || !this.mCaptureRequestVendorKeys.contains(MiCameraCharacteristics.EIS_PREVIEW_SUPPORTED.getName())) {
+            return false;
+        }
+        Byte b = (Byte) this.mCharacteristics.get(MiCameraCharacteristics.EIS_PREVIEW_SUPPORTED);
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("isEISPreviewSupported: ");
+        stringBuilder.append(b);
+        Log.d(str, stringBuilder.toString());
+        if (b != null && b.byteValue() == (byte) 1) {
+            z = true;
+        }
+        return z;
+    }
+
+    public boolean isPartialMetadataSupported() {
+        Integer num = (Integer) this.mCharacteristics.get(CameraCharacteristics.REQUEST_PARTIAL_RESULT_COUNT);
+        return num != null && num.intValue() > 1;
+    }
+
+    public boolean isBackwardCaptureSupported() {
+        return this.mCaptureRequestVendorKeys != null && this.mCaptureRequestVendorKeys.contains(MiCameraCompatBaseImpl.XIAOMI_BACKWARD_CAPTURE_HINT.getName());
     }
 }

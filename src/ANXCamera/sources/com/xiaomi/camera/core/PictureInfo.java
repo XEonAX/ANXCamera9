@@ -1,6 +1,6 @@
 package com.xiaomi.camera.core;
 
-import android.util.Log;
+import com.android.camera.log.Log;
 import org.json.JSONObject;
 
 public class PictureInfo {
@@ -9,6 +9,7 @@ public class PictureInfo {
     private static final String SENSOR_TYPE_FRONT = "front";
     private static final String SENSOR_TYPE_REAR = "rear";
     private static final String TAG = PictureInfo.class.getSimpleName();
+    private boolean aiEnabled;
     private int aiType;
     private boolean isBokehFrontCamera;
     private boolean isMirror;
@@ -36,6 +37,10 @@ public class PictureInfo {
         return this;
     }
 
+    public boolean isFrontCamera() {
+        return this.mSensorType == SENSOR_TYPE_FRONT;
+    }
+
     public boolean isFrontMirror() {
         return this.isMirror;
     }
@@ -55,6 +60,15 @@ public class PictureInfo {
 
     public PictureInfo setAiType(int i) {
         this.aiType = i;
+        return this;
+    }
+
+    public boolean isAiEnabled() {
+        return this.aiEnabled;
+    }
+
+    public PictureInfo setAiEnabled(boolean z) {
+        this.aiEnabled = z;
         return this;
     }
 

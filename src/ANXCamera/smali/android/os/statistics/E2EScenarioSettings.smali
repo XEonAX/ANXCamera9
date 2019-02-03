@@ -46,7 +46,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 106
     new-instance v0, Landroid/os/statistics/E2EScenarioSettings$1;
@@ -59,7 +59,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 39
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -69,7 +69,7 @@
 .end method
 
 .method public constructor <init>(Landroid/os/Parcel;)V
-    .locals 1
+    .registers 3
     .param p1, "source"    # Landroid/os/Parcel;
 
     .line 45
@@ -94,16 +94,16 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_17
 
     const/4 v0, 0x1
 
-    goto :goto_0
+    goto :goto_18
 
-    :cond_0
+    :cond_17
     const/4 v0, 0x0
 
-    :goto_0
+    :goto_18
     iput-boolean v0, p0, Landroid/os/statistics/E2EScenarioSettings;->isAutoAnalysisEnabled:Z
 
     .line 50
@@ -127,7 +127,7 @@
 
 # virtual methods
 .method public clone()Ljava/lang/Object;
-    .locals 2
+    .registers 3
 
     .line 66
     new-instance v0, Landroid/os/statistics/E2EScenarioSettings;
@@ -165,7 +165,7 @@
 .end method
 
 .method public describeContents()I
-    .locals 1
+    .registers 2
 
     .line 93
     const/4 v0, 0x0
@@ -174,7 +174,7 @@
 .end method
 
 .method public enableAutoAnalysis(II)V
-    .locals 1
+    .registers 4
     .param p1, "slownessFloorThresholdMillis"    # I
     .param p2, "timeoutMillisOfAutoAnalysis"    # I
 
@@ -194,16 +194,16 @@
 .end method
 
 .method public isValid()Z
-    .locals 1
+    .registers 2
 
     .line 58
     iget-boolean v0, p0, Landroid/os/statistics/E2EScenarioSettings;->isAutoAnalysisEnabled:Z
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_a
 
     iget v0, p0, Landroid/os/statistics/E2EScenarioSettings;->slownessFloorThresholdMillis:I
 
-    if-gtz v0, :cond_0
+    if-gtz v0, :cond_a
 
     .line 59
     const/4 v0, 0x0
@@ -211,14 +211,14 @@
     return v0
 
     .line 61
-    :cond_0
+    :cond_a
     const/4 v0, 0x1
 
     return v0
 .end method
 
 .method public setHistoryLimitPerDay(I)V
-    .locals 0
+    .registers 2
     .param p1, "historyLimitPerDay"    # I
 
     .line 82
@@ -229,7 +229,7 @@
 .end method
 
 .method public setStatisticsMode(I)V
-    .locals 0
+    .registers 2
     .param p1, "mode"    # I
 
     .line 78
@@ -240,7 +240,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 1
+    .registers 4
     .param p1, "dest"    # Landroid/os/Parcel;
     .param p2, "flags"    # I
 

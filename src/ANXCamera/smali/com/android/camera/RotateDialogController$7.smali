@@ -3,7 +3,7 @@
 .source "RotateDialogController.java"
 
 # interfaces
-.implements Landroid/content/DialogInterface$OnClickListener;
+.implements Landroid/view/View$OnClickListener;
 
 
 # annotations
@@ -18,23 +18,15 @@
 
 
 # instance fields
-.field final synthetic val$checkrun:Ljava/lang/Runnable;
-
-.field final synthetic val$choice:Landroid/widget/CheckBox;
-
-.field final synthetic val$uncheckrun:Ljava/lang/Runnable;
+.field final synthetic val$context:Landroid/content/Context;
 
 
 # direct methods
-.method constructor <init>(Landroid/widget/CheckBox;Ljava/lang/Runnable;Ljava/lang/Runnable;)V
+.method constructor <init>(Landroid/content/Context;)V
     .locals 0
 
-    .line 245
-    iput-object p1, p0, Lcom/android/camera/RotateDialogController$7;->val$choice:Landroid/widget/CheckBox;
-
-    iput-object p2, p0, Lcom/android/camera/RotateDialogController$7;->val$checkrun:Ljava/lang/Runnable;
-
-    iput-object p3, p0, Lcom/android/camera/RotateDialogController$7;->val$uncheckrun:Ljava/lang/Runnable;
+    .line 238
+    iput-object p1, p0, Lcom/android/camera/RotateDialogController$7;->val$context:Landroid/content/Context;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -43,43 +35,14 @@
 
 
 # virtual methods
-.method public onClick(Landroid/content/DialogInterface;I)V
+.method public onClick(Landroid/view/View;)V
     .locals 0
 
-    .line 248
-    iget-object p1, p0, Lcom/android/camera/RotateDialogController$7;->val$choice:Landroid/widget/CheckBox;
+    .line 241
+    iget-object p1, p0, Lcom/android/camera/RotateDialogController$7;->val$context:Landroid/content/Context;
 
-    invoke-virtual {p1}, Landroid/widget/CheckBox;->isChecked()Z
+    invoke-static {p1}, Lcom/android/camera/ActivityLauncher;->launchPrivacyPolicyWebpage(Landroid/content/Context;)V
 
-    move-result p1
-
-    if-eqz p1, :cond_0
-
-    .line 249
-    iget-object p1, p0, Lcom/android/camera/RotateDialogController$7;->val$checkrun:Ljava/lang/Runnable;
-
-    if-eqz p1, :cond_1
-
-    .line 250
-    iget-object p1, p0, Lcom/android/camera/RotateDialogController$7;->val$checkrun:Ljava/lang/Runnable;
-
-    invoke-interface {p1}, Ljava/lang/Runnable;->run()V
-
-    goto :goto_0
-
-    .line 253
-    :cond_0
-    iget-object p1, p0, Lcom/android/camera/RotateDialogController$7;->val$uncheckrun:Ljava/lang/Runnable;
-
-    if-eqz p1, :cond_1
-
-    .line 254
-    iget-object p1, p0, Lcom/android/camera/RotateDialogController$7;->val$uncheckrun:Ljava/lang/Runnable;
-
-    invoke-interface {p1}, Ljava/lang/Runnable;->run()V
-
-    .line 257
-    :cond_1
-    :goto_0
+    .line 242
     return-void
 .end method

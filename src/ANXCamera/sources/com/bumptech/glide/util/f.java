@@ -12,7 +12,7 @@ public class f<T, Y> {
     private final long gM;
     private long gO;
     private long maxSize;
-    private final Map<T, Y> pn = new LinkedHashMap(100, 0.75f, true);
+    private final Map<T, Y> pm = new LinkedHashMap(100, 0.75f, true);
 
     public f(long j) {
         this.gM = j;
@@ -33,7 +33,7 @@ public class f<T, Y> {
     }
 
     protected synchronized int getCount() {
-        return this.pn.size();
+        return this.pm.size();
     }
 
     protected void a(@NonNull T t, @Nullable Y y) {
@@ -48,12 +48,12 @@ public class f<T, Y> {
     }
 
     public synchronized boolean contains(@NonNull T t) {
-        return this.pn.containsKey(t);
+        return this.pm.containsKey(t);
     }
 
     @Nullable
     public synchronized Y get(@NonNull T t) {
-        return this.pn.get(t);
+        return this.pm.get(t);
     }
 
     @Nullable
@@ -66,7 +66,7 @@ public class f<T, Y> {
         if (y != null) {
             this.gO += n;
         }
-        Y put = this.pn.put(t, y);
+        Y put = this.pm.put(t, y);
         if (put != null) {
             this.gO -= (long) n(put);
             if (!put.equals(y)) {
@@ -80,7 +80,7 @@ public class f<T, Y> {
     @Nullable
     public synchronized Y remove(@NonNull T t) {
         Y remove;
-        remove = this.pn.remove(t);
+        remove = this.pm.remove(t);
         if (remove != null) {
             this.gO -= (long) n(remove);
         }
@@ -93,7 +93,7 @@ public class f<T, Y> {
 
     protected synchronized void a(long j) {
         while (this.gO > j) {
-            Iterator it = this.pn.entrySet().iterator();
+            Iterator it = this.pm.entrySet().iterator();
             Entry entry = (Entry) it.next();
             Object value = entry.getValue();
             this.gO -= (long) n(value);

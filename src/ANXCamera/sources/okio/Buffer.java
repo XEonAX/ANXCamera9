@@ -1,6 +1,7 @@
 package okio;
 
 import android.support.v4.media.session.PlaybackStateCompat;
+import com.android.camera.module.loader.FunctionParseBeautyBodySlimCount;
 import com.ss.android.ttve.utils.UIUtils;
 import java.io.EOFException;
 import java.io.IOException;
@@ -1128,7 +1129,7 @@ public final class Buffer implements Cloneable, BufferedSink, BufferedSource {
         }
         if (j >= 100000000) {
             i3 = j < 1000000000000L ? j < 10000000000L ? j < 1000000000 ? 9 : 10 : j < 100000000000L ? 11 : 12 : j < 1000000000000000L ? j < 10000000000000L ? 13 : j < 100000000000000L ? 14 : 15 : j < 100000000000000000L ? j < 10000000000000000L ? 16 : 17 : j < 1000000000000000000L ? 18 : 19;
-        } else if (j >= 10000) {
+        } else if (j >= FunctionParseBeautyBodySlimCount.TIP_INTERVAL_TIME) {
             i3 = j < 1000000 ? j < 100000 ? 5 : 6 : j < 10000000 ? 7 : 8;
         } else if (j >= 100) {
             i3 = j < 1000 ? 3 : 4;

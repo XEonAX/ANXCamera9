@@ -27,7 +27,7 @@
 .method constructor <init>(Landroid/hardware/camera2/CaptureResult;Ljava/lang/String;)V
     .locals 0
 
-    .line 81
+    .line 86
     iput-object p1, p0, Lcom/android/camera/log/CameraMetadataSerializer$2;->val$metadata:Landroid/hardware/camera2/CaptureResult;
 
     iput-object p2, p0, Lcom/android/camera/log/CameraMetadataSerializer$2;->val$title:Ljava/lang/String;
@@ -47,14 +47,14 @@
         }
     .end annotation
 
-    .line 84
+    .line 89
     iget-object v0, p0, Lcom/android/camera/log/CameraMetadataSerializer$2;->val$metadata:Landroid/hardware/camera2/CaptureResult;
 
     invoke-virtual {v0}, Landroid/hardware/camera2/CaptureResult;->getKeys()Ljava/util/List;
 
     move-result-object v0
 
-    .line 85
+    .line 90
     new-instance v1, Ljava/lang/StringBuilder;
 
     invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
@@ -81,7 +81,7 @@
 
     invoke-virtual {p1, v1}, Ljava/io/Writer;->write(Ljava/lang/String;)V
 
-    .line 88
+    .line 93
     invoke-interface {v0}, Ljava/util/List;->iterator()Ljava/util/Iterator;
 
     move-result-object v0
@@ -99,7 +99,7 @@
 
     check-cast v1, Landroid/hardware/camera2/CaptureResult$Key;
 
-    .line 89
+    .line 94
     const-string v2, "    %s\n"
 
     const/4 v4, 0x1
@@ -118,14 +118,14 @@
 
     invoke-virtual {p1, v2}, Ljava/io/Writer;->write(Ljava/lang/String;)V
 
-    .line 90
+    .line 95
     const-string v2, "        %s\n"
 
     new-array v4, v4, [Ljava/lang/Object;
 
     iget-object v5, p0, Lcom/android/camera/log/CameraMetadataSerializer$2;->val$metadata:Landroid/hardware/camera2/CaptureResult;
 
-    .line 91
+    .line 96
     invoke-virtual {v5, v1}, Landroid/hardware/camera2/CaptureResult;->get(Landroid/hardware/camera2/CaptureResult$Key;)Ljava/lang/Object;
 
     move-result-object v1
@@ -136,17 +136,17 @@
 
     aput-object v1, v4, v3
 
-    .line 90
+    .line 95
     invoke-static {v2, v4}, Ljava/lang/String;->format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
 
     move-result-object v1
 
     invoke-virtual {p1, v1}, Ljava/io/Writer;->write(Ljava/lang/String;)V
 
-    .line 92
+    .line 97
     goto :goto_0
 
-    .line 93
+    .line 98
     :cond_0
     return-void
 .end method

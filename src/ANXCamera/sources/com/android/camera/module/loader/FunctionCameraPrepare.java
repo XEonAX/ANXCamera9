@@ -1,17 +1,19 @@
 package com.android.camera.module.loader;
 
 import android.text.TextUtils;
-import com.aeonax.camera.R;
 import com.android.camera.Camera;
 import com.android.camera.CameraAppImpl;
 import com.android.camera.CameraSettings;
+import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.constant.GlobalConstant;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.backup.DataBackUp;
 import com.android.camera.data.data.config.ComponentConfigBeauty;
+import com.android.camera.data.data.config.ComponentConfigBeautyBody;
 import com.android.camera.data.data.config.ComponentConfigFlash;
 import com.android.camera.data.data.config.ComponentConfigHdr;
+import com.android.camera.data.data.config.ComponentConfigUltraWide;
 import com.android.camera.data.data.config.ComponentManuallyET;
 import com.android.camera.data.data.config.DataItemConfig;
 import com.android.camera.data.data.global.DataItemGlobal;
@@ -84,7 +86,7 @@ public class FunctionCameraPrepare extends Func1Base<Camera, BaseModule> {
                     editor.remove(CameraSettings.KEY_QC_ISO);
                 }
             }
-            if (!b.gr()) {
+            if (!b.gJ()) {
                 editor.remove(CameraSettings.KEY_QC_FOCUS_POSITION);
                 editor.remove(CameraSettings.KEY_QC_EXPOSURETIME);
             } else if (this.mTargetMode == 167) {
@@ -99,26 +101,25 @@ public class FunctionCameraPrepare extends Func1Base<Camera, BaseModule> {
             if (!Util.isValidValue(dataItemGlobal.getString(CameraSettings.KEY_ANTIBANDING, "1"))) {
                 dataItemGlobal.editor().remove(CameraSettings.KEY_ANTIBANDING).apply();
             }
-            int i;
             switch (this.mResetType) {
-                case 1:
+                case 2:
                     backUp.revertRunning(dataItemRunning, dataItemGlobal.getDataBackUpKey(this.mTargetMode), dataItemGlobal.getCurrentCameraId());
                     if (componentFlash.getPersistValue(this.mTargetMode).equals("2")) {
                         editor.putString(componentFlash.getKey(this.mTargetMode), componentFlash.getDefaultValue(this.mTargetMode));
-                    }
-                    if (!(this.mTargetMode == 163 || this.mTargetMode == 165 || this.mTargetMode == 171 || this.mTargetMode == 162 || this.mTargetMode == 169 || this.mTargetMode == 168 || this.mTargetMode == 170)) {
-                        i = this.mTargetMode;
                         break;
                     }
-                case 2:
+                    break;
+                case 3:
                 case 6:
                     resetFlash(componentFlash, editor);
                     resetHdr(dataItemConfig.getComponentHdr(), editor);
                     resetVideoBeauty(dataItemConfig.getComponentConfigBeauty(), editor);
+                    resetUltraWide(dataItemConfig.getComponentConfigUltraWide(), editor);
                     editor.remove("pref_eye_light_type_key");
                     editor.remove(dataItemConfig.getComponentConfigSlowMotion().getKey(this.mTargetMode));
                     if (dataItemGlobal.getCurrentCameraId() == 0) {
                         resetBeauty(dataItemConfig.getComponentConfigBeauty(), editor);
+                        resetBeautyBody(this.mTargetMode, dataItemConfig.getComponentConfigBeautyBody(), editor);
                         dataItemConfig = (DataItemConfig) DataRepository.provider().dataConfig(1);
                     } else {
                         dataItemConfig = (DataItemConfig) DataRepository.provider().dataConfig(0);
@@ -131,55 +132,67 @@ public class FunctionCameraPrepare extends Func1Base<Camera, BaseModule> {
                     editor2.apply();
                     dataItemRunning.clearArrayMap();
                     backUp.clearBackUp();
-                    i = this.mTargetMode;
-                    break;
-                case 3:
-                case 5:
-                    int currentCameraId;
-                    switch (this.mTargetMode) {
-                        case 161:
-                            currentCameraId = dataItemGlobal.getCurrentCameraId();
-                            break;
-                        case 162:
-                            currentCameraId = dataItemGlobal.getCurrentCameraId();
-                            if (currentCameraId == 0) {
-                                backUp.removeOtherVideoMode();
-                                break;
-                            }
-                            break;
-                        case 166:
-                        case 167:
-                            currentCameraId = 0;
-                            break;
-                        case 168:
-                        case 169:
-                        case 170:
-                            currentCameraId = dataItemGlobal.getCurrentCameraId();
-                            break;
-                        case 171:
-                            if (b.hb()) {
-                                currentCameraId = dataItemGlobal.getCurrentCameraId();
-                                break;
-                            }
-                        default:
-                            currentCameraId = dataItemGlobal.getCurrentCameraId();
-                            break;
+                    if (DataRepository.dataItemFeature().fF()) {
+                        DataRepository.dataItemLive().editor().remove(CameraSettings.KEY_LIVE_MUSIC_PATH).remove(CameraSettings.KEY_LIVE_MUSIC_HINT).remove(CameraSettings.KEY_LIVE_STICKER).remove(CameraSettings.KEY_LIVE_STICKER_NAME).remove(CameraSettings.KEY_LIVE_STICKER_HINT).remove(CameraSettings.KEY_LIVE_SPEED).remove(CameraSettings.KEY_LIVE_FILTER).remove(CameraSettings.KEY_LIVE_SHRINK_FACE_RATIO).remove(CameraSettings.KEY_LIVE_ENLARGE_EYE_RATIO).remove(CameraSettings.KEY_LIVE_SMOOTH_STRENGTH).remove(CameraSettings.KEY_LIVE_BEAUTY_STATUS).apply();
+                        break;
                     }
-                    dataItemGlobal.setCameraIdTransient(currentCameraId);
-                    backUp.revertRunning(dataItemRunning, dataItemGlobal.getDataBackUpKey(this.mTargetMode), currentCameraId);
+                    break;
+                case 4:
+                case 5:
+                    int i = this.mTargetMode;
+                    if (i != 174) {
+                        switch (i) {
+                            case 161:
+                                break;
+                            case 162:
+                                i = dataItemGlobal.getCurrentCameraId();
+                                if (i == 0) {
+                                    backUp.removeOtherVideoMode();
+                                    break;
+                                }
+                                break;
+                            default:
+                                switch (i) {
+                                    case 166:
+                                    case 167:
+                                        i = 0;
+                                        break;
+                                    case 168:
+                                    case 169:
+                                    case 170:
+                                        i = dataItemGlobal.getCurrentCameraId();
+                                        break;
+                                    case 171:
+                                        if (b.ht()) {
+                                            i = dataItemGlobal.getCurrentCameraId();
+                                            break;
+                                        }
+                                    default:
+                                        i = dataItemGlobal.getCurrentCameraId();
+                                        break;
+                                }
+                        }
+                    }
+                    i = dataItemGlobal.getCurrentCameraId();
+                    dataItemGlobal.setCameraIdTransient(i);
+                    backUp.revertRunning(dataItemRunning, dataItemGlobal.getDataBackUpKey(this.mTargetMode), i);
                     break;
             }
-            boolean fD = DataRepository.dataItemFeature().fD();
-            if (this.mResetType == 3 && lastCameraId == dataItemGlobal.getCurrentCameraId()) {
-                fD = false;
+            boolean fH = DataRepository.dataItemFeature().fH();
+            if (this.mResetType == 4 && lastCameraId == dataItemGlobal.getCurrentCameraId()) {
+                fH = false;
             }
-            if (fD) {
+            if (fH) {
                 editor.putBoolean(CameraSettings.KEY_LENS_DIRTY_DETECT_ENABLED, true);
             }
             editor.apply();
             return;
         }
         DataRepository.dataItemConfig().editor().remove(CameraSettings.KEY_ZOOM).apply();
+    }
+
+    private void resetBeautyBody(int i, ComponentConfigBeautyBody componentConfigBeautyBody, ProviderEditor providerEditor) {
+        componentConfigBeautyBody.resetBeautyBody(i, providerEditor);
     }
 
     private void resetFlash(ComponentConfigFlash componentConfigFlash, ProviderEditor providerEditor) {
@@ -208,6 +221,12 @@ public class FunctionCameraPrepare extends Func1Base<Camera, BaseModule> {
         Object defaultValue = componentConfigBeauty.getDefaultValue(162);
         if (!TextUtils.equals(persistValue, defaultValue)) {
             providerEditor.putString(componentConfigBeauty.getKey(162), defaultValue);
+        }
+    }
+
+    private void resetUltraWide(ComponentConfigUltraWide componentConfigUltraWide, ProviderEditor providerEditor) {
+        if (componentConfigUltraWide != null) {
+            componentConfigUltraWide.resetUltraWide(providerEditor);
         }
     }
 }

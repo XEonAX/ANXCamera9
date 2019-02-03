@@ -5,7 +5,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.view.animation.Animation;
 import android.widget.ImageView;
-import com.aeonax.camera.R;
+import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.animation.FragmentAnimationFactory;
 import com.android.camera.data.DataRepository;
@@ -55,10 +55,10 @@ public class FragmentBottomIntentDone extends BaseFragment implements OnClickLis
         CameraAction cameraAction = (CameraAction) ModeCoordinatorImpl.getInstance().getAttachProtocol(161);
         if (cameraAction != null) {
             switch (view.getId()) {
-                case R.id.intent_done_retry /*2131558445*/:
+                case R.id.intent_done_retry /*2131558447*/:
                     cameraAction.onReviewCancelClicked();
                     break;
-                case R.id.intent_done_apply /*2131558446*/:
+                case R.id.intent_done_apply /*2131558448*/:
                     cameraAction.onReviewDoneClicked();
                     break;
             }

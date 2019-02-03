@@ -863,7 +863,7 @@
 .method private print()V
     .locals 3
 
-    .line 148
+    .line 159
     sget-object v0, Lcom/android/camera/effect/renders/TextWaterMark;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -948,7 +948,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 154
+    .line 165
     return-void
 .end method
 
@@ -977,6 +977,24 @@
 
     .line 139
     iget v0, p0, Lcom/android/camera/effect/renders/TextWaterMark;->mWaterHeight:I
+
+    return v0
+.end method
+
+.method public getPaddingX()I
+    .locals 1
+
+    .line 150
+    iget v0, p0, Lcom/android/camera/effect/renders/TextWaterMark;->mPadding:I
+
+    return v0
+.end method
+
+.method public getPaddingY()I
+    .locals 1
+
+    .line 155
+    iget v0, p0, Lcom/android/camera/effect/renders/TextWaterMark;->mPadding:I
 
     return v0
 .end method

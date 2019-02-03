@@ -136,7 +136,7 @@
     if-ne p1, v0, :cond_3
 
     .line 38
-    invoke-static {}, Lcom/mi/config/b;->gj()Z
+    invoke-static {}, Lcom/mi/config/b;->gB()Z
 
     move-result p1
 

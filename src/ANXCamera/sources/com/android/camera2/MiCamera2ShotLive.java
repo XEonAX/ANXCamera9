@@ -33,7 +33,7 @@ public class MiCamera2ShotLive extends MiCamera2Shot<ParallelTaskData> implement
     protected void prepare() {
     }
 
-    protected void startShot() {
+    protected void startSessionCapture() {
         try {
             CaptureCallback generateCaptureCallback = generateCaptureCallback();
             Builder generateRequestBuilder = generateRequestBuilder();
@@ -51,41 +51,46 @@ public class MiCamera2ShotLive extends MiCamera2Shot<ParallelTaskData> implement
     protected CaptureCallback generateCaptureCallback() {
         return new CaptureCallback() {
             public void onCaptureStarted(@NonNull CameraCaptureSession cameraCaptureSession, @NonNull CaptureRequest captureRequest, long j, long j2) {
+                String access$000 = MiCamera2ShotLive.TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("onCaptureStarted: frameNumber=");
+                stringBuilder.append(j2);
+                Log.d(access$000, stringBuilder.toString());
                 super.onCaptureStarted(cameraCaptureSession, captureRequest, j, j2);
-                PictureCallback pictureCallback = MiCamera2ShotLive.this.mMiCamera.getPictureCallback();
                 if (MiCamera2ShotLive.this.mCurrentParallelTaskData == null) {
                     MiCamera2ShotLive.this.mCurrentParallelTaskData = MiCamera2ShotLive.this.generateParallelTaskData(j);
                 }
-                if (pictureCallback != null) {
-                    Log.d(MiCamera2ShotLive.TAG, "onCaptureStarted()");
-                    if (pictureCallback instanceof Camera2Module) {
-                        CircularMediaRecorder circularMediaRecorder = ((Camera2Module) pictureCallback).getCircularMediaRecorder();
-                        if (circularMediaRecorder != null) {
-                            circularMediaRecorder.snapshot(-1, MiCamera2ShotLive.this);
-                            return;
-                        }
+                PictureCallback pictureCallback = MiCamera2ShotLive.this.mMiCamera.getPictureCallback();
+                if (pictureCallback == null) {
+                    return;
+                }
+                if (pictureCallback instanceof Camera2Module) {
+                    CircularMediaRecorder circularMediaRecorder = ((Camera2Module) pictureCallback).getCircularMediaRecorder();
+                    if (circularMediaRecorder != null) {
+                        circularMediaRecorder.snapshot(-1, MiCamera2ShotLive.this);
                         return;
                     }
-                    throw new IllegalStateException("Please update the implementation of MiCamera2ShotLive");
+                    return;
                 }
+                throw new IllegalStateException("Please update the implementation of MiCamera2ShotLive");
             }
 
             public void onCaptureCompleted(@NonNull CameraCaptureSession cameraCaptureSession, @NonNull CaptureRequest captureRequest, @NonNull TotalCaptureResult totalCaptureResult) {
-                String access$100 = MiCamera2ShotLive.TAG;
+                String access$000 = MiCamera2ShotLive.TAG;
                 StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("onCaptureCompleted(): frameNbr = ");
+                stringBuilder.append("onCaptureCompleted: frameNumber=");
                 stringBuilder.append(totalCaptureResult.getFrameNumber());
-                Log.d(access$100, stringBuilder.toString());
+                Log.d(access$000, stringBuilder.toString());
                 MiCamera2ShotLive.this.mMiCamera.onCapturePictureFinished(true);
             }
 
             public void onCaptureFailed(@NonNull CameraCaptureSession cameraCaptureSession, @NonNull CaptureRequest captureRequest, @NonNull CaptureFailure captureFailure) {
                 super.onCaptureFailed(cameraCaptureSession, captureRequest, captureFailure);
-                String access$100 = MiCamera2ShotLive.TAG;
+                String access$000 = MiCamera2ShotLive.TAG;
                 StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("onCaptureFailed(): reason = ");
+                stringBuilder.append("onCaptureFailed: reason=");
                 stringBuilder.append(String.valueOf(captureFailure.getReason()));
-                Log.e(access$100, stringBuilder.toString());
+                Log.e(access$000, stringBuilder.toString());
                 MiCamera2ShotLive.this.mMiCamera.onCapturePictureFinished(false);
             }
         };
@@ -116,17 +121,23 @@ public class MiCamera2ShotLive extends MiCamera2Shot<ParallelTaskData> implement
             this.mCurrentParallelTaskData = generateParallelTaskData(image.getTimestamp());
         }
         PictureCallback pictureCallback = this.mMiCamera.getPictureCallback();
+        String str;
         if (pictureCallback == null || this.mCurrentParallelTaskData == null) {
             image.close();
+            str = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("onImageReceived: illegal argument ");
+            stringBuilder.append(pictureCallback == null ? "callback" : "taskdata");
+            Log.e(str, stringBuilder.toString());
             return;
         }
         byte[] firstPlane = Util.getFirstPlane(image);
         image.close();
-        String str = TAG;
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("JpegPictureCallback#onPictureTaken data ");
-        stringBuilder.append(firstPlane == null ? TEDefine.FACE_BEAUTY_NULL : Integer.valueOf(firstPlane.length));
-        Log.d(str, stringBuilder.toString());
+        str = TAG;
+        StringBuilder stringBuilder2 = new StringBuilder();
+        stringBuilder2.append("onImageReceived: dataLen=");
+        stringBuilder2.append(firstPlane == null ? TEDefine.FACE_BEAUTY_NULL : Integer.valueOf(firstPlane.length));
+        Log.d(str, stringBuilder2.toString());
         this.mCurrentParallelTaskData.fillJpegData(firstPlane, i);
         if (this.mCurrentParallelTaskData.isJpegDataReady()) {
             pictureCallback.onPictureTakenFinished(true);
@@ -161,7 +172,8 @@ public class MiCamera2ShotLive extends MiCamera2Shot<ParallelTaskData> implement
             Log.d(str, stringBuilder.toString());
             this.mCurrentParallelTaskData.fillMp4Data(bArr, j);
             if (this.mCurrentParallelTaskData.isJpegDataReady()) {
-                pictureCallback.onPictureTakenFinished(bArr.length > 0);
+                boolean z = bArr != null && bArr.length > 0;
+                pictureCallback.onPictureTakenFinished(z);
                 notifyResultData(this.mCurrentParallelTaskData);
             }
         }

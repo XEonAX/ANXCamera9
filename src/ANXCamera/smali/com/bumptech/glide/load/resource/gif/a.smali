@@ -9,7 +9,7 @@
 # instance fields
 .field private final i:Lcom/bumptech/glide/load/engine/bitmap_recycle/d;
 
-.field private final r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+.field private final v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 .end field
@@ -42,7 +42,7 @@
     iput-object p1, p0, Lcom/bumptech/glide/load/resource/gif/a;->i:Lcom/bumptech/glide/load/engine/bitmap_recycle/d;
 
     .line 35
-    iput-object p2, p0, Lcom/bumptech/glide/load/resource/gif/a;->r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iput-object p2, p0, Lcom/bumptech/glide/load/resource/gif/a;->v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     .line 36
     return-void
@@ -77,7 +77,7 @@
     .end param
 
     .line 78
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/a;->r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/a;->v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     if-nez v0, :cond_0
 
@@ -86,7 +86,7 @@
 
     .line 81
     :cond_0
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/a;->r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/a;->v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     invoke-interface {v0, p1}, Lcom/bumptech/glide/load/engine/bitmap_recycle/b;->put(Ljava/lang/Object;)V
 
@@ -118,7 +118,7 @@
     .end param
 
     .line 60
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/a;->r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/a;->v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     if-nez v0, :cond_0
 
@@ -127,7 +127,7 @@
 
     .line 63
     :cond_0
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/a;->r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/a;->v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     invoke-interface {v0, p1}, Lcom/bumptech/glide/load/engine/bitmap_recycle/b;->put(Ljava/lang/Object;)V
 
@@ -141,7 +141,7 @@
     .end annotation
 
     .line 52
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/a;->r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/a;->v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     if-nez v0, :cond_0
 
@@ -152,7 +152,7 @@
 
     .line 55
     :cond_0
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/a;->r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/a;->v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     const-class v1, [B
 
@@ -171,7 +171,7 @@
     .end annotation
 
     .line 69
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/a;->r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/a;->v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     if-nez v0, :cond_0
 
@@ -182,7 +182,7 @@
 
     .line 72
     :cond_0
-    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/a;->r:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
+    iget-object v0, p0, Lcom/bumptech/glide/load/resource/gif/a;->v:Lcom/bumptech/glide/load/engine/bitmap_recycle/b;
 
     const-class v1, [I
 

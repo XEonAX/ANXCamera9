@@ -112,24 +112,6 @@
     return-object p0
 .end method
 
-.method static synthetic access$1000(Lcom/android/camera/snap/SnapTrigger;)Z
-    .locals 0
-
-    .line 27
-    iget-boolean p0, p0, Lcom/android/camera/snap/SnapTrigger;->mCameraOpened:Z
-
-    return p0
-.end method
-
-.method static synthetic access$1100(Lcom/android/camera/snap/SnapTrigger;)Ljava/lang/Runnable;
-    .locals 0
-
-    .line 27
-    iget-object p0, p0, Lcom/android/camera/snap/SnapTrigger;->mSnapRunnable:Ljava/lang/Runnable;
-
-    return-object p0
-.end method
-
 .method static synthetic access$200()Ljava/lang/String;
     .locals 1
 
@@ -310,7 +292,7 @@
 .method private initCamera()V
     .locals 2
 
-    .line 197
+    .line 192
     iget-object v0, p0, Lcom/android/camera/snap/SnapTrigger;->mCamera:Lcom/android/camera/snap/SnapCamera;
 
     if-nez v0, :cond_1
@@ -321,13 +303,13 @@
 
     goto :goto_0
 
-    .line 201
+    .line 196
     :cond_0
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/snap/SnapTrigger;->mCameraOpened:Z
 
-    .line 202
+    .line 197
     new-instance v0, Lcom/android/camera/snap/SnapCamera;
 
     iget-object v1, p0, Lcom/android/camera/snap/SnapTrigger;->mContext:Landroid/content/Context;
@@ -336,10 +318,10 @@
 
     iput-object v0, p0, Lcom/android/camera/snap/SnapTrigger;->mCamera:Lcom/android/camera/snap/SnapCamera;
 
-    .line 203
+    .line 198
     return-void
 
-    .line 198
+    .line 193
     :cond_1
     :goto_0
     return-void
@@ -348,18 +330,18 @@
 .method public static notifyForDetail(Landroid/content/Context;Landroid/net/Uri;Ljava/lang/String;Ljava/lang/String;Z)V
     .locals 2
 
-    .line 269
+    .line 264
     :try_start_0
     new-instance v0, Landroid/content/Intent;
 
     invoke-direct {v0}, Landroid/content/Intent;-><init>()V
 
-    .line 270
+    .line 265
     const-string v1, "android.intent.action.VIEW"
 
     invoke-virtual {v0, v1}, Landroid/content/Intent;->setAction(Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 271
+    .line 266
     if-eqz p4, :cond_0
 
     const-string p4, "video/*"
@@ -372,41 +354,41 @@
     :goto_0
     invoke-virtual {v0, p1, p4}, Landroid/content/Intent;->setDataAndType(Landroid/net/Uri;Ljava/lang/String;)Landroid/content/Intent;
 
-    .line 274
+    .line 269
     const/4 p1, 0x0
 
     invoke-static {p0, p1, v0, p1}, Landroid/app/PendingIntent;->getActivity(Landroid/content/Context;ILandroid/content/Intent;I)Landroid/app/PendingIntent;
 
     move-result-object p4
 
-    .line 275
+    .line 270
     new-instance v0, Landroid/app/Notification$Builder;
 
     invoke-direct {v0, p0}, Landroid/app/Notification$Builder;-><init>(Landroid/content/Context;)V
 
-    .line 276
+    .line 271
     invoke-virtual {v0, p2}, Landroid/app/Notification$Builder;->setContentTitle(Ljava/lang/CharSequence;)Landroid/app/Notification$Builder;
 
     move-result-object p2
 
-    .line 277
+    .line 272
     invoke-virtual {p2, p3}, Landroid/app/Notification$Builder;->setContentText(Ljava/lang/CharSequence;)Landroid/app/Notification$Builder;
 
     move-result-object p2
 
-    .line 278
+    .line 273
     invoke-virtual {p2, p4}, Landroid/app/Notification$Builder;->setContentIntent(Landroid/app/PendingIntent;)Landroid/app/Notification$Builder;
 
     move-result-object p2
 
     const p3, 0x1080041
 
-    .line 279
+    .line 274
     invoke-virtual {p2, p3}, Landroid/app/Notification$Builder;->setSmallIcon(I)Landroid/app/Notification$Builder;
 
     move-result-object p2
 
-    .line 280
+    .line 275
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide p3
@@ -415,62 +397,62 @@
 
     move-result-object p2
 
-    .line 282
+    .line 277
     const-string p3, "notification"
 
-    .line 283
+    .line 278
     invoke-virtual {p0, p3}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object p3
 
     check-cast p3, Landroid/app/NotificationManager;
 
-    .line 285
+    .line 280
     invoke-virtual {p0}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
 
     move-result-object p0
 
-    const p4, 0x7f0b0009
+    const p4, 0x7f090009
 
     invoke-virtual {p0, p4}, Landroid/content/res/Resources;->getString(I)Ljava/lang/String;
 
     move-result-object p0
 
-    .line 286
+    .line 281
     const-string p4, "com.android.camera.streetsnap"
 
     invoke-static {p3, p4, p0, p2}, Lcom/android/camera/lib/compatibility/util/CompatibilityUtils;->addChannelForNotificationBuilder(Landroid/app/NotificationManager;Ljava/lang/String;Ljava/lang/CharSequence;Landroid/app/Notification$Builder;)V
 
-    .line 288
+    .line 283
     invoke-virtual {p2}, Landroid/app/Notification$Builder;->build()Landroid/app/Notification;
 
     move-result-object p0
 
-    .line 289
+    .line 284
     iget p2, p0, Landroid/app/Notification;->flags:I
 
     or-int/lit8 p2, p2, 0x10
 
     iput p2, p0, Landroid/app/Notification;->flags:I
 
-    .line 290
+    .line 285
     iget-object p2, p0, Landroid/app/Notification;->extraNotification:Landroid/app/MiuiNotification;
 
     invoke-virtual {p2, p1}, Landroid/app/MiuiNotification;->setMessageCount(I)V
 
-    .line 293
+    .line 288
     invoke-virtual {p3, p1, p0}, Landroid/app/NotificationManager;->notify(ILandroid/app/Notification;)V
     :try_end_0
     .catch Ljava/lang/NullPointerException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 296
+    .line 291
     goto :goto_1
 
-    .line 294
+    .line 289
     :catch_0
     move-exception p0
 
-    .line 297
+    .line 292
     :goto_1
     return-void
 .end method
@@ -588,26 +570,26 @@
 .method private shutdownWatchDog()V
     .locals 2
 
-    .line 190
+    .line 185
     iget-object v0, p0, Lcom/android/camera/snap/SnapTrigger;->mHandler:Landroid/os/Handler;
 
     if-eqz v0, :cond_0
 
-    .line 191
+    .line 186
     sget-object v0, Lcom/android/camera/snap/SnapTrigger;->TAG:Ljava/lang/String;
 
     const-string v1, "watch dog Off"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 192
+    .line 187
     iget-object v0, p0, Lcom/android/camera/snap/SnapTrigger;->mHandler:Landroid/os/Handler;
 
     const/16 v1, 0x65
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeMessages(I)V
 
-    .line 194
+    .line 189
     :cond_0
     return-void
 .end method
@@ -615,12 +597,12 @@
 .method private triggerWatchdog(Z)V
     .locals 4
 
-    .line 182
+    .line 177
     iget-object v0, p0, Lcom/android/camera/snap/SnapTrigger;->mHandler:Landroid/os/Handler;
 
     if-eqz v0, :cond_1
 
-    .line 183
+    .line 178
     sget-object v0, Lcom/android/camera/snap/SnapTrigger;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -639,14 +621,14 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 184
+    .line 179
     iget-object v0, p0, Lcom/android/camera/snap/SnapTrigger;->mHandler:Landroid/os/Handler;
 
     const/16 v1, 0x65
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeMessages(I)V
 
-    .line 185
+    .line 180
     iget-object v0, p0, Lcom/android/camera/snap/SnapTrigger;->mHandler:Landroid/os/Handler;
 
     if-eqz p1, :cond_0
@@ -661,7 +643,7 @@
     :goto_0
     invoke-virtual {v0, v1, v2, v3}, Landroid/os/Handler;->sendEmptyMessageDelayed(IJ)Z
 
-    .line 187
+    .line 182
     :cond_1
     return-void
 .end method
@@ -669,7 +651,7 @@
 .method private vibrator([J)V
     .locals 2
 
-    .line 259
+    .line 254
     :try_start_0
     sget-object v0, Lcom/android/camera/snap/SnapTrigger;->TAG:Ljava/lang/String;
 
@@ -677,7 +659,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 260
+    .line 255
     iget-object v0, p0, Lcom/android/camera/snap/SnapTrigger;->mContext:Landroid/content/Context;
 
     const-string v1, "vibrator"
@@ -688,28 +670,28 @@
 
     check-cast v0, Landroid/os/Vibrator;
 
-    .line 261
+    .line 256
     const/4 v1, -0x1
 
     invoke-virtual {v0, p1, v1}, Landroid/os/Vibrator;->vibrate([JI)V
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 264
+    .line 259
     goto :goto_0
 
-    .line 262
+    .line 257
     :catch_0
     move-exception p1
 
-    .line 263
+    .line 258
     sget-object v0, Lcom/android/camera/snap/SnapTrigger;->TAG:Ljava/lang/String;
 
     const-string v1, "vibrator exception"
 
     invoke-static {v0, v1, p1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 265
+    .line 260
     :goto_0
     return-void
 .end method
@@ -717,7 +699,7 @@
 .method private vibratorShort()V
     .locals 1
 
-    .line 254
+    .line 249
     const/4 v0, 0x2
 
     new-array v0, v0, [J
@@ -726,7 +708,7 @@
 
     invoke-direct {p0, v0}, Lcom/android/camera/snap/SnapTrigger;->vibrator([J)V
 
-    .line 255
+    .line 250
     return-void
 
     :array_0
@@ -966,26 +948,26 @@
 .end method
 
 .method public onCameraOpened()V
-    .locals 2
+    .locals 4
 
-    .line 242
+    .line 237
     invoke-virtual {p0}, Lcom/android/camera/snap/SnapTrigger;->isRunning()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 243
+    .line 238
     sget-object v0, Lcom/android/camera/snap/SnapTrigger;->TAG:Ljava/lang/String;
 
     const-string v1, "onCameraOpened: exit"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 244
+    .line 239
     return-void
 
-    .line 246
+    .line 241
     :cond_0
     sget-object v0, Lcom/android/camera/snap/SnapTrigger;->TAG:Ljava/lang/String;
 
@@ -993,51 +975,67 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 247
+    .line 242
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/android/camera/snap/SnapTrigger;->mCameraOpened:Z
 
-    .line 248
+    .line 243
     iget-object v0, p0, Lcom/android/camera/snap/SnapTrigger;->mHandler:Landroid/os/Handler;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_2
 
-    .line 249
+    .line 244
     iget-object v0, p0, Lcom/android/camera/snap/SnapTrigger;->mHandler:Landroid/os/Handler;
 
     iget-object v1, p0, Lcom/android/camera/snap/SnapTrigger;->mSnapRunnable:Ljava/lang/Runnable;
 
-    invoke-virtual {v0, v1}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
+    iget-object v2, p0, Lcom/android/camera/snap/SnapTrigger;->mCamera:Lcom/android/camera/snap/SnapCamera;
 
-    .line 251
+    invoke-virtual {v2}, Lcom/android/camera/snap/SnapCamera;->isCamcorder()Z
+
+    move-result v2
+
+    if-eqz v2, :cond_1
+
+    const-wide/16 v2, 0x64
+
+    goto :goto_0
+
     :cond_1
+    const-wide/16 v2, 0x0
+
+    :goto_0
+    invoke-virtual {v0, v1, v2, v3}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
+
+    .line 246
+    :cond_2
     return-void
 .end method
 
 .method public onDone(Landroid/net/Uri;)V
     .locals 4
 
-    .line 207
+    .line 202
     invoke-virtual {p0}, Lcom/android/camera/snap/SnapTrigger;->isRunning()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 208
+    .line 203
     return-void
 
-    .line 211
+    .line 206
     :cond_0
     const/4 v0, 0x0
 
     invoke-direct {p0, v0}, Lcom/android/camera/snap/SnapTrigger;->triggerWatchdog(Z)V
 
-    .line 212
+    .line 207
     invoke-direct {p0}, Lcom/android/camera/snap/SnapTrigger;->vibratorShort()V
 
-    .line 214
+    .line 209
     iget-object v0, p0, Lcom/android/camera/snap/SnapTrigger;->mCamera:Lcom/android/camera/snap/SnapCamera;
 
     invoke-virtual {v0}, Lcom/android/camera/snap/SnapCamera;->isCamcorder()Z
@@ -1046,14 +1044,14 @@
 
     if-nez v0, :cond_1
 
-    .line 215
+    .line 210
     iget v0, p0, Lcom/android/camera/snap/SnapTrigger;->mBurstCount:I
 
     const/16 v1, 0x64
 
     if-ge v0, v1, :cond_1
 
-    .line 216
+    .line 211
     iget-object v0, p0, Lcom/android/camera/snap/SnapTrigger;->mHandler:Landroid/os/Handler;
 
     iget-object v1, p0, Lcom/android/camera/snap/SnapTrigger;->mSnapRunnable:Ljava/lang/Runnable;
@@ -1062,20 +1060,20 @@
 
     invoke-virtual {v0, v1, v2, v3}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 219
+    .line 214
     :cond_1
     if-nez p1, :cond_2
 
-    .line 220
+    .line 215
     return-void
 
-    .line 222
+    .line 217
     :cond_2
     iget-object v0, p0, Lcom/android/camera/snap/SnapTrigger;->mContext:Landroid/content/Context;
 
     iget-object v1, p0, Lcom/android/camera/snap/SnapTrigger;->mContext:Landroid/content/Context;
 
-    const v2, 0x7f0b017a
+    const v2, 0x7f090181
 
     invoke-virtual {v1, v2}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 
@@ -1083,9 +1081,9 @@
 
     iget-object v2, p0, Lcom/android/camera/snap/SnapTrigger;->mContext:Landroid/content/Context;
 
-    const v3, 0x7f0b017b
+    const v3, 0x7f090182
 
-    .line 223
+    .line 218
     invoke-virtual {v2, v3}, Landroid/content/Context;->getString(I)Ljava/lang/String;
 
     move-result-object v2
@@ -1096,34 +1094,34 @@
 
     move-result v3
 
-    .line 222
+    .line 217
     invoke-static {v0, p1, v1, v2, v3}, Lcom/android/camera/snap/SnapTrigger;->notifyForDetail(Landroid/content/Context;Landroid/net/Uri;Ljava/lang/String;Ljava/lang/String;Z)V
 
-    .line 224
+    .line 219
     return-void
 .end method
 
 .method public onSkipCapture()V
     .locals 4
 
-    .line 228
+    .line 223
     invoke-virtual {p0}, Lcom/android/camera/snap/SnapTrigger;->isRunning()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 229
+    .line 224
     sget-object v0, Lcom/android/camera/snap/SnapTrigger;->TAG:Ljava/lang/String;
 
     const-string v1, "onSkipCapture: exit"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 230
+    .line 225
     return-void
 
-    .line 232
+    .line 227
     :cond_0
     sget-object v0, Lcom/android/camera/snap/SnapTrigger;->TAG:Ljava/lang/String;
 
@@ -1131,19 +1129,19 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 234
+    .line 229
     iget v0, p0, Lcom/android/camera/snap/SnapTrigger;->mBurstCount:I
 
     add-int/lit8 v0, v0, -0x1
 
     iput v0, p0, Lcom/android/camera/snap/SnapTrigger;->mBurstCount:I
 
-    .line 235
+    .line 230
     iget-object v0, p0, Lcom/android/camera/snap/SnapTrigger;->mHandler:Landroid/os/Handler;
 
     if-eqz v0, :cond_1
 
-    .line 236
+    .line 231
     iget-object v0, p0, Lcom/android/camera/snap/SnapTrigger;->mHandler:Landroid/os/Handler;
 
     iget-object v1, p0, Lcom/android/camera/snap/SnapTrigger;->mSnapRunnable:Ljava/lang/Runnable;
@@ -1152,7 +1150,7 @@
 
     invoke-virtual {v0, v1, v2, v3}, Landroid/os/Handler;->postDelayed(Ljava/lang/Runnable;J)Z
 
-    .line 238
+    .line 233
     :cond_1
     return-void
 .end method

@@ -55,10 +55,7 @@ import android.provider.MiuiSettings.ScreenEffect;
 import android.provider.Settings.Secure;
 import android.provider.Settings.SettingNotFoundException;
 import android.provider.Settings.System;
-import android.renderscript.Allocation;
-import android.renderscript.Element;
-import android.renderscript.RenderScript;
-import android.renderscript.ScriptIntrinsicBlur;
+import android.support.v4.os.EnvironmentCompat;
 import android.support.v4.view.InputDeviceCompat;
 import android.support.v4.view.ViewCompat;
 import android.telephony.TelephonyManager;
@@ -67,6 +64,7 @@ import android.text.TextUtils;
 import android.text.format.Time;
 import android.util.DisplayMetrics;
 import android.util.SparseArray;
+import android.util.Xml;
 import android.view.IWindowManager;
 import android.view.IWindowManager.Stub;
 import android.view.KeyEvent;
@@ -82,10 +80,10 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
 import com.adobe.xmp.XMPMeta;
-import com.aeonax.camera.R;
 import com.android.camera.data.DataRepository;
 import com.android.camera.effect.FilterInfo;
 import com.android.camera.effect.renders.CustomTextWaterMark;
+import com.android.camera.effect.renders.NewStyleTextWaterMark;
 import com.android.camera.fragment.top.FragmentTopAlert;
 import com.android.camera.lib.compatibility.util.CompatibilityUtils;
 import com.android.camera.lib.compatibility.util.CompatibilityUtils.PackageInstallerListener;
@@ -102,9 +100,12 @@ import com.android.camera2.CaptureResultParser;
 import com.android.gallery3d.exif.ExifInterface;
 import com.android.gallery3d.exif.ExifInterface.GpsSpeedRef;
 import com.android.gallery3d.ui.StringTexture;
+import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
 import com.mi.config.b;
 import com.mi.config.d;
-import com.xiaomi.camera.liveshot.util.XmpHelper;
+import com.ss.android.ttve.BuildConfig;
+import com.ss.android.ttve.common.TEDefine;
+import com.xiaomi.camera.core.PictureInfo;
 import dalvik.system.VMRuntime;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -120,6 +121,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.security.MessageDigest;
@@ -127,12 +130,17 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+import java.util.zip.ZipInputStream;
+import miui.R;
 import miui.hardware.display.DisplayFeatureManager;
 import miui.os.Build;
 import miui.reflect.Field;
@@ -144,6 +152,7 @@ import miui.view.animation.SineEaseInOutInterpolator;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
+import org.xmlpull.v1.XmlSerializer;
 
 public final class Util {
     public static final String ACTION_BIND_GALLERY_SERVICE = "com.miui.gallery.action.BIND_SERVICE";
@@ -151,6 +160,7 @@ public final class Util {
     public static final String ACTION_KILL_CAMERA_SERVICE = "com.android.camera.action.KILL_CAMERA_SERVICE";
     public static final String ALGORITHM_NAME_PORTRAIT = "portrait";
     public static final String ALGORITHM_NAME_SOFT_PORTRAIT = "soft-portrait";
+    public static final String ALGORITHM_NAME_SOFT_PORTRAIT_ENCRYPTED = "soft-portrait-enc";
     private static HashSet<String> ANTIBANDING_60_COUNTRY = new HashSet(Arrays.asList(new String[]{"TW", "KR", "SA", "US", "CA", "BR", "CO", "MX", "PH"}));
     public static final double ASPECT_TOLERANCE = 0.02d;
     public static final int BLUR_DURATION = 100;
@@ -178,7 +188,6 @@ public final class Util {
     public static final String KEY_SECURE_ITEMS = "SecureUri";
     private static final String LAB_OPTIONS_VISIBLE_FILE = "lab_options_visible";
     public static final String LAST_FRAME_GAUSSIAN_FILE_NAME = "blur.jpg";
-    public static final int LAST_FRAME_GAUSSIAN_RADIUS = 24;
     public static final int LIMIT_SURFACE_WIDTH = 720;
     public static final int MAX_SECURE_SIZE = 100;
     private static final String NONUI_MODE_PROPERTY = "sys.power.nonui";
@@ -197,6 +206,7 @@ public final class Util {
     private static final String SCREEN_VENDOR = SystemProperties.get("sys.panel.display");
     private static final String TAG = "CameraUtil";
     private static final String TEMP_SUFFIX = ".tmp";
+    public static final String WATERMARK_48M_FILE_NAME;
     public static final String WATERMARK_FILE_NAME;
     private static final String ZOOM_ANIMATION_PROPERTY = "camera_zoom_animation";
     public static boolean isLongRatioScreen;
@@ -247,11 +257,19 @@ public final class Util {
         }
     }
 
+    public static boolean isFullScreenNavBarHidden(Context context) {
+        return false;
+    }
+
     static {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(android.os.Build.DEVICE);
         stringBuilder.append("_custom_watermark.png");
         WATERMARK_FILE_NAME = stringBuilder.toString();
+        stringBuilder = new StringBuilder();
+        stringBuilder.append(android.os.Build.DEVICE);
+        stringBuilder.append("_48m_custom_watermark.png");
+        WATERMARK_48M_FILE_NAME = stringBuilder.toString();
     }
 
     private Util() {
@@ -343,7 +361,7 @@ public final class Util {
             } else {
                 sStatusBarHeight = sWindowHeight - (sWindowWidth * 2);
             }
-            if (sIsFullScreenNavBarHidden) {
+            if (sIsFullScreenNavBarHidden && !isLongRatioScreen) {
                 sNavigationBarHeight -= sFullScreenExtraMargin;
                 sStatusBarHeight += sFullScreenExtraMargin / 2;
             }
@@ -539,63 +557,46 @@ public final class Util {
         return false;
     }
 
-    public static boolean saveCameraCalibrationToFile(byte[] bArr, boolean z) {
-        String str;
-        if (z) {
-            str = "front_dual_camera_caldata.bin";
-        } else {
-            str = "back_dual_camera_caldata.bin";
-        }
-        return saveCameraCalibrationToFile(bArr, str);
-    }
-
-    /* JADX WARNING: Removed duplicated region for block: B:31:0x0047 A:{SYNTHETIC, Splitter: B:31:0x0047} */
-    /* JADX WARNING: Removed duplicated region for block: B:25:0x0036 A:{SYNTHETIC, Splitter: B:25:0x0036} */
-    /* JADX WARNING: Removed duplicated region for block: B:34:0x0050 A:{SYNTHETIC, Splitter: B:34:0x0050} */
+    /* JADX WARNING: Removed duplicated region for block: B:27:0x0042 A:{SYNTHETIC, Splitter: B:27:0x0042} */
+    /* JADX WARNING: Removed duplicated region for block: B:38:0x0061 A:{SYNTHETIC, Splitter: B:38:0x0061} */
     /* Code decompiled incorrectly, please refer to instructions dump. */
-    private static boolean saveCameraCalibrationToFile(byte[] bArr, String str) {
+    public static boolean saveCameraCalibrationToFile(byte[] bArr, String str) {
         Throwable e;
         Context androidContext = CameraAppImpl.getAndroidContext();
-        boolean z = false;
+        boolean z = true;
         if (!(bArr == null || androidContext == null)) {
+            if (isEqual(bArr, androidContext.getFileStreamPath(str))) {
+                return true;
+            }
+            FileOutputStream openFileOutput;
             FileOutputStream fileOutputStream = null;
             try {
-                FileOutputStream openFileOutput = androidContext.openFileOutput(str, 0);
+                openFileOutput = androidContext.openFileOutput(str, 0);
+            } catch (FileNotFoundException e2) {
+                e = e2;
+                Log.e(TAG, "saveCameraCalibrationToFile: FileNotFoundException", e);
+                if (fileOutputStream != null) {
+                    fileOutputStream.flush();
+                    fileOutputStream.close();
+                }
+                z = false;
+                return z;
+            } catch (IOException e3) {
+                e = e3;
                 try {
-                    openFileOutput.write(bArr);
-                    z = true;
-                    if (openFileOutput != null) {
-                        try {
-                            openFileOutput.flush();
-                            openFileOutput.close();
-                        } catch (Exception e2) {
-                            e2.printStackTrace();
-                        }
-                    }
-                } catch (FileNotFoundException e3) {
-                    e = e3;
-                    fileOutputStream = openFileOutput;
-                    Log.e(TAG, "saveCameraCalibrationToFile: FileNotFoundException", e);
+                    Log.e(TAG, "saveCameraCalibrationToFile: IOException", e);
                     if (fileOutputStream != null) {
+                        try {
+                            fileOutputStream.flush();
+                            fileOutputStream.close();
+                        } catch (Exception e4) {
+                            e4.printStackTrace();
+                        }
                     }
+                    z = false;
                     return z;
-                } catch (IOException e4) {
-                    e = e4;
-                    fileOutputStream = openFileOutput;
-                    try {
-                        Log.e(TAG, "saveCameraCalibrationToFile: IOException", e);
-                        if (fileOutputStream != null) {
-                        }
-                        return z;
-                    } catch (Throwable th) {
-                        e = th;
-                        if (fileOutputStream != null) {
-                        }
-                        throw e;
-                    }
-                } catch (Throwable th2) {
-                    e = th2;
-                    fileOutputStream = openFileOutput;
+                } catch (Throwable th) {
+                    e = th;
                     if (fileOutputStream != null) {
                         try {
                             fileOutputStream.flush();
@@ -606,25 +607,124 @@ public final class Util {
                     }
                     throw e;
                 }
+            }
+            try {
+                openFileOutput.write(bArr);
+                if (openFileOutput != null) {
+                    try {
+                        openFileOutput.flush();
+                        openFileOutput.close();
+                    } catch (Exception e42) {
+                        e42.printStackTrace();
+                    }
+                }
             } catch (FileNotFoundException e6) {
                 e = e6;
-                Log.e(TAG, "saveCameraCalibrationToFile: FileNotFoundException", e);
-                if (fileOutputStream != null) {
-                    fileOutputStream.flush();
-                    fileOutputStream.close();
-                }
-                return z;
+                fileOutputStream = openFileOutput;
             } catch (IOException e7) {
                 e = e7;
+                fileOutputStream = openFileOutput;
                 Log.e(TAG, "saveCameraCalibrationToFile: IOException", e);
                 if (fileOutputStream != null) {
-                    fileOutputStream.flush();
-                    fileOutputStream.close();
                 }
+                z = false;
                 return z;
+            } catch (Throwable th2) {
+                e = th2;
+                fileOutputStream = openFileOutput;
+                if (fileOutputStream != null) {
+                }
+                throw e;
             }
+            return z;
         }
+        z = false;
         return z;
+    }
+
+    /* JADX WARNING: Removed duplicated region for block: B:25:0x005b A:{Splitter: B:8:0x0014, ExcHandler: java.io.IOException (e java.io.IOException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:29:0x0067 A:{SYNTHETIC, Splitter: B:29:0x0067} */
+    /* JADX WARNING: Removed duplicated region for block: B:21:0x0055 A:{Splitter: B:10:0x001f, ExcHandler: java.io.IOException (e java.io.IOException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:35:0x0079 A:{SYNTHETIC, Splitter: B:35:0x0079} */
+    /* JADX WARNING: Missing block: B:21:0x0055, code:
+            r6 = e;
+     */
+    /* JADX WARNING: Missing block: B:22:0x0056, code:
+            r1 = r5;
+     */
+    /* JADX WARNING: Missing block: B:23:0x0058, code:
+            r6 = th;
+     */
+    /* JADX WARNING: Missing block: B:24:0x0059, code:
+            r5 = r1;
+     */
+    /* JADX WARNING: Missing block: B:25:0x005b, code:
+            r6 = e;
+     */
+    /* JADX WARNING: Missing block: B:27:?, code:
+            com.android.camera.log.Log.e(TAG, r6.getMessage(), r6);
+     */
+    /* JADX WARNING: Missing block: B:28:0x0065, code:
+            if (r1 != null) goto L_0x0067;
+     */
+    /* JADX WARNING: Missing block: B:30:?, code:
+            r1.close();
+     */
+    /* JADX WARNING: Missing block: B:31:0x006b, code:
+            r6 = move-exception;
+     */
+    /* JADX WARNING: Missing block: B:32:0x006c, code:
+            com.android.camera.log.Log.e(TAG, r6.getMessage(), r6);
+     */
+    /* JADX WARNING: Missing block: B:36:?, code:
+            r5.close();
+     */
+    /* JADX WARNING: Missing block: B:37:0x007d, code:
+            r7 = move-exception;
+     */
+    /* JADX WARNING: Missing block: B:38:0x007e, code:
+            com.android.camera.log.Log.e(TAG, r7.getMessage(), r7);
+     */
+    /* JADX WARNING: Missing block: B:40:0x0088, code:
+            return false;
+     */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static boolean isEqual(byte[] bArr, File file) {
+        if (bArr == null || bArr.length == 0 || !file.exists()) {
+            return false;
+        }
+        FileInputStream fileInputStream = null;
+        byte[] bArr2 = new byte[512];
+        try {
+            MessageDigest instance = MessageDigest.getInstance("MD5");
+            FileInputStream fileInputStream2 = new FileInputStream(file);
+            while (true) {
+                try {
+                    int read = fileInputStream2.read(bArr2, 0, 512);
+                    if (read == -1) {
+                        break;
+                    }
+                    instance.update(bArr2, 0, read);
+                } catch (IOException e) {
+                } catch (Throwable th) {
+                    Throwable th2 = th;
+                    if (fileInputStream2 != null) {
+                    }
+                    throw th2;
+                }
+            }
+            String str = new String(instance.digest());
+            instance.reset();
+            boolean equals = str.equals(new String(instance.digest(bArr)));
+            try {
+                fileInputStream2.close();
+            } catch (Throwable e2) {
+                Log.e(TAG, e2.getMessage(), e2);
+            }
+            return equals;
+        } catch (IOException e3) {
+        }
+        return false;
     }
 
     public static void closeSilently(Closeable closeable) {
@@ -658,12 +758,12 @@ public final class Util {
         if (z) {
             CameraStatUtil.trackCameraErrorDialogShow();
         }
-        if (sIsKillCameraService && VERSION.SDK_INT >= 26 && b.fW() && z) {
+        if (sIsKillCameraService && VERSION.SDK_INT >= 26 && b.gq() && z) {
             if (SystemClock.elapsedRealtime() - CameraSettings.getBroadcastKillServiceTime() > 60000) {
                 broadcastKillService(activity);
             }
             final Button button = show.getButton(-3);
-            button.setTextAppearance(miui.R.style.Widget_Button_Dialog);
+            button.setTextAppearance(R.style.Widget_Button_Dialog);
             button.setEnabled(false);
             final Activity activity2 = activity;
             final CountDownTimer start = new CountDownTimer(5000, 1000) {
@@ -737,6 +837,16 @@ public final class Util {
         return f;
     }
 
+    public static long clamp(long j, long j2, long j3) {
+        if (j > j3) {
+            return j3;
+        }
+        if (j < j2) {
+            return j2;
+        }
+        return j;
+    }
+
     public static void checkLockedOrientation(Activity activity) {
         try {
             if (System.getInt(activity.getContentResolver(), "accelerometer_rotation") == 0) {
@@ -766,7 +876,7 @@ public final class Util {
 
     public static int getDisplayRotation(Activity activity) {
         int rotation;
-        if (b.hk() && CameraSettings.isFrontCamera() && activity.getRequestedOrientation() == 7) {
+        if (b.hC() && CameraSettings.isFrontCamera() && activity.getRequestedOrientation() == 7) {
             rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
         } else if (mLockedOrientation == 0 || mLockedOrientation == 2) {
             rotation = mLockedOrientation;
@@ -828,10 +938,16 @@ public final class Util {
                 obj = null;
             }
         }
-        if (obj != null) {
-            return (((i + 45) / 90) * 90) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+        if (obj == null) {
+            return i2;
         }
-        return i2;
+        i = (((i + 45) / 90) * 90) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("onOrientationChanged: orientation = ");
+        stringBuilder.append(i);
+        Log.d(str, stringBuilder.toString());
+        return i;
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:35:0x006a  */
@@ -855,7 +971,7 @@ public final class Util {
         double d2;
         double d3;
         CameraSize cameraSize3;
-        int integer = d.getInteger(d.sR, 0);
+        int integer = d.getInteger(d.tm, 0);
         int i4 = ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_END_DEAULT;
         if (integer != 0) {
             int i5 = i2 == Camera2DataContainer.getInstance().getFrontCameraId() ? 1 : 0;
@@ -867,7 +983,7 @@ public final class Util {
             if ((((i5 << i3) | 0) & integer) != 0) {
                 i3 = 1;
                 point = new Point(sWindowWidth, i3 == 0 ? Math.min(sWindowHeight, 1920) : sWindowHeight);
-                if (!b.gK() && b.gE()) {
+                if (!b.hc() && b.gW()) {
                     i4 = LIMIT_SURFACE_WIDTH;
                 }
                 if (point.x > i4) {
@@ -1015,7 +1131,7 @@ public final class Util {
     }
 
     public static int replaceStartEffectRender(Activity activity) {
-        if (b.fI()) {
+        if (b.gb()) {
             String stringExtra = activity.getIntent().getStringExtra(EXTRAS_START_WITH_EFFECT_RENDER);
             if (stringExtra != null) {
                 int identifier = activity.getResources().getIdentifier(stringExtra, "integer", activity.getPackageName());
@@ -1164,7 +1280,7 @@ public final class Util {
     }
 
     public static ByteBuffer dumpToBitmap(int i, int i2, int i3, int i4, String str) {
-        Buffer allocate = ByteBuffer.allocate(((i3 - i) * (i4 - i2)) * 4);
+        Buffer allocate = ByteBuffer.allocate((i3 * i4) * 4);
         GLES20.glReadPixels(i, i2, i3, i4, 6408, 5121, allocate);
         if (allocate != null) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -1222,7 +1338,7 @@ public final class Util {
         CameraSettings.setBroadcastKillServiceTime(elapsedRealtime);
         Intent intent = new Intent(ACTION_KILL_CAMERA_SERVICE);
         intent.putExtra("time", elapsedRealtime + FragmentTopAlert.HINT_DELAY_TIME);
-        intent.putExtra("process_name", new String[]{"android.hardware.camera.provider@2.4-service"});
+        intent.putExtra("process_name", new String[]{"android.hardware.camera.provider@2.4-service", "android.hardware.camera.provider@2.4-service_64"});
         context.sendBroadcast(intent);
         CameraStatUtil.trackBroadcastKillService();
     }
@@ -1238,7 +1354,7 @@ public final class Util {
     }
 
     public static void fadeIn(View view) {
-        fadeIn(view, 400);
+        fadeIn(view, MonitorCommonConstants.MAX_COUNT_UPLOAD_SINGLE_TIME);
     }
 
     public static void fadeOut(View view, int i) {
@@ -1252,19 +1368,20 @@ public final class Util {
     }
 
     public static void fadeOut(View view) {
-        fadeOut(view, 400);
+        fadeOut(view, MonitorCommonConstants.MAX_COUNT_UPLOAD_SINGLE_TIME);
     }
 
     public static int getJpegRotation(int i, int i2) {
         CameraCapabilities capabilities = Camera2DataContainer.getInstance().getCapabilities(i);
         int sensorOrientation = capabilities.getSensorOrientation();
         if (i2 == -1) {
+            Log.w(TAG, "getJpegRotation: orientation UNKNOWN!!! return sensorOrientation...");
             return sensorOrientation;
-        }
-        if (capabilities.getFacing() == 0) {
+        } else if (capabilities.getFacing() == 0) {
             return ((sensorOrientation - i2) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+        } else {
+            return (sensorOrientation + i2) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         }
-        return (sensorOrientation + i2) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
     }
 
     public static void enterLightsOutMode(Window window) {
@@ -1468,7 +1585,7 @@ public final class Util {
     }
 
     public static String getTimeWatermark() {
-        return getTimeWatermark(b.fR());
+        return getTimeWatermark(b.gl());
     }
 
     public static String getTimeWatermark(boolean z) {
@@ -1544,6 +1661,10 @@ public final class Util {
 
     public static boolean isShowPreviewDebugInfo() {
         return "1".equals(SystemProperties.get("camera.preview.enable.log"));
+    }
+
+    public static boolean isShowDebugInfoView() {
+        return "1".equals(SystemProperties.get("camera.preview.debug.debugInfo_view"));
     }
 
     public static boolean isShowAfRegionView() {
@@ -1836,14 +1957,14 @@ public final class Util {
     }
 
     public static boolean isInVideoCall(Activity activity) {
-        if (b.fZ() && PermissionManager.checkPhoneStatePermission(activity)) {
+        if (b.isMTKPlatform() && PermissionManager.checkPhoneStatePermission(activity)) {
             return CompatibilityUtils.isInVideoCall(activity);
         }
         return false;
     }
 
     public static boolean isFingerPrintKeyEvent(KeyEvent keyEvent) {
-        return keyEvent != null && 27 == keyEvent.getKeyCode() && keyEvent.getDevice() != null && b.hd().contains(keyEvent.getDevice().getName());
+        return keyEvent != null && 27 == keyEvent.getKeyCode() && keyEvent.getDevice() != null && b.hv().contains(keyEvent.getDevice().getName());
     }
 
     public static boolean isMemoryRich(Context context) {
@@ -1909,7 +2030,7 @@ public final class Util {
 
     public static int getBottomHeight(Resources resources) {
         int dimensionPixelSize = resources.getDimensionPixelSize(R.dimen.bottom_control_height);
-        if (isNotchDevice && sIsFullScreenNavBarHidden) {
+        if (isNotchDevice && sIsFullScreenNavBarHidden && !isLongRatioScreen) {
             return dimensionPixelSize - sFullScreenExtraMargin;
         }
         return dimensionPixelSize;
@@ -1920,10 +2041,6 @@ public final class Util {
             return i - sStatusBarHeight;
         }
         return i;
-    }
-
-    public static boolean isFullScreenNavBarHidden(Context context) {
-        return false;
     }
 
     public static boolean isPackageAvailable(Context context, String str) {
@@ -2065,7 +2182,7 @@ public final class Util {
     }
 
     public static boolean isZoomAnimationEnabled() {
-        return SystemProperties.getBoolean(ZOOM_ANIMATION_PROPERTY, DataRepository.dataItemFeature().fn() ^ 1);
+        return SystemProperties.getBoolean(ZOOM_ANIMATION_PROPERTY, DataRepository.dataItemFeature().fq() ^ 1);
     }
 
     public static boolean isNonUI() {
@@ -2118,7 +2235,7 @@ public final class Util {
     }
 
     public static void setScreenEffect(boolean z) {
-        if (b.hu()) {
+        if (b.hL()) {
             try {
                 DisplayFeatureManager.getInstance().setScreenEffect(14, z);
             } catch (Throwable e) {
@@ -2145,12 +2262,12 @@ public final class Util {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:20:0x0040  */
-    /* JADX WARNING: Removed duplicated region for block: B:28:0x007c A:{Catch:{ XmlPullParserException -> 0x0123, IOException -> 0x011a, all -> 0x010c }} */
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0035 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException), Splitter: B:6:0x001c} */
+    /* JADX WARNING: Removed duplicated region for block: B:28:0x007d A:{Catch:{ XmlPullParserException -> 0x0124, IOException -> 0x011b, all -> 0x010d }} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0035 A:{Splitter: B:6:0x001c, ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException)} */
     /* JADX WARNING: Removed duplicated region for block: B:20:0x0040  */
-    /* JADX WARNING: Removed duplicated region for block: B:28:0x007c A:{Catch:{ XmlPullParserException -> 0x0123, IOException -> 0x011a, all -> 0x010c }} */
-    /* JADX WARNING: Removed duplicated region for block: B:13:0x0032 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException), Splitter: B:8:0x0021} */
-    /* JADX WARNING: Removed duplicated region for block: B:12:0x0030 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException), Splitter: B:10:0x002c} */
+    /* JADX WARNING: Removed duplicated region for block: B:28:0x007d A:{Catch:{ XmlPullParserException -> 0x0124, IOException -> 0x011b, all -> 0x010d }} */
+    /* JADX WARNING: Removed duplicated region for block: B:13:0x0032 A:{Splitter: B:8:0x0021, ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:12:0x0030 A:{Splitter: B:10:0x002c, ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException)} */
     /* JADX WARNING: Missing block: B:12:0x0030, code:
             r4 = e;
      */
@@ -2170,19 +2287,19 @@ public final class Util {
     /* JADX WARNING: Missing block: B:17:0x0038, code:
             r4.printStackTrace();
      */
-    /* JADX WARNING: Missing block: B:47:0x0109, code:
-            if ((r0 instanceof android.content.res.XmlResourceParser) == false) goto L_0x0130;
+    /* JADX WARNING: Missing block: B:47:0x010a, code:
+            if ((r0 instanceof android.content.res.XmlResourceParser) == false) goto L_0x0131;
      */
-    /* JADX WARNING: Missing block: B:55:0x0120, code:
-            if ((r0 instanceof android.content.res.XmlResourceParser) == false) goto L_0x0130;
+    /* JADX WARNING: Missing block: B:55:0x0121, code:
+            if ((r0 instanceof android.content.res.XmlResourceParser) == false) goto L_0x0131;
      */
-    /* JADX WARNING: Missing block: B:58:0x0129, code:
-            if ((r0 instanceof android.content.res.XmlResourceParser) == false) goto L_0x0130;
+    /* JADX WARNING: Missing block: B:58:0x012a, code:
+            if ((r0 instanceof android.content.res.XmlResourceParser) == false) goto L_0x0131;
      */
-    /* JADX WARNING: Missing block: B:59:0x012b, code:
+    /* JADX WARNING: Missing block: B:59:0x012c, code:
             ((android.content.res.XmlResourceParser) r0).close();
      */
-    /* JADX WARNING: Missing block: B:60:0x0130, code:
+    /* JADX WARNING: Missing block: B:60:0x0131, code:
             return;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
@@ -2224,7 +2341,7 @@ public final class Util {
                     if (newPullParser.getEventType() == 2) {
                         if (!"screen".equals(newPullParser.getName())) {
                             continue;
-                        } else if (SCREEN_VENDOR.equals(newPullParser.getAttributeValue(null, d.sc))) {
+                        } else if (SCREEN_VENDOR.equals(newPullParser.getAttributeValue(null, d.sw))) {
                             String str = TAG;
                             StringBuilder stringBuilder = new StringBuilder();
                             stringBuilder.append("load screen light parameters for ");
@@ -2362,8 +2479,15 @@ public final class Util {
         return stringBuffer.toString();
     }
 
-    public static byte[] getTimeWaterMarkData(int i, int i2, String str) {
-        return StringTexture.newInstance(str, 30.079576f * (((float) Math.min(i, i2)) / 1080.0f), -1, 2).getBitmapData(CompressFormat.PNG);
+    public static byte[] getTimeWaterMarkData(int i, int i2, String str, int[] iArr) {
+        NewStyleTextWaterMark newStyleTextWaterMark = new NewStyleTextWaterMark(str, i, i2, 0);
+        if (iArr != null && iArr.length >= 4) {
+            iArr[0] = newStyleTextWaterMark.getWidth();
+            iArr[1] = newStyleTextWaterMark.getHeight();
+            iArr[2] = newStyleTextWaterMark.getPaddingX();
+            iArr[3] = newStyleTextWaterMark.getPaddingY();
+        }
+        return ((StringTexture) newStyleTextWaterMark.getTexture()).getBitmapData(CompressFormat.PNG);
     }
 
     public static long getDuration(String str) {
@@ -2502,38 +2626,6 @@ public final class Util {
         return 4;
     }
 
-    public static Bitmap getBlurBitmap(Bitmap bitmap) {
-        return getBlurBitmap(bitmap, 24);
-    }
-
-    public static Bitmap getBlurBitmap(Bitmap bitmap, int i) {
-        if (bitmap == null || bitmap.isRecycled()) {
-            return null;
-        }
-        String str = TAG;
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("getBlurBitmap: size = ");
-        stringBuilder.append(bitmap.getWidth());
-        stringBuilder.append("x");
-        stringBuilder.append(bitmap.getHeight());
-        stringBuilder.append(", radius = ");
-        stringBuilder.append(i);
-        Log.i(str, stringBuilder.toString());
-        RenderScript create = RenderScript.create(CameraAppImpl.getAndroidContext());
-        ScriptIntrinsicBlur create2 = ScriptIntrinsicBlur.create(create, Element.U8_4(create));
-        Allocation createFromBitmap = Allocation.createFromBitmap(create, bitmap);
-        Allocation createTyped = Allocation.createTyped(create, createFromBitmap.getType());
-        create2.setRadius((float) i);
-        create2.setInput(createFromBitmap);
-        create2.forEach(createTyped);
-        createTyped.copyTo(bitmap);
-        createFromBitmap.destroy();
-        createTyped.destroy();
-        create2.destroy();
-        RenderScript.releaseAllContexts();
-        return bitmap;
-    }
-
     public static byte[] getBitmapData(Bitmap bitmap) {
         OutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(CompressFormat.JPEG, 87, byteArrayOutputStream);
@@ -2569,7 +2661,7 @@ public final class Util {
         return bitmap2;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:7:0x0028 A:{ExcHandler: java.lang.OutOfMemoryError (r1_2 'e' java.lang.Throwable), Splitter: B:4:0x001f} */
+    /* JADX WARNING: Removed duplicated region for block: B:7:0x0028 A:{Splitter: B:4:0x001f, ExcHandler: java.lang.OutOfMemoryError (r1_2 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:7:0x0028, code:
             r1 = move-exception;
      */
@@ -2603,48 +2695,113 @@ public final class Util {
         return bitmap2;
     }
 
-    public static Bitmap generateCustomWatermark2File() {
+    public static Bitmap generateWatermark2File() {
         long currentTimeMillis = System.currentTimeMillis();
         Options options = new Options();
         options.inScaled = false;
         options.inPurgeable = true;
         options.inPremultiplied = true;
-        if (!DataRepository.dataItemFeature().fc()) {
+        if (!DataRepository.dataItemFeature().fe()) {
             return null;
         }
         Bitmap loadAppCameraWatermark = loadAppCameraWatermark(CameraAppImpl.getAndroidContext(), options, android.os.Build.DEVICE);
         if (loadAppCameraWatermark == null) {
-            loadAppCameraWatermark = loadAppCameraWatermark(CameraAppImpl.getAndroidContext(), options, "common");
+            loadAppCameraWatermark = loadAppCameraWatermark(CameraAppImpl.getAndroidContext(), options, BuildConfig.FLAVOR);
         }
-        if (DataRepository.dataItemFeature().fC()) {
-            loadAppCameraWatermark = CustomTextWaterMark.newInstance(loadAppCameraWatermark, 350.0f, 86.0f, CameraSettings.getCustomWatermark()).drawToBitmap();
+        if (DataRepository.dataItemFeature().fG()) {
+            loadAppCameraWatermark = CustomTextWaterMark.newInstance(loadAppCameraWatermark, (float) CameraAppImpl.getAndroidContext().getResources().getInteger(R.integer.custom_watermark_startx), (float) CameraAppImpl.getAndroidContext().getResources().getInteger(R.integer.custom_watermark_starty), CameraSettings.getCustomWatermark()).drawToBitmap();
         }
-        saveCustomWatermark2File(loadAppCameraWatermark);
+        saveCustomWatermark2File(loadAppCameraWatermark, false);
         String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("generateCustomWatermark2File cost time = ");
+        stringBuilder.append("generateWatermark2File cost time = ");
         stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
         stringBuilder.append("ms");
         Log.d(str, stringBuilder.toString());
         return loadAppCameraWatermark;
     }
 
+    public static Bitmap generate48MWatermark2File() {
+        Bitmap drawToBitmap;
+        Options options = new Options();
+        options.inScaled = false;
+        options.inPurgeable = true;
+        options.inPremultiplied = true;
+        if (DataRepository.dataItemFeature().fG()) {
+            Bitmap loadAppCameraWatermark = loadAppCameraWatermark(CameraAppImpl.getAndroidContext(), options, android.os.Build.DEVICE);
+            if (loadAppCameraWatermark == null) {
+                loadAppCameraWatermark = loadAppCameraWatermark(CameraAppImpl.getAndroidContext(), options, BuildConfig.FLAVOR);
+            }
+            drawToBitmap = CustomTextWaterMark.newInstance(loadAppCameraWatermark, (float) CameraAppImpl.getAndroidContext().getResources().getInteger(R.integer.custom_watermark_startx), (float) CameraAppImpl.getAndroidContext().getResources().getInteger(R.integer.custom_watermark_starty), CameraSettings.getString(R.string.device_48m_watermark_default_text)).drawToBitmap();
+        } else {
+            Context androidContext = CameraAppImpl.getAndroidContext();
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(android.os.Build.DEVICE);
+            stringBuilder.append("_48m");
+            drawToBitmap = loadAppCameraWatermark(androidContext, options, stringBuilder.toString());
+        }
+        saveCustomWatermark2File(drawToBitmap, true);
+        return drawToBitmap;
+    }
+
     protected static Bitmap loadAppCameraWatermark(Context context, Options options, String str) {
+        AutoCloseable open;
+        Throwable th;
+        Throwable th2;
+        if (str == null) {
+            return null;
+        }
+        if (str.equalsIgnoreCase(BuildConfig.FLAVOR)) {
+            str = "common.png";
+        } else {
+            String givenName = b.getGivenName();
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(str);
+            stringBuilder.append(givenName);
+            stringBuilder.append(".png");
+            str = stringBuilder.toString();
+        }
         AssetManager assets = context.getAssets();
         try {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("watermarks/");
-            stringBuilder.append(str);
-            stringBuilder.append(".png");
-            return BitmapFactory.decodeStream(assets.open(stringBuilder.toString()), null, options);
+            StringBuilder stringBuilder2 = new StringBuilder();
+            stringBuilder2.append("watermarks/");
+            stringBuilder2.append(str);
+            open = assets.open(stringBuilder2.toString());
+            try {
+                Bitmap decodeStream = BitmapFactory.decodeStream(open, null, options);
+                if (open != null) {
+                    $closeResource(null, open);
+                }
+                return decodeStream;
+            } catch (Throwable th22) {
+                Throwable th3 = th22;
+                th22 = th;
+                th = th3;
+            }
         } catch (Throwable e) {
             Log.d(TAG, "Failed to load app camera watermark ", e);
             return null;
         }
+        if (open != null) {
+            $closeResource(th22, open);
+        }
+        throw th;
     }
 
-    protected static void saveCustomWatermark2File(Bitmap bitmap) {
-        boolean renameTo;
+    private static /* synthetic */ void $closeResource(Throwable th, AutoCloseable autoCloseable) {
+        if (th != null) {
+            try {
+                autoCloseable.close();
+                return;
+            } catch (Throwable th2) {
+                th.addSuppressed(th2);
+                return;
+            }
+        }
+        autoCloseable.close();
+    }
+
+    protected static void saveCustomWatermark2File(Bitmap bitmap, boolean z) {
         Throwable e;
         String str;
         StringBuilder stringBuilder;
@@ -2655,82 +2812,86 @@ public final class Util {
         stringBuilder2.append(bitmap);
         Log.d(str2, stringBuilder2.toString());
         long currentTimeMillis = System.currentTimeMillis();
+        String str3 = z ? WATERMARK_48M_FILE_NAME : WATERMARK_FILE_NAME;
         if (!(bitmap == null || bitmap.isRecycled())) {
+            File filesDir;
+            File file;
+            Closeable fileOutputStream;
             Closeable closeable = null;
             try {
-                File filesDir = CameraAppImpl.getAndroidContext().getFilesDir();
+                filesDir = CameraAppImpl.getAndroidContext().getFilesDir();
                 StringBuilder stringBuilder3 = new StringBuilder();
-                stringBuilder3.append(WATERMARK_FILE_NAME);
+                stringBuilder3.append(str3);
                 stringBuilder3.append(TEMP_SUFFIX);
-                File file = new File(filesDir, stringBuilder3.toString());
-                Closeable fileOutputStream = new FileOutputStream(file);
+                file = new File(filesDir, stringBuilder3.toString());
+                fileOutputStream = new FileOutputStream(file);
+            } catch (IOException e2) {
+                e = e2;
                 try {
-                    bitmap.compress(CompressFormat.PNG, 90, fileOutputStream);
-                    fileOutputStream.flush();
-                    renameTo = file.renameTo(new File(filesDir, WATERMARK_FILE_NAME));
-                    closeSilently(fileOutputStream);
-                } catch (Throwable e2) {
-                    e = e2;
-                    closeable = fileOutputStream;
-                    try {
-                        Log.e(TAG, "saveCustomWatermark2File Failed to write image", e);
-                        closeSilently(closeable);
-                        renameTo = false;
-                        str = TAG;
-                        stringBuilder = new StringBuilder();
-                        stringBuilder.append("saveCustomWatermark2File: watermarkBitmap = ");
-                        stringBuilder.append(bitmap);
-                        stringBuilder.append(", save result = ");
-                        stringBuilder.append(renameTo);
-                        stringBuilder.append(", cost time = ");
-                        stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
-                        stringBuilder.append("ms");
-                        Log.d(str, stringBuilder.toString());
-                    } catch (Throwable th2) {
-                        th = th2;
-                        closeSilently(closeable);
-                        throw th;
-                    }
-                } catch (Throwable th3) {
-                    th = th3;
-                    closeable = fileOutputStream;
+                    Log.e(TAG, "saveCustomWatermark2File Failed to write image", e);
+                    closeSilently(closeable);
+                    z = false;
+                    str = TAG;
+                    stringBuilder = new StringBuilder();
+                    stringBuilder.append("saveCustomWatermark2File: watermarkBitmap = ");
+                    stringBuilder.append(bitmap);
+                    stringBuilder.append(", save result = ");
+                    stringBuilder.append(z);
+                    stringBuilder.append(", cost time = ");
+                    stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
+                    stringBuilder.append("ms");
+                    Log.d(str, stringBuilder.toString());
+                } catch (Throwable th2) {
+                    th = th2;
                     closeSilently(closeable);
                     throw th;
                 }
+            }
+            try {
+                bitmap.compress(CompressFormat.PNG, 90, fileOutputStream);
+                fileOutputStream.flush();
+                z = file.renameTo(new File(filesDir, str3));
+                closeSilently(fileOutputStream);
             } catch (IOException e3) {
                 e = e3;
+                closeable = fileOutputStream;
                 Log.e(TAG, "saveCustomWatermark2File Failed to write image", e);
                 closeSilently(closeable);
-                renameTo = false;
+                z = false;
                 str = TAG;
                 stringBuilder = new StringBuilder();
                 stringBuilder.append("saveCustomWatermark2File: watermarkBitmap = ");
                 stringBuilder.append(bitmap);
                 stringBuilder.append(", save result = ");
-                stringBuilder.append(renameTo);
+                stringBuilder.append(z);
                 stringBuilder.append(", cost time = ");
                 stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
                 stringBuilder.append("ms");
                 Log.d(str, stringBuilder.toString());
+            } catch (Throwable th3) {
+                th = th3;
+                closeable = fileOutputStream;
+                closeSilently(closeable);
+                throw th;
             }
             str = TAG;
             stringBuilder = new StringBuilder();
             stringBuilder.append("saveCustomWatermark2File: watermarkBitmap = ");
             stringBuilder.append(bitmap);
             stringBuilder.append(", save result = ");
-            stringBuilder.append(renameTo);
+            stringBuilder.append(z);
             stringBuilder.append(", cost time = ");
             stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
             stringBuilder.append("ms");
             Log.d(str, stringBuilder.toString());
         }
-        renameTo = false;
+        z = false;
         str = TAG;
         stringBuilder = new StringBuilder();
         stringBuilder.append("saveCustomWatermark2File: watermarkBitmap = ");
         stringBuilder.append(bitmap);
         stringBuilder.append(", save result = ");
-        stringBuilder.append(renameTo);
+        stringBuilder.append(z);
         stringBuilder.append(", cost time = ");
         stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
         stringBuilder.append("ms");
@@ -2964,288 +3125,277 @@ public final class Util {
         }
     }
 
-    public static byte[] composeLiveShotPicture(Context context, byte[] bArr, int i, int i2, byte[] bArr2, long j, boolean z, String str) {
+    public static byte[] composeLiveShotPicture(byte[] bArr, int i, int i2, byte[] bArr2, long j, boolean z, String str) {
         OutputStream byteArrayOutputStream;
+        byte[] toByteArray;
         Throwable th;
         Throwable th2;
-        Throwable th3;
-        XMPMeta createXMPMeta;
-        AutoCloseable byteArrayInputStream;
         AutoCloseable byteArrayOutputStream2;
-        int length;
-        String str2;
-        StringBuilder stringBuilder;
-        Throwable th4;
-        Throwable th5;
+        Throwable th3;
+        byte[] bArr3 = bArr;
+        int i3 = i;
+        int i4 = i2;
+        byte[] bArr4 = bArr2;
+        String str2 = str;
         Log.d(TAG, "composeLiveShotPicture(): E");
-        if (bArr == null || bArr.length == 0) {
+        if (bArr3 == null || bArr3.length == 0) {
             Log.d(TAG, "composeLiveShotPicture(): The primary photo of LiveShot is empty");
             return new byte[0];
-        } else if (bArr2 == null || bArr2.length == 0) {
+        } else if (bArr4 == null || bArr4.length == 0) {
             Log.d(TAG, "composeLiveShotPicture(): The corresponding movie of LiveShot is empty");
-            return bArr;
+            return bArr3;
         } else {
-            byte[] dualCameraWatermarkData;
-            Throwable th6 = null;
+            int[] iArr = new int[4];
+            int[] iArr2 = new int[4];
+            Throwable th4 = null;
             try {
                 byteArrayOutputStream = new ByteArrayOutputStream();
                 try {
                     ExifInterface exifInterface = new ExifInterface();
-                    exifInterface.readExif(bArr);
+                    exifInterface.readExif(bArr3);
                     exifInterface.addFileTypeLiveShot(true);
-                    if (z) {
-                        dualCameraWatermarkData = getDualCameraWatermarkData(context);
-                        if (dualCameraWatermarkData != null && dualCameraWatermarkData.length > 0) {
-                            exifInterface.addDulCameraWaterMark(dualCameraWatermarkData);
-                        }
-                    }
-                    if (!(str == null || str.isEmpty())) {
-                        dualCameraWatermarkData = getTimeWaterMarkData(i, i2, str);
-                        if (dualCameraWatermarkData != null && dualCameraWatermarkData.length > 0) {
-                            exifInterface.addTimeWaterMark(dualCameraWatermarkData);
-                        }
-                    }
-                    exifInterface.writeExif(bArr, byteArrayOutputStream);
-                    dualCameraWatermarkData = byteArrayOutputStream.toByteArray();
+                    exifInterface.writeExif(bArr3, byteArrayOutputStream);
+                    toByteArray = byteArrayOutputStream.toByteArray();
                     try {
                         $closeResource(null, byteArrayOutputStream);
                     } catch (IOException e) {
                     }
-                } catch (Throwable th22) {
-                    th3 = th22;
-                    th22 = th;
-                    th = th3;
+                } catch (Throwable th5) {
+                    th2 = th5;
                 }
             } catch (IOException e2) {
-                dualCameraWatermarkData = bArr;
+                toByteArray = null;
                 Log.d(TAG, "composeLiveShotPicture(): Failed to insert xiaomi specific metadata");
-                createXMPMeta = XmpHelper.createXMPMeta();
-                byteArrayInputStream = new ByteArrayInputStream(dualCameraWatermarkData);
+                if (toByteArray != null) {
+                }
+                Log.d(TAG, "composeLiveShotPicture(): #1: return original jpeg");
+                return bArr3;
+            }
+            if (toByteArray != null || toByteArray.length <= bArr3.length) {
+                Log.d(TAG, "composeLiveShotPicture(): #1: return original jpeg");
+                return bArr3;
+            }
+            byte[] dualCameraWatermarkData;
+            byte[] bArr5;
+            Object stringWriter;
+            if (z) {
+                dualCameraWatermarkData = getDualCameraWatermarkData(i3, i4, iArr);
+            } else {
+                dualCameraWatermarkData = null;
+            }
+            if (str2 == null || str.isEmpty()) {
+                bArr5 = null;
+            } else {
+                bArr5 = getTimeWaterMarkData(i3, i4, str2, iArr2);
+            }
+            try {
+                XmlSerializer newSerializer = Xml.newSerializer();
+                Writer stringWriter2 = new StringWriter();
+                newSerializer.setOutput(stringWriter2);
+                newSerializer.startDocument("UTF-8", Boolean.valueOf(true));
+                if (dualCameraWatermarkData != null && dualCameraWatermarkData.length > 0) {
+                    newSerializer.startTag(null, "lenswatermark");
+                    newSerializer.attribute(null, "offset", String.valueOf((dualCameraWatermarkData.length + (bArr5 != null ? bArr5.length : 0)) + bArr4.length));
+                    newSerializer.attribute(null, "length", String.valueOf(dualCameraWatermarkData.length));
+                    newSerializer.attribute(null, "width", String.valueOf(iArr[0]));
+                    newSerializer.attribute(null, "height", String.valueOf(iArr[1]));
+                    newSerializer.attribute(null, "paddingx", String.valueOf(iArr[2]));
+                    newSerializer.attribute(null, "paddingy", String.valueOf(iArr[3]));
+                    newSerializer.endTag(null, "lenswatermark");
+                }
+                if (bArr5 != null && bArr5.length > 0) {
+                    newSerializer.startTag(null, "timewatermark");
+                    newSerializer.attribute(null, "offset", String.valueOf(bArr5.length + bArr4.length));
+                    newSerializer.attribute(null, "length", String.valueOf(bArr5.length));
+                    newSerializer.attribute(null, "width", String.valueOf(iArr2[0]));
+                    newSerializer.attribute(null, "height", String.valueOf(iArr2[1]));
+                    newSerializer.attribute(null, "paddingx", String.valueOf(iArr2[2]));
+                    newSerializer.attribute(null, "paddingy", String.valueOf(iArr2[3]));
+                    newSerializer.endTag(null, "timewatermark");
+                }
+                newSerializer.endDocument();
+                stringWriter = stringWriter2.toString();
+            } catch (IOException e3) {
+                Log.d(TAG, "composeLiveShotPicture(): Failed to generate xiaomi xmp metadata");
+                stringWriter = null;
+            }
+            if (stringWriter == null) {
+                Log.d(TAG, "composeLiveShotPicture(): #2: return original jpeg");
+                return bArr3;
+            }
+            try {
+                AutoCloseable byteArrayInputStream = new ByteArrayInputStream(toByteArray);
                 try {
                     byteArrayOutputStream2 = new ByteArrayOutputStream();
                     try {
+                        XMPMeta createXMPMeta = XmpHelper.createXMPMeta();
                         createXMPMeta.setPropertyInteger(XmpHelper.GOOGLE_MICROVIDEO_NAMESPACE, XmpHelper.MICROVIDEO_VERSION, 1);
                         createXMPMeta.setPropertyInteger(XmpHelper.GOOGLE_MICROVIDEO_NAMESPACE, XmpHelper.MICROVIDEO_TYPE, 1);
-                        createXMPMeta.setPropertyInteger(XmpHelper.GOOGLE_MICROVIDEO_NAMESPACE, XmpHelper.MICROVIDEO_OFFSET, bArr2.length);
+                        createXMPMeta.setPropertyInteger(XmpHelper.GOOGLE_MICROVIDEO_NAMESPACE, XmpHelper.MICROVIDEO_OFFSET, bArr4.length);
                         createXMPMeta.setPropertyLong(XmpHelper.GOOGLE_MICROVIDEO_NAMESPACE, XmpHelper.MICROVIDEO_PRESENTATION_TIMESTAMP, j);
-                        XmpHelper.writeXMPMeta(byteArrayInputStream, byteArrayOutputStream2, createXMPMeta);
-                        bArr = byteArrayOutputStream2.toByteArray();
-                        $closeResource(null, byteArrayOutputStream2);
-                        try {
-                            $closeResource(null, byteArrayInputStream);
-                        } catch (Exception e3) {
+                        if (stringWriter != null) {
+                            createXMPMeta.setProperty(XmpHelper.XIAOMI_XMP_METADATA_NAMESPACE, XmpHelper.XIAOMI_XMP_METADATA_PROPERTY_NAME, stringWriter);
                         }
-                        length = bArr.length + bArr2.length;
-                        str2 = TAG;
-                        stringBuilder = new StringBuilder();
-                        stringBuilder.append("composeLiveShotPicture(): file size = ");
-                        stringBuilder.append(length);
-                        Log.d(str2, stringBuilder.toString());
-                        dualCameraWatermarkData = new byte[length];
-                        System.arraycopy(bArr, 0, dualCameraWatermarkData, 0, bArr.length);
-                        System.arraycopy(bArr2, 0, dualCameraWatermarkData, bArr.length, bArr2.length);
-                        Log.d(TAG, "composeLiveShotPicture(): X");
-                        return dualCameraWatermarkData;
-                    } catch (Throwable th52) {
-                        th3 = th52;
-                        th52 = th4;
-                        th4 = th3;
+                        XmpHelper.writeXMPMeta(byteArrayInputStream, byteArrayOutputStream2, createXMPMeta);
+                        if (dualCameraWatermarkData != null && dualCameraWatermarkData.length > 0) {
+                            byteArrayOutputStream2.write(dualCameraWatermarkData);
+                        }
+                        if (bArr5 != null && bArr5.length > 0) {
+                            byteArrayOutputStream2.write(bArr5);
+                        }
+                        byteArrayOutputStream2.flush();
+                        bArr5 = byteArrayOutputStream2.toByteArray();
+                        try {
+                            $closeResource(null, byteArrayOutputStream2);
+                            try {
+                                $closeResource(null, byteArrayInputStream);
+                            } catch (Exception e4) {
+                            }
+                            if (bArr5 != null || bArr5.length <= toByteArray.length) {
+                                Log.d(TAG, "composeLiveShotPicture(): #3: return original jpeg");
+                                return bArr3;
+                            }
+                            int length = bArr5.length + bArr4.length;
+                            String str3 = TAG;
+                            StringBuilder stringBuilder = new StringBuilder();
+                            stringBuilder.append("composeLiveShotPicture(): file size = ");
+                            stringBuilder.append(length);
+                            Log.d(str3, stringBuilder.toString());
+                            byte[] bArr6 = new byte[length];
+                            System.arraycopy(bArr5, 0, bArr6, 0, bArr5.length);
+                            System.arraycopy(bArr4, 0, bArr6, bArr5.length, bArr4.length);
+                            Log.d(TAG, "composeLiveShotPicture(): X");
+                            return bArr6;
+                        } catch (Throwable th6) {
+                            th2 = th6;
+                            th4 = th2;
+                            try {
+                                throw th4;
+                            } catch (Throwable th7) {
+                                th2 = th7;
+                            }
+                        }
+                    } catch (Throwable th8) {
+                        th2 = th8;
                     }
-                } catch (Throwable th42) {
-                    th6 = th42;
+                } catch (Throwable th9) {
+                    th2 = th9;
+                    bArr5 = null;
+                    $closeResource(th4, byteArrayInputStream);
+                    throw th2;
                 }
-            }
-            createXMPMeta = XmpHelper.createXMPMeta();
-            try {
-                byteArrayInputStream = new ByteArrayInputStream(dualCameraWatermarkData);
-                byteArrayOutputStream2 = new ByteArrayOutputStream();
-                createXMPMeta.setPropertyInteger(XmpHelper.GOOGLE_MICROVIDEO_NAMESPACE, XmpHelper.MICROVIDEO_VERSION, 1);
-                createXMPMeta.setPropertyInteger(XmpHelper.GOOGLE_MICROVIDEO_NAMESPACE, XmpHelper.MICROVIDEO_TYPE, 1);
-                createXMPMeta.setPropertyInteger(XmpHelper.GOOGLE_MICROVIDEO_NAMESPACE, XmpHelper.MICROVIDEO_OFFSET, bArr2.length);
-                createXMPMeta.setPropertyLong(XmpHelper.GOOGLE_MICROVIDEO_NAMESPACE, XmpHelper.MICROVIDEO_PRESENTATION_TIMESTAMP, j);
-                XmpHelper.writeXMPMeta(byteArrayInputStream, byteArrayOutputStream2, createXMPMeta);
-                bArr = byteArrayOutputStream2.toByteArray();
-                try {
-                    $closeResource(null, byteArrayOutputStream2);
-                    $closeResource(null, byteArrayInputStream);
-                    length = bArr.length + bArr2.length;
-                    str2 = TAG;
-                    stringBuilder = new StringBuilder();
-                    stringBuilder.append("composeLiveShotPicture(): file size = ");
-                    stringBuilder.append(length);
-                    Log.d(str2, stringBuilder.toString());
-                    dualCameraWatermarkData = new byte[length];
-                    System.arraycopy(bArr, 0, dualCameraWatermarkData, 0, bArr.length);
-                    System.arraycopy(bArr2, 0, dualCameraWatermarkData, bArr.length, bArr2.length);
-                    Log.d(TAG, "composeLiveShotPicture(): X");
-                    return dualCameraWatermarkData;
-                } catch (Throwable th7) {
-                    byte[] bArr3 = bArr;
-                    th42 = th7;
-                    dualCameraWatermarkData = bArr3;
-                    $closeResource(th6, byteArrayInputStream);
-                    throw th42;
-                }
-            } catch (Exception e4) {
-                bArr = dualCameraWatermarkData;
+            } catch (Exception e5) {
+                bArr5 = null;
                 Log.d(TAG, "composeLiveShotPicture(): failed to insert xmp metadata");
-                length = bArr.length + bArr2.length;
-                str2 = TAG;
-                stringBuilder = new StringBuilder();
-                stringBuilder.append("composeLiveShotPicture(): file size = ");
-                stringBuilder.append(length);
-                Log.d(str2, stringBuilder.toString());
-                dualCameraWatermarkData = new byte[length];
-                System.arraycopy(bArr, 0, dualCameraWatermarkData, 0, bArr.length);
-                System.arraycopy(bArr2, 0, dualCameraWatermarkData, bArr.length, bArr2.length);
-                Log.d(TAG, "composeLiveShotPicture(): X");
-                return dualCameraWatermarkData;
+                if (bArr5 != null) {
+                }
+                Log.d(TAG, "composeLiveShotPicture(): #3: return original jpeg");
+                return bArr3;
             }
         }
-        $closeResource(th22, byteArrayOutputStream);
-        throw th7;
-        $closeResource(th52, byteArrayOutputStream2);
-        throw th42;
+        $closeResource(th3, byteArrayOutputStream2);
+        throw th2;
+        $closeResource(th, byteArrayOutputStream);
+        throw th2;
     }
 
-    private static /* synthetic */ void $closeResource(Throwable th, AutoCloseable autoCloseable) {
-        if (th != null) {
-            try {
-                autoCloseable.close();
-                return;
-            } catch (Throwable th2) {
-                th.addSuppressed(th2);
-                return;
-            }
-        }
-        autoCloseable.close();
-    }
-
-    /* JADX WARNING: Removed duplicated region for block: B:16:0x008b  */
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0067  */
-    /* Code decompiled incorrectly, please refer to instructions dump. */
-    public static byte[] composeDepthMapPicture(byte[] bArr, byte[] bArr2, byte[] bArr3, boolean z, int i, String str, int i2, int i3, boolean z2, boolean z3) {
-        String stringBuilder;
-        byte[] toByteArray;
+    public static byte[] composeDepthMapPicture(byte[] bArr, byte[] bArr2, byte[] bArr3, boolean z, int i, String str, int i2, int i3, boolean z2, boolean z3, PictureInfo pictureInfo) {
+        byte[] dualCameraWatermarkData;
         byte[] timeWaterMarkData;
-        byte[] writePortraitExif;
-        byte[] depthMapData;
-        byte[] bArr4;
-        StringBuilder stringBuilder2;
-        byte[] bArr5 = bArr3;
+        byte[] bArr4 = bArr3;
         String str2 = str;
         int i4 = i2;
         int i5 = i3;
         Log.d(TAG, "composeDepthMapPicture: process in portrait depth map picture");
         long currentTimeMillis = System.currentTimeMillis();
         ArcsoftDepthMap arcsoftDepthMap = new ArcsoftDepthMap(bArr2);
+        int[] iArr = new int[4];
         if (z) {
-            if (DataRepository.dataItemFeature().fc()) {
-                StringBuilder stringBuilder3 = new StringBuilder();
-                stringBuilder3.append(CameraAppImpl.getAndroidContext().getFilesDir());
-                stringBuilder3.append(WATERMARK_FILE_NAME);
-                stringBuilder = stringBuilder3.toString();
-                if (!new File(stringBuilder).exists()) {
-                    generateCustomWatermark2File();
-                }
-            } else {
-                stringBuilder = CameraSettings.getDualCameraWaterMarkFilePathVendor();
-            }
-            try {
-                toByteArray = IOUtils.toByteArray(new FileInputStream(stringBuilder));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (str2 == null) {
-                stringBuilder = TAG;
-                StringBuilder stringBuilder4 = new StringBuilder();
-                stringBuilder4.append("generate a TimeWaterMarkData with :");
-                stringBuilder4.append(i4);
-                stringBuilder4.append("x");
-                stringBuilder4.append(i5);
-                Log.d(stringBuilder, stringBuilder4.toString());
-                timeWaterMarkData = getTimeWaterMarkData(i4, i5, str2);
-            } else {
-                timeWaterMarkData = null;
-            }
-            writePortraitExif = arcsoftDepthMap.writePortraitExif(bArr, toByteArray, timeWaterMarkData, i, z2, z3);
-            depthMapData = arcsoftDepthMap.getDepthMapData();
-            bArr4 = new byte[((writePortraitExif.length + bArr5.length) + depthMapData.length)];
-            System.arraycopy(writePortraitExif, 0, bArr4, 0, writePortraitExif.length);
-            System.arraycopy(bArr5, 0, bArr4, writePortraitExif.length, bArr5.length);
-            System.arraycopy(depthMapData, 0, bArr4, writePortraitExif.length + bArr5.length, depthMapData.length);
-            stringBuilder = TAG;
-            stringBuilder2 = new StringBuilder();
-            stringBuilder2.append("composeDepthMapPicture: compose portrait picture cost: ");
-            stringBuilder2.append(System.currentTimeMillis() - currentTimeMillis);
-            Log.d(stringBuilder, stringBuilder2.toString());
-            return bArr4;
+            dualCameraWatermarkData = getDualCameraWatermarkData(i4, i5, iArr);
+        } else {
+            dualCameraWatermarkData = null;
         }
-        toByteArray = null;
-        if (str2 == null) {
+        int[] iArr2 = new int[4];
+        if (str2 != null) {
+            String str3 = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("generate a TimeWaterMarkData with :");
+            stringBuilder.append(i4);
+            stringBuilder.append("x");
+            stringBuilder.append(i5);
+            Log.d(str3, stringBuilder.toString());
+            timeWaterMarkData = getTimeWaterMarkData(i4, i5, str2, iArr2);
+        } else {
+            timeWaterMarkData = null;
         }
-        writePortraitExif = arcsoftDepthMap.writePortraitExif(bArr, toByteArray, timeWaterMarkData, i, z2, z3);
-        depthMapData = arcsoftDepthMap.getDepthMapData();
-        bArr4 = new byte[((writePortraitExif.length + bArr5.length) + depthMapData.length)];
-        System.arraycopy(writePortraitExif, 0, bArr4, 0, writePortraitExif.length);
-        System.arraycopy(bArr5, 0, bArr4, writePortraitExif.length, bArr5.length);
-        System.arraycopy(depthMapData, 0, bArr4, writePortraitExif.length + bArr5.length, depthMapData.length);
-        stringBuilder = TAG;
-        stringBuilder2 = new StringBuilder();
+        byte[] depthMapData = arcsoftDepthMap.getDepthMapData();
+        byte[] writePortraitExif = arcsoftDepthMap.writePortraitExif(DataRepository.dataItemFeature().fM(), bArr, dualCameraWatermarkData, iArr, timeWaterMarkData, iArr2, i, z2, z3, pictureInfo, bArr4.length, depthMapData.length);
+        byte[] bArr5 = new byte[((writePortraitExif.length + bArr4.length) + depthMapData.length)];
+        System.arraycopy(writePortraitExif, 0, bArr5, 0, writePortraitExif.length);
+        System.arraycopy(bArr4, 0, bArr5, writePortraitExif.length, bArr4.length);
+        System.arraycopy(depthMapData, 0, bArr5, writePortraitExif.length + bArr4.length, depthMapData.length);
+        String str4 = TAG;
+        StringBuilder stringBuilder2 = new StringBuilder();
         stringBuilder2.append("composeDepthMapPicture: compose portrait picture cost: ");
         stringBuilder2.append(System.currentTimeMillis() - currentTimeMillis);
-        Log.d(stringBuilder, stringBuilder2.toString());
-        return bArr4;
+        Log.d(str4, stringBuilder2.toString());
+        return bArr5;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:21:0x004f A:{SYNTHETIC, Splitter: B:21:0x004f} */
+    /* JADX WARNING: Removed duplicated region for block: B:21:0x0065 A:{SYNTHETIC, Splitter: B:21:0x0065} */
     /* Code decompiled incorrectly, please refer to instructions dump. */
-    public static void saveYuv(byte[] bArr, int i) {
+    public static void saveYuv(byte[] bArr, long j) {
         Throwable e;
         FileOutputStream fileOutputStream = null;
         try {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("sdcard/DCIM/Camera/dump_");
-            stringBuilder.append(i);
+            stringBuilder.append(j);
             stringBuilder.append(".yuv");
-            FileOutputStream fileOutputStream2 = new FileOutputStream(stringBuilder.toString());
+            String stringBuilder2 = stringBuilder.toString();
+            FileOutputStream fileOutputStream2 = new FileOutputStream(stringBuilder2);
             try {
                 fileOutputStream2.write(bArr);
-            } catch (Exception e2) {
-                e = e2;
+                String str = TAG;
+                StringBuilder stringBuilder3 = new StringBuilder();
+                stringBuilder3.append("saveYuv: ");
+                stringBuilder3.append(stringBuilder2);
+                Log.v(str, stringBuilder3.toString());
+                try {
+                    fileOutputStream2.flush();
+                    fileOutputStream2.close();
+                } catch (Throwable e2) {
+                    Log.e(TAG, "Failed to flush/close stream", e2);
+                }
+            } catch (Exception e3) {
+                e2 = e3;
                 fileOutputStream = fileOutputStream2;
             } catch (Throwable th) {
-                e = th;
+                e2 = th;
                 fileOutputStream = fileOutputStream2;
                 if (fileOutputStream != null) {
-                    try {
-                        fileOutputStream.flush();
-                        fileOutputStream.close();
-                    } catch (Throwable e3) {
-                        Log.e(TAG, "Failed to flush/close stream", e3);
-                    }
                 }
-                throw e;
+                throw e2;
             }
+        } catch (Exception e4) {
+            e2 = e4;
             try {
-                fileOutputStream2.flush();
-                fileOutputStream2.close();
-            } catch (Throwable e4) {
-                Log.e(TAG, "Failed to flush/close stream", e4);
-            }
-        } catch (Exception e5) {
-            e4 = e5;
-            try {
-                Log.e(TAG, "Failed to write image", e4);
+                Log.e(TAG, "Failed to write image", e2);
                 if (fileOutputStream != null) {
                     fileOutputStream.flush();
                     fileOutputStream.close();
                 }
             } catch (Throwable th2) {
-                e4 = th2;
+                e2 = th2;
                 if (fileOutputStream != null) {
+                    try {
+                        fileOutputStream.flush();
+                        fileOutputStream.close();
+                    } catch (Throwable e5) {
+                        Log.e(TAG, "Failed to flush/close stream", e5);
+                    }
                 }
-                throw e4;
+                throw e2;
             }
         }
     }
@@ -3263,7 +3413,7 @@ public final class Util {
         String stringBuilder2 = stringBuilder.toString();
         String str = TAG;
         StringBuilder stringBuilder3 = new StringBuilder();
-        stringBuilder3.append("dump jpeg to: ");
+        stringBuilder3.append("saveYuvToJpg: ");
         stringBuilder3.append(stringBuilder2);
         Log.v(str, stringBuilder3.toString());
         try {
@@ -3324,92 +3474,92 @@ public final class Util {
     }
 
     public static boolean createGooglePhotosCompatibleLiveShot() {
-        return true;
+        return android.util.Log.isLoggable("liveshotgpc", 3);
     }
 
     public static boolean saveLiveShotMicroVideoInSdcard() {
-        return true;
+        return android.util.Log.isLoggable("liveshotsmv", 3);
     }
 
     public static boolean UI_DEBUG() {
-        return DataRepository.dataItemFeature().fu();
+        return DataRepository.dataItemFeature().fx() || b.qP;
     }
 
-    private static byte[] getDualCameraWatermarkData(Context context) {
-        Throwable th;
-        Throwable th2;
-        Throwable th3;
+    /* JADX WARNING: Removed duplicated region for block: B:33:0x006a  */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static byte[] getDualCameraWatermarkData(int i, int i2, int[] iArr) {
+        String path;
         InputStream fileInputStream;
         byte[] toByteArray;
-        InputStream open;
-        Throwable th4;
+        Throwable th;
+        Throwable e;
+        Throwable th2;
+        Bitmap decodeByteArray;
+        if (DataRepository.dataItemFeature().fe()) {
+            path = new File(CameraAppImpl.getAndroidContext().getFilesDir(), WATERMARK_FILE_NAME).getPath();
+            if (!new File(path).exists()) {
+                generateWatermark2File();
+            }
+        } else {
+            path = CameraSettings.getDualCameraWaterMarkFilePathVendor();
+        }
+        Throwable th3 = null;
         try {
-            fileInputStream = new FileInputStream(CameraSettings.getDualCameraWaterMarkFilePathVendor());
+            fileInputStream = new FileInputStream(path);
             try {
                 toByteArray = IOUtils.toByteArray(fileInputStream);
-                $closeResource(null, fileInputStream);
-                return toByteArray;
-            } catch (Throwable th22) {
-                th3 = th22;
-                th22 = th;
-                th = th3;
-            }
-            if (fileInputStream != null) {
-                $closeResource(th22, fileInputStream);
-            }
-            throw th;
-            $closeResource(th22, fileInputStream);
-            throw th;
-            if (open != null) {
-                $closeResource(th, open);
-            }
-            throw th4;
-        } catch (Exception e) {
-            Log.d(TAG, "Failed to load device specific dual camera water mark from vendor path");
-            if (DataRepository.dataItemFeature().fc() && context != null) {
-                AssetManager assets = context.getAssets();
                 try {
-                    StringBuilder stringBuilder = new StringBuilder();
-                    stringBuilder.append("watermarks/");
-                    stringBuilder.append(Build.DEVICE);
-                    stringBuilder.append(".png");
-                    fileInputStream = assets.open(stringBuilder.toString());
-                    try {
-                        toByteArray = IOUtils.toByteArray(fileInputStream);
-                        if (fileInputStream != null) {
-                            $closeResource(null, fileInputStream);
-                        }
-                        return toByteArray;
-                    } catch (Throwable th222) {
-                        th3 = th222;
-                        th222 = th;
-                        th = th3;
-                    }
-                } catch (Exception e2) {
-                    Log.d(TAG, "Failed to load device specific dual camera water mark from app assets");
-                    try {
-                        open = assets.open("watermarks/common.png");
-                        try {
-                            byte[] toByteArray2 = IOUtils.toByteArray(open);
-                            if (open != null) {
-                                $closeResource(null, open);
-                            }
-                            return toByteArray2;
-                        } catch (Throwable th5) {
-                            th3 = th5;
-                            th5 = th4;
-                            th4 = th3;
-                        }
-                    } catch (Exception e3) {
-                        Log.d(TAG, "Failed to load common dual camera water mark from app assets");
-                        Log.d(TAG, "Failed to load dual camera water mark");
-                        return null;
-                    }
+                    $closeResource(null, fileInputStream);
+                } catch (Throwable th32) {
+                    th = th32;
+                    th32 = toByteArray;
+                    e = th;
                 }
+            } catch (Throwable th22) {
+                th = th22;
+                th22 = e;
+                e = th;
             }
-            Log.d(TAG, "Failed to load dual camera water mark");
-            return null;
+        } catch (IOException e2) {
+            e = e2;
+            Log.d(TAG, "Failed to load dual camera water mark", e);
+            toByteArray = th32;
+            decodeByteArray = BitmapFactory.decodeByteArray(toByteArray, 0, toByteArray.length);
+            if (decodeByteArray != null) {
+            }
+            return toByteArray;
         }
+        if (!(toByteArray == null || iArr == null || iArr.length < 4)) {
+            decodeByteArray = BitmapFactory.decodeByteArray(toByteArray, 0, toByteArray.length);
+            if (decodeByteArray != null) {
+                int i3 = i;
+                int i4 = i2;
+                Object calcDualCameraWatermarkLocation = calcDualCameraWatermarkLocation(i3, i4, decodeByteArray.getWidth(), decodeByteArray.getHeight(), CameraSettings.getResourceFloat(R.dimen.dualcamera_watermark_size_ratio, 1.0f), CameraSettings.getResourceFloat(R.dimen.dualcamera_watermark_padding_x_ratio, 1.0f), CameraSettings.getResourceFloat(R.dimen.dualcamera_watermark_padding_y_ratio, 1.0f));
+                System.arraycopy(calcDualCameraWatermarkLocation, 0, iArr, 0, calcDualCameraWatermarkLocation.length);
+            }
+        }
+        return toByteArray;
+        $closeResource(th22, fileInputStream);
+        throw e;
+    }
+
+    public static int[] calcDualCameraWatermarkLocation(int i, int i2, int i3, int i4, float f, float f2, float f3) {
+        float resourceFloat;
+        float min = ((float) Math.min(i, i2)) / 1080.0f;
+        boolean fG = DataRepository.dataItemFeature().fG();
+        float f4 = 1.0f;
+        if (fG) {
+            resourceFloat = CameraSettings.getResourceFloat(R.dimen.custom_watermark_height_scale, 1.0f);
+        } else {
+            resourceFloat = 1.0f;
+        }
+        i3 = ((i3 * (Math.round((f * min) * resourceFloat) & -2)) / i4) & -2;
+        i4 = Math.round(f2 * min) & -2;
+        if (fG) {
+            f4 = CameraSettings.getResourceFloat(R.dimen.custom_watermark_pandingY_scale, 1.0f);
+        }
+        i = Math.round((f3 * min) * f4) & -2;
+        return new int[]{i3, r6, i4, i};
     }
 
     private static boolean isFind19_5_9LongRatioScreen(int i, int i2) {
@@ -3483,6 +3633,255 @@ public final class Util {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    /* JADX WARNING: Removed duplicated region for block: B:76:0x00dc A:{SYNTHETIC} */
+    /* JADX WARNING: Removed duplicated region for block: B:26:0x0087 A:{Catch:{ all -> 0x00e2 }} */
+    /* JADX WARNING: Missing block: B:23:0x0081, code:
+            if (com.android.camera.network.download.Verifier.crc32(r3, r14) != r2.getCrc()) goto L_0x0085;
+     */
+    /* JADX WARNING: Missing block: B:68:0x00e6, code:
+            $closeResource(r12, r0);
+     */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static void verifyZip(String str, String str2, int i) throws IOException {
+        AutoCloseable inputStream;
+        AutoCloseable fileOutputStream;
+        Throwable th;
+        Throwable th2;
+        Throwable th3;
+        AutoCloseable zipFile = new ZipFile(str);
+        File file = new File(str2);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        Enumeration entries = zipFile.entries();
+        while (entries.hasMoreElements()) {
+            ZipEntry zipEntry = (ZipEntry) entries.nextElement();
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(str2);
+            stringBuilder.append("/");
+            stringBuilder.append(zipEntry.getName());
+            File file2 = new File(stringBuilder.toString());
+            int i2 = 1;
+            if (file2.exists()) {
+                if (zipEntry.isDirectory()) {
+                    if (!file2.isDirectory()) {
+                        file2.delete();
+                        file2.mkdirs();
+                    }
+                } else if (!file2.isFile()) {
+                    file2.delete();
+                    file2.createNewFile();
+                }
+            } else if (zipEntry.isDirectory()) {
+                file2.mkdirs();
+            } else {
+                file2.createNewFile();
+                if (i2 == 0) {
+                    String str3 = TAG;
+                    StringBuilder stringBuilder2 = new StringBuilder();
+                    stringBuilder2.append("corrupted ");
+                    stringBuilder2.append(zipEntry.getName());
+                    Log.w(str3, stringBuilder2.toString());
+                    inputStream = zipFile.getInputStream(zipEntry);
+                    try {
+                        fileOutputStream = new FileOutputStream(file2);
+                        try {
+                            byte[] bArr = new byte[i];
+                            while (true) {
+                                i2 = inputStream.read(bArr);
+                                if (i2 <= 0) {
+                                    break;
+                                }
+                                fileOutputStream.write(bArr, 0, i2);
+                            }
+                            $closeResource(null, fileOutputStream);
+                            if (inputStream != null) {
+                                $closeResource(null, inputStream);
+                            } else {
+                                continue;
+                            }
+                        } catch (Throwable th22) {
+                            th3 = th22;
+                            th22 = th;
+                            th = th3;
+                        }
+                    } catch (Throwable th222) {
+                        th3 = th222;
+                        th222 = th;
+                        th = th3;
+                    }
+                }
+            }
+            i2 = 0;
+            if (i2 == 0) {
+            }
+        }
+        $closeResource(null, zipFile);
+        return;
+        if (inputStream != null) {
+            $closeResource(th222, inputStream);
+        }
+        throw th;
+        $closeResource(th222, fileOutputStream);
+        throw th;
+    }
+
+    /* JADX WARNING: Removed duplicated region for block: B:55:0x00b9 A:{SYNTHETIC} */
+    /* JADX WARNING: Removed duplicated region for block: B:25:0x007d A:{Catch:{ all -> 0x00bf }} */
+    /* JADX WARNING: Missing block: B:22:0x0077, code:
+            if (com.android.camera.network.download.Verifier.crc32(r2, r13) != r1.getCrc()) goto L_0x007b;
+     */
+    /* JADX WARNING: Missing block: B:51:0x00c3, code:
+            $closeResource(r11, r0);
+     */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static void verifyZip(InputStream inputStream, String str, int i) throws IOException {
+        AutoCloseable fileOutputStream;
+        Throwable th;
+        Throwable th2;
+        AutoCloseable zipInputStream = new ZipInputStream(inputStream);
+        File file = new File(str);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+        while (true) {
+            ZipEntry nextEntry = zipInputStream.getNextEntry();
+            if (nextEntry != null) {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(str);
+                stringBuilder.append("/");
+                stringBuilder.append(nextEntry.getName());
+                File file2 = new File(stringBuilder.toString());
+                int i2 = 1;
+                if (file2.exists()) {
+                    if (nextEntry.isDirectory()) {
+                        if (!file2.isDirectory()) {
+                            file2.delete();
+                            file2.mkdirs();
+                        }
+                    } else if (!file2.isFile()) {
+                        file2.delete();
+                        file2.createNewFile();
+                    }
+                } else if (nextEntry.isDirectory()) {
+                    file2.mkdirs();
+                } else {
+                    file2.createNewFile();
+                    if (i2 == 0) {
+                        String str2 = TAG;
+                        StringBuilder stringBuilder2 = new StringBuilder();
+                        stringBuilder2.append("corrupted ");
+                        stringBuilder2.append(nextEntry.getName());
+                        Log.w(str2, stringBuilder2.toString());
+                        fileOutputStream = new FileOutputStream(file2);
+                        try {
+                            byte[] bArr = new byte[i];
+                            while (true) {
+                                int read = zipInputStream.read(bArr);
+                                if (read <= 0) {
+                                    break;
+                                }
+                                fileOutputStream.write(bArr, 0, read);
+                            }
+                            $closeResource(null, fileOutputStream);
+                        } catch (Throwable th22) {
+                            Throwable th3 = th22;
+                            th22 = th;
+                            th = th3;
+                        }
+                    }
+                }
+                i2 = 0;
+                if (i2 == 0) {
+                }
+            } else {
+                $closeResource(null, zipInputStream);
+                return;
+            }
+        }
+        $closeResource(th22, fileOutputStream);
+        throw th;
+    }
+
+    /* JADX WARNING: Missing block: B:9:0x0016, code:
+            if (r0 != null) goto L_0x0018;
+     */
+    /* JADX WARNING: Missing block: B:10:0x0018, code:
+            $closeResource(r1, r0);
+     */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public static void verifyAssetZip(Context context, String str, String str2, int i) throws IOException {
+        InputStream open = context.getAssets().open(str);
+        verifyZip(open, str2, i);
+        if (open != null) {
+            $closeResource(null, open);
+        }
+    }
+
+    public static String controlAFStateToString(Integer num) {
+        if (num == null) {
+            return TEDefine.FACE_BEAUTY_NULL;
+        }
+        switch (num.intValue()) {
+            case 0:
+                return "inactive";
+            case 1:
+                return "passive_scan";
+            case 2:
+                return "passive_focused";
+            case 3:
+                return "active_scan";
+            case 4:
+                return "focused_locked";
+            case 5:
+                return "not_focus_locked";
+            case 6:
+                return "passive_unfocused";
+            default:
+                return EnvironmentCompat.MEDIA_UNKNOWN;
+        }
+    }
+
+    public static String controlAEStateToString(Integer num) {
+        if (num == null) {
+            return TEDefine.FACE_BEAUTY_NULL;
+        }
+        switch (num.intValue()) {
+            case 0:
+                return "inactive";
+            case 1:
+                return "searching";
+            case 2:
+                return "converged";
+            case 3:
+                return "locked";
+            case 4:
+                return "flash_required";
+            case 5:
+                return "precapture";
+            default:
+                return EnvironmentCompat.MEDIA_UNKNOWN;
+        }
+    }
+
+    public static String controlAWBStateToString(Integer num) {
+        if (num == null) {
+            return TEDefine.FACE_BEAUTY_NULL;
+        }
+        switch (num.intValue()) {
+            case 0:
+                return "inactive";
+            case 1:
+                return "searching";
+            case 2:
+                return "converged";
+            case 3:
+                return "locked";
+            default:
+                return EnvironmentCompat.MEDIA_UNKNOWN;
         }
     }
 }

@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/graphics/drawable/Drawable;)V
-    .locals 0
+    .registers 2
     .param p1, "drawable"    # Landroid/graphics/drawable/Drawable;
 
     .line 27
@@ -18,7 +18,7 @@
 
 # virtual methods
 .method public applyTheme(Landroid/content/res/Resources$Theme;)V
-    .locals 1
+    .registers 3
     .param p1, "t"    # Landroid/content/res/Resources$Theme;
 
     .line 47
@@ -31,7 +31,7 @@
 .end method
 
 .method public canApplyTheme()Z
-    .locals 1
+    .registers 2
 
     .line 52
     iget-object v0, p0, Landroid/support/v4/graphics/drawable/DrawableWrapperLollipop;->mDrawable:Landroid/graphics/drawable/Drawable;
@@ -44,7 +44,7 @@
 .end method
 
 .method public getDirtyBounds()Landroid/graphics/Rect;
-    .locals 1
+    .registers 2
 
     .line 57
     iget-object v0, p0, Landroid/support/v4/graphics/drawable/DrawableWrapperLollipop;->mDrawable:Landroid/graphics/drawable/Drawable;
@@ -57,7 +57,7 @@
 .end method
 
 .method public getOutline(Landroid/graphics/Outline;)V
-    .locals 1
+    .registers 3
     .param p1, "outline"    # Landroid/graphics/Outline;
 
     .line 42
@@ -70,7 +70,7 @@
 .end method
 
 .method public setHotspot(FF)V
-    .locals 1
+    .registers 4
     .param p1, "x"    # F
     .param p2, "y"    # F
 
@@ -84,7 +84,7 @@
 .end method
 
 .method public setHotspotBounds(IIII)V
-    .locals 1
+    .registers 6
     .param p1, "left"    # I
     .param p2, "top"    # I
     .param p3, "right"    # I

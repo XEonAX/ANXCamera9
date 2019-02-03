@@ -14,8 +14,8 @@ import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
-import com.aeonax.camera.R;
 import com.android.camera.CameraSettings;
+import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.config.ComponentConfigBeauty;
@@ -57,12 +57,19 @@ public class FragmentTopConfigExtra extends BaseFragment implements OnClickListe
         if (supportedExtraConfigs.getLength() <= 4) {
             i = supportedExtraConfigs.getLength();
         }
-        ((MarginLayoutParams) this.mRecyclerView.getLayoutParams()).height = getResources().getDimensionPixelSize(R.dimen.config_item_height) * ((int) Math.ceil((double) (((float) supportedExtraConfigs.getLength()) / ((float) i))));
+        int max = Math.max(1, i);
+        int dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.config_item_height) * ((int) Math.ceil((double) (((float) supportedExtraConfigs.getLength()) / ((float) max))));
+        MarginLayoutParams marginLayoutParams = (MarginLayoutParams) this.mRecyclerView.getLayoutParams();
+        marginLayoutParams.height = dimensionPixelSize;
+        dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.top_config_extra_margin);
+        if (dimensionPixelSize > 0) {
+            marginLayoutParams.setMargins(0, dimensionPixelSize, 0, dimensionPixelSize);
+        }
         if (Util.isLongRatioScreen) {
             adjustViewBackground(this.mCurrentMode);
-            ((MarginLayoutParams) this.mBackgroundView.getLayoutParams()).topMargin = this.mDisplayRectTopMargin;
+            this.mBackgroundView.setPadding(0, this.mDisplayRectTopMargin, 0, 0);
         }
-        this.mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), i));
+        this.mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), max));
         this.mExtraAdapter = new ExtraAdapter(supportedExtraConfigs, this);
         this.mExtraAdapter.setNewDegree(this.mDegree);
         this.mRecyclerView.setAdapter(this.mExtraAdapter);
@@ -85,8 +92,8 @@ public class FragmentTopConfigExtra extends BaseFragment implements OnClickListe
         }
     }
 
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        super.provideAnimateElement(i, list, z);
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        super.provideAnimateElement(i, list, i2);
     }
 
     public void onClick(View view) {
@@ -160,7 +167,9 @@ public class FragmentTopConfigExtra extends BaseFragment implements OnClickListe
             }
 
             public void onAnimationEnd(Animation animation) {
-                FragmentUtils.removeFragmentByTag(FragmentTopConfigExtra.this.getFragmentManager(), FragmentTopConfigExtra.this.getFragmentTag());
+                if (FragmentTopConfigExtra.this.canProvide()) {
+                    FragmentUtils.removeFragmentByTag(FragmentTopConfigExtra.this.getFragmentManager(), FragmentTopConfigExtra.this.getFragmentTag());
+                }
             }
 
             public void onAnimationRepeat(Animation animation) {
@@ -327,7 +336,7 @@ public class FragmentTopConfigExtra extends BaseFragment implements OnClickListe
                 }
             case 240:
                 isSwitchOn = CameraSettings.isDualCameraWaterMarkOpen();
-                stringBuilder.append(getString(R.string.pref_dualcamera_watermark_title));
+                stringBuilder.append(getString(R.string.pref_camera_device_watermark_title));
                 if (!isSwitchOn) {
                     stringBuilder.append(getString(R.string.accessibility_closed));
                     break;

@@ -23,8 +23,6 @@
 
 
 # static fields
-.field public static final enum cI:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
-
 .field public static final enum cJ:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
 .field public static final enum cK:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
@@ -39,7 +37,9 @@
 
 .field public static final enum cP:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
-.field private static final synthetic cQ:[Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+.field public static final enum cQ:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+
+.field private static final synthetic cR:[Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
 
 # instance fields
@@ -61,7 +61,7 @@
 
     invoke-direct {v0, v1, v3, v2}, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;-><init>(Ljava/lang/String;IZ)V
 
-    sput-object v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cI:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sput-object v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cJ:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     .line 26
     new-instance v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
@@ -70,7 +70,7 @@
 
     invoke-direct {v0, v1, v2, v3}, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;-><init>(Ljava/lang/String;IZ)V
 
-    sput-object v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cJ:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sput-object v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cK:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     .line 27
     new-instance v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
@@ -81,7 +81,7 @@
 
     invoke-direct {v0, v1, v4, v3}, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;-><init>(Ljava/lang/String;IZ)V
 
-    sput-object v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cK:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sput-object v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cL:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     .line 29
     new-instance v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
@@ -92,7 +92,7 @@
 
     invoke-direct {v0, v1, v5, v2}, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;-><init>(Ljava/lang/String;IZ)V
 
-    sput-object v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cL:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sput-object v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cM:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     .line 31
     new-instance v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
@@ -103,7 +103,7 @@
 
     invoke-direct {v0, v1, v6, v3}, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;-><init>(Ljava/lang/String;IZ)V
 
-    sput-object v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cM:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sput-object v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cN:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     .line 33
     new-instance v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
@@ -114,7 +114,7 @@
 
     invoke-direct {v0, v1, v7, v2}, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;-><init>(Ljava/lang/String;IZ)V
 
-    sput-object v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cN:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sput-object v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cO:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     .line 35
     new-instance v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
@@ -125,7 +125,7 @@
 
     invoke-direct {v0, v1, v8, v3}, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;-><init>(Ljava/lang/String;IZ)V
 
-    sput-object v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cO:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sput-object v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cP:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     .line 37
     new-instance v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
@@ -136,46 +136,46 @@
 
     invoke-direct {v0, v1, v9, v3}, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;-><init>(Ljava/lang/String;IZ)V
 
-    sput-object v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cP:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sput-object v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cQ:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     .line 24
     const/16 v0, 0x8
 
     new-array v0, v0, [Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
-    sget-object v1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cI:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object v1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cJ:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     aput-object v1, v0, v3
 
-    sget-object v1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cJ:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object v1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cK:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cK:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object v1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cL:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     aput-object v1, v0, v4
 
-    sget-object v1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cL:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object v1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cM:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     aput-object v1, v0, v5
 
-    sget-object v1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cM:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object v1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cN:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     aput-object v1, v0, v6
 
-    sget-object v1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cN:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object v1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cO:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     aput-object v1, v0, v7
 
-    sget-object v1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cO:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object v1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cP:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     aput-object v1, v0, v8
 
-    sget-object v1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cP:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object v1, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cQ:Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     aput-object v1, v0, v9
 
-    sput-object v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cQ:[Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sput-object v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cR:[Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     return-void
 .end method
@@ -217,7 +217,7 @@
     .locals 1
 
     .line 24
-    sget-object v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cQ:[Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
+    sget-object v0, Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->cR:[Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;
 
     invoke-virtual {v0}, [Lcom/bumptech/glide/load/ImageHeaderParser$ImageType;->clone()Ljava/lang/Object;
 

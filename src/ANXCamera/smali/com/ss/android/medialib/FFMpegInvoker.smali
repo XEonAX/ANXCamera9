@@ -29,9 +29,26 @@
     return-void
 .end method
 
+.method private native nativeAddFastReverseVideo(Ljava/lang/String;Ljava/lang/String;)I
+.end method
+
+.method private native nativeStopReverseVideo()I
+.end method
+
 
 # virtual methods
 .method public native MusicLength(Ljava/lang/String;)J
+.end method
+
+.method public addFastReverseVideo(Ljava/lang/String;Ljava/lang/String;)I
+    .locals 0
+
+    .line 22
+    invoke-direct {p0, p1, p2}, Lcom/ss/android/medialib/FFMpegInvoker;->nativeAddFastReverseVideo(Ljava/lang/String;Ljava/lang/String;)I
+
+    move-result p1
+
+    return p1
 .end method
 
 .method public native resampleAudioToWav(Ljava/lang/String;Ljava/lang/String;JJ)I
@@ -41,4 +58,15 @@
 .end method
 
 .method public native resampleCycleAudioToWav(Ljava/lang/String;Ljava/lang/String;JJ)I
+.end method
+
+.method public stopReverseVideo()I
+    .locals 1
+
+    .line 26
+    invoke-direct {p0}, Lcom/ss/android/medialib/FFMpegInvoker;->nativeStopReverseVideo()I
+
+    move-result v0
+
+    return v0
 .end method

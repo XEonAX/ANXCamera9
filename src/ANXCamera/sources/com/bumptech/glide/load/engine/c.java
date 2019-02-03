@@ -9,16 +9,16 @@ import java.io.File;
 /* compiled from: DataCacheWriter */
 class c<DataType> implements b {
     private final DataType data;
-    private final a<DataType> ef;
-    private final f eg;
+    private final a<DataType> eg;
+    private final f eh;
 
     c(a<DataType> aVar, DataType dataType, f fVar) {
-        this.ef = aVar;
+        this.eg = aVar;
         this.data = dataType;
-        this.eg = fVar;
+        this.eh = fVar;
     }
 
     public boolean f(@NonNull File file) {
-        return this.ef.a(this.data, file, this.eg);
+        return this.eg.a(this.data, file, this.eh);
     }
 }

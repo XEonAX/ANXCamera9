@@ -11,16 +11,16 @@ import java.util.Queue;
 
 /* compiled from: ListPreloader */
 public class f<T> implements OnScrollListener {
-    private final int V;
-    private final d W;
-    private final i X;
-    private final a<T> Z;
-    private final b<T> aa;
-    private int ab;
+    private final int W;
+    private final d X;
+    private final i Z;
+    private final a<T> aa;
+    private final b<T> ab;
     private int ac;
-    private int ad = -1;
-    private int ae;
-    private boolean af = true;
+    private int ad;
+    private int ae = -1;
+    private int af;
+    private boolean ag = true;
 
     /* compiled from: ListPreloader */
     public interface a<U> {
@@ -39,8 +39,8 @@ public class f<T> implements OnScrollListener {
 
     /* compiled from: ListPreloader */
     private static final class c extends com.bumptech.glide.request.target.b<Object> {
-        int ag;
         int ah;
+        int ai;
 
         c() {
         }
@@ -49,7 +49,7 @@ public class f<T> implements OnScrollListener {
         }
 
         public void a(@NonNull m mVar) {
-            mVar.m(this.ah, this.ag);
+            mVar.m(this.ai, this.ah);
         }
 
         public void b(@NonNull m mVar) {
@@ -70,64 +70,64 @@ public class f<T> implements OnScrollListener {
         public c b(int i, int i2) {
             c cVar = (c) this.queue.poll();
             this.queue.offer(cVar);
-            cVar.ah = i;
-            cVar.ag = i2;
+            cVar.ai = i;
+            cVar.ah = i2;
             return cVar;
         }
     }
 
     public f(@NonNull i iVar, @NonNull a<T> aVar, @NonNull b<T> bVar, int i) {
-        this.X = iVar;
-        this.Z = aVar;
-        this.aa = bVar;
-        this.V = i;
-        this.W = new d(i + 1);
+        this.Z = iVar;
+        this.aa = aVar;
+        this.ab = bVar;
+        this.W = i;
+        this.X = new d(i + 1);
     }
 
     public void onScrollStateChanged(AbsListView absListView, int i) {
     }
 
     public void onScroll(AbsListView absListView, int i, int i2, int i3) {
-        this.ae = i3;
-        if (i > this.ad) {
+        this.af = i3;
+        if (i > this.ae) {
             a(i2 + i, true);
-        } else if (i < this.ad) {
+        } else if (i < this.ae) {
             a(i, false);
         }
-        this.ad = i;
+        this.ae = i;
     }
 
     private void a(int i, boolean z) {
-        if (this.af != z) {
-            this.af = z;
+        if (this.ag != z) {
+            this.ag = z;
             cancelAll();
         }
-        a(i, (z ? this.V : -this.V) + i);
+        a(i, (z ? this.W : -this.W) + i);
     }
 
     private void a(int i, int i2) {
         int max;
         int i3;
         if (i < i2) {
-            max = Math.max(this.ab, i);
+            max = Math.max(this.ac, i);
             i3 = i2;
         } else {
-            i3 = Math.min(this.ac, i);
+            i3 = Math.min(this.ad, i);
             max = i2;
         }
-        i3 = Math.min(this.ae, i3);
-        max = Math.min(this.ae, Math.max(0, max));
+        i3 = Math.min(this.af, i3);
+        max = Math.min(this.af, Math.max(0, max));
         if (i < i2) {
             for (i = max; i < i3; i++) {
-                a(this.Z.c(i), i, true);
+                a(this.aa.c(i), i, true);
             }
         } else {
             for (i = i3 - 1; i >= max; i--) {
-                a(this.Z.c(i), i, false);
+                a(this.aa.c(i), i, false);
             }
         }
-        this.ac = max;
-        this.ab = i3;
+        this.ad = max;
+        this.ac = i3;
     }
 
     private void a(List<T> list, int i, boolean z) {
@@ -145,19 +145,19 @@ public class f<T> implements OnScrollListener {
 
     private void a(@Nullable T t, int i, int i2) {
         if (t != null) {
-            int[] b = this.aa.b(t, i, i2);
+            int[] b = this.ab.b(t, i, i2);
             if (b != null) {
-                h a = this.Z.a(t);
+                h a = this.aa.a(t);
                 if (a != null) {
-                    a.b(this.W.b(b[0], b[1]));
+                    a.b(this.X.b(b[0], b[1]));
                 }
             }
         }
     }
 
     private void cancelAll() {
-        for (int i = 0; i < this.V; i++) {
-            this.X.d(this.W.b(0, 0));
+        for (int i = 0; i < this.W; i++) {
+            this.Z.d(this.X.b(0, 0));
         }
     }
 }

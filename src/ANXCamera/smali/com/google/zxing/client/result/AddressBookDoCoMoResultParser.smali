@@ -5,7 +5,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 36
     invoke-direct {p0}, Lcom/google/zxing/client/result/AbstractDoCoMoResultParser;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method private static parseName(Ljava/lang/String;)Ljava/lang/String;
-    .locals 3
+    .registers 4
     .param p0, "name"    # Ljava/lang/String;
 
     .line 84
@@ -26,7 +26,7 @@
 
     .line 85
     .local v0, "comma":I
-    if-ltz v0, :cond_0
+    if-ltz v0, :cond_29
 
     .line 87
     new-instance v1, Ljava/lang/StringBuilder;
@@ -62,14 +62,14 @@
     return-object v1
 
     .line 89
-    :cond_0
+    :cond_29
     return-object p0
 .end method
 
 
 # virtual methods
 .method public parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/AddressBookParsedResult;
-    .locals 29
+    .registers 31
     .param p1, "result"    # Lcom/google/zxing/Result;
 
     .line 40
@@ -87,13 +87,13 @@
 
     const/4 v2, 0x0
 
-    if-nez v1, :cond_0
+    if-nez v1, :cond_e
 
     .line 42
     return-object v2
 
     .line 44
-    :cond_0
+    :cond_e
     const-string v1, "N:"
 
     const/4 v3, 0x1
@@ -104,13 +104,13 @@
 
     .line 45
     .local v1, "rawName":[Ljava/lang/String;
-    if-nez v1, :cond_1
+    if-nez v1, :cond_18
 
     .line 46
     return-object v2
 
     .line 48
-    :cond_1
+    :cond_18
     const/4 v2, 0x0
 
     aget-object v4, v1, v2
@@ -175,7 +175,7 @@
 
     move-result v7
 
-    if-nez v7, :cond_2
+    if-nez v7, :cond_4c
 
     .line 57
     const/4 v6, 0x0
@@ -183,7 +183,7 @@
     .line 59
     .end local v6    # "birthday":Ljava/lang/String;
     .local v26, "birthday":Ljava/lang/String;
-    :cond_2
+    :cond_4c
     move-object/from16 v26, v6
 
     const-string v6, "URL:"
@@ -278,7 +278,7 @@
 .end method
 
 .method public bridge synthetic parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/ParsedResult;
-    .locals 0
+    .registers 2
 
     .line 1
     invoke-virtual {p0, p1}, Lcom/google/zxing/client/result/AddressBookDoCoMoResultParser;->parse(Lcom/google/zxing/Result;)Lcom/google/zxing/client/result/AddressBookParsedResult;

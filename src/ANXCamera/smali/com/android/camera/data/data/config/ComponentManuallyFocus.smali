@@ -35,7 +35,7 @@
 
     const-string v2, "1000"
 
-    const v3, 0x7f0b0053
+    const v3, 0x7f090054
 
     const/4 v4, -0x1
 
@@ -71,7 +71,7 @@
     .locals 1
 
     .line 27
-    const v0, 0x7f0b015e
+    const v0, 0x7f090165
 
     return v0
 .end method
@@ -140,7 +140,7 @@
     if-ne p1, v0, :cond_0
 
     .line 67
-    const p1, 0x7f0b0053
+    const p1, 0x7f090054
 
     return p1
 
@@ -191,7 +191,7 @@
     if-ltz p1, :cond_1
 
     .line 81
-    const p1, 0x7f0200e3
+    const p1, 0x7f0200f4
 
     return p1
 
@@ -204,13 +204,13 @@
     if-ltz p1, :cond_2
 
     .line 83
-    const p1, 0x7f0200e4
+    const p1, 0x7f0200f5
 
     return p1
 
     .line 85
     :cond_2
-    const p1, 0x7f0200e2
+    const p1, 0x7f0200f3
 
     return p1
 .end method

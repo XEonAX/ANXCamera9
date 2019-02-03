@@ -89,7 +89,7 @@
 
     move-result-object p2
 
-    const p3, 0x7f0a0041
+    const p3, 0x7f0b0041
 
     invoke-virtual {p2, p3}, Landroid/content/res/Resources;->getColor(I)I
 
@@ -102,7 +102,7 @@
 
     move-result-object p1
 
-    const p2, 0x7f0a0044
+    const p2, 0x7f0b0044
 
     invoke-virtual {p1, p2}, Landroid/content/res/Resources;->getColor(I)I
 
@@ -173,7 +173,7 @@
     invoke-virtual {v1, v0}, Landroid/view/View;->setTag(Ljava/lang/Object;)V
 
     .line 166
-    const v1, 0x7f0d0060
+    const v1, 0x7f0d0072
 
     invoke-virtual {p1, v1}, Lcom/android/camera/fragment/live/FragmentLiveSpeed$SpeedItemAdapter$SpeedItemHolder;->getView(I)Landroid/view/View;
 
@@ -228,7 +228,7 @@
     .line 157
     iget-object p2, p0, Lcom/android/camera/fragment/live/FragmentLiveSpeed$SpeedItemAdapter;->mLayoutInflater:Landroid/view/LayoutInflater;
 
-    const v0, 0x7f04001e
+    const v0, 0x7f040021
 
     const/4 v1, 0x0
 

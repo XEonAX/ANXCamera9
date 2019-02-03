@@ -22,13 +22,13 @@
 .method constructor <init>(Ljava/lang/String;)V
     .locals 1
 
-    .line 387
+    .line 396
     invoke-direct {p0, p1}, Landroid/os/HandlerThread;-><init>(Ljava/lang/String;)V
 
-    .line 388
+    .line 397
     invoke-virtual {p0}, Lcom/miui/extravideo/interpolation/VideoInterpolatorAsyncImp$MediaCodecHandlerThread;->start()V
 
-    .line 389
+    .line 398
     new-instance p1, Landroid/os/Handler;
 
     invoke-virtual {p0}, Lcom/miui/extravideo/interpolation/VideoInterpolatorAsyncImp$MediaCodecHandlerThread;->getLooper()Landroid/os/Looper;
@@ -39,14 +39,14 @@
 
     iput-object p1, p0, Lcom/miui/extravideo/interpolation/VideoInterpolatorAsyncImp$MediaCodecHandlerThread;->mHandler:Landroid/os/Handler;
 
-    .line 390
+    .line 399
     return-void
 .end method
 
 .method static synthetic access$000(Lcom/miui/extravideo/interpolation/VideoInterpolatorAsyncImp$MediaCodecHandlerThread;)Landroid/os/Handler;
     .locals 0
 
-    .line 383
+    .line 392
     iget-object p0, p0, Lcom/miui/extravideo/interpolation/VideoInterpolatorAsyncImp$MediaCodecHandlerThread;->mHandler:Landroid/os/Handler;
 
     return-object p0
@@ -57,10 +57,10 @@
 .method public run()V
     .locals 2
 
-    .line 394
+    .line 403
     invoke-super {p0}, Landroid/os/HandlerThread;->run()V
 
-    .line 395
+    .line 404
     invoke-virtual {p0}, Lcom/miui/extravideo/interpolation/VideoInterpolatorAsyncImp$MediaCodecHandlerThread;->getName()Ljava/lang/String;
 
     move-result-object v0
@@ -69,6 +69,6 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 396
+    .line 405
     return-void
 .end method

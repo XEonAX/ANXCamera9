@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 22
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static onPull(Ljava/lang/Object;FF)Z
-    .locals 1
+    .registers 4
     .param p0, "edgeEffect"    # Ljava/lang/Object;
     .param p1, "deltaDistance"    # F
     .param p2, "displacement"    # F

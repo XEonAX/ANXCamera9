@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/miui/extravideo/interpolation/VideoInterpolator;->doDecodeAndEncodeSync(Ljava/lang/String;Ljava/lang/String;)Z
+    value = Lcom/miui/extravideo/interpolation/VideoInterpolator;->doDecodeAndEncodeSync(Ljava/lang/String;Ljava/lang/String;Z)Z
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -29,7 +29,7 @@
 .method constructor <init>(Ljava/util/concurrent/locks/Lock;[ZLjava/util/concurrent/locks/Condition;)V
     .locals 0
 
-    .line 21
+    .line 25
     iput-object p1, p0, Lcom/miui/extravideo/interpolation/VideoInterpolator$1;->val$lock:Ljava/util/concurrent/locks/Lock;
 
     iput-object p2, p0, Lcom/miui/extravideo/interpolation/VideoInterpolator$1;->val$success:[Z
@@ -46,12 +46,12 @@
 .method public onEncodeFinish()V
     .locals 3
 
-    .line 24
+    .line 28
     iget-object v0, p0, Lcom/miui/extravideo/interpolation/VideoInterpolator$1;->val$lock:Ljava/util/concurrent/locks/Lock;
 
     invoke-interface {v0}, Ljava/util/concurrent/locks/Lock;->lock()V
 
-    .line 25
+    .line 29
     iget-object v0, p0, Lcom/miui/extravideo/interpolation/VideoInterpolator$1;->val$success:[Z
 
     const/4 v1, 0x0
@@ -60,7 +60,7 @@
 
     aput-boolean v2, v0, v1
 
-    .line 27
+    .line 31
     :try_start_0
     iget-object v0, p0, Lcom/miui/extravideo/interpolation/VideoInterpolator$1;->val$condition:Ljava/util/concurrent/locks/Condition;
 
@@ -68,18 +68,18 @@
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 29
+    .line 33
     iget-object v0, p0, Lcom/miui/extravideo/interpolation/VideoInterpolator$1;->val$lock:Ljava/util/concurrent/locks/Lock;
 
     invoke-interface {v0}, Ljava/util/concurrent/locks/Lock;->unlock()V
 
-    .line 30
+    .line 34
     nop
 
-    .line 31
+    .line 35
     return-void
 
-    .line 29
+    .line 33
     :catchall_0
     move-exception v0
 
@@ -93,19 +93,19 @@
 .method public onError()V
     .locals 2
 
-    .line 35
+    .line 39
     iget-object v0, p0, Lcom/miui/extravideo/interpolation/VideoInterpolator$1;->val$lock:Ljava/util/concurrent/locks/Lock;
 
     invoke-interface {v0}, Ljava/util/concurrent/locks/Lock;->lock()V
 
-    .line 36
+    .line 40
     iget-object v0, p0, Lcom/miui/extravideo/interpolation/VideoInterpolator$1;->val$success:[Z
 
     const/4 v1, 0x0
 
     aput-boolean v1, v0, v1
 
-    .line 38
+    .line 42
     :try_start_0
     iget-object v0, p0, Lcom/miui/extravideo/interpolation/VideoInterpolator$1;->val$condition:Ljava/util/concurrent/locks/Condition;
 
@@ -113,18 +113,18 @@
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 40
+    .line 44
     iget-object v0, p0, Lcom/miui/extravideo/interpolation/VideoInterpolator$1;->val$lock:Ljava/util/concurrent/locks/Lock;
 
     invoke-interface {v0}, Ljava/util/concurrent/locks/Lock;->unlock()V
 
-    .line 41
+    .line 45
     nop
 
-    .line 42
+    .line 46
     return-void
 
-    .line 40
+    .line 44
     :catchall_0
     move-exception v0
 

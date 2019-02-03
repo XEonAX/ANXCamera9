@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 23
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static add(Landroid/app/Notification;Landroid/content/Context;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Landroid/app/PendingIntent;Landroid/app/PendingIntent;)Landroid/app/Notification;
-    .locals 0
+    .registers 6
     .param p0, "notification"    # Landroid/app/Notification;
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "contentTitle"    # Ljava/lang/CharSequence;

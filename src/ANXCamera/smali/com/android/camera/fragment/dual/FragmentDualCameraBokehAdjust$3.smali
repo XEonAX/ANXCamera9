@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;)V
     .locals 0
 
-    .line 157
+    .line 149
     iput-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust$3;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public run()V
     .locals 2
 
-    .line 160
+    .line 152
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust$3;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;
 
     invoke-virtual {v0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->isAdded()Z
@@ -47,7 +47,7 @@
 
     if-eqz v0, :cond_0
 
-    .line 161
+    .line 153
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust$3;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;
 
     invoke-static {v0}, Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;->access$300(Lcom/android/camera/fragment/dual/FragmentDualCameraBokehAdjust;)Landroid/widget/ImageView;
@@ -58,7 +58,7 @@
 
     invoke-virtual {v0, v1}, Landroid/widget/ImageView;->sendAccessibilityEvent(I)V
 
-    .line 163
+    .line 155
     :cond_0
     return-void
 .end method

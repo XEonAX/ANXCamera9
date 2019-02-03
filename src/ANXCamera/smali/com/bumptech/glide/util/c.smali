@@ -4,7 +4,7 @@
 
 
 # static fields
-.field private static final pi:Ljava/util/Queue;
+.field private static final ph:Ljava/util/Queue;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/Queue<",
@@ -16,9 +16,9 @@
 
 
 # instance fields
-.field private pj:Ljava/io/InputStream;
+.field private pi:Ljava/io/InputStream;
 
-.field private pk:Ljava/io/IOException;
+.field private pj:Ljava/io/IOException;
 
 
 # direct methods
@@ -32,7 +32,7 @@
 
     move-result-object v0
 
-    sput-object v0, Lcom/bumptech/glide/util/c;->pi:Ljava/util/Queue;
+    sput-object v0, Lcom/bumptech/glide/util/c;->ph:Ljava/util/Queue;
 
     return-void
 .end method
@@ -52,7 +52,7 @@
 
     .line 39
     :goto_0
-    sget-object v0, Lcom/bumptech/glide/util/c;->pi:Ljava/util/Queue;
+    sget-object v0, Lcom/bumptech/glide/util/c;->ph:Ljava/util/Queue;
 
     invoke-interface {v0}, Ljava/util/Queue;->isEmpty()Z
 
@@ -61,7 +61,7 @@
     if-nez v0, :cond_0
 
     .line 40
-    sget-object v0, Lcom/bumptech/glide/util/c;->pi:Ljava/util/Queue;
+    sget-object v0, Lcom/bumptech/glide/util/c;->ph:Ljava/util/Queue;
 
     invoke-interface {v0}, Ljava/util/Queue;->remove()Ljava/lang/Object;
 
@@ -82,13 +82,13 @@
     .end annotation
 
     .line 27
-    sget-object v0, Lcom/bumptech/glide/util/c;->pi:Ljava/util/Queue;
+    sget-object v0, Lcom/bumptech/glide/util/c;->ph:Ljava/util/Queue;
 
     monitor-enter v0
 
     .line 28
     :try_start_0
-    sget-object v1, Lcom/bumptech/glide/util/c;->pi:Ljava/util/Queue;
+    sget-object v1, Lcom/bumptech/glide/util/c;->ph:Ljava/util/Queue;
 
     invoke-interface {v1}, Ljava/util/Queue;->poll()Ljava/lang/Object;
 
@@ -139,7 +139,7 @@
     .end annotation
 
     .line 54
-    iget-object v0, p0, Lcom/bumptech/glide/util/c;->pj:Ljava/io/InputStream;
+    iget-object v0, p0, Lcom/bumptech/glide/util/c;->pi:Ljava/io/InputStream;
 
     invoke-virtual {v0}, Ljava/io/InputStream;->available()I
 
@@ -157,7 +157,7 @@
     .end annotation
 
     .line 59
-    iget-object v0, p0, Lcom/bumptech/glide/util/c;->pj:Ljava/io/InputStream;
+    iget-object v0, p0, Lcom/bumptech/glide/util/c;->pi:Ljava/io/InputStream;
 
     invoke-virtual {v0}, Ljava/io/InputStream;->close()V
 
@@ -171,7 +171,7 @@
     .end annotation
 
     .line 127
-    iget-object v0, p0, Lcom/bumptech/glide/util/c;->pk:Ljava/io/IOException;
+    iget-object v0, p0, Lcom/bumptech/glide/util/c;->pj:Ljava/io/IOException;
 
     return-object v0
 .end method
@@ -180,7 +180,7 @@
     .locals 1
 
     .line 64
-    iget-object v0, p0, Lcom/bumptech/glide/util/c;->pj:Ljava/io/InputStream;
+    iget-object v0, p0, Lcom/bumptech/glide/util/c;->pi:Ljava/io/InputStream;
 
     invoke-virtual {v0, p1}, Ljava/io/InputStream;->mark(I)V
 
@@ -192,7 +192,7 @@
     .locals 1
 
     .line 69
-    iget-object v0, p0, Lcom/bumptech/glide/util/c;->pj:Ljava/io/InputStream;
+    iget-object v0, p0, Lcom/bumptech/glide/util/c;->pi:Ljava/io/InputStream;
 
     invoke-virtual {v0}, Ljava/io/InputStream;->markSupported()Z
 
@@ -206,7 +206,7 @@
 
     .line 117
     :try_start_0
-    iget-object v0, p0, Lcom/bumptech/glide/util/c;->pj:Ljava/io/InputStream;
+    iget-object v0, p0, Lcom/bumptech/glide/util/c;->pi:Ljava/io/InputStream;
 
     invoke-virtual {v0}, Ljava/io/InputStream;->read()I
 
@@ -222,7 +222,7 @@
     move-exception v0
 
     .line 119
-    iput-object v0, p0, Lcom/bumptech/glide/util/c;->pk:Ljava/io/IOException;
+    iput-object v0, p0, Lcom/bumptech/glide/util/c;->pj:Ljava/io/IOException;
 
     .line 120
     const/4 v0, -0x1
@@ -237,7 +237,7 @@
 
     .line 76
     :try_start_0
-    iget-object v0, p0, Lcom/bumptech/glide/util/c;->pj:Ljava/io/InputStream;
+    iget-object v0, p0, Lcom/bumptech/glide/util/c;->pi:Ljava/io/InputStream;
 
     invoke-virtual {v0, p1}, Ljava/io/InputStream;->read([B)I
 
@@ -253,7 +253,7 @@
     move-exception p1
 
     .line 78
-    iput-object p1, p0, Lcom/bumptech/glide/util/c;->pk:Ljava/io/IOException;
+    iput-object p1, p0, Lcom/bumptech/glide/util/c;->pj:Ljava/io/IOException;
 
     .line 79
     const/4 p1, -0x1
@@ -268,7 +268,7 @@
 
     .line 88
     :try_start_0
-    iget-object v0, p0, Lcom/bumptech/glide/util/c;->pj:Ljava/io/InputStream;
+    iget-object v0, p0, Lcom/bumptech/glide/util/c;->pi:Ljava/io/InputStream;
 
     invoke-virtual {v0, p1, p2, p3}, Ljava/io/InputStream;->read([BII)I
 
@@ -284,7 +284,7 @@
     move-exception p1
 
     .line 90
-    iput-object p1, p0, Lcom/bumptech/glide/util/c;->pk:Ljava/io/IOException;
+    iput-object p1, p0, Lcom/bumptech/glide/util/c;->pj:Ljava/io/IOException;
 
     .line 91
     const/4 p1, -0x1
@@ -300,19 +300,19 @@
     .line 131
     const/4 v0, 0x0
 
-    iput-object v0, p0, Lcom/bumptech/glide/util/c;->pk:Ljava/io/IOException;
+    iput-object v0, p0, Lcom/bumptech/glide/util/c;->pj:Ljava/io/IOException;
 
     .line 132
-    iput-object v0, p0, Lcom/bumptech/glide/util/c;->pj:Ljava/io/InputStream;
+    iput-object v0, p0, Lcom/bumptech/glide/util/c;->pi:Ljava/io/InputStream;
 
     .line 133
-    sget-object v0, Lcom/bumptech/glide/util/c;->pi:Ljava/util/Queue;
+    sget-object v0, Lcom/bumptech/glide/util/c;->ph:Ljava/util/Queue;
 
     monitor-enter v0
 
     .line 134
     :try_start_0
-    sget-object v1, Lcom/bumptech/glide/util/c;->pi:Ljava/util/Queue;
+    sget-object v1, Lcom/bumptech/glide/util/c;->ph:Ljava/util/Queue;
 
     invoke-interface {v1, p0}, Ljava/util/Queue;->offer(Ljava/lang/Object;)Z
 
@@ -345,7 +345,7 @@
 
     .line 98
     :try_start_0
-    iget-object v0, p0, Lcom/bumptech/glide/util/c;->pj:Ljava/io/InputStream;
+    iget-object v0, p0, Lcom/bumptech/glide/util/c;->pi:Ljava/io/InputStream;
 
     invoke-virtual {v0}, Ljava/io/InputStream;->reset()V
     :try_end_0
@@ -373,7 +373,7 @@
     .end param
 
     .line 49
-    iput-object p1, p0, Lcom/bumptech/glide/util/c;->pj:Ljava/io/InputStream;
+    iput-object p1, p0, Lcom/bumptech/glide/util/c;->pi:Ljava/io/InputStream;
 
     .line 50
     return-void
@@ -384,7 +384,7 @@
 
     .line 105
     :try_start_0
-    iget-object v0, p0, Lcom/bumptech/glide/util/c;->pj:Ljava/io/InputStream;
+    iget-object v0, p0, Lcom/bumptech/glide/util/c;->pi:Ljava/io/InputStream;
 
     invoke-virtual {v0, p1, p2}, Ljava/io/InputStream;->skip(J)J
 
@@ -400,7 +400,7 @@
     move-exception p1
 
     .line 107
-    iput-object p1, p0, Lcom/bumptech/glide/util/c;->pk:Ljava/io/IOException;
+    iput-object p1, p0, Lcom/bumptech/glide/util/c;->pj:Ljava/io/IOException;
 
     .line 108
     const-wide/16 p1, 0x0

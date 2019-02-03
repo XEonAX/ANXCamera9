@@ -30,7 +30,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/content/Intent;Ljava/util/ArrayList;)V
-    .locals 0
+    .registers 3
     .param p1, "_intent"    # Landroid/content/Intent;
     .annotation system Ldalvik/annotation/Signature;
         value = {

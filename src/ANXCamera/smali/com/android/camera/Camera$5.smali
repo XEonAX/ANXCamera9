@@ -27,7 +27,7 @@
 .method constructor <init>(Lcom/android/camera/Camera;Z)V
     .locals 0
 
-    .line 906
+    .line 908
     iput-object p1, p0, Lcom/android/camera/Camera$5;->this$0:Lcom/android/camera/Camera;
 
     iput-boolean p2, p0, Lcom/android/camera/Camera$5;->val$releaseDevice:Z
@@ -42,7 +42,7 @@
 .method public run()V
     .locals 6
 
-    .line 909
+    .line 911
     iget-object v0, p0, Lcom/android/camera/Camera$5;->this$0:Lcom/android/camera/Camera;
 
     invoke-virtual {v0}, Lcom/android/camera/Camera;->isCurrentModuleAlive()Z
@@ -53,12 +53,12 @@
 
     if-eqz v0, :cond_1
 
-    .line 910
+    .line 912
     iget-object v0, p0, Lcom/android/camera/Camera$5;->this$0:Lcom/android/camera/Camera;
 
     iget-object v0, v0, Lcom/android/camera/Camera;->mCurrentModule:Lcom/android/camera/module/Module;
 
-    .line 913
+    .line 914
     invoke-static {}, Lcom/android/camera/data/DataRepository;->getInstance()Lcom/android/camera/data/DataRepository;
 
     move-result-object v2
@@ -67,12 +67,12 @@
 
     move-result-object v2
 
-    .line 914
+    .line 915
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemRunning()Lcom/android/camera/data/data/runing/DataItemRunning;
 
     move-result-object v3
 
-    .line 915
+    .line 916
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemGlobal()Lcom/android/camera/data/data/global/DataItemGlobal;
 
     move-result-object v4
@@ -87,7 +87,7 @@
 
     move-result v4
 
-    .line 917
+    .line 918
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemGlobal()Lcom/android/camera/data/data/global/DataItemGlobal;
 
     move-result-object v5
@@ -96,10 +96,10 @@
 
     move-result v5
 
-    .line 913
+    .line 914
     invoke-interface {v2, v3, v4, v5, v1}, Lcom/android/camera/data/backup/DataBackUp;->backupRunning(Lcom/android/camera/data/data/runing/DataItemRunning;IIZ)V
 
-    .line 919
+    .line 920
     iget-object v2, p0, Lcom/android/camera/Camera$5;->this$0:Lcom/android/camera/Camera;
 
     invoke-virtual {v2}, Ljava/lang/Object;->hashCode()I
@@ -112,29 +112,29 @@
 
     if-eqz v2, :cond_0
 
-    .line 920
+    .line 921
     invoke-interface {v0}, Lcom/android/camera/module/Module;->unRegisterProtocol()V
 
-    .line 921
+    .line 922
     invoke-interface {v0}, Lcom/android/camera/module/Module;->unRegisterModulePersistProtocol()V
 
-    .line 923
+    .line 924
     :cond_0
     invoke-interface {v0}, Lcom/android/camera/module/Module;->onPause()V
 
-    .line 924
+    .line 925
     invoke-interface {v0}, Lcom/android/camera/module/Module;->onStop()V
 
-    .line 925
+    .line 926
     invoke-interface {v0}, Lcom/android/camera/module/Module;->onDestroy()V
 
-    .line 928
+    .line 929
     :cond_1
     iget-boolean v0, p0, Lcom/android/camera/Camera$5;->val$releaseDevice:Z
 
     if-eqz v0, :cond_3
 
-    .line 931
+    .line 932
     iget-object v0, p0, Lcom/android/camera/Camera$5;->this$0:Lcom/android/camera/Camera;
 
     iget-object v0, v0, Lcom/android/camera/Camera;->mApplication:Lcom/android/camera/CameraAppImpl;
@@ -143,7 +143,7 @@
 
     move-result v0
 
-    .line 932
+    .line 933
     invoke-static {}, Lcom/android/camera/Camera;->access$400()Ljava/lang/String;
 
     move-result-object v2
@@ -166,10 +166,10 @@
 
     invoke-static {v2, v3}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 933
+    .line 934
     if-nez v0, :cond_2
 
-    .line 934
+    .line 935
     invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->getInstance()Lcom/android/camera/module/loader/camera2/Camera2OpenManager;
 
     move-result-object v0
@@ -178,7 +178,7 @@
 
     goto :goto_0
 
-    .line 936
+    .line 937
     :cond_2
     invoke-static {}, Lcom/android/camera/Camera;->access$400()Ljava/lang/String;
 
@@ -188,7 +188,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 939
+    .line 940
     :cond_3
     :goto_0
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemGlobal()Lcom/android/camera/data/data/global/DataItemGlobal;
@@ -197,6 +197,6 @@
 
     invoke-virtual {v0}, Lcom/android/camera/data/data/global/DataItemGlobal;->resetTimeOut()V
 
-    .line 940
+    .line 941
     return-void
 .end method

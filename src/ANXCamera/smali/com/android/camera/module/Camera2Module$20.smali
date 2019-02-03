@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/camera/module/Camera2Module;->updateManualEvAdjust()V
+    value = Lcom/android/camera/module/Camera2Module;->updateScene()V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -20,17 +20,13 @@
 # instance fields
 .field final synthetic this$0:Lcom/android/camera/module/Camera2Module;
 
-.field final synthetic val$evAdjustable:Z
-
 
 # direct methods
-.method constructor <init>(Lcom/android/camera/module/Camera2Module;Z)V
+.method constructor <init>(Lcom/android/camera/module/Camera2Module;)V
     .locals 0
 
-    .line 3884
+    .line 3926
     iput-object p1, p0, Lcom/android/camera/module/Camera2Module$20;->this$0:Lcom/android/camera/module/Camera2Module;
-
-    iput-boolean p2, p0, Lcom/android/camera/module/Camera2Module$20;->val$evAdjustable:Z
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -40,17 +36,13 @@
 
 # virtual methods
 .method public run()V
-    .locals 2
+    .locals 1
 
-    .line 3887
+    .line 3929
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module$20;->this$0:Lcom/android/camera/module/Camera2Module;
 
-    iget-object v0, v0, Lcom/android/camera/module/Camera2Module;->mMainProtocol:Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
+    invoke-static {v0}, Lcom/android/camera/module/Camera2Module;->access$4100(Lcom/android/camera/module/Camera2Module;)V
 
-    iget-boolean v1, p0, Lcom/android/camera/module/Camera2Module$20;->val$evAdjustable:Z
-
-    invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->setEvAdjustable(Z)V
-
-    .line 3888
+    .line 3930
     return-void
 .end method

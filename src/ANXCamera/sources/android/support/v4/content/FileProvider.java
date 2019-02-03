@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.os.ParcelFileDescriptor;
 import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
+import com.ss.android.ugc.effectmanager.effect.model.ComposerHelper;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -83,7 +84,7 @@ public class FileProvider extends ContentProvider {
                     stringBuilder.append(Uri.encode((String) mostSpecific.getKey()));
                     stringBuilder.append('/');
                     stringBuilder.append(Uri.encode(path, "/"));
-                    return new Builder().scheme("content").authority(this.mAuthority).encodedPath(stringBuilder.toString()).build();
+                    return new Builder().scheme(ComposerHelper.COMPOSER_CONTENT).authority(this.mAuthority).encodedPath(stringBuilder.toString()).build();
                 }
                 stringBuilder = new StringBuilder();
                 stringBuilder.append("Failed to find configured root that contains ");
@@ -235,7 +236,7 @@ public class FileProvider extends ContentProvider {
                 if (type == 2) {
                     String tag = in.getName();
                     String name = in.getAttributeValue(null, ATTR_NAME);
-                    String path = in.getAttributeValue(null, ATTR_PATH);
+                    String path = in.getAttributeValue(null, "path");
                     File target = null;
                     if (TAG_ROOT_PATH.equals(tag)) {
                         target = buildPath(DEVICE_ROOT, path);

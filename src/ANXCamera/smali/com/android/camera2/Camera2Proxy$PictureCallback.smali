@@ -15,7 +15,7 @@
 
 
 # virtual methods
-.method public abstract onCaptureStart(JILjava/lang/String;)Lcom/xiaomi/camera/core/ParallelTaskData;
+.method public abstract onCaptureStart(Lcom/xiaomi/camera/core/ParallelTaskData;Lcom/android/camera/CameraSize;)Lcom/xiaomi/camera/core/ParallelTaskData;
 .end method
 
 .method public abstract onPictureTaken([B)V

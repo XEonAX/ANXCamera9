@@ -1,6 +1,7 @@
 package com.android.camera.data.data.global;
 
-import com.aeonax.camera.R;
+import com.android.camera.CameraSettings;
+import com.android.camera.R;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;
@@ -43,15 +44,14 @@ public class ComponentModuleList extends ComponentData {
     private List<ComponentDataItem> initItems() {
         if (this.mIntentType != -1) {
             List<ComponentDataItem> arrayList = new ArrayList();
-            if (DataRepository.dataItemFeature().fB()) {
-                if (this.mIntentType == 0) {
-                    arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_fun, String.valueOf(174)));
-                }
-            } else if (this.mIntentType == 0) {
+            if (!DataRepository.dataItemFeature().fF() && this.mIntentType == 0) {
                 arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_fun, String.valueOf(161)));
             }
-            if (this.mIntentType == 0 && DataRepository.dataItemFeature().fp()) {
+            if (this.mIntentType == 0 && DataRepository.dataItemFeature().fs()) {
                 arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_new_slow_motion, String.valueOf(172)));
+            }
+            if (DataRepository.dataItemFeature().fF() && this.mIntentType == 0) {
+                arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_fun, String.valueOf(174)));
             }
             if (this.mIntentType == 2 || this.mIntentType == 0) {
                 arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_video, String.valueOf(162)));
@@ -63,11 +63,11 @@ public class ComponentModuleList extends ComponentData {
                 if (b.isSupportedPortrait()) {
                     arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_portrait, String.valueOf(171)));
                 }
-                if (DataRepository.dataItemFeature().fg() && this.mIntentType == 0) {
+                if (DataRepository.dataItemFeature().fi() && this.mIntentType == 0) {
                     arrayList.add(new ComponentDataItem(-1, -1, R.string.pref_camera_scenemode_entry_night, String.valueOf(173)));
                 }
                 arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_square, String.valueOf(165)));
-                if (this.mIntentType == 0) {
+                if (DataRepository.dataItemFeature().fU() && this.mIntentType == 0) {
                     arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_panorama, String.valueOf(166)));
                 }
                 arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_professional, String.valueOf(167)));
@@ -87,5 +87,9 @@ public class ComponentModuleList extends ComponentData {
             this.mItems.clear();
         }
         this.mItems = initItems();
+    }
+
+    public boolean needShowLiveRedDot() {
+        return CameraSettings.isLiveModuleClicked() ^ 1;
     }
 }

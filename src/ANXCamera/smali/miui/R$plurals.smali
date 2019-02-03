@@ -1,6 +1,6 @@
 .class public final Lmiui/R$plurals;
 .super Ljava/lang/Object;
-.source "SourceFile"
+.source "R.java"
 
 
 # annotations
@@ -20,9 +20,9 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
-    .line 1805
+    .line 1834
     const/high16 v0, 0x10050000
 
     sput v0, Lmiui/R$plurals;->items_selected:I
@@ -31,9 +31,9 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
-    .line 1801
+    .line 1830
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

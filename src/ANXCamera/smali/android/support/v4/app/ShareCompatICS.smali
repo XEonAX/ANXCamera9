@@ -9,7 +9,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 25
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -18,7 +18,7 @@
 .end method
 
 .method public static configureMenuItem(Landroid/view/MenuItem;Landroid/app/Activity;Landroid/content/Intent;)V
-    .locals 4
+    .registers 7
     .param p0, "item"    # Landroid/view/MenuItem;
     .param p1, "callingActivity"    # Landroid/app/Activity;
     .param p2, "intent"    # Landroid/content/Intent;
@@ -36,7 +36,7 @@
     .local v1, "provider":Landroid/widget/ShareActionProvider;
     instance-of v2, v0, Landroid/widget/ShareActionProvider;
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_10
 
     .line 32
     new-instance v2, Landroid/widget/ShareActionProvider;
@@ -45,16 +45,16 @@
 
     move-object v1, v2
 
-    goto :goto_0
+    goto :goto_13
 
     .line 34
-    :cond_0
+    :cond_10
     move-object v1, v0
 
     check-cast v1, Landroid/widget/ShareActionProvider;
 
     .line 36
-    :goto_0
+    :goto_13
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V

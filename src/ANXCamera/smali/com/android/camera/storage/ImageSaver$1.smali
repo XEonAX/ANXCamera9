@@ -25,10 +25,10 @@
 .method constructor <init>()V
     .locals 2
 
-    .line 83
+    .line 98
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 84
+    .line 99
     new-instance v0, Ljava/util/concurrent/atomic/AtomicInteger;
 
     const/4 v1, 0x1
@@ -45,7 +45,7 @@
 .method public newThread(Ljava/lang/Runnable;)Ljava/lang/Thread;
     .locals 3
 
-    .line 87
+    .line 102
     new-instance v0, Ljava/lang/Thread;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -70,11 +70,11 @@
 
     invoke-direct {v0, p1, v1}, Ljava/lang/Thread;-><init>(Ljava/lang/Runnable;Ljava/lang/String;)V
 
-    .line 88
+    .line 103
     const/16 p1, 0xa
 
     invoke-virtual {v0, p1}, Ljava/lang/Thread;->setPriority(I)V
 
-    .line 89
+    .line 104
     return-object v0
 .end method

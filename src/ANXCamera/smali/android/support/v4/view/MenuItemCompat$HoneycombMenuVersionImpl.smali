@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 158
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public collapseActionView(Landroid/view/MenuItem;)Z
-    .locals 1
+    .registers 3
     .param p1, "item"    # Landroid/view/MenuItem;
 
     .line 186
@@ -40,7 +40,7 @@
 .end method
 
 .method public expandActionView(Landroid/view/MenuItem;)Z
-    .locals 1
+    .registers 3
     .param p1, "item"    # Landroid/view/MenuItem;
 
     .line 181
@@ -50,7 +50,7 @@
 .end method
 
 .method public getActionView(Landroid/view/MenuItem;)Landroid/view/View;
-    .locals 1
+    .registers 3
     .param p1, "item"    # Landroid/view/MenuItem;
 
     .line 176
@@ -62,7 +62,7 @@
 .end method
 
 .method public isActionViewExpanded(Landroid/view/MenuItem;)Z
-    .locals 1
+    .registers 3
     .param p1, "item"    # Landroid/view/MenuItem;
 
     .line 191
@@ -72,7 +72,7 @@
 .end method
 
 .method public setActionView(Landroid/view/MenuItem;I)Landroid/view/MenuItem;
-    .locals 1
+    .registers 4
     .param p1, "item"    # Landroid/view/MenuItem;
     .param p2, "resId"    # I
 
@@ -85,7 +85,7 @@
 .end method
 
 .method public setActionView(Landroid/view/MenuItem;Landroid/view/View;)Landroid/view/MenuItem;
-    .locals 1
+    .registers 4
     .param p1, "item"    # Landroid/view/MenuItem;
     .param p2, "view"    # Landroid/view/View;
 
@@ -98,7 +98,7 @@
 .end method
 
 .method public setOnActionExpandListener(Landroid/view/MenuItem;Landroid/support/v4/view/MenuItemCompat$OnActionExpandListener;)Landroid/view/MenuItem;
-    .locals 0
+    .registers 3
     .param p1, "item"    # Landroid/view/MenuItem;
     .param p2, "listener"    # Landroid/support/v4/view/MenuItemCompat$OnActionExpandListener;
 
@@ -107,7 +107,7 @@
 .end method
 
 .method public setShowAsAction(Landroid/view/MenuItem;I)V
-    .locals 0
+    .registers 3
     .param p1, "item"    # Landroid/view/MenuItem;
     .param p2, "actionEnum"    # I
 

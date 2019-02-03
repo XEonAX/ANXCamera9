@@ -6,7 +6,9 @@ import android.os.Build.VERSION;
 import android.os.SystemProperties;
 import android.support.v4.util.SimpleArrayMap;
 import com.android.camera.CameraAppImpl;
+import com.android.camera.CameraSettings;
 import com.android.camera.Util;
+import com.android.camera.constant.BeautyConstant;
 import com.android.camera.data.data.DataItemBase;
 import com.android.camera.log.Log;
 import java.io.BufferedReader;
@@ -19,7 +21,7 @@ import org.json.JSONObject;
 /* compiled from: DataItemFeature */
 public class a extends DataItemBase implements c {
     private static final String TAG = "DataFeature";
-    private String pE;
+    private String pD;
 
     public a() {
         eO();
@@ -45,8 +47,8 @@ public class a extends DataItemBase implements c {
         Resources resources = androidContext.getResources();
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("feature_");
-        stringBuilder.append(b.pF);
-        int identifier = resources.getIdentifier(stringBuilder.toString(), "raw", "com.aeonax.camera");
+        stringBuilder.append(b.pE);
+        int identifier = resources.getIdentifier(stringBuilder.toString(), "raw", "com.android.camera");
         if (identifier <= 0) {
             Log.e(TAG, "feature list default");
             return;
@@ -130,195 +132,294 @@ public class a extends DataItemBase implements c {
     }
 
     public boolean eP() {
-        return getBoolean(c.rg, false);
+        return getBoolean(c.rf, false);
     }
 
     public int eQ() {
-        return getInt(c.rh, 20);
+        return getInt(c.rg, 20);
     }
 
     public boolean eR() {
-        if (this.pE == null) {
-            this.pE = SystemProperties.get("ro.boot.hwc");
+        if (this.pD == null) {
+            this.pD = SystemProperties.get("ro.boot.hwc");
         }
-        return "india".equalsIgnoreCase(this.pE);
+        return "india".equalsIgnoreCase(this.pD);
     }
 
     public boolean eS() {
-        return getBoolean(c.ri, false) && eR();
+        if (this.pD == null) {
+            this.pD = SystemProperties.get("ro.boot.hwc");
+        }
+        return "cn".equalsIgnoreCase(this.pD);
     }
 
     public boolean eT() {
-        return getBoolean(c.rj, false);
+        return getBoolean(c.rh, false) && eR();
     }
 
     public boolean eU() {
-        return getBoolean(c.rk, false);
+        return getBoolean(c.rZ, false) && eR();
     }
 
     public boolean eV() {
-        return getBoolean(c.rl, false);
+        return getBoolean(c.ri, false);
     }
 
     public boolean eW() {
-        return getBoolean(c.rK, false);
+        return getBoolean(c.rj, false);
     }
 
     public boolean eX() {
-        return getBoolean(c.rm, false);
+        return getBoolean(c.rk, false);
     }
 
     public boolean eY() {
-        return getBoolean(c.rn, false);
+        return getBoolean(c.rJ, false);
     }
 
     public boolean eZ() {
-        return getBoolean(c.ro, false);
+        return getBoolean(c.rl, false);
     }
 
     public boolean fa() {
-        return getBoolean(c.rp, false);
+        return getBoolean(c.rm, false);
     }
 
     public boolean fb() {
-        return getBoolean(c.rq, false);
+        return getBoolean(c.rn, false);
     }
 
     public boolean fc() {
-        return getBoolean(c.rr, false);
+        return getBoolean(c.ro, false);
     }
 
     public boolean fd() {
-        return getBoolean(c.rs, false);
+        return getBoolean(c.rp, false);
     }
 
     public boolean fe() {
-        return getBoolean(c.rt, false);
+        return getBoolean(c.rq, false);
     }
 
     public boolean ff() {
-        return getBoolean(c.ru, false);
+        return getBoolean(c.rr, false);
     }
 
     public boolean fg() {
-        if (VERSION.SDK_INT == 28 && getBoolean(c.rA, false)) {
+        return getBoolean(c.rs, false);
+    }
+
+    public boolean fh() {
+        return getBoolean(c.rt, false);
+    }
+
+    public boolean fi() {
+        if (VERSION.SDK_INT == 28 && getBoolean(c.rz, false)) {
             return true;
         }
         return false;
     }
 
-    public boolean fh() {
-        return getBoolean(c.rB, false);
-    }
-
-    public boolean fi() {
-        return getBoolean(c.rH, true);
-    }
-
     public boolean fj() {
-        return getBoolean(c.rI, false);
+        return getBoolean(c.rA, false);
     }
 
     public boolean fk() {
-        return getBoolean(c.rC, false);
+        return getBoolean(c.rG, true);
     }
 
     public boolean fl() {
-        return getBoolean(c.rv, false);
+        return getBoolean(c.rH, false);
     }
 
     public boolean fm() {
-        return getBoolean(c.rw, false);
+        return getBoolean(c.rB, false);
     }
 
     public boolean fn() {
-        return getBoolean(c.rz, false);
+        return getBoolean(c.ru, false);
     }
 
-    public boolean fo() {
-        return getBoolean(c.ry, false);
+    public int fo() {
+        return getInt(c.rY, 180);
     }
 
     public boolean fp() {
-        return getBoolean(c.rx, false);
+        return getBoolean(c.rv, false);
     }
 
     public boolean fq() {
-        return getBoolean(c.rD, false);
+        return getBoolean(c.ry, false);
     }
 
-    public String fr() {
-        return getString(c.rE, "");
+    public boolean fr() {
+        return getBoolean(c.rx, false);
     }
 
-    public int fs() {
-        return getInt(c.rF, 350);
+    public boolean fs() {
+        return getBoolean(c.rw, false);
     }
 
-    public int ft() {
-        return getInt(c.rG, 300);
+    public boolean ft() {
+        return getBoolean(c.rC, false);
     }
 
-    public boolean fu() {
-        return getBoolean(c.rJ, false);
+    public String fu() {
+        return getString(c.rD, "");
     }
 
-    public boolean fv() {
-        return getBoolean(c.rM, true);
+    public int fv() {
+        return getInt(c.rE, 350);
     }
 
-    public boolean fw() {
-        return getBoolean(c.rL, false);
+    public int fw() {
+        return getInt(c.rF, 300);
     }
 
     public boolean fx() {
-        return getBoolean(c.rS, false);
+        return getBoolean(c.rI, false);
     }
 
     public boolean fy() {
-        if (Util.isGlobalVersion() || Util.isInternationalBuild()) {
-            return false;
-        }
-        return getBoolean(c.rO, false);
+        return getBoolean(c.rL, true);
     }
 
-    public int fz() {
-        return getInt(c.rP, 280);
+    public boolean isSupportBeautyBody() {
+        return getBoolean(c.rK, false);
     }
 
-    public float fA() {
-        return (float) getDoubleFromValues(c.rQ, 0.8766000270843506d);
-    }
-
-    public boolean fB() {
+    public boolean fz() {
         return getBoolean(c.rR, false);
     }
 
+    public boolean fA() {
+        if (getBoolean(c.sm, false) || miui.os.SystemProperties.getBoolean(CameraSettings.PROP_AUTO_ZOOM, false)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean fB() {
+        return getBoolean(c.so, true);
+    }
+
     public boolean fC() {
+        if (Util.isGlobalVersion()) {
+            return false;
+        }
         return getBoolean(c.rN, false);
     }
 
+    public int fD() {
+        return getInt(c.rO, 280);
+    }
+
+    public float fE() {
+        return (float) getDoubleFromValues(c.rP, 0.8766000270843506d);
+    }
+
+    public boolean fF() {
+        if (Util.isGlobalVersion()) {
+            return false;
+        }
+        return getBoolean(c.rQ, false);
+    }
+
+    public boolean fG() {
+        return getBoolean(c.rM, false);
+    }
+
     public boolean isSupportNormalWideLDC() {
-        return getBoolean(c.rT, false);
+        return getBoolean(c.rS, false);
     }
 
     public boolean isSupportUltraWideLDC() {
-        return getBoolean(c.rU, false);
+        return getBoolean(c.rT, false);
     }
 
     public boolean isSupport4KUHDEIS() {
+        return getBoolean(c.rU, false);
+    }
+
+    public boolean fH() {
         return getBoolean(c.rV, false);
     }
 
-    public boolean fD() {
+    public boolean fI() {
         return getBoolean(c.rW, false);
     }
 
-    public boolean fE() {
+    public boolean fJ() {
         return getBoolean(c.rX, false);
+    }
+
+    public boolean fK() {
+        return getBoolean(c.sf, true);
+    }
+
+    public boolean fL() {
+        return getBoolean(c.sg, false);
+    }
+
+    public int fM() {
+        return getInt(c.si, 0);
     }
 
     protected boolean isMutable() {
         return false;
+    }
+
+    public boolean fN() {
+        return getBoolean(c.sc, false);
+    }
+
+    public boolean fO() {
+        return fP() <= 0 || getBoolean(c.se, false);
+    }
+
+    public int fP() {
+        return getInt(c.sb, 0);
+    }
+
+    public int fQ() {
+        return getInt(c.sh, 0);
+    }
+
+    public boolean fR() {
+        return getBoolean(c.sj, false);
+    }
+
+    public String fS() {
+        return getString(c.sk, BeautyConstant.LEVEL_CLOSE);
+    }
+
+    public boolean fT() {
+        return getBoolean(c.sl, false);
+    }
+
+    public boolean fU() {
+        if (b.hY()) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean fV() {
+        return getBoolean(c.sp, true);
+    }
+
+    public boolean fW() {
+        return getBoolean(c.sq, false);
+    }
+
+    public boolean isSupportBokehAdjust() {
+        return getBoolean(c.sr, false);
+    }
+
+    public boolean fX() {
+        if (VERSION.SDK_INT < 28) {
+            return false;
+        }
+        return getBoolean(c.ss, false);
     }
 }

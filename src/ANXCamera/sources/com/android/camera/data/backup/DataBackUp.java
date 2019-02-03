@@ -13,6 +13,8 @@ public interface DataBackUp {
 
     SimpleArrayMap getBackupRunning(int i, int i2);
 
+    boolean getBackupSwitchState(int i, String str, int i2);
+
     boolean isLastVideoFastMotion();
 
     boolean isLastVideoHFRMode();

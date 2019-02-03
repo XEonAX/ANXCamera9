@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 25
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static setSource(Ljava/lang/Object;Landroid/view/View;I)V
-    .locals 1
+    .registers 4
     .param p0, "record"    # Ljava/lang/Object;
     .param p1, "root"    # Landroid/view/View;
     .param p2, "virtualDescendantId"    # I

@@ -12,17 +12,17 @@
 
 
 # static fields
-.field static final bu:I = 0x0
+.field static final bv:I = 0x0
 
-.field static final bv:I = 0x1
+.field static final bw:I = 0x1
 
-.field static final bw:I = 0x2
+.field static final bx:I = 0x2
 
-.field static final bx:I = 0x3
+.field static final by:I = 0x3
 
 
 # instance fields
-.field by:I
+.field bz:I
 
 .field delay:I
 

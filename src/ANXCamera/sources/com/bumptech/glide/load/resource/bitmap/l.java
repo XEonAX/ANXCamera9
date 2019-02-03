@@ -9,7 +9,7 @@ import java.security.MessageDigest;
 public class l extends g {
     private static final String ID = "com.bumptech.glide.load.resource.bitmap.CircleCrop.1";
     private static final int VERSION = 1;
-    private static final byte[] jW = ID.getBytes(cT);
+    private static final byte[] jW = ID.getBytes(cU);
 
     protected Bitmap transform(@NonNull d dVar, @NonNull Bitmap bitmap, int i, int i2) {
         return w.d(dVar, bitmap, i, i2);

@@ -25,7 +25,7 @@
 
 # direct methods
 .method constructor <init>(Lcom/google/zxing/common/BitMatrix;Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;)V
-    .locals 1
+    .registers 7
     .param p1, "image"    # Lcom/google/zxing/common/BitMatrix;
     .param p2, "topLeft"    # Lcom/google/zxing/ResultPoint;
     .param p3, "bottomLeft"    # Lcom/google/zxing/ResultPoint;
@@ -41,32 +41,32 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 43
-    if-nez p2, :cond_0
+    if-nez p2, :cond_7
 
-    if-eqz p4, :cond_3
+    if-eqz p4, :cond_14
 
     .line 44
-    :cond_0
-    if-nez p3, :cond_1
+    :cond_7
+    if-nez p3, :cond_b
 
-    if-eqz p5, :cond_3
+    if-eqz p5, :cond_14
 
     .line 45
-    :cond_1
-    if-eqz p2, :cond_2
+    :cond_b
+    if-eqz p2, :cond_f
 
-    if-eqz p3, :cond_3
+    if-eqz p3, :cond_14
 
     .line 46
-    :cond_2
-    if-eqz p4, :cond_4
+    :cond_f
+    if-eqz p4, :cond_19
 
-    if-eqz p5, :cond_3
+    if-eqz p5, :cond_14
 
-    goto :goto_0
+    goto :goto_19
 
     .line 47
-    :cond_3
+    :cond_14
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v0
@@ -74,8 +74,8 @@
     throw v0
 
     .line 49
-    :cond_4
-    :goto_0
+    :cond_19
+    :goto_19
     invoke-direct/range {p0 .. p5}, Lcom/google/zxing/pdf417/decoder/BoundingBox;->init(Lcom/google/zxing/common/BitMatrix;Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;)V
 
     .line 50
@@ -83,7 +83,7 @@
 .end method
 
 .method constructor <init>(Lcom/google/zxing/pdf417/decoder/BoundingBox;)V
-    .locals 6
+    .registers 8
     .param p1, "boundingBox"    # Lcom/google/zxing/pdf417/decoder/BoundingBox;
 
     .line 52
@@ -109,12 +109,12 @@
 .end method
 
 .method private calculateMinMaxValues()V
-    .locals 3
+    .registers 4
 
     .line 120
     iget-object v0, p0, Lcom/google/zxing/pdf417/decoder/BoundingBox;->topLeft:Lcom/google/zxing/ResultPoint;
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_20
 
     .line 121
     new-instance v0, Lcom/google/zxing/ResultPoint;
@@ -145,12 +145,12 @@
     iput-object v0, p0, Lcom/google/zxing/pdf417/decoder/BoundingBox;->bottomLeft:Lcom/google/zxing/ResultPoint;
 
     .line 123
-    goto :goto_0
+    goto :goto_50
 
-    :cond_0
+    :cond_20
     iget-object v0, p0, Lcom/google/zxing/pdf417/decoder/BoundingBox;->topRight:Lcom/google/zxing/ResultPoint;
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_50
 
     .line 124
     new-instance v0, Lcom/google/zxing/ResultPoint;
@@ -199,8 +199,8 @@
     iput-object v0, p0, Lcom/google/zxing/pdf417/decoder/BoundingBox;->bottomRight:Lcom/google/zxing/ResultPoint;
 
     .line 128
-    :cond_1
-    :goto_0
+    :cond_50
+    :goto_50
     iget-object v0, p0, Lcom/google/zxing/pdf417/decoder/BoundingBox;->topLeft:Lcom/google/zxing/ResultPoint;
 
     invoke-virtual {v0}, Lcom/google/zxing/ResultPoint;->getX()F
@@ -289,7 +289,7 @@
 .end method
 
 .method private init(Lcom/google/zxing/common/BitMatrix;Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;Lcom/google/zxing/ResultPoint;)V
-    .locals 0
+    .registers 6
     .param p1, "image"    # Lcom/google/zxing/common/BitMatrix;
     .param p2, "topLeft"    # Lcom/google/zxing/ResultPoint;
     .param p3, "bottomLeft"    # Lcom/google/zxing/ResultPoint;
@@ -319,7 +319,7 @@
 .end method
 
 .method static merge(Lcom/google/zxing/pdf417/decoder/BoundingBox;Lcom/google/zxing/pdf417/decoder/BoundingBox;)Lcom/google/zxing/pdf417/decoder/BoundingBox;
-    .locals 7
+    .registers 9
     .param p0, "leftBox"    # Lcom/google/zxing/pdf417/decoder/BoundingBox;
     .param p1, "rightBox"    # Lcom/google/zxing/pdf417/decoder/BoundingBox;
     .annotation system Ldalvik/annotation/Throws;
@@ -329,20 +329,20 @@
     .end annotation
 
     .line 70
-    if-nez p0, :cond_0
+    if-nez p0, :cond_3
 
     .line 71
     return-object p1
 
     .line 73
-    :cond_0
-    if-nez p1, :cond_1
+    :cond_3
+    if-nez p1, :cond_6
 
     .line 74
     return-object p0
 
     .line 76
-    :cond_1
+    :cond_6
     new-instance v6, Lcom/google/zxing/pdf417/decoder/BoundingBox;
 
     iget-object v1, p0, Lcom/google/zxing/pdf417/decoder/BoundingBox;->image:Lcom/google/zxing/common/BitMatrix;
@@ -365,7 +365,7 @@
 
 # virtual methods
 .method addMissingRows(IIZ)Lcom/google/zxing/pdf417/decoder/BoundingBox;
-    .locals 11
+    .registers 15
     .param p1, "missingStartRows"    # I
     .param p2, "missingEndRows"    # I
     .param p3, "isLeft"    # Z
@@ -392,21 +392,21 @@
 
     .line 85
     .local v3, "newBottomRight":Lcom/google/zxing/ResultPoint;
-    if-lez p1, :cond_3
+    if-lez p1, :cond_29
 
     .line 86
-    if-eqz p3, :cond_0
+    if-eqz p3, :cond_f
 
     iget-object v4, p0, Lcom/google/zxing/pdf417/decoder/BoundingBox;->topLeft:Lcom/google/zxing/ResultPoint;
 
-    goto :goto_0
+    goto :goto_11
 
-    :cond_0
+    :cond_f
     iget-object v4, p0, Lcom/google/zxing/pdf417/decoder/BoundingBox;->topRight:Lcom/google/zxing/ResultPoint;
 
     .line 87
     .local v4, "top":Lcom/google/zxing/ResultPoint;
-    :goto_0
+    :goto_11
     invoke-virtual {v4}, Lcom/google/zxing/ResultPoint;->getY()F
 
     move-result v5
@@ -417,13 +417,13 @@
 
     .line 88
     .local v5, "newMinY":I
-    if-gez v5, :cond_1
+    if-gez v5, :cond_1a
 
     .line 89
     const/4 v5, 0x0
 
     .line 92
-    :cond_1
+    :cond_1a
     new-instance v6, Lcom/google/zxing/ResultPoint;
 
     invoke-virtual {v4}, Lcom/google/zxing/ResultPoint;->getX()F
@@ -436,39 +436,39 @@
 
     .line 93
     .local v6, "newTop":Lcom/google/zxing/ResultPoint;
-    if-eqz p3, :cond_2
+    if-eqz p3, :cond_28
 
     .line 94
     move-object v0, v6
 
     .line 95
-    goto :goto_1
+    goto :goto_29
 
     .line 96
-    :cond_2
+    :cond_28
     move-object v2, v6
 
     .line 100
     .end local v4    # "top":Lcom/google/zxing/ResultPoint;
     .end local v5    # "newMinY":I
     .end local v6    # "newTop":Lcom/google/zxing/ResultPoint;
-    :cond_3
-    :goto_1
-    if-lez p2, :cond_7
+    :cond_29
+    :goto_29
+    if-lez p2, :cond_57
 
     .line 101
-    if-eqz p3, :cond_4
+    if-eqz p3, :cond_30
 
     iget-object v4, p0, Lcom/google/zxing/pdf417/decoder/BoundingBox;->bottomLeft:Lcom/google/zxing/ResultPoint;
 
-    goto :goto_2
+    goto :goto_32
 
-    :cond_4
+    :cond_30
     iget-object v4, p0, Lcom/google/zxing/pdf417/decoder/BoundingBox;->bottomRight:Lcom/google/zxing/ResultPoint;
 
     .line 102
     .local v4, "bottom":Lcom/google/zxing/ResultPoint;
-    :goto_2
+    :goto_32
     invoke-virtual {v4}, Lcom/google/zxing/ResultPoint;->getY()F
 
     move-result v5
@@ -485,7 +485,7 @@
 
     move-result v6
 
-    if-lt v5, v6, :cond_5
+    if-lt v5, v6, :cond_48
 
     .line 104
     iget-object v6, p0, Lcom/google/zxing/pdf417/decoder/BoundingBox;->image:Lcom/google/zxing/common/BitMatrix;
@@ -497,7 +497,7 @@
     add-int/lit8 v5, v6, -0x1
 
     .line 107
-    :cond_5
+    :cond_48
     new-instance v6, Lcom/google/zxing/ResultPoint;
 
     invoke-virtual {v4}, Lcom/google/zxing/ResultPoint;->getX()F
@@ -510,24 +510,24 @@
 
     .line 108
     .local v6, "newBottom":Lcom/google/zxing/ResultPoint;
-    if-eqz p3, :cond_6
+    if-eqz p3, :cond_56
 
     .line 109
     move-object v1, v6
 
     .line 110
-    goto :goto_3
+    goto :goto_57
 
     .line 111
-    :cond_6
+    :cond_56
     move-object v3, v6
 
     .line 115
     .end local v4    # "bottom":Lcom/google/zxing/ResultPoint;
     .end local v5    # "newMaxY":I
     .end local v6    # "newBottom":Lcom/google/zxing/ResultPoint;
-    :cond_7
-    :goto_3
+    :cond_57
+    :goto_57
     invoke-direct {p0}, Lcom/google/zxing/pdf417/decoder/BoundingBox;->calculateMinMaxValues()V
 
     .line 116
@@ -551,7 +551,7 @@
 .end method
 
 .method getBottomLeft()Lcom/google/zxing/ResultPoint;
-    .locals 1
+    .registers 2
 
     .line 171
     iget-object v0, p0, Lcom/google/zxing/pdf417/decoder/BoundingBox;->bottomLeft:Lcom/google/zxing/ResultPoint;
@@ -560,7 +560,7 @@
 .end method
 
 .method getBottomRight()Lcom/google/zxing/ResultPoint;
-    .locals 1
+    .registers 2
 
     .line 175
     iget-object v0, p0, Lcom/google/zxing/pdf417/decoder/BoundingBox;->bottomRight:Lcom/google/zxing/ResultPoint;
@@ -569,7 +569,7 @@
 .end method
 
 .method getMaxX()I
-    .locals 1
+    .registers 2
 
     .line 151
     iget v0, p0, Lcom/google/zxing/pdf417/decoder/BoundingBox;->maxX:I
@@ -578,7 +578,7 @@
 .end method
 
 .method getMaxY()I
-    .locals 1
+    .registers 2
 
     .line 159
     iget v0, p0, Lcom/google/zxing/pdf417/decoder/BoundingBox;->maxY:I
@@ -587,7 +587,7 @@
 .end method
 
 .method getMinX()I
-    .locals 1
+    .registers 2
 
     .line 147
     iget v0, p0, Lcom/google/zxing/pdf417/decoder/BoundingBox;->minX:I
@@ -596,7 +596,7 @@
 .end method
 
 .method getMinY()I
-    .locals 1
+    .registers 2
 
     .line 155
     iget v0, p0, Lcom/google/zxing/pdf417/decoder/BoundingBox;->minY:I
@@ -605,7 +605,7 @@
 .end method
 
 .method getTopLeft()Lcom/google/zxing/ResultPoint;
-    .locals 1
+    .registers 2
 
     .line 163
     iget-object v0, p0, Lcom/google/zxing/pdf417/decoder/BoundingBox;->topLeft:Lcom/google/zxing/ResultPoint;
@@ -614,7 +614,7 @@
 .end method
 
 .method getTopRight()Lcom/google/zxing/ResultPoint;
-    .locals 1
+    .registers 2
 
     .line 167
     iget-object v0, p0, Lcom/google/zxing/pdf417/decoder/BoundingBox;->topRight:Lcom/google/zxing/ResultPoint;

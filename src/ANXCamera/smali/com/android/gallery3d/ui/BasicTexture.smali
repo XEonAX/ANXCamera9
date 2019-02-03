@@ -7,7 +7,7 @@
 
 
 # static fields
-.field private static final MAX_TEXTURE_SIZE:I = 0x1000
+.field private static final MAX_TEXTURE_SIZE:I = 0x1680
 
 .field protected static final STATE_ERROR:I = -0x1
 
@@ -677,7 +677,7 @@
     .line 84
     iget p1, p0, Lcom/android/gallery3d/ui/BasicTexture;->mTextureWidth:I
 
-    const/16 p2, 0x1000
+    const/16 p2, 0x1680
 
     if-gt p1, p2, :cond_0
 

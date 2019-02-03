@@ -33,7 +33,7 @@
 .method constructor <init>(Lcom/android/camera/module/BaseModule;)V
     .locals 0
 
-    .line 283
+    .line 268
     iput-object p1, p0, Lcom/android/camera/module/BaseModule$1;->this$0:Lcom/android/camera/module/BaseModule;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -59,11 +59,11 @@
         }
     .end annotation
 
-    .line 286
+    .line 271
     iget-object v0, p0, Lcom/android/camera/module/BaseModule$1;->this$0:Lcom/android/camera/module/BaseModule;
 
     invoke-static {v0, p1}, Lcom/android/camera/module/BaseModule;->access$002(Lcom/android/camera/module/BaseModule;Lio/reactivex/ObservableEmitter;)Lio/reactivex/ObservableEmitter;
 
-    .line 287
+    .line 272
     return-void
 .end method

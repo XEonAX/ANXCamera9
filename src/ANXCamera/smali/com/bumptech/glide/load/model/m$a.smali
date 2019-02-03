@@ -24,7 +24,7 @@
 
 
 # instance fields
-.field public final dZ:Lcom/bumptech/glide/load/c;
+.field public final ea:Lcom/bumptech/glide/load/c;
 
 .field public final jo:Ljava/util/List;
     .annotation system Ldalvik/annotation/Signature;
@@ -113,7 +113,7 @@
 
     check-cast p1, Lcom/bumptech/glide/load/c;
 
-    iput-object p1, p0, Lcom/bumptech/glide/load/model/m$a;->dZ:Lcom/bumptech/glide/load/c;
+    iput-object p1, p0, Lcom/bumptech/glide/load/model/m$a;->ea:Lcom/bumptech/glide/load/c;
 
     .line 57
     invoke-static {p2}, Lcom/bumptech/glide/util/i;->checkNotNull(Ljava/lang/Object;)Ljava/lang/Object;

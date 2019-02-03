@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/beauty/MakeupParamsFragment;)V
     .locals 0
 
-    .line 56
+    .line 57
     iput-object p1, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment$1;->this$0:Lcom/android/camera/fragment/beauty/MakeupParamsFragment;
 
     invoke-direct {p0}, Landroid/support/v4/view/ViewPropertyAnimatorListenerAdapter;-><init>()V
@@ -35,20 +35,20 @@
 .method public onAnimationEnd(Landroid/view/View;)V
     .locals 1
 
-    .line 59
+    .line 60
     invoke-super {p0, p1}, Landroid/support/v4/view/ViewPropertyAnimatorListenerAdapter;->onAnimationEnd(Landroid/view/View;)V
 
-    .line 60
+    .line 61
     iget-object p1, p0, Lcom/android/camera/fragment/beauty/MakeupParamsFragment$1;->this$0:Lcom/android/camera/fragment/beauty/MakeupParamsFragment;
 
-    invoke-static {p1}, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->access$000(Lcom/android/camera/fragment/beauty/MakeupParamsFragment;)Landroid/widget/ImageView;
+    invoke-static {p1}, Lcom/android/camera/fragment/beauty/MakeupParamsFragment;->access$000(Lcom/android/camera/fragment/beauty/MakeupParamsFragment;)Lcom/android/camera/ui/ColorImageView;
 
     move-result-object p1
 
     const/4 v0, 0x0
 
-    invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setRotation(F)V
+    invoke-virtual {p1, v0}, Lcom/android/camera/ui/ColorImageView;->setRotation(F)V
 
-    .line 61
+    .line 62
     return-void
 .end method

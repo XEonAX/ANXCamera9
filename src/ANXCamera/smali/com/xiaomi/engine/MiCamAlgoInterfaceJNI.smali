@@ -26,7 +26,7 @@
     :try_start_0
     sget-object v0, Lcom/xiaomi/engine/MiCamAlgoInterfaceJNI;->TAG:Ljava/lang/String;
 
-    const-string v1, "start loading mia_mpbase"
+    const-string v1, "start loading com.xiaomi.camera.algojni"
 
     invoke-static {v0, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 

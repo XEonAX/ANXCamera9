@@ -1,6 +1,7 @@
 package com.android.camera.module.loader.camera2;
 
 import android.content.Intent;
+import android.support.annotation.WorkerThread;
 import android.support.v4.util.Pair;
 import com.android.camera.CameraAppImpl;
 import com.android.camera.CameraScreenNail;
@@ -35,19 +36,24 @@ public class CompletablePreFixCamera2Setup implements CompletableOnSubscribe, Ob
             this.mNeedBlur = startControl.mNeedBlurAnimation;
             this.mFromScreenSlide = startControl.mFromScreenSlide;
             this.mNeedConfigData = startControl.mNeedReConfigureData;
-            this.mModuleChanged = startControl.mTargetMode != module.getModuleIndex();
         }
+        boolean z3 = startControl == null || module == null || startControl.mTargetMode != module.getModuleIndex();
+        this.mModuleChanged = z3;
         this.mCameraScreenNail = cameraScreenNail;
         this.mIntent = intent;
         this.mStartFromKeyguard = z;
         this.isFromVoiceControl = z2;
     }
 
+    @WorkerThread
     public void subscribe(CompletableEmitter completableEmitter) {
         int intValue;
         int intValue2;
         this.mEmitter = completableEmitter;
         DataItemGlobal dataItemGlobal = DataRepository.dataItemGlobal();
+        if (this.mModuleChanged && this.mLastMode != null) {
+            this.mLastMode.unRegisterModulePersistProtocol();
+        }
         if (isLastModuleAlive()) {
             if (this.mNeedConfigData) {
                 DataRepository.getInstance().backUp().backupRunning(DataRepository.dataItemRunning(), dataItemGlobal.getDataBackUpKey(this.mLastMode.getModuleIndex()), dataItemGlobal.getLastCameraId(), true);
@@ -61,7 +67,7 @@ public class CompletablePreFixCamera2Setup implements CompletableOnSubscribe, Ob
             Pair parseIntent = dataItemGlobal.parseIntent(this.mIntent, Boolean.valueOf(this.isFromVoiceControl), this.mStartFromKeyguard, true, true);
             intValue = ((Integer) parseIntent.first).intValue();
             intValue2 = ((Integer) parseIntent.second).intValue();
-            if (DataRepository.dataItemFeature().fm()) {
+            if (DataRepository.dataItemFeature().fp()) {
                 DbRepository.dbItemSaveTask().markAllDepartedTask();
                 AlgoConnector.getInstance().startService(CameraAppImpl.getAndroidContext());
             }
@@ -73,7 +79,7 @@ public class CompletablePreFixCamera2Setup implements CompletableOnSubscribe, Ob
             intValue2 = dataItemGlobal.getCurrentCameraId();
             intValue = dataItemGlobal.getCurrentMode();
         }
-        Camera2OpenManager.getInstance().openCamera(intValue2, intValue, this, true);
+        Camera2OpenManager.getInstance().openCamera(intValue2, intValue, this, DataRepository.dataItemFeature().fV());
     }
 
     public void onSubscribe(Disposable disposable) {
@@ -94,12 +100,11 @@ public class CompletablePreFixCamera2Setup implements CompletableOnSubscribe, Ob
     }
 
     private void closeLastModule() {
-        this.mLastMode.unRegisterProtocol();
-        if (this.mModuleChanged) {
-            this.mLastMode.unRegisterModulePersistProtocol();
+        if (this.mLastMode != null) {
+            this.mLastMode.unRegisterProtocol();
+            this.mLastMode.onPause();
+            this.mLastMode.onStop();
+            this.mLastMode.onDestroy();
         }
-        this.mLastMode.onPause();
-        this.mLastMode.onStop();
-        this.mLastMode.onDestroy();
     }
 }

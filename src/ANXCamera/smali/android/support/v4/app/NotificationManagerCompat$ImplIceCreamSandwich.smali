@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 157
     invoke-direct {p0}, Landroid/support/v4/app/NotificationManagerCompat$ImplEclair;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public getSideChannelBindFlags()I
-    .locals 1
+    .registers 2
 
     .line 160
     const/16 v0, 0x21

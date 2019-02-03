@@ -86,6 +86,8 @@
     <bool name="support_agps_paras">true</bool>
     <!--whether the device supports agps roaming-->
     <bool name="support_agps_roaming">false</bool>
+    <!-- Support Android Flashlight Controller -->
+    <bool name="support_android_flashlight">true</bool>
     <!--whether the device supports IR-->
     <bool name="support_ir">true</bool>
     <!-- whether the device supports app hiding-->
@@ -270,13 +272,13 @@
     <string-array name="camera_aux_package_list">
         <item>org.codeaurora.snapcam</item>
         <item>com.android.camera</item>
-        <item>com.aeonax.camera</item>
         <item>com.miui.cit</item>
         <item>com.qualcomm.qti.qmmi</item>
         <item>com.android.keyguard</item>
         <item>com.android.systemui</item>
         <item>com.phonetest.application</item>
         <item>com.phonetest.application.test</item>
+        <item>com.miui.face</item>
     </string-array>
     <!--still beautify value for 3rd party call-->
     <string name="extra_still_beautify_value">i:2</string>
@@ -362,4 +364,42 @@
     <float name="device_head_sar">0.719</float>
     <!-- device body sar value -->
     <float name="device_body_sar">0.746</float>
+    <!--These region support face unlock-->
+    <string-array name="support_face_unlock_region_global">
+        <item>ID</item>
+        <item>IN</item>
+        <item>HK</item>
+        <item>TW</item>
+        <item>SG</item>
+        <item>MY</item>
+        <item>VN</item>
+        <item>TH</item>
+        <item>IT</item>
+        <item>PL</item>
+        <item>FR</item>
+        <item>ES</item>
+        <item>NP</item>
+        <item>LK</item>
+        <item>BD</item>
+        <item>BE</item>
+        <item>TR</item>
+        <item>QA</item>
+        <item>AE</item>
+        <item>RU</item>
+        <item>PH</item>
+        <item>UA</item>
+        <item>GB</item>
+        <item>KR</item>
+        <item>BY</item>
+        <item>KZ</item>
+        <item>KG</item>
+        <item>TJ</item>
+        <item>UZ</item>
+        <item>TM</item>
+        <item>GE</item>
+        <item>AM</item>
+        <item>AZ</item>
+        <item>MD</item>
+        <item>MN</item>
+    </string-array>
 </features>

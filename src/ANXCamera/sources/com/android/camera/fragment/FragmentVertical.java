@@ -5,7 +5,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.TextView;
-import com.aeonax.camera.R;
+import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.animation.type.AlphaInOnSubscribe;
 import com.android.camera.animation.type.AlphaOutOnSubscribe;
@@ -62,10 +62,10 @@ public class FragmentVertical extends BaseFragment implements VerticalProtocol {
         modeCoordinator.detachProtocol(198, this);
     }
 
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        super.provideAnimateElement(i, list, z);
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        super.provideAnimateElement(i, list, i2);
         if (isAnyViewVisible()) {
-            updateLightingRelativeView(z, false);
+            updateLightingRelativeView(i2 == 3, false);
         }
     }
 

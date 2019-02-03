@@ -3,12 +3,12 @@
 .source "ActivityBase.java"
 
 # interfaces
-.implements Ljava/lang/Runnable;
+.implements Lio/reactivex/functions/Consumer;
 
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/camera/ActivityBase;->onDestroy()V
+    value = Lcom/android/camera/ActivityBase;->trackAppLunchTimeStart(Z)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -16,21 +16,26 @@
     name = null
 .end annotation
 
+.annotation system Ldalvik/annotation/Signature;
+    value = {
+        "Ljava/lang/Object;",
+        "Lio/reactivex/functions/Consumer<",
+        "Ljava/util/HashMap;",
+        ">;"
+    }
+.end annotation
+
 
 # instance fields
 .field final synthetic this$0:Lcom/android/camera/ActivityBase;
 
-.field final synthetic val$bitmap:Landroid/graphics/Bitmap;
-
 
 # direct methods
-.method constructor <init>(Lcom/android/camera/ActivityBase;Landroid/graphics/Bitmap;)V
+.method constructor <init>(Lcom/android/camera/ActivityBase;)V
     .locals 0
 
-    .line 565
+    .line 410
     iput-object p1, p0, Lcom/android/camera/ActivityBase$6;->this$0:Lcom/android/camera/ActivityBase;
-
-    iput-object p2, p0, Lcom/android/camera/ActivityBase$6;->val$bitmap:Landroid/graphics/Bitmap;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -39,14 +44,30 @@
 
 
 # virtual methods
-.method public run()V
+.method public bridge synthetic accept(Ljava/lang/Object;)V
+    .locals 0
+    .annotation system Ldalvik/annotation/Throws;
+        value = {
+            Ljava/lang/Exception;
+        }
+    .end annotation
+
+    .line 410
+    check-cast p1, Ljava/util/HashMap;
+
+    invoke-virtual {p0, p1}, Lcom/android/camera/ActivityBase$6;->accept(Ljava/util/HashMap;)V
+
+    return-void
+.end method
+
+.method public accept(Ljava/util/HashMap;)V
     .locals 1
 
-    .line 568
-    iget-object v0, p0, Lcom/android/camera/ActivityBase$6;->val$bitmap:Landroid/graphics/Bitmap;
+    .line 413
+    iget-object v0, p0, Lcom/android/camera/ActivityBase$6;->this$0:Lcom/android/camera/ActivityBase;
 
-    invoke-static {v0}, Lcom/android/camera/Util;->saveLastFrameGaussian2File(Landroid/graphics/Bitmap;)V
+    invoke-static {v0, p1}, Lcom/android/camera/ActivityBase;->access$102(Lcom/android/camera/ActivityBase;Ljava/util/HashMap;)Ljava/util/HashMap;
 
-    .line 569
+    .line 414
     return-void
 .end method

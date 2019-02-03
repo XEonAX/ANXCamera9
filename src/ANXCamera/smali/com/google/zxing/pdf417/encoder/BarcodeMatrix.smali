@@ -15,7 +15,7 @@
 
 # direct methods
 .method constructor <init>(II)V
-    .locals 5
+    .registers 8
     .param p1, "height"    # I
     .param p2, "width"    # I
 
@@ -36,8 +36,8 @@
     array-length v1, v1
 
     .local v1, "matrixLength":I
-    :goto_0
-    if-lt v0, v1, :cond_0
+    :goto_b
+    if-lt v0, v1, :cond_17
 
     .line 41
     .end local v0    # "i":I
@@ -60,7 +60,7 @@
     .line 39
     .restart local v0    # "i":I
     .restart local v1    # "matrixLength":I
-    :cond_0
+    :cond_17
     iget-object v2, p0, Lcom/google/zxing/pdf417/encoder/BarcodeMatrix;->matrix:[Lcom/google/zxing/pdf417/encoder/BarcodeRow;
 
     new-instance v3, Lcom/google/zxing/pdf417/encoder/BarcodeRow;
@@ -78,13 +78,13 @@
     .line 38
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_0
+    goto :goto_b
 .end method
 
 
 # virtual methods
 .method getCurrentRow()Lcom/google/zxing/pdf417/encoder/BarcodeRow;
-    .locals 2
+    .registers 3
 
     .line 61
     iget-object v0, p0, Lcom/google/zxing/pdf417/encoder/BarcodeMatrix;->matrix:[Lcom/google/zxing/pdf417/encoder/BarcodeRow;
@@ -97,7 +97,7 @@
 .end method
 
 .method public getMatrix()[[B
-    .locals 1
+    .registers 2
 
     .line 65
     const/4 v0, 0x1
@@ -110,7 +110,7 @@
 .end method
 
 .method public getScaledMatrix(II)[[B
-    .locals 6
+    .registers 9
     .param p1, "xScale"    # I
     .param p2, "yScale"    # I
 
@@ -146,8 +146,8 @@
     const/4 v2, 0x0
 
     .local v2, "i":I
-    :goto_0
-    if-lt v2, v1, :cond_0
+    :goto_16
+    if-lt v2, v1, :cond_19
 
     .line 80
     .end local v2    # "i":I
@@ -155,7 +155,7 @@
 
     .line 78
     .restart local v2    # "i":I
-    :cond_0
+    :cond_19
     sub-int v3, v1, v2
 
     add-int/lit8 v3, v3, -0x1
@@ -175,11 +175,11 @@
     .line 77
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_16
 .end method
 
 .method set(IIB)V
-    .locals 1
+    .registers 5
     .param p1, "x"    # I
     .param p2, "y"    # I
     .param p3, "value"    # B
@@ -196,7 +196,7 @@
 .end method
 
 .method startRow()V
-    .locals 1
+    .registers 2
 
     .line 57
     iget v0, p0, Lcom/google/zxing/pdf417/encoder/BarcodeMatrix;->currentRow:I

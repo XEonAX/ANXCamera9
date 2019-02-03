@@ -96,6 +96,8 @@
 
 .field private static final KEY_VOLUME_CAMERA_FUNCTION:Ljava/lang/String; = "camera_volumekey_function"
 
+.field private static final KEY_VOLUME_LIVE_FUNCTION:Ljava/lang/String; = "live_volumekey_function"
+
 .field private static final KEY_VOLUME_VIDEO_FUNCTION:Ljava/lang/String; = "video_volumekey_function"
 
 .field private static final KEY_WHITE_BALANCE:Ljava/lang/String; = "camera_whitebalance"
@@ -107,8 +109,8 @@
 .method static constructor <clinit>()V
     .locals 3
 
-    .line 62
-    const/16 v0, 0x2f
+    .line 63
+    const/16 v0, 0x30
 
     new-array v0, v0, [Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
@@ -116,7 +118,7 @@
 
     const-string v2, "pref_version_key"
 
-    .line 63
+    .line 64
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createIntEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -129,7 +131,7 @@
 
     const-string v2, "pref_camera_recordlocation_key"
 
-    .line 66
+    .line 67
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createBoolEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -142,7 +144,7 @@
 
     const-string v2, "pref_camerasound_key"
 
-    .line 67
+    .line 68
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createBoolEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -155,7 +157,7 @@
 
     const-string v2, "pref_camera_proximity_lock_key"
 
-    .line 68
+    .line 69
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createBoolEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -168,7 +170,7 @@
 
     const-string v2, "pref_priority_storage"
 
-    .line 69
+    .line 70
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createBoolEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -181,7 +183,7 @@
 
     const-string v2, "pref_retain_camera_mode_key"
 
-    .line 70
+    .line 71
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createBoolEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -194,7 +196,7 @@
 
     const-string v2, "pref_camera_snap_key"
 
-    .line 71
+    .line 72
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -207,7 +209,7 @@
 
     const-string v2, "pref_capture_when_stable_key"
 
-    .line 74
+    .line 75
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createBoolEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -220,7 +222,7 @@
 
     const-string v2, "pref_watermark_key"
 
-    .line 75
+    .line 76
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createBoolEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -233,7 +235,7 @@
 
     const-string v2, "pref_dualcamera_watermark"
 
-    .line 76
+    .line 77
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createBoolEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -246,7 +248,7 @@
 
     const-string v2, "user_define_watermark"
 
-    .line 77
+    .line 78
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createBoolEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -259,7 +261,7 @@
 
     const-string v2, "pref_auto_chroma_flash_key"
 
-    .line 78
+    .line 79
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createBoolEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -272,7 +274,7 @@
 
     const-string v2, "pref_camera_referenceline_key"
 
-    .line 79
+    .line 80
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createBoolEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -285,7 +287,7 @@
 
     const-string v2, "pref_camera_focus_shoot_key"
 
-    .line 80
+    .line 81
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createBoolEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -298,7 +300,7 @@
 
     const-string v2, "pref_scan_qrcode_key"
 
-    .line 81
+    .line 82
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createBoolEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -311,7 +313,7 @@
 
     const-string v2, "pref_camera_asd_night_key"
 
-    .line 82
+    .line 83
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createBoolEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -324,7 +326,7 @@
 
     const-string v2, "pref_groupshot_with_primitive_picture_key"
 
-    .line 83
+    .line 84
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createBoolEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -337,7 +339,7 @@
 
     const-string v2, "pref_camera_long_press_shutter_key"
 
-    .line 84
+    .line 85
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -350,7 +352,7 @@
 
     const-string v2, "pref_camera_long_press_shutter_feature_key"
 
-    .line 85
+    .line 86
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -363,7 +365,7 @@
 
     const-string v2, "pref_front_mirror_key"
 
-    .line 86
+    .line 87
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -376,7 +378,7 @@
 
     const-string v2, "pref_camera_picturesize_key"
 
-    .line 87
+    .line 88
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -389,7 +391,7 @@
 
     const-string v2, "pref_camera_jpegquality_key"
 
-    .line 88
+    .line 89
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -402,7 +404,7 @@
 
     const-string v2, "pref_camera_movie_solid_key"
 
-    .line 91
+    .line 92
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createBoolEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -415,7 +417,7 @@
 
     const-string v2, "pref_video_quality_key"
 
-    .line 92
+    .line 93
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -428,7 +430,7 @@
 
     const-string v2, "pref_video_encoder_key"
 
-    .line 93
+    .line 94
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -441,7 +443,7 @@
 
     const-string v2, "pref_video_hfr_key"
 
-    .line 94
+    .line 95
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -454,7 +456,7 @@
 
     const-string v2, "pref_video_time_lapse_frame_interval_key"
 
-    .line 95
+    .line 96
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -467,7 +469,7 @@
 
     const-string v2, "pref_camera_facedetection_key"
 
-    .line 98
+    .line 99
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createBoolEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -480,7 +482,7 @@
 
     const-string v2, "pref_fingerprint_capture_key"
 
-    .line 99
+    .line 100
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createBoolEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -493,7 +495,7 @@
 
     const-string v2, "pref_camera_volumekey_function_key"
 
-    .line 100
+    .line 101
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -506,7 +508,7 @@
 
     const-string v2, "pref_video_volumekey_function_key"
 
-    .line 101
+    .line 102
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -515,11 +517,11 @@
 
     aput-object v1, v0, v2
 
-    const-string v1, "camera_antibanding"
+    const-string v1, "live_volumekey_function"
 
-    const-string v2, "pref_camera_antibanding_key"
+    const-string v2, "pref_live_volumekey_function_key"
 
-    .line 102
+    .line 103
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -528,11 +530,11 @@
 
     aput-object v1, v0, v2
 
-    const-string v1, "camera_autoexposure"
+    const-string v1, "camera_antibanding"
 
-    const-string v2, "pref_camera_autoexposure_key"
+    const-string v2, "pref_camera_antibanding_key"
 
-    .line 103
+    .line 104
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -541,11 +543,11 @@
 
     aput-object v1, v0, v2
 
-    const-string v1, "qc_camera_contrast"
+    const-string v1, "camera_autoexposure"
 
-    const-string v2, "pref_qc_camera_contrast_key"
+    const-string v2, "pref_camera_autoexposure_key"
 
-    .line 104
+    .line 105
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -554,11 +556,11 @@
 
     aput-object v1, v0, v2
 
-    const-string v1, "qc_camera_saturation"
+    const-string v1, "qc_camera_contrast"
 
-    const-string v2, "pref_qc_camera_saturation_key"
+    const-string v2, "pref_qc_camera_contrast_key"
 
-    .line 105
+    .line 106
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -567,11 +569,11 @@
 
     aput-object v1, v0, v2
 
-    const-string v1, "qc_camera_sharpness"
+    const-string v1, "qc_camera_saturation"
 
-    const-string v2, "pref_qc_camera_sharpness_key"
+    const-string v2, "pref_qc_camera_saturation_key"
 
-    .line 106
+    .line 107
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -580,11 +582,11 @@
 
     aput-object v1, v0, v2
 
-    const-string v1, "camera_whitebalance"
+    const-string v1, "qc_camera_sharpness"
 
-    const-string v2, "pref_camera_whitebalance_key"
+    const-string v2, "pref_qc_camera_sharpness_key"
 
-    .line 109
+    .line 108
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -593,11 +595,11 @@
 
     aput-object v1, v0, v2
 
-    const-string v1, "focus_position"
+    const-string v1, "camera_whitebalance"
 
-    const-string v2, "pref_focus_position_key"
+    const-string v2, "pref_camera_whitebalance_key"
 
-    .line 110
+    .line 111
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -606,11 +608,11 @@
 
     aput-object v1, v0, v2
 
-    const-string v1, "qc_camera_exposuretime"
+    const-string v1, "focus_position"
 
-    const-string v2, "pref_qc_camera_exposuretime_key"
+    const-string v2, "pref_focus_position_key"
 
-    .line 111
+    .line 112
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -619,11 +621,11 @@
 
     aput-object v1, v0, v2
 
-    const-string v1, "qc_camera_iso"
+    const-string v1, "qc_camera_exposuretime"
 
-    const-string v2, "pref_qc_camera_iso_key"
+    const-string v2, "pref_qc_camera_exposuretime_key"
 
-    .line 112
+    .line 113
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -632,12 +634,12 @@
 
     aput-object v1, v0, v2
 
-    const-string v1, "qc_manual_whitebalance_k_value"
+    const-string v1, "qc_camera_iso"
 
-    const-string v2, "pref_qc_manual_whitebalance_k_value_key"
+    const-string v2, "pref_qc_camera_iso_key"
 
-    .line 113
-    invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createIntEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
+    .line 114
+    invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
 
@@ -645,12 +647,12 @@
 
     aput-object v1, v0, v2
 
-    const-string v1, "camera_face_beauty"
+    const-string v1, "qc_manual_whitebalance_k_value"
 
-    const-string v2, "pref_camera_face_beauty_key"
+    const-string v2, "pref_qc_manual_whitebalance_k_value_key"
 
-    .line 116
-    invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
+    .line 115
+    invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createIntEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
 
@@ -658,11 +660,11 @@
 
     aput-object v1, v0, v2
 
-    const-string v1, "camera_face_beauty_switch"
+    const-string v1, "camera_face_beauty"
 
-    const-string v2, "pref_camera_face_beauty_switch_key"
+    const-string v2, "pref_camera_face_beauty_key"
 
-    .line 117
+    .line 118
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -671,12 +673,12 @@
 
     aput-object v1, v0, v2
 
-    const-string v1, "beautify_slim_face_ratio"
+    const-string v1, "camera_face_beauty_switch"
 
-    const-string v2, "pref_beautify_slim_face_ratio_key"
+    const-string v2, "pref_camera_face_beauty_switch_key"
 
-    .line 118
-    invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createIntEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
+    .line 119
+    invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createStringEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
 
@@ -684,11 +686,11 @@
 
     aput-object v1, v0, v2
 
-    const-string v1, "beautify_skin_smooth_ratio"
+    const-string v1, "beautify_slim_face_ratio"
 
-    const-string v2, "pref_beautify_skin_smooth_ratio_key"
+    const-string v2, "pref_beautify_slim_face_ratio_key"
 
-    .line 119
+    .line 120
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createIntEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -697,11 +699,11 @@
 
     aput-object v1, v0, v2
 
-    const-string v1, "beautify_skin_color_ratio"
+    const-string v1, "beautify_skin_smooth_ratio"
 
-    const-string v2, "pref_beautify_skin_color_ratio_key"
+    const-string v2, "pref_beautify_skin_smooth_ratio_key"
 
-    .line 120
+    .line 121
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createIntEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -710,11 +712,11 @@
 
     aput-object v1, v0, v2
 
-    const-string v1, "beautify_enlarge_eye_ratio"
+    const-string v1, "beautify_skin_color_ratio"
 
-    const-string v2, "pref_beautify_enlarge_eye_ratio_key"
+    const-string v2, "pref_beautify_skin_color_ratio_key"
 
-    .line 121
+    .line 122
     invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createIntEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
     move-result-object v1
@@ -723,9 +725,22 @@
 
     aput-object v1, v0, v2
 
+    const-string v1, "beautify_enlarge_eye_ratio"
+
+    const-string v2, "pref_beautify_enlarge_eye_ratio_key"
+
+    .line 123
+    invoke-static {v1, v2}, Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;->createIntEntry(Ljava/lang/String;Ljava/lang/String;)Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
+
+    move-result-object v1
+
+    const/16 v2, 0x2f
+
+    aput-object v1, v0, v2
+
     sput-object v0, Lcom/android/camera/backup/CameraBackupSettings;->PREF_ENTRIES:[Lcom/xiaomi/settingsdk/backup/data/PrefsBackupHelper$PrefEntry;
 
-    .line 62
+    .line 63
     return-void
 .end method
 

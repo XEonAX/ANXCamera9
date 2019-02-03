@@ -36,7 +36,7 @@
 .method constructor <init>(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;)V
     .locals 0
 
-    .line 203
+    .line 204
     iput-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager$3;->this$0:Lcom/android/camera/module/loader/camera2/Camera2OpenManager;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -59,7 +59,7 @@
         }
     .end annotation
 
-    .line 206
+    .line 207
     invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$200()Ljava/lang/String;
 
     move-result-object v0
@@ -80,10 +80,10 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 207
+    .line 208
     iget-object p1, p0, Lcom/android/camera/module/loader/camera2/Camera2OpenManager$3;->this$0:Lcom/android/camera/module/loader/camera2/Camera2OpenManager;
 
-    invoke-static {p1}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$400(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;)Landroid/os/Handler;
+    invoke-static {p1}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$300(Lcom/android/camera/module/loader/camera2/Camera2OpenManager;)Landroid/os/Handler;
 
     move-result-object p1
 
@@ -101,7 +101,7 @@
 
     if-nez p1, :cond_0
 
-    .line 208
+    .line 209
     invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager;->access$200()Ljava/lang/String;
 
     move-result-object p1
@@ -110,11 +110,11 @@
 
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 210
+    .line 211
     :cond_0
     const/4 p1, 0x3
 
-    .line 211
+    .line 212
     invoke-static {p1}, Lcom/android/camera/module/loader/camera2/Camera2Result;->create(I)Lcom/android/camera/module/loader/camera2/Camera2Result;
 
     move-result-object p1
@@ -125,7 +125,7 @@
 
     move-result-object p1
 
-    .line 210
+    .line 211
     invoke-static {p1}, Lio/reactivex/Observable;->just(Ljava/lang/Object;)Lio/reactivex/Observable;
 
     move-result-object p1
@@ -141,7 +141,7 @@
         }
     .end annotation
 
-    .line 203
+    .line 204
     check-cast p1, Ljava/lang/Throwable;
 
     invoke-virtual {p0, p1}, Lcom/android/camera/module/loader/camera2/Camera2OpenManager$3;->apply(Ljava/lang/Throwable;)Lio/reactivex/ObservableSource;

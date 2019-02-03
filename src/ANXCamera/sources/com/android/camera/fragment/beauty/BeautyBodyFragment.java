@@ -4,18 +4,20 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorListenerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
-import com.aeonax.camera.R;
+import com.android.camera.R;
+import com.android.camera.fragment.beauty.BeautyParameters.Type;
 import com.android.camera.fragment.beauty.MakeupSingleCheckAdapter.MakeupItem;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.BaseDelegate;
 import com.android.camera.protocol.ModeProtocol.MakeupProtocol;
+import com.android.camera.statistic.CameraStatUtil;
+import com.android.camera.ui.ColorImageView;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BeautyBodyFragment extends BaseBeautyMakeupFragment {
-    private ImageView mHeaderImageView;
+    private ColorImageView mHeaderImageView;
 
     protected List<MakeupItem> initItems() {
         List<MakeupItem> arrayList = new ArrayList();
@@ -32,6 +34,7 @@ public class BeautyBodyFragment extends BaseBeautyMakeupFragment {
         if (makeupProtocol != null) {
             makeupProtocol.onMakeupItemSelected();
         }
+        CameraStatUtil.trackBeautyBodyCounter(makeupItem.getCameraBeautyParameterType().beautyParamType);
     }
 
     protected void onHeaderClick() {
@@ -56,11 +59,13 @@ public class BeautyBodyFragment extends BaseBeautyMakeupFragment {
         }
         this.mMakeupAdapter.notifyDataSetChanged();
         toast(getResources().getString(R.string.beauty_body_reset_tip));
+        CameraStatUtil.trackBeautyBodyCounter(Type.BEAUTY_RESET);
     }
 
     protected View getHeaderView() {
         View inflate = LayoutInflater.from(getContext()).inflate(R.layout.beauty_header_layout, null);
-        this.mHeaderImageView = (ImageView) inflate.findViewById(R.id.makeup_item_icon);
+        this.mHeaderImageView = (ColorImageView) inflate.findViewById(R.id.makeup_item_icon);
+        this.mHeaderImageView.setColor(getResources().getColor(R.color.beautycamera_beauty_advanced_item_backgroud_normal));
         this.mHeaderImageView.setImageResource(R.drawable.icon_beauty_reset);
         ((TextView) inflate.findViewById(R.id.makeup_item_name)).setText(R.string.beauty_reset);
         return inflate;

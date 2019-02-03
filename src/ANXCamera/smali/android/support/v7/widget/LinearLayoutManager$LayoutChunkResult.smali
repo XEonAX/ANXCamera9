@@ -26,7 +26,7 @@
 
 # direct methods
 .method protected constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 2194
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -37,7 +37,7 @@
 
 # virtual methods
 .method resetInternal()V
-    .locals 1
+    .registers 2
 
     .line 2201
     const/4 v0, 0x0

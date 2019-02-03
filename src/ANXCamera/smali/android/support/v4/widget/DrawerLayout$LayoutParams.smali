@@ -26,7 +26,7 @@
 
 # direct methods
 .method public constructor <init>(II)V
-    .locals 1
+    .registers 4
     .param p1, "width"    # I
     .param p2, "height"    # I
 
@@ -43,7 +43,7 @@
 .end method
 
 .method public constructor <init>(III)V
-    .locals 0
+    .registers 4
     .param p1, "width"    # I
     .param p2, "height"    # I
     .param p3, "gravity"    # I
@@ -59,7 +59,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
-    .locals 2
+    .registers 5
     .param p1, "c"    # Landroid/content/Context;
     .param p2, "attrs"    # Landroid/util/AttributeSet;
 
@@ -72,6 +72,7 @@
     iput v0, p0, Landroid/support/v4/widget/DrawerLayout$LayoutParams;->gravity:I
 
     .line 1977
+    # getter for: Landroid/support/v4/widget/DrawerLayout;->LAYOUT_ATTRS:[I
     invoke-static {}, Landroid/support/v4/widget/DrawerLayout;->access$100()[I
 
     move-result-object v1
@@ -96,7 +97,7 @@
 .end method
 
 .method public constructor <init>(Landroid/support/v4/widget/DrawerLayout$LayoutParams;)V
-    .locals 1
+    .registers 3
     .param p1, "source"    # Landroid/support/v4/widget/DrawerLayout$LayoutParams;
 
     .line 1992
@@ -117,7 +118,7 @@
 .end method
 
 .method public constructor <init>(Landroid/view/ViewGroup$LayoutParams;)V
-    .locals 1
+    .registers 3
     .param p1, "source"    # Landroid/view/ViewGroup$LayoutParams;
 
     .line 1997
@@ -133,7 +134,7 @@
 .end method
 
 .method public constructor <init>(Landroid/view/ViewGroup$MarginLayoutParams;)V
-    .locals 1
+    .registers 3
     .param p1, "source"    # Landroid/view/ViewGroup$MarginLayoutParams;
 
     .line 2001

@@ -1,8 +1,9 @@
 package com.android.camera.data.data.config;
 
 import android.text.TextUtils;
-import com.aeonax.camera.R;
+import com.android.camera.CameraAppImpl;
 import com.android.camera.CameraSettings;
+import com.android.camera.R;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;
@@ -57,7 +58,7 @@ public class ComponentManuallyWB extends ComponentData {
         arrayList2.add(new ComponentDataItem(R.drawable.bg_white_balance_sunlight, R.drawable.ic_white_balance_sunlight, -2, "5"));
         arrayList2.add(new ComponentDataItem(R.drawable.bg_white_balance_fluorescent, R.drawable.ic_white_balance_fluorescent, -2, "3"));
         arrayList2.add(new ComponentDataItem(R.drawable.bg_white_balance_cloudy, R.drawable.ic_white_balance_cloudy, -2, "6"));
-        if (b.gr() && DataRepository.dataItemFeature().fv()) {
+        if (b.gJ() && DataRepository.dataItemFeature().fy()) {
             arrayList2.add(new ComponentDataItem(R.drawable.bg_white_balance_manual, R.drawable.ic_white_balance_manual, -2, "manual"));
         }
         return arrayList2;
@@ -68,6 +69,6 @@ public class ComponentManuallyWB extends ComponentData {
     }
 
     public int getCustomWB() {
-        return this.mParentDataItem.getInt("pref_qc_manual_whitebalance_k_value_key", 4200);
+        return this.mParentDataItem.getInt("pref_qc_manual_whitebalance_k_value_key", CameraAppImpl.getAndroidContext().getResources().getInteger(R.integer.default_manual_whitebalance_value));
     }
 }

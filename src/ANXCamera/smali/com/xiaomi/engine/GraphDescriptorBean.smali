@@ -19,7 +19,7 @@
 
 
 # instance fields
-.field private mIsFrontCamera:Z
+.field private mCameraCombinationMode:I
 
 .field private mIsSnapshot:Z
 
@@ -32,7 +32,7 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 141
+    .line 143
     new-instance v0, Lcom/xiaomi/engine/GraphDescriptorBean$1;
 
     invoke-direct {v0}, Lcom/xiaomi/engine/GraphDescriptorBean$1;-><init>()V
@@ -45,107 +45,96 @@
 .method public constructor <init>()V
     .locals 2
 
-    .line 41
+    .line 42
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 42
+    .line 43
     const/4 v0, 0x0
 
     iput v0, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mOperationModeID:I
 
-    .line 43
+    .line 44
     iput v0, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mStreamNumber:I
 
-    .line 44
+    .line 45
     const/4 v1, 0x1
 
     iput-boolean v1, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mIsSnapshot:Z
 
-    .line 45
-    iput-boolean v0, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mIsFrontCamera:Z
-
     .line 46
+    iput v0, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mCameraCombinationMode:I
+
+    .line 47
     return-void
 .end method
 
-.method public constructor <init>(IIZZ)V
+.method public constructor <init>(IIZI)V
     .locals 0
 
-    .line 57
+    .line 58
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 58
+    .line 59
     iput p1, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mOperationModeID:I
 
-    .line 59
+    .line 60
     iput p2, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mStreamNumber:I
 
-    .line 60
+    .line 61
     iput-boolean p3, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mIsSnapshot:Z
 
-    .line 61
-    iput-boolean p4, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mIsFrontCamera:Z
-
     .line 62
+    iput p4, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mCameraCombinationMode:I
+
+    .line 63
     return-void
 .end method
 
 .method protected constructor <init>(Landroid/os/Parcel;)V
-    .locals 3
+    .locals 1
 
-    .line 134
+    .line 136
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 135
+    .line 137
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result v0
 
     iput v0, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mOperationModeID:I
 
-    .line 136
+    .line 138
     invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result v0
 
     iput v0, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mStreamNumber:I
 
-    .line 137
+    .line 139
     invoke-virtual {p1}, Landroid/os/Parcel;->readByte()B
 
     move-result v0
 
-    const/4 v1, 0x0
-
-    const/4 v2, 0x1
-
     if-eqz v0, :cond_0
 
-    move v0, v2
+    const/4 v0, 0x1
 
     goto :goto_0
 
     :cond_0
-    move v0, v1
+    const/4 v0, 0x0
 
     :goto_0
     iput-boolean v0, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mIsSnapshot:Z
 
-    .line 138
-    invoke-virtual {p1}, Landroid/os/Parcel;->readByte()B
+    .line 140
+    invoke-virtual {p1}, Landroid/os/Parcel;->readInt()I
 
     move-result p1
 
-    if-eqz p1, :cond_1
+    iput p1, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mCameraCombinationMode:I
 
-    move v1, v2
-
-    nop
-
-    :cond_1
-    iput-boolean v1, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mIsFrontCamera:Z
-
-    .line 139
+    .line 141
     return-void
 .end method
 
@@ -154,7 +143,7 @@
 .method public describeContents()I
     .locals 1
 
-    .line 123
+    .line 125
     const/4 v0, 0x0
 
     return v0
@@ -163,15 +152,15 @@
 .method public equals(Ljava/lang/Object;)Z
     .locals 4
 
-    .line 155
+    .line 157
     const/4 v0, 0x1
 
     if-ne p0, p1, :cond_0
 
-    .line 156
+    .line 158
     return v0
 
-    .line 158
+    .line 160
     :cond_0
     instance-of v1, p1, Lcom/xiaomi/engine/GraphDescriptorBean;
 
@@ -179,14 +168,14 @@
 
     if-nez v1, :cond_1
 
-    .line 159
+    .line 161
     return v2
 
-    .line 161
+    .line 163
     :cond_1
     check-cast p1, Lcom/xiaomi/engine/GraphDescriptorBean;
 
-    .line 162
+    .line 164
     iget v1, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mOperationModeID:I
 
     iget v3, p1, Lcom/xiaomi/engine/GraphDescriptorBean;->mOperationModeID:I
@@ -205,9 +194,9 @@
 
     if-ne v1, v3, :cond_2
 
-    iget-boolean v1, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mIsFrontCamera:Z
+    iget v1, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mCameraCombinationMode:I
 
-    iget-boolean p1, p1, Lcom/xiaomi/engine/GraphDescriptorBean;->mIsFrontCamera:Z
+    iget p1, p1, Lcom/xiaomi/engine/GraphDescriptorBean;->mCameraCombinationMode:I
 
     if-ne v1, p1, :cond_2
 
@@ -220,10 +209,19 @@
     return v0
 .end method
 
+.method public getCameraCombinationMode()I
+    .locals 1
+
+    .line 104
+    iget v0, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mCameraCombinationMode:I
+
+    return v0
+.end method
+
 .method public getOperationModeID()I
     .locals 1
 
-    .line 72
+    .line 73
     iget v0, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mOperationModeID:I
 
     return v0
@@ -232,7 +230,7 @@
 .method public getStreamNumber()I
     .locals 1
 
-    .line 82
+    .line 83
     iget v0, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mStreamNumber:I
 
     return v0
@@ -241,7 +239,7 @@
 .method public hashCode()I
     .locals 3
 
-    .line 170
+    .line 172
     const/4 v0, 0x4
 
     new-array v0, v0, [Ljava/lang/Object;
@@ -276,9 +274,9 @@
 
     aput-object v1, v0, v2
 
-    iget-boolean v1, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mIsFrontCamera:Z
+    iget v1, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mCameraCombinationMode:I
 
-    invoke-static {v1}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+    invoke-static {v1}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v1
 
@@ -293,87 +291,78 @@
     return v0
 .end method
 
-.method public isFrontCamera()Z
-    .locals 1
-
-    .line 102
-    iget-boolean v0, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mIsFrontCamera:Z
-
-    return v0
-.end method
-
 .method public isSnapshot()Z
     .locals 1
 
-    .line 92
+    .line 93
     iget-boolean v0, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mIsSnapshot:Z
 
     return v0
 .end method
 
-.method public setFrontCamera(Z)V
+.method public setCameraCombinationMode(I)V
     .locals 0
 
-    .line 118
-    iput-boolean p1, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mIsFrontCamera:Z
+    .line 120
+    iput p1, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mCameraCombinationMode:I
 
-    .line 119
+    .line 121
     return-void
 .end method
 
 .method public setOperationModeID(I)V
     .locals 0
 
-    .line 106
+    .line 108
     iput p1, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mOperationModeID:I
 
-    .line 107
+    .line 109
     return-void
 .end method
 
 .method public setSnapshot(Z)V
     .locals 0
 
-    .line 114
+    .line 116
     iput-boolean p1, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mIsSnapshot:Z
 
-    .line 115
+    .line 117
     return-void
 .end method
 
 .method public setStreamNumber(I)V
     .locals 0
 
-    .line 110
+    .line 112
     iput p1, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mStreamNumber:I
 
-    .line 111
+    .line 113
     return-void
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
     .locals 0
 
-    .line 128
+    .line 130
     iget p2, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mOperationModeID:I
 
     invoke-virtual {p1, p2}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 129
+    .line 131
     iget p2, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mStreamNumber:I
 
     invoke-virtual {p1, p2}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 130
+    .line 132
     iget-boolean p2, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mIsSnapshot:Z
 
     invoke-virtual {p1, p2}, Landroid/os/Parcel;->writeByte(B)V
 
-    .line 131
-    iget-boolean p2, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mIsFrontCamera:Z
+    .line 133
+    iget p2, p0, Lcom/xiaomi/engine/GraphDescriptorBean;->mCameraCombinationMode:I
 
-    invoke-virtual {p1, p2}, Landroid/os/Parcel;->writeByte(B)V
+    invoke-virtual {p1, p2}, Landroid/os/Parcel;->writeInt(I)V
 
-    .line 132
+    .line 134
     return-void
 .end method

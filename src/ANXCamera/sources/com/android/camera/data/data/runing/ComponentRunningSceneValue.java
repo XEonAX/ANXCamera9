@@ -1,6 +1,6 @@
 package com.android.camera.data.data.runing;
 
-import com.aeonax.camera.R;
+import com.android.camera.R;
 import com.android.camera.constant.CameraScene;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;

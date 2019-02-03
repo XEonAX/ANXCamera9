@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <permissions>
-    <privapp-permissions package="com.aeonax.camera">
+    <privapp-permissions package="com.android.camera">
         <!-- Camera -->
         <permission name="android.permission.CAMERA" />
         <!-- Location -->

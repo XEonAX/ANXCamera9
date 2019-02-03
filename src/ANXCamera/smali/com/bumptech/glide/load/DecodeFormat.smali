@@ -15,17 +15,17 @@
 
 # static fields
 .field public static final enum cA:Lcom/bumptech/glide/load/DecodeFormat;
-
-.field public static final cB:Lcom/bumptech/glide/load/DecodeFormat;
-
-.field private static final synthetic cC:[Lcom/bumptech/glide/load/DecodeFormat;
-
-.field public static final enum cy:Lcom/bumptech/glide/load/DecodeFormat;
-
-.field public static final enum cz:Lcom/bumptech/glide/load/DecodeFormat;
     .annotation runtime Ljava/lang/Deprecated;
     .end annotation
 .end field
+
+.field public static final enum cB:Lcom/bumptech/glide/load/DecodeFormat;
+
+.field public static final cC:Lcom/bumptech/glide/load/DecodeFormat;
+
+.field private static final synthetic cD:[Lcom/bumptech/glide/load/DecodeFormat;
+
+.field public static final enum cz:Lcom/bumptech/glide/load/DecodeFormat;
 
 
 # direct methods
@@ -41,7 +41,7 @@
 
     invoke-direct {v0, v1, v2}, Lcom/bumptech/glide/load/DecodeFormat;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/bumptech/glide/load/DecodeFormat;->cy:Lcom/bumptech/glide/load/DecodeFormat;
+    sput-object v0, Lcom/bumptech/glide/load/DecodeFormat;->cz:Lcom/bumptech/glide/load/DecodeFormat;
 
     .line 38
     new-instance v0, Lcom/bumptech/glide/load/DecodeFormat;
@@ -52,7 +52,7 @@
 
     invoke-direct {v0, v1, v3}, Lcom/bumptech/glide/load/DecodeFormat;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/bumptech/glide/load/DecodeFormat;->cz:Lcom/bumptech/glide/load/DecodeFormat;
+    sput-object v0, Lcom/bumptech/glide/load/DecodeFormat;->cA:Lcom/bumptech/glide/load/DecodeFormat;
 
     .line 51
     new-instance v0, Lcom/bumptech/glide/load/DecodeFormat;
@@ -63,31 +63,31 @@
 
     invoke-direct {v0, v1, v4}, Lcom/bumptech/glide/load/DecodeFormat;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/bumptech/glide/load/DecodeFormat;->cA:Lcom/bumptech/glide/load/DecodeFormat;
+    sput-object v0, Lcom/bumptech/glide/load/DecodeFormat;->cB:Lcom/bumptech/glide/load/DecodeFormat;
 
     .line 12
     const/4 v0, 0x3
 
     new-array v0, v0, [Lcom/bumptech/glide/load/DecodeFormat;
 
-    sget-object v1, Lcom/bumptech/glide/load/DecodeFormat;->cy:Lcom/bumptech/glide/load/DecodeFormat;
+    sget-object v1, Lcom/bumptech/glide/load/DecodeFormat;->cz:Lcom/bumptech/glide/load/DecodeFormat;
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/bumptech/glide/load/DecodeFormat;->cz:Lcom/bumptech/glide/load/DecodeFormat;
+    sget-object v1, Lcom/bumptech/glide/load/DecodeFormat;->cA:Lcom/bumptech/glide/load/DecodeFormat;
 
     aput-object v1, v0, v3
 
-    sget-object v1, Lcom/bumptech/glide/load/DecodeFormat;->cA:Lcom/bumptech/glide/load/DecodeFormat;
+    sget-object v1, Lcom/bumptech/glide/load/DecodeFormat;->cB:Lcom/bumptech/glide/load/DecodeFormat;
 
     aput-object v1, v0, v4
 
-    sput-object v0, Lcom/bumptech/glide/load/DecodeFormat;->cC:[Lcom/bumptech/glide/load/DecodeFormat;
+    sput-object v0, Lcom/bumptech/glide/load/DecodeFormat;->cD:[Lcom/bumptech/glide/load/DecodeFormat;
 
     .line 56
-    sget-object v0, Lcom/bumptech/glide/load/DecodeFormat;->cz:Lcom/bumptech/glide/load/DecodeFormat;
+    sget-object v0, Lcom/bumptech/glide/load/DecodeFormat;->cA:Lcom/bumptech/glide/load/DecodeFormat;
 
-    sput-object v0, Lcom/bumptech/glide/load/DecodeFormat;->cB:Lcom/bumptech/glide/load/DecodeFormat;
+    sput-object v0, Lcom/bumptech/glide/load/DecodeFormat;->cC:Lcom/bumptech/glide/load/DecodeFormat;
 
     return-void
 .end method
@@ -125,7 +125,7 @@
     .locals 1
 
     .line 12
-    sget-object v0, Lcom/bumptech/glide/load/DecodeFormat;->cC:[Lcom/bumptech/glide/load/DecodeFormat;
+    sget-object v0, Lcom/bumptech/glide/load/DecodeFormat;->cD:[Lcom/bumptech/glide/load/DecodeFormat;
 
     invoke-virtual {v0}, [Lcom/bumptech/glide/load/DecodeFormat;->clone()Ljava/lang/Object;
 

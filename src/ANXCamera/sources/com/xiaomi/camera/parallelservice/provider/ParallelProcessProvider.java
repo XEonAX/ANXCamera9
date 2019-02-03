@@ -14,11 +14,11 @@ import android.os.ParcelFileDescriptor;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.Log;
 import com.android.camera.db.DbContainer;
 import com.android.camera.db.DbRepository;
 import com.android.camera.db.element.SaveTask;
 import com.android.camera.db.item.DbItemSaveTask;
+import com.android.camera.log.Log;
 import com.google.android.apps.photos.api.ProcessingMetadataQuery;
 import com.google.android.apps.photos.api.ProcessingMetadataQuery.ProgressStatus;
 import com.xiaomi.camera.parallelservice.util.ParallelUtil.DEBUG;
@@ -71,7 +71,7 @@ public class ParallelProcessProvider extends ContentProvider {
     public Cursor query(@NonNull Uri uri, @Nullable String[] strArr, @Nullable String str, @Nullable String[] strArr2, @Nullable String str2) {
         String str3 = TAG;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("query uri:");
+        stringBuilder.append("query uri: ");
         stringBuilder.append(uri);
         Log.v(str3, stringBuilder.toString());
         ParallelService.start(getContext());
@@ -109,7 +109,7 @@ public class ParallelProcessProvider extends ContentProvider {
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues contentValues) {
         String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("insert uri:");
+        stringBuilder.append("insert uri: ");
         stringBuilder.append(uri);
         Log.v(str, stringBuilder.toString());
         ParallelService.start(getContext());
@@ -137,12 +137,13 @@ public class ParallelProcessProvider extends ContentProvider {
         if (l == null || TextUtils.isEmpty(str)) {
             throw new IllegalArgumentException("error insert values");
         }
+        String str2 = TAG;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("insert:");
+        stringBuilder.append("algo db: insert: ");
         stringBuilder.append(l);
         stringBuilder.append(" | ");
         stringBuilder.append(str);
-        Log.e("algo db:", stringBuilder.toString());
+        Log.d(str2, stringBuilder.toString());
         SaveTask itemByPath = this.dbItemSaveTask.getItemByPath(str);
         itemByPath.setMediaStoreId(l);
         this.dbItemSaveTask.updateItem(itemByPath);
@@ -154,7 +155,7 @@ public class ParallelProcessProvider extends ContentProvider {
     public int delete(@NonNull Uri uri, @Nullable String str, @Nullable String[] strArr) {
         str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("delete uri:");
+        stringBuilder.append("delete uri: ");
         stringBuilder.append(uri);
         Log.v(str, stringBuilder.toString());
         ParallelService.start(getContext());
@@ -172,25 +173,24 @@ public class ParallelProcessProvider extends ContentProvider {
         SaveTask itemByMediaId = this.dbItemSaveTask.getItemByMediaId(Long.valueOf(parseId));
         String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("deleteProcessingMetadata media id to delete: ");
+        stringBuilder.append("deleteProcessingMetadata: mediaStoreId=");
         stringBuilder.append(parseId);
-        Log.v(str, stringBuilder.toString());
+        Log.d(str, stringBuilder.toString());
         if (itemByMediaId != null) {
-            Log.v(TAG, "deleteProcessingMetadata find task to delete");
             this.dbItemSaveTask.removeItem(itemByMediaId);
             notifyChange(uri);
             return 1;
         }
-        Log.v(TAG, "deleteProcessingMetadata no match task found");
+        Log.v(TAG, "deleteProcessingMetadata: no match task found");
         return 0;
     }
 
     public int update(@NonNull Uri uri, @Nullable ContentValues contentValues, @Nullable String str, @Nullable String[] strArr) {
         str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("update uri:");
+        stringBuilder.append("update uri: ");
         stringBuilder.append(uri);
-        Log.v(str, stringBuilder.toString());
+        Log.d(str, stringBuilder.toString());
         if (this.mUriMatcher.match(uri) != 8) {
             StringBuilder stringBuilder2 = new StringBuilder();
             stringBuilder2.append("Unrecognized uri: ");
@@ -208,17 +208,16 @@ public class ParallelProcessProvider extends ContentProvider {
     private void updateProcessingMetadata(long j, int i) {
         String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("updateProcessingMetadata mediaStoreId:");
+        stringBuilder.append("updateProcessingMetadata: mediaStoreId=");
         stringBuilder.append(j);
         Log.v(str, stringBuilder.toString());
         SaveTask itemByMediaId = this.dbItemSaveTask.getItemByMediaId(Long.valueOf(j));
         if (itemByMediaId != null) {
-            Log.v(TAG, "updateProcessingMetadata find media do update");
             itemByMediaId.setPercentage(i);
             this.dbItemSaveTask.updateItem(itemByMediaId);
             return;
         }
-        Log.v(TAG, "updateProcessingMetadata no match task found");
+        Log.v(TAG, "updateProcessingMetadata: no match task found");
     }
 
     @Nullable
@@ -232,7 +231,7 @@ public class ParallelProcessProvider extends ContentProvider {
         } else if (this.mUriMatcher.match(uri) == 8) {
             str = TAG;
             stringBuilder = new StringBuilder();
-            stringBuilder.append("loading processing thumb");
+            stringBuilder.append("loading processing thumb: ");
             stringBuilder.append(uri);
             Log.v(str, stringBuilder.toString());
             return loadProcessingImage(ContentUris.parseId(uri));

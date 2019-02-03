@@ -3,12 +3,12 @@
 .source "FragmentTopAlert.java"
 
 # interfaces
-.implements Ljava/lang/Runnable;
+.implements Lcom/android/camera/ui/ToggleSwitch$OnCheckedChangeListener;
 
 
 # annotations
-.annotation system Ldalvik/annotation/EnclosingClass;
-    value = Lcom/android/camera/fragment/top/FragmentTopAlert;
+.annotation system Ldalvik/annotation/EnclosingMethod;
+    value = Lcom/android/camera/fragment/top/FragmentTopAlert;->alertMoonSelector(Ljava/lang/String;Ljava/lang/String;II)V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/top/FragmentTopAlert;)V
     .locals 0
 
-    .line 794
+    .line 442
     iput-object p1, p0, Lcom/android/camera/fragment/top/FragmentTopAlert$6;->this$0:Lcom/android/camera/fragment/top/FragmentTopAlert;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -35,89 +35,46 @@
 
 
 # virtual methods
-.method public run()V
-    .locals 3
+.method public onCheckedChanged(Lcom/android/camera/ui/ToggleSwitch;Z)V
+    .locals 1
 
-    .line 797
-    iget-object v0, p0, Lcom/android/camera/fragment/top/FragmentTopAlert$6;->this$0:Lcom/android/camera/fragment/top/FragmentTopAlert;
+    .line 445
+    invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
-    invoke-static {v0}, Lcom/android/camera/fragment/top/FragmentTopAlert;->access$1300(Lcom/android/camera/fragment/top/FragmentTopAlert;)Landroid/widget/TextView;
+    move-result-object p1
 
-    move-result-object v0
+    const/16 v0, 0xa4
 
-    invoke-virtual {v0}, Landroid/widget/TextView;->getVisibility()I
+    invoke-virtual {p1, v0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
-    move-result v0
+    move-result-object p1
 
-    const/16 v1, 0x8
+    check-cast p1, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;
 
-    if-ne v0, v1, :cond_0
+    .line 446
+    if-eqz p2, :cond_0
 
-    .line 798
-    return-void
+    .line 447
+    if-eqz p1, :cond_1
 
-    .line 800
+    .line 448
+    const/16 p2, 0xf6
+
+    invoke-interface {p1, p2}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->onConfigChanged(I)V
+
+    goto :goto_0
+
+    .line 451
     :cond_0
-    iget-object v0, p0, Lcom/android/camera/fragment/top/FragmentTopAlert$6;->this$0:Lcom/android/camera/fragment/top/FragmentTopAlert;
+    if-eqz p1, :cond_1
 
-    invoke-static {v0}, Lcom/android/camera/fragment/top/FragmentTopAlert;->access$1300(Lcom/android/camera/fragment/top/FragmentTopAlert;)Landroid/widget/TextView;
+    .line 452
+    const/16 p2, 0xf7
 
-    move-result-object v0
+    invoke-interface {p1, p2}, Lcom/android/camera/protocol/ModeProtocol$ConfigChanges;->onConfigChanged(I)V
 
-    invoke-virtual {v0, v1}, Landroid/widget/TextView;->setVisibility(I)V
-
-    .line 801
-    iget-object v0, p0, Lcom/android/camera/fragment/top/FragmentTopAlert$6;->this$0:Lcom/android/camera/fragment/top/FragmentTopAlert;
-
-    invoke-static {v0}, Lcom/android/camera/fragment/top/FragmentTopAlert;->access$000(Lcom/android/camera/fragment/top/FragmentTopAlert;)Landroid/widget/ImageView;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Landroid/widget/ImageView;->getVisibility()I
-
-    move-result v0
-
-    if-eqz v0, :cond_1
-
-    iget-object v0, p0, Lcom/android/camera/fragment/top/FragmentTopAlert$6;->this$0:Lcom/android/camera/fragment/top/FragmentTopAlert;
-
-    invoke-static {v0}, Lcom/android/camera/fragment/top/FragmentTopAlert;->access$600(Lcom/android/camera/fragment/top/FragmentTopAlert;)Landroid/widget/TextView;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Landroid/widget/TextView;->getVisibility()I
-
-    move-result v0
-
-    if-eqz v0, :cond_1
-
-    .line 802
-    iget-object v0, p0, Lcom/android/camera/fragment/top/FragmentTopAlert$6;->this$0:Lcom/android/camera/fragment/top/FragmentTopAlert;
-
-    invoke-static {v0}, Lcom/android/camera/fragment/top/FragmentTopAlert;->access$1300(Lcom/android/camera/fragment/top/FragmentTopAlert;)Landroid/widget/TextView;
-
-    move-result-object v0
-
-    invoke-virtual {v0}, Landroid/widget/TextView;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
-
-    move-result-object v0
-
-    check-cast v0, Landroid/view/ViewGroup$MarginLayoutParams;
-
-    .line 803
-    iget-object v1, p0, Lcom/android/camera/fragment/top/FragmentTopAlert$6;->this$0:Lcom/android/camera/fragment/top/FragmentTopAlert;
-
-    iget-object v2, p0, Lcom/android/camera/fragment/top/FragmentTopAlert$6;->this$0:Lcom/android/camera/fragment/top/FragmentTopAlert;
-
-    invoke-static {v2}, Lcom/android/camera/fragment/top/FragmentTopAlert;->access$800(Lcom/android/camera/fragment/top/FragmentTopAlert;)Landroid/widget/TextView;
-
-    move-result-object v2
-
-    iget v0, v0, Landroid/view/ViewGroup$MarginLayoutParams;->topMargin:I
-
-    invoke-static {v1, v2, v0}, Lcom/android/camera/fragment/top/FragmentTopAlert;->access$900(Lcom/android/camera/fragment/top/FragmentTopAlert;Landroid/view/View;I)V
-
-    .line 805
+    .line 455
     :cond_1
+    :goto_0
     return-void
 .end method

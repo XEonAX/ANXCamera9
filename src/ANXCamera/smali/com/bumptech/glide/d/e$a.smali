@@ -35,7 +35,7 @@
     .end annotation
 .end field
 
-.field final ei:Ljava/lang/Class;
+.field final ej:Ljava/lang/Class;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/lang/Class<",
@@ -84,7 +84,7 @@
     iput-object p1, p0, Lcom/bumptech/glide/d/e$a;->dataClass:Ljava/lang/Class;
 
     .line 108
-    iput-object p2, p0, Lcom/bumptech/glide/d/e$a;->ei:Ljava/lang/Class;
+    iput-object p2, p0, Lcom/bumptech/glide/d/e$a;->ej:Ljava/lang/Class;
 
     .line 109
     iput-object p3, p0, Lcom/bumptech/glide/d/e$a;->jR:Lcom/bumptech/glide/load/g;
@@ -124,7 +124,7 @@
 
     if-eqz p1, :cond_0
 
-    iget-object p1, p0, Lcom/bumptech/glide/d/e$a;->ei:Ljava/lang/Class;
+    iget-object p1, p0, Lcom/bumptech/glide/d/e$a;->ej:Ljava/lang/Class;
 
     .line 114
     invoke-virtual {p2, p1}, Ljava/lang/Class;->isAssignableFrom(Ljava/lang/Class;)Z

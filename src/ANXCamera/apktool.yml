@@ -19,6 +19,7 @@ doNotCompress:
 - res/drawable-440dpi-v4/ic_camera_mode_exit_button_full.9.png
 - res/drawable-440dpi-v4/ic_camera_mode_exit_button_full_pressed.9.png
 - res/drawable-440dpi-v4/ic_camera_mode_exit_button_pressed.9.png
+- res/drawable-440dpi-v4/ic_live_music_text_bg.9.png
 - res/drawable-440dpi-v4/ic_object_tracking.9.png
 - res/drawable-440dpi-v4/ic_object_tracking_succeed.9.png
 - res/drawable-440dpi-v4/magic_mirror_info_pop.9.png
@@ -42,6 +43,7 @@ doNotCompress:
 - res/drawable-xxhdpi-v4/ic_camera_mode_exit_button_full.9.png
 - res/drawable-xxhdpi-v4/ic_camera_mode_exit_button_full_pressed.9.png
 - res/drawable-xxhdpi-v4/ic_camera_mode_exit_button_pressed.9.png
+- res/drawable-xxhdpi-v4/ic_live_music_text_bg.9.png
 - res/drawable-xxhdpi-v4/ic_object_tracking.9.png
 - res/drawable-xxhdpi-v4/ic_object_tracking_succeed.9.png
 - res/drawable-xxhdpi-v4/magic_mirror_info_pop.9.png
@@ -55,9 +57,7 @@ isFrameworkApk: false
 packageInfo:
   forcedPackageId: '127'
   renameManifestPackage: null
-sdkInfo:
-  minSdkVersion: '26'
-  targetSdkVersion: '28'
+sdkInfo: null
 sharedLibrary: false
 sparseResources: false
 unknownFiles:
@@ -71,5 +71,5 @@ usesFramework:
   tag: null
 version: 2.3.4
 versionInfo:
-  versionCode: '1'
-  versionName: ThisHorribleMountaincat
+  versionCode: '3'
+  versionName: '3.0'

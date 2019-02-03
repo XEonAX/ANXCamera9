@@ -16,6 +16,8 @@
 
 
 # instance fields
+.field private aiEnabled:Z
+
 .field private aiType:I
 
 .field private isBokehFrontCamera:Z
@@ -33,7 +35,7 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 10
+    .line 9
     const-class v0, Lcom/xiaomi/camera/core/PictureInfo;
 
     invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
@@ -51,7 +53,7 @@
     .line 22
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 15
+    .line 14
     const-string v0, "rear"
 
     iput-object v0, p0, Lcom/xiaomi/camera/core/PictureInfo;->mSensorType:Ljava/lang/String;
@@ -72,7 +74,7 @@
 .method public end()V
     .locals 1
 
-    .line 73
+    .line 86
     iget-object v0, p0, Lcom/xiaomi/camera/core/PictureInfo;->mInfo:Lorg/json/JSONObject;
 
     invoke-virtual {v0}, Lorg/json/JSONObject;->toString()Ljava/lang/String;
@@ -81,19 +83,19 @@
 
     iput-object v0, p0, Lcom/xiaomi/camera/core/PictureInfo;->mInfoString:Ljava/lang/String;
 
-    .line 74
+    .line 87
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/xiaomi/camera/core/PictureInfo;->mInfo:Lorg/json/JSONObject;
 
-    .line 75
+    .line 88
     return-void
 .end method
 
 .method public getAiType()I
     .locals 1
 
-    .line 60
+    .line 64
     iget v0, p0, Lcom/xiaomi/camera/core/PictureInfo;->aiType:I
 
     return v0
@@ -102,47 +104,87 @@
 .method public getInfoString()Ljava/lang/String;
     .locals 1
 
-    .line 69
+    .line 82
     iget-object v0, p0, Lcom/xiaomi/camera/core/PictureInfo;->mInfoString:Ljava/lang/String;
 
     return-object v0
 .end method
 
+.method public isAiEnabled()Z
+    .locals 1
+
+    .line 73
+    iget-boolean v0, p0, Lcom/xiaomi/camera/core/PictureInfo;->aiEnabled:Z
+
+    return v0
+.end method
+
 .method public isBokehFrontCamera()Z
     .locals 1
 
-    .line 51
+    .line 55
     iget-boolean v0, p0, Lcom/xiaomi/camera/core/PictureInfo;->isBokehFrontCamera:Z
 
+    return v0
+.end method
+
+.method public isFrontCamera()Z
+    .locals 2
+
+    .line 47
+    iget-object v0, p0, Lcom/xiaomi/camera/core/PictureInfo;->mSensorType:Ljava/lang/String;
+
+    const-string v1, "front"
+
+    if-ne v0, v1, :cond_0
+
+    const/4 v0, 0x1
+
+    goto :goto_0
+
+    :cond_0
+    const/4 v0, 0x0
+
+    :goto_0
     return v0
 .end method
 
 .method public isFrontMirror()Z
     .locals 1
 
-    .line 47
+    .line 51
     iget-boolean v0, p0, Lcom/xiaomi/camera/core/PictureInfo;->isMirror:Z
 
     return v0
 .end method
 
+.method public setAiEnabled(Z)Lcom/xiaomi/camera/core/PictureInfo;
+    .locals 0
+
+    .line 77
+    iput-boolean p1, p0, Lcom/xiaomi/camera/core/PictureInfo;->aiEnabled:Z
+
+    .line 78
+    return-object p0
+.end method
+
 .method public setAiType(I)Lcom/xiaomi/camera/core/PictureInfo;
     .locals 0
 
-    .line 64
+    .line 68
     iput p1, p0, Lcom/xiaomi/camera/core/PictureInfo;->aiType:I
 
-    .line 65
+    .line 69
     return-object p0
 .end method
 
 .method public setBokehFrontCamera(Z)Lcom/xiaomi/camera/core/PictureInfo;
     .locals 0
 
-    .line 55
+    .line 59
     iput-boolean p1, p0, Lcom/xiaomi/camera/core/PictureInfo;->isBokehFrontCamera:Z
 
-    .line 56
+    .line 60
     return-object p0
 .end method
 
@@ -174,7 +216,7 @@
 
     const-string v1, "setFrontMirror JSONException occurs "
 
-    invoke-static {v0, v1, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+    invoke-static {v0, v1, p1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .line 43
     :goto_0
@@ -221,7 +263,7 @@
 
     const-string v1, "setSensorType JSONException occurs "
 
-    invoke-static {v0, v1, p1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+    invoke-static {v0, v1, p1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
     .line 33
     :goto_1

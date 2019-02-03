@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/snap/SnapCamera$5;)V
     .locals 0
 
-    .line 635
+    .line 633
     iput-object p1, p0, Lcom/android/camera/snap/SnapCamera$5$1;->this$1:Lcom/android/camera/snap/SnapCamera$5;
 
     invoke-direct {p0}, Landroid/hardware/camera2/CameraCaptureSession$CaptureCallback;-><init>()V
@@ -35,7 +35,7 @@
 .method public onCaptureStarted(Landroid/hardware/camera2/CameraCaptureSession;Landroid/hardware/camera2/CaptureRequest;JJ)V
     .locals 0
 
-    .line 638
+    .line 636
     iget-object p1, p0, Lcom/android/camera/snap/SnapCamera$5$1;->this$1:Lcom/android/camera/snap/SnapCamera$5;
 
     iget-object p1, p1, Lcom/android/camera/snap/SnapCamera$5;->this$0:Lcom/android/camera/snap/SnapCamera;
@@ -46,7 +46,7 @@
 
     if-nez p1, :cond_0
 
-    .line 640
+    .line 638
     :try_start_0
     iget-object p1, p0, Lcom/android/camera/snap/SnapCamera$5$1;->this$1:Lcom/android/camera/snap/SnapCamera$5;
 
@@ -60,14 +60,14 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 645
+    .line 643
     goto :goto_0
 
-    .line 641
+    .line 639
     :catch_0
     move-exception p1
 
-    .line 642
+    .line 640
     invoke-static {}, Lcom/android/camera/snap/SnapCamera;->access$100()Ljava/lang/String;
 
     move-result-object p2
@@ -92,17 +92,17 @@
 
     invoke-static {p2, p3, p1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 643
+    .line 641
     invoke-virtual {p1}, Ljava/lang/Exception;->printStackTrace()V
 
-    .line 644
+    .line 642
     iget-object p1, p0, Lcom/android/camera/snap/SnapCamera$5$1;->this$1:Lcom/android/camera/snap/SnapCamera$5;
 
     iget-object p1, p1, Lcom/android/camera/snap/SnapCamera$5;->this$0:Lcom/android/camera/snap/SnapCamera;
 
     invoke-static {p1}, Lcom/android/camera/snap/SnapCamera;->access$1100(Lcom/android/camera/snap/SnapCamera;)V
 
-    .line 646
+    .line 644
     :goto_0
     iget-object p1, p0, Lcom/android/camera/snap/SnapCamera$5$1;->this$1:Lcom/android/camera/snap/SnapCamera$5;
 
@@ -112,7 +112,7 @@
 
     invoke-static {p1, p2}, Lcom/android/camera/snap/SnapCamera;->access$902(Lcom/android/camera/snap/SnapCamera;Z)Z
 
-    .line 648
+    .line 646
     :cond_0
     return-void
 .end method

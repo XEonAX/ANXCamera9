@@ -9,7 +9,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 28
     new-instance v0, Lcom/google/zxing/FormatException;
@@ -22,7 +22,7 @@
 .end method
 
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 30
     invoke-direct {p0}, Lcom/google/zxing/ReaderException;-><init>()V
@@ -32,7 +32,7 @@
 .end method
 
 .method public static getFormatInstance()Lcom/google/zxing/FormatException;
-    .locals 1
+    .registers 1
 
     .line 35
     sget-object v0, Lcom/google/zxing/FormatException;->instance:Lcom/google/zxing/FormatException;

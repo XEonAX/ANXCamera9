@@ -14,15 +14,15 @@
 
 
 # static fields
-.field public static final RESET_TYPE_RETAIN:I = 0x1
+.field public static final RESET_TYPE_RETAIN:I = 0x2
 
 .field public static final RESET_TYPE_SWITCH_CAMERA:I = 0x5
 
 .field public static final RESET_TYPE_SWITCH_INTENT_CHANGED:I = 0x6
 
-.field public static final RESET_TYPE_SWITCH_MODE:I = 0x3
+.field public static final RESET_TYPE_SWITCH_MODE:I = 0x4
 
-.field public static final RESET_TYPE_TIME_OUT:I = 0x2
+.field public static final RESET_TYPE_TIME_OUT:I = 0x3
 
 .field public static final START_IMMEDIATELY:I = 0x0
 
@@ -60,42 +60,44 @@
 .method private constructor <init>(I)V
     .locals 2
 
-    .line 89
+    .line 90
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 79
+    .line 80
     const/4 v0, 0x0
 
     iput v0, p0, Lcom/android/camera/module/loader/StartControl;->mStartDelay:I
 
-    .line 80
-    const/4 v1, 0x1
+    .line 81
+    const/4 v1, 0x2
 
     iput v1, p0, Lcom/android/camera/module/loader/StartControl;->mResetType:I
 
-    .line 81
+    .line 82
+    const/4 v1, 0x1
+
     iput v1, p0, Lcom/android/camera/module/loader/StartControl;->mViewConfigType:I
 
-    .line 84
+    .line 85
     iput-boolean v1, p0, Lcom/android/camera/module/loader/StartControl;->mNeedReConfigureCamera:Z
 
-    .line 85
+    .line 86
     iput-boolean v1, p0, Lcom/android/camera/module/loader/StartControl;->mNeedReConfigureData:Z
 
-    .line 86
+    .line 87
     iput-boolean v0, p0, Lcom/android/camera/module/loader/StartControl;->mFromScreenSlide:Z
 
-    .line 90
+    .line 91
     iput p1, p0, Lcom/android/camera/module/loader/StartControl;->mTargetMode:I
 
-    .line 91
+    .line 92
     return-void
 .end method
 
 .method public static final create(I)Lcom/android/camera/module/loader/StartControl;
     .locals 1
 
-    .line 103
+    .line 104
     new-instance v0, Lcom/android/camera/module/loader/StartControl;
 
     invoke-direct {v0, p0}, Lcom/android/camera/module/loader/StartControl;-><init>(I)V
@@ -108,7 +110,7 @@
 .method public needNotifyUI()Z
     .locals 2
 
-    .line 143
+    .line 144
     iget v0, p0, Lcom/android/camera/module/loader/StartControl;->mViewConfigType:I
 
     const/4 v1, 0x3
@@ -129,7 +131,7 @@
 .method public saveWith(Lcom/android/camera/module/loader/StartControl;)Z
     .locals 2
 
-    .line 154
+    .line 155
     iget v0, p0, Lcom/android/camera/module/loader/StartControl;->mTargetMode:I
 
     iget v1, p1, Lcom/android/camera/module/loader/StartControl;->mTargetMode:I
@@ -162,69 +164,69 @@
 .method public setFromScreenSlide(Z)Lcom/android/camera/module/loader/StartControl;
     .locals 0
 
-    .line 137
+    .line 138
     iput-boolean p1, p0, Lcom/android/camera/module/loader/StartControl;->mFromScreenSlide:Z
 
-    .line 138
+    .line 139
     return-object p0
 .end method
 
 .method public setNeedBlurAnimation(Z)Lcom/android/camera/module/loader/StartControl;
     .locals 0
 
-    .line 117
+    .line 118
     iput-boolean p1, p0, Lcom/android/camera/module/loader/StartControl;->mNeedBlurAnimation:Z
 
-    .line 118
+    .line 119
     return-object p0
 .end method
 
 .method public setNeedReConfigureCamera(Z)Lcom/android/camera/module/loader/StartControl;
     .locals 0
 
-    .line 122
+    .line 123
     iput-boolean p1, p0, Lcom/android/camera/module/loader/StartControl;->mNeedReConfigureCamera:Z
 
-    .line 123
+    .line 124
     return-object p0
 .end method
 
 .method public setNeedReConfigureData(Z)Lcom/android/camera/module/loader/StartControl;
     .locals 0
 
-    .line 127
+    .line 128
     iput-boolean p1, p0, Lcom/android/camera/module/loader/StartControl;->mNeedReConfigureData:Z
 
-    .line 128
+    .line 129
     return-object p0
 .end method
 
 .method public setResetType(I)Lcom/android/camera/module/loader/StartControl;
     .locals 0
 
-    .line 112
+    .line 113
     iput p1, p0, Lcom/android/camera/module/loader/StartControl;->mResetType:I
 
-    .line 113
+    .line 114
     return-object p0
 .end method
 
 .method public setStartDelay(I)Lcom/android/camera/module/loader/StartControl;
     .locals 0
 
-    .line 107
+    .line 108
     iput p1, p0, Lcom/android/camera/module/loader/StartControl;->mStartDelay:I
 
-    .line 108
+    .line 109
     return-object p0
 .end method
 
 .method public setViewConfigType(I)Lcom/android/camera/module/loader/StartControl;
     .locals 0
 
-    .line 132
+    .line 133
     iput p1, p0, Lcom/android/camera/module/loader/StartControl;->mViewConfigType:I
 
-    .line 133
+    .line 134
     return-object p0
 .end method

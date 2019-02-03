@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 31
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -28,7 +28,7 @@
 
 # virtual methods
 .method public clearInterpolator(Landroid/view/View;)V
-    .locals 0
+    .registers 2
     .param p1, "view"    # Landroid/view/View;
 
     .line 154
@@ -36,7 +36,7 @@
 .end method
 
 .method public emptyValueAnimator()Landroid/support/v4/animation/ValueAnimatorCompat;
-    .locals 1
+    .registers 2
 
     .line 35
     new-instance v0, Landroid/support/v4/animation/DonutAnimatorCompatProvider$DonutFloatValueAnimator;

@@ -6,6 +6,9 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.SurfaceTexture;
 import android.graphics.SurfaceTexture.OnFrameAvailableListener;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraCaptureSession.StateCallback;
+import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.CaptureRequest.Builder;
 import android.hardware.camera2.impl.CameraMetadataNative;
@@ -13,6 +16,7 @@ import android.media.MediaRecorder;
 import android.os.Handler;
 import android.os.IPowerManager;
 import android.text.TextPaint;
+import android.view.Surface;
 import android.view.Window;
 import com.android.camera.lib.compatibility.related.screenlight.ScreenLightUtils;
 import com.android.camera.lib.compatibility.related.v21.V21Utils;
@@ -21,6 +25,7 @@ import com.android.camera.lib.compatibility.related.v24.V24Utils;
 import com.android.camera.lib.compatibility.related.v26.V26Utils;
 import com.android.camera.lib.compatibility.related.v28.V28Utils;
 import java.io.FileDescriptor;
+import java.util.List;
 
 public class CompatibilityUtils {
     public static final int ANDROID_L_VERSION = 21;
@@ -101,5 +106,9 @@ public class CompatibilityUtils {
 
     public static void setCutoutModeShortEdges(Window window) {
         V28Utils.setCutoutModeShortEdges(window);
+    }
+
+    public static void createCaptureSessionWithSessionConfiguration(CameraDevice cameraDevice, List<Surface> list, CaptureRequest captureRequest, StateCallback stateCallback, Handler handler) throws CameraAccessException {
+        V28Utils.createCaptureSessionWithSessionConfiguration(cameraDevice, list, captureRequest, stateCallback, handler);
     }
 }

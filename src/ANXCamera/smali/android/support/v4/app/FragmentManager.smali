@@ -18,7 +18,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 70
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -28,7 +28,7 @@
 .end method
 
 .method public static enableDebugLogging(Z)V
-    .locals 0
+    .registers 1
     .param p0, "enabled"    # Z
 
     .line 361
@@ -86,7 +86,7 @@
 .end method
 
 .method public openTransaction()Landroid/support/v4/app/FragmentTransaction;
-    .locals 1
+    .registers 2
     .annotation runtime Ljava/lang/Deprecated;
     .end annotation
 

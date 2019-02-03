@@ -7,7 +7,7 @@
 
 
 # static fields
-.field public static final DEFAULT_F:I = 0x6
+.field public static final DEFAULT_F:I = 0xd
 
 .field private static final ENTRY_COUNT_TOTAL:I
 
@@ -219,7 +219,7 @@
     move-result-object p1
 
     .line 79
-    const v0, 0x7f0900e8
+    const v0, 0x7f0a00ec
 
     invoke-virtual {p1, v0}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -234,7 +234,7 @@
     iput v0, p0, Lcom/android/camera/fragment/manually/adapter/ExtraSlideFNumberAdapter;->mLineHalfHeight:F
 
     .line 80
-    const v0, 0x7f0900ea
+    const v0, 0x7f0a00ee
 
     invoke-virtual {p1, v0}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -243,7 +243,7 @@
     iput v0, p0, Lcom/android/camera/fragment/manually/adapter/ExtraSlideFNumberAdapter;->mLineWidth:I
 
     .line 81
-    const v0, 0x7f0900eb
+    const v0, 0x7f0a00ef
 
     invoke-virtual {p1, v0}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -252,7 +252,7 @@
     iput v0, p0, Lcom/android/camera/fragment/manually/adapter/ExtraSlideFNumberAdapter;->mLineLineGap:I
 
     .line 82
-    const v0, 0x7f0a0067
+    const v0, 0x7f0b0067
 
     invoke-virtual {p1, v0}, Landroid/content/res/Resources;->getColor(I)I
 
@@ -261,7 +261,7 @@
     iput v0, p0, Lcom/android/camera/fragment/manually/adapter/ExtraSlideFNumberAdapter;->mLineColorDefault:I
 
     .line 83
-    const v0, 0x7f0a0068
+    const v0, 0x7f0b0068
 
     invoke-virtual {p1, v0}, Landroid/content/res/Resources;->getColor(I)I
 
@@ -270,7 +270,7 @@
     iput v0, p0, Lcom/android/camera/fragment/manually/adapter/ExtraSlideFNumberAdapter;->mLineColorDivider:I
 
     .line 84
-    const v0, 0x7f0a006a
+    const v0, 0x7f0b006a
 
     invoke-virtual {p1, v0}, Landroid/content/res/Resources;->getColor(I)I
 
@@ -279,7 +279,7 @@
     iput v0, p0, Lcom/android/camera/fragment/manually/adapter/ExtraSlideFNumberAdapter;->mLineColorDefaultCircle:I
 
     .line 85
-    const v0, 0x7f0900ec
+    const v0, 0x7f0a00f0
 
     invoke-virtual {p1, v0}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -288,9 +288,9 @@
     iput v0, p0, Lcom/android/camera/fragment/manually/adapter/ExtraSlideFNumberAdapter;->mLineCircleRadius:I
 
     .line 86
-    const v0, 0x7f0900ed
+    const v0, 0x7f0a00f1
 
-    invoke-virtual {p1, v0}, Landroid/content/res/Resources;->getDimensionPixelOffset(I)I
+    invoke-virtual {p1, v0}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
     move-result p1
 
@@ -389,7 +389,7 @@
 
     .line 102
     :cond_0
-    const/4 v1, 0x6
+    const/16 v1, 0xd
 
     if-ne p1, v1, :cond_1
 

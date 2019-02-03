@@ -6,11 +6,11 @@ import java.security.MessageDigest;
 
 /* compiled from: EmptySignature */
 public final class b implements c {
-    private static final b pd = new b();
+    private static final b pc = new b();
 
     @NonNull
     public static b eB() {
-        return pd;
+        return pc;
     }
 
     private b() {

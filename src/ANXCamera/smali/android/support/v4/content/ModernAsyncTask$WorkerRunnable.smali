@@ -42,7 +42,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 492
     .local p0, "this":Landroid/support/v4/content/ModernAsyncTask$WorkerRunnable;, "Landroid/support/v4/content/ModernAsyncTask$WorkerRunnable<TParams;TResult;>;"
@@ -52,7 +52,7 @@
 .end method
 
 .method synthetic constructor <init>(Landroid/support/v4/content/ModernAsyncTask$1;)V
-    .locals 0
+    .registers 2
     .param p1, "x0"    # Landroid/support/v4/content/ModernAsyncTask$1;
 
     .line 492

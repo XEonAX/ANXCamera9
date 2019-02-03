@@ -78,17 +78,17 @@
     invoke-static {v0}, Lcom/ss/android/ttve/nativePort/TENativeLibsLoader;->safeLoadSo(Ljava/lang/String;)V
 
     .line 24
-    const-string v0, "effect"
+    const-string v0, "tt_effect"
 
     invoke-static {v0}, Lcom/ss/android/ttve/nativePort/TENativeLibsLoader;->safeLoadSo(Ljava/lang/String;)V
 
     .line 25
-    const-string v0, "yuv"
+    const-string v0, "ttyuv"
 
     invoke-static {v0}, Lcom/ss/android/ttve/nativePort/TENativeLibsLoader;->safeLoadSo(Ljava/lang/String;)V
 
     .line 26
-    const-string v0, "audioeffect"
+    const-string v0, "ttaudioeffect"
 
     invoke-static {v0}, Lcom/ss/android/ttve/nativePort/TENativeLibsLoader;->safeLoadSo(Ljava/lang/String;)V
 

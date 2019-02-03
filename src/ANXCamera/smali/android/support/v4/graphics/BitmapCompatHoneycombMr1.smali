@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 23
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method static getAllocationByteCount(Landroid/graphics/Bitmap;)I
-    .locals 1
+    .registers 2
     .param p0, "bitmap"    # Landroid/graphics/Bitmap;
 
     .line 26

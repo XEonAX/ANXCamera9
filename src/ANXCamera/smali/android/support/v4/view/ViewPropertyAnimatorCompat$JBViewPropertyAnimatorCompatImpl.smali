@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 583
     invoke-direct {p0}, Landroid/support/v4/view/ViewPropertyAnimatorCompat$ICSViewPropertyAnimatorCompatImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public setListener(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;Landroid/support/v4/view/ViewPropertyAnimatorListener;)V
-    .locals 0
+    .registers 4
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "listener"    # Landroid/support/v4/view/ViewPropertyAnimatorListener;
@@ -40,7 +40,7 @@
 .end method
 
 .method public withEndAction(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;Ljava/lang/Runnable;)V
-    .locals 0
+    .registers 4
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "runnable"    # Ljava/lang/Runnable;
@@ -53,7 +53,7 @@
 .end method
 
 .method public withLayer(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;)V
-    .locals 0
+    .registers 3
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
 
@@ -65,7 +65,7 @@
 .end method
 
 .method public withStartAction(Landroid/support/v4/view/ViewPropertyAnimatorCompat;Landroid/view/View;Ljava/lang/Runnable;)V
-    .locals 0
+    .registers 4
     .param p1, "vpa"    # Landroid/support/v4/view/ViewPropertyAnimatorCompat;
     .param p2, "view"    # Landroid/view/View;
     .param p3, "runnable"    # Ljava/lang/Runnable;

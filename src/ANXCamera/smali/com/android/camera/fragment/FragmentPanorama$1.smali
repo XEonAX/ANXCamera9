@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/FragmentPanorama;)V
     .locals 0
 
-    .line 110
+    .line 111
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama$1;->this$0:Lcom/android/camera/fragment/FragmentPanorama;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,7 @@
 .method public getShareContext()Ljavax/microedition/khronos/egl/EGLContext;
     .locals 1
 
-    .line 112
+    .line 113
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama$1;->this$0:Lcom/android/camera/fragment/FragmentPanorama;
 
     invoke-virtual {v0}, Lcom/android/camera/fragment/FragmentPanorama;->getContext()Landroid/content/Context;

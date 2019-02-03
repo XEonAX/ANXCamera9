@@ -20,7 +20,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 1703
     invoke-direct {p0}, Landroid/support/v4/app/NotificationCompat$Style;-><init>()V
@@ -30,7 +30,7 @@
 .end method
 
 .method public constructor <init>(Landroid/support/v4/app/NotificationCompat$Builder;)V
-    .locals 0
+    .registers 2
     .param p1, "builder"    # Landroid/support/v4/app/NotificationCompat$Builder;
 
     .line 1706
@@ -46,7 +46,7 @@
 
 # virtual methods
 .method public bigText(Ljava/lang/CharSequence;)Landroid/support/v4/app/NotificationCompat$BigTextStyle;
-    .locals 1
+    .registers 3
     .param p1, "cs"    # Ljava/lang/CharSequence;
 
     .line 1733
@@ -61,7 +61,7 @@
 .end method
 
 .method public setBigContentTitle(Ljava/lang/CharSequence;)Landroid/support/v4/app/NotificationCompat$BigTextStyle;
-    .locals 1
+    .registers 3
     .param p1, "title"    # Ljava/lang/CharSequence;
 
     .line 1715
@@ -76,7 +76,7 @@
 .end method
 
 .method public setSummaryText(Ljava/lang/CharSequence;)Landroid/support/v4/app/NotificationCompat$BigTextStyle;
-    .locals 1
+    .registers 3
     .param p1, "cs"    # Ljava/lang/CharSequence;
 
     .line 1723

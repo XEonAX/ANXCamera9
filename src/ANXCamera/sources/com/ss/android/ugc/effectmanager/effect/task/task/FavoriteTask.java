@@ -96,7 +96,7 @@ public class FavoriteTask extends NormalTask {
             hashMap.put("channel", this.mConfiguration.getChannel());
         }
         if (!TextUtils.isEmpty(this.mConfiguration.getAppID())) {
-            hashMap.put(EffectConfiguration.KEY_APP_ID, this.mConfiguration.getAppID());
+            hashMap.put("aid", this.mConfiguration.getAppID());
         }
         if (!TextUtils.isEmpty(this.mConfiguration.getAppLanguage())) {
             hashMap.put(EffectConfiguration.KEY_APP_LANGUAGE, this.mConfiguration.getAppLanguage());

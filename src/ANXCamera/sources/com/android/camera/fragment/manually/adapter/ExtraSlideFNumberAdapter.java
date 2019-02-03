@@ -6,8 +6,8 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
-import com.aeonax.camera.R;
 import com.android.camera.ActivityBase;
+import com.android.camera.R;
 import com.android.camera.constant.CameraScene;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.fragment.manually.ManuallyListener;
@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ExtraSlideFNumberAdapter extends HorizontalDrawAdapter implements OnPositionSelectListener {
-    public static final int DEFAULT_F = 6;
+    public static final int DEFAULT_F = 13;
     private static final int ENTRY_COUNT_TOTAL = F_NUMBERS.length;
     public static final String[] F_NUMBERS = new String[]{"1.0", "1.1", "1.2", "1.4", "1.6", "1.8", "2", "2.2", "2.5", "2.8", "3.2", "3.5", "4", "4.5", "5.0", "5.6", "6.3", "7.1", CameraScene.BEACH, CameraScene.SNOW, CameraScene.SUNSET, "11", CameraScene.SPORTS, "14", "16"};
     private ComponentData mComponentData;
@@ -60,7 +60,7 @@ public class ExtraSlideFNumberAdapter extends HorizontalDrawAdapter implements O
         this.mLineColorDivider = resources.getColor(R.color.bokeh_popup_line_color_divider);
         this.mLineColorDefaultCircle = resources.getColor(R.color.bokeh_popup_line_default_circle);
         this.mLineCircleRadius = resources.getDimensionPixelSize(R.dimen.bokeh_line_default_circle_radius);
-        this.mLineDefaultCircleGap = resources.getDimensionPixelOffset(R.dimen.bokeh_line_default_circle_gap);
+        this.mLineDefaultCircleGap = resources.getDimensionPixelSize(R.dimen.bokeh_line_default_circle_gap);
         this.mPaint = new Paint();
         this.mPaint.setAntiAlias(true);
         this.mPaint.setStrokeWidth((float) this.mLineWidth);
@@ -73,7 +73,7 @@ public class ExtraSlideFNumberAdapter extends HorizontalDrawAdapter implements O
         if (i % 3 == 0) {
             i2 = this.mLineColorDivider;
         }
-        if (i == 6 && !z) {
+        if (i == 13 && !z) {
             this.mPaint.setColor(this.mLineColorDefaultCircle);
             canvas.drawCircle(0.0f, (float) (-this.mLineDefaultCircleGap), (float) this.mLineCircleRadius, this.mPaint);
         }

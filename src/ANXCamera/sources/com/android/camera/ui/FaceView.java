@@ -17,10 +17,10 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
-import com.aeonax.camera.R;
 import com.android.camera.ActivityBase;
 import com.android.camera.CameraScreenNail;
 import com.android.camera.CameraSettings;
+import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.fragment.top.FragmentTopAlert;
 import com.android.camera.log.Log;
@@ -244,17 +244,10 @@ public class FaceView extends FrameView {
         return true;
     }
 
-    private void setContentDescription(final int i) {
-        this.mHandler.post(new Runnable() {
-            public void run() {
-                if (i > 0) {
-                    FaceView.this.setContentDescription(FaceView.this.getResources().getQuantityString(R.plurals.accessibility_focus_face_detect, i, new Object[]{Integer.valueOf(i)}));
-                    FaceView.this.sendAccessibilityEvent(4);
-                    return;
-                }
-                FaceView.this.setContentDescription("");
-            }
-        });
+    private void setContentDescription(int i) {
+        if (i > 0) {
+            announceForAccessibility(getResources().getQuantityString(R.plurals.accessibility_focus_face_detect, i, new Object[]{Integer.valueOf(i)}));
+        }
     }
 
     private void showNormalFaceRectImmediately() {
@@ -762,7 +755,7 @@ public class FaceView extends FrameView {
                 this.mWaterInfos = new ArrayList();
             }
             if (!(this.mCurrentWaterMarkDataInfos == null || this.mCurrentWaterMarkDataInfos.isEmpty())) {
-                if (!(this.mWaterInfos == null || this.mWaterInfos.isEmpty())) {
+                if (!this.mWaterInfos.isEmpty()) {
                     this.mWaterInfos.clear();
                 }
                 this.mWaterInfos.addAll(this.mCurrentWaterMarkDataInfos);
@@ -772,7 +765,17 @@ public class FaceView extends FrameView {
             }
             return;
         }
-        Log.d(TAG, "shutter status is true,no update face info(updateFaceInfos).");
+        Log.d(TAG, "updateFaceInfos: false");
+    }
+
+    private int determineWatermarkType() {
+        if (CameraSettings.isMagicMirrorWaterMarkOpen()) {
+            return 1;
+        }
+        if (CameraSettings.isAgeGenderWaterMarkOpen()) {
+            return 2;
+        }
+        return 0;
     }
 
     private void setCurrentFaceInfos(RectF rectF, boolean z, String str, int i, int i2, int i3) {
@@ -787,10 +790,11 @@ public class FaceView extends FrameView {
             waterMarkData.setFaceViewWidth(i);
             waterMarkData.setFaceViewHeight(i2);
             waterMarkData.setOrientation(i3);
+            waterMarkData.setWatermarkType(determineWatermarkType());
             this.mCurrentWaterMarkDataInfos.add(waterMarkData);
             return;
         }
-        Log.d(TAG, "shutter status is true,no record current face infos(setCurrentFaceInfos).");
+        Log.d(TAG, "setCurrentFaceInfos@1: updateInfo=false");
     }
 
     private void setCurrentFaceInfos(RectF rectF, String str, int i, int i2, int i3) {
@@ -804,12 +808,13 @@ public class FaceView extends FrameView {
             waterMarkData.setFaceViewWidth(i);
             waterMarkData.setFaceViewHeight(i2);
             waterMarkData.setOrientation(i3);
+            waterMarkData.setWatermarkType(determineWatermarkType());
             if (this.mCurrentWaterMarkDataInfos != null) {
                 this.mCurrentWaterMarkDataInfos.add(waterMarkData);
             }
             return;
         }
-        Log.d(TAG, "shutter status is true,no record current face infos(setCurrentFaceInfos).");
+        Log.d(TAG, "setCurrentFaceInfos@2: updateInfo=false");
     }
 
     public List<WaterMarkData> getFaceWaterMarkInfos() {
@@ -847,9 +852,9 @@ public class FaceView extends FrameView {
                 }
                 String str = TAG;
                 StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("reset shutter status,clear water infos.");
+                stringBuilder.append("setShutterStatus: updateInfo=");
                 stringBuilder.append(this.mIsUpdateFaceInfos);
-                android.util.Log.d(str, stringBuilder.toString());
+                Log.d(str, stringBuilder.toString());
             }
         }
     }

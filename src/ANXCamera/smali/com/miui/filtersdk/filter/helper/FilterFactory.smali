@@ -84,6 +84,16 @@
 
 .field private static final LOOKUP_TABLE_PATH_BEAUTY_INDIA_MONO:Ljava/lang/String; = "filter/beauty_india/BI-MONO.png"
 
+.field private static final LOOKUP_TABLE_PATH_BEAUTY_INDIA_M_DUSK:Ljava/lang/String; = "filter/beauty_india/BI-M-DUSK.png"
+
+.field private static final LOOKUP_TABLE_PATH_BEAUTY_INDIA_M_LILT:Ljava/lang/String; = "filter/beauty_india/BI-M-LILT.png"
+
+.field private static final LOOKUP_TABLE_PATH_BEAUTY_INDIA_M_SEPIA:Ljava/lang/String; = "filter/beauty_india/BI-M-SEPIA.png"
+
+.field private static final LOOKUP_TABLE_PATH_BEAUTY_INDIA_M_TEA:Ljava/lang/String; = "filter/beauty_india/BI-M-TEA.png"
+
+.field private static final LOOKUP_TABLE_PATH_BEAUTY_INDIA_M_WHITEANDBLACK:Ljava/lang/String; = "filter/beauty_india/BI-M-WHITEANDBLACK.png"
+
 .field private static final LOOKUP_TABLE_PATH_BEAUTY_INDIA_PINK:Ljava/lang/String; = "filter/beauty_india/BI-PINK.png"
 
 .field private static final LOOKUP_TABLE_PATH_BEAUTY_INDIA_PORTRAIT:Ljava/lang/String; = "filter/beauty_india/BI-PORTRAIT.png"
@@ -111,6 +121,14 @@
 .field private static final LOOKUP_TABLE_PATH_BEAUTY_MOOD:Ljava/lang/String; = "filter/beauty/B-HEART.png"
 
 .field private static final LOOKUP_TABLE_PATH_BEAUTY_MOVIE:Ljava/lang/String; = "filter/beauty/B-MOVIE.png"
+
+.field private static final LOOKUP_TABLE_PATH_BEAUTY_M_LILT:Ljava/lang/String; = "filter/beauty/B-M-LILT.png"
+
+.field private static final LOOKUP_TABLE_PATH_BEAUTY_M_SEPIA:Ljava/lang/String; = "filter/beauty/B-M-SEPIA.png"
+
+.field private static final LOOKUP_TABLE_PATH_BEAUTY_M_TEA:Ljava/lang/String; = "filter/beauty/B-M-TEA.png"
+
+.field private static final LOOKUP_TABLE_PATH_BEAUTY_M_WHITEANDBLACK:Ljava/lang/String; = "filter/beauty/B-M-WHITEANDBLACK.png"
 
 .field private static final LOOKUP_TABLE_PATH_BEAUTY_NATURE:Ljava/lang/String; = "filter/beauty/B-NATURE.png"
 
@@ -205,7 +223,7 @@
 .method public static getAllFilterTypeCount()I
     .locals 1
 
-    .line 292
+    .line 328
     invoke-static {}, Lcom/miui/filtersdk/filter/helper/FilterType;->values()[Lcom/miui/filtersdk/filter/helper/FilterType;
 
     move-result-object v0
@@ -218,7 +236,7 @@
 .method public static getAllFilters()[Lcom/miui/filtersdk/filter/helper/FilterType;
     .locals 1
 
-    .line 275
+    .line 311
     invoke-static {}, Lcom/miui/filtersdk/filter/helper/FilterType;->values()[Lcom/miui/filtersdk/filter/helper/FilterType;
 
     move-result-object v0
@@ -229,7 +247,7 @@
 .method public static getFilterByType(Lcom/miui/filtersdk/filter/helper/FilterType;)Lcom/miui/filtersdk/filter/base/BaseOriginalFilter;
     .locals 3
 
-    .line 102
+    .line 115
     sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -258,7 +276,7 @@
 
     invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 103
+    .line 116
     sget-object v0, Lcom/miui/filtersdk/filter/helper/FilterFactory$1;->$SwitchMap$com$miui$filtersdk$filter$helper$FilterType:[I
 
     invoke-virtual {p0}, Lcom/miui/filtersdk/filter/helper/FilterType;->ordinal()I
@@ -269,13 +287,63 @@
 
     packed-switch p0, :pswitch_data_0
 
-    .line 270
+    .line 306
     const/4 p0, 0x0
 
     return-object p0
 
-    .line 268
+    .line 303
     :pswitch_0
+    new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
+
+    const-string v0, "filter/beauty_india/BI-M-WHITEANDBLACK.png"
+
+    invoke-direct {p0, v0}, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;-><init>(Ljava/lang/String;)V
+
+    return-object p0
+
+    .line 301
+    :pswitch_1
+    new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
+
+    const-string v0, "filter/beauty_india/BI-M-SEPIA.png"
+
+    invoke-direct {p0, v0}, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;-><init>(Ljava/lang/String;)V
+
+    return-object p0
+
+    .line 299
+    :pswitch_2
+    new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
+
+    const-string v0, "filter/beauty_india/BI-M-TEA.png"
+
+    invoke-direct {p0, v0}, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;-><init>(Ljava/lang/String;)V
+
+    return-object p0
+
+    .line 297
+    :pswitch_3
+    new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
+
+    const-string v0, "filter/beauty_india/BI-M-LILT.png"
+
+    invoke-direct {p0, v0}, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;-><init>(Ljava/lang/String;)V
+
+    return-object p0
+
+    .line 295
+    :pswitch_4
+    new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
+
+    const-string v0, "filter/beauty_india/BI-M-DUSK.png"
+
+    invoke-direct {p0, v0}, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;-><init>(Ljava/lang/String;)V
+
+    return-object p0
+
+    .line 291
+    :pswitch_5
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty_india/BI-MONO.png"
@@ -284,8 +352,8 @@
 
     return-object p0
 
-    .line 266
-    :pswitch_1
+    .line 289
+    :pswitch_6
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty_india/B-INDIA-ROMANTIC.png"
@@ -294,8 +362,8 @@
 
     return-object p0
 
-    .line 264
-    :pswitch_2
+    .line 287
+    :pswitch_7
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty_india/BI-YOUNG.png"
@@ -304,8 +372,8 @@
 
     return-object p0
 
-    .line 262
-    :pswitch_3
+    .line 285
+    :pswitch_8
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty_india/BI-RETRO.png"
@@ -314,8 +382,8 @@
 
     return-object p0
 
-    .line 260
-    :pswitch_4
+    .line 283
+    :pswitch_9
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty_india/BI-PORTRAIT.png"
@@ -324,8 +392,8 @@
 
     return-object p0
 
-    .line 258
-    :pswitch_5
+    .line 281
+    :pswitch_a
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty_india/BI-SWEET.png"
@@ -334,8 +402,8 @@
 
     return-object p0
 
-    .line 256
-    :pswitch_6
+    .line 279
+    :pswitch_b
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty_india/BI-WARM.png"
@@ -344,8 +412,8 @@
 
     return-object p0
 
-    .line 254
-    :pswitch_7
+    .line 277
+    :pswitch_c
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty_india/B-INDIA-STRONG.png"
@@ -354,8 +422,8 @@
 
     return-object p0
 
-    .line 252
-    :pswitch_8
+    .line 275
+    :pswitch_d
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty_india/BI-MEMORY.png"
@@ -364,8 +432,8 @@
 
     return-object p0
 
-    .line 250
-    :pswitch_9
+    .line 273
+    :pswitch_e
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty_india/BI-PINK.png"
@@ -374,8 +442,8 @@
 
     return-object p0
 
-    .line 248
-    :pswitch_a
+    .line 271
+    :pswitch_f
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty_india/BI-SUNNY.png"
@@ -384,8 +452,8 @@
 
     return-object p0
 
-    .line 246
-    :pswitch_b
+    .line 269
+    :pswitch_10
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/video/S-BYGONE.png"
@@ -394,8 +462,8 @@
 
     return-object p0
 
-    .line 244
-    :pswitch_c
+    .line 267
+    :pswitch_11
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/common/WHITEANDBLACK.png"
@@ -404,8 +472,8 @@
 
     return-object p0
 
-    .line 241
-    :pswitch_d
+    .line 264
+    :pswitch_12
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/video/S-FOREST.png"
@@ -414,8 +482,8 @@
 
     return-object p0
 
-    .line 239
-    :pswitch_e
+    .line 262
+    :pswitch_13
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/video/S-POLAROID.png"
@@ -424,8 +492,8 @@
 
     return-object p0
 
-    .line 237
-    :pswitch_f
+    .line 260
+    :pswitch_14
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/video/S-YEARS.png"
@@ -434,8 +502,8 @@
 
     return-object p0
 
-    .line 235
-    :pswitch_10
+    .line 258
+    :pswitch_15
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/video/S-FILM.png"
@@ -444,8 +512,48 @@
 
     return-object p0
 
-    .line 233
-    :pswitch_11
+    .line 255
+    :pswitch_16
+    new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
+
+    const-string v0, "filter/beauty/B-M-WHITEANDBLACK.png"
+
+    invoke-direct {p0, v0}, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;-><init>(Ljava/lang/String;)V
+
+    return-object p0
+
+    .line 253
+    :pswitch_17
+    new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
+
+    const-string v0, "filter/beauty/B-M-SEPIA.png"
+
+    invoke-direct {p0, v0}, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;-><init>(Ljava/lang/String;)V
+
+    return-object p0
+
+    .line 251
+    :pswitch_18
+    new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
+
+    const-string v0, "filter/beauty/B-M-LILT.png"
+
+    invoke-direct {p0, v0}, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;-><init>(Ljava/lang/String;)V
+
+    return-object p0
+
+    .line 249
+    :pswitch_19
+    new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
+
+    const-string v0, "filter/beauty/B-M-TEA.png"
+
+    invoke-direct {p0, v0}, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;-><init>(Ljava/lang/String;)V
+
+    return-object p0
+
+    .line 246
+    :pswitch_1a
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty/B-MOVIE.png"
@@ -454,8 +562,8 @@
 
     return-object p0
 
-    .line 231
-    :pswitch_12
+    .line 244
+    :pswitch_1b
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty/B-RIDDLE.png"
@@ -464,8 +572,8 @@
 
     return-object p0
 
-    .line 229
-    :pswitch_13
+    .line 242
+    :pswitch_1c
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty/B-STORY.png"
@@ -474,8 +582,8 @@
 
     return-object p0
 
-    .line 227
-    :pswitch_14
+    .line 240
+    :pswitch_1d
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty/B-WHITEANDBLACK.png"
@@ -484,8 +592,8 @@
 
     return-object p0
 
-    .line 225
-    :pswitch_15
+    .line 238
+    :pswitch_1e
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty/B-MAZE.png"
@@ -494,8 +602,8 @@
 
     return-object p0
 
-    .line 223
-    :pswitch_16
+    .line 236
+    :pswitch_1f
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty/B-ROMANCE.png"
@@ -504,8 +612,8 @@
 
     return-object p0
 
-    .line 221
-    :pswitch_17
+    .line 234
+    :pswitch_20
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty/B-PINK.png"
@@ -514,8 +622,8 @@
 
     return-object p0
 
-    .line 219
-    :pswitch_18
+    .line 232
+    :pswitch_21
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty/B-NATURE.png"
@@ -524,8 +632,8 @@
 
     return-object p0
 
-    .line 217
-    :pswitch_19
+    .line 230
+    :pswitch_22
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty/B-HEART.png"
@@ -534,8 +642,8 @@
 
     return-object p0
 
-    .line 215
-    :pswitch_1a
+    .line 228
+    :pswitch_23
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty/B-MINT.png"
@@ -544,8 +652,8 @@
 
     return-object p0
 
-    .line 213
-    :pswitch_1b
+    .line 226
+    :pswitch_24
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty/B-JAPANESE.png"
@@ -554,8 +662,8 @@
 
     return-object p0
 
-    .line 211
-    :pswitch_1c
+    .line 224
+    :pswitch_25
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/beauty/B-FAIRYTALE.png"
@@ -564,8 +672,8 @@
 
     return-object p0
 
-    .line 209
-    :pswitch_1d
+    .line 222
+    :pswitch_26
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/normal/N-WARM.png"
@@ -574,8 +682,8 @@
 
     return-object p0
 
-    .line 207
-    :pswitch_1e
+    .line 220
+    :pswitch_27
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/normal/N-SODA.png"
@@ -584,8 +692,8 @@
 
     return-object p0
 
-    .line 205
-    :pswitch_1f
+    .line 218
+    :pswitch_28
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/normal/N-QUIET.png"
@@ -594,8 +702,8 @@
 
     return-object p0
 
-    .line 203
-    :pswitch_20
+    .line 216
+    :pswitch_29
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/normal/N-LIVELY.png"
@@ -604,8 +712,8 @@
 
     return-object p0
 
-    .line 201
-    :pswitch_21
+    .line 214
+    :pswitch_2a
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/normal/N-LIGHT.png"
@@ -614,8 +722,8 @@
 
     return-object p0
 
-    .line 199
-    :pswitch_22
+    .line 212
+    :pswitch_2b
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/normal/N-LATTE.png"
@@ -624,8 +732,8 @@
 
     return-object p0
 
-    .line 197
-    :pswitch_23
+    .line 210
+    :pswitch_2c
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/normal/N-KOIZORA.png"
@@ -634,8 +742,8 @@
 
     return-object p0
 
-    .line 195
-    :pswitch_24
+    .line 208
+    :pswitch_2d
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/normal/N-FILM.png"
@@ -644,8 +752,8 @@
 
     return-object p0
 
-    .line 193
-    :pswitch_25
+    .line 206
+    :pswitch_2e
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/normal/N-FADE.png"
@@ -654,8 +762,8 @@
 
     return-object p0
 
-    .line 191
-    :pswitch_26
+    .line 204
+    :pswitch_2f
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/normal/N-DELICACY.png"
@@ -664,8 +772,8 @@
 
     return-object p0
 
-    .line 189
-    :pswitch_27
+    .line 202
+    :pswitch_30
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/normal/N-COOKIE.png"
@@ -674,8 +782,8 @@
 
     return-object p0
 
-    .line 187
-    :pswitch_28
+    .line 200
+    :pswitch_31
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter;
 
     const-string v0, "filter/normal/N-BERRY.png"
@@ -684,8 +792,8 @@
 
     return-object p0
 
-    .line 183
-    :pswitch_29
+    .line 196
+    :pswitch_32
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/lighting/L-LEAF.png"
@@ -694,8 +802,8 @@
 
     return-object p0
 
-    .line 181
-    :pswitch_2a
+    .line 194
+    :pswitch_33
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/lighting/L-DOT.png"
@@ -704,8 +812,8 @@
 
     return-object p0
 
-    .line 179
-    :pswitch_2b
+    .line 192
+    :pswitch_34
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/lighting/L-SHUTTER.png"
@@ -714,8 +822,8 @@
 
     return-object p0
 
-    .line 177
-    :pswitch_2c
+    .line 190
+    :pswitch_35
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/lighting/L-RAINBOW.png"
@@ -724,8 +832,8 @@
 
     return-object p0
 
-    .line 175
-    :pswitch_2d
+    .line 188
+    :pswitch_36
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/lighting/L-MOVIE.png"
@@ -734,8 +842,8 @@
 
     return-object p0
 
-    .line 173
-    :pswitch_2e
+    .line 186
+    :pswitch_37
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/lighting/L-STAGE.png"
@@ -744,8 +852,8 @@
 
     return-object p0
 
-    .line 171
-    :pswitch_2f
+    .line 184
+    :pswitch_38
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/lighting/L-NATURE.png"
@@ -754,8 +862,8 @@
 
     return-object p0
 
-    .line 169
-    :pswitch_30
+    .line 182
+    :pswitch_39
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-DRIVING.png"
@@ -764,8 +872,8 @@
 
     return-object p0
 
-    .line 167
-    :pswitch_31
+    .line 180
+    :pswitch_3a
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-BEACH.png"
@@ -774,8 +882,8 @@
 
     return-object p0
 
-    .line 165
-    :pswitch_32
+    .line 178
+    :pswitch_3b
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-TEMPLE.png"
@@ -784,8 +892,8 @@
 
     return-object p0
 
-    .line 163
-    :pswitch_33
+    .line 176
+    :pswitch_3c
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-MOTORBIKE.png"
@@ -794,8 +902,8 @@
 
     return-object p0
 
-    .line 161
-    :pswitch_34
+    .line 174
+    :pswitch_3d
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-CURRY.png"
@@ -804,8 +912,8 @@
 
     return-object p0
 
-    .line 159
-    :pswitch_35
+    .line 172
+    :pswitch_3e
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-COW.png"
@@ -814,8 +922,8 @@
 
     return-object p0
 
-    .line 157
-    :pswitch_36
+    .line 170
+    :pswitch_3f
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-BUDDHA.png"
@@ -824,8 +932,8 @@
 
     return-object p0
 
-    .line 155
-    :pswitch_37
+    .line 168
+    :pswitch_40
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-JEWELRY.png"
@@ -834,8 +942,8 @@
 
     return-object p0
 
-    .line 153
-    :pswitch_38
+    .line 166
+    :pswitch_41
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-HUMAN.png"
@@ -844,8 +952,8 @@
 
     return-object p0
 
-    .line 151
-    :pswitch_39
+    .line 164
+    :pswitch_42
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-SILHOUETTE.png"
@@ -854,8 +962,8 @@
 
     return-object p0
 
-    .line 149
-    :pswitch_3a
+    .line 162
+    :pswitch_43
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-GLOBAL-NONE.png"
@@ -864,8 +972,8 @@
 
     return-object p0
 
-    .line 147
-    :pswitch_3b
+    .line 160
+    :pswitch_44
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-OVERCAST.png"
@@ -874,8 +982,8 @@
 
     return-object p0
 
-    .line 145
-    :pswitch_3c
+    .line 158
+    :pswitch_45
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-CLOUD.png"
@@ -884,8 +992,8 @@
 
     return-object p0
 
-    .line 143
-    :pswitch_3d
+    .line 156
+    :pswitch_46
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-CITY.png"
@@ -894,8 +1002,8 @@
 
     return-object p0
 
-    .line 141
-    :pswitch_3e
+    .line 154
+    :pswitch_47
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-BUILDING.png"
@@ -904,8 +1012,8 @@
 
     return-object p0
 
-    .line 139
-    :pswitch_3f
+    .line 152
+    :pswitch_48
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-SUCCULENT.png"
@@ -914,8 +1022,8 @@
 
     return-object p0
 
-    .line 137
-    :pswitch_40
+    .line 150
+    :pswitch_49
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-MAPLE_LEAVES.png"
@@ -924,8 +1032,8 @@
 
     return-object p0
 
-    .line 135
-    :pswitch_41
+    .line 148
+    :pswitch_4a
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-GRASS.png"
@@ -934,8 +1042,8 @@
 
     return-object p0
 
-    .line 133
-    :pswitch_42
+    .line 146
+    :pswitch_4b
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-CAR.png"
@@ -944,8 +1052,8 @@
 
     return-object p0
 
-    .line 131
-    :pswitch_43
+    .line 144
+    :pswitch_4c
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-CANDLELIGHT.png"
@@ -954,8 +1062,8 @@
 
     return-object p0
 
-    .line 129
-    :pswitch_44
+    .line 142
+    :pswitch_4d
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-AUTUMN.png"
@@ -964,8 +1072,8 @@
 
     return-object p0
 
-    .line 127
-    :pswitch_45
+    .line 140
+    :pswitch_4e
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-SEA.png"
@@ -974,8 +1082,8 @@
 
     return-object p0
 
-    .line 125
-    :pswitch_46
+    .line 138
+    :pswitch_4f
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-SNOW.png"
@@ -984,8 +1092,8 @@
 
     return-object p0
 
-    .line 123
-    :pswitch_47
+    .line 136
+    :pswitch_50
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-NIGHT.png"
@@ -994,8 +1102,8 @@
 
     return-object p0
 
-    .line 121
-    :pswitch_48
+    .line 134
+    :pswitch_51
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-GREEN_PLANTS.png"
@@ -1004,8 +1112,8 @@
 
     return-object p0
 
-    .line 119
-    :pswitch_49
+    .line 132
+    :pswitch_52
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-DOG.png"
@@ -1014,8 +1122,8 @@
 
     return-object p0
 
-    .line 117
-    :pswitch_4a
+    .line 130
+    :pswitch_53
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-CAT.png"
@@ -1024,8 +1132,8 @@
 
     return-object p0
 
-    .line 115
-    :pswitch_4b
+    .line 128
+    :pswitch_54
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-SUNRISE_SUNSET.png"
@@ -1034,8 +1142,8 @@
 
     return-object p0
 
-    .line 113
-    :pswitch_4c
+    .line 126
+    :pswitch_55
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-SKY.png"
@@ -1044,8 +1152,8 @@
 
     return-object p0
 
-    .line 111
-    :pswitch_4d
+    .line 124
+    :pswitch_56
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-PPT.png"
@@ -1054,8 +1162,8 @@
 
     return-object p0
 
-    .line 109
-    :pswitch_4e
+    .line 122
+    :pswitch_57
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-FOOD.png"
@@ -1064,8 +1172,8 @@
 
     return-object p0
 
-    .line 107
-    :pswitch_4f
+    .line 120
+    :pswitch_58
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-FLOWER.png"
@@ -1074,8 +1182,8 @@
 
     return-object p0
 
-    .line 105
-    :pswitch_50
+    .line 118
+    :pswitch_59
     new-instance p0, Lcom/miui/filtersdk/filter/base/ColorLookupFilter4x4;
 
     const-string v0, "filter/aiscene/A-DOC.png"
@@ -1088,6 +1196,15 @@
 
     :pswitch_data_0
     .packed-switch 0x1
+        :pswitch_59
+        :pswitch_58
+        :pswitch_57
+        :pswitch_56
+        :pswitch_55
+        :pswitch_54
+        :pswitch_53
+        :pswitch_52
+        :pswitch_51
         :pswitch_50
         :pswitch_4f
         :pswitch_4e
@@ -1152,11 +1269,11 @@
         :pswitch_13
         :pswitch_12
         :pswitch_11
+        :pswitch_11
         :pswitch_10
         :pswitch_f
         :pswitch_e
         :pswitch_d
-        :pswitch_c
         :pswitch_c
         :pswitch_b
         :pswitch_a
@@ -1176,12 +1293,12 @@
 .method public static getFiltersByScene(Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;)[Lcom/miui/filtersdk/filter/helper/FilterType;
     .locals 6
 
-    .line 279
+    .line 315
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    .line 281
+    .line 317
     invoke-static {}, Lcom/miui/filtersdk/filter/helper/FilterType;->values()[Lcom/miui/filtersdk/filter/helper/FilterType;
 
     move-result-object v1
@@ -1195,23 +1312,23 @@
 
     aget-object v4, v1, v3
 
-    .line 282
+    .line 318
     invoke-virtual {v4}, Lcom/miui/filtersdk/filter/helper/FilterType;->getFilterScene()Lcom/miui/filtersdk/filter/helper/FilterFactory$FilterScene;
 
     move-result-object v5
 
     if-ne v5, p0, :cond_0
 
-    .line 283
+    .line 319
     invoke-interface {v0, v4}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 281
+    .line 317
     :cond_0
     add-int/lit8 v3, v3, 0x1
 
     goto :goto_0
 
-    .line 287
+    .line 323
     :cond_1
     invoke-interface {v0}, Ljava/util/List;->size()I
 
@@ -1219,7 +1336,7 @@
 
     new-array p0, p0, [Lcom/miui/filtersdk/filter/helper/FilterType;
 
-    .line 288
+    .line 324
     invoke-interface {v0, p0}, Ljava/util/List;->toArray([Ljava/lang/Object;)[Ljava/lang/Object;
 
     move-result-object p0

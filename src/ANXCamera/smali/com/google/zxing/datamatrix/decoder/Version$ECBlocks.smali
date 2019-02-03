@@ -22,7 +22,7 @@
 
 # direct methods
 .method private constructor <init>(ILcom/google/zxing/datamatrix/decoder/Version$ECB;)V
-    .locals 2
+    .registers 5
     .param p1, "ecCodewords"    # I
     .param p2, "ecBlocks"    # Lcom/google/zxing/datamatrix/decoder/Version$ECB;
 
@@ -48,7 +48,7 @@
 .end method
 
 .method private constructor <init>(ILcom/google/zxing/datamatrix/decoder/Version$ECB;Lcom/google/zxing/datamatrix/decoder/Version$ECB;)V
-    .locals 2
+    .registers 6
     .param p1, "ecCodewords"    # I
     .param p2, "ecBlocks1"    # Lcom/google/zxing/datamatrix/decoder/Version$ECB;
     .param p3, "ecBlocks2"    # Lcom/google/zxing/datamatrix/decoder/Version$ECB;
@@ -79,7 +79,7 @@
 .end method
 
 .method synthetic constructor <init>(ILcom/google/zxing/datamatrix/decoder/Version$ECB;Lcom/google/zxing/datamatrix/decoder/Version$ECB;Lcom/google/zxing/datamatrix/decoder/Version$ECBlocks;)V
-    .locals 0
+    .registers 5
 
     .line 127
     invoke-direct {p0, p1, p2, p3}, Lcom/google/zxing/datamatrix/decoder/Version$ECBlocks;-><init>(ILcom/google/zxing/datamatrix/decoder/Version$ECB;Lcom/google/zxing/datamatrix/decoder/Version$ECB;)V
@@ -88,7 +88,7 @@
 .end method
 
 .method synthetic constructor <init>(ILcom/google/zxing/datamatrix/decoder/Version$ECB;Lcom/google/zxing/datamatrix/decoder/Version$ECBlocks;)V
-    .locals 0
+    .registers 4
 
     .line 122
     invoke-direct {p0, p1, p2}, Lcom/google/zxing/datamatrix/decoder/Version$ECBlocks;-><init>(ILcom/google/zxing/datamatrix/decoder/Version$ECB;)V
@@ -99,7 +99,7 @@
 
 # virtual methods
 .method getECBlocks()[Lcom/google/zxing/datamatrix/decoder/Version$ECB;
-    .locals 1
+    .registers 2
 
     .line 137
     iget-object v0, p0, Lcom/google/zxing/datamatrix/decoder/Version$ECBlocks;->ecBlocks:[Lcom/google/zxing/datamatrix/decoder/Version$ECB;
@@ -108,7 +108,7 @@
 .end method
 
 .method getECCodewords()I
-    .locals 1
+    .registers 2
 
     .line 133
     iget v0, p0, Lcom/google/zxing/datamatrix/decoder/Version$ECBlocks;->ecCodewords:I

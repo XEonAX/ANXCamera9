@@ -3,8 +3,9 @@ package com.android.camera.data.data.config;
 import android.annotation.TargetApi;
 import android.text.TextUtils;
 import android.util.SparseArray;
-import com.aeonax.camera.R;
 import com.android.camera.CameraSettings;
+import com.android.camera.R;
+import com.android.camera.ThermalDetector;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;
@@ -24,6 +25,7 @@ public class ComponentConfigFlash extends ComponentData {
     public static final String FLASH_VALUE_TORCH = "2";
     private SparseArray<String> mFlashValuesForSceneMode;
     private boolean mIsClosed;
+    private boolean mIsHardwareSupported;
 
     public boolean isClosed() {
         return this.mIsClosed;
@@ -45,7 +47,7 @@ public class ComponentConfigFlash extends ComponentData {
     }
 
     public String getKey(int i) {
-        if (i != 172) {
+        if (!(i == 172 || i == 174)) {
             switch (i) {
                 case 160:
                     throw new RuntimeException("unspecified flash");
@@ -80,6 +82,17 @@ public class ComponentConfigFlash extends ComponentData {
         return getComponentValueInternal(i);
     }
 
+    public boolean disableUpdate() {
+        return ThermalDetector.getInstance().thermalConstrained();
+    }
+
+    public int getDisableReasonString() {
+        if (CameraSettings.isFrontCamera()) {
+            return R.string.close_front_flash_toast;
+        }
+        return R.string.close_back_flash_toast;
+    }
+
     private String getComponentValueInternal(int i) {
         DataItemRunning dataItemRunning = DataRepository.dataItemRunning();
         if (dataItemRunning.isSwitchOn("pref_camera_scenemode_setting_key")) {
@@ -108,7 +121,7 @@ public class ComponentConfigFlash extends ComponentData {
         return this.mItems;
     }
 
-    public List<ComponentDataItem> reInit(int i, int i2, CameraCapabilities cameraCapabilities) {
+    public List<ComponentDataItem> reInit(int i, int i2, CameraCapabilities cameraCapabilities, ComponentConfigUltraWide componentConfigUltraWide) {
         if (this.mItems == null) {
             this.mItems = new ArrayList();
         } else {
@@ -117,9 +130,10 @@ public class ComponentConfigFlash extends ComponentData {
         if ((i == 166 || i == 171 || i == 173) && i2 == 0) {
             return this.mItems;
         }
-        if (cameraCapabilities.isFlashSupported()) {
+        this.mIsHardwareSupported = cameraCapabilities.isFlashSupported();
+        if (this.mIsHardwareSupported) {
             this.mItems.add(new ComponentDataItem(getFlashOffRes(), getFlashOffRes(), R.string.pref_camera_flashmode_entry_off, "0"));
-            if (i != 172) {
+            if (!(i == 172 || i == 174)) {
                 switch (i) {
                     case 161:
                     case 162:
@@ -135,8 +149,8 @@ public class ComponentConfigFlash extends ComponentData {
                                 if (CameraSettings.isBackCamera()) {
                                     this.mItems.add(new ComponentDataItem(getFlashOnRes(), getFlashOnRes(), R.string.pref_camera_flashmode_entry_on, "1"));
                                 }
-                                if (!CameraSettings.isFrontCamera() || !b.ho()) {
-                                    if (b.gv()) {
+                                if (!CameraSettings.isFrontCamera() || !b.hF()) {
+                                    if (b.gN()) {
                                         this.mItems.add(new ComponentDataItem(getFlashTorchRes(), getFlashTorchRes(), R.string.pref_camera_flashmode_entry_torch, "2"));
                                         break;
                                     }
@@ -150,7 +164,7 @@ public class ComponentConfigFlash extends ComponentData {
             this.mItems.add(new ComponentDataItem(getFlashTorchRes(), getFlashTorchRes(), R.string.pref_camera_flashmode_entry_torch, "2"));
             return this.mItems;
         }
-        if (i2 == 1 && b.hu() && (i == 163 || i == 165 || i == 171)) {
+        if (i2 == 1 && b.hL() && (i == 163 || i == 165 || i == 171)) {
             this.mItems.add(new ComponentDataItem(getFlashOffRes(), getFlashOffRes(), R.string.pref_camera_flashmode_entry_off, "0"));
             this.mItems.add(new ComponentDataItem(getFlashAutoRes(), getFlashAutoRes(), R.string.pref_camera_flashmode_entry_auto, FLASH_VALUE_SCREEN_LIGHT_AUTO));
             this.mItems.add(new ComponentDataItem(getFlashOnRes(), getFlashOnRes(), R.string.pref_camera_flashmode_entry_on, FLASH_VALUE_SCREEN_LIGHT_ON));
@@ -231,5 +245,9 @@ public class ComponentConfigFlash extends ComponentData {
 
     public boolean isValidFlashValue(String str) {
         return str.matches("^[0-9]+$");
+    }
+
+    public boolean isHardwareSupported() {
+        return this.mIsHardwareSupported;
     }
 }

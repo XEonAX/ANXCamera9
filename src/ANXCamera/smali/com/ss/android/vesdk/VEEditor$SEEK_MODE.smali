@@ -34,7 +34,7 @@
 .method static constructor <clinit>()V
     .locals 4
 
-    .line 118
+    .line 121
     new-instance v0, Lcom/ss/android/vesdk/VEEditor$SEEK_MODE;
 
     const-string v1, "EDITOR_SEEK_FLAG_OnGoing"
@@ -45,7 +45,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VEEditor$SEEK_MODE;->EDITOR_SEEK_FLAG_OnGoing:Lcom/ss/android/vesdk/VEEditor$SEEK_MODE;
 
-    .line 122
+    .line 125
     new-instance v0, Lcom/ss/android/vesdk/VEEditor$SEEK_MODE;
 
     const-string v1, "EDITOR_SEEK_FLAG_LastSeek"
@@ -56,7 +56,7 @@
 
     sput-object v0, Lcom/ss/android/vesdk/VEEditor$SEEK_MODE;->EDITOR_SEEK_FLAG_LastSeek:Lcom/ss/android/vesdk/VEEditor$SEEK_MODE;
 
-    .line 114
+    .line 117
     const/4 v0, 0x2
 
     new-array v0, v0, [Lcom/ss/android/vesdk/VEEditor$SEEK_MODE;
@@ -82,7 +82,7 @@
         }
     .end annotation
 
-    .line 114
+    .line 117
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
 
     return-void
@@ -91,7 +91,7 @@
 .method public static valueOf(Ljava/lang/String;)Lcom/ss/android/vesdk/VEEditor$SEEK_MODE;
     .locals 1
 
-    .line 114
+    .line 117
     const-class v0, Lcom/ss/android/vesdk/VEEditor$SEEK_MODE;
 
     invoke-static {v0, p0}, Ljava/lang/Enum;->valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
@@ -106,7 +106,7 @@
 .method public static values()[Lcom/ss/android/vesdk/VEEditor$SEEK_MODE;
     .locals 1
 
-    .line 114
+    .line 117
     sget-object v0, Lcom/ss/android/vesdk/VEEditor$SEEK_MODE;->$VALUES:[Lcom/ss/android/vesdk/VEEditor$SEEK_MODE;
 
     invoke-virtual {v0}, [Lcom/ss/android/vesdk/VEEditor$SEEK_MODE;->clone()Ljava/lang/Object;

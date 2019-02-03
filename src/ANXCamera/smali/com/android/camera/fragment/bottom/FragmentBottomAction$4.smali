@@ -27,7 +27,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/bottom/FragmentBottomAction;Landroid/view/View;)V
     .locals 0
 
-    .line 505
+    .line 513
     iput-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$4;->this$0:Lcom/android/camera/fragment/bottom/FragmentBottomAction;
 
     iput-object p2, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$4;->val$layout:Landroid/view/View;
@@ -42,27 +42,27 @@
 .method public onAnimationCancel(Landroid/view/View;)V
     .locals 0
 
-    .line 519
+    .line 527
     return-void
 .end method
 
 .method public onAnimationEnd(Landroid/view/View;)V
     .locals 1
 
-    .line 513
+    .line 521
     iget-object p1, p0, Lcom/android/camera/fragment/bottom/FragmentBottomAction$4;->val$layout:Landroid/view/View;
 
     const/16 v0, 0x8
 
     invoke-virtual {p1, v0}, Landroid/view/View;->setVisibility(I)V
 
-    .line 514
+    .line 522
     return-void
 .end method
 
 .method public onAnimationStart(Landroid/view/View;)V
     .locals 0
 
-    .line 509
+    .line 517
     return-void
 .end method

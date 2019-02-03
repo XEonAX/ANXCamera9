@@ -167,6 +167,24 @@
     return v0
 .end method
 
+.method public getPaddingX()I
+    .locals 1
+
+    .line 77
+    iget v0, p0, Lcom/android/camera/effect/renders/AgeGenderAndMagicMirrorWaterMark;->mPaddingX:I
+
+    return v0
+.end method
+
+.method public getPaddingY()I
+    .locals 1
+
+    .line 82
+    iget v0, p0, Lcom/android/camera/effect/renders/AgeGenderAndMagicMirrorWaterMark;->mPaddingY:I
+
+    return v0
+.end method
+
 .method public getTexture()Lcom/android/gallery3d/ui/BasicTexture;
     .locals 1
 

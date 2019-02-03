@@ -15,11 +15,11 @@
 
 .field isConnected:Z
 
-.field final mj:Lcom/bumptech/glide/manager/c$a;
+.field final mi:Lcom/bumptech/glide/manager/c$a;
 
-.field private mk:Z
+.field private mj:Z
 
-.field private final ml:Landroid/content/BroadcastReceiver;
+.field private final mk:Landroid/content/BroadcastReceiver;
 
 
 # direct methods
@@ -42,7 +42,7 @@
 
     invoke-direct {v0, p0}, Lcom/bumptech/glide/manager/e$1;-><init>(Lcom/bumptech/glide/manager/e;)V
 
-    iput-object v0, p0, Lcom/bumptech/glide/manager/e;->ml:Landroid/content/BroadcastReceiver;
+    iput-object v0, p0, Lcom/bumptech/glide/manager/e;->mk:Landroid/content/BroadcastReceiver;
 
     .line 42
     invoke-virtual {p1}, Landroid/content/Context;->getApplicationContext()Landroid/content/Context;
@@ -52,7 +52,7 @@
     iput-object p1, p0, Lcom/bumptech/glide/manager/e;->context:Landroid/content/Context;
 
     .line 43
-    iput-object p2, p0, Lcom/bumptech/glide/manager/e;->mj:Lcom/bumptech/glide/manager/c$a;
+    iput-object p2, p0, Lcom/bumptech/glide/manager/e;->mi:Lcom/bumptech/glide/manager/c$a;
 
     .line 44
     return-void
@@ -62,7 +62,7 @@
     .locals 4
 
     .line 47
-    iget-boolean v0, p0, Lcom/bumptech/glide/manager/e;->mk:Z
+    iget-boolean v0, p0, Lcom/bumptech/glide/manager/e;->mj:Z
 
     if-eqz v0, :cond_0
 
@@ -73,7 +73,7 @@
     :cond_0
     iget-object v0, p0, Lcom/bumptech/glide/manager/e;->context:Landroid/content/Context;
 
-    invoke-virtual {p0, v0}, Lcom/bumptech/glide/manager/e;->h(Landroid/content/Context;)Z
+    invoke-virtual {p0, v0}, Lcom/bumptech/glide/manager/e;->isConnected(Landroid/content/Context;)Z
 
     move-result v0
 
@@ -83,7 +83,7 @@
     :try_start_0
     iget-object v0, p0, Lcom/bumptech/glide/manager/e;->context:Landroid/content/Context;
 
-    iget-object v1, p0, Lcom/bumptech/glide/manager/e;->ml:Landroid/content/BroadcastReceiver;
+    iget-object v1, p0, Lcom/bumptech/glide/manager/e;->mk:Landroid/content/BroadcastReceiver;
 
     new-instance v2, Landroid/content/IntentFilter;
 
@@ -96,7 +96,7 @@
     .line 57
     const/4 v0, 0x1
 
-    iput-boolean v0, p0, Lcom/bumptech/glide/manager/e;->mk:Z
+    iput-boolean v0, p0, Lcom/bumptech/glide/manager/e;->mj:Z
     :try_end_0
     .catch Ljava/lang/SecurityException; {:try_start_0 .. :try_end_0} :catch_0
 
@@ -135,7 +135,7 @@
     .locals 2
 
     .line 67
-    iget-boolean v0, p0, Lcom/bumptech/glide/manager/e;->mk:Z
+    iget-boolean v0, p0, Lcom/bumptech/glide/manager/e;->mj:Z
 
     if-nez v0, :cond_0
 
@@ -146,14 +146,14 @@
     :cond_0
     iget-object v0, p0, Lcom/bumptech/glide/manager/e;->context:Landroid/content/Context;
 
-    iget-object v1, p0, Lcom/bumptech/glide/manager/e;->ml:Landroid/content/BroadcastReceiver;
+    iget-object v1, p0, Lcom/bumptech/glide/manager/e;->mk:Landroid/content/BroadcastReceiver;
 
     invoke-virtual {v0, v1}, Landroid/content/Context;->unregisterReceiver(Landroid/content/BroadcastReceiver;)V
 
     .line 72
     const/4 v0, 0x0
 
-    iput-boolean v0, p0, Lcom/bumptech/glide/manager/e;->mk:Z
+    iput-boolean v0, p0, Lcom/bumptech/glide/manager/e;->mj:Z
 
     .line 73
     return-void
@@ -161,7 +161,7 @@
 
 
 # virtual methods
-.method h(Landroid/content/Context;)Z
+.method isConnected(Landroid/content/Context;)Z
     .locals 3
     .param p1    # Landroid/content/Context;
         .annotation build Landroid/support/annotation/NonNull;

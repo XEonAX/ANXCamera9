@@ -43,7 +43,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 14
+    .registers 14
 
     .line 27
     new-instance v0, Lcom/google/zxing/client/result/ParsedResultType;
@@ -236,7 +236,7 @@
 .end method
 
 .method private constructor <init>(Ljava/lang/String;I)V
-    .locals 0
+    .registers 3
 
     .line 25
     invoke-direct {p0, p1, p2}, Ljava/lang/Enum;-><init>(Ljava/lang/String;I)V
@@ -245,7 +245,7 @@
 .end method
 
 .method public static valueOf(Ljava/lang/String;)Lcom/google/zxing/client/result/ParsedResultType;
-    .locals 1
+    .registers 2
 
     .line 1
     const-class v0, Lcom/google/zxing/client/result/ParsedResultType;
@@ -260,7 +260,7 @@
 .end method
 
 .method public static values()[Lcom/google/zxing/client/result/ParsedResultType;
-    .locals 4
+    .registers 4
 
     .line 1
     sget-object v0, Lcom/google/zxing/client/result/ParsedResultType;->ENUM$VALUES:[Lcom/google/zxing/client/result/ParsedResultType;

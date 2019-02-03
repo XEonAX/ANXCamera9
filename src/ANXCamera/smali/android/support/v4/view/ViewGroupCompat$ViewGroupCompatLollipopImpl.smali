@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 122
     invoke-direct {p0}, Landroid/support/v4/view/ViewGroupCompat$ViewGroupCompatJellybeanMR2Impl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public getNestedScrollAxes(Landroid/view/ViewGroup;)I
-    .locals 1
+    .registers 3
     .param p1, "group"    # Landroid/view/ViewGroup;
 
     .line 135
@@ -39,7 +39,7 @@
 .end method
 
 .method public isTransitionGroup(Landroid/view/ViewGroup;)Z
-    .locals 1
+    .registers 3
     .param p1, "group"    # Landroid/view/ViewGroup;
 
     .line 130
@@ -51,7 +51,7 @@
 .end method
 
 .method public setTransitionGroup(Landroid/view/ViewGroup;Z)V
-    .locals 0
+    .registers 3
     .param p1, "group"    # Landroid/view/ViewGroup;
     .param p2, "isTransitionGroup"    # Z
 

@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/manually/FragmentManuallyExtra;)V
     .locals 0
 
-    .line 114
+    .line 115
     iput-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManuallyExtra$2;->this$0:Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -43,7 +43,7 @@
         }
     .end annotation
 
-    .line 119
+    .line 120
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManuallyExtra$2;->this$0:Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
     invoke-virtual {v0}, Lcom/android/camera/fragment/manually/FragmentManuallyExtra;->getFragmentManager()Landroid/support/v4/app/FragmentManager;
@@ -58,13 +58,13 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/fragment/FragmentUtils;->removeFragmentByTag(Landroid/support/v4/app/FragmentManager;Ljava/lang/String;)Z
 
-    .line 120
+    .line 121
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManuallyExtra$2;->this$0:Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
     const/4 v1, 0x0
 
     invoke-static {v0, v1}, Lcom/android/camera/fragment/manually/FragmentManuallyExtra;->access$002(Lcom/android/camera/fragment/manually/FragmentManuallyExtra;Z)Z
 
-    .line 121
+    .line 122
     return-void
 .end method

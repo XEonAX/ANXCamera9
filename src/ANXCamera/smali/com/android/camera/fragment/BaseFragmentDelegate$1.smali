@@ -27,7 +27,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/BaseFragmentDelegate;Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;)V
     .locals 0
 
-    .line 279
+    .line 282
     iput-object p1, p0, Lcom/android/camera/fragment/BaseFragmentDelegate$1;->this$0:Lcom/android/camera/fragment/BaseFragmentDelegate;
 
     iput-object p2, p0, Lcom/android/camera/fragment/BaseFragmentDelegate$1;->val$lifecycleListener:Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;
@@ -47,11 +47,11 @@
         }
     .end annotation
 
-    .line 282
+    .line 285
     iget-object v0, p0, Lcom/android/camera/fragment/BaseFragmentDelegate$1;->val$lifecycleListener:Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;
 
     invoke-interface {v0}, Lcom/android/camera/fragment/lifeCircle/BaseLifecycleListener;->onLifeAlive()V
 
-    .line 283
+    .line 286
     return-void
 .end method

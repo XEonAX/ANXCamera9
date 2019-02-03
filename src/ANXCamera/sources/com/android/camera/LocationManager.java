@@ -134,12 +134,17 @@ public class LocationManager {
         stringBuilder2.append("No location received yet. cache location is ");
         stringBuilder2.append(this.mCacheLocation != null ? "not null" : TEDefine.FACE_BEAUTY_NULL);
         Log.d(str2, stringBuilder2.toString());
-        return this.mCacheLocation;
+        return validateLocation(this.mCacheLocation);
     }
 
     private static Location validateLocation(Location location) {
         long currentTimeMillis = System.currentTimeMillis();
-        if (Math.abs(location.getTime() - currentTimeMillis) > LOCATION_TIME_THRESHOLD) {
+        if (location != null && Math.abs(location.getTime() - currentTimeMillis) > LOCATION_TIME_THRESHOLD) {
+            String str = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("validateLocation: modify to now from ");
+            stringBuilder.append(location.getTime());
+            Log.d(str, stringBuilder.toString());
             location.setTime(currentTimeMillis);
         }
         return location;

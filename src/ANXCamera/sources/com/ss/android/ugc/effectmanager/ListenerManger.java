@@ -119,7 +119,7 @@ public class ListenerManger {
         return (IFetchFavoriteList) this.mFetchFavoriteListMap.get(str);
     }
 
-    public IReadUpdateTagListener getReadUpdateTagistener(String str) {
+    public IReadUpdateTagListener getReadUpdateTagListener(String str) {
         if (this.mReadUpdateTagMap == null) {
             this.mReadUpdateTagMap = new HashMap();
         }

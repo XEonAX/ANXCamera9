@@ -19,7 +19,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/Context;Landroid/view/GestureDetector$OnGestureListener;)V
-    .locals 1
+    .registers 4
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "listener"    # Landroid/view/GestureDetector$OnGestureListener;
 
@@ -33,7 +33,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/Context;Landroid/view/GestureDetector$OnGestureListener;Landroid/os/Handler;)V
-    .locals 2
+    .registers 6
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "listener"    # Landroid/view/GestureDetector$OnGestureListener;
     .param p3, "handler"    # Landroid/os/Handler;
@@ -46,7 +46,7 @@
 
     const/16 v1, 0x11
 
-    if-le v0, v1, :cond_0
+    if-le v0, v1, :cond_11
 
     .line 516
     new-instance v0, Landroid/support/v4/view/GestureDetectorCompat$GestureDetectorCompatImplJellybeanMr2;
@@ -55,10 +55,10 @@
 
     iput-object v0, p0, Landroid/support/v4/view/GestureDetectorCompat;->mImpl:Landroid/support/v4/view/GestureDetectorCompat$GestureDetectorCompatImpl;
 
-    goto :goto_0
+    goto :goto_18
 
     .line 518
-    :cond_0
+    :cond_11
     new-instance v0, Landroid/support/v4/view/GestureDetectorCompat$GestureDetectorCompatImplBase;
 
     invoke-direct {v0, p1, p2, p3}, Landroid/support/v4/view/GestureDetectorCompat$GestureDetectorCompatImplBase;-><init>(Landroid/content/Context;Landroid/view/GestureDetector$OnGestureListener;Landroid/os/Handler;)V
@@ -66,14 +66,14 @@
     iput-object v0, p0, Landroid/support/v4/view/GestureDetectorCompat;->mImpl:Landroid/support/v4/view/GestureDetectorCompat$GestureDetectorCompatImpl;
 
     .line 520
-    :goto_0
+    :goto_18
     return-void
 .end method
 
 
 # virtual methods
 .method public isLongpressEnabled()Z
-    .locals 1
+    .registers 2
 
     .line 526
     iget-object v0, p0, Landroid/support/v4/view/GestureDetectorCompat;->mImpl:Landroid/support/v4/view/GestureDetectorCompat$GestureDetectorCompatImpl;
@@ -86,7 +86,7 @@
 .end method
 
 .method public onTouchEvent(Landroid/view/MotionEvent;)Z
-    .locals 1
+    .registers 3
     .param p1, "event"    # Landroid/view/MotionEvent;
 
     .line 538
@@ -100,7 +100,7 @@
 .end method
 
 .method public setIsLongpressEnabled(Z)V
-    .locals 1
+    .registers 3
     .param p1, "enabled"    # Z
 
     .line 551
@@ -113,7 +113,7 @@
 .end method
 
 .method public setOnDoubleTapListener(Landroid/view/GestureDetector$OnDoubleTapListener;)V
-    .locals 1
+    .registers 3
     .param p1, "listener"    # Landroid/view/GestureDetector$OnDoubleTapListener;
 
     .line 562

@@ -27,7 +27,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/content/ModernAsyncTask;Ljava/util/concurrent/Callable;)V
-    .locals 0
+    .registers 3
 
     .line 132
     .local p0, "this":Landroid/support/v4/content/ModernAsyncTask$3;, "Landroid/support/v4/content/ModernAsyncTask.3;"
@@ -42,7 +42,7 @@
 
 # virtual methods
 .method protected done()V
-    .locals 4
+    .registers 5
 
     .line 136
     .local p0, "this":Landroid/support/v4/content/ModernAsyncTask$3;, "Landroid/support/v4/content/ModernAsyncTask.3;"
@@ -55,18 +55,19 @@
     .local v0, "result":Ljava/lang/Object;, "TResult;"
     iget-object v1, p0, Landroid/support/v4/content/ModernAsyncTask$3;->this$0:Landroid/support/v4/content/ModernAsyncTask;
 
+    # invokes: Landroid/support/v4/content/ModernAsyncTask;->postResultIfNotInvoked(Ljava/lang/Object;)V
     invoke-static {v1, v0}, Landroid/support/v4/content/ModernAsyncTask;->access$300(Landroid/support/v4/content/ModernAsyncTask;Ljava/lang/Object;)V
-    :try_end_0
-    .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_0} :catch_3
-    .catch Ljava/util/concurrent/ExecutionException; {:try_start_0 .. :try_end_0} :catch_2
-    .catch Ljava/util/concurrent/CancellationException; {:try_start_0 .. :try_end_0} :catch_1
-    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_9
+    .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_9} :catch_28
+    .catch Ljava/util/concurrent/ExecutionException; {:try_start_0 .. :try_end_9} :catch_1b
+    .catch Ljava/util/concurrent/CancellationException; {:try_start_0 .. :try_end_9} :catch_13
+    .catch Ljava/lang/Throwable; {:try_start_0 .. :try_end_9} :catch_a
 
     .end local v0    # "result":Ljava/lang/Object;, "TResult;"
-    goto :goto_0
+    goto :goto_2e
 
     .line 146
-    :catch_0
+    :catch_a
     move-exception v0
 
     .line 147
@@ -81,7 +82,7 @@
 
     .line 144
     .end local v0    # "t":Ljava/lang/Throwable;
-    :catch_1
+    :catch_13
     move-exception v0
 
     .line 145
@@ -90,13 +91,14 @@
 
     const/4 v2, 0x0
 
+    # invokes: Landroid/support/v4/content/ModernAsyncTask;->postResultIfNotInvoked(Ljava/lang/Object;)V
     invoke-static {v1, v2}, Landroid/support/v4/content/ModernAsyncTask;->access$300(Landroid/support/v4/content/ModernAsyncTask;Ljava/lang/Object;)V
 
     .end local v0    # "e":Ljava/util/concurrent/CancellationException;
-    goto :goto_0
+    goto :goto_2e
 
     .line 141
-    :catch_2
+    :catch_1b
     move-exception v0
 
     .line 142
@@ -115,7 +117,7 @@
 
     .line 139
     .end local v0    # "e":Ljava/util/concurrent/ExecutionException;
-    :catch_3
+    :catch_28
     move-exception v0
 
     .line 140
@@ -126,7 +128,7 @@
 
     .line 149
     .end local v0    # "e":Ljava/lang/InterruptedException;
-    :goto_0
+    :goto_2e
     nop
 
     .line 150

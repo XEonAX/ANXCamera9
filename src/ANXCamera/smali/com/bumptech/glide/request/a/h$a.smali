@@ -18,7 +18,7 @@
 
 
 # instance fields
-.field private final oY:Landroid/view/animation/Animation;
+.field private final oX:Landroid/view/animation/Animation;
 
 
 # direct methods
@@ -29,7 +29,7 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 58
-    iput-object p1, p0, Lcom/bumptech/glide/request/a/h$a;->oY:Landroid/view/animation/Animation;
+    iput-object p1, p0, Lcom/bumptech/glide/request/a/h$a;->oX:Landroid/view/animation/Animation;
 
     .line 59
     return-void
@@ -37,11 +37,11 @@
 
 
 # virtual methods
-.method public m(Landroid/content/Context;)Landroid/view/animation/Animation;
+.method public l(Landroid/content/Context;)Landroid/view/animation/Animation;
     .locals 0
 
     .line 63
-    iget-object p1, p0, Lcom/bumptech/glide/request/a/h$a;->oY:Landroid/view/animation/Animation;
+    iget-object p1, p0, Lcom/bumptech/glide/request/a/h$a;->oX:Landroid/view/animation/Animation;
 
     return-object p1
 .end method

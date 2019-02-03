@@ -3,6 +3,7 @@ package com.android.camera.module.encoder;
 import android.media.MediaCodec;
 import android.media.MediaCodec.BufferInfo;
 import com.android.camera.log.Log;
+import com.android.camera.module.loader.FunctionParseBeautyBodySlimCount;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.nio.ByteBuffer;
@@ -214,7 +215,7 @@ public abstract class MediaEncoder implements Runnable {
         if (this.mIsCapturing) {
             ByteBuffer[] inputBuffers = this.mMediaCodec.getInputBuffers();
             while (this.mIsCapturing) {
-                int dequeueInputBuffer = this.mMediaCodec.dequeueInputBuffer(10000);
+                int dequeueInputBuffer = this.mMediaCodec.dequeueInputBuffer(FunctionParseBeautyBodySlimCount.TIP_INTERVAL_TIME);
                 if (dequeueInputBuffer >= 0) {
                     ByteBuffer byteBuffer2 = inputBuffers[dequeueInputBuffer];
                     byteBuffer2.clear();
@@ -246,7 +247,7 @@ public abstract class MediaEncoder implements Runnable {
                     this.mSkipFrame = System.currentTimeMillis() < this.mFirstFrameTime;
                 }
                 try {
-                    int dequeueOutputBuffer = this.mMediaCodec.dequeueOutputBuffer(this.mBufferInfo, 10000);
+                    int dequeueOutputBuffer = this.mMediaCodec.dequeueOutputBuffer(this.mBufferInfo, FunctionParseBeautyBodySlimCount.TIP_INTERVAL_TIME);
                     if (dequeueOutputBuffer == -1) {
                         if (this.mIsEOS) {
                             continue;

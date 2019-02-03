@@ -11,22 +11,22 @@ import java.io.IOException;
 /* compiled from: AssetPathFetcher */
 public abstract class b<T> implements d<T> {
     private static final String TAG = "AssetPathFetcher";
-    private final String cZ;
-    private final AssetManager da;
+    private final String da;
     private T data;
+    private final AssetManager dc;
 
     protected abstract T a(AssetManager assetManager, String str) throws IOException;
 
     protected abstract void h(T t) throws IOException;
 
     public b(AssetManager assetManager, String str) {
-        this.da = assetManager;
-        this.cZ = str;
+        this.dc = assetManager;
+        this.da = str;
     }
 
     public void a(@NonNull Priority priority, @NonNull a<? super T> aVar) {
         try {
-            this.data = a(this.da, this.cZ);
+            this.data = a(this.dc, this.da);
             aVar.i(this.data);
         } catch (Throwable e) {
             if (Log.isLoggable(TAG, 3)) {

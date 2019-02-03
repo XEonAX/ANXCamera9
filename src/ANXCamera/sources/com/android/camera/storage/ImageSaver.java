@@ -15,6 +15,7 @@ import com.android.camera.Thumbnail;
 import com.android.camera.Util;
 import com.android.camera.effect.EffectController;
 import com.android.camera.effect.EffectController.EffectRectAttribute;
+import com.android.camera.effect.FilterInfo;
 import com.android.camera.effect.draw_mode.DrawJPEGAttribute;
 import com.android.camera.effect.renders.SnapshotEffectRender;
 import com.android.camera.log.Log;
@@ -23,12 +24,13 @@ import com.android.camera.protocol.ModeProtocol.ActionProcessing;
 import com.android.camera.watermark.WaterMarkData;
 import com.android.camera2.ArcsoftDepthMap;
 import com.android.gallery3d.exif.ExifInterface;
-import com.ss.android.ttve.common.TEDefine;
 import com.xiaomi.camera.base.PerformanceTracker;
 import com.xiaomi.camera.core.ParallelCallback;
 import com.xiaomi.camera.core.ParallelTaskData;
+import com.xiaomi.camera.core.ParallelTaskDataParameter;
 import com.xiaomi.camera.core.PictureInfo;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executor;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -44,7 +46,7 @@ public class ImageSaver implements SaverCallback, ParallelCallback {
     private static final int HOST_STATE_PAUSE = 1;
     private static final int HOST_STATE_RESUME = 0;
     private static final int QUEUE_BUSY_SIZE = 40;
-    private static final String TAG = "ImageSaver";
+    private static final String TAG = ImageSaver.class.getSimpleName();
     private static final BlockingQueue<Runnable> mSaveRequestQueue = new LinkedBlockingQueue(128);
     private static final ThreadFactory sThreadFactory = new ThreadFactory() {
         private final AtomicInteger mCount = new AtomicInteger(1);
@@ -67,10 +69,11 @@ public class ImageSaver implements SaverCallback, ParallelCallback {
     private boolean mIsCaptureIntent;
     private Uri mLastImageUri;
     private MemoryManager mMemoryManager;
+    private volatile boolean mPendingSave;
     private Thumbnail mPendingThumbnail;
     private ParallelTaskData mStoredTaskData;
     private ThumbnailUpdater mUpdateThumbnail = new ThumbnailUpdater();
-    private Object mUpdateThumbnailLock = new Object();
+    private final Object mUpdateThumbnailLock = new Object();
 
     private class ThumbnailUpdater implements Runnable {
         private boolean mNeedAnimation = true;
@@ -101,31 +104,32 @@ public class ImageSaver implements SaverCallback, ParallelCallback {
     }
 
     public void addImage(byte[] bArr, boolean z, String str, String str2, long j, Uri uri, Location location, int i, int i2, ExifInterface exifInterface, int i3, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, String str3, PictureInfo pictureInfo) {
-        Uri uri2;
+        Uri uri2 = uri;
         String str4 = TAG;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("isParallelProcess: ");
+        stringBuilder.append("isParallelProcess: parallel=");
         boolean z7 = z6;
         stringBuilder.append(z7);
         stringBuilder.append(" uri=");
-        stringBuilder.append(uri == null ? TEDefine.FACE_BEAUTY_NULL : uri);
+        stringBuilder.append(uri2);
         stringBuilder.append(" algo=");
         stringBuilder.append(str3);
-        Log.e(str4, stringBuilder.toString());
-        if (str2 == null || uri != null) {
-            uri2 = uri;
-        } else {
+        Log.d(str4, stringBuilder.toString());
+        if (str2 != null && uri2 == null) {
             uri2 = this.mLastImageUri;
         }
+        Uri uri3 = uri2;
         Object obj = bArr;
         PerformanceTracker.trackImageSaver(obj, 0);
-        addSaveRequest(new ImageSaveRequest(obj, z, str, str2, j, uri2, location, i, i2, exifInterface, i3, z2, z3, z4, z5, z7, str3, pictureInfo));
+        addSaveRequest(new ImageSaveRequest(obj, z, str, str2, j, uri3, location, i, i2, exifInterface, i3, z2, z3, z4, z5, z7, str3, pictureInfo));
     }
 
     private void storeJpegData(ParallelTaskData parallelTaskData, int i, int i2) {
+        ParallelTaskDataParameter dataParameter = parallelTaskData.getDataParameter();
         this.mStoredTaskData = parallelTaskData;
-        int shootOrientation = 360 - parallelTaskData.getShootOrientation();
-        Bitmap createBitmap = Thumbnail.createBitmap(parallelTaskData.getJpegImageData(), (i2 + shootOrientation) + Util.getDisplayRotation(this.mActivity), false, Integer.highestOneBit((int) Math.floor(((double) i) / ((double) parallelTaskData.getPreviewWidth()))));
+        i = Integer.highestOneBit((int) Math.floor(((double) i) / ((double) dataParameter.getPreviewSize().getWidth())));
+        int shootOrientation = 360 - dataParameter.getShootOrientation();
+        Bitmap createBitmap = Thumbnail.createBitmap(parallelTaskData.getJpegImageData(), (i2 + shootOrientation) + Util.getDisplayRotation(this.mActivity), false, i);
         if (createBitmap != null) {
             this.mActivity.getCameraScreenNail().renderBitmapToCanvas(createBitmap);
         }
@@ -135,18 +139,19 @@ public class ImageSaver implements SaverCallback, ParallelCallback {
         int i;
         int i2;
         ParallelTaskData parallelTaskData = this.mStoredTaskData;
+        ParallelTaskDataParameter dataParameter = parallelTaskData.getDataParameter();
         String createJpegName = Util.createJpegName(System.currentTimeMillis());
-        int pictureWidth = parallelTaskData.getPictureWidth();
-        int pictureHeight = parallelTaskData.getPictureHeight();
+        int width = dataParameter.getPictureSize().getWidth();
+        int height = dataParameter.getPictureSize().getHeight();
         int orientation = Exif.getOrientation(this.mStoredTaskData.getJpegImageData());
-        if ((parallelTaskData.getJpegRotation() + orientation) % 180 == 0) {
-            i = pictureWidth;
-            i2 = pictureHeight;
+        if ((dataParameter.getJpegRotation() + orientation) % 180 == 0) {
+            i = width;
+            i2 = height;
         } else {
-            i2 = pictureWidth;
-            i = pictureHeight;
+            i2 = width;
+            i = height;
         }
-        addImage(this.mStoredTaskData.getJpegImageData(), parallelTaskData.isNeedCrateThumbnail(), createJpegName, null, System.currentTimeMillis(), null, parallelTaskData.getLocation(), i, i2, null, orientation, false, false, true, false, false, parallelTaskData.getAlgorithmName(), parallelTaskData.getPictureInfo());
+        addImage(this.mStoredTaskData.getJpegImageData(), parallelTaskData.isNeedThumbnail(), createJpegName, null, System.currentTimeMillis(), null, dataParameter.getLocation(), i, i2, null, orientation, false, false, true, false, false, dataParameter.getAlgorithmName(), dataParameter.getPictureInfo());
     }
 
     public byte[] getStoredJpegData() {
@@ -154,84 +159,129 @@ public class ImageSaver implements SaverCallback, ParallelCallback {
     }
 
     private void insertPreviewShotTask(ParallelTaskData parallelTaskData) {
-        addImage(parallelTaskData.getJpegImageData(), false, Util.getFileTitleFromPath(parallelTaskData.getSavePath()), null, System.currentTimeMillis(), null, parallelTaskData.getLocation(), parallelTaskData.getOutputWidth(), parallelTaskData.getOutputHeight(), null, 0, false, false, true, false, true, parallelTaskData.getAlgorithmName(), parallelTaskData.getPictureInfo());
+        PictureInfo pictureInfo;
+        int i;
+        int i2;
+        Location location;
+        String str;
+        byte[] jpegImageData = parallelTaskData.getJpegImageData();
+        ParallelTaskDataParameter dataParameter = parallelTaskData.getDataParameter();
+        if (dataParameter != null) {
+            int width = dataParameter.getOutputSize().getWidth();
+            int height = dataParameter.getOutputSize().getHeight();
+            Location location2 = dataParameter.getLocation();
+            String algorithmName = dataParameter.getAlgorithmName();
+            pictureInfo = dataParameter.getPictureInfo();
+            i = width;
+            i2 = height;
+            location = location2;
+            str = algorithmName;
+        } else {
+            i = 0;
+            i2 = i;
+            location = null;
+            str = location;
+            pictureInfo = str;
+        }
+        addImage(jpegImageData, false, Util.getFileTitleFromPath(parallelTaskData.getSavePath()), null, System.currentTimeMillis(), null, location, i, i2, null, 0, false, false, true, false, true, str, pictureInfo);
     }
 
-    private void insertSingTask(ParallelTaskData parallelTaskData) {
+    private void insertSingleTask(ParallelTaskData parallelTaskData) {
+        Object obj;
         int i;
         int i2;
         int i3;
         ImageSaver imageSaver;
         int i4;
         int i5;
-        ParallelTaskData parallelTaskData2 = parallelTaskData;
-        boolean hasEffect = EffectController.getInstance().hasEffect();
-        byte[] jpegImageData = parallelTaskData.getJpegImageData();
-        int pictureWidth = parallelTaskData.getPictureWidth();
-        int pictureHeight = parallelTaskData.getPictureHeight();
-        int orientation = Exif.getOrientation(jpegImageData);
-        if ((parallelTaskData.getJpegRotation() + orientation) % 180 == 0) {
-            i = pictureWidth;
-            i2 = pictureHeight;
+        ParallelTaskData parallelTaskData2;
+        ParallelTaskData parallelTaskData3 = parallelTaskData;
+        ParallelTaskDataParameter dataParameter = parallelTaskData.getDataParameter();
+        int filterId = dataParameter.getFilterId();
+        if (EffectController.getInstance().hasEffect() || filterId != FilterInfo.FILTER_ID_NONE) {
+            obj = 1;
         } else {
-            i2 = pictureWidth;
-            i = pictureHeight;
+            obj = null;
+        }
+        byte[] jpegImageData = parallelTaskData.getJpegImageData();
+        int width = dataParameter.getPictureSize().getWidth();
+        int height = dataParameter.getPictureSize().getHeight();
+        int orientation = Exif.getOrientation(jpegImageData);
+        if ((dataParameter.getJpegRotation() + orientation) % 180 == 0) {
+            i = width;
+            i2 = height;
+        } else {
+            i2 = width;
+            i = height;
         }
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(Util.createJpegName(System.currentTimeMillis()));
-        stringBuilder.append(parallelTaskData.getSuffix());
+        stringBuilder.append(dataParameter.getSuffix());
         String stringBuilder2 = stringBuilder.toString();
-        if (hasEffect) {
+        ParallelTaskDataParameter parallelTaskDataParameter;
+        if (obj == null) {
             i3 = orientation;
-            DrawJPEGAttribute drawJPEGAttribute = getDrawJPEGAttribute(jpegImageData, parallelTaskData.getPreviewWidth(), parallelTaskData.getPreviewHeight(), parallelTaskData.isNeedCrateThumbnail(), i, i2, parallelTaskData.getLocation(), stringBuilder2, parallelTaskData.getShootOrientation(), orientation, parallelTaskData.getShootRotation(), parallelTaskData.getAlgorithmName(), true, parallelTaskData.getFaceWaterMarkList(), false, parallelTaskData.getPictureInfo());
+            parallelTaskDataParameter = dataParameter;
+            imageSaver = this;
+        } else if (this.mEffectProcessor != null) {
+            i3 = orientation;
+            parallelTaskDataParameter = dataParameter;
+            DrawJPEGAttribute drawJPEGAttribute = getDrawJPEGAttribute(jpegImageData, dataParameter.getPreviewSize().getWidth(), dataParameter.getPreviewSize().getHeight(), filterId, parallelTaskData.isNeedThumbnail(), i, i2, dataParameter.getLocation(), stringBuilder2, dataParameter.getShootOrientation(), orientation, dataParameter.getShootRotation(), dataParameter.getAlgorithmName(), true, dataParameter.getTimeWaterMarkString(), dataParameter.getFaceWaterMarkList(), false, dataParameter.getPictureInfo());
             imageSaver = this;
             imageSaver.mEffectProcessor.processorJpegSync(drawJPEGAttribute, false);
             jpegImageData = drawJPEGAttribute.mData;
-            pictureHeight = drawJPEGAttribute.mWidth;
+            height = drawJPEGAttribute.mWidth;
             i4 = drawJPEGAttribute.mHeight;
-            i5 = pictureHeight;
+            i5 = height;
+            if (parallelTaskData.getParallelType() != -2 || parallelTaskData.getParallelType() == -3) {
+                parallelTaskData2 = parallelTaskData;
+                parallelTaskData2.refillJpegData(jpegImageData);
+                imageSaver.storeJpegData(parallelTaskData2, i5, i3);
+            }
+            ParallelTaskDataParameter parallelTaskDataParameter2 = parallelTaskDataParameter;
+            imageSaver.addImage(jpegImageData, parallelTaskData.isNeedThumbnail(), stringBuilder2, null, System.currentTimeMillis(), null, parallelTaskDataParameter2.getLocation(), i5, i4, null, i3, false, false, true, false, false, parallelTaskDataParameter2.getAlgorithmName(), parallelTaskDataParameter2.getPictureInfo());
+            return;
         } else {
             i3 = orientation;
+            parallelTaskDataParameter = dataParameter;
             imageSaver = this;
-            i5 = i;
-            i4 = i2;
+            Log.d(TAG, "insertSingleTask(): mEffectProcessor is null");
         }
-        ParallelTaskData parallelTaskData3;
-        if (parallelTaskData.getParallelType() == -2) {
-            parallelTaskData3 = parallelTaskData;
-            parallelTaskData3.refillJpegData(jpegImageData);
-            imageSaver.storeJpegData(parallelTaskData3, i5, i3);
-            return;
+        i5 = i;
+        i4 = i2;
+        if (parallelTaskData.getParallelType() != -2) {
         }
-        parallelTaskData3 = parallelTaskData;
-        int i6 = i3;
-        imageSaver.addImage(jpegImageData, parallelTaskData.isNeedCrateThumbnail(), stringBuilder2, null, System.currentTimeMillis(), null, parallelTaskData.getLocation(), i5, i4, null, i6, false, false, true, false, false, parallelTaskData.getAlgorithmName(), parallelTaskData.getPictureInfo());
+        parallelTaskData2 = parallelTaskData;
+        parallelTaskData2.refillJpegData(jpegImageData);
+        imageSaver.storeJpegData(parallelTaskData2, i5, i3);
     }
 
+    /* JADX WARNING: Removed duplicated region for block: B:26:0x016a  */
+    /* JADX WARNING: Removed duplicated region for block: B:17:0x00f6  */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private void insertLiveShotTask(ParallelTaskData parallelTaskData) {
         int i;
         int i2;
-        String str;
-        ImageSaver imageSaver;
         int i3;
         int i4;
+        ParallelTaskDataParameter dataParameter = parallelTaskData.getDataParameter();
         boolean hasEffect = EffectController.getInstance().hasEffect();
         byte[] jpegImageData = parallelTaskData.getJpegImageData();
         byte[] microVideoData = parallelTaskData.getMicroVideoData();
         long coverFrameTimestamp = parallelTaskData.getCoverFrameTimestamp();
-        int pictureWidth = parallelTaskData.getPictureWidth();
-        int pictureHeight = parallelTaskData.getPictureHeight();
+        int width = dataParameter.getPictureSize().getWidth();
+        int height = dataParameter.getPictureSize().getHeight();
         int orientation = Exif.getOrientation(jpegImageData);
-        if ((parallelTaskData.getJpegRotation() + orientation) % 180 == 0) {
-            i = pictureWidth;
-            i2 = pictureHeight;
+        if ((dataParameter.getJpegRotation() + orientation) % 180 == 0) {
+            i = width;
+            i2 = height;
         } else {
-            i2 = pictureWidth;
-            i = pictureHeight;
+            i2 = width;
+            i = height;
         }
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(Util.createJpegName(System.currentTimeMillis()));
-        stringBuilder.append(parallelTaskData.getSuffix());
+        stringBuilder.append(dataParameter.getSuffix());
         String stringBuilder2 = stringBuilder.toString();
         if (Util.createGooglePhotosCompatibleLiveShot()) {
             StringBuilder stringBuilder3 = new StringBuilder();
@@ -239,107 +289,185 @@ public class ImageSaver implements SaverCallback, ParallelCallback {
             stringBuilder3.append(stringBuilder2);
             stringBuilder2 = stringBuilder3.toString();
         }
-        String str2 = stringBuilder2;
-        if (hasEffect) {
-            str = str2;
-            DrawJPEGAttribute drawJPEGAttribute = getDrawJPEGAttribute(jpegImageData, parallelTaskData.getPreviewWidth(), parallelTaskData.getPreviewHeight(), parallelTaskData.isNeedCrateThumbnail(), i, i2, parallelTaskData.getLocation(), str2, parallelTaskData.getShootOrientation(), orientation, parallelTaskData.getShootRotation(), parallelTaskData.getAlgorithmName(), true, parallelTaskData.getFaceWaterMarkList(), false, parallelTaskData.getPictureInfo());
+        String str = stringBuilder2;
+        String str2;
+        ParallelTaskDataParameter parallelTaskDataParameter;
+        ImageSaver imageSaver;
+        if (!hasEffect) {
+            str2 = str;
+            parallelTaskDataParameter = dataParameter;
+            imageSaver = this;
+        } else if (this.mEffectProcessor != null) {
+            str2 = str;
+            parallelTaskDataParameter = dataParameter;
+            DrawJPEGAttribute drawJPEGAttribute = getDrawJPEGAttribute(jpegImageData, dataParameter.getPreviewSize().getWidth(), dataParameter.getPreviewSize().getHeight(), parallelTaskData.isNeedThumbnail(), i, i2, dataParameter.getLocation(), str, dataParameter.getShootOrientation(), orientation, dataParameter.getShootRotation(), dataParameter.getAlgorithmName(), true, dataParameter.getTimeWaterMarkString(), dataParameter.getFaceWaterMarkList(), false, dataParameter.getPictureInfo());
             imageSaver = this;
             imageSaver.mEffectProcessor.processorJpegSync(drawJPEGAttribute, false);
             jpegImageData = drawJPEGAttribute.mData;
             int i5 = drawJPEGAttribute.mWidth;
             i3 = drawJPEGAttribute.mHeight;
             i4 = i5;
-        } else {
-            str = str2;
-            imageSaver = this;
-            i4 = i;
-            i3 = i2;
-        }
-        if (parallelTaskData.getParallelType() == 1) {
-            byte[] composeLiveShotPicture = Util.composeLiveShotPicture(imageSaver.mContext, jpegImageData, pictureWidth, pictureHeight, microVideoData, coverFrameTimestamp, parallelTaskData.isHasDualWaterMark(), parallelTaskData.getTimeWaterMarkString());
-            if (composeLiveShotPicture == null || jpegImageData == null || composeLiveShotPicture.length < jpegImageData.length) {
-                String str3 = TAG;
-                StringBuilder stringBuilder4 = new StringBuilder();
-                stringBuilder4.append("Failed to save LiveShot photo: ");
-                stringBuilder4.append(str);
-                Log.e(str3, stringBuilder4.toString());
+            if (parallelTaskData.getParallelType() != 1) {
+                ParallelTaskDataParameter parallelTaskDataParameter2 = parallelTaskDataParameter;
+                byte[] composeLiveShotPicture = Util.composeLiveShotPicture(jpegImageData, width, height, microVideoData, coverFrameTimestamp, parallelTaskDataParameter2.isHasDualWaterMark(), parallelTaskDataParameter2.getTimeWaterMarkString());
+                if (composeLiveShotPicture == null || jpegImageData == null || composeLiveShotPicture.length < jpegImageData.length) {
+                    String str3 = TAG;
+                    StringBuilder stringBuilder4 = new StringBuilder();
+                    stringBuilder4.append("Failed to save LiveShot photo: ");
+                    stringBuilder4.append(str2);
+                    Log.e(str3, stringBuilder4.toString());
+                    return;
+                }
+                imageSaver.addImage(composeLiveShotPicture, parallelTaskData.isNeedThumbnail(), str2, null, System.currentTimeMillis(), null, parallelTaskDataParameter2.getLocation(), i4, i3, null, orientation, false, false, true, false, false, parallelTaskDataParameter2.getAlgorithmName(), parallelTaskDataParameter2.getPictureInfo());
                 return;
             }
-            imageSaver.addImage(composeLiveShotPicture, parallelTaskData.isNeedCrateThumbnail(), str, null, System.currentTimeMillis(), null, parallelTaskData.getLocation(), i4, i3, null, orientation, false, false, true, false, false, parallelTaskData.getAlgorithmName(), parallelTaskData.getPictureInfo());
-            return;
+            throw new IllegalStateException("Only supported LiveShot capture processing");
+        } else {
+            str2 = str;
+            parallelTaskDataParameter = dataParameter;
+            imageSaver = this;
+            Log.d(TAG, "insertLiveShotTask(): mEffectProcessor is null");
         }
-        throw new IllegalStateException("Only supported LiveShot capture processing");
+        i4 = i;
+        i3 = i2;
+        if (parallelTaskData.getParallelType() != 1) {
+        }
     }
 
+    /* JADX WARNING: Removed duplicated region for block: B:24:0x0194  */
+    /* JADX WARNING: Removed duplicated region for block: B:23:0x0162  */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private void insertNormalDualTask(ParallelTaskData parallelTaskData) {
+        Object obj;
         int i;
         int i2;
         ImageSaver imageSaver;
         byte[] bArr;
         byte[] bArr2;
-        boolean hasEffect = EffectController.getInstance().hasEffect();
+        ParallelTaskDataParameter parallelTaskDataParameter;
         boolean isDepthMapData = ArcsoftDepthMap.isDepthMapData(parallelTaskData.getPortraitDepthData());
         byte[] jpegImageData = parallelTaskData.getJpegImageData();
         byte[] portraitRawData = parallelTaskData.getPortraitRawData();
         byte[] portraitDepthData = parallelTaskData.getPortraitDepthData();
-        int pictureWidth = parallelTaskData.getPictureWidth();
-        int pictureHeight = parallelTaskData.getPictureHeight();
-        int orientation = Exif.getOrientation(jpegImageData);
-        if ((parallelTaskData.getJpegRotation() + orientation) % 180 == 0) {
-            i = pictureWidth;
-            i2 = pictureHeight;
+        ParallelTaskDataParameter dataParameter = parallelTaskData.getDataParameter();
+        int filterId = dataParameter.getFilterId();
+        if (EffectController.getInstance().hasEffect() || filterId != FilterInfo.FILTER_ID_NONE) {
+            obj = 1;
         } else {
-            i2 = pictureWidth;
-            i = pictureHeight;
+            obj = null;
+        }
+        int width = dataParameter.getPictureSize().getWidth();
+        int height = dataParameter.getPictureSize().getHeight();
+        int orientation = Exif.getOrientation(jpegImageData);
+        if ((dataParameter.getJpegRotation() + orientation) % 180 == 0) {
+            i = width;
+            i2 = height;
+        } else {
+            i2 = width;
+            i = height;
         }
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(Util.createJpegName(System.currentTimeMillis()));
-        stringBuilder.append(parallelTaskData.getSuffix());
+        stringBuilder.append(dataParameter.getSuffix());
         String stringBuilder2 = stringBuilder.toString();
-        if (hasEffect) {
+        ParallelTaskDataParameter parallelTaskDataParameter2;
+        if (obj == null) {
+            parallelTaskDataParameter2 = dataParameter;
+            imageSaver = this;
+        } else if (this.mEffectProcessor != null) {
             byte[] bArr3;
-            DrawJPEGAttribute drawJPEGAttribute = getDrawJPEGAttribute(jpegImageData, parallelTaskData.getPreviewWidth(), parallelTaskData.getPreviewHeight(), parallelTaskData.isNeedCrateThumbnail(), i, i2, parallelTaskData.getLocation(), stringBuilder2, parallelTaskData.getShootOrientation(), orientation, parallelTaskData.getShootRotation(), parallelTaskData.getAlgorithmName(), true, parallelTaskData.getFaceWaterMarkList(), false, parallelTaskData.getPictureInfo());
+            int i3 = filterId;
+            ParallelTaskDataParameter parallelTaskDataParameter3 = dataParameter;
+            DrawJPEGAttribute drawJPEGAttribute = getDrawJPEGAttribute(jpegImageData, dataParameter.getPreviewSize().getWidth(), dataParameter.getPreviewSize().getHeight(), filterId, parallelTaskData.isNeedThumbnail(), i, i2, dataParameter.getLocation(), stringBuilder2, dataParameter.getShootOrientation(), orientation, dataParameter.getShootRotation(), dataParameter.getAlgorithmName(), true, dataParameter.getTimeWaterMarkString(), dataParameter.getFaceWaterMarkList(), false, dataParameter.getPictureInfo());
             this.mEffectProcessor.processorJpegSync(drawJPEGAttribute, false);
             byte[] bArr4 = drawJPEGAttribute.mData;
             if (isDepthMapData) {
+                ParallelTaskDataParameter parallelTaskDataParameter4 = parallelTaskDataParameter3;
+                parallelTaskDataParameter2 = parallelTaskDataParameter4;
                 bArr3 = bArr4;
-                drawJPEGAttribute = getDrawJPEGAttribute(bArr4, parallelTaskData.getPreviewWidth(), parallelTaskData.getPreviewHeight(), parallelTaskData.isNeedCrateThumbnail(), i, i2, parallelTaskData.getLocation(), stringBuilder2, parallelTaskData.getShootOrientation(), orientation, parallelTaskData.getShootRotation(), parallelTaskData.getAlgorithmName(), false, parallelTaskData.getFaceWaterMarkList(), true, parallelTaskData.getPictureInfo());
+                drawJPEGAttribute = getDrawJPEGAttribute(portraitRawData, parallelTaskDataParameter4.getPreviewSize().getWidth(), parallelTaskDataParameter4.getPreviewSize().getHeight(), i3, parallelTaskData.isNeedThumbnail(), i, i2, parallelTaskDataParameter4.getLocation(), stringBuilder2, parallelTaskDataParameter4.getShootOrientation(), orientation, parallelTaskDataParameter4.getShootRotation(), parallelTaskDataParameter4.getAlgorithmName(), false, parallelTaskDataParameter4.getTimeWaterMarkString(), parallelTaskDataParameter4.getFaceWaterMarkList(), true, parallelTaskDataParameter4.getPictureInfo());
                 imageSaver = this;
                 imageSaver.mEffectProcessor.processorJpegSync(drawJPEGAttribute, false);
-                bArr = drawJPEGAttribute.mData;
+                portraitRawData = drawJPEGAttribute.mData;
             } else {
                 bArr3 = bArr4;
                 imageSaver = this;
-                bArr = portraitRawData;
+                parallelTaskDataParameter2 = parallelTaskDataParameter3;
             }
-            bArr2 = bArr3;
-        } else {
-            imageSaver = this;
-            bArr2 = jpegImageData;
             bArr = portraitRawData;
-        }
-        if (isDepthMapData) {
-            jpegImageData = Util.composeDepthMapPicture(bArr2, portraitDepthData, bArr, parallelTaskData.isHasDualWaterMark(), parallelTaskData.getLightingPattern(), parallelTaskData.getTimeWaterMarkString(), parallelTaskData.getOutputWidth(), parallelTaskData.getOutputHeight(), parallelTaskData.isMirror(), parallelTaskData.isBokehFrontCamera());
+            bArr2 = bArr3;
+            if (isDepthMapData) {
+                parallelTaskDataParameter = parallelTaskDataParameter2;
+                jpegImageData = bArr2;
+            } else {
+                parallelTaskDataParameter = parallelTaskDataParameter2;
+                jpegImageData = Util.composeDepthMapPicture(bArr2, portraitDepthData, bArr, parallelTaskDataParameter.isHasDualWaterMark(), parallelTaskDataParameter.getLightingPattern(), parallelTaskDataParameter.getTimeWaterMarkString(), parallelTaskDataParameter.getOutputSize().getWidth(), parallelTaskDataParameter.getOutputSize().getHeight(), parallelTaskDataParameter.isMirror(), parallelTaskDataParameter.isBokehFrontCamera(), parallelTaskDataParameter.getPictureInfo());
+            }
+            imageSaver.addImage(jpegImageData, parallelTaskData.isNeedThumbnail(), stringBuilder2, null, System.currentTimeMillis(), null, parallelTaskDataParameter.getLocation(), i, i2, null, orientation, false, false, true, false, false, parallelTaskDataParameter.getAlgorithmName(), parallelTaskDataParameter.getPictureInfo());
         } else {
-            jpegImageData = bArr2;
+            parallelTaskDataParameter2 = dataParameter;
+            imageSaver = this;
+            Log.d(TAG, "insertNormalDualTask(): mEffectProcessor is null");
         }
-        imageSaver.addImage(jpegImageData, parallelTaskData.isNeedCrateThumbnail(), stringBuilder2, null, System.currentTimeMillis(), null, parallelTaskData.getLocation(), i, i2, null, orientation, false, false, true, false, false, parallelTaskData.getAlgorithmName(), parallelTaskData.getPictureInfo());
+        bArr2 = jpegImageData;
+        bArr = portraitRawData;
+        if (isDepthMapData) {
+        }
+        imageSaver.addImage(jpegImageData, parallelTaskData.isNeedThumbnail(), stringBuilder2, null, System.currentTimeMillis(), null, parallelTaskDataParameter.getLocation(), i, i2, null, orientation, false, false, true, false, false, parallelTaskDataParameter.getAlgorithmName(), parallelTaskDataParameter.getPictureInfo());
     }
 
     private void insertParallelDualTask(ParallelTaskData parallelTaskData) {
         byte[] composeDepthMapPicture;
+        ParallelTaskDataParameter dataParameter = parallelTaskData.getDataParameter();
         String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("addParallel: path=");
         stringBuilder.append(parallelTaskData.getSavePath());
         Log.d(str, stringBuilder.toString());
-        reduceUsedMemory(parallelTaskData.getProcessUsedMemorySize());
-        if (ArcsoftDepthMap.isDepthMapData(parallelTaskData.getPortraitDepthData())) {
-            composeDepthMapPicture = Util.composeDepthMapPicture(parallelTaskData.getJpegImageData(), parallelTaskData.getPortraitDepthData(), parallelTaskData.getPortraitRawData(), parallelTaskData.isHasDualWaterMark(), parallelTaskData.getLightingPattern(), parallelTaskData.getTimeWaterMarkString(), parallelTaskData.getOutputWidth(), parallelTaskData.getOutputHeight(), parallelTaskData.isMirror(), parallelTaskData.isBokehFrontCamera());
+        if ((6 == parallelTaskData.getParallelType() || 8 == parallelTaskData.getParallelType() || 7 == parallelTaskData.getParallelType()) && ArcsoftDepthMap.isDepthMapData(parallelTaskData.getPortraitDepthData())) {
+            composeDepthMapPicture = Util.composeDepthMapPicture(parallelTaskData.getJpegImageData(), parallelTaskData.getPortraitDepthData(), parallelTaskData.getPortraitRawData(), dataParameter.isHasDualWaterMark(), dataParameter.getLightingPattern(), dataParameter.getTimeWaterMarkString(), dataParameter.getOutputSize().getWidth(), dataParameter.getOutputSize().getHeight(), dataParameter.isMirror(), dataParameter.isBokehFrontCamera(), dataParameter.getPictureInfo());
         } else {
             composeDepthMapPicture = parallelTaskData.getJpegImageData();
         }
-        addSaveRequest(new ParallelSaveRequest(composeDepthMapPicture, parallelTaskData.getTimeStamp(), parallelTaskData.getLocation(), parallelTaskData.getJpegRotation(), parallelTaskData.getSavePath(), parallelTaskData.getOutputWidth(), parallelTaskData.getOutputHeight()));
+        addSaveRequest(new ParallelSaveRequest(composeDepthMapPicture, parallelTaskData.getTimestamp(), dataParameter.getLocation(), dataParameter.getJpegRotation(), parallelTaskData.getSavePath(), dataParameter.getOutputSize().getWidth(), dataParameter.getOutputSize().getHeight(), parallelTaskData.isNeedThumbnail(), dataParameter.getAlgorithmName(), dataParameter.getPictureInfo()));
+    }
+
+    private void insertParallelBurstTask(ParallelTaskData parallelTaskData) {
+        int i;
+        int i2;
+        ParallelTaskDataParameter dataParameter = parallelTaskData.getDataParameter();
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("insertParallelBurstTask: path=");
+        stringBuilder.append(parallelTaskData.getSavePath());
+        Log.d(str, stringBuilder.toString());
+        byte[] jpegImageData = parallelTaskData.getJpegImageData();
+        int width = dataParameter.getPictureSize().getWidth();
+        int height = dataParameter.getPictureSize().getHeight();
+        int orientation = Exif.getOrientation(jpegImageData);
+        int jpegRotation = dataParameter.getJpegRotation();
+        Log.d(TAG, String.format(Locale.ENGLISH, "insertParallelBurstTask: %d x %d, %d : %d", new Object[]{Integer.valueOf(width), Integer.valueOf(height), Integer.valueOf(jpegRotation), Integer.valueOf(orientation)}));
+        if ((jpegRotation + orientation) % 180 == 0) {
+            i = width;
+            i2 = height;
+        } else {
+            i2 = width;
+            i = height;
+        }
+        str = TAG;
+        stringBuilder = new StringBuilder();
+        stringBuilder.append("insertParallelBurstTask: result = ");
+        stringBuilder.append(i);
+        stringBuilder.append("x");
+        stringBuilder.append(i2);
+        Log.d(str, stringBuilder.toString());
+        String fileTitleFromPath = Util.getFileTitleFromPath(parallelTaskData.getSavePath());
+        str = TAG;
+        stringBuilder = new StringBuilder();
+        stringBuilder.append("insertParallelBurstTask: ");
+        stringBuilder.append(fileTitleFromPath);
+        Log.d(str, stringBuilder.toString());
+        addImage(jpegImageData, parallelTaskData.isNeedThumbnail(), fileTitleFromPath, null, System.currentTimeMillis(), null, dataParameter.getLocation(), i, i2, null, orientation, false, false, parallelTaskData.isNeedThumbnail(), false, true, dataParameter.getAlgorithmName(), dataParameter.getPictureInfo());
     }
 
     public void updateImage(String str, String str2) {
@@ -384,7 +512,6 @@ public class ImageSaver implements SaverCallback, ParallelCallback {
         synchronized (this) {
             if (2 == this.mHostState) {
                 Log.v(TAG, "addSaveRequest: host is being destroyed.");
-                return;
             }
             if (isSaveQueueFull()) {
                 this.mIsBusy = true;
@@ -404,24 +531,23 @@ public class ImageSaver implements SaverCallback, ParallelCallback {
         synchronized (this) {
             if (2 == this.mHostState) {
                 Log.v(TAG, "addVideo: host is being destroyed.");
-                return;
             }
             addSaveRequest(new VideoSaveRequest(str, contentValues, z));
         }
     }
 
     public Uri addVideoSync(String str, ContentValues contentValues, boolean z) {
+        Uri uri;
         synchronized (this) {
             if (2 == this.mHostState) {
                 Log.v(TAG, "addVideo: host is being destroyed.");
-                return null;
             }
             VideoSaveRequest videoSaveRequest = new VideoSaveRequest(str, contentValues, z);
             videoSaveRequest.setContextAndCallback(this.mContext, this);
             videoSaveRequest.save();
-            Uri uri = videoSaveRequest.mUri;
-            return uri;
+            uri = videoSaveRequest.mUri;
         }
+        return uri;
     }
 
     public boolean isBusy() {
@@ -464,7 +590,7 @@ public class ImageSaver implements SaverCallback, ParallelCallback {
     }
 
     private void releaseResourcesIfQueueEmpty() {
-        if (this.mHostState == 2 && mSaveRequestQueue.size() <= 0) {
+        if (this.mHostState == 2 && mSaveRequestQueue.size() <= 0 && !this.mPendingSave) {
             if (this.mEffectProcessor != null) {
                 this.mEffectProcessor.releaseIfNeeded();
                 this.mEffectProcessor = null;
@@ -527,18 +653,6 @@ public class ImageSaver implements SaverCallback, ParallelCallback {
         }
     }
 
-    public void notifyNewImage(Uri uri, boolean z) {
-        synchronized (this) {
-            if (!this.mIsCaptureIntent) {
-                Util.broadcastNewPicture(this.mContext, uri);
-                this.mLastImageUri = uri;
-                if (z) {
-                    this.mActivity.addSecureUri(uri);
-                }
-            }
-        }
-    }
-
     public void onSaveFinish(int i) {
         synchronized (this) {
             reduceUsedMemory(i);
@@ -549,10 +663,18 @@ public class ImageSaver implements SaverCallback, ParallelCallback {
         }
     }
 
-    public void notifyNewVideo(Uri uri) {
+    public void notifyNewMediaData(Uri uri, String str, int i) {
         if (!this.mIsCaptureIntent) {
-            this.mContext.sendBroadcast(new Intent("android.hardware.action.NEW_VIDEO", uri));
-            this.mActivity.addSecureUri(uri);
+            synchronized (this) {
+                if (i == 21) {
+                    this.mContext.sendBroadcast(new Intent("android.hardware.action.NEW_VIDEO", uri));
+                    this.mActivity.onNewUriArrived(uri, str);
+                } else if (i == 31) {
+                    Util.broadcastNewPicture(this.mContext, uri);
+                    this.mLastImageUri = uri;
+                    this.mActivity.onNewUriArrived(uri, str);
+                }
+            }
         }
     }
 
@@ -561,63 +683,66 @@ public class ImageSaver implements SaverCallback, ParallelCallback {
     }
 
     public void onParallelProcessFinish(ParallelTaskData parallelTaskData) {
+        this.mPendingSave = true;
+        String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(parallelTaskData.getTimeStamp());
-        stringBuilder.append("");
-        Log.i("algo finish", stringBuilder.toString());
+        stringBuilder.append("algo finish: path: ");
+        stringBuilder.append(parallelTaskData.getSavePath());
+        stringBuilder.append(" type:");
+        stringBuilder.append(parallelTaskData.getParallelType());
+        Log.i(str, stringBuilder.toString());
         if (this.mEffectProcessor == null) {
             this.mEffectProcessor = new SnapshotEffectRender(this.mActivity, this.mIsCaptureIntent);
             this.mEffectProcessor.setImageSaver(this);
             this.mEffectProcessor.setQuality(JpegEncodingQualityMappings.getQualityNumber(CameraSettings.getJpegQuality(false)));
         }
-        int parallelType = parallelTaskData.getParallelType();
-        if (parallelType != 6) {
-            switch (parallelType) {
-                case -2:
-                case 0:
-                    insertSingTask(parallelTaskData);
-                    return;
-                case -1:
-                    insertPreviewShotTask(parallelTaskData);
-                    return;
-                case 1:
-                    insertLiveShotTask(parallelTaskData);
-                    return;
-                case 2:
-                    insertNormalDualTask(parallelTaskData);
-                    return;
-                default:
-                    throw new RuntimeException("need fill logic");
-            }
+        switch (parallelTaskData.getParallelType()) {
+            case -3:
+            case -2:
+            case 0:
+                insertSingleTask(parallelTaskData);
+                break;
+            case -1:
+                insertPreviewShotTask(parallelTaskData);
+                break;
+            case 1:
+                insertLiveShotTask(parallelTaskData);
+                break;
+            case 2:
+                insertNormalDualTask(parallelTaskData);
+                break;
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+                insertParallelDualTask(parallelTaskData);
+                break;
+            case 9:
+                insertParallelBurstTask(parallelTaskData);
+                break;
+            default:
+                throw new RuntimeException("need fill logic");
         }
-        insertParallelDualTask(parallelTaskData);
+        this.mPendingSave = false;
     }
 
-    private DrawJPEGAttribute getDrawJPEGAttribute(byte[] bArr, int i, int i2, boolean z, int i3, int i4, Location location, String str, int i5, int i6, float f, String str2, boolean z2, List<WaterMarkData> list, boolean z3, PictureInfo pictureInfo) {
-        int max;
+    private DrawJPEGAttribute getDrawJPEGAttribute(byte[] bArr, int i, int i2, boolean z, int i3, int i4, Location location, String str, int i5, int i6, float f, String str2, boolean z2, String str3, List<WaterMarkData> list, boolean z3, PictureInfo pictureInfo) {
+        return getDrawJPEGAttribute(bArr, i, i2, EffectController.getInstance().getEffectForSaving(false), z, i3, i4, location, str, i5, i6, f, str2, z2, str3, list, z3, pictureInfo);
+    }
+
+    private DrawJPEGAttribute getDrawJPEGAttribute(byte[] bArr, int i, int i2, int i3, boolean z, int i4, int i5, Location location, String str, int i6, int i7, float f, String str2, boolean z2, String str3, List<WaterMarkData> list, boolean z3, PictureInfo pictureInfo) {
         Location location2;
-        int i7 = i3;
         int i8 = i4;
+        int i9 = i5;
         Location location3 = location;
-        if (i7 > i8) {
-            max = Math.max(i, i2);
-        } else {
-            max = Math.min(i, i2);
-        }
-        int i9 = max;
-        if (i8 > i7) {
-            max = Math.max(i, i2);
-        } else {
-            max = Math.min(i, i2);
-        }
-        int i10 = max;
-        int effectForSaving = EffectController.getInstance().getEffectForSaving(false);
+        int max = i8 > i9 ? Math.max(i, i2) : Math.min(i, i2);
+        int max2 = i9 > i8 ? Math.max(i, i2) : Math.min(i, i2);
         EffectRectAttribute copyEffectRectAttribute = EffectController.getInstance().copyEffectRectAttribute();
         if (location3 == null) {
             location2 = null;
         } else {
             location2 = new Location(location3);
         }
-        return new DrawJPEGAttribute(bArr, z, i9, i10, i7, i8, effectForSaving, copyEffectRectAttribute, location2, str, System.currentTimeMillis(), i5, i6, f, pictureInfo.isFrontMirror(), str2, z2, pictureInfo, list, CameraSettings.isDualCameraWaterMarkOpen(), CameraSettings.isTimeWaterMarkOpen() ? Util.getTimeWatermark() : null, z3);
+        return new DrawJPEGAttribute(bArr, z, max, max2, i8, i9, i3, copyEffectRectAttribute, location2, str, System.currentTimeMillis(), i6, i7, f, pictureInfo.isFrontMirror(), str2, z2, pictureInfo, list, CameraSettings.isDualCameraWaterMarkOpen(), CameraSettings.isTimeWaterMarkOpen() ? str3 : null, z3);
     }
 }

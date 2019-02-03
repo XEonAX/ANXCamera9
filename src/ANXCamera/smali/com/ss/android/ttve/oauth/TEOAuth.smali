@@ -7,17 +7,17 @@
 .method static constructor <clinit>()V
     .locals 0
 
-    .line 17
+    .line 18
     invoke-static {}, Lcom/ss/android/ttve/nativePort/TENativeLibsLoader;->loadLibrary()V
 
-    .line 18
+    .line 19
     return-void
 .end method
 
 .method public constructor <init>()V
     .locals 0
 
-    .line 15
+    .line 16
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -38,20 +38,20 @@
         .end annotation
     .end param
 
-    .line 24
+    .line 25
     invoke-virtual {p0}, Landroid/content/Context;->getApplicationInfo()Landroid/content/pm/ApplicationInfo;
 
     move-result-object p0
 
     iget-object v2, p0, Landroid/content/pm/ApplicationInfo;->packageName:Ljava/lang/String;
 
-    .line 25
+    .line 26
     const-string v3, "Android"
 
-    .line 26
-    sget-object v4, Landroid/os/Build;->MODEL:Ljava/lang/String;
-
     .line 27
+    sget-object v4, Landroid/os/Build;->DEVICE:Ljava/lang/String;
+
+    .line 32
     move-object v0, p1
 
     move-object v1, p2
@@ -62,7 +62,7 @@
 
     move-result p0
 
-    .line 28
+    .line 33
     invoke-static {p0}, Lcom/ss/android/ttve/oauth/TEOAuthResult;->from(I)Lcom/ss/android/ttve/oauth/TEOAuthResult;
 
     move-result-object p0
@@ -73,7 +73,7 @@
 .method public static getActivationCode()Ljava/lang/String;
     .locals 1
 
-    .line 32
+    .line 37
     invoke-static {}, Lcom/ss/android/ttve/oauth/TEOAuth;->nativeGetActivationCode()Ljava/lang/String;
 
     move-result-object v0
@@ -84,7 +84,7 @@
 .method public static isPermitted()Z
     .locals 1
 
-    .line 36
+    .line 41
     invoke-static {}, Lcom/ss/android/ttve/oauth/TEOAuth;->nativePermitted()Z
 
     move-result v0

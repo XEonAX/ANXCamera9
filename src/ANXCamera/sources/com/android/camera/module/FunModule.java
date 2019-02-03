@@ -13,11 +13,10 @@ import android.support.annotation.MainThread;
 import android.telephony.TelephonyManager;
 import android.util.Range;
 import android.view.Surface;
-import com.aeonax.camera.R;
 import com.android.camera.AutoLockManager;
 import com.android.camera.CameraSettings;
 import com.android.camera.CameraSize;
-import com.android.camera.ThermalDetector;
+import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.constant.AutoFocus;
 import com.android.camera.constant.UpdateConstant;
@@ -31,10 +30,11 @@ import com.android.camera.module.encoder.MediaEncoder;
 import com.android.camera.module.encoder.MediaEncoder.MediaEncoderListener;
 import com.android.camera.module.encoder.MediaMuxerWrapper;
 import com.android.camera.module.encoder.MediaVideoEncoder;
+import com.android.camera.module.loader.camera2.Camera2DataContainer;
 import com.android.camera.protocol.ModeCoordinatorImpl;
-import com.android.camera.protocol.ModeProtocol.ActionProcessing;
 import com.android.camera.protocol.ModeProtocol.BackStack;
 import com.android.camera.protocol.ModeProtocol.FilterProtocol;
+import com.android.camera.protocol.ModeProtocol.RecordState;
 import com.android.camera.protocol.ModeProtocol.StickerProtocol;
 import com.android.camera.protocol.ModeProtocol.TopAlert;
 import com.android.camera.statistic.CameraStatUtil;
@@ -104,7 +104,7 @@ public class FunModule extends VideoBase implements FilterProtocol, StickerProto
         ModeCoordinatorImpl.getInstance().attachProtocol(178, this);
         ModeCoordinatorImpl.getInstance().attachProtocol(169, this);
         ModeCoordinatorImpl.getInstance().attachProtocol(199, this);
-        getActivity().getImplFactory().initAdditional(getActivity(), 164);
+        getActivity().getImplFactory().initAdditional(getActivity(), 164, 212);
     }
 
     public void unRegisterProtocol() {
@@ -186,34 +186,30 @@ public class FunModule extends VideoBase implements FilterProtocol, StickerProto
         if (isIgnoreTouchEvent()) {
             Log.w(TAG, "onShutterButtonClick: ignore touch event");
         } else if (!isFrontCamera() || !this.mActivity.isScreenSlideOff()) {
-            BackStack backStack = (BackStack) ModeCoordinatorImpl.getInstance().getAttachProtocol(171);
-            if (backStack != null) {
-                backStack.handleBackStackFromShutter();
-            }
-            ActionProcessing actionProcessing = (ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162);
-            if (actionProcessing != null && actionProcessing.isShowFilterView()) {
-                actionProcessing.showOrHideFilterView();
-            }
+            RecordState recordState = (RecordState) ModeCoordinatorImpl.getInstance().getAttachProtocol(212);
             if (this.mMediaRecorderRecording) {
                 stopVideoRecording(true, false);
-            } else if (checkCallingState()) {
-                this.mActivity.getScreenHint().updateHint();
-                if (Storage.isLowStorageAtLastPoint()) {
-                    actionProcessing.processingFailed();
-                    return;
-                }
-                setTriggerMode(i);
-                enableCameraControls(false);
-                playCameraSound(2);
-                this.mRequestStartTime = System.currentTimeMillis();
-                if (this.mFocusManager.canRecord()) {
-                    startVideoRecording();
-                } else {
-                    Log.v(TAG, "wait for autoFocus");
-                    this.mInStartingFocusRecording = true;
-                }
             } else {
-                actionProcessing.processingFailed();
+                recordState.onPrepare();
+                if (checkCallingState()) {
+                    this.mActivity.getScreenHint().updateHint();
+                    if (Storage.isLowStorageAtLastPoint()) {
+                        recordState.onFailed();
+                        return;
+                    }
+                    setTriggerMode(i);
+                    enableCameraControls(false);
+                    playCameraSound(2);
+                    this.mRequestStartTime = System.currentTimeMillis();
+                    if (this.mFocusManager.canRecord()) {
+                        startVideoRecording();
+                    } else {
+                        Log.v(TAG, "wait for autoFocus");
+                        this.mInStartingFocusRecording = true;
+                    }
+                } else {
+                    recordState.onFailed();
+                }
             }
         }
     }
@@ -282,7 +278,7 @@ public class FunModule extends VideoBase implements FilterProtocol, StickerProto
             this.mCamera2Device.setPictureSize(this.mPreviewSize);
             this.mCamera2Device.setErrorCallback(this.mErrorCallback);
             this.mSurfaceCreatedTimestamp = this.mActivity.getCameraScreenNail().getSurfaceCreatedTimestamp();
-            this.mCamera2Device.startPreviewSession(new Surface(this.mActivity.getCameraScreenNail().getSurfaceTexture()), false, false, getOperatingMode(), this);
+            this.mCamera2Device.startPreviewSession(new Surface(this.mActivity.getCameraScreenNail().getSurfaceTexture()), false, false, getOperatingMode(), false, this);
             this.mFocusManager.resetFocused();
             this.mPreviewing = true;
         }
@@ -407,10 +403,12 @@ public class FunModule extends VideoBase implements FilterProtocol, StickerProto
         this.mCurrentVideoUri = null;
         silenceSounds();
         if (startRecorder()) {
-            ((ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162)).processingStart();
+            RecordState recordState = (RecordState) ModeCoordinatorImpl.getInstance().getAttachProtocol(212);
+            if (recordState != null) {
+                recordState.onStart();
+            }
             Log.v(TAG, "startVideoRecording process done");
             onStartRecorderSucceed();
-            ThermalDetector.getInstance().startWatch();
             return;
         }
         onStartRecorderFail();
@@ -438,9 +436,9 @@ public class FunModule extends VideoBase implements FilterProtocol, StickerProto
         enableCameraControls(true);
         this.mAudioManager.abandonAudioFocus(null);
         restoreMusicSound();
-        ActionProcessing actionProcessing = (ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162);
-        if (actionProcessing != null) {
-            actionProcessing.processingFailed();
+        RecordState recordState = (RecordState) ModeCoordinatorImpl.getInstance().getAttachProtocol(212);
+        if (recordState != null) {
+            recordState.onFailed();
         }
     }
 
@@ -484,9 +482,13 @@ public class FunModule extends VideoBase implements FilterProtocol, StickerProto
             if (this.mCountDownTimer != null) {
                 this.mCountDownTimer.cancel();
             }
-            ((ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162)).processingFinish();
+            RecordState recordState = (RecordState) ModeCoordinatorImpl.getInstance().getAttachProtocol(212);
+            if (recordState != null) {
+                recordState.onFinish();
+            }
             if (this.mCamera2Device != null) {
-                CameraStatUtil.trackVideoRecorded(isFrontCamera(), CameraSettings.VIDEO_MODE_FUN, this.mQuality, this.mCamera2Device.getFlashMode(), 30, 0, this.mBeautyValues, uptimeMillis);
+                CameraStatUtil.trackVideoRecorded(isFrontCamera(), getModuleIndex(), false, CameraSettings.isUltraWideConfigOpen(getModuleIndex()), CameraSettings.VIDEO_MODE_FUN, this.mQuality, this.mCamera2Device.getFlashMode(), 30, 0, this.mBeautyValues, uptimeMillis);
+                CameraStatUtil.trackUltraWideFunTaken();
             }
             if (!(z2 || AutoFocus.LEGACY_CONTINUOUS_VIDEO.equals(this.mVideoFocusMode))) {
                 this.mMainProtocol.clearFocusView(2);
@@ -497,7 +499,6 @@ public class FunModule extends VideoBase implements FilterProtocol, StickerProto
             restoreMusicSound();
             keepScreenOnAwhile();
             AutoLockManager.getInstance(this.mActivity).hibernateDelayed();
-            ThermalDetector.getInstance().stopWatch();
         }
     }
 
@@ -540,6 +541,17 @@ public class FunModule extends VideoBase implements FilterProtocol, StickerProto
         this.mActivity.getCameraScreenNail().setVideoStabilizationCropped(false);
     }
 
+    private void updateUltraWideLDC() {
+        this.mCamera2Device.setUltraWideLDC(shouldApplyUltraWideLDC());
+    }
+
+    private boolean shouldApplyUltraWideLDC() {
+        if (CameraSettings.shouldUltraWideVideoLDCBeVisibleInMode(this.mModuleIndex) && this.mActualCameraId == Camera2DataContainer.getInstance().getUltraWideCameraId()) {
+            return CameraSettings.isUltraWideVideoLDCEnabled();
+        }
+        return false;
+    }
+
     public void onSingleTapUp(int i, int i2) {
         if (!this.mPaused && this.mCamera2Device != null && this.mCamera2Device.isSessionReady() && !this.mSnapshotInProgress && isInTapableRect(i, i2)) {
             if (!isFrameAvailable()) {
@@ -560,7 +572,7 @@ public class FunModule extends VideoBase implements FilterProtocol, StickerProto
     }
 
     public boolean isNeedMute() {
-        return super.isNeedMute() || this.mMediaRecorderRecording;
+        return this.mMediaRecorderRecording;
     }
 
     private void releaseResources() {
@@ -595,6 +607,8 @@ public class FunModule extends VideoBase implements FilterProtocol, StickerProto
                 case 30:
                 case 34:
                 case 42:
+                case 43:
+                case 50:
                     break;
                 case 12:
                     setEvValue();
@@ -622,6 +636,9 @@ public class FunModule extends VideoBase implements FilterProtocol, StickerProto
                     break;
                 case 35:
                     updateDeviceOrientation();
+                    break;
+                case 47:
+                    updateUltraWideLDC();
                     break;
                 default:
                     if (!DEBUG) {
@@ -672,7 +689,7 @@ public class FunModule extends VideoBase implements FilterProtocol, StickerProto
         if (this.mCameraCapabilities.isSupportVideoBeauty() && isBeautyOn()) {
             return CameraCapabilities.SESSION_OPERATION_MODE_VIDEO_BEAUTY;
         }
-        if (DataRepository.dataItemFeature().fe()) {
+        if (DataRepository.dataItemFeature().fg()) {
             return CameraCapabilities.SESSION_OPERATION_MODE_MCTF;
         }
         return 0;

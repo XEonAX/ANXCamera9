@@ -7,9 +7,9 @@ import com.bumptech.glide.util.i;
 
 /* compiled from: EngineResource */
 class k<Z> implements p<Z> {
-    private a dN;
-    private final boolean dT;
-    private final p<Z> dU;
+    private a dO;
+    private final boolean dU;
+    private final p<Z> dV;
     private final boolean fX;
     private int fY;
     private boolean fZ;
@@ -21,36 +21,36 @@ class k<Z> implements p<Z> {
     }
 
     k(p<Z> pVar, boolean z, boolean z2) {
-        this.dU = (p) i.checkNotNull(pVar);
-        this.dT = z;
+        this.dV = (p) i.checkNotNull(pVar);
+        this.dU = z;
         this.fX = z2;
     }
 
     void a(c cVar, a aVar) {
         this.key = cVar;
-        this.dN = aVar;
+        this.dO = aVar;
     }
 
     p<Z> aX() {
-        return this.dU;
+        return this.dV;
     }
 
     boolean aY() {
-        return this.dT;
+        return this.dU;
     }
 
     @NonNull
     public Class<Z> aZ() {
-        return this.dU.aZ();
+        return this.dV.aZ();
     }
 
     @NonNull
     public Z get() {
-        return this.dU.get();
+        return this.dV.get();
     }
 
     public int getSize() {
-        return this.dU.getSize();
+        return this.dV.getSize();
     }
 
     public void recycle() {
@@ -61,7 +61,7 @@ class k<Z> implements p<Z> {
         } else {
             this.fZ = true;
             if (this.fX) {
-                this.dU.recycle();
+                this.dV.recycle();
             }
         }
     }
@@ -83,7 +83,7 @@ class k<Z> implements p<Z> {
             int i = this.fY - 1;
             this.fY = i;
             if (i == 0) {
-                this.dN.b(this.key, this);
+                this.dO.b(this.key, this);
             }
         } else {
             throw new IllegalThreadStateException("Must call release on the main thread");
@@ -93,9 +93,9 @@ class k<Z> implements p<Z> {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("EngineResource{isCacheable=");
-        stringBuilder.append(this.dT);
+        stringBuilder.append(this.dU);
         stringBuilder.append(", listener=");
-        stringBuilder.append(this.dN);
+        stringBuilder.append(this.dO);
         stringBuilder.append(", key=");
         stringBuilder.append(this.key);
         stringBuilder.append(", acquired=");
@@ -103,7 +103,7 @@ class k<Z> implements p<Z> {
         stringBuilder.append(", isRecycled=");
         stringBuilder.append(this.fZ);
         stringBuilder.append(", resource=");
-        stringBuilder.append(this.dU);
+        stringBuilder.append(this.dV);
         stringBuilder.append('}');
         return stringBuilder.toString();
     }

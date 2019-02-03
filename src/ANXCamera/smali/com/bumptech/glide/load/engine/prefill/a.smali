@@ -114,13 +114,13 @@
     .line 46
     iget-object v3, p0, Lcom/bumptech/glide/load/engine/prefill/a;->iA:Lcom/bumptech/glide/load/DecodeFormat;
 
-    sget-object v4, Lcom/bumptech/glide/load/DecodeFormat;->cy:Lcom/bumptech/glide/load/DecodeFormat;
+    sget-object v4, Lcom/bumptech/glide/load/DecodeFormat;->cz:Lcom/bumptech/glide/load/DecodeFormat;
 
     if-eq v3, v4, :cond_2
 
     iget-object v3, p0, Lcom/bumptech/glide/load/engine/prefill/a;->iA:Lcom/bumptech/glide/load/DecodeFormat;
 
-    sget-object v4, Lcom/bumptech/glide/load/DecodeFormat;->cz:Lcom/bumptech/glide/load/DecodeFormat;
+    sget-object v4, Lcom/bumptech/glide/load/DecodeFormat;->cA:Lcom/bumptech/glide/load/DecodeFormat;
 
     if-ne v3, v4, :cond_1
 

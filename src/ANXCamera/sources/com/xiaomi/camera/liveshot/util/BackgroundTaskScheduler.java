@@ -4,25 +4,35 @@ import com.android.camera.log.Log;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class BackgroundTaskScheduler {
     private static final String TAG = BackgroundTaskScheduler.class.getSimpleName();
     private final ExecutorService mExecutor;
     private final List<BackgroundTaskContainer> mTaskList = new ArrayList();
 
-    public interface Cancellable extends Runnable {
-        void cancel();
+    public static abstract class CancellableTask implements Runnable {
+        private final AtomicBoolean mCancelled = new AtomicBoolean();
+
+        protected void setCancelled() {
+            this.mCancelled.set(true);
+        }
+
+        protected boolean isCancelled() {
+            return this.mCancelled.get();
+        }
     }
 
     private class BackgroundTaskContainer implements Runnable {
-        private final Cancellable mTask;
+        private final CancellableTask mTask;
 
-        private BackgroundTaskContainer(Cancellable cancellable) {
-            this.mTask = cancellable;
+        private BackgroundTaskContainer(CancellableTask cancellableTask) {
+            this.mTask = cancellableTask;
         }
 
         private void cancel() {
-            this.mTask.cancel();
+            this.mTask.setCancelled();
         }
 
         public void run() {
@@ -39,12 +49,26 @@ public class BackgroundTaskScheduler {
         this.mExecutor = executorService;
     }
 
-    public void submit(Cancellable cancellable) {
+    public void execute(CancellableTask cancellableTask) {
         synchronized (this.mTaskList) {
-            Runnable backgroundTaskContainer = new BackgroundTaskContainer(cancellable);
+            Runnable backgroundTaskContainer = new BackgroundTaskContainer(cancellableTask);
             this.mTaskList.add(backgroundTaskContainer);
             this.mExecutor.execute(backgroundTaskContainer);
         }
+    }
+
+    public Future<?> submit(CancellableTask cancellableTask) {
+        Future<?> submit;
+        synchronized (this.mTaskList) {
+            Runnable backgroundTaskContainer = new BackgroundTaskContainer(cancellableTask);
+            this.mTaskList.add(backgroundTaskContainer);
+            submit = this.mExecutor.submit(backgroundTaskContainer);
+        }
+        return submit;
+    }
+
+    public void shutdown() {
+        this.mExecutor.shutdown();
     }
 
     public int getRemainingTaskCount() {

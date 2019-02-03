@@ -31,7 +31,7 @@
 .method constructor <init>(Lcom/ss/android/medialib/TTRecorder;Ljava/lang/String;Ljava/lang/String;Lcom/ss/android/medialib/TTRecorder$OnConcatFinishListener;)V
     .locals 0
 
-    .line 250
+    .line 259
     iput-object p1, p0, Lcom/ss/android/medialib/TTRecorder$1;->this$0:Lcom/ss/android/medialib/TTRecorder;
 
     iput-object p2, p0, Lcom/ss/android/medialib/TTRecorder$1;->val$videoPath:Ljava/lang/String;
@@ -50,7 +50,7 @@
 .method public run()V
     .locals 7
 
-    .line 253
+    .line 262
     iget-object v0, p0, Lcom/ss/android/medialib/TTRecorder$1;->this$0:Lcom/ss/android/medialib/TTRecorder;
 
     iget-object v1, p0, Lcom/ss/android/medialib/TTRecorder$1;->this$0:Lcom/ss/android/medialib/TTRecorder;
@@ -71,17 +71,17 @@
 
     move-result v0
 
-    .line 254
+    .line 263
     iget-object v1, p0, Lcom/ss/android/medialib/TTRecorder$1;->val$listener:Lcom/ss/android/medialib/TTRecorder$OnConcatFinishListener;
 
     if-eqz v1, :cond_0
 
-    .line 255
+    .line 264
     iget-object v1, p0, Lcom/ss/android/medialib/TTRecorder$1;->val$listener:Lcom/ss/android/medialib/TTRecorder$OnConcatFinishListener;
 
     invoke-interface {v1, v0}, Lcom/ss/android/medialib/TTRecorder$OnConcatFinishListener;->onConcatFinish(I)V
 
-    .line 257
+    .line 266
     :cond_0
     return-void
 .end method

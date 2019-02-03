@@ -107,4 +107,8 @@ public class EffectRepository implements IHandler {
             }
         }
     }
+
+    public Handler getHandler() {
+        return this.mHandler;
+    }
 }

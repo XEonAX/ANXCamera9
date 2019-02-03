@@ -60,17 +60,17 @@ public class c implements ComponentCallbacks2 {
     private static final String a = "image_manager_disk_cache";
     private static volatile c c;
     private static volatile boolean g;
-    private final d A;
-    private final List<i> C = new ArrayList();
-    private MemoryCategory D = MemoryCategory.NORMAL;
+    private final l A;
+    private final d C;
+    private final List<i> D = new ArrayList();
+    private MemoryCategory E = MemoryCategory.NORMAL;
     private final Engine h;
     private final com.bumptech.glide.load.engine.bitmap_recycle.d i;
     private final j k;
     private final a l;
-    private final e o;
-    private final Registry q;
-    private final b r;
-    private final l v;
+    private final e q;
+    private final Registry r;
+    private final b v;
 
     @Nullable
     public static File a(@NonNull Context context) {
@@ -192,10 +192,10 @@ public class c implements ComponentCallbacks2 {
         }
         Object g = dVar.g(context);
         for (com.bumptech.glide.c.c a2 : emptyList) {
-            a2.a(context, g, g.q);
+            a2.a(context, g, g.r);
         }
         if (d != null) {
-            d.a(context, g, g.q);
+            d.a(context, g, g.r);
         }
         context.registerComponentCallbacks(g);
         c = g;
@@ -232,16 +232,16 @@ public class c implements ComponentCallbacks2 {
         b bVar2 = bVar;
         this.h = engine;
         this.i = dVar3;
-        this.r = bVar2;
+        this.v = bVar2;
         this.k = jVar2;
-        this.v = lVar;
-        this.A = dVar2;
+        this.A = lVar;
+        this.C = dVar2;
         this.l = new a(jVar2, dVar3, (DecodeFormat) fVar.at().a(n.kE));
         Resources resources = context.getResources();
-        this.q = new Registry();
-        this.q.a(new m());
-        n nVar = new n(this.q.q(), resources.getDisplayMetrics(), dVar3, bVar2);
-        g byteBufferGifDecoder = new ByteBufferGifDecoder(context2, this.q.q(), dVar3, bVar2);
+        this.r = new Registry();
+        this.r.a(new m());
+        n nVar = new n(this.r.q(), resources.getDisplayMetrics(), dVar3, bVar2);
+        g byteBufferGifDecoder = new ByteBufferGifDecoder(context2, this.r.q(), dVar3, bVar2);
         g c = VideoDecoder.c(dVar);
         g iVar = new i(nVar);
         g vVar = new v(nVar, bVar2);
@@ -260,8 +260,8 @@ public class c implements ComponentCallbacks2 {
         ContentResolver contentResolver = context.getContentResolver();
         com.bumptech.glide.load.resource.d.e eVar3 = aVar2;
         com.bumptech.glide.load.resource.d.e eVar4 = dVar5;
-        this.q.b(ByteBuffer.class, new com.bumptech.glide.load.model.c()).b(InputStream.class, new s(bVar2)).a(Registry.as, ByteBuffer.class, Bitmap.class, iVar).a(Registry.as, InputStream.class, Bitmap.class, vVar).a(Registry.as, ParcelFileDescriptor.class, Bitmap.class, c).a(Registry.as, AssetFileDescriptor.class, Bitmap.class, VideoDecoder.b(dVar)).a(Bitmap.class, Bitmap.class, u.a.ce()).a(Registry.as, Bitmap.class, Bitmap.class, new x()).b(Bitmap.class, eVar2).a(Registry.at, ByteBuffer.class, BitmapDrawable.class, new com.bumptech.glide.load.resource.bitmap.a(resources, iVar)).a(Registry.at, InputStream.class, BitmapDrawable.class, new com.bumptech.glide.load.resource.bitmap.a(resources, vVar)).a(Registry.at, ParcelFileDescriptor.class, BitmapDrawable.class, new com.bumptech.glide.load.resource.bitmap.a(resources, c)).b(BitmapDrawable.class, new com.bumptech.glide.load.resource.bitmap.b(dVar3, eVar2)).a(Registry.ar, InputStream.class, com.bumptech.glide.load.resource.gif.b.class, new com.bumptech.glide.load.resource.gif.h(this.q.q(), byteBufferGifDecoder, bVar2)).a(Registry.ar, ByteBuffer.class, com.bumptech.glide.load.resource.gif.b.class, byteBufferGifDecoder).b(com.bumptech.glide.load.resource.gif.b.class, new com.bumptech.glide.load.resource.gif.c()).a(com.bumptech.glide.b.a.class, com.bumptech.glide.b.a.class, u.a.ce()).a(Registry.as, com.bumptech.glide.b.a.class, Bitmap.class, new com.bumptech.glide.load.resource.gif.f(dVar3)).a(Uri.class, Drawable.class, eVar).a(Uri.class, Bitmap.class, new t(eVar, dVar3)).a(new com.bumptech.glide.load.resource.a.a.a()).a(File.class, ByteBuffer.class, new com.bumptech.glide.load.model.d.b()).a(File.class, InputStream.class, new com.bumptech.glide.load.model.f.e()).a(File.class, File.class, new com.bumptech.glide.load.resource.c.a()).a(File.class, ParcelFileDescriptor.class, new com.bumptech.glide.load.model.f.b()).a(File.class, File.class, u.a.ce()).a(new k.a(bVar2)).a(Integer.TYPE, InputStream.class, cVar).a(Integer.TYPE, ParcelFileDescriptor.class, nVar2).a(Integer.class, InputStream.class, cVar).a(Integer.class, ParcelFileDescriptor.class, nVar2).a(Integer.class, Uri.class, nVar2).a(Integer.TYPE, AssetFileDescriptor.class, nVar3).a(Integer.class, AssetFileDescriptor.class, nVar3).a(Integer.TYPE, Uri.class, nVar2).a(String.class, InputStream.class, new com.bumptech.glide.load.model.e.c()).a(Uri.class, InputStream.class, new com.bumptech.glide.load.model.e.c()).a(String.class, InputStream.class, new com.bumptech.glide.load.model.t.c()).a(String.class, ParcelFileDescriptor.class, new com.bumptech.glide.load.model.t.b()).a(String.class, AssetFileDescriptor.class, new com.bumptech.glide.load.model.t.a()).a(Uri.class, InputStream.class, new com.bumptech.glide.load.model.a.c.a()).a(Uri.class, InputStream.class, new com.bumptech.glide.load.model.a.c(context.getAssets())).a(Uri.class, ParcelFileDescriptor.class, new com.bumptech.glide.load.model.a.b(context.getAssets())).a(Uri.class, InputStream.class, new com.bumptech.glide.load.model.a.d.a(context3)).a(Uri.class, InputStream.class, new com.bumptech.glide.load.model.a.e.a(context3)).a(Uri.class, InputStream.class, new com.bumptech.glide.load.model.v.d(contentResolver)).a(Uri.class, ParcelFileDescriptor.class, new com.bumptech.glide.load.model.v.b(contentResolver)).a(Uri.class, AssetFileDescriptor.class, new com.bumptech.glide.load.model.v.a(contentResolver)).a(Uri.class, InputStream.class, new w.a()).a(URL.class, InputStream.class, new com.bumptech.glide.load.model.a.f.a()).a(Uri.class, File.class, new com.bumptech.glide.load.model.k.a(context3)).a(com.bumptech.glide.load.model.g.class, InputStream.class, new com.bumptech.glide.load.model.a.b.a()).a(byte[].class, ByteBuffer.class, new com.bumptech.glide.load.model.b.a()).a(byte[].class, InputStream.class, new com.bumptech.glide.load.model.b.d()).a(Uri.class, Uri.class, u.a.ce()).a(Drawable.class, Drawable.class, u.a.ce()).a(Drawable.class, Drawable.class, new com.bumptech.glide.load.resource.b.f()).a(Bitmap.class, BitmapDrawable.class, new com.bumptech.glide.load.resource.d.b(resources)).a(Bitmap.class, byte[].class, eVar3).a(Drawable.class, byte[].class, new com.bumptech.glide.load.resource.d.c(dVar3, eVar3, eVar4)).a(com.bumptech.glide.load.resource.gif.b.class, byte[].class, eVar4);
-        this.o = new e(context3, bVar2, this.q, new com.bumptech.glide.request.target.i(), fVar, map, engine, i);
+        this.r.b(ByteBuffer.class, new com.bumptech.glide.load.model.c()).b(InputStream.class, new s(bVar2)).a(Registry.at, ByteBuffer.class, Bitmap.class, iVar).a(Registry.at, InputStream.class, Bitmap.class, vVar).a(Registry.at, ParcelFileDescriptor.class, Bitmap.class, c).a(Registry.at, AssetFileDescriptor.class, Bitmap.class, VideoDecoder.b(dVar)).a(Bitmap.class, Bitmap.class, u.a.ce()).a(Registry.at, Bitmap.class, Bitmap.class, new x()).b(Bitmap.class, eVar2).a(Registry.au, ByteBuffer.class, BitmapDrawable.class, new com.bumptech.glide.load.resource.bitmap.a(resources, iVar)).a(Registry.au, InputStream.class, BitmapDrawable.class, new com.bumptech.glide.load.resource.bitmap.a(resources, vVar)).a(Registry.au, ParcelFileDescriptor.class, BitmapDrawable.class, new com.bumptech.glide.load.resource.bitmap.a(resources, c)).b(BitmapDrawable.class, new com.bumptech.glide.load.resource.bitmap.b(dVar3, eVar2)).a(Registry.as, InputStream.class, com.bumptech.glide.load.resource.gif.b.class, new com.bumptech.glide.load.resource.gif.h(this.r.q(), byteBufferGifDecoder, bVar2)).a(Registry.as, ByteBuffer.class, com.bumptech.glide.load.resource.gif.b.class, byteBufferGifDecoder).b(com.bumptech.glide.load.resource.gif.b.class, new com.bumptech.glide.load.resource.gif.c()).a(com.bumptech.glide.b.a.class, com.bumptech.glide.b.a.class, u.a.ce()).a(Registry.at, com.bumptech.glide.b.a.class, Bitmap.class, new com.bumptech.glide.load.resource.gif.f(dVar3)).a(Uri.class, Drawable.class, eVar).a(Uri.class, Bitmap.class, new t(eVar, dVar3)).a(new com.bumptech.glide.load.resource.a.a.a()).a(File.class, ByteBuffer.class, new com.bumptech.glide.load.model.d.b()).a(File.class, InputStream.class, new com.bumptech.glide.load.model.f.e()).a(File.class, File.class, new com.bumptech.glide.load.resource.c.a()).a(File.class, ParcelFileDescriptor.class, new com.bumptech.glide.load.model.f.b()).a(File.class, File.class, u.a.ce()).a(new k.a(bVar2)).a(Integer.TYPE, InputStream.class, cVar).a(Integer.TYPE, ParcelFileDescriptor.class, nVar2).a(Integer.class, InputStream.class, cVar).a(Integer.class, ParcelFileDescriptor.class, nVar2).a(Integer.class, Uri.class, nVar2).a(Integer.TYPE, AssetFileDescriptor.class, nVar3).a(Integer.class, AssetFileDescriptor.class, nVar3).a(Integer.TYPE, Uri.class, nVar2).a(String.class, InputStream.class, new com.bumptech.glide.load.model.e.c()).a(Uri.class, InputStream.class, new com.bumptech.glide.load.model.e.c()).a(String.class, InputStream.class, new com.bumptech.glide.load.model.t.c()).a(String.class, ParcelFileDescriptor.class, new com.bumptech.glide.load.model.t.b()).a(String.class, AssetFileDescriptor.class, new com.bumptech.glide.load.model.t.a()).a(Uri.class, InputStream.class, new com.bumptech.glide.load.model.a.c.a()).a(Uri.class, InputStream.class, new com.bumptech.glide.load.model.a.c(context.getAssets())).a(Uri.class, ParcelFileDescriptor.class, new com.bumptech.glide.load.model.a.b(context.getAssets())).a(Uri.class, InputStream.class, new com.bumptech.glide.load.model.a.d.a(context3)).a(Uri.class, InputStream.class, new com.bumptech.glide.load.model.a.e.a(context3)).a(Uri.class, InputStream.class, new com.bumptech.glide.load.model.v.d(contentResolver)).a(Uri.class, ParcelFileDescriptor.class, new com.bumptech.glide.load.model.v.b(contentResolver)).a(Uri.class, AssetFileDescriptor.class, new com.bumptech.glide.load.model.v.a(contentResolver)).a(Uri.class, InputStream.class, new w.a()).a(URL.class, InputStream.class, new com.bumptech.glide.load.model.a.f.a()).a(Uri.class, File.class, new com.bumptech.glide.load.model.k.a(context3)).a(com.bumptech.glide.load.model.g.class, InputStream.class, new com.bumptech.glide.load.model.a.b.a()).a(byte[].class, ByteBuffer.class, new com.bumptech.glide.load.model.b.a()).a(byte[].class, InputStream.class, new com.bumptech.glide.load.model.b.d()).a(Uri.class, Uri.class, u.a.ce()).a(Drawable.class, Drawable.class, u.a.ce()).a(Drawable.class, Drawable.class, new com.bumptech.glide.load.resource.b.f()).a(Bitmap.class, BitmapDrawable.class, new com.bumptech.glide.load.resource.d.b(resources)).a(Bitmap.class, byte[].class, eVar3).a(Drawable.class, byte[].class, new com.bumptech.glide.load.resource.d.c(dVar3, eVar3, eVar4)).a(com.bumptech.glide.load.resource.gif.b.class, byte[].class, eVar4);
+        this.q = new e(context3, bVar2, this.r, new com.bumptech.glide.request.target.i(), fVar, map, engine, i);
     }
 
     @NonNull
@@ -271,21 +271,21 @@ public class c implements ComponentCallbacks2 {
 
     @NonNull
     public b f() {
-        return this.r;
+        return this.v;
     }
 
     @NonNull
     public Context getContext() {
-        return this.o.getBaseContext();
+        return this.q.getBaseContext();
     }
 
     d g() {
-        return this.A;
+        return this.C;
     }
 
     @NonNull
     e h() {
-        return this.o;
+        return this.q;
     }
 
     public void a(@NonNull com.bumptech.glide.load.engine.prefill.c.a... aVarArr) {
@@ -296,14 +296,14 @@ public class c implements ComponentCallbacks2 {
         com.bumptech.glide.util.k.eF();
         this.k.i();
         this.i.i();
-        this.r.i();
+        this.v.i();
     }
 
     public void trimMemory(int i) {
         com.bumptech.glide.util.k.eF();
         this.k.trimMemory(i);
         this.i.trimMemory(i);
-        this.r.trimMemory(i);
+        this.v.trimMemory(i);
     }
 
     public void j() {
@@ -313,7 +313,7 @@ public class c implements ComponentCallbacks2 {
 
     @NonNull
     public l k() {
-        return this.v;
+        return this.A;
     }
 
     @NonNull
@@ -321,8 +321,8 @@ public class c implements ComponentCallbacks2 {
         com.bumptech.glide.util.k.eF();
         this.k.b(memoryCategory.p());
         this.i.b(memoryCategory.p());
-        MemoryCategory memoryCategory2 = this.D;
-        this.D = memoryCategory;
+        MemoryCategory memoryCategory2 = this.E;
+        this.E = memoryCategory;
         return memoryCategory2;
     }
 
@@ -334,7 +334,7 @@ public class c implements ComponentCallbacks2 {
 
     @NonNull
     public static i f(@NonNull Context context) {
-        return e(context).j(context);
+        return e(context).i(context);
     }
 
     @NonNull
@@ -365,12 +365,12 @@ public class c implements ComponentCallbacks2 {
 
     @NonNull
     public Registry l() {
-        return this.q;
+        return this.r;
     }
 
     boolean a(@NonNull com.bumptech.glide.request.target.n<?> nVar) {
-        synchronized (this.C) {
-            for (i f : this.C) {
+        synchronized (this.D) {
+            for (i f : this.D) {
                 if (f.f((com.bumptech.glide.request.target.n) nVar)) {
                     return true;
                 }
@@ -380,18 +380,18 @@ public class c implements ComponentCallbacks2 {
     }
 
     void a(i iVar) {
-        synchronized (this.C) {
-            if (this.C.contains(iVar)) {
+        synchronized (this.D) {
+            if (this.D.contains(iVar)) {
                 throw new IllegalStateException("Cannot register already registered manager");
             }
-            this.C.add(iVar);
+            this.D.add(iVar);
         }
     }
 
     void b(i iVar) {
-        synchronized (this.C) {
-            if (this.C.contains(iVar)) {
-                this.C.remove(iVar);
+        synchronized (this.D) {
+            if (this.D.contains(iVar)) {
+                this.D.remove(iVar);
             } else {
                 throw new IllegalStateException("Cannot unregister not yet registered manager");
             }

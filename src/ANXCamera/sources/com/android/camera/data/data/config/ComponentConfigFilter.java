@@ -1,7 +1,7 @@
 package com.android.camera.data.data.config;
 
 import android.util.SparseBooleanArray;
-import com.aeonax.camera.R;
+import com.android.camera.R;
 import com.android.camera.constant.ModeConstant;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;

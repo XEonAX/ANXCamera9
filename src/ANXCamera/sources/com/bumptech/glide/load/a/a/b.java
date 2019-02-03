@@ -1,17 +1,18 @@
 package com.bumptech.glide.load.a.a;
 
 import android.net.Uri;
+import com.ss.android.ugc.effectmanager.effect.model.ComposerHelper;
 
 /* compiled from: MediaStoreUtil */
 public final class b {
-    private static final int dC = 512;
-    private static final int dD = 384;
+    private static final int dD = 512;
+    private static final int dE = 384;
 
     private b() {
     }
 
     public static boolean c(Uri uri) {
-        return uri != null && "content".equals(uri.getScheme()) && "media".equals(uri.getAuthority());
+        return uri != null && ComposerHelper.COMPOSER_CONTENT.equals(uri.getScheme()) && "media".equals(uri.getAuthority());
     }
 
     private static boolean d(Uri uri) {
@@ -27,6 +28,6 @@ public final class b {
     }
 
     public static boolean g(int i, int i2) {
-        return i != Integer.MIN_VALUE && i2 != Integer.MIN_VALUE && i <= 512 && i2 <= dD;
+        return i != Integer.MIN_VALUE && i2 != Integer.MIN_VALUE && i <= 512 && i2 <= dE;
     }
 }

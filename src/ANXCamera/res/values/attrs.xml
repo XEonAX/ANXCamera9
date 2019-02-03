@@ -16,6 +16,7 @@
     <attr name="largeIcons" format="reference" />
     <attr name="images" format="reference" />
     <attr name="labelList" format="reference" />
+    <attr name="showArrow" format="boolean" />
     <attr name="backgroundColor" format="reference|color" />
     <attr name="backgroundStrokeColor" format="reference|color" />
     <attr name="backgroundStrokeWidth" format="reference|dimension" />

@@ -14,10 +14,10 @@ import java.io.OutputStream;
 /* compiled from: StreamEncoder */
 public class s implements a<InputStream> {
     private static final String TAG = "StreamEncoder";
-    private final b du;
+    private final b dv;
 
     public s(b bVar) {
-        this.du = bVar;
+        this.dv = bVar;
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:21:0x003d A:{Catch:{ all -> 0x0031 }} */
@@ -26,7 +26,7 @@ public class s implements a<InputStream> {
     /* Code decompiled incorrectly, please refer to instructions dump. */
     public boolean a(@NonNull InputStream inputStream, @NonNull File file, @NonNull f fVar) {
         Throwable e;
-        byte[] bArr = (byte[]) this.du.a(65536, byte[].class);
+        byte[] bArr = (byte[]) this.dv.a(65536, byte[].class);
         boolean z = false;
         OutputStream outputStream = null;
         try {
@@ -46,7 +46,7 @@ public class s implements a<InputStream> {
                         }
                         if (outputStream != null) {
                         }
-                        this.du.put(bArr);
+                        this.dv.put(bArr);
                         return z;
                     } catch (Throwable th) {
                         e = th;
@@ -56,7 +56,7 @@ public class s implements a<InputStream> {
                             } catch (IOException e3) {
                             }
                         }
-                        this.du.put(bArr);
+                        this.dv.put(bArr);
                         throw e;
                     }
                 } catch (Throwable th2) {
@@ -64,7 +64,7 @@ public class s implements a<InputStream> {
                     outputStream = fileOutputStream;
                     if (outputStream != null) {
                     }
-                    this.du.put(bArr);
+                    this.dv.put(bArr);
                     throw e;
                 }
             }
@@ -85,10 +85,10 @@ public class s implements a<InputStream> {
                 } catch (IOException e6) {
                 }
             }
-            this.du.put(bArr);
+            this.dv.put(bArr);
             return z;
         }
-        this.du.put(bArr);
+        this.dv.put(bArr);
         return z;
     }
 }

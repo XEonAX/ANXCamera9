@@ -1,6 +1,7 @@
 package com.ss.android.vesdk;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.view.Surface;
 import com.ss.android.medialib.TTRecorder;
@@ -9,6 +10,7 @@ import com.ss.android.medialib.camera.TextureHolder.Texture;
 import com.ss.android.medialib.listener.GLCallback;
 import com.ss.android.medialib.listener.NativeInitListener;
 import com.ss.android.medialib.model.TimeSpeedModel;
+import com.ss.android.vesdk.IRecorder.OnConcatFinishedListener;
 import com.ss.android.vesdk.VEListener.VERecorderStateListener;
 import com.ss.android.vesdk.VEPreviewSettings.CAMERA_FACING_ID;
 import java.util.List;
@@ -85,7 +87,13 @@ public class RecordV1 implements IRecorder {
             stringBuilder.append("/");
             str2 = stringBuilder.toString();
         }
-        return this.mRecorder.init(size.width, size.height, str2, videoRes.width, videoRes.height, str);
+        int init = this.mRecorder.init(size.width, size.height, str2, videoRes.width, videoRes.height, str);
+        this.mRecorder.setPreviewSizeRatio(((float) size.width) / ((float) size.height));
+        return init;
+    }
+
+    public void setNativeInitListener(NativeInitListener nativeInitListener) {
+        this.mRecorder.setNativeInitListener(nativeInitListener);
     }
 
     public int startPreview(Surface surface) {
@@ -140,6 +148,14 @@ public class RecordV1 implements IRecorder {
         return this.mRecorder.concatSyn(str, str2);
     }
 
+    public void concatAsync(final String str, final String str2, final OnConcatFinishedListener onConcatFinishedListener) {
+        new Thread(new Runnable() {
+            public void run() {
+                onConcatFinishedListener.onConcatFinished(RecordV1.this.mRecorder.concatSyn(str, str2));
+            }
+        }, "VESDKConcatThread").start();
+    }
+
     public List<TimeSpeedModel> getSegmentInfo() {
         return this.mRecorder.getSegmentInfo();
     }
@@ -183,5 +199,65 @@ public class RecordV1 implements IRecorder {
 
     public int pauseEffectAudio(boolean z) {
         return z ? this.mRecorder.pauseEffectAudio() : this.mRecorder.resumeEffectAudio();
+    }
+
+    public int enableTTFaceDetect(boolean z) {
+        return this.mRecorder.enableTTFaceDetect(z);
+    }
+
+    public int slamDeviceConfig(boolean z, int i, boolean z2, boolean z3, boolean z4, boolean z5, String str) {
+        return this.mRecorder.slamDeviceConfig(z, i, z2, z3, z4, z5, str);
+    }
+
+    public int slamProcessIngestAcc(double d, double d2, double d3, double d4) {
+        return this.mRecorder.slamProcessIngestAcc(d, d2, d3, d4);
+    }
+
+    public int slamProcessIngestGyr(double d, double d2, double d3, double d4) {
+        return this.mRecorder.slamProcessIngestGyr(d, d2, d3, d4);
+    }
+
+    public int slamProcessIngestGra(double d, double d2, double d3, double d4) {
+        return this.mRecorder.slamProcessIngestGra(d, d2, d3, d4);
+    }
+
+    public int slamProcessIngestOri(double[] dArr, double d) {
+        return this.mRecorder.slamProcessIngestOri(dArr, d);
+    }
+
+    public int slamProcessTouchEvent(float f, float f2) {
+        return this.mRecorder.slamProcessTouchEvent(f, f2);
+    }
+
+    public int processTouchEvent(float f, float f2) {
+        return this.mRecorder.processTouchEvent(f, f2);
+    }
+
+    public int slamProcessTouchEventByType(int i, float f, float f2, int i2) {
+        return this.mRecorder.slamProcessTouchEventByType(i, f, f2, i2);
+    }
+
+    public int slamProcessPanEvent(float f, float f2, float f3, float f4, float f5) {
+        return this.mRecorder.slamProcessPanEvent(f, f2, f3, f4, f5);
+    }
+
+    public int slamProcessScaleEvent(float f, float f2) {
+        return this.mRecorder.slamProcessScaleEvent(f, f2);
+    }
+
+    public int slamProcessRotationEvent(float f, float f2) {
+        return this.mRecorder.slamProcessRotationEvent(f, f2);
+    }
+
+    public int setSlamFace(Bitmap bitmap) {
+        return this.mRecorder.setSlamFace(bitmap);
+    }
+
+    public int getSlamFaceCount() {
+        return this.mRecorder.getSlamFaceCount();
+    }
+
+    public void chooseSlamFace(int i) {
+        this.mRecorder.chooseSlamFace(i);
     }
 }

@@ -134,20 +134,20 @@ public class UpdateTagRepository implements IHandler {
                 if (message.obj instanceof ReadTagTaskResult) {
                     ReadTagTaskResult readTagTaskResult = (ReadTagTaskResult) message.obj;
                     if (this.mEffectContext != null) {
-                        IReadUpdateTagListener readUpdateTagistener = this.mEffectContext.getEffectConfiguration().getListenerManger().getReadUpdateTagistener(readTagTaskResult.getTaskID());
+                        IReadUpdateTagListener readUpdateTagListener = this.mEffectContext.getEffectConfiguration().getListenerManger().getReadUpdateTagListener(readTagTaskResult.getTaskID());
                         if (this.mTagsCachedMap == null) {
                             this.mTagsCachedMap = new HashMap();
                         }
                         if (readTagTaskResult.getException() == null) {
                             this.mTagsCachedMap.putAll(readTagTaskResult.getTagsCachedMap());
-                            if (readUpdateTagistener != null) {
-                                readUpdateTagistener.onSuccess();
+                            if (readUpdateTagListener != null) {
+                                readUpdateTagListener.onSuccess();
                             }
-                        } else if (readUpdateTagistener != null) {
-                            readUpdateTagistener.onFailed(readTagTaskResult.getException());
+                        } else if (readUpdateTagListener != null) {
+                            readUpdateTagListener.onFailed(readTagTaskResult.getException());
                         }
-                        if (readUpdateTagistener != null) {
-                            readUpdateTagistener.onFinally();
+                        if (readUpdateTagListener != null) {
+                            readUpdateTagListener.onFinally();
                             break;
                         }
                     }

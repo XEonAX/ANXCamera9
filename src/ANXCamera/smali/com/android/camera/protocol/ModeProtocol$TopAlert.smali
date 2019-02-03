@@ -47,11 +47,17 @@
 .method public abstract alertMoonModeSelector(I)V
 .end method
 
+.method public abstract alertMusicClose(Z)V
+.end method
+
 .method public abstract alertSwitchHint(II)V
     .param p2    # I
         .annotation build Landroid/support/annotation/StringRes;
         .end annotation
     .end param
+.end method
+
+.method public abstract alertSwitchHint(ILjava/lang/String;)V
 .end method
 
 .method public abstract alertTopHint(II)V
@@ -61,10 +67,13 @@
     .end param
 .end method
 
-.method public abstract alertTopMusicHint(ILjava/lang/String;)V
+.method public abstract alertTopHint(ILjava/lang/String;)V
 .end method
 
 .method public abstract alertUpdateValue(I)V
+.end method
+
+.method public abstract clearAlertStatus()V
 .end method
 
 .method public varargs abstract disableMenuItem([I)V
@@ -85,7 +94,7 @@
 .method public abstract insertConfigItem(I)V
 .end method
 
-.method public abstract reInitAlert()V
+.method public abstract reInitAlert(Z)V
 .end method
 
 .method public abstract refreshExtraMenu()V

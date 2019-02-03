@@ -7,12 +7,12 @@ import java.security.MessageDigest;
 
 /* compiled from: Option */
 public final class e<T> {
-    private static final a<Object> cV = new a<Object>() {
+    private static final a<Object> cW = new a<Object>() {
         public void a(@NonNull byte[] bArr, @NonNull Object obj, @NonNull MessageDigest messageDigest) {
         }
     };
-    private final a<T> cW;
-    private volatile byte[] cX;
+    private final a<T> cX;
+    private volatile byte[] cY;
     private final T defaultValue;
     private final String key;
 
@@ -44,7 +44,7 @@ public final class e<T> {
     private e(@NonNull String str, @Nullable T t, @NonNull a<T> aVar) {
         this.key = i.y(str);
         this.defaultValue = t;
-        this.cW = (a) i.checkNotNull(aVar);
+        this.cX = (a) i.checkNotNull(aVar);
     }
 
     @Nullable
@@ -53,15 +53,15 @@ public final class e<T> {
     }
 
     public void a(@NonNull T t, @NonNull MessageDigest messageDigest) {
-        this.cW.a(ab(), t, messageDigest);
+        this.cX.a(ab(), t, messageDigest);
     }
 
     @NonNull
     private byte[] ab() {
-        if (this.cX == null) {
-            this.cX = this.key.getBytes(c.cT);
+        if (this.cY == null) {
+            this.cY = this.key.getBytes(c.cU);
         }
-        return this.cX;
+        return this.cY;
     }
 
     public boolean equals(Object obj) {
@@ -77,7 +77,7 @@ public final class e<T> {
 
     @NonNull
     private static <T> a<T> ac() {
-        return cV;
+        return cW;
     }
 
     public String toString() {

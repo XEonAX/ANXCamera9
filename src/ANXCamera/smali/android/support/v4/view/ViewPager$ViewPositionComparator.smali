@@ -28,7 +28,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 2967
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -39,7 +39,7 @@
 
 # virtual methods
 .method public compare(Landroid/view/View;Landroid/view/View;)I
-    .locals 4
+    .registers 7
     .param p1, "lhs"    # Landroid/view/View;
     .param p2, "rhs"    # Landroid/view/View;
 
@@ -64,25 +64,25 @@
 
     iget-boolean v3, v1, Landroid/support/v4/view/ViewPager$LayoutParams;->isDecor:Z
 
-    if-eq v2, v3, :cond_1
+    if-eq v2, v3, :cond_1a
 
     .line 2973
     iget-boolean v2, v0, Landroid/support/v4/view/ViewPager$LayoutParams;->isDecor:Z
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_18
 
     const/4 v2, 0x1
 
-    goto :goto_0
+    goto :goto_19
 
-    :cond_0
+    :cond_18
     const/4 v2, -0x1
 
-    :goto_0
+    :goto_19
     return v2
 
     .line 2975
-    :cond_1
+    :cond_1a
     iget v2, v0, Landroid/support/v4/view/ViewPager$LayoutParams;->position:I
 
     iget v3, v1, Landroid/support/v4/view/ViewPager$LayoutParams;->position:I
@@ -93,7 +93,7 @@
 .end method
 
 .method public bridge synthetic compare(Ljava/lang/Object;Ljava/lang/Object;)I
-    .locals 2
+    .registers 5
     .param p1, "x0"    # Ljava/lang/Object;
     .param p2, "x1"    # Ljava/lang/Object;
 

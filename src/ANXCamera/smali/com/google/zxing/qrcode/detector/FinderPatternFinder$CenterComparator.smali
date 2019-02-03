@@ -34,7 +34,7 @@
 
 # direct methods
 .method private constructor <init>(F)V
-    .locals 0
+    .registers 2
     .param p1, "f"    # F
 
     .line 665
@@ -48,7 +48,7 @@
 .end method
 
 .method synthetic constructor <init>(FLcom/google/zxing/qrcode/detector/FinderPatternFinder$CenterComparator;)V
-    .locals 0
+    .registers 3
 
     .line 665
     invoke-direct {p0, p1}, Lcom/google/zxing/qrcode/detector/FinderPatternFinder$CenterComparator;-><init>(F)V
@@ -59,7 +59,7 @@
 
 # virtual methods
 .method public compare(Lcom/google/zxing/qrcode/detector/FinderPattern;Lcom/google/zxing/qrcode/detector/FinderPattern;)I
-    .locals 3
+    .registers 6
     .param p1, "center1"    # Lcom/google/zxing/qrcode/detector/FinderPattern;
     .param p2, "center2"    # Lcom/google/zxing/qrcode/detector/FinderPattern;
 
@@ -72,7 +72,7 @@
 
     move-result v1
 
-    if-ne v0, v1, :cond_2
+    if-ne v0, v1, :cond_2e
 
     .line 671
     invoke-virtual {p2}, Lcom/google/zxing/qrcode/detector/FinderPattern;->getEstimatedModuleSize()F
@@ -105,31 +105,31 @@
     .local v1, "dB":F
     cmpg-float v2, v0, v1
 
-    if-gez v2, :cond_0
+    if-gez v2, :cond_26
 
     const/4 v2, 0x1
 
-    goto :goto_0
+    goto :goto_2d
 
-    :cond_0
+    :cond_26
     cmpl-float v2, v0, v1
 
-    if-nez v2, :cond_1
+    if-nez v2, :cond_2c
 
     const/4 v2, 0x0
 
-    goto :goto_0
+    goto :goto_2d
 
-    :cond_1
+    :cond_2c
     const/4 v2, -0x1
 
-    :goto_0
+    :goto_2d
     return v2
 
     .line 675
     .end local v0    # "dA":F
     .end local v1    # "dB":F
-    :cond_2
+    :cond_2e
     invoke-virtual {p2}, Lcom/google/zxing/qrcode/detector/FinderPattern;->getCount()I
 
     move-result v0
@@ -144,7 +144,7 @@
 .end method
 
 .method public bridge synthetic compare(Ljava/lang/Object;Ljava/lang/Object;)I
-    .locals 0
+    .registers 3
 
     .line 1
     check-cast p1, Lcom/google/zxing/qrcode/detector/FinderPattern;

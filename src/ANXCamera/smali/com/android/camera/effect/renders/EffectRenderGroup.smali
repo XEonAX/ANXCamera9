@@ -40,7 +40,7 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 20
+    .line 18
     const-class v0, Lcom/android/camera/effect/renders/EffectRenderGroup;
 
     invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
@@ -55,22 +55,22 @@
 .method public constructor <init>(Lcom/android/gallery3d/ui/GLCanvas;)V
     .locals 2
 
-    .line 38
+    .line 36
     invoke-direct {p0, p1}, Lcom/android/camera/effect/renders/RenderGroup;-><init>(Lcom/android/gallery3d/ui/GLCanvas;)V
 
-    .line 26
+    .line 24
     sget v0, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_NONE:I
 
     iput v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mEffectId:I
 
-    .line 35
+    .line 33
     new-instance v0, Ljava/lang/Object;
 
     invoke-direct {v0}, Ljava/lang/Object;-><init>()V
 
     iput-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mRenderChangedLock:Ljava/lang/Object;
 
-    .line 39
+    .line 37
     new-instance v0, Ljava/lang/Boolean;
 
     const/4 v1, 0x0
@@ -79,21 +79,21 @@
 
     iput-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mRenderChanged:Ljava/lang/Boolean;
 
-    .line 40
+    .line 38
     invoke-interface {p1}, Lcom/android/gallery3d/ui/GLCanvas;->getEffectRenderGroup()Lcom/android/camera/effect/renders/RenderGroup;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mRenderCaches:Lcom/android/camera/effect/renders/RenderGroup;
 
-    .line 41
+    .line 39
     new-instance v0, Lcom/android/camera/effect/renders/PipeRenderPair;
 
     invoke-direct {v0, p1}, Lcom/android/camera/effect/renders/PipeRenderPair;-><init>(Lcom/android/gallery3d/ui/GLCanvas;)V
 
     iput-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewPipeRender:Lcom/android/camera/effect/renders/PipeRenderPair;
 
-    .line 42
+    .line 40
     iget-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewPipeRender:Lcom/android/camera/effect/renders/PipeRenderPair;
 
     new-instance v1, Lcom/android/camera/effect/renders/SurfaceTextureRender;
@@ -102,26 +102,26 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera/effect/renders/PipeRenderPair;->setFirstRender(Lcom/android/camera/effect/renders/Render;)V
 
-    .line 43
+    .line 41
     new-instance v0, Lcom/android/camera/effect/renders/PipeRender;
 
     invoke-direct {v0, p1}, Lcom/android/camera/effect/renders/PipeRender;-><init>(Lcom/android/gallery3d/ui/GLCanvas;)V
 
     iput-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewSecondRender:Lcom/android/camera/effect/renders/PipeRender;
 
-    .line 44
+    .line 42
     iget-object p1, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewPipeRender:Lcom/android/camera/effect/renders/PipeRenderPair;
 
     invoke-virtual {p0, p1}, Lcom/android/camera/effect/renders/EffectRenderGroup;->addRender(Lcom/android/camera/effect/renders/Render;)V
 
-    .line 45
+    .line 43
     return-void
 .end method
 
 .method private drawAnimationMask(Lcom/android/camera/effect/draw_mode/DrawAttribute;)V
     .locals 9
 
-    .line 142
+    .line 139
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v0
@@ -130,10 +130,10 @@
 
     move-result v0
 
-    .line 143
+    .line 140
     if-lez v0, :cond_0
 
-    .line 144
+    .line 141
     iget-object v1, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mGLCanvas:Lcom/android/gallery3d/ui/GLCanvas;
 
     new-instance v8, Lcom/android/camera/effect/draw_mode/FillRectAttribute;
@@ -152,7 +152,7 @@
 
     int-to-float v6, p1
 
-    .line 147
+    .line 144
     const/4 p1, 0x0
 
     invoke-static {v0, p1, p1, p1}, Landroid/graphics/Color;->argb(IIII)I
@@ -163,10 +163,10 @@
 
     invoke-direct/range {v2 .. v7}, Lcom/android/camera/effect/draw_mode/FillRectAttribute;-><init>(FFFFI)V
 
-    .line 144
+    .line 141
     invoke-interface {v1, v8}, Lcom/android/gallery3d/ui/GLCanvas;->draw(Lcom/android/camera/effect/draw_mode/DrawAttribute;)V
 
-    .line 149
+    .line 146
     :cond_0
     return-void
 .end method
@@ -174,45 +174,45 @@
 .method private drawPreview(Lcom/android/camera/effect/draw_mode/DrawAttribute;)Z
     .locals 3
 
-    .line 118
+    .line 115
     iget-boolean v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mFirstFrameDrawn:Z
 
     const/4 v1, 0x1
 
     if-nez v0, :cond_0
 
-    .line 119
+    .line 116
     iput-boolean v1, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mFirstFrameDrawn:Z
 
-    .line 120
+    .line 117
     iget v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mViewportWidth:I
 
     iget v2, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mViewportHeight:I
 
     invoke-virtual {p0, v0, v2}, Lcom/android/camera/effect/renders/EffectRenderGroup;->setViewportSize(II)V
 
-    .line 121
+    .line 118
     iget v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewWidth:I
 
     iget v2, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewHeight:I
 
     invoke-virtual {p0, v0, v2}, Lcom/android/camera/effect/renders/EffectRenderGroup;->setPreviewSize(II)V
 
-    .line 124
+    .line 121
     :cond_0
     move-object v0, p1
 
     check-cast v0, Lcom/android/camera/effect/draw_mode/DrawExtTexAttribute;
 
-    .line 125
+    .line 122
     invoke-direct {p0}, Lcom/android/camera/effect/renders/EffectRenderGroup;->updatePreviewSecondRender()Z
 
     move-result v0
 
-    .line 126
+    .line 123
     if-eqz v0, :cond_2
 
-    .line 127
+    .line 124
     iget-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewSecondRender:Lcom/android/camera/effect/renders/PipeRender;
 
     invoke-virtual {v0}, Lcom/android/camera/effect/renders/PipeRender;->getRenderSize()I
@@ -221,7 +221,7 @@
 
     if-nez v0, :cond_1
 
-    .line 128
+    .line 125
     iget-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewPipeRender:Lcom/android/camera/effect/renders/PipeRenderPair;
 
     const/4 v2, 0x0
@@ -230,7 +230,7 @@
 
     goto :goto_0
 
-    .line 129
+    .line 126
     :cond_1
     iget-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewPipeRender:Lcom/android/camera/effect/renders/PipeRenderPair;
 
@@ -240,14 +240,14 @@
 
     if-ne v0, v1, :cond_2
 
-    .line 130
+    .line 127
     iget-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewPipeRender:Lcom/android/camera/effect/renders/PipeRenderPair;
 
     iget-object v2, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewSecondRender:Lcom/android/camera/effect/renders/PipeRender;
 
     invoke-virtual {v0, v2}, Lcom/android/camera/effect/renders/PipeRenderPair;->setSecondRender(Lcom/android/camera/effect/renders/Render;)V
 
-    .line 133
+    .line 130
     :cond_2
     :goto_0
     iget-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewPipeRender:Lcom/android/camera/effect/renders/PipeRenderPair;
@@ -262,20 +262,37 @@
 
     invoke-virtual {v0, v2}, Lcom/android/camera/effect/renders/PipeRenderPair;->setUsedMiddleBuffer(Z)V
 
-    .line 134
+    .line 131
     iget-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewPipeRender:Lcom/android/camera/effect/renders/PipeRenderPair;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/effect/renders/PipeRenderPair;->draw(Lcom/android/camera/effect/draw_mode/DrawAttribute;)Z
 
-    .line 136
+    .line 133
     invoke-direct {p0, p1}, Lcom/android/camera/effect/renders/EffectRenderGroup;->drawAnimationMask(Lcom/android/camera/effect/draw_mode/DrawAttribute;)V
 
-    .line 137
+    .line 134
     return v1
 .end method
 
 .method private fetchRender(I)Lcom/android/camera/effect/renders/Render;
     .locals 2
+
+    .line 149
+    iget-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mRenderCaches:Lcom/android/camera/effect/renders/RenderGroup;
+
+    invoke-virtual {v0, p1}, Lcom/android/camera/effect/renders/RenderGroup;->getRender(I)Lcom/android/camera/effect/renders/Render;
+
+    move-result-object v0
+
+    .line 150
+    if-nez v0, :cond_0
+
+    .line 151
+    iget-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mGLCanvas:Lcom/android/gallery3d/ui/GLCanvas;
+
+    const/4 v1, 0x0
+
+    invoke-interface {v0, v1, p1}, Lcom/android/gallery3d/ui/GLCanvas;->prepareEffectRenders(ZI)V
 
     .line 152
     iget-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mRenderCaches:Lcom/android/camera/effect/renders/RenderGroup;
@@ -284,44 +301,83 @@
 
     move-result-object v0
 
-    .line 153
-    if-nez v0, :cond_0
-
     .line 154
-    iget-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mGLCanvas:Lcom/android/gallery3d/ui/GLCanvas;
+    :cond_0
+    return-object v0
+.end method
 
-    const/4 v1, 0x0
+.method private getTiltShitRender()Lcom/android/camera/effect/renders/Render;
+    .locals 2
 
-    invoke-interface {v0, v1, p1}, Lcom/android/gallery3d/ui/GLCanvas;->prepareEffectRenders(ZI)V
+    .line 239
+    iget-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mTiltShiftMode:Ljava/lang/String;
 
-    .line 155
-    iget-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mRenderCaches:Lcom/android/camera/effect/renders/RenderGroup;
+    if-eqz v0, :cond_1
 
-    invoke-virtual {v0, p1}, Lcom/android/camera/effect/renders/RenderGroup;->getRender(I)Lcom/android/camera/effect/renders/Render;
+    .line 240
+    const-string v0, "circle"
+
+    iget-object v1, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mTiltShiftMode:Ljava/lang/String;
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 241
+    sget v0, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_GAUSSIAN:I
+
+    invoke-direct {p0, v0}, Lcom/android/camera/effect/renders/EffectRenderGroup;->fetchRender(I)Lcom/android/camera/effect/renders/Render;
 
     move-result-object v0
 
-    .line 157
+    return-object v0
+
+    .line 242
     :cond_0
+    const-string v0, "parallel"
+
+    iget-object v1, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mTiltShiftMode:Ljava/lang/String;
+
+    invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_1
+
+    .line 243
+    sget v0, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_TILTSHIFT:I
+
+    invoke-direct {p0, v0}, Lcom/android/camera/effect/renders/EffectRenderGroup;->fetchRender(I)Lcom/android/camera/effect/renders/Render;
+
+    move-result-object v0
+
+    return-object v0
+
+    .line 246
+    :cond_1
+    const/4 v0, 0x0
+
     return-object v0
 .end method
 
 .method private removeCache(I)V
     .locals 1
 
-    .line 161
+    .line 158
     iget-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mRenderCaches:Lcom/android/camera/effect/renders/RenderGroup;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/effect/renders/RenderGroup;->removeRender(I)V
 
-    .line 162
+    .line 159
     return-void
 .end method
 
 .method private updatePreviewSecondRender()Z
     .locals 8
 
-    .line 165
+    .line 162
     iget-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mRenderChanged:Ljava/lang/Boolean;
 
     invoke-virtual {v0}, Ljava/lang/Boolean;->booleanValue()Z
@@ -332,14 +388,23 @@
 
     if-nez v0, :cond_0
 
-    .line 166
+    .line 163
     return v1
 
-    .line 174
+    .line 171
     :cond_0
     iget-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mRenderChangedLock:Ljava/lang/Object;
 
     monitor-enter v0
+
+    .line 172
+    nop
+
+    .line 173
+    nop
+
+    .line 174
+    nop
 
     .line 175
     nop
@@ -350,22 +415,13 @@
     .line 177
     nop
 
-    .line 178
-    nop
-
     .line 179
-    nop
-
-    .line 180
-    nop
-
-    .line 182
     :try_start_0
     iget-object v2, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewSecondRender:Lcom/android/camera/effect/renders/PipeRender;
 
     invoke-virtual {v2}, Lcom/android/camera/effect/renders/PipeRender;->clearRenders()V
 
-    .line 185
+    .line 182
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v2
@@ -376,47 +432,47 @@
 
     if-eqz v2, :cond_1
 
-    .line 186
+    .line 183
     sget v2, Lcom/android/camera/effect/FilterInfo;->RENDER_ID_MAKEUP:I
 
     invoke-direct {p0, v2}, Lcom/android/camera/effect/renders/EffectRenderGroup;->removeCache(I)V
 
-    .line 187
+    .line 184
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v2
 
     invoke-virtual {v2, v1}, Lcom/android/camera/effect/EffectController;->setDestroyMakeup(Z)V
 
-    .line 190
+    .line 187
     :cond_1
     iget-boolean v2, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mIsStickerEnabled:Z
 
     if-eqz v2, :cond_3
 
-    .line 191
+    .line 188
     iget v2, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mEffectId:I
 
     sget v3, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_NONE:I
 
     if-eq v2, v3, :cond_2
 
-    .line 192
+    .line 189
     iget v2, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mEffectId:I
 
     invoke-direct {p0, v2}, Lcom/android/camera/effect/renders/EffectRenderGroup;->fetchRender(I)Lcom/android/camera/effect/renders/Render;
 
     move-result-object v2
 
-    .line 193
+    .line 190
     if-eqz v2, :cond_2
 
-    .line 194
+    .line 191
     iget-object v3, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewSecondRender:Lcom/android/camera/effect/renders/PipeRender;
 
     invoke-virtual {v3, v2}, Lcom/android/camera/effect/renders/PipeRender;->addRender(Lcom/android/camera/effect/renders/Render;)V
 
-    .line 197
+    .line 194
     :cond_2
     sget v2, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_STICKER:I
 
@@ -424,17 +480,17 @@
 
     move-result-object v2
 
-    .line 198
-    if-eqz v2, :cond_e
+    .line 195
+    if-eqz v2, :cond_c
 
-    .line 199
+    .line 196
     iget-object v3, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewSecondRender:Lcom/android/camera/effect/renders/PipeRender;
 
     invoke-virtual {v3, v2}, Lcom/android/camera/effect/renders/PipeRender;->addRender(Lcom/android/camera/effect/renders/Render;)V
 
-    goto/16 :goto_4
+    goto/16 :goto_3
 
-    .line 202
+    .line 199
     :cond_3
     iget-boolean v2, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mIsMakeupEnabled:Z
 
@@ -442,7 +498,7 @@
 
     if-eqz v2, :cond_4
 
-    .line 203
+    .line 200
     sget v2, Lcom/android/camera/effect/FilterInfo;->RENDER_ID_MAKEUP:I
 
     invoke-direct {p0, v2}, Lcom/android/camera/effect/renders/EffectRenderGroup;->fetchRender(I)Lcom/android/camera/effect/renders/Render;
@@ -451,7 +507,7 @@
 
     goto :goto_0
 
-    .line 205
+    .line 202
     :cond_4
     move-object v2, v3
 
@@ -462,7 +518,7 @@
 
     if-eq v4, v5, :cond_5
 
-    .line 206
+    .line 203
     iget v4, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mEffectId:I
 
     invoke-direct {p0, v4}, Lcom/android/camera/effect/renders/EffectRenderGroup;->fetchRender(I)Lcom/android/camera/effect/renders/Render;
@@ -471,7 +527,7 @@
 
     goto :goto_1
 
-    .line 208
+    .line 205
     :cond_5
     move-object v4, v3
 
@@ -480,7 +536,7 @@
 
     if-eqz v5, :cond_6
 
-    .line 209
+    .line 206
     sget v5, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_GRADIENTER:I
 
     invoke-direct {p0, v5}, Lcom/android/camera/effect/renders/EffectRenderGroup;->fetchRender(I)Lcom/android/camera/effect/renders/Render;
@@ -489,85 +545,30 @@
 
     goto :goto_2
 
-    .line 211
+    .line 209
     :cond_6
     move-object v5, v3
 
     :goto_2
-    iget-object v6, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mTiltShiftMode:Ljava/lang/String;
-
-    if-eqz v6, :cond_8
-
-    .line 212
-    const v6, 0x7f0b014f
-
-    invoke-static {v6}, Lcom/android/camera/CameraSettings;->getString(I)Ljava/lang/String;
+    invoke-direct {p0}, Lcom/android/camera/effect/renders/EffectRenderGroup;->getTiltShitRender()Lcom/android/camera/effect/renders/Render;
 
     move-result-object v6
 
-    iget-object v7, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mTiltShiftMode:Ljava/lang/String;
-
-    .line 213
-    invoke-virtual {v6, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v6
-
-    if-eqz v6, :cond_7
-
-    .line 214
-    sget v6, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_GAUSSIAN:I
-
-    invoke-direct {p0, v6}, Lcom/android/camera/effect/renders/EffectRenderGroup;->fetchRender(I)Lcom/android/camera/effect/renders/Render;
-
-    move-result-object v6
-
-    goto :goto_3
-
-    .line 215
-    :cond_7
-    const v6, 0x7f0b0150
-
-    invoke-static {v6}, Lcom/android/camera/CameraSettings;->getString(I)Ljava/lang/String;
-
-    move-result-object v6
-
-    iget-object v7, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mTiltShiftMode:Ljava/lang/String;
-
-    .line 216
-    invoke-virtual {v6, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
-
-    move-result v6
-
-    if-eqz v6, :cond_8
-
-    .line 217
-    sget v6, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_TILTSHIFT:I
-
-    invoke-direct {p0, v6}, Lcom/android/camera/effect/renders/EffectRenderGroup;->fetchRender(I)Lcom/android/camera/effect/renders/Render;
-
-    move-result-object v6
-
-    goto :goto_3
-
-    .line 220
-    :cond_8
-    move-object v6, v3
-
-    :goto_3
+    .line 211
     iget-boolean v7, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mIsFocusPeakEnabled:Z
 
-    if-eqz v7, :cond_9
+    if-eqz v7, :cond_7
 
-    .line 221
+    .line 212
     sget v3, Lcom/android/camera/effect/FilterInfo;->FILTER_ID_PEAKINGMF:I
 
     invoke-direct {p0, v3}, Lcom/android/camera/effect/renders/EffectRenderGroup;->fetchRender(I)Lcom/android/camera/effect/renders/Render;
 
     move-result-object v3
 
-    .line 224
-    :cond_9
-    if-eqz v2, :cond_a
+    .line 215
+    :cond_7
+    if-eqz v2, :cond_8
 
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
@@ -577,56 +578,56 @@
 
     move-result v7
 
-    if-eqz v7, :cond_a
+    if-eqz v7, :cond_8
 
-    .line 225
+    .line 216
     iget-object v7, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewSecondRender:Lcom/android/camera/effect/renders/PipeRender;
 
     invoke-virtual {v7, v2}, Lcom/android/camera/effect/renders/PipeRender;->addRender(Lcom/android/camera/effect/renders/Render;)V
 
-    .line 227
-    :cond_a
-    if-eqz v4, :cond_b
+    .line 218
+    :cond_8
+    if-eqz v4, :cond_9
 
-    .line 228
+    .line 219
     iget-object v2, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewSecondRender:Lcom/android/camera/effect/renders/PipeRender;
 
     invoke-virtual {v2, v4}, Lcom/android/camera/effect/renders/PipeRender;->addRender(Lcom/android/camera/effect/renders/Render;)V
 
-    .line 230
-    :cond_b
-    if-eqz v5, :cond_c
+    .line 222
+    :cond_9
+    if-eqz v5, :cond_a
 
-    .line 231
+    .line 223
     iget-object v2, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewSecondRender:Lcom/android/camera/effect/renders/PipeRender;
 
     invoke-virtual {v2, v5}, Lcom/android/camera/effect/renders/PipeRender;->addRender(Lcom/android/camera/effect/renders/Render;)V
 
-    goto :goto_4
+    goto :goto_3
 
-    .line 232
-    :cond_c
-    if-eqz v6, :cond_d
+    .line 224
+    :cond_a
+    if-eqz v6, :cond_b
 
-    .line 233
+    .line 225
     iget-object v2, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewSecondRender:Lcom/android/camera/effect/renders/PipeRender;
 
     invoke-virtual {v2, v6}, Lcom/android/camera/effect/renders/PipeRender;->addRender(Lcom/android/camera/effect/renders/Render;)V
 
-    goto :goto_4
+    goto :goto_3
 
-    .line 234
-    :cond_d
-    if-eqz v3, :cond_e
+    .line 226
+    :cond_b
+    if-eqz v3, :cond_c
 
-    .line 235
+    .line 227
     iget-object v2, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewSecondRender:Lcom/android/camera/effect/renders/PipeRender;
 
     invoke-virtual {v2, v3}, Lcom/android/camera/effect/renders/PipeRender;->addRender(Lcom/android/camera/effect/renders/Render;)V
 
-    .line 238
-    :cond_e
-    :goto_4
+    .line 230
+    :cond_c
+    :goto_3
     iget-object v2, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewSecondRender:Lcom/android/camera/effect/renders/PipeRender;
 
     iget v3, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewWidth:I
@@ -635,21 +636,21 @@
 
     invoke-virtual {v2, v3, v4}, Lcom/android/camera/effect/renders/PipeRender;->setFrameBufferSize(II)V
 
-    .line 240
+    .line 232
     invoke-static {v1}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
 
     move-result-object v1
 
     iput-object v1, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mRenderChanged:Ljava/lang/Boolean;
 
-    .line 242
+    .line 234
     const/4 v1, 0x1
 
     monitor-exit v0
 
     return v1
 
-    .line 243
+    .line 235
     :catchall_0
     move-exception v1
 
@@ -665,10 +666,10 @@
 .method public draw(Lcom/android/camera/effect/draw_mode/DrawAttribute;)Z
     .locals 3
 
-    .line 49
+    .line 47
     iget v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mEffectId:I
 
-    .line 50
+    .line 48
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v1
@@ -679,7 +680,7 @@
 
     move-result v1
 
-    .line 51
+    .line 49
     if-eq v1, v0, :cond_0
 
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
@@ -692,12 +693,12 @@
 
     if-eqz v0, :cond_0
 
-    .line 52
+    .line 50
     iget-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mPreviewPipeRender:Lcom/android/camera/effect/renders/PipeRenderPair;
 
     invoke-virtual {v0}, Lcom/android/camera/effect/renders/PipeRenderPair;->prepareCopyBlurTexture()V
 
-    .line 54
+    .line 52
     :cond_0
     invoke-virtual {p1}, Lcom/android/camera/effect/draw_mode/DrawAttribute;->getTarget()I
 
@@ -707,12 +708,12 @@
 
     if-eq v0, v1, :cond_1
 
-    .line 60
+    .line 58
     const/4 p1, 0x0
 
     return p1
 
-    .line 56
+    .line 54
     :cond_1
     invoke-direct {p0, p1}, Lcom/android/camera/effect/renders/EffectRenderGroup;->drawPreview(Lcom/android/camera/effect/draw_mode/DrawAttribute;)Z
 
@@ -724,23 +725,23 @@
 .method public varargs onEffectChanged([I)V
     .locals 8
 
-    .line 71
+    .line 69
     iget-object v0, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mRenderChangedLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 72
+    .line 70
     :try_start_0
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v1
 
-    .line 73
+    .line 71
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemRunning()Lcom/android/camera/data/data/runing/DataItemRunning;
 
     move-result-object v2
 
-    .line 75
+    .line 73
     array-length v3, p1
 
     const/4 v4, 0x0
@@ -752,12 +753,12 @@
 
     aget v6, p1, v4
 
-    .line 76
+    .line 74
     packed-switch v6, :pswitch_data_0
 
     goto :goto_1
 
-    .line 105
+    .line 102
     :pswitch_0
     invoke-virtual {v1}, Lcom/android/camera/effect/EffectController;->isDrawGradienter()Z
 
@@ -765,10 +766,10 @@
 
     iput-boolean v5, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mIsGradienterEnabled:Z
 
-    .line 106
+    .line 103
     goto :goto_1
 
-    .line 95
+    .line 93
     :pswitch_1
     invoke-virtual {v1}, Lcom/android/camera/effect/EffectController;->isDrawTilt()Z
 
@@ -776,15 +777,12 @@
 
     if-eqz v5, :cond_0
 
-    .line 96
-    nop
-
-    .line 97
+    .line 94
     invoke-virtual {v2}, Lcom/android/camera/data/data/runing/DataItemRunning;->getComponentRunningTiltValue()Lcom/android/camera/data/data/runing/ComponentRunningTiltValue;
 
     move-result-object v5
 
-    .line 98
+    .line 95
     const/16 v6, 0xa0
 
     invoke-virtual {v5, v6}, Lcom/android/camera/data/data/runing/ComponentRunningTiltValue;->getComponentValue(I)Ljava/lang/String;
@@ -793,19 +791,19 @@
 
     iput-object v5, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mTiltShiftMode:Ljava/lang/String;
 
-    .line 99
+    .line 96
     goto :goto_1
 
-    .line 100
+    .line 97
     :cond_0
     const/4 v5, 0x0
 
     iput-object v5, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mTiltShiftMode:Ljava/lang/String;
 
-    .line 102
+    .line 99
     goto :goto_1
 
-    .line 91
+    .line 89
     :pswitch_2
     invoke-virtual {v1}, Lcom/android/camera/effect/EffectController;->isNeedDrawPeaking()Z
 
@@ -813,10 +811,10 @@
 
     iput-boolean v5, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mIsFocusPeakEnabled:Z
 
-    .line 92
+    .line 90
     goto :goto_1
 
-    .line 87
+    .line 85
     :pswitch_3
     invoke-virtual {v1}, Lcom/android/camera/effect/EffectController;->isMakeupEnable()Z
 
@@ -824,10 +822,10 @@
 
     iput-boolean v5, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mIsMakeupEnabled:Z
 
-    .line 88
+    .line 86
     goto :goto_1
 
-    .line 83
+    .line 81
     :pswitch_4
     invoke-virtual {v1}, Lcom/android/camera/effect/EffectController;->isStickerEnable()Z
 
@@ -835,10 +833,10 @@
 
     iput-boolean v5, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mIsStickerEnabled:Z
 
-    .line 84
+    .line 82
     goto :goto_1
 
-    .line 78
+    .line 76
     :pswitch_5
     invoke-virtual {v1, v5}, Lcom/android/camera/effect/EffectController;->getEffectForPreview(Z)I
 
@@ -846,7 +844,7 @@
 
     iput v5, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mEffectId:I
 
-    .line 79
+    .line 77
     sget-object v5, Lcom/android/camera/effect/renders/EffectRenderGroup;->TAG:Ljava/lang/String;
 
     new-instance v6, Ljava/lang/StringBuilder;
@@ -867,16 +865,16 @@
 
     invoke-static {v5, v6}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 80
+    .line 78
     nop
 
-    .line 75
+    .line 73
     :goto_1
     add-int/lit8 v4, v4, 0x1
 
     goto :goto_0
 
-    .line 113
+    .line 110
     :cond_1
     invoke-static {v5}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
 
@@ -884,13 +882,13 @@
 
     iput-object p1, p0, Lcom/android/camera/effect/renders/EffectRenderGroup;->mRenderChanged:Ljava/lang/Boolean;
 
-    .line 114
+    .line 111
     monitor-exit v0
 
-    .line 115
+    .line 112
     return-void
 
-    .line 114
+    .line 111
     :catchall_0
     move-exception p1
 
@@ -899,8 +897,6 @@
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     throw p1
-
-    nop
 
     :pswitch_data_0
     .packed-switch 0x1

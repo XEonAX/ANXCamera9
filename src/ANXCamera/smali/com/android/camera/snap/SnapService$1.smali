@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/snap/SnapService;)V
     .locals 0
 
-    .line 46
+    .line 52
     iput-object p1, p0, Lcom/android/camera/snap/SnapService$1;->this$0:Lcom/android/camera/snap/SnapService;
 
     invoke-direct {p0}, Landroid/content/BroadcastReceiver;-><init>()V
@@ -35,7 +35,7 @@
 .method public onReceive(Landroid/content/Context;Landroid/content/Intent;)V
     .locals 3
 
-    .line 49
+    .line 55
     const-string p1, "android.intent.action.KEYCODE_POWER_UP"
 
     invoke-virtual {p2}, Landroid/content/Intent;->getAction()Ljava/lang/String;
@@ -50,7 +50,7 @@
 
     const-string p1, "android.intent.action.SCREEN_ON"
 
-    .line 50
+    .line 56
     invoke-virtual {p2}, Landroid/content/Intent;->getAction()Ljava/lang/String;
 
     move-result-object p2
@@ -61,10 +61,10 @@
 
     if-nez p1, :cond_0
 
-    .line 51
+    .line 57
     return-void
 
-    .line 56
+    .line 62
     :cond_0
     invoke-static {}, Lcom/android/camera/snap/SnapTrigger;->getInstance()Lcom/android/camera/snap/SnapTrigger;
 
@@ -74,14 +74,14 @@
 
     const/4 v0, 0x0
 
-    .line 57
+    .line 63
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v1
 
-    .line 56
+    .line 62
     invoke-virtual {p1, p2, v0, v1, v2}, Lcom/android/camera/snap/SnapTrigger;->handleKeyEvent(IIJ)V
 
-    .line 58
+    .line 64
     return-void
 .end method

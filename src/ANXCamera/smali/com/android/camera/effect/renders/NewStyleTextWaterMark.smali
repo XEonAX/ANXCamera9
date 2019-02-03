@@ -20,11 +20,11 @@
 
 .field private mCharMargin:I
 
-.field private mHorizontalPadding:I
-
 .field private mPadding:I
 
-.field private mVerticalPadding:I
+.field private mPaddingX:I
+
+.field private mPaddingY:I
 
 .field private mWaterHeight:I
 
@@ -144,7 +144,7 @@
 
     and-int/lit8 p1, p1, -0x2
 
-    iput p1, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mHorizontalPadding:I
+    iput p1, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mPaddingX:I
 
     .line 43
     iget p1, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mPadding:I
@@ -155,7 +155,7 @@
 
     and-int/lit8 p1, p1, -0x2
 
-    iput p1, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mVerticalPadding:I
+    iput p1, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mPaddingY:I
 
     .line 45
     invoke-direct {p0}, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->calcCenterAxis()V
@@ -197,7 +197,7 @@
 
     .line 66
     :cond_0
-    iget v0, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mVerticalPadding:I
+    iget v0, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mPaddingY:I
 
     iget v1, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mWaterHeight:I
 
@@ -210,7 +210,7 @@
     .line 67
     iget v0, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mPictureHeight:I
 
-    iget v1, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mHorizontalPadding:I
+    iget v1, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mPaddingX:I
 
     sub-int/2addr v0, v1
 
@@ -226,7 +226,7 @@
 
     .line 62
     :cond_1
-    iget v0, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mHorizontalPadding:I
+    iget v0, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mPaddingX:I
 
     iget v1, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mWaterWidth:I
 
@@ -237,7 +237,7 @@
     iput v0, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mCenterX:I
 
     .line 63
-    iget v0, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mVerticalPadding:I
+    iget v0, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mPaddingY:I
 
     iget v1, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mWaterHeight:I
 
@@ -254,7 +254,7 @@
     :cond_2
     iget v0, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mPictureWidth:I
 
-    iget v1, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mVerticalPadding:I
+    iget v1, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mPaddingY:I
 
     sub-int/2addr v0, v1
 
@@ -267,7 +267,7 @@
     iput v0, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mCenterX:I
 
     .line 59
-    iget v0, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mHorizontalPadding:I
+    iget v0, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mPaddingX:I
 
     iget v1, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mWaterWidth:I
 
@@ -284,7 +284,7 @@
     :cond_3
     iget v0, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mPictureWidth:I
 
-    iget v1, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mHorizontalPadding:I
+    iget v1, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mPaddingX:I
 
     sub-int/2addr v0, v1
 
@@ -299,7 +299,7 @@
     .line 55
     iget v0, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mPictureHeight:I
 
-    iget v1, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mVerticalPadding:I
+    iget v1, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mPaddingY:I
 
     sub-int/2addr v0, v1
 
@@ -322,7 +322,7 @@
 .method private print()V
     .locals 3
 
-    .line 98
+    .line 108
     sget-object v0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -399,7 +399,7 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->v(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 104
+    .line 114
     return-void
 .end method
 
@@ -439,6 +439,24 @@
     invoke-super {p0}, Lcom/android/camera/effect/renders/WaterMark;->getLeft()I
 
     move-result v0
+
+    return v0
+.end method
+
+.method public getPaddingX()I
+    .locals 1
+
+    .line 99
+    iget v0, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mPaddingX:I
+
+    return v0
+.end method
+
+.method public getPaddingY()I
+    .locals 1
+
+    .line 104
+    iget v0, p0, Lcom/android/camera/effect/renders/NewStyleTextWaterMark;->mPaddingY:I
 
     return v0
 .end method

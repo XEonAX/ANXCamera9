@@ -63,14 +63,17 @@ public class LiveResourceDownloadManager {
         stringBuilder.append(str);
         Log.v(str2, stringBuilder.toString());
         if (liveDownloadHelper.isDownloaded(t)) {
-            str2 = TAG;
-            stringBuilder = new StringBuilder();
-            stringBuilder.append("file downloaded ");
-            stringBuilder.append(str);
-            Log.v(str2, stringBuilder.toString());
+            String str3 = TAG;
+            StringBuilder stringBuilder2 = new StringBuilder();
+            stringBuilder2.append("file downloaded ");
+            stringBuilder2.append(str);
+            Log.v(str3, stringBuilder2.toString());
             dispatchListener(str, 1);
+            return;
         }
-        GalleryDownloadManager.INSTANCE.enqueue(liveDownloadHelper.createDownloadRequest(t), this.mOnCompleteListener);
+        Request createDownloadRequest = liveDownloadHelper.createDownloadRequest(t);
+        createDownloadRequest.setAllowedOverMetered(true);
+        GalleryDownloadManager.INSTANCE.enqueue(createDownloadRequest, this.mOnCompleteListener);
     }
 
     public void addDownloadListener(OnLiveDownloadListener onLiveDownloadListener) {

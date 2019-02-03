@@ -6,8 +6,8 @@ import android.util.Log;
 public class TaskSession {
     private static final boolean DEBUG = false;
     private static final String TAG = TaskSession.class.getSimpleName();
-    private boolean hasDestroyed;
-    private boolean hasFlushed;
+    private boolean mHasDestroyed;
+    private boolean mHasFlushed;
     private final long mSessionHandle;
 
     @FunctionalInterface
@@ -43,7 +43,7 @@ public class TaskSession {
         destroy();
         String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("close: session has closed : ");
+        stringBuilder.append("close: session has closed: ");
         stringBuilder.append(this);
         Log.d(str, stringBuilder.toString());
     }
@@ -54,21 +54,21 @@ public class TaskSession {
     }
 
     private void destroy() {
-        if (!this.hasDestroyed) {
+        if (!this.mHasDestroyed) {
             int destroySession = MiCamAlgoInterfaceJNI.destroySession(this.mSessionHandle);
             Util.assertOrNot(destroySession);
             if (destroySession == 0) {
-                this.hasDestroyed = true;
+                this.mHasDestroyed = true;
             }
         }
     }
 
     private void flush() {
-        if (!this.hasFlushed) {
+        if (!this.mHasFlushed) {
             int flush = MiCamAlgoInterfaceJNI.flush(this.mSessionHandle);
             Util.assertOrNot(flush);
             if (flush == 0) {
-                this.hasFlushed = true;
+                this.mHasFlushed = true;
             }
         }
     }

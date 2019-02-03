@@ -23,7 +23,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/media/TransportMediatorJellybeanMR2;)V
-    .locals 0
+    .registers 2
 
     .line 42
     iput-object p1, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2$1;->this$0:Landroid/support/v4/media/TransportMediatorJellybeanMR2;
@@ -36,7 +36,7 @@
 
 # virtual methods
 .method public onWindowAttached()V
-    .locals 1
+    .registers 2
 
     .line 45
     iget-object v0, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2$1;->this$0:Landroid/support/v4/media/TransportMediatorJellybeanMR2;
@@ -48,7 +48,7 @@
 .end method
 
 .method public onWindowDetached()V
-    .locals 1
+    .registers 2
 
     .line 49
     iget-object v0, p0, Landroid/support/v4/media/TransportMediatorJellybeanMR2$1;->this$0:Landroid/support/v4/media/TransportMediatorJellybeanMR2;

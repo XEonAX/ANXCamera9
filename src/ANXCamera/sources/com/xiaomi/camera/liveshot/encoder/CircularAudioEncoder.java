@@ -5,7 +5,6 @@ import android.media.MediaCodec;
 import android.media.MediaFormat;
 import android.os.Handler;
 import com.android.camera.log.Log;
-import com.ss.android.ttve.utils.UIUtils;
 import com.xiaomi.camera.liveshot.MediaCodecCapability;
 import com.xiaomi.camera.liveshot.encoder.CircularMediaEncoder.Snapshot;
 import java.io.IOException;
@@ -69,7 +68,7 @@ public class CircularAudioEncoder extends CircularMediaEncoder {
         } else if (this.mIsBuffering) {
             Log.d(TAG, "start(): encoder is already running");
         } else {
-            this.mCircularBuffer.clear();
+            this.mCyclicBuffer.clear();
             this.mMediaCodec.configure(this.mDesiredMediaFormat, null, null, 1);
             this.mMediaCodec.setCallback(this, new Handler(this.mEncodingThread.getLooper()));
             super.doStart();
@@ -219,7 +218,7 @@ public class CircularAudioEncoder extends CircularMediaEncoder {
             int read = this.mAudioRecord.read(this.mSampleBuffer, 0, Math.min(inputBuffer.limit(), this.mNotificationPeriod * this.mFrameBytes));
             if (read != 0) {
                 switch (read) {
-                    case UIUtils.LAYOUT_PARAMS_KEEP_OLD /*-3*/:
+                    case -3:
                         if (DEBUG) {
                             Log.d(TAG, "  ERROR_INVALID_OP");
                         }

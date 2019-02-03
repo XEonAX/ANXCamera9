@@ -16,26 +16,26 @@
 
 
 # instance fields
-.field private X:Lcom/bumptech/glide/i;
+.field private Z:Lcom/bumptech/glide/i;
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 .end field
 
-.field private mG:Lcom/bumptech/glide/manager/SupportRequestManagerFragment;
+.field private mF:Lcom/bumptech/glide/manager/SupportRequestManagerFragment;
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 .end field
 
-.field private mH:Landroid/support/v4/app/Fragment;
+.field private mG:Landroid/support/v4/app/Fragment;
     .annotation build Landroid/support/annotation/Nullable;
     .end annotation
 .end field
 
-.field private final mo:Lcom/bumptech/glide/manager/a;
+.field private final mn:Lcom/bumptech/glide/manager/a;
 
-.field private final mp:Lcom/bumptech/glide/manager/m;
+.field private final mo:Lcom/bumptech/glide/manager/m;
 
-.field private final mq:Ljava/util/Set;
+.field private final mp:Ljava/util/Set;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/Set<",
@@ -84,17 +84,17 @@
 
     invoke-direct {v0, p0}, Lcom/bumptech/glide/manager/SupportRequestManagerFragment$a;-><init>(Lcom/bumptech/glide/manager/SupportRequestManagerFragment;)V
 
-    iput-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mp:Lcom/bumptech/glide/manager/m;
+    iput-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mo:Lcom/bumptech/glide/manager/m;
 
     .line 32
     new-instance v0, Ljava/util/HashSet;
 
     invoke-direct {v0}, Ljava/util/HashSet;-><init>()V
 
-    iput-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mq:Ljava/util/Set;
+    iput-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mp:Ljava/util/Set;
 
     .line 45
-    iput-object p1, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mo:Lcom/bumptech/glide/manager/a;
+    iput-object p1, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mn:Lcom/bumptech/glide/manager/a;
 
     .line 46
     return-void
@@ -104,7 +104,7 @@
     .locals 1
 
     .line 81
-    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mq:Ljava/util/Set;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mp:Ljava/util/Set;
 
     invoke-interface {v0, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
@@ -116,7 +116,7 @@
     .locals 1
 
     .line 85
-    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mq:Ljava/util/Set;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mp:Ljava/util/Set;
 
     invoke-interface {v0, p1}, Ljava/util/Set;->remove(Ljava/lang/Object;)Z
 
@@ -128,19 +128,19 @@
     .locals 1
 
     .line 153
-    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mG:Lcom/bumptech/glide/manager/SupportRequestManagerFragment;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mF:Lcom/bumptech/glide/manager/SupportRequestManagerFragment;
 
     if-eqz v0, :cond_0
 
     .line 154
-    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mG:Lcom/bumptech/glide/manager/SupportRequestManagerFragment;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mF:Lcom/bumptech/glide/manager/SupportRequestManagerFragment;
 
     invoke-direct {v0, p0}, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->b(Lcom/bumptech/glide/manager/SupportRequestManagerFragment;)V
 
     .line 155
     const/4 v0, 0x0
 
-    iput-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mG:Lcom/bumptech/glide/manager/SupportRequestManagerFragment;
+    iput-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mF:Lcom/bumptech/glide/manager/SupportRequestManagerFragment;
 
     .line 157
     :cond_0
@@ -163,7 +163,7 @@
     goto :goto_0
 
     :cond_0
-    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mH:Landroid/support/v4/app/Fragment;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mG:Landroid/support/v4/app/Fragment;
 
     :goto_0
     return-object v0
@@ -195,10 +195,10 @@
 
     move-result-object p1
 
-    iput-object p1, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mG:Lcom/bumptech/glide/manager/SupportRequestManagerFragment;
+    iput-object p1, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mF:Lcom/bumptech/glide/manager/SupportRequestManagerFragment;
 
     .line 147
-    iget-object p1, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mG:Lcom/bumptech/glide/manager/SupportRequestManagerFragment;
+    iget-object p1, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mF:Lcom/bumptech/glide/manager/SupportRequestManagerFragment;
 
     invoke-virtual {p0, p1}, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->equals(Ljava/lang/Object;)Z
 
@@ -207,7 +207,7 @@
     if-nez p1, :cond_0
 
     .line 148
-    iget-object p1, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mG:Lcom/bumptech/glide/manager/SupportRequestManagerFragment;
+    iget-object p1, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mF:Lcom/bumptech/glide/manager/SupportRequestManagerFragment;
 
     invoke-direct {p1, p0}, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->a(Lcom/bumptech/glide/manager/SupportRequestManagerFragment;)V
 
@@ -273,7 +273,7 @@
     .end param
 
     .line 116
-    iput-object p1, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mH:Landroid/support/v4/app/Fragment;
+    iput-object p1, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mG:Landroid/support/v4/app/Fragment;
 
     .line 117
     if-eqz p1, :cond_0
@@ -304,7 +304,7 @@
     .end param
 
     .line 54
-    iput-object p1, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->X:Lcom/bumptech/glide/i;
+    iput-object p1, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->Z:Lcom/bumptech/glide/i;
 
     .line 55
     return-void
@@ -316,7 +316,7 @@
     .end annotation
 
     .line 59
-    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mo:Lcom/bumptech/glide/manager/a;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mn:Lcom/bumptech/glide/manager/a;
 
     return-object v0
 .end method
@@ -327,7 +327,7 @@
     .end annotation
 
     .line 67
-    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->X:Lcom/bumptech/glide/i;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->Z:Lcom/bumptech/glide/i;
 
     return-object v0
 .end method
@@ -338,7 +338,7 @@
     .end annotation
 
     .line 77
-    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mp:Lcom/bumptech/glide/manager/m;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mo:Lcom/bumptech/glide/manager/m;
 
     return-object v0
 .end method
@@ -358,7 +358,7 @@
     .end annotation
 
     .line 95
-    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mG:Lcom/bumptech/glide/manager/SupportRequestManagerFragment;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mF:Lcom/bumptech/glide/manager/SupportRequestManagerFragment;
 
     if-nez v0, :cond_0
 
@@ -371,7 +371,7 @@
 
     .line 97
     :cond_0
-    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mG:Lcom/bumptech/glide/manager/SupportRequestManagerFragment;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mF:Lcom/bumptech/glide/manager/SupportRequestManagerFragment;
 
     invoke-virtual {p0, v0}, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->equals(Ljava/lang/Object;)Z
 
@@ -380,7 +380,7 @@
     if-eqz v0, :cond_1
 
     .line 98
-    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mq:Ljava/util/Set;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mp:Ljava/util/Set;
 
     invoke-static {v0}, Ljava/util/Collections;->unmodifiableSet(Ljava/util/Set;)Ljava/util/Set;
 
@@ -395,7 +395,7 @@
     invoke-direct {v0}, Ljava/util/HashSet;-><init>()V
 
     .line 101
-    iget-object v1, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mG:Lcom/bumptech/glide/manager/SupportRequestManagerFragment;
+    iget-object v1, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mF:Lcom/bumptech/glide/manager/SupportRequestManagerFragment;
 
     .line 102
     invoke-virtual {v1}, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->cU()Ljava/util/Set;
@@ -501,7 +501,7 @@
     invoke-super {p0}, Landroid/support/v4/app/Fragment;->onDestroy()V
 
     .line 194
-    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mo:Lcom/bumptech/glide/manager/a;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mn:Lcom/bumptech/glide/manager/a;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/manager/a;->onDestroy()V
 
@@ -521,7 +521,7 @@
     .line 175
     const/4 v0, 0x0
 
-    iput-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mH:Landroid/support/v4/app/Fragment;
+    iput-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mG:Landroid/support/v4/app/Fragment;
 
     .line 176
     invoke-direct {p0}, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->cW()V
@@ -537,7 +537,7 @@
     invoke-super {p0}, Landroid/support/v4/app/Fragment;->onStart()V
 
     .line 182
-    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mo:Lcom/bumptech/glide/manager/a;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mn:Lcom/bumptech/glide/manager/a;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/manager/a;->onStart()V
 
@@ -552,7 +552,7 @@
     invoke-super {p0}, Landroid/support/v4/app/Fragment;->onStop()V
 
     .line 188
-    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mo:Lcom/bumptech/glide/manager/a;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/SupportRequestManagerFragment;->mn:Lcom/bumptech/glide/manager/a;
 
     invoke-virtual {v0}, Lcom/bumptech/glide/manager/a;->onStop()V
 

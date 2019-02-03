@@ -29,7 +29,7 @@
 
 
 # instance fields
-.field private final eu:Landroid/support/v4/util/Pools$Pool;
+.field private final ev:Landroid/support/v4/util/Pools$Pool;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Landroid/support/v4/util/Pools$Pool<",
@@ -38,19 +38,19 @@
     .end annotation
 .end field
 
-.field private final pA:Lcom/bumptech/glide/util/a/a$d;
+.field private final py:Lcom/bumptech/glide/util/a/a$a;
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "Lcom/bumptech/glide/util/a/a$d<",
+            "Lcom/bumptech/glide/util/a/a$a<",
             "TT;>;"
         }
     .end annotation
 .end field
 
-.field private final pz:Lcom/bumptech/glide/util/a/a$a;
+.field private final pz:Lcom/bumptech/glide/util/a/a$d;
     .annotation system Ldalvik/annotation/Signature;
         value = {
-            "Lcom/bumptech/glide/util/a/a$a<",
+            "Lcom/bumptech/glide/util/a/a$d<",
             "TT;>;"
         }
     .end annotation
@@ -88,13 +88,13 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 150
-    iput-object p1, p0, Lcom/bumptech/glide/util/a/a$b;->eu:Landroid/support/v4/util/Pools$Pool;
+    iput-object p1, p0, Lcom/bumptech/glide/util/a/a$b;->ev:Landroid/support/v4/util/Pools$Pool;
 
     .line 151
-    iput-object p2, p0, Lcom/bumptech/glide/util/a/a$b;->pz:Lcom/bumptech/glide/util/a/a$a;
+    iput-object p2, p0, Lcom/bumptech/glide/util/a/a$b;->py:Lcom/bumptech/glide/util/a/a$a;
 
     .line 152
-    iput-object p3, p0, Lcom/bumptech/glide/util/a/a$b;->pA:Lcom/bumptech/glide/util/a/a$d;
+    iput-object p3, p0, Lcom/bumptech/glide/util/a/a$b;->pz:Lcom/bumptech/glide/util/a/a$d;
 
     .line 153
     return-void
@@ -111,7 +111,7 @@
     .end annotation
 
     .line 157
-    iget-object v0, p0, Lcom/bumptech/glide/util/a/a$b;->eu:Landroid/support/v4/util/Pools$Pool;
+    iget-object v0, p0, Lcom/bumptech/glide/util/a/a$b;->ev:Landroid/support/v4/util/Pools$Pool;
 
     invoke-interface {v0}, Landroid/support/v4/util/Pools$Pool;->acquire()Ljava/lang/Object;
 
@@ -121,7 +121,7 @@
     if-nez v0, :cond_0
 
     .line 159
-    iget-object v0, p0, Lcom/bumptech/glide/util/a/a$b;->pz:Lcom/bumptech/glide/util/a/a$a;
+    iget-object v0, p0, Lcom/bumptech/glide/util/a/a$b;->py:Lcom/bumptech/glide/util/a/a$a;
 
     invoke-interface {v0}, Lcom/bumptech/glide/util/a/a$a;->create()Ljava/lang/Object;
 
@@ -217,12 +217,12 @@
 
     .line 175
     :cond_0
-    iget-object v0, p0, Lcom/bumptech/glide/util/a/a$b;->pA:Lcom/bumptech/glide/util/a/a$d;
+    iget-object v0, p0, Lcom/bumptech/glide/util/a/a$b;->pz:Lcom/bumptech/glide/util/a/a$d;
 
     invoke-interface {v0, p1}, Lcom/bumptech/glide/util/a/a$d;->reset(Ljava/lang/Object;)V
 
     .line 176
-    iget-object v0, p0, Lcom/bumptech/glide/util/a/a$b;->eu:Landroid/support/v4/util/Pools$Pool;
+    iget-object v0, p0, Lcom/bumptech/glide/util/a/a$b;->ev:Landroid/support/v4/util/Pools$Pool;
 
     invoke-interface {v0, p1}, Landroid/support/v4/util/Pools$Pool;->release(Ljava/lang/Object;)Z
 

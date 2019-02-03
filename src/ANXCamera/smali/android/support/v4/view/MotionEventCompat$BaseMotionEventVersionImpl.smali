@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 44
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,12 +30,12 @@
 
 # virtual methods
 .method public findPointerIndex(Landroid/view/MotionEvent;I)I
-    .locals 1
+    .registers 4
     .param p1, "event"    # Landroid/view/MotionEvent;
     .param p2, "pointerId"    # I
 
     .line 47
-    if-nez p2, :cond_0
+    if-nez p2, :cond_4
 
     .line 49
     const/4 v0, 0x0
@@ -43,14 +43,14 @@
     return v0
 
     .line 51
-    :cond_0
+    :cond_4
     const/4 v0, -0x1
 
     return v0
 .end method
 
 .method public getAxisValue(Landroid/view/MotionEvent;I)F
-    .locals 1
+    .registers 4
     .param p1, "event"    # Landroid/view/MotionEvent;
     .param p2, "axis"    # I
 
@@ -61,7 +61,7 @@
 .end method
 
 .method public getAxisValue(Landroid/view/MotionEvent;II)F
-    .locals 1
+    .registers 5
     .param p1, "event"    # Landroid/view/MotionEvent;
     .param p2, "axis"    # I
     .param p3, "pointerIndex"    # I
@@ -73,7 +73,7 @@
 .end method
 
 .method public getPointerCount(Landroid/view/MotionEvent;)I
-    .locals 1
+    .registers 3
     .param p1, "event"    # Landroid/view/MotionEvent;
 
     .line 77
@@ -83,12 +83,12 @@
 .end method
 
 .method public getPointerId(Landroid/view/MotionEvent;I)I
-    .locals 2
+    .registers 5
     .param p1, "event"    # Landroid/view/MotionEvent;
     .param p2, "pointerIndex"    # I
 
     .line 55
-    if-nez p2, :cond_0
+    if-nez p2, :cond_4
 
     .line 57
     const/4 v0, 0x0
@@ -96,7 +96,7 @@
     return v0
 
     .line 59
-    :cond_0
+    :cond_4
     new-instance v0, Ljava/lang/IndexOutOfBoundsException;
 
     const-string v1, "Pre-Eclair does not support multiple pointers"
@@ -107,7 +107,7 @@
 .end method
 
 .method public getSource(Landroid/view/MotionEvent;)I
-    .locals 1
+    .registers 3
     .param p1, "event"    # Landroid/view/MotionEvent;
 
     .line 82
@@ -117,12 +117,12 @@
 .end method
 
 .method public getX(Landroid/view/MotionEvent;I)F
-    .locals 2
+    .registers 5
     .param p1, "event"    # Landroid/view/MotionEvent;
     .param p2, "pointerIndex"    # I
 
     .line 63
-    if-nez p2, :cond_0
+    if-nez p2, :cond_7
 
     .line 64
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getX()F
@@ -132,7 +132,7 @@
     return v0
 
     .line 66
-    :cond_0
+    :cond_7
     new-instance v0, Ljava/lang/IndexOutOfBoundsException;
 
     const-string v1, "Pre-Eclair does not support multiple pointers"
@@ -143,12 +143,12 @@
 .end method
 
 .method public getY(Landroid/view/MotionEvent;I)F
-    .locals 2
+    .registers 5
     .param p1, "event"    # Landroid/view/MotionEvent;
     .param p2, "pointerIndex"    # I
 
     .line 70
-    if-nez p2, :cond_0
+    if-nez p2, :cond_7
 
     .line 71
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getY()F
@@ -158,7 +158,7 @@
     return v0
 
     .line 73
-    :cond_0
+    :cond_7
     new-instance v0, Ljava/lang/IndexOutOfBoundsException;
 
     const-string v1, "Pre-Eclair does not support multiple pointers"

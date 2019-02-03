@@ -99,7 +99,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 17
     invoke-direct {p0}, Landroid/os/Binder;-><init>()V
@@ -114,11 +114,11 @@
 .end method
 
 .method public static asInterface(Landroid/os/IBinder;)Lcom/android/internal/app/IPerfShielder;
-    .locals 2
+    .registers 3
     .param p0, "obj"    # Landroid/os/IBinder;
 
     .line 26
-    if-nez p0, :cond_0
+    if-nez p0, :cond_4
 
     .line 27
     const/4 v0, 0x0
@@ -126,7 +126,7 @@
     return-object v0
 
     .line 29
-    :cond_0
+    :cond_4
     const-string v0, "com.android.internal.app.IPerfShielder"
 
     invoke-interface {p0, v0}, Landroid/os/IBinder;->queryLocalInterface(Ljava/lang/String;)Landroid/os/IInterface;
@@ -135,11 +135,11 @@
 
     .line 30
     .local v0, "iin":Landroid/os/IInterface;
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_14
 
     instance-of v1, v0, Lcom/android/internal/app/IPerfShielder;
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_14
 
     .line 31
     move-object v1, v0
@@ -149,7 +149,7 @@
     return-object v1
 
     .line 33
-    :cond_1
+    :cond_14
     new-instance v1, Lcom/android/internal/app/IPerfShielder$Stub$Proxy;
 
     invoke-direct {v1, p0}, Lcom/android/internal/app/IPerfShielder$Stub$Proxy;-><init>(Landroid/os/IBinder;)V
@@ -160,14 +160,14 @@
 
 # virtual methods
 .method public asBinder()Landroid/os/IBinder;
-    .locals 0
+    .registers 1
 
     .line 37
     return-object p0
 .end method
 
 .method public onTransact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
-    .locals 30
+    .registers 35
     .param p1, "code"    # I
     .param p2, "data"    # Landroid/os/Parcel;
     .param p3, "reply"    # Landroid/os/Parcel;
@@ -195,13 +195,13 @@
 
     const/4 v10, 0x1
 
-    if-eq v14, v0, :cond_15
+    if-eq v14, v0, :cond_3d4
 
     const/4 v9, 0x0
 
     const/4 v0, 0x0
 
-    packed-switch v14, :pswitch_data_0
+    packed-switch v14, :pswitch_data_3dc
 
     .line 531
     invoke-super/range {p0 .. p4}, Landroid/os/Binder;->onTransact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
@@ -211,7 +211,7 @@
     return v0
 
     .line 514
-    :pswitch_0
+    :pswitch_1a
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 516
@@ -225,7 +225,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_30
 
     .line 519
     sget-object v0, Landroid/content/Intent;->CREATOR:Landroid/os/Parcelable$Creator;
@@ -237,16 +237,16 @@
     check-cast v0, Landroid/content/Intent;
 
     .local v0, "_arg1":Landroid/content/Intent;
-    goto :goto_0
+    goto :goto_31
 
     .line 522
     .end local v0    # "_arg1":Landroid/content/Intent;
-    :cond_0
+    :cond_30
     nop
 
     .line 525
     .restart local v0    # "_arg1":Landroid/content/Intent;
-    :goto_0
+    :goto_31
     invoke-virtual/range {p2 .. p2}, Landroid/os/Parcel;->readLong()J
 
     move-result-wide v2
@@ -262,7 +262,7 @@
     .end local v0    # "_arg1":Landroid/content/Intent;
     .end local v1    # "_arg0":Ljava/lang/String;
     .end local v2    # "_arg2":J
-    :pswitch_1
+    :pswitch_39
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 508
@@ -281,7 +281,7 @@
 
     .line 481
     .end local v0    # "_arg0":Ljava/util/List;, "Ljava/util/List<Landroid/os/Bundle;>;"
-    :pswitch_2
+    :pswitch_46
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 483
@@ -289,7 +289,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_58
 
     .line 484
     sget-object v1, Landroid/os/Bundle;->CREATOR:Landroid/os/Parcelable$Creator;
@@ -301,21 +301,21 @@
     check-cast v1, Landroid/os/Bundle;
 
     .local v1, "_arg0":Landroid/os/Bundle;
-    goto :goto_1
+    goto :goto_59
 
     .line 487
     .end local v1    # "_arg0":Landroid/os/Bundle;
-    :cond_1
+    :cond_58
     move-object v1, v0
 
     .line 490
     .restart local v1    # "_arg0":Landroid/os/Bundle;
-    :goto_1
+    :goto_59
     invoke-virtual/range {p2 .. p2}, Landroid/os/Parcel;->readInt()I
 
     move-result v2
 
-    if-eqz v2, :cond_2
+    if-eqz v2, :cond_69
 
     .line 491
     sget-object v0, Landroid/os/statistics/E2EScenarioPayload;->CREATOR:Landroid/os/Parcelable$Creator;
@@ -328,18 +328,18 @@
 
     .line 494
     .local v2, "_arg1":Landroid/os/statistics/E2EScenarioPayload;
-    :goto_2
+    :goto_67
     move-object v2, v0
 
-    goto :goto_3
+    goto :goto_6a
 
     .end local v2    # "_arg1":Landroid/os/statistics/E2EScenarioPayload;
-    :cond_2
-    goto :goto_2
+    :cond_69
+    goto :goto_67
 
     .line 497
     .restart local v2    # "_arg1":Landroid/os/statistics/E2EScenarioPayload;
-    :goto_3
+    :goto_6a
     invoke-virtual/range {p2 .. p2}, Landroid/os/Parcel;->readInt()I
 
     move-result v6
@@ -371,7 +371,7 @@
     .end local v2    # "_arg1":Landroid/os/statistics/E2EScenarioPayload;
     .end local v6    # "_arg2":I
     .end local v7    # "_arg3":J
-    :pswitch_3
+    :pswitch_7c
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 456
@@ -379,7 +379,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_3
+    if-eqz v1, :cond_8e
 
     .line 457
     sget-object v1, Landroid/os/statistics/E2EScenario;->CREATOR:Landroid/os/Parcelable$Creator;
@@ -391,16 +391,16 @@
     check-cast v1, Landroid/os/statistics/E2EScenario;
 
     .local v1, "_arg0":Landroid/os/statistics/E2EScenario;
-    goto :goto_4
+    goto :goto_8f
 
     .line 460
     .end local v1    # "_arg0":Landroid/os/statistics/E2EScenario;
-    :cond_3
+    :cond_8e
     move-object v1, v0
 
     .line 463
     .restart local v1    # "_arg0":Landroid/os/statistics/E2EScenario;
-    :goto_4
+    :goto_8f
     invoke-virtual/range {p2 .. p2}, Landroid/os/Parcel;->readString()Ljava/lang/String;
 
     move-result-object v7
@@ -411,7 +411,7 @@
 
     move-result v2
 
-    if-eqz v2, :cond_4
+    if-eqz v2, :cond_a3
 
     .line 466
     sget-object v0, Landroid/os/statistics/E2EScenarioPayload;->CREATOR:Landroid/os/Parcelable$Creator;
@@ -424,18 +424,18 @@
 
     .line 469
     .local v3, "_arg2":Landroid/os/statistics/E2EScenarioPayload;
-    :goto_5
+    :goto_a1
     move-object v3, v0
 
-    goto :goto_6
+    goto :goto_a4
 
     .end local v3    # "_arg2":Landroid/os/statistics/E2EScenarioPayload;
-    :cond_4
-    goto :goto_5
+    :cond_a3
+    goto :goto_a1
 
     .line 472
     .restart local v3    # "_arg2":Landroid/os/statistics/E2EScenarioPayload;
-    :goto_6
+    :goto_a4
     invoke-virtual/range {p2 .. p2}, Landroid/os/Parcel;->readInt()I
 
     move-result v8
@@ -470,7 +470,7 @@
     .end local v7    # "_arg1":Ljava/lang/String;
     .end local v8    # "_arg3":I
     .end local v16    # "_arg4":J
-    :pswitch_4
+    :pswitch_b8
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 438
@@ -478,7 +478,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_5
+    if-eqz v1, :cond_ca
 
     .line 439
     sget-object v0, Landroid/os/Bundle;->CREATOR:Landroid/os/Parcelable$Creator;
@@ -490,16 +490,16 @@
     check-cast v0, Landroid/os/Bundle;
 
     .local v0, "_arg0":Landroid/os/Bundle;
-    goto :goto_7
+    goto :goto_cb
 
     .line 442
     .end local v0    # "_arg0":Landroid/os/Bundle;
-    :cond_5
+    :cond_ca
     nop
 
     .line 445
     .restart local v0    # "_arg0":Landroid/os/Bundle;
-    :goto_7
+    :goto_cb
     invoke-virtual/range {p2 .. p2}, Landroid/os/Parcel;->readInt()I
 
     move-result v1
@@ -524,7 +524,7 @@
     .end local v0    # "_arg0":Landroid/os/Bundle;
     .end local v1    # "_arg1":I
     .end local v2    # "_arg2":J
-    :pswitch_5
+    :pswitch_da
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 418
@@ -532,7 +532,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_6
+    if-eqz v1, :cond_ed
 
     .line 419
     sget-object v0, Landroid/os/statistics/E2EScenario;->CREATOR:Landroid/os/Parcelable$Creator;
@@ -545,18 +545,18 @@
 
     .line 422
     .local v1, "_arg0":Landroid/os/statistics/E2EScenario;
-    :goto_8
+    :goto_eb
     move-object v1, v0
 
-    goto :goto_9
+    goto :goto_ee
 
     .end local v1    # "_arg0":Landroid/os/statistics/E2EScenario;
-    :cond_6
-    goto :goto_8
+    :cond_ed
+    goto :goto_eb
 
     .line 425
     .restart local v1    # "_arg0":Landroid/os/statistics/E2EScenario;
-    :goto_9
+    :goto_ee
     invoke-virtual/range {p2 .. p2}, Landroid/os/Parcel;->readString()Ljava/lang/String;
 
     move-result-object v6
@@ -596,7 +596,7 @@
     .end local v6    # "_arg1":Ljava/lang/String;
     .end local v7    # "_arg2":I
     .end local v8    # "_arg3":J
-    :pswitch_6
+    :pswitch_105
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 375
@@ -604,7 +604,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_7
+    if-eqz v1, :cond_117
 
     .line 376
     sget-object v1, Landroid/os/statistics/E2EScenario;->CREATOR:Landroid/os/Parcelable$Creator;
@@ -616,21 +616,21 @@
     check-cast v1, Landroid/os/statistics/E2EScenario;
 
     .restart local v1    # "_arg0":Landroid/os/statistics/E2EScenario;
-    goto :goto_a
+    goto :goto_118
 
     .line 379
     .end local v1    # "_arg0":Landroid/os/statistics/E2EScenario;
-    :cond_7
+    :cond_117
     move-object v1, v0
 
     .line 382
     .restart local v1    # "_arg0":Landroid/os/statistics/E2EScenario;
-    :goto_a
+    :goto_118
     invoke-virtual/range {p2 .. p2}, Landroid/os/Parcel;->readInt()I
 
     move-result v2
 
-    if-eqz v2, :cond_8
+    if-eqz v2, :cond_127
 
     .line 383
     sget-object v2, Landroid/os/statistics/E2EScenarioSettings;->CREATOR:Landroid/os/Parcelable$Creator;
@@ -642,16 +642,16 @@
     check-cast v2, Landroid/os/statistics/E2EScenarioSettings;
 
     .local v2, "_arg1":Landroid/os/statistics/E2EScenarioSettings;
-    goto :goto_b
+    goto :goto_128
 
     .line 386
     .end local v2    # "_arg1":Landroid/os/statistics/E2EScenarioSettings;
-    :cond_8
+    :cond_127
     move-object v2, v0
 
     .line 389
     .restart local v2    # "_arg1":Landroid/os/statistics/E2EScenarioSettings;
-    :goto_b
+    :goto_128
     invoke-virtual/range {p2 .. p2}, Landroid/os/Parcel;->readString()Ljava/lang/String;
 
     move-result-object v16
@@ -662,7 +662,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_9
+    if-eqz v3, :cond_13c
 
     .line 392
     sget-object v0, Landroid/os/statistics/E2EScenarioPayload;->CREATOR:Landroid/os/Parcelable$Creator;
@@ -675,18 +675,18 @@
 
     .line 395
     .local v4, "_arg3":Landroid/os/statistics/E2EScenarioPayload;
-    :goto_c
+    :goto_13a
     move-object v4, v0
 
-    goto :goto_d
+    goto :goto_13d
 
     .end local v4    # "_arg3":Landroid/os/statistics/E2EScenarioPayload;
-    :cond_9
-    goto :goto_c
+    :cond_13c
+    goto :goto_13a
 
     .line 398
     .restart local v4    # "_arg3":Landroid/os/statistics/E2EScenarioPayload;
-    :goto_d
+    :goto_13d
     invoke-virtual/range {p2 .. p2}, Landroid/os/Parcel;->readInt()I
 
     move-result v17
@@ -703,18 +703,18 @@
 
     move-result v0
 
-    if-eqz v0, :cond_a
+    if-eqz v0, :cond_14d
 
     move v8, v10
 
-    goto :goto_e
+    goto :goto_14e
 
-    :cond_a
+    :cond_14d
     move v8, v9
 
     .line 403
     .local v8, "_arg6":Z
-    :goto_e
+    :goto_14e
     move-object v0, v13
 
     move-object/from16 v3, v16
@@ -732,7 +732,7 @@
     invoke-virtual/range {p3 .. p3}, Landroid/os/Parcel;->writeNoException()V
 
     .line 405
-    if-eqz v0, :cond_b
+    if-eqz v0, :cond_165
 
     .line 406
     invoke-virtual {v11, v10}, Landroid/os/Parcel;->writeInt(I)V
@@ -740,14 +740,14 @@
     .line 407
     invoke-virtual {v0, v11, v10}, Landroid/os/Bundle;->writeToParcel(Landroid/os/Parcel;I)V
 
-    goto :goto_f
+    goto :goto_168
 
     .line 410
-    :cond_b
+    :cond_165
     invoke-virtual {v11, v9}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 412
-    :goto_f
+    :goto_168
     return v10
 
     .line 359
@@ -759,7 +759,7 @@
     .end local v16    # "_arg2":Ljava/lang/String;
     .end local v17    # "_arg4":I
     .end local v18    # "_arg5":J
-    :pswitch_7
+    :pswitch_169
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 360
@@ -772,7 +772,7 @@
     invoke-virtual/range {p3 .. p3}, Landroid/os/Parcel;->writeNoException()V
 
     .line 362
-    if-eqz v0, :cond_c
+    if-eqz v0, :cond_17c
 
     .line 363
     invoke-virtual {v11, v10}, Landroid/os/Parcel;->writeInt(I)V
@@ -780,19 +780,19 @@
     .line 364
     invoke-virtual {v0, v11, v10}, Landroid/os/ParcelFileDescriptor;->writeToParcel(Landroid/os/Parcel;I)V
 
-    goto :goto_10
+    goto :goto_17f
 
     .line 367
-    :cond_c
+    :cond_17c
     invoke-virtual {v11, v9}, Landroid/os/Parcel;->writeInt(I)V
 
     .line 369
-    :goto_10
+    :goto_17f
     return v10
 
     .line 347
     .end local v0    # "_result":Landroid/os/ParcelFileDescriptor;
-    :pswitch_8
+    :pswitch_180
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 349
@@ -826,7 +826,7 @@
     .end local v0    # "_arg0":Ljava/lang/String;
     .end local v1    # "_arg1":Ljava/lang/String;
     .end local v2    # "_result":Z
-    :pswitch_9
+    :pswitch_196
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 335
@@ -867,7 +867,7 @@
     .end local v1    # "_arg1":Ljava/lang/String;
     .end local v2    # "_arg2":Ljava/lang/String;
     .end local v3    # "_result":Z
-    :pswitch_a
+    :pswitch_1b0
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 319
@@ -924,7 +924,7 @@
     .end local v16    # "_arg2":J
     .end local v18    # "_arg3":J
     .end local v20    # "_arg4":Ljava/lang/String;
-    :pswitch_b
+    :pswitch_1d4
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 310
@@ -944,7 +944,7 @@
 
     .line 299
     .end local v0    # "_result":J
-    :pswitch_c
+    :pswitch_1e2
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 301
@@ -971,7 +971,7 @@
     .line 284
     .end local v0    # "_arg0":Ljava/lang/String;
     .end local v1    # "_result":Z
-    :pswitch_d
+    :pswitch_1f4
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 286
@@ -979,7 +979,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_d
+    if-eqz v1, :cond_206
 
     .line 287
     sget-object v0, Landroid/content/pm/PackageInfo;->CREATOR:Landroid/os/Parcelable$Creator;
@@ -991,16 +991,16 @@
     check-cast v0, Landroid/content/pm/PackageInfo;
 
     .local v0, "_arg0":Landroid/content/pm/PackageInfo;
-    goto :goto_11
+    goto :goto_207
 
     .line 290
     .end local v0    # "_arg0":Landroid/content/pm/PackageInfo;
-    :cond_d
+    :cond_206
     nop
 
     .line 292
     .restart local v0    # "_arg0":Landroid/content/pm/PackageInfo;
-    :goto_11
+    :goto_207
     invoke-virtual {v13, v0}, Lcom/android/internal/app/IPerfShielder$Stub;->insertPackageInfo(Landroid/content/pm/PackageInfo;)Z
 
     move-result v1
@@ -1018,7 +1018,7 @@
     .line 272
     .end local v0    # "_arg0":Landroid/content/pm/PackageInfo;
     .end local v1    # "_result":Z
-    :pswitch_e
+    :pswitch_212
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 274
@@ -1052,7 +1052,7 @@
     .end local v0    # "_arg0":Ljava/lang/String;
     .end local v1    # "_arg1":Ljava/lang/String;
     .end local v2    # "_result":Z
-    :pswitch_f
+    :pswitch_228
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 253
@@ -1078,7 +1078,7 @@
 
     move-result v4
 
-    if-eqz v4, :cond_e
+    if-eqz v4, :cond_246
 
     .line 260
     sget-object v0, Landroid/os/Bundle;->CREATOR:Landroid/os/Parcelable$Creator;
@@ -1090,16 +1090,16 @@
     check-cast v0, Landroid/os/Bundle;
 
     .local v0, "_arg3":Landroid/os/Bundle;
-    goto :goto_12
+    goto :goto_247
 
     .line 263
     .end local v0    # "_arg3":Landroid/os/Bundle;
-    :cond_e
+    :cond_246
     nop
 
     .line 265
     .restart local v0    # "_arg3":Landroid/os/Bundle;
-    :goto_12
+    :goto_247
     invoke-virtual {v13, v1, v2, v3, v0}, Lcom/android/internal/app/IPerfShielder$Stub;->insertRedirectRule(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Landroid/os/Bundle;)Z
 
     move-result v4
@@ -1120,7 +1120,7 @@
     .end local v2    # "_arg1":Ljava/lang/String;
     .end local v3    # "_arg2":Ljava/lang/String;
     .end local v4    # "_result":Z
-    :pswitch_10
+    :pswitch_252
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 244
@@ -1140,7 +1140,7 @@
 
     .line 236
     .end local v0    # "_result":I
-    :pswitch_11
+    :pswitch_260
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 237
@@ -1153,7 +1153,7 @@
     return v10
 
     .line 227
-    :pswitch_12
+    :pswitch_26a
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 229
@@ -1173,7 +1173,7 @@
 
     .line 218
     .end local v0    # "_arg0":[Ljava/lang/String;
-    :pswitch_13
+    :pswitch_278
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 220
@@ -1193,7 +1193,7 @@
 
     .line 210
     .end local v0    # "_arg0":[Ljava/lang/String;
-    :pswitch_14
+    :pswitch_286
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 212
@@ -1201,13 +1201,13 @@
 
     move-result v0
 
-    if-eqz v0, :cond_f
+    if-eqz v0, :cond_291
 
     move v9, v10
 
     nop
 
-    :cond_f
+    :cond_291
     move v0, v9
 
     .line 213
@@ -1219,7 +1219,7 @@
 
     .line 202
     .end local v0    # "_arg0":Z
-    :pswitch_15
+    :pswitch_296
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 204
@@ -1227,13 +1227,13 @@
 
     move-result v0
 
-    if-eqz v0, :cond_10
+    if-eqz v0, :cond_2a1
 
     move v9, v10
 
     nop
 
-    :cond_10
+    :cond_2a1
     move v0, v9
 
     .line 205
@@ -1245,7 +1245,7 @@
 
     .line 195
     .end local v0    # "_arg0":Z
-    :pswitch_16
+    :pswitch_2a6
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 196
@@ -1258,7 +1258,7 @@
     return v10
 
     .line 180
-    :pswitch_17
+    :pswitch_2b0
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 182
@@ -1266,7 +1266,7 @@
 
     move-result v1
 
-    if-eqz v1, :cond_11
+    if-eqz v1, :cond_2c2
 
     .line 183
     sget-object v0, Lcom/android/internal/app/MiuiServicePriority;->CREATOR:Landroid/os/Parcelable$Creator;
@@ -1278,27 +1278,27 @@
     check-cast v0, Lcom/android/internal/app/MiuiServicePriority;
 
     .local v0, "_arg0":Lcom/android/internal/app/MiuiServicePriority;
-    goto :goto_13
+    goto :goto_2c3
 
     .line 186
     .end local v0    # "_arg0":Lcom/android/internal/app/MiuiServicePriority;
-    :cond_11
+    :cond_2c2
     nop
 
     .line 189
     .restart local v0    # "_arg0":Lcom/android/internal/app/MiuiServicePriority;
-    :goto_13
+    :goto_2c3
     invoke-virtual/range {p2 .. p2}, Landroid/os/Parcel;->readInt()I
 
     move-result v1
 
-    if-eqz v1, :cond_12
+    if-eqz v1, :cond_2cb
 
     move v9, v10
 
     nop
 
-    :cond_12
+    :cond_2cb
     move v1, v9
 
     .line 190
@@ -1311,7 +1311,7 @@
     .line 170
     .end local v0    # "_arg0":Lcom/android/internal/app/MiuiServicePriority;
     .end local v1    # "_arg1":Z
-    :pswitch_18
+    :pswitch_2d0
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 172
@@ -1337,7 +1337,7 @@
     .line 162
     .end local v0    # "_arg0":Ljava/util/List;, "Ljava/util/List<Lcom/android/internal/app/MiuiServicePriority;>;"
     .end local v1    # "_arg1":J
-    :pswitch_19
+    :pswitch_2e1
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 164
@@ -1356,7 +1356,7 @@
 
     .line 152
     .end local v0    # "_arg0":Ljava/util/List;, "Ljava/util/List<Lcom/android/internal/app/MiuiServicePriority;>;"
-    :pswitch_1a
+    :pswitch_2ee
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 154
@@ -1383,7 +1383,7 @@
     .line 142
     .end local v0    # "_arg0":[I
     .end local v1    # "_result":Ljava/util/List;, "Ljava/util/List<Landroid/os/Bundle;>;"
-    :pswitch_1b
+    :pswitch_300
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 144
@@ -1410,7 +1410,7 @@
     .line 134
     .end local v0    # "_arg0":[I
     .end local v1    # "_result":Ljava/util/List;, "Ljava/util/List<Landroid/os/Bundle;>;"
-    :pswitch_1c
+    :pswitch_312
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 135
@@ -1430,7 +1430,7 @@
 
     .line 119
     .end local v0    # "_result":Ljava/util/List;, "Ljava/util/List<Landroid/os/Bundle;>;"
-    :pswitch_1d
+    :pswitch_320
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 121
@@ -1471,7 +1471,7 @@
     .end local v1    # "_arg1":I
     .end local v2    # "_arg2":I
     .end local v3    # "_arg3":Ljava/lang/String;
-    :pswitch_1e
+    :pswitch_33a
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 111
@@ -1498,7 +1498,7 @@
     .line 99
     .end local v0    # "_arg0":I
     .end local v1    # "_result":Ljava/lang/String;
-    :pswitch_1f
+    :pswitch_34c
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 101
@@ -1522,7 +1522,7 @@
     .line 91
     .end local v0    # "_arg0":I
     .end local v1    # "_arg1":I
-    :pswitch_20
+    :pswitch_35b
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 93
@@ -1539,7 +1539,7 @@
 
     .line 73
     .end local v0    # "_arg0":I
-    :pswitch_21
+    :pswitch_366
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 75
@@ -1571,34 +1571,34 @@
 
     move-result v0
 
-    if-eqz v0, :cond_13
+    if-eqz v0, :cond_381
 
     move v7, v10
 
-    goto :goto_14
+    goto :goto_382
 
-    :cond_13
+    :cond_381
     move v7, v9
 
     .line 85
     .local v7, "_arg4":Z
-    :goto_14
+    :goto_382
     invoke-virtual/range {p2 .. p2}, Landroid/os/Parcel;->readInt()I
 
     move-result v0
 
-    if-eqz v0, :cond_14
+    if-eqz v0, :cond_38a
 
     move v8, v10
 
-    goto :goto_15
+    goto :goto_38b
 
-    :cond_14
+    :cond_38a
     move v8, v9
 
     .line 86
     .local v8, "_arg5":Z
-    :goto_15
+    :goto_38b
     move-object v0, v13
 
     move-object/from16 v1, v16
@@ -1621,7 +1621,7 @@
     .end local v17    # "_arg1":Ljava/lang/String;
     .end local v18    # "_arg2":J
     .end local v20    # "_arg3":J
-    :pswitch_22
+    :pswitch_398
     invoke-virtual {v15, v12}, Landroid/os/Parcel;->enforceInterface(Ljava/lang/String;)V
 
     .line 53
@@ -1715,7 +1715,7 @@
     .end local v25    # "_arg6":I
     .end local v26    # "_arg7":J
     .restart local v12    # "descriptor":Ljava/lang/String;
-    :cond_15
+    :cond_3d4
     move/from16 v28, v10
 
     move-object v13, v11
@@ -1729,42 +1729,42 @@
     .line 47
     return v28
 
-    :pswitch_data_0
+    :pswitch_data_3dc
     .packed-switch 0x1
-        :pswitch_22
-        :pswitch_21
-        :pswitch_20
-        :pswitch_1f
-        :pswitch_1e
-        :pswitch_1d
-        :pswitch_1c
-        :pswitch_1b
+        :pswitch_398
+        :pswitch_366
+        :pswitch_35b
+        :pswitch_34c
+        :pswitch_33a
+        :pswitch_320
+        :pswitch_312
+        :pswitch_300
+        :pswitch_2ee
+        :pswitch_2e1
+        :pswitch_2d0
+        :pswitch_2b0
+        :pswitch_2a6
+        :pswitch_296
+        :pswitch_286
+        :pswitch_278
+        :pswitch_26a
+        :pswitch_260
+        :pswitch_252
+        :pswitch_228
+        :pswitch_212
+        :pswitch_1f4
+        :pswitch_1e2
+        :pswitch_1d4
+        :pswitch_1b0
+        :pswitch_196
+        :pswitch_180
+        :pswitch_169
+        :pswitch_105
+        :pswitch_da
+        :pswitch_b8
+        :pswitch_7c
+        :pswitch_46
+        :pswitch_39
         :pswitch_1a
-        :pswitch_19
-        :pswitch_18
-        :pswitch_17
-        :pswitch_16
-        :pswitch_15
-        :pswitch_14
-        :pswitch_13
-        :pswitch_12
-        :pswitch_11
-        :pswitch_10
-        :pswitch_f
-        :pswitch_e
-        :pswitch_d
-        :pswitch_c
-        :pswitch_b
-        :pswitch_a
-        :pswitch_9
-        :pswitch_8
-        :pswitch_7
-        :pswitch_6
-        :pswitch_5
-        :pswitch_4
-        :pswitch_3
-        :pswitch_2
-        :pswitch_1
-        :pswitch_0
     .end packed-switch
 .end method

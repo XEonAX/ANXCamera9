@@ -6,8 +6,8 @@
         <item quantity="few">Focalizat. %d fețe detectate</item>
     </plurals>
     <plurals name="toast_burst_snap_finished_summary">
-        <item quantity="other">Burst shot done, %1$s photos taken</item>
-        <item quantity="one">Burst shot done, %1$s photo taken</item>
-        <item quantity="few">Burst shot done, %1$s photos taken</item>
+        <item quantity="other">Captură în rafale gata, %1$s fotografii făcute</item>
+        <item quantity="one">Captură în rafale gata, %1$s fotografie făcută</item>
+        <item quantity="few">Captură în rafale gata, %1$s fotografii făcute</item>
     </plurals>
 </resources>

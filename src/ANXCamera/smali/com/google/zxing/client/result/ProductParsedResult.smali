@@ -11,7 +11,7 @@
 
 # direct methods
 .method constructor <init>(Ljava/lang/String;)V
-    .locals 0
+    .registers 2
     .param p1, "productID"    # Ljava/lang/String;
 
     .line 28
@@ -22,7 +22,7 @@
 .end method
 
 .method constructor <init>(Ljava/lang/String;Ljava/lang/String;)V
-    .locals 1
+    .registers 4
     .param p1, "productID"    # Ljava/lang/String;
     .param p2, "normalizedProductID"    # Ljava/lang/String;
 
@@ -44,7 +44,7 @@
 
 # virtual methods
 .method public getDisplayResult()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 47
     iget-object v0, p0, Lcom/google/zxing/client/result/ProductParsedResult;->productID:Ljava/lang/String;
@@ -53,7 +53,7 @@
 .end method
 
 .method public getNormalizedProductID()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 42
     iget-object v0, p0, Lcom/google/zxing/client/result/ProductParsedResult;->normalizedProductID:Ljava/lang/String;
@@ -62,7 +62,7 @@
 .end method
 
 .method public getProductID()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 38
     iget-object v0, p0, Lcom/google/zxing/client/result/ProductParsedResult;->productID:Ljava/lang/String;

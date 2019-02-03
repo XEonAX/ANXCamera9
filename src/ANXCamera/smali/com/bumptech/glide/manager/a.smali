@@ -7,9 +7,9 @@
 
 
 # instance fields
-.field private lE:Z
+.field private lD:Z
 
-.field private final mh:Ljava/util/Set;
+.field private final mg:Ljava/util/Set;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/Set<",
@@ -19,7 +19,7 @@
     .end annotation
 .end field
 
-.field private mi:Z
+.field private mh:Z
 
 
 # direct methods
@@ -39,7 +39,7 @@
 
     move-result-object v0
 
-    iput-object v0, p0, Lcom/bumptech/glide/manager/a;->mh:Ljava/util/Set;
+    iput-object v0, p0, Lcom/bumptech/glide/manager/a;->mg:Ljava/util/Set;
 
     .line 14
     return-void
@@ -55,12 +55,12 @@
     .end param
 
     .line 32
-    iget-object v0, p0, Lcom/bumptech/glide/manager/a;->mh:Ljava/util/Set;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/a;->mg:Ljava/util/Set;
 
     invoke-interface {v0, p1}, Ljava/util/Set;->add(Ljava/lang/Object;)Z
 
     .line 34
-    iget-boolean v0, p0, Lcom/bumptech/glide/manager/a;->mi:Z
+    iget-boolean v0, p0, Lcom/bumptech/glide/manager/a;->mh:Z
 
     if-eqz v0, :cond_0
 
@@ -71,7 +71,7 @@
 
     .line 36
     :cond_0
-    iget-boolean v0, p0, Lcom/bumptech/glide/manager/a;->lE:Z
+    iget-boolean v0, p0, Lcom/bumptech/glide/manager/a;->lD:Z
 
     if-eqz v0, :cond_1
 
@@ -97,7 +97,7 @@
     .end param
 
     .line 45
-    iget-object v0, p0, Lcom/bumptech/glide/manager/a;->mh:Ljava/util/Set;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/a;->mg:Ljava/util/Set;
 
     invoke-interface {v0, p1}, Ljava/util/Set;->remove(Ljava/lang/Object;)Z
 
@@ -111,10 +111,10 @@
     .line 63
     const/4 v0, 0x1
 
-    iput-boolean v0, p0, Lcom/bumptech/glide/manager/a;->mi:Z
+    iput-boolean v0, p0, Lcom/bumptech/glide/manager/a;->mh:Z
 
     .line 64
-    iget-object v0, p0, Lcom/bumptech/glide/manager/a;->mh:Ljava/util/Set;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/a;->mg:Ljava/util/Set;
 
     invoke-static {v0}, Lcom/bumptech/glide/util/k;->c(Ljava/util/Collection;)Ljava/util/List;
 
@@ -154,10 +154,10 @@
     .line 49
     const/4 v0, 0x1
 
-    iput-boolean v0, p0, Lcom/bumptech/glide/manager/a;->lE:Z
+    iput-boolean v0, p0, Lcom/bumptech/glide/manager/a;->lD:Z
 
     .line 50
-    iget-object v0, p0, Lcom/bumptech/glide/manager/a;->mh:Ljava/util/Set;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/a;->mg:Ljava/util/Set;
 
     invoke-static {v0}, Lcom/bumptech/glide/util/k;->c(Ljava/util/Collection;)Ljava/util/List;
 
@@ -197,10 +197,10 @@
     .line 56
     const/4 v0, 0x0
 
-    iput-boolean v0, p0, Lcom/bumptech/glide/manager/a;->lE:Z
+    iput-boolean v0, p0, Lcom/bumptech/glide/manager/a;->lD:Z
 
     .line 57
-    iget-object v0, p0, Lcom/bumptech/glide/manager/a;->mh:Ljava/util/Set;
+    iget-object v0, p0, Lcom/bumptech/glide/manager/a;->mg:Ljava/util/Set;
 
     invoke-static {v0}, Lcom/bumptech/glide/util/k;->c(Ljava/util/Collection;)Ljava/util/List;
 

@@ -36,7 +36,7 @@
 .method constructor <init>(Lcom/android/camera/ActivityBase;J)V
     .locals 0
 
-    .line 327
+    .line 329
     iput-object p1, p0, Lcom/android/camera/ActivityBase$3;->this$0:Lcom/android/camera/ActivityBase;
 
     iput-wide p2, p0, Lcom/android/camera/ActivityBase$3;->val$start:J
@@ -51,7 +51,7 @@
 .method public accept(Landroid/graphics/Bitmap;)V
     .locals 5
 
-    .line 330
+    .line 332
     if-eqz p1, :cond_0
 
     invoke-virtual {p1}, Landroid/graphics/Bitmap;->isRecycled()Z
@@ -60,7 +60,7 @@
 
     if-nez v0, :cond_0
 
-    .line 331
+    .line 333
     iget-object v0, p0, Lcom/android/camera/ActivityBase$3;->this$0:Lcom/android/camera/ActivityBase;
 
     invoke-virtual {v0}, Lcom/android/camera/ActivityBase;->getApplicationContext()Landroid/content/Context;
@@ -71,24 +71,24 @@
 
     move-result-object v0
 
-    .line 332
+    .line 334
     iget-object v1, p0, Lcom/android/camera/ActivityBase$3;->this$0:Lcom/android/camera/ActivityBase;
 
     iget-object v1, v1, Lcom/android/camera/ActivityBase;->mGLCoverView:Landroid/widget/ImageView;
 
-    .line 333
+    .line 335
     invoke-virtual {v1}, Landroid/widget/ImageView;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
     move-result-object v1
 
     check-cast v1, Landroid/view/ViewGroup$MarginLayoutParams;
 
-    .line 334
+    .line 336
     iget v2, v0, Landroid/graphics/Rect;->top:I
 
     iput v2, v1, Landroid/view/ViewGroup$MarginLayoutParams;->topMargin:I
 
-    .line 335
+    .line 337
     iget-object v1, p0, Lcom/android/camera/ActivityBase$3;->this$0:Lcom/android/camera/ActivityBase;
 
     iget-object v1, v1, Lcom/android/camera/ActivityBase;->mGLCoverView:Landroid/widget/ImageView;
@@ -101,7 +101,7 @@
 
     invoke-virtual {v1, v2}, Landroid/widget/ImageView;->setMaxWidth(I)V
 
-    .line 336
+    .line 338
     iget-object v1, p0, Lcom/android/camera/ActivityBase$3;->this$0:Lcom/android/camera/ActivityBase;
 
     iget-object v1, v1, Lcom/android/camera/ActivityBase;->mGLCoverView:Landroid/widget/ImageView;
@@ -114,14 +114,14 @@
 
     invoke-virtual {v1, v2}, Landroid/widget/ImageView;->setMaxHeight(I)V
 
-    .line 337
+    .line 339
     iget-object v0, p0, Lcom/android/camera/ActivityBase$3;->this$0:Lcom/android/camera/ActivityBase;
 
     iget-object v0, v0, Lcom/android/camera/ActivityBase;->mGLCoverView:Landroid/widget/ImageView;
 
     invoke-virtual {v0, p1}, Landroid/widget/ImageView;->setImageBitmap(Landroid/graphics/Bitmap;)V
 
-    .line 338
+    .line 340
     iget-object p1, p0, Lcom/android/camera/ActivityBase$3;->this$0:Lcom/android/camera/ActivityBase;
 
     iget-object p1, p1, Lcom/android/camera/ActivityBase;->mGLCoverView:Landroid/widget/ImageView;
@@ -130,7 +130,7 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setAlpha(F)V
 
-    .line 339
+    .line 341
     iget-object p1, p0, Lcom/android/camera/ActivityBase$3;->this$0:Lcom/android/camera/ActivityBase;
 
     iget-object p1, p1, Lcom/android/camera/ActivityBase;->mGLCoverView:Landroid/widget/ImageView;
@@ -139,10 +139,10 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setVisibility(I)V
 
-    .line 340
+    .line 342
     goto :goto_0
 
-    .line 341
+    .line 343
     :cond_0
     iget-object p1, p0, Lcom/android/camera/ActivityBase$3;->this$0:Lcom/android/camera/ActivityBase;
 
@@ -152,7 +152,7 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/ImageView;->setVisibility(I)V
 
-    .line 343
+    .line 345
     :goto_0
     const-string p1, "ActivityBase"
 
@@ -164,7 +164,7 @@
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 344
+    .line 346
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v1
@@ -183,10 +183,10 @@
 
     move-result-object v0
 
-    .line 343
+    .line 345
     invoke-static {p1, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 345
+    .line 347
     return-void
 .end method
 
@@ -198,7 +198,7 @@
         }
     .end annotation
 
-    .line 327
+    .line 329
     check-cast p1, Landroid/graphics/Bitmap;
 
     invoke-virtual {p0, p1}, Lcom/android/camera/ActivityBase$3;->accept(Landroid/graphics/Bitmap;)V

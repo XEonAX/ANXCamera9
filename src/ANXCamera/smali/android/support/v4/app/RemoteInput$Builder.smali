@@ -28,7 +28,7 @@
 
 # direct methods
 .method public constructor <init>(Ljava/lang/String;)V
-    .locals 2
+    .registers 4
     .param p1, "resultKey"    # Ljava/lang/String;
 
     .line 105
@@ -47,7 +47,7 @@
     iput-object v0, p0, Landroid/support/v4/app/RemoteInput$Builder;->mExtras:Landroid/os/Bundle;
 
     .line 106
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_12
 
     .line 109
     iput-object p1, p0, Landroid/support/v4/app/RemoteInput$Builder;->mResultKey:Ljava/lang/String;
@@ -56,7 +56,7 @@
     return-void
 
     .line 107
-    :cond_0
+    :cond_12
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "Result key can\'t be null"
@@ -69,11 +69,11 @@
 
 # virtual methods
 .method public addExtras(Landroid/os/Bundle;)Landroid/support/v4/app/RemoteInput$Builder;
-    .locals 1
+    .registers 3
     .param p1, "extras"    # Landroid/os/Bundle;
 
     .line 156
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_7
 
     .line 157
     iget-object v0, p0, Landroid/support/v4/app/RemoteInput$Builder;->mExtras:Landroid/os/Bundle;
@@ -81,12 +81,12 @@
     invoke-virtual {v0, p1}, Landroid/os/Bundle;->putAll(Landroid/os/Bundle;)V
 
     .line 159
-    :cond_0
+    :cond_7
     return-object p0
 .end method
 
 .method public build()Landroid/support/v4/app/RemoteInput;
-    .locals 7
+    .registers 8
 
     .line 176
     new-instance v6, Landroid/support/v4/app/RemoteInput;
@@ -109,7 +109,7 @@
 .end method
 
 .method public getExtras()Landroid/os/Bundle;
-    .locals 1
+    .registers 2
 
     .line 168
     iget-object v0, p0, Landroid/support/v4/app/RemoteInput$Builder;->mExtras:Landroid/os/Bundle;
@@ -118,7 +118,7 @@
 .end method
 
 .method public setAllowFreeFormInput(Z)Landroid/support/v4/app/RemoteInput$Builder;
-    .locals 0
+    .registers 2
     .param p1, "allowFreeFormInput"    # Z
 
     .line 144
@@ -129,7 +129,7 @@
 .end method
 
 .method public setChoices([Ljava/lang/CharSequence;)Landroid/support/v4/app/RemoteInput$Builder;
-    .locals 0
+    .registers 2
     .param p1, "choices"    # [Ljava/lang/CharSequence;
 
     .line 130
@@ -140,7 +140,7 @@
 .end method
 
 .method public setLabel(Ljava/lang/CharSequence;)Landroid/support/v4/app/RemoteInput$Builder;
-    .locals 0
+    .registers 2
     .param p1, "label"    # Ljava/lang/CharSequence;
 
     .line 118

@@ -43,10 +43,10 @@
 .method public constructor <init>()V
     .locals 1
 
-    .line 55
+    .line 56
     invoke-direct {p0}, Lcom/android/camera/fragment/BaseFragment;-><init>()V
 
-    .line 67
+    .line 68
     const/4 v0, -0x1
 
     iput v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentAdjustType:I
@@ -57,7 +57,7 @@
 .method static synthetic access$002(Lcom/android/camera/fragment/manually/FragmentManually;Z)Z
     .locals 0
 
-    .line 55
+    .line 56
     iput-boolean p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIsHiding:Z
 
     return p1
@@ -66,7 +66,7 @@
 .method static synthetic access$100(Lcom/android/camera/fragment/manually/FragmentManually;)Landroid/view/ViewGroup;
     .locals 0
 
-    .line 55
+    .line 56
     iget-object p0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyParent:Landroid/view/ViewGroup;
 
     return-object p0
@@ -75,7 +75,7 @@
 .method static synthetic access$200(Lcom/android/camera/fragment/manually/FragmentManually;)Landroid/widget/ImageView;
     .locals 0
 
-    .line 55
+    .line 56
     iget-object p0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIndicatorButton:Landroid/widget/ImageView;
 
     return-object p0
@@ -84,7 +84,7 @@
 .method static synthetic access$300(Lcom/android/camera/fragment/manually/FragmentManually;)Landroid/support/v7/widget/RecyclerView;
     .locals 0
 
-    .line 55
+    .line 56
     iget-object p0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     return-object p0
@@ -93,7 +93,7 @@
 .method private adjustViewBackground(I)V
     .locals 1
 
-    .line 576
+    .line 577
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemRunning()Lcom/android/camera/data/data/runing/DataItemRunning;
 
     move-result-object p1
@@ -102,7 +102,7 @@
 
     move-result p1
 
-    .line 578
+    .line 579
     const/4 v0, 0x3
 
     if-eq p1, v0, :cond_0
@@ -111,27 +111,27 @@
 
     goto :goto_0
 
-    .line 580
+    .line 581
     :pswitch_0
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerViewLayout:Landroid/view/ViewGroup;
 
-    const v0, 0x7f0a0048
+    const v0, 0x7f0b0048
 
     invoke-virtual {p1, v0}, Landroid/view/ViewGroup;->setBackgroundResource(I)V
 
-    .line 581
+    .line 582
     goto :goto_0
 
-    .line 585
+    .line 586
     :cond_0
     :pswitch_1
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerViewLayout:Landroid/view/ViewGroup;
 
-    const v0, 0x7f0a0049
+    const v0, 0x7f0b0049
 
     invoke-virtual {p1, v0}, Landroid/view/ViewGroup;->setBackgroundResource(I)V
 
-    .line 588
+    .line 589
     :goto_0
     return-void
 
@@ -147,7 +147,7 @@
 .method private getExtraFragment()Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
     .locals 1
 
-    .line 538
+    .line 539
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mFragmentManuallyExtra:Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
     if-eqz v0, :cond_0
@@ -160,12 +160,12 @@
 
     if-eqz v0, :cond_0
 
-    .line 539
+    .line 540
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mFragmentManuallyExtra:Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
     return-object v0
 
-    .line 541
+    .line 542
     :cond_0
     const/4 v0, 0x0
 
@@ -175,7 +175,7 @@
 .method private hideTips()V
     .locals 2
 
-    .line 235
+    .line 236
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -188,13 +188,13 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;
 
-    .line 236
+    .line 237
     if-eqz v0, :cond_0
 
-    .line 237
+    .line 238
     invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;->directlyHideTips()V
 
-    .line 239
+    .line 240
     :cond_0
     return-void
 .end method
@@ -202,17 +202,17 @@
 .method private initManually()V
     .locals 4
 
-    .line 492
+    .line 493
     invoke-direct {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->initManuallyDataList()Ljava/util/List;
 
-    .line 493
+    .line 494
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mDecoration:Lcom/android/camera/fragment/manually/ManuallyDecoration;
 
     invoke-virtual {v0, v1}, Landroid/support/v7/widget/RecyclerView;->removeItemDecoration(Landroid/support/v7/widget/RecyclerView$ItemDecoration;)V
 
-    .line 494
+    .line 495
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mDecoration:Lcom/android/camera/fragment/manually/ManuallyDecoration;
 
     iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyComponents:Ljava/util/List;
@@ -223,14 +223,14 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera/fragment/manually/ManuallyDecoration;->setStyle(I)V
 
-    .line 495
+    .line 496
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mDecoration:Lcom/android/camera/fragment/manually/ManuallyDecoration;
 
     invoke-virtual {v0, v1}, Landroid/support/v7/widget/RecyclerView;->addItemDecoration(Landroid/support/v7/widget/RecyclerView$ItemDecoration;)V
 
-    .line 496
+    .line 497
     new-instance v0, Lcom/android/camera/fragment/manually/adapter/ManuallyAdapter;
 
     iget v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentMode:I
@@ -239,19 +239,19 @@
 
     invoke-direct {v0, v1, p0, v2}, Lcom/android/camera/fragment/manually/adapter/ManuallyAdapter;-><init>(ILandroid/view/View$OnClickListener;Ljava/util/List;)V
 
-    .line 498
+    .line 499
     iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     invoke-virtual {v1}, Landroid/support/v7/widget/RecyclerView;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
     move-result-object v1
 
-    .line 499
+    .line 500
     invoke-virtual {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->getResources()Landroid/content/res/Resources;
 
     move-result-object v2
 
-    const v3, 0x7f090013
+    const v3, 0x7f0a0013
 
     invoke-virtual {v2, v3}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -259,29 +259,29 @@
 
     iput v2, v1, Landroid/view/ViewGroup$LayoutParams;->height:I
 
-    .line 501
+    .line 502
     invoke-direct {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->getExtraFragment()Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
     move-result-object v1
 
-    .line 502
+    .line 503
     if-eqz v1, :cond_0
 
-    .line 503
+    .line 504
     invoke-virtual {v1}, Lcom/android/camera/fragment/manually/FragmentManuallyExtra;->updateData()V
 
-    .line 504
+    .line 505
     invoke-virtual {v1}, Lcom/android/camera/fragment/manually/FragmentManuallyExtra;->getCurrentTitle()I
 
     move-result v1
 
     invoke-virtual {v0, v1}, Lcom/android/camera/fragment/manually/adapter/ManuallyAdapter;->setSelectedTitle(I)V
 
-    .line 507
+    .line 508
     :cond_0
     iput-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mAdapter:Landroid/support/v7/widget/RecyclerView$Adapter;
 
-    .line 508
+    .line 509
     return-void
 .end method
 
@@ -296,12 +296,12 @@
         }
     .end annotation
 
-    .line 295
+    .line 296
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyComponents:Ljava/util/List;
 
     if-nez v0, :cond_0
 
-    .line 296
+    .line 297
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
@@ -310,19 +310,19 @@
 
     goto :goto_0
 
-    .line 298
+    .line 299
     :cond_0
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyComponents:Ljava/util/List;
 
     invoke-interface {v0}, Ljava/util/List;->clear()V
 
-    .line 301
+    .line 302
     :goto_0
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemConfig()Lcom/android/camera/data/data/config/DataItemConfig;
 
     move-result-object v0
 
-    .line 303
+    .line 304
     iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyComponents:Ljava/util/List;
 
     new-instance v2, Lcom/android/camera/data/data/config/ComponentManuallyWB;
@@ -331,14 +331,14 @@
 
     invoke-interface {v1, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 304
-    invoke-static {}, Lcom/mi/config/b;->gr()Z
+    .line 305
+    invoke-static {}, Lcom/mi/config/b;->gJ()Z
 
     move-result v1
 
     if-eqz v1, :cond_1
 
-    .line 305
+    .line 306
     iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyComponents:Ljava/util/List;
 
     new-instance v2, Lcom/android/camera/data/data/config/ComponentManuallyFocus;
@@ -347,7 +347,7 @@
 
     invoke-interface {v1, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 306
+    .line 307
     iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyComponents:Ljava/util/List;
 
     new-instance v2, Lcom/android/camera/data/data/config/ComponentManuallyET;
@@ -356,7 +356,7 @@
 
     invoke-interface {v1, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 308
+    .line 309
     :cond_1
     iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyComponents:Ljava/util/List;
 
@@ -366,14 +366,14 @@
 
     invoke-interface {v1, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 309
+    .line 310
     invoke-static {}, Lcom/android/camera/CameraSettings;->isSupportedOpticalZoom()Z
 
     move-result v1
 
     if-eqz v1, :cond_2
 
-    .line 310
+    .line 311
     iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyComponents:Ljava/util/List;
 
     new-instance v2, Lcom/android/camera/data/data/config/ComponentManuallyDualLens;
@@ -382,7 +382,7 @@
 
     invoke-interface {v1, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 312
+    .line 313
     :cond_2
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyComponents:Ljava/util/List;
 
@@ -392,66 +392,66 @@
 .method private initRecyclerView(ILcom/android/camera/fragment/manually/ManuallyListener;)I
     .locals 1
 
-    .line 427
+    .line 428
     iput p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentAdjustType:I
 
-    .line 429
+    .line 430
     packed-switch p1, :pswitch_data_0
 
     goto :goto_0
 
-    .line 446
+    .line 447
     :pswitch_0
     const/4 p1, 0x3
 
     iput p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentAdjustType:I
 
-    .line 447
+    .line 448
     invoke-direct {p0, p2}, Lcom/android/camera/fragment/manually/FragmentManually;->initTilt(Lcom/android/camera/fragment/manually/ManuallyListener;)V
 
     goto :goto_0
 
-    .line 441
+    .line 442
     :pswitch_1
     const/4 p1, 0x2
 
     iput p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentAdjustType:I
 
-    .line 442
+    .line 443
     invoke-direct {p0, p2}, Lcom/android/camera/fragment/manually/FragmentManually;->initScene(Lcom/android/camera/fragment/manually/ManuallyListener;)V
 
-    .line 443
+    .line 444
     goto :goto_0
 
-    .line 436
+    .line 437
     :pswitch_2
     const/4 p1, 0x1
 
     iput p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentAdjustType:I
 
-    .line 437
+    .line 438
     invoke-direct {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->initManually()V
 
-    .line 438
+    .line 439
     goto :goto_0
 
-    .line 431
+    .line 432
     :pswitch_3
     const/4 p1, 0x0
 
     iput p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentAdjustType:I
 
-    .line 432
+    .line 433
     iget-object p2, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyParent:Landroid/view/ViewGroup;
 
     const/4 v0, 0x4
 
     invoke-virtual {p2, v0}, Landroid/view/ViewGroup;->setVisibility(I)V
 
-    .line 433
+    .line 434
     return p1
 
-    .line 450
+    .line 451
     :goto_0
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
@@ -475,14 +475,14 @@
 .method private initScene(Lcom/android/camera/fragment/manually/ManuallyListener;)V
     .locals 5
 
-    .line 511
+    .line 512
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mDecoration:Lcom/android/camera/fragment/manually/ManuallyDecoration;
 
     invoke-virtual {v0, v1}, Landroid/support/v7/widget/RecyclerView;->removeItemDecoration(Landroid/support/v7/widget/RecyclerView$ItemDecoration;)V
 
-    .line 513
+    .line 514
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemRunning()Lcom/android/camera/data/data/runing/DataItemRunning;
 
     move-result-object v0
@@ -491,12 +491,12 @@
 
     move-result-object v0
 
-    .line 514
+    .line 515
     new-instance v1, Lcom/android/camera/fragment/manually/adapter/ExtraRecyclerViewAdapter;
 
     iget v2, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentMode:I
 
-    .line 518
+    .line 519
     invoke-virtual {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->getResources()Landroid/content/res/Resources;
 
     move-result-object v3
@@ -517,19 +517,19 @@
 
     invoke-direct {v1, v0, v2, p1, v3}, Lcom/android/camera/fragment/manually/adapter/ExtraRecyclerViewAdapter;-><init>(Lcom/android/camera/data/data/ComponentData;ILcom/android/camera/fragment/manually/ManuallyListener;I)V
 
-    .line 519
+    .line 520
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     invoke-virtual {p1}, Landroid/support/v7/widget/RecyclerView;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
     move-result-object p1
 
-    .line 520
+    .line 521
     invoke-virtual {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->getResources()Landroid/content/res/Resources;
 
     move-result-object v0
 
-    const v2, 0x7f090014
+    const v2, 0x7f0a0014
 
     invoke-virtual {v0, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -537,17 +537,17 @@
 
     iput v0, p1, Landroid/view/ViewGroup$LayoutParams;->height:I
 
-    .line 521
+    .line 522
     iput-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mAdapter:Landroid/support/v7/widget/RecyclerView$Adapter;
 
-    .line 522
+    .line 523
     return-void
 .end method
 
 .method private initTilt(Lcom/android/camera/fragment/manually/ManuallyListener;)V
     .locals 5
 
-    .line 525
+    .line 526
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemRunning()Lcom/android/camera/data/data/runing/DataItemRunning;
 
     move-result-object v0
@@ -556,14 +556,14 @@
 
     move-result-object v0
 
-    .line 526
+    .line 527
     iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     iget-object v2, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mDecoration:Lcom/android/camera/fragment/manually/ManuallyDecoration;
 
     invoke-virtual {v1, v2}, Landroid/support/v7/widget/RecyclerView;->removeItemDecoration(Landroid/support/v7/widget/RecyclerView$ItemDecoration;)V
 
-    .line 527
+    .line 528
     iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mDecoration:Lcom/android/camera/fragment/manually/ManuallyDecoration;
 
     invoke-virtual {v0}, Lcom/android/camera/data/data/runing/ComponentRunningTiltValue;->getItems()Ljava/util/List;
@@ -576,19 +576,19 @@
 
     invoke-virtual {v1, v2}, Lcom/android/camera/fragment/manually/ManuallyDecoration;->setStyle(I)V
 
-    .line 528
+    .line 529
     iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     iget-object v2, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mDecoration:Lcom/android/camera/fragment/manually/ManuallyDecoration;
 
     invoke-virtual {v1, v2}, Landroid/support/v7/widget/RecyclerView;->addItemDecoration(Landroid/support/v7/widget/RecyclerView$ItemDecoration;)V
 
-    .line 529
+    .line 530
     new-instance v1, Lcom/android/camera/fragment/manually/adapter/ManuallySingleAdapter;
 
     iget v2, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentMode:I
 
-    .line 531
+    .line 532
     invoke-virtual {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->getResources()Landroid/content/res/Resources;
 
     move-result-object v3
@@ -611,19 +611,19 @@
 
     invoke-direct {v1, v0, v2, p1, v3}, Lcom/android/camera/fragment/manually/adapter/ManuallySingleAdapter;-><init>(Lcom/android/camera/data/data/ComponentData;ILcom/android/camera/fragment/manually/ManuallyListener;I)V
 
-    .line 532
+    .line 533
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     invoke-virtual {p1}, Landroid/support/v7/widget/RecyclerView;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
     move-result-object p1
 
-    .line 533
+    .line 534
     invoke-virtual {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->getResources()Landroid/content/res/Resources;
 
     move-result-object v0
 
-    const v2, 0x7f090013
+    const v2, 0x7f0a0013
 
     invoke-virtual {v0, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -631,22 +631,22 @@
 
     iput v0, p1, Landroid/view/ViewGroup$LayoutParams;->height:I
 
-    .line 534
+    .line 535
     iput-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mAdapter:Landroid/support/v7/widget/RecyclerView$Adapter;
 
-    .line 535
+    .line 536
     return-void
 .end method
 
 .method private notifyTipsMargin(I)V
     .locals 2
 
-    .line 342
+    .line 343
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
-    .line 343
+    .line 344
     const/16 v1, 0xaf
 
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
@@ -655,15 +655,15 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;
 
-    .line 345
+    .line 346
     if-eqz v0, :cond_0
 
-    .line 346
+    .line 347
     const/4 v1, 0x1
 
     invoke-interface {v0, p1, v1}, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;->updateTipBottomMargin(IZ)V
 
-    .line 349
+    .line 350
     :cond_0
     return-void
 .end method
@@ -679,50 +679,50 @@
         }
     .end annotation
 
-    .line 354
+    .line 355
     iget v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentAdjustType:I
 
     if-ne v0, p1, :cond_0
 
-    .line 355
+    .line 356
     return-void
 
-    .line 358
+    .line 359
     :cond_0
     packed-switch p1, :pswitch_data_0
 
     goto :goto_0
 
-    .line 360
+    .line 361
     :pswitch_0
     const/4 v0, 0x1
 
     invoke-direct {p0, v0, p0}, Lcom/android/camera/fragment/manually/FragmentManually;->initRecyclerView(ILcom/android/camera/fragment/manually/ManuallyListener;)I
 
-    .line 361
+    .line 362
     goto :goto_0
 
-    .line 363
+    .line 364
     :pswitch_1
     const/4 v0, 0x0
 
     invoke-direct {p0, v0, p0}, Lcom/android/camera/fragment/manually/FragmentManually;->initRecyclerView(ILcom/android/camera/fragment/manually/ManuallyListener;)I
 
-    .line 367
+    .line 368
     :goto_0
     if-nez p1, :cond_3
 
-    .line 368
+    .line 369
     if-nez p2, :cond_1
 
-    .line 369
+    .line 370
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIndicatorButton:Landroid/widget/ImageView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
 
     goto :goto_1
 
-    .line 371
+    .line 372
     :cond_1
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIndicatorButton:Landroid/widget/ImageView;
 
@@ -732,7 +732,7 @@
 
     if-nez p1, :cond_2
 
-    .line 372
+    .line 373
     new-instance p1, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;
 
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIndicatorButton:Landroid/widget/ImageView;
@@ -747,7 +747,7 @@
 
     goto :goto_1
 
-    .line 374
+    .line 375
     :cond_2
     new-instance p1, Lcom/android/camera/animation/type/SlideOutOnSubscribe;
 
@@ -763,7 +763,7 @@
 
     invoke-interface {p2, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 378
+    .line 379
     :cond_3
     :goto_1
     return-void
@@ -778,25 +778,25 @@
 .method private setManuallyLayoutViewVisible(I)V
     .locals 2
 
-    .line 455
+    .line 456
     nop
 
-    .line 456
+    .line 457
     invoke-virtual {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->getChildFragmentManager()Landroid/support/v4/app/FragmentManager;
 
     move-result-object v0
 
-    .line 457
+    .line 458
     const/16 v1, 0xfe
 
     invoke-static {v1}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
     move-result-object v1
 
-    .line 455
+    .line 456
     invoke-static {v0, v1}, Lcom/android/camera/fragment/FragmentUtils;->removeFragmentByTag(Landroid/support/v4/app/FragmentManager;Ljava/lang/String;)Z
 
-    .line 459
+    .line 460
     const/4 v0, 0x0
 
     const/16 v1, 0x50
@@ -805,11 +805,11 @@
 
     goto :goto_0
 
-    .line 481
+    .line 482
     :pswitch_0
     iput v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentAdjustType:I
 
-    .line 482
+    .line 483
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIndicatorButton:Landroid/widget/ImageView;
 
     invoke-virtual {p1}, Landroid/widget/ImageView;->getVisibility()I
@@ -818,14 +818,14 @@
 
     if-nez p1, :cond_0
 
-    .line 483
+    .line 484
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIndicatorButton:Landroid/widget/ImageView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
 
     goto :goto_0
 
-    .line 485
+    .line 486
     :cond_0
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyParent:Landroid/view/ViewGroup;
 
@@ -833,11 +833,11 @@
 
     goto :goto_0
 
-    .line 470
+    .line 471
     :pswitch_1
     iput v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentAdjustType:I
 
-    .line 471
+    .line 472
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIndicatorButton:Landroid/widget/ImageView;
 
     invoke-virtual {p1}, Landroid/widget/ImageView;->getVisibility()I
@@ -846,7 +846,7 @@
 
     if-nez p1, :cond_1
 
-    .line 472
+    .line 473
     new-instance p1, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;
 
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIndicatorButton:Landroid/widget/ImageView;
@@ -859,14 +859,14 @@
 
     invoke-virtual {p1}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
-    .line 473
+    .line 474
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIndicatorButton:Landroid/widget/ImageView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
 
     goto :goto_0
 
-    .line 475
+    .line 476
     :cond_1
     new-instance p1, Lcom/android/camera/animation/type/SlideOutOnSubscribe;
 
@@ -878,13 +878,13 @@
 
     move-result-object p1
 
-    .line 476
+    .line 477
     invoke-virtual {p1}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
-    .line 478
+    .line 479
     goto :goto_0
 
-    .line 461
+    .line 462
     :pswitch_2
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIndicatorButton:Landroid/widget/ImageView;
 
@@ -894,10 +894,10 @@
 
     if-nez p1, :cond_2
 
-    .line 462
+    .line 463
     return-void
 
-    .line 464
+    .line 465
     :cond_2
     new-instance p1, Lcom/android/camera/animation/type/SlideInOnSubscribe;
 
@@ -909,13 +909,13 @@
 
     move-result-object p1
 
-    .line 465
+    .line 466
     invoke-virtual {p1}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
-    .line 467
+    .line 468
     nop
 
-    .line 489
+    .line 490
     :goto_0
     return-void
 
@@ -934,7 +934,7 @@
 .method public getFragmentInto()I
     .locals 1
 
-    .line 322
+    .line 323
     const/16 v0, 0xf7
 
     return v0
@@ -943,8 +943,8 @@
 .method protected getLayoutResourceId()I
     .locals 1
 
-    .line 317
-    const v0, 0x7f040022
+    .line 318
+    const v0, 0x7f040025
 
     return v0
 .end method
@@ -952,17 +952,17 @@
 .method protected initView(Landroid/view/View;)V
     .locals 2
 
-    .line 75
+    .line 76
     nop
 
-    .line 76
+    .line 77
     invoke-virtual {p1}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
     move-result-object v0
 
     check-cast v0, Landroid/view/ViewGroup$MarginLayoutParams;
 
-    .line 77
+    .line 78
     invoke-virtual {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->getResources()Landroid/content/res/Resources;
 
     move-result-object v1
@@ -973,8 +973,8 @@
 
     iput v1, v0, Landroid/view/ViewGroup$MarginLayoutParams;->bottomMargin:I
 
-    .line 79
-    const v0, 0x7f0d006b
+    .line 80
+    const v0, 0x7f0d007e
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -984,13 +984,13 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIndicatorButton:Landroid/widget/ImageView;
 
-    .line 80
+    .line 81
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIndicatorButton:Landroid/widget/ImageView;
 
     invoke-virtual {v0, p0}, Landroid/widget/ImageView;->setOnClickListener(Landroid/view/View$OnClickListener;)V
 
-    .line 82
-    const v0, 0x7f0d006c
+    .line 83
+    const v0, 0x7f0d007f
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -1000,10 +1000,10 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyParent:Landroid/view/ViewGroup;
 
-    .line 83
+    .line 84
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyParent:Landroid/view/ViewGroup;
 
-    const v0, 0x7f0d006e
+    const v0, 0x7f0d0081
 
     invoke-virtual {p1, v0}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
 
@@ -1013,10 +1013,10 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerViewLayout:Landroid/view/ViewGroup;
 
-    .line 84
+    .line 85
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerViewLayout:Landroid/view/ViewGroup;
 
-    const v0, 0x7f0d006f
+    const v0, 0x7f0d0082
 
     invoke-virtual {p1, v0}, Landroid/view/ViewGroup;->findViewById(I)Landroid/view/View;
 
@@ -1026,14 +1026,14 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
-    .line 86
+    .line 87
     new-instance p1, Lcom/android/camera/fragment/manually/ManuallyDecoration;
 
     invoke-virtual {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->getResources()Landroid/content/res/Resources;
 
     move-result-object v0
 
-    const v1, 0x7f0a0047
+    const v1, 0x7f0b0047
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getColor(I)I
 
@@ -1045,7 +1045,7 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mDecoration:Lcom/android/camera/fragment/manually/ManuallyDecoration;
 
-    .line 88
+    .line 89
     new-instance p1, Landroid/support/v7/widget/LinearLayoutManager;
 
     invoke-virtual {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->getContext()Landroid/content/Context;
@@ -1054,39 +1054,41 @@
 
     invoke-direct {p1, v0}, Landroid/support/v7/widget/LinearLayoutManager;-><init>(Landroid/content/Context;)V
 
-    .line 89
+    .line 90
     const/4 v0, 0x0
 
     invoke-virtual {p1, v0}, Landroid/support/v7/widget/LinearLayoutManager;->setOrientation(I)V
 
-    .line 90
-    iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
+    .line 91
+    iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
-    invoke-virtual {v1, p1}, Landroid/support/v7/widget/RecyclerView;->setLayoutManager(Landroid/support/v7/widget/RecyclerView$LayoutManager;)V
-
-    .line 92
-    iget p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentMode:I
-
-    invoke-direct {p0, p1}, Lcom/android/camera/fragment/manually/FragmentManually;->adjustViewBackground(I)V
+    invoke-virtual {v0, p1}, Landroid/support/v7/widget/RecyclerView;->setLayoutManager(Landroid/support/v7/widget/RecyclerView$LayoutManager;)V
 
     .line 93
     iget p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentMode:I
 
-    const/4 v1, 0x0
-
-    invoke-virtual {p0, p1, v1, v0}, Lcom/android/camera/fragment/manually/FragmentManually;->provideAnimateElement(ILjava/util/List;Z)V
+    invoke-direct {p0, p1}, Lcom/android/camera/fragment/manually/FragmentManually;->adjustViewBackground(I)V
 
     .line 94
+    iget p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentMode:I
+
+    const/4 v0, 0x0
+
+    const/4 v1, 0x2
+
+    invoke-virtual {p0, p1, v0, v1}, Lcom/android/camera/fragment/manually/FragmentManually;->provideAnimateElement(ILjava/util/List;I)V
+
+    .line 95
     return-void
 .end method
 
 .method public notifyAfterFrameAvailable(I)V
     .locals 2
 
-    .line 565
+    .line 566
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->notifyAfterFrameAvailable(I)V
 
-    .line 567
+    .line 568
     iget p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentMode:I
 
     const/16 v0, 0xa7
@@ -1095,19 +1097,19 @@
 
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyParent:Landroid/view/ViewGroup;
 
-    .line 568
+    .line 569
     invoke-virtual {p1}, Landroid/view/ViewGroup;->getVisibility()I
 
     move-result p1
 
     if-eqz p1, :cond_0
 
-    .line 569
+    .line 570
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIndicatorButton:Landroid/widget/ImageView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 570
+    .line 571
     new-instance p1, Lcom/android/camera/animation/type/SlideInOnSubscribe;
 
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyParent:Landroid/view/ViewGroup;
@@ -1122,7 +1124,7 @@
 
     invoke-virtual {p1}, Lio/reactivex/Completable;->subscribe()Lio/reactivex/disposables/Disposable;
 
-    .line 572
+    .line 573
     :cond_0
     return-void
 .end method
@@ -1130,15 +1132,15 @@
 .method public notifyDataChanged(II)V
     .locals 1
 
-    .line 547
+    .line 548
     invoke-super {p0, p1, p2}, Lcom/android/camera/fragment/BaseFragment;->notifyDataChanged(II)V
 
-    .line 549
+    .line 550
     iget p2, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentMode:I
 
     invoke-direct {p0, p2}, Lcom/android/camera/fragment/manually/FragmentManually;->adjustViewBackground(I)V
 
-    .line 551
+    .line 552
     iget p2, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentAdjustType:I
 
     const/4 v0, 0x1
@@ -1149,36 +1151,36 @@
 
     if-eqz p2, :cond_0
 
-    .line 552
+    .line 553
     invoke-direct {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->initManuallyDataList()Ljava/util/List;
 
-    .line 553
+    .line 554
     iget-object p2, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mAdapter:Landroid/support/v7/widget/RecyclerView$Adapter;
 
     invoke-virtual {p2, v0}, Landroid/support/v7/widget/RecyclerView;->setAdapter(Landroid/support/v7/widget/RecyclerView$Adapter;)V
 
-    .line 554
+    .line 555
     iget-object p2, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mAdapter:Landroid/support/v7/widget/RecyclerView$Adapter;
 
     invoke-virtual {p2}, Landroid/support/v7/widget/RecyclerView$Adapter;->notifyDataSetChanged()V
 
-    .line 557
+    .line 558
     :cond_0
     invoke-direct {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->getExtraFragment()Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
     move-result-object p2
 
-    .line 558
+    .line 559
     if-eqz p2, :cond_1
 
-    .line 559
+    .line 560
     iget v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentMode:I
 
     invoke-virtual {p2, p1, v0}, Lcom/android/camera/fragment/manually/FragmentManuallyExtra;->notifyDataChanged(II)V
 
-    .line 561
+    .line 562
     :cond_1
     return-void
 .end method
@@ -1186,7 +1188,7 @@
 .method public onBackEvent(I)Z
     .locals 6
 
-    .line 121
+    .line 122
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyParent:Landroid/view/ViewGroup;
 
     invoke-virtual {v0}, Landroid/view/ViewGroup;->getVisibility()I
@@ -1207,7 +1209,7 @@
 
     goto :goto_0
 
-    .line 125
+    .line 126
     :cond_0
     const/4 v0, 0x2
 
@@ -1225,30 +1227,30 @@
 
     if-eqz p1, :cond_1
 
-    .line 126
+    .line 127
     return v1
 
-    .line 129
+    .line 130
     :cond_1
     const/4 p1, 0x1
 
     iput-boolean p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIsHiding:Z
 
-    .line 130
+    .line 131
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyParent:Landroid/view/ViewGroup;
 
     invoke-virtual {v0}, Landroid/view/ViewGroup;->getHeight()I
 
     move-result v0
 
-    .line 131
+    .line 132
     iget-object v2, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyParent:Landroid/view/ViewGroup;
 
     invoke-static {v2}, Landroid/support/v4/view/ViewCompat;->animate(Landroid/view/View;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v2
 
-    .line 132
+    .line 133
     const-wide/16 v3, 0x0
 
     invoke-virtual {v2, v3, v4}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setStartDelay(J)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
@@ -1257,7 +1259,7 @@
 
     int-to-float v0, v0
 
-    .line 133
+    .line 134
     invoke-virtual {v2, v0}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->translationY(F)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v2
@@ -1266,7 +1268,7 @@
 
     invoke-direct {v5}, Landroid/view/animation/OvershootInterpolator;-><init>()V
 
-    .line 134
+    .line 135
     invoke-virtual {v2, v5}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setInterpolator(Landroid/view/animation/Interpolator;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v2
@@ -1275,51 +1277,51 @@
 
     invoke-direct {v5, p0}, Lcom/android/camera/fragment/manually/FragmentManually$1;-><init>(Lcom/android/camera/fragment/manually/FragmentManually;)V
 
-    .line 135
+    .line 136
     invoke-virtual {v2, v5}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->withEndAction(Ljava/lang/Runnable;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v2
 
-    .line 142
+    .line 143
     invoke-virtual {v2}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->start()V
 
-    .line 144
+    .line 145
     iget-object v2, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIndicatorButton:Landroid/widget/ImageView;
 
     invoke-virtual {v2, v1}, Landroid/widget/ImageView;->setVisibility(I)V
 
-    .line 145
+    .line 146
     iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIndicatorButton:Landroid/widget/ImageView;
 
     const/4 v2, 0x0
 
     invoke-static {v1, v2}, Landroid/support/v4/view/ViewCompat;->setTranslationY(Landroid/view/View;F)V
 
-    .line 146
+    .line 147
     iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIndicatorButton:Landroid/widget/ImageView;
 
     invoke-static {v1, v2}, Landroid/support/v4/view/ViewCompat;->setAlpha(Landroid/view/View;F)V
 
-    .line 147
+    .line 148
     iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIndicatorButton:Landroid/widget/ImageView;
 
     invoke-static {v1}, Landroid/support/v4/view/ViewCompat;->animate(Landroid/view/View;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v1
 
-    .line 148
+    .line 149
     invoke-virtual {v1, v3, v4}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setStartDelay(J)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v1
 
-    .line 149
+    .line 150
     invoke-virtual {v1, v0}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->translationY(F)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v0
 
     const-wide/16 v1, 0x12c
 
-    .line 150
+    .line 151
     invoke-virtual {v0, v1, v2}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setDuration(J)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v0
@@ -1328,25 +1330,25 @@
 
     invoke-direct {v1}, Landroid/view/animation/OvershootInterpolator;-><init>()V
 
-    .line 151
+    .line 152
     invoke-virtual {v0, v1}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setInterpolator(Landroid/view/animation/Interpolator;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v0
 
     const/high16 v1, 0x3f800000    # 1.0f
 
-    .line 152
+    .line 153
     invoke-virtual {v0, v1}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->alpha(F)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object v0
 
-    .line 153
+    .line 154
     invoke-virtual {v0}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->start()V
 
-    .line 155
+    .line 156
     return p1
 
-    .line 122
+    .line 123
     :cond_2
     :goto_0
     return v1
@@ -1355,17 +1357,17 @@
 .method public onClick(Landroid/view/View;)V
     .locals 4
 
-    .line 160
+    .line 161
     invoke-virtual {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->isEnableClick()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 161
+    .line 162
     return-void
 
-    .line 165
+    .line 166
     :cond_0
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
@@ -1373,14 +1375,14 @@
 
     const/16 v1, 0xa1
 
-    .line 166
+    .line 167
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object v0
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$CameraAction;
 
-    .line 167
+    .line 168
     if-eqz v0, :cond_1
 
     invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$CameraAction;->isDoingAction()Z
@@ -1389,63 +1391,63 @@
 
     if-eqz v0, :cond_1
 
-    .line 168
+    .line 169
     return-void
 
-    .line 171
+    .line 172
     :cond_1
     invoke-virtual {p1}, Landroid/view/View;->getId()I
 
     move-result v0
 
-    const v1, 0x7f0d006b
+    const v1, 0x7f0d007e
 
     const/4 v2, 0x0
 
     if-eq v0, v1, :cond_5
 
-    .line 196
+    .line 197
     invoke-virtual {p1}, Landroid/view/View;->getTag()Ljava/lang/Object;
 
     move-result-object p1
 
     check-cast p1, Lcom/android/camera/data/data/ComponentData;
 
-    .line 197
+    .line 198
     invoke-virtual {p1}, Lcom/android/camera/data/data/ComponentData;->getDisplayTitleString()I
 
     move-result v0
 
-    .line 199
-    const v1, 0x7f0b0190
+    .line 200
+    const v1, 0x7f090197
 
     const/4 v3, -0x1
 
     if-eq v0, v1, :cond_4
 
-    .line 208
+    .line 209
     invoke-direct {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->getExtraFragment()Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
     move-result-object v1
 
     iput-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mFragmentManuallyExtra:Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
-    .line 210
+    .line 211
     iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mFragmentManuallyExtra:Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
     if-nez v1, :cond_2
 
-    .line 211
+    .line 212
     invoke-direct {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->hideTips()V
 
-    .line 212
+    .line 213
     new-instance v1, Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
     invoke-direct {v1}, Lcom/android/camera/fragment/manually/FragmentManuallyExtra;-><init>()V
 
     iput-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mFragmentManuallyExtra:Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
-    .line 213
+    .line 214
     iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mFragmentManuallyExtra:Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
     iget v2, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentMode:I
@@ -1454,26 +1456,26 @@
 
     invoke-virtual {v1, p1, v2, v3, p0}, Lcom/android/camera/fragment/manually/FragmentManuallyExtra;->setComponentData(Lcom/android/camera/data/data/ComponentData;IZLcom/android/camera/fragment/manually/ManuallyListener;)V
 
-    .line 214
+    .line 215
     invoke-virtual {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->getChildFragmentManager()Landroid/support/v4/app/FragmentManager;
 
     move-result-object p1
 
-    const v1, 0x7f0d006d
+    const v1, 0x7f0d0080
 
     iget-object v2, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mFragmentManuallyExtra:Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
     iget-object v3, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mFragmentManuallyExtra:Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
-    .line 217
+    .line 218
     invoke-virtual {v3}, Lcom/android/camera/fragment/manually/FragmentManuallyExtra;->getFragmentTag()Ljava/lang/String;
 
     move-result-object v3
 
-    .line 214
+    .line 215
     invoke-static {p1, v1, v2, v3}, Lcom/android/camera/fragment/FragmentUtils;->addFragmentWithTag(Landroid/support/v4/app/FragmentManager;ILandroid/support/v4/app/Fragment;Ljava/lang/String;)V
 
-    .line 218
+    .line 219
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     invoke-virtual {p1}, Landroid/support/v7/widget/RecyclerView;->getAdapter()Landroid/support/v7/widget/RecyclerView$Adapter;
@@ -1486,7 +1488,7 @@
 
     goto/16 :goto_0
 
-    .line 219
+    .line 220
     :cond_2
     iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mFragmentManuallyExtra:Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
@@ -1496,12 +1498,12 @@
 
     if-ne v1, v0, :cond_3
 
-    .line 220
+    .line 221
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mFragmentManuallyExtra:Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
     invoke-virtual {p1}, Lcom/android/camera/fragment/manually/FragmentManuallyExtra;->animateOut()V
 
-    .line 221
+    .line 222
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     invoke-virtual {p1}, Landroid/support/v7/widget/RecyclerView;->getAdapter()Landroid/support/v7/widget/RecyclerView$Adapter;
@@ -1514,16 +1516,16 @@
 
     goto/16 :goto_0
 
-    .line 223
+    .line 224
     :cond_3
     invoke-direct {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->hideTips()V
 
-    .line 224
+    .line 225
     iget-object v1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mFragmentManuallyExtra:Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
     invoke-virtual {v1, p1}, Lcom/android/camera/fragment/manually/FragmentManuallyExtra;->resetData(Lcom/android/camera/data/data/ComponentData;)V
 
-    .line 225
+    .line 226
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     invoke-virtual {p1}, Landroid/support/v7/widget/RecyclerView;->getAdapter()Landroid/support/v7/widget/RecyclerView$Adapter;
@@ -1536,7 +1538,7 @@
 
     goto :goto_0
 
-    .line 201
+    .line 202
     :cond_4
     invoke-virtual {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->getChildFragmentManager()Landroid/support/v4/app/FragmentManager;
 
@@ -1544,15 +1546,15 @@
 
     const/16 v1, 0xfe
 
-    .line 202
+    .line 203
     invoke-static {v1}, Ljava/lang/String;->valueOf(I)Ljava/lang/String;
 
     move-result-object v1
 
-    .line 201
+    .line 202
     invoke-static {v0, v1}, Lcom/android/camera/fragment/FragmentUtils;->removeFragmentByTag(Landroid/support/v4/app/FragmentManager;Ljava/lang/String;)Z
 
-    .line 203
+    .line 204
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     invoke-virtual {v0}, Landroid/support/v7/widget/RecyclerView;->getAdapter()Landroid/support/v7/widget/RecyclerView$Adapter;
@@ -1563,38 +1565,38 @@
 
     invoke-virtual {v0, v3}, Lcom/android/camera/fragment/manually/adapter/ManuallyAdapter;->setSelectedTitle(I)V
 
-    .line 204
+    .line 205
     const/4 v0, 0x0
 
     invoke-virtual {p0, p1, v0, v0, v2}, Lcom/android/camera/fragment/manually/FragmentManually;->onManuallyDataChanged(Lcom/android/camera/data/data/ComponentData;Ljava/lang/String;Ljava/lang/String;Z)V
 
-    .line 205
+    .line 206
     goto :goto_0
 
-    .line 173
+    .line 174
     :cond_5
     invoke-direct {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->hideTips()V
 
-    .line 174
+    .line 175
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyParent:Landroid/view/ViewGroup;
 
     invoke-virtual {p1, v2}, Landroid/view/ViewGroup;->setVisibility(I)V
 
-    .line 175
+    .line 176
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyParent:Landroid/view/ViewGroup;
 
     invoke-static {p1}, Landroid/support/v4/view/ViewCompat;->animate(Landroid/view/View;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object p1
 
-    .line 176
+    .line 177
     const-wide/16 v0, 0x64
 
     invoke-virtual {p1, v0, v1}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setStartDelay(J)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object p1
 
-    .line 177
+    .line 178
     const/4 v2, 0x0
 
     invoke-virtual {p1, v2}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->translationY(F)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
@@ -1605,15 +1607,15 @@
 
     invoke-direct {v3}, Landroid/view/animation/DecelerateInterpolator;-><init>()V
 
-    .line 178
+    .line 179
     invoke-virtual {p1, v3}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setInterpolator(Landroid/view/animation/Interpolator;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object p1
 
-    .line 179
+    .line 180
     invoke-virtual {p1}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->start()V
 
-    .line 181
+    .line 182
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIndicatorButton:Landroid/widget/ImageView;
 
     invoke-static {p1}, Landroid/support/v4/view/ViewCompat;->animate(Landroid/view/View;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
@@ -1624,17 +1626,17 @@
 
     invoke-direct {v3}, Landroid/view/animation/DecelerateInterpolator;-><init>()V
 
-    .line 182
+    .line 183
     invoke-virtual {p1, v3}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setInterpolator(Landroid/view/animation/Interpolator;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object p1
 
-    .line 183
+    .line 184
     invoke-virtual {p1, v2}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->alpha(F)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object p1
 
-    .line 184
+    .line 185
     invoke-virtual {p1, v0, v1}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->setDuration(J)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object p1
@@ -1643,18 +1645,18 @@
 
     invoke-direct {v0, p0}, Lcom/android/camera/fragment/manually/FragmentManually$2;-><init>(Lcom/android/camera/fragment/manually/FragmentManually;)V
 
-    .line 185
+    .line 186
     invoke-virtual {p1, v0}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->withEndAction(Ljava/lang/Runnable;)Landroid/support/v4/view/ViewPropertyAnimatorCompat;
 
     move-result-object p1
 
-    .line 192
+    .line 193
     invoke-virtual {p1}, Landroid/support/v4/view/ViewPropertyAnimatorCompat;->start()V
 
-    .line 193
+    .line 194
     nop
 
-    .line 231
+    .line 232
     :goto_0
     return-void
 .end method
@@ -1662,7 +1664,7 @@
 .method public onCreateAnimation(IZI)Landroid/view/animation/Animation;
     .locals 0
 
-    .line 382
+    .line 383
     invoke-super {p0, p1, p2, p3}, Lcom/android/camera/fragment/BaseFragment;->onCreateAnimation(IZI)Landroid/view/animation/Animation;
 
     move-result-object p1
@@ -1673,17 +1675,17 @@
 .method public onManuallyDataChanged(Lcom/android/camera/data/data/ComponentData;Ljava/lang/String;Ljava/lang/String;Z)V
     .locals 2
 
-    .line 244
+    .line 245
     invoke-virtual {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->isEnableClick()Z
 
     move-result v0
 
     if-nez v0, :cond_0
 
-    .line 245
+    .line 246
     return-void
 
-    .line 249
+    .line 250
     :cond_0
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
@@ -1691,20 +1693,20 @@
 
     const/16 v1, 0xae
 
-    .line 250
+    .line 251
     invoke-virtual {v0, v1}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object v0
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$ManuallyValueChanged;
 
-    .line 251
+    .line 252
     if-nez v0, :cond_1
 
-    .line 252
+    .line 253
     return-void
 
-    .line 256
+    .line 257
     :cond_1
     invoke-virtual {p1}, Lcom/android/camera/data/data/ComponentData;->getDisplayTitleString()I
 
@@ -1714,7 +1716,7 @@
 
     goto :goto_0
 
-    .line 278
+    .line 279
     :sswitch_0
     check-cast p1, Lcom/android/camera/data/data/config/ComponentManuallyDualLens;
 
@@ -1724,34 +1726,34 @@
 
     goto :goto_0
 
-    .line 266
+    .line 267
     :sswitch_1
     check-cast p1, Lcom/android/camera/data/data/config/ComponentManuallyFocus;
 
     invoke-interface {v0, p1, p2, p3}, Lcom/android/camera/protocol/ModeProtocol$ManuallyValueChanged;->onFocusValueChanged(Lcom/android/camera/data/data/config/ComponentManuallyFocus;Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 267
+    .line 268
     goto :goto_0
 
-    .line 270
+    .line 271
     :sswitch_2
     check-cast p1, Lcom/android/camera/data/data/config/ComponentManuallyET;
 
     invoke-interface {v0, p1, p3}, Lcom/android/camera/protocol/ModeProtocol$ManuallyValueChanged;->onETValueChanged(Lcom/android/camera/data/data/config/ComponentManuallyET;Ljava/lang/String;)V
 
-    .line 271
+    .line 272
     goto :goto_0
 
-    .line 274
+    .line 275
     :sswitch_3
     check-cast p1, Lcom/android/camera/data/data/config/ComponentManuallyISO;
 
     invoke-interface {v0, p1, p3}, Lcom/android/camera/protocol/ModeProtocol$ManuallyValueChanged;->onISOValueChanged(Lcom/android/camera/data/data/config/ComponentManuallyISO;Ljava/lang/String;)V
 
-    .line 275
+    .line 276
     goto :goto_0
 
-    .line 258
+    .line 259
     :sswitch_4
     const-string p2, "manual"
 
@@ -1761,28 +1763,28 @@
 
     if-eqz p2, :cond_2
 
-    .line 259
+    .line 260
     invoke-direct {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->getExtraFragment()Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
     move-result-object p2
 
-    .line 260
+    .line 261
     move-object v1, p1
 
     check-cast v1, Lcom/android/camera/data/data/config/ComponentManuallyWB;
 
     invoke-virtual {p2, v1}, Lcom/android/camera/fragment/manually/FragmentManuallyExtra;->showCustomWB(Lcom/android/camera/data/data/config/ComponentManuallyWB;)V
 
-    .line 262
+    .line 263
     :cond_2
     check-cast p1, Lcom/android/camera/data/data/config/ComponentManuallyWB;
 
     invoke-interface {v0, p1, p3, p4}, Lcom/android/camera/protocol/ModeProtocol$ManuallyValueChanged;->onWBValueChanged(Lcom/android/camera/data/data/config/ComponentManuallyWB;Ljava/lang/String;Z)V
 
-    .line 263
+    .line 264
     nop
 
-    .line 282
+    .line 283
     :goto_0
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
@@ -1792,10 +1794,10 @@
 
     if-nez p1, :cond_3
 
-    .line 283
+    .line 284
     return-void
 
-    .line 286
+    .line 287
     :cond_3
     iget-object p1, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
@@ -1805,62 +1807,62 @@
 
     invoke-virtual {p1, p2}, Landroid/support/v7/widget/RecyclerView;->post(Ljava/lang/Runnable;)Z
 
-    .line 292
+    .line 293
     return-void
 
     :sswitch_data_0
     .sparse-switch
-        0x7f0b0064 -> :sswitch_4
-        0x7f0b00a6 -> :sswitch_3
-        0x7f0b012e -> :sswitch_2
-        0x7f0b015e -> :sswitch_1
-        0x7f0b0190 -> :sswitch_0
+        0x7f090065 -> :sswitch_4
+        0x7f0900ab -> :sswitch_3
+        0x7f090135 -> :sswitch_2
+        0x7f090165 -> :sswitch_1
+        0x7f090197 -> :sswitch_0
     .end sparse-switch
 .end method
 
-.method public provideAnimateElement(ILjava/util/List;Z)V
+.method public provideAnimateElement(ILjava/util/List;I)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(I",
             "Ljava/util/List<",
             "Lio/reactivex/Completable;",
-            ">;Z)V"
+            ">;I)V"
         }
     .end annotation
 
-    .line 328
-    invoke-super {p0, p1, p2, p3}, Lcom/android/camera/fragment/BaseFragment;->provideAnimateElement(ILjava/util/List;Z)V
+    .line 329
+    invoke-super {p0, p1, p2, p3}, Lcom/android/camera/fragment/BaseFragment;->provideAnimateElement(ILjava/util/List;I)V
 
-    .line 330
+    .line 331
     nop
 
-    .line 332
+    .line 333
     const/16 p3, 0xa7
 
     if-eq p1, p3, :cond_0
 
-    .line 338
+    .line 339
     const/4 p1, 0x0
 
     goto :goto_0
 
-    .line 334
+    .line 335
     :cond_0
     const/4 p1, 0x1
 
-    .line 338
+    .line 339
     :goto_0
     invoke-direct {p0, p1, p2}, Lcom/android/camera/fragment/manually/FragmentManually;->reInitManuallyLayout(ILjava/util/List;)V
 
-    .line 339
+    .line 340
     return-void
 .end method
 
 .method protected provideEnterAnimation(I)Landroid/view/animation/Animation;
     .locals 0
 
-    .line 387
+    .line 388
     const/4 p1, 0x0
 
     return-object p1
@@ -1869,7 +1871,7 @@
 .method protected provideExitAnimation()Landroid/view/animation/Animation;
     .locals 1
 
-    .line 393
+    .line 394
     const/4 v0, 0x0
 
     return-object v0
@@ -1878,64 +1880,64 @@
 .method protected register(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
     .locals 1
 
-    .line 98
+    .line 99
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->register(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
 
-    .line 99
+    .line 100
     const/16 v0, 0xb5
 
     invoke-interface {p1, v0, p0}, Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;->attachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 100
+    .line 101
     invoke-virtual {p0, p1, p0}, Lcom/android/camera/fragment/manually/FragmentManually;->registerBackStack(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;Lcom/android/camera/protocol/ModeProtocol$HandleBackTrace;)V
 
-    .line 101
+    .line 102
     return-void
 .end method
 
 .method public setManuallyVisible(IILcom/android/camera/fragment/manually/ManuallyListener;)I
     .locals 1
 
-    .line 401
+    .line 402
     invoke-direct {p0, p1, p3}, Lcom/android/camera/fragment/manually/FragmentManually;->initRecyclerView(ILcom/android/camera/fragment/manually/ManuallyListener;)I
 
     move-result p1
 
-    .line 402
+    .line 403
     iget-object p3, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mAdapter:Landroid/support/v7/widget/RecyclerView$Adapter;
 
     if-eqz p3, :cond_0
 
-    .line 403
+    .line 404
     iget-object p3, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mRecyclerView:Landroid/support/v7/widget/RecyclerView;
 
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mAdapter:Landroid/support/v7/widget/RecyclerView$Adapter;
 
     invoke-virtual {p3, v0}, Landroid/support/v7/widget/RecyclerView;->setAdapter(Landroid/support/v7/widget/RecyclerView$Adapter;)V
 
-    .line 405
+    .line 406
     :cond_0
     invoke-direct {p0, p2}, Lcom/android/camera/fragment/manually/FragmentManually;->setManuallyLayoutViewVisible(I)V
 
-    .line 406
+    .line 407
     return p1
 .end method
 
 .method protected unRegister(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
     .locals 1
 
-    .line 105
+    .line 106
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->unRegister(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
 
-    .line 107
+    .line 108
     const/16 v0, 0xb5
 
     invoke-interface {p1, v0, p0}, Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;->detachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 108
+    .line 109
     invoke-virtual {p0, p1, p0}, Lcom/android/camera/fragment/manually/FragmentManually;->unRegisterBackStack(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;Lcom/android/camera/protocol/ModeProtocol$HandleBackTrace;)V
 
-    .line 110
+    .line 111
     invoke-virtual {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->getChildFragmentManager()Landroid/support/v4/app/FragmentManager;
 
     move-result-object p1
@@ -1944,38 +1946,41 @@
 
     move-result-object p1
 
-    .line 112
+    .line 113
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mFragmentManuallyExtra:Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
     if-eqz v0, :cond_0
 
-    .line 113
+    .line 114
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mFragmentManuallyExtra:Lcom/android/camera/fragment/manually/FragmentManuallyExtra;
 
     invoke-virtual {p1, v0}, Landroid/support/v4/app/FragmentTransaction;->remove(Landroid/support/v4/app/Fragment;)Landroid/support/v4/app/FragmentTransaction;
 
-    .line 116
+    .line 117
     :cond_0
     invoke-virtual {p1}, Landroid/support/v4/app/FragmentTransaction;->commitAllowingStateLoss()I
 
-    .line 117
+    .line 118
     return-void
 .end method
 
 .method public visibleHeight()I
     .locals 3
 
-    .line 411
+    .line 412
     iget v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentAdjustType:I
 
-    if-nez v0, :cond_0
+    if-eqz v0, :cond_2
 
-    .line 412
-    const/4 v0, 0x0
+    iget v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mCurrentAdjustType:I
 
-    return v0
+    const/4 v1, -0x1
 
-    .line 414
+    if-ne v0, v1, :cond_0
+
+    goto :goto_0
+
+    .line 415
     :cond_0
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIndicatorButton:Landroid/widget/ImageView;
 
@@ -1985,7 +1990,7 @@
 
     if-nez v0, :cond_1
 
-    .line 415
+    .line 416
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mIndicatorButton:Landroid/widget/ImageView;
 
     invoke-virtual {v0}, Landroid/widget/ImageView;->getHeight()I
@@ -1994,7 +1999,7 @@
 
     return v0
 
-    .line 418
+    .line 419
     :cond_1
     iget-object v0, p0, Lcom/android/camera/fragment/manually/FragmentManually;->mManuallyParent:Landroid/view/ViewGroup;
 
@@ -2002,12 +2007,12 @@
 
     move-result v0
 
-    .line 419
+    .line 420
     invoke-virtual {p0}, Lcom/android/camera/fragment/manually/FragmentManually;->getResources()Landroid/content/res/Resources;
 
     move-result-object v1
 
-    const v2, 0x7f090096
+    const v2, 0x7f0a009a
 
     invoke-virtual {v1, v2}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 
@@ -2017,6 +2022,13 @@
 
     add-int/2addr v0, v1
 
-    .line 418
+    .line 419
+    return v0
+
+    .line 413
+    :cond_2
+    :goto_0
+    const/4 v0, 0x0
+
     return v0
 .end method

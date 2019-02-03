@@ -19,7 +19,7 @@
 
 
 # static fields
-.field private static final Jv:Ljava/util/HashMap;
+.field private static final JF:Ljava/util/HashMap;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/HashMap<",
@@ -31,7 +31,7 @@
     .end annotation
 .end field
 
-.field private static final Jw:Ljava/util/HashMap;
+.field private static final JG:Ljava/util/HashMap;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/HashMap<",
@@ -43,7 +43,7 @@
     .end annotation
 .end field
 
-.field private static final Jx:Lmiui/util/Pools$Pool;
+.field private static final JH:Lmiui/util/Pools$Pool;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lmiui/util/Pools$Pool<",
@@ -56,21 +56,21 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
     .line 259
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
-    sput-object v0, Lmiui/util/Pools;->Jv:Ljava/util/HashMap;
+    sput-object v0, Lmiui/util/Pools;->JF:Ljava/util/HashMap;
 
     .line 262
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
-    sput-object v0, Lmiui/util/Pools;->Jw:Ljava/util/HashMap;
+    sput-object v0, Lmiui/util/Pools;->JG:Ljava/util/HashMap;
 
     .line 266
     new-instance v0, Lmiui/util/Pools$1;
@@ -83,13 +83,13 @@
 
     move-result-object v0
 
-    sput-object v0, Lmiui/util/Pools;->Jx:Lmiui/util/Pools$Pool;
+    sput-object v0, Lmiui/util/Pools;->JH:Lmiui/util/Pools$Pool;
 
     return-void
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -98,7 +98,7 @@
 .end method
 
 .method static a(Lmiui/util/Pools$InstanceHolder;I)V
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T:",
@@ -110,14 +110,14 @@
     .end annotation
 
     .line 310
-    sget-object v0, Lmiui/util/Pools;->Jv:Ljava/util/HashMap;
+    sget-object v0, Lmiui/util/Pools;->JF:Ljava/util/HashMap;
 
     monitor-enter v0
 
     .line 311
     neg-int p1, p1
 
-    :try_start_0
+    :try_start_4
     invoke-virtual {p0, p1}, Lmiui/util/Pools$InstanceHolder;->resize(I)V
 
     .line 312
@@ -127,18 +127,18 @@
     return-void
 
     .line 312
-    :catchall_0
+    :catchall_9
     move-exception p0
 
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_b
+    .catchall {:try_start_4 .. :try_end_b} :catchall_9
 
     throw p0
 .end method
 
 .method static a(Lmiui/util/Pools$SoftReferenceInstanceHolder;I)V
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T:",
@@ -150,14 +150,14 @@
     .end annotation
 
     .line 341
-    sget-object v0, Lmiui/util/Pools;->Jw:Ljava/util/HashMap;
+    sget-object v0, Lmiui/util/Pools;->JG:Ljava/util/HashMap;
 
     monitor-enter v0
 
     .line 342
     neg-int p1, p1
 
-    :try_start_0
+    :try_start_4
     invoke-virtual {p0, p1}, Lmiui/util/Pools$SoftReferenceInstanceHolder;->resize(I)V
 
     .line 343
@@ -167,18 +167,18 @@
     return-void
 
     .line 343
-    :catchall_0
+    :catchall_9
     move-exception p0
 
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_b
+    .catchall {:try_start_4 .. :try_end_b} :catchall_9
 
     throw p0
 .end method
 
 .method static b(Ljava/lang/Class;I)Lmiui/util/Pools$InstanceHolder;
-    .locals 2
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T:",
@@ -192,13 +192,13 @@
     .end annotation
 
     .line 291
-    sget-object v0, Lmiui/util/Pools;->Jv:Ljava/util/HashMap;
+    sget-object v0, Lmiui/util/Pools;->JF:Ljava/util/HashMap;
 
     monitor-enter v0
 
     .line 292
-    :try_start_0
-    sget-object v1, Lmiui/util/Pools;->Jv:Ljava/util/HashMap;
+    :try_start_3
+    sget-object v1, Lmiui/util/Pools;->JF:Ljava/util/HashMap;
 
     .line 293
     invoke-virtual {v1, p0}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -208,7 +208,7 @@
     check-cast v1, Lmiui/util/Pools$InstanceHolder;
 
     .line 294
-    if-nez v1, :cond_0
+    if-nez v1, :cond_18
 
     .line 295
     new-instance v1, Lmiui/util/Pools$InstanceHolder;
@@ -216,35 +216,35 @@
     invoke-direct {v1, p0, p1}, Lmiui/util/Pools$InstanceHolder;-><init>(Ljava/lang/Class;I)V
 
     .line 296
-    sget-object p1, Lmiui/util/Pools;->Jv:Ljava/util/HashMap;
+    sget-object p1, Lmiui/util/Pools;->JF:Ljava/util/HashMap;
 
     invoke-virtual {p1, p0, v1}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    goto :goto_0
+    goto :goto_1b
 
     .line 298
-    :cond_0
+    :cond_18
     invoke-virtual {v1, p1}, Lmiui/util/Pools$InstanceHolder;->resize(I)V
 
     .line 300
-    :goto_0
+    :goto_1b
     monitor-exit v0
 
     return-object v1
 
     .line 301
-    :catchall_0
+    :catchall_1d
     move-exception p0
 
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1f
+    .catchall {:try_start_3 .. :try_end_1f} :catchall_1d
 
     throw p0
 .end method
 
 .method static c(Ljava/lang/Class;I)Lmiui/util/Pools$SoftReferenceInstanceHolder;
-    .locals 2
+    .registers 4
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T:",
@@ -258,13 +258,13 @@
     .end annotation
 
     .line 322
-    sget-object v0, Lmiui/util/Pools;->Jw:Ljava/util/HashMap;
+    sget-object v0, Lmiui/util/Pools;->JG:Ljava/util/HashMap;
 
     monitor-enter v0
 
     .line 323
-    :try_start_0
-    sget-object v1, Lmiui/util/Pools;->Jw:Ljava/util/HashMap;
+    :try_start_3
+    sget-object v1, Lmiui/util/Pools;->JG:Ljava/util/HashMap;
 
     .line 324
     invoke-virtual {v1, p0}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
@@ -274,7 +274,7 @@
     check-cast v1, Lmiui/util/Pools$SoftReferenceInstanceHolder;
 
     .line 325
-    if-nez v1, :cond_0
+    if-nez v1, :cond_18
 
     .line 326
     new-instance v1, Lmiui/util/Pools$SoftReferenceInstanceHolder;
@@ -282,35 +282,35 @@
     invoke-direct {v1, p0, p1}, Lmiui/util/Pools$SoftReferenceInstanceHolder;-><init>(Ljava/lang/Class;I)V
 
     .line 327
-    sget-object p1, Lmiui/util/Pools;->Jw:Ljava/util/HashMap;
+    sget-object p1, Lmiui/util/Pools;->JG:Ljava/util/HashMap;
 
     invoke-virtual {p1, p0, v1}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    goto :goto_0
+    goto :goto_1b
 
     .line 329
-    :cond_0
+    :cond_18
     invoke-virtual {v1, p1}, Lmiui/util/Pools$SoftReferenceInstanceHolder;->resize(I)V
 
     .line 331
-    :goto_0
+    :goto_1b
     monitor-exit v0
 
     return-object v1
 
     .line 332
-    :catchall_0
+    :catchall_1d
     move-exception p0
 
     monitor-exit v0
-    :try_end_0
-    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+    :try_end_1f
+    .catchall {:try_start_3 .. :try_end_1f} :catchall_1d
 
     throw p0
 .end method
 
 .method public static createSimplePool(Lmiui/util/Pools$Manager;I)Lmiui/util/Pools$SimplePool;
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T:",
@@ -332,7 +332,7 @@
 .end method
 
 .method public static createSoftReferencePool(Lmiui/util/Pools$Manager;I)Lmiui/util/Pools$SoftReferencePool;
-    .locals 1
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "<T:",
@@ -353,26 +353,26 @@
     return-object v0
 .end method
 
-.method static synthetic dB()Ljava/util/HashMap;
-    .locals 1
+.method static synthetic dC()Ljava/util/HashMap;
+    .registers 1
 
     .line 28
-    sget-object v0, Lmiui/util/Pools;->Jv:Ljava/util/HashMap;
+    sget-object v0, Lmiui/util/Pools;->JF:Ljava/util/HashMap;
 
     return-object v0
 .end method
 
-.method static synthetic dC()Ljava/util/HashMap;
-    .locals 1
+.method static synthetic dD()Ljava/util/HashMap;
+    .registers 1
 
     .line 28
-    sget-object v0, Lmiui/util/Pools;->Jw:Ljava/util/HashMap;
+    sget-object v0, Lmiui/util/Pools;->JG:Ljava/util/HashMap;
 
     return-object v0
 .end method
 
 .method public static getStringBuilderPool()Lmiui/util/Pools$Pool;
-    .locals 1
+    .registers 1
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "()",
@@ -383,7 +383,7 @@
     .end annotation
 
     .line 281
-    sget-object v0, Lmiui/util/Pools;->Jx:Lmiui/util/Pools$Pool;
+    sget-object v0, Lmiui/util/Pools;->JH:Lmiui/util/Pools$Pool;
 
     return-object v0
 .end method

@@ -28,10 +28,10 @@
 .method public constructor <init>()V
     .locals 1
 
-    .line 28
+    .line 29
     invoke-direct {p0}, Lcom/android/camera/fragment/BaseFragment;-><init>()V
 
-    .line 38
+    .line 39
     const-string v0, ""
 
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentVertical;->mStateValueText:Ljava/lang/String;
@@ -42,7 +42,7 @@
 .method private adjustViewHeight(Landroid/view/View;)V
     .locals 2
 
-    .line 61
+    .line 62
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentVertical;->getResources()Landroid/content/res/Resources;
 
     move-result-object v0
@@ -53,7 +53,7 @@
 
     iget v0, v0, Landroid/util/DisplayMetrics;->widthPixels:I
 
-    .line 62
+    .line 63
     int-to-float v0, v0
 
     const/high16 v1, 0x3f400000    # 0.75f
@@ -62,7 +62,7 @@
 
     float-to-int v0, v0
 
-    .line 63
+    .line 64
     sget v1, Lcom/android/camera/Util;->sWindowHeight:I
 
     sub-int/2addr v1, v0
@@ -81,60 +81,60 @@
 
     sub-int/2addr v1, v0
 
-    .line 64
+    .line 65
     invoke-virtual {p1}, Landroid/view/View;->getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
 
     move-result-object p1
 
     check-cast p1, Landroid/view/ViewGroup$MarginLayoutParams;
 
-    .line 65
+    .line 66
     iput v1, p1, Landroid/view/ViewGroup$MarginLayoutParams;->topMargin:I
 
-    .line 66
+    .line 67
     return-void
 .end method
 
 .method private updateLightingRelativeView(ZZ)V
     .locals 2
 
-    .line 188
+    .line 189
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentVertical;->mRightAlertStatus:Landroid/widget/TextView;
 
     invoke-static {v0}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 189
+    .line 190
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentVertical;->mRightLightingPattern:Landroid/widget/TextView;
 
     invoke-static {v0}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 190
+    .line 191
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentVertical;->mLeftAlertStatus:Landroid/widget/TextView;
 
     invoke-static {v0}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 191
+    .line 192
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentVertical;->mLeftLightingPattern:Landroid/widget/TextView;
 
     invoke-static {v0}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 192
+    .line 193
     if-eqz p1, :cond_0
 
-    .line 193
+    .line 194
     const/4 p1, -0x2
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentVertical;->stringLightingRes:I
 
-    .line 194
+    .line 195
     const-string p1, ""
 
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mStateValueText:Ljava/lang/String;
 
-    .line 195
+    .line 196
     return-void
 
-    .line 197
+    .line 198
     :cond_0
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemRunning()Lcom/android/camera/data/data/runing/DataItemRunning;
 
@@ -146,12 +146,12 @@
 
     const/16 v0, 0xab
 
-    .line 198
+    .line 199
     invoke-virtual {p1, v0}, Lcom/android/camera/data/data/runing/ComponentRunningLighting;->getComponentValue(I)Ljava/lang/String;
 
     move-result-object p1
 
-    .line 199
+    .line 200
     const-string v0, "0"
 
     invoke-virtual {p1, v0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
@@ -160,10 +160,10 @@
 
     if-eqz p1, :cond_1
 
-    .line 200
+    .line 201
     return-void
 
-    .line 202
+    .line 203
     :cond_1
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentVertical;->isLandScape()Z
 
@@ -171,14 +171,14 @@
 
     if-eqz p1, :cond_5
 
-    .line 203
+    .line 204
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentVertical;->isLeftLandScape()Z
 
     move-result p1
 
     if-eqz p1, :cond_3
 
-    .line 204
+    .line 205
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mStateValueText:Ljava/lang/String;
 
     invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
@@ -187,25 +187,25 @@
 
     if-nez p1, :cond_2
 
-    .line 205
+    .line 206
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mLeftAlertStatus:Landroid/widget/TextView;
 
     invoke-virtual {p0, p1, p2}, Lcom/android/camera/fragment/FragmentVertical;->startAnimateViewVisible(Landroid/view/View;Z)V
 
-    .line 207
+    .line 208
     :cond_2
     iget p1, p0, Lcom/android/camera/fragment/FragmentVertical;->stringLightingRes:I
 
     if-lez p1, :cond_7
 
-    .line 208
+    .line 209
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mLeftLightingPattern:Landroid/widget/TextView;
 
     invoke-virtual {p0, p1, p2}, Lcom/android/camera/fragment/FragmentVertical;->startAnimateViewVisible(Landroid/view/View;Z)V
 
     goto :goto_0
 
-    .line 210
+    .line 211
     :cond_3
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentVertical;->isRightLandScape()Z
 
@@ -213,7 +213,7 @@
 
     if-eqz p1, :cond_7
 
-    .line 211
+    .line 212
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mStateValueText:Ljava/lang/String;
 
     invoke-static {p1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
@@ -222,25 +222,25 @@
 
     if-nez p1, :cond_4
 
-    .line 212
+    .line 213
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mRightAlertStatus:Landroid/widget/TextView;
 
     invoke-virtual {p0, p1, p2}, Lcom/android/camera/fragment/FragmentVertical;->startAnimateViewVisible(Landroid/view/View;Z)V
 
-    .line 214
+    .line 215
     :cond_4
     iget p1, p0, Lcom/android/camera/fragment/FragmentVertical;->stringLightingRes:I
 
     if-lez p1, :cond_7
 
-    .line 215
+    .line 216
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mRightLightingPattern:Landroid/widget/TextView;
 
     invoke-virtual {p0, p1, p2}, Lcom/android/camera/fragment/FragmentVertical;->startAnimateViewVisible(Landroid/view/View;Z)V
 
     goto :goto_0
 
-    .line 219
+    .line 220
     :cond_5
     iget p1, p0, Lcom/android/camera/fragment/FragmentVertical;->oldDegree:I
 
@@ -250,29 +250,29 @@
 
     if-ne p1, v0, :cond_6
 
-    .line 220
+    .line 221
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mRightAlertStatus:Landroid/widget/TextView;
 
     invoke-virtual {p0, p1, v1}, Lcom/android/camera/fragment/FragmentVertical;->starAnimatetViewGone(Landroid/view/View;Z)V
 
-    .line 221
+    .line 222
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mRightLightingPattern:Landroid/widget/TextView;
 
     invoke-virtual {p0, p1, v1}, Lcom/android/camera/fragment/FragmentVertical;->starAnimatetViewGone(Landroid/view/View;Z)V
 
-    .line 222
+    .line 223
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mLeftAlertStatus:Landroid/widget/TextView;
 
     invoke-virtual {p0, p1, p2}, Lcom/android/camera/fragment/FragmentVertical;->starAnimatetViewGone(Landroid/view/View;Z)V
 
-    .line 223
+    .line 224
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mLeftLightingPattern:Landroid/widget/TextView;
 
     invoke-virtual {p0, p1, p2}, Lcom/android/camera/fragment/FragmentVertical;->starAnimatetViewGone(Landroid/view/View;Z)V
 
     goto :goto_0
 
-    .line 224
+    .line 225
     :cond_6
     iget p1, p0, Lcom/android/camera/fragment/FragmentVertical;->oldDegree:I
 
@@ -280,34 +280,34 @@
 
     if-ne p1, v0, :cond_7
 
-    .line 225
+    .line 226
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mLeftAlertStatus:Landroid/widget/TextView;
 
     invoke-virtual {p0, p1, v1}, Lcom/android/camera/fragment/FragmentVertical;->starAnimatetViewGone(Landroid/view/View;Z)V
 
-    .line 226
+    .line 227
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mLeftLightingPattern:Landroid/widget/TextView;
 
     invoke-virtual {p0, p1, v1}, Lcom/android/camera/fragment/FragmentVertical;->starAnimatetViewGone(Landroid/view/View;Z)V
 
-    .line 227
+    .line 228
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mRightAlertStatus:Landroid/widget/TextView;
 
     invoke-virtual {p0, p1, p2}, Lcom/android/camera/fragment/FragmentVertical;->starAnimatetViewGone(Landroid/view/View;Z)V
 
-    .line 228
+    .line 229
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mRightLightingPattern:Landroid/widget/TextView;
 
     invoke-virtual {p0, p1, p2}, Lcom/android/camera/fragment/FragmentVertical;->starAnimatetViewGone(Landroid/view/View;Z)V
 
-    .line 231
+    .line 232
     :cond_7
     :goto_0
     iget p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mDegree:I
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentVertical;->oldDegree:I
 
-    .line 232
+    .line 233
     return-void
 .end method
 
@@ -316,62 +316,62 @@
 .method public alertLightingHint(I)V
     .locals 1
 
-    .line 154
+    .line 155
     nop
 
-    .line 155
+    .line 156
     const/4 v0, -0x1
 
     packed-switch p1, :pswitch_data_0
 
-    .line 169
+    .line 170
     move p1, v0
 
     goto :goto_0
 
-    .line 157
-    :pswitch_0
-    const p1, 0x7f0b01fb
-
     .line 158
-    goto :goto_0
+    :pswitch_0
+    const p1, 0x7f090204
 
-    .line 163
-    :pswitch_1
-    const p1, 0x7f0b01fc
+    .line 159
+    goto :goto_0
 
     .line 164
+    :pswitch_1
+    const p1, 0x7f090205
+
+    .line 165
     goto :goto_0
 
-    .line 160
-    :pswitch_2
-    const p1, 0x7f0b01fd
-
     .line 161
+    :pswitch_2
+    const p1, 0x7f090206
+
+    .line 162
     nop
 
-    .line 169
+    .line 170
     :goto_0
     if-ne p1, v0, :cond_0
 
-    .line 170
+    .line 171
     const-string p1, ""
 
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mStateValueText:Ljava/lang/String;
 
-    .line 171
+    .line 172
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mRightAlertStatus:Landroid/widget/TextView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 172
+    .line 173
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mLeftAlertStatus:Landroid/widget/TextView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
 
     goto :goto_1
 
-    .line 174
+    .line 175
     :cond_0
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentVertical;->getResources()Landroid/content/res/Resources;
 
@@ -383,35 +383,35 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mStateValueText:Ljava/lang/String;
 
-    .line 175
+    .line 176
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mRightAlertStatus:Landroid/widget/TextView;
 
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentVertical;->mStateValueText:Ljava/lang/String;
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 176
+    .line 177
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mLeftAlertStatus:Landroid/widget/TextView;
 
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentVertical;->mStateValueText:Ljava/lang/String;
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(Ljava/lang/CharSequence;)V
 
-    .line 177
+    .line 178
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentVertical;->isLeftLandScape()Z
 
     move-result p1
 
     if-eqz p1, :cond_1
 
-    .line 178
+    .line 179
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mLeftAlertStatus:Landroid/widget/TextView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
 
     goto :goto_1
 
-    .line 179
+    .line 180
     :cond_1
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentVertical;->isRightLandScape()Z
 
@@ -419,12 +419,12 @@
 
     if-eqz p1, :cond_2
 
-    .line 180
+    .line 181
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mRightAlertStatus:Landroid/widget/TextView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 183
+    .line 184
     :cond_2
     :goto_1
     return-void
@@ -440,7 +440,7 @@
 .method public getFragmentInto()I
     .locals 1
 
-    .line 75
+    .line 76
     const/16 v0, 0xff8
 
     return v0
@@ -449,8 +449,8 @@
 .method protected getLayoutResourceId()I
     .locals 1
 
-    .line 70
-    const v0, 0x7f040033
+    .line 71
+    const v0, 0x7f040036
 
     return v0
 .end method
@@ -458,8 +458,8 @@
 .method protected initView(Landroid/view/View;)V
     .locals 1
 
-    .line 43
-    const v0, 0x7f0d00a4
+    .line 44
+    const v0, 0x7f0d00bb
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -467,13 +467,13 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentVertical;->mVerticalViewMenu:Landroid/view/View;
 
-    .line 44
+    .line 45
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentVertical;->mVerticalViewMenu:Landroid/view/View;
 
     invoke-direct {p0, v0}, Lcom/android/camera/fragment/FragmentVertical;->adjustViewHeight(Landroid/view/View;)V
 
-    .line 45
-    const v0, 0x7f0d00a5
+    .line 46
+    const v0, 0x7f0d00bc
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -483,8 +483,8 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentVertical;->mLeftAlertStatus:Landroid/widget/TextView;
 
-    .line 46
-    const v0, 0x7f0d00a6
+    .line 47
+    const v0, 0x7f0d00bd
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -494,8 +494,8 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentVertical;->mLeftLightingPattern:Landroid/widget/TextView;
 
-    .line 47
-    const v0, 0x7f0d00a7
+    .line 48
+    const v0, 0x7f0d00be
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -505,8 +505,8 @@
 
     iput-object v0, p0, Lcom/android/camera/fragment/FragmentVertical;->mRightAlertStatus:Landroid/widget/TextView;
 
-    .line 48
-    const v0, 0x7f0d00a8
+    .line 49
+    const v0, 0x7f0d00bf
 
     invoke-virtual {p1, v0}, Landroid/view/View;->findViewById(I)Landroid/view/View;
 
@@ -516,43 +516,43 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mRightLightingPattern:Landroid/widget/TextView;
 
-    .line 50
+    .line 51
     iget p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mDegree:I
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentVertical;->oldDegree:I
 
-    .line 53
+    .line 54
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mLeftAlertStatus:Landroid/widget/TextView;
 
     const/high16 v0, 0x42b40000    # 90.0f
 
     invoke-static {p1, v0}, Landroid/support/v4/view/ViewCompat;->setRotation(Landroid/view/View;F)V
 
-    .line 54
+    .line 55
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mLeftLightingPattern:Landroid/widget/TextView;
 
     invoke-static {p1, v0}, Landroid/support/v4/view/ViewCompat;->setRotation(Landroid/view/View;F)V
 
-    .line 56
+    .line 57
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mRightAlertStatus:Landroid/widget/TextView;
 
     const/high16 v0, 0x43870000    # 270.0f
 
     invoke-static {p1, v0}, Landroid/support/v4/view/ViewCompat;->setRotation(Landroid/view/View;F)V
 
-    .line 57
+    .line 58
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mRightLightingPattern:Landroid/widget/TextView;
 
     invoke-static {p1, v0}, Landroid/support/v4/view/ViewCompat;->setRotation(Landroid/view/View;F)V
 
-    .line 58
+    .line 59
     return-void
 .end method
 
 .method public isAnyViewVisible()Z
     .locals 1
 
-    .line 235
+    .line 237
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentVertical;->mLeftAlertStatus:Landroid/widget/TextView;
 
     invoke-virtual {v0}, Landroid/widget/TextView;->getVisibility()I
@@ -563,7 +563,7 @@
 
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentVertical;->mRightAlertStatus:Landroid/widget/TextView;
 
-    .line 236
+    .line 238
     invoke-virtual {v0}, Landroid/widget/TextView;->getVisibility()I
 
     move-result v0
@@ -572,7 +572,7 @@
 
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentVertical;->mLeftLightingPattern:Landroid/widget/TextView;
 
-    .line 237
+    .line 239
     invoke-virtual {v0}, Landroid/widget/TextView;->getVisibility()I
 
     move-result v0
@@ -581,7 +581,7 @@
 
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentVertical;->mRightLightingPattern:Landroid/widget/TextView;
 
-    .line 238
+    .line 240
     invoke-virtual {v0}, Landroid/widget/TextView;->getVisibility()I
 
     move-result v0
@@ -599,39 +599,51 @@
     :goto_0
     const/4 v0, 0x1
 
-    .line 235
+    .line 237
     :goto_1
     return v0
 .end method
 
-.method public provideAnimateElement(ILjava/util/List;Z)V
+.method public provideAnimateElement(ILjava/util/List;I)V
     .locals 0
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(I",
             "Ljava/util/List<",
             "Lio/reactivex/Completable;",
-            ">;Z)V"
+            ">;I)V"
         }
     .end annotation
 
-    .line 92
-    invoke-super {p0, p1, p2, p3}, Lcom/android/camera/fragment/BaseFragment;->provideAnimateElement(ILjava/util/List;Z)V
-
     .line 93
+    invoke-super {p0, p1, p2, p3}, Lcom/android/camera/fragment/BaseFragment;->provideAnimateElement(ILjava/util/List;I)V
+
+    .line 94
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentVertical;->isAnyViewVisible()Z
 
     move-result p1
 
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_1
 
-    .line 94
-    const/4 p1, 0x0
+    .line 95
+    const/4 p1, 0x3
 
-    invoke-direct {p0, p3, p1}, Lcom/android/camera/fragment/FragmentVertical;->updateLightingRelativeView(ZZ)V
+    const/4 p2, 0x0
 
-    .line 96
+    if-ne p3, p1, :cond_0
+
+    const/4 p1, 0x1
+
+    goto :goto_0
+
     :cond_0
+    move p1, p2
+
+    :goto_0
+    invoke-direct {p0, p1, p2}, Lcom/android/camera/fragment/FragmentVertical;->updateLightingRelativeView(ZZ)V
+
+    .line 97
+    :cond_1
     return-void
 .end method
 
@@ -646,20 +658,20 @@
         }
     .end annotation
 
-    .line 100
+    .line 101
     invoke-super {p0, p1, p2}, Lcom/android/camera/fragment/BaseFragment;->provideRotateItem(Ljava/util/List;I)V
 
-    .line 101
+    .line 102
     iget p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mCurrentMode:I
 
     const/16 p2, 0xab
 
     if-eq p1, p2, :cond_0
 
-    .line 102
+    .line 103
     return-void
 
-    .line 104
+    .line 105
     :cond_0
     const/4 p1, 0x0
 
@@ -667,29 +679,29 @@
 
     invoke-direct {p0, p1, p2}, Lcom/android/camera/fragment/FragmentVertical;->updateLightingRelativeView(ZZ)V
 
-    .line 105
+    .line 106
     return-void
 .end method
 
 .method protected register(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
     .locals 1
 
-    .line 80
+    .line 81
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->register(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
 
-    .line 81
+    .line 82
     const/16 v0, 0xc6
 
     invoke-interface {p1, v0, p0}, Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;->attachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 82
+    .line 83
     return-void
 .end method
 
 .method public setLightingPattern(Ljava/lang/String;)V
     .locals 1
 
-    .line 109
+    .line 110
     invoke-virtual {p1}, Ljava/lang/String;->hashCode()I
 
     move-result v0
@@ -813,95 +825,95 @@
 
     goto :goto_2
 
-    .line 132
-    :pswitch_8
-    const p1, 0x7f0b0203
-
-    iput p1, p0, Lcom/android/camera/fragment/FragmentVertical;->stringLightingRes:I
-
     .line 133
-    goto :goto_2
-
-    .line 129
-    :pswitch_9
-    const p1, 0x7f0b0204
+    :pswitch_8
+    const p1, 0x7f09020c
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentVertical;->stringLightingRes:I
+
+    .line 134
+    goto :goto_2
 
     .line 130
-    goto :goto_2
-
-    .line 126
-    :pswitch_a
-    const p1, 0x7f0b0205
+    :pswitch_9
+    const p1, 0x7f09020d
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentVertical;->stringLightingRes:I
+
+    .line 131
+    goto :goto_2
 
     .line 127
-    goto :goto_2
-
-    .line 123
-    :pswitch_b
-    const p1, 0x7f0b0202
+    :pswitch_a
+    const p1, 0x7f09020e
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentVertical;->stringLightingRes:I
+
+    .line 128
+    goto :goto_2
 
     .line 124
-    goto :goto_2
-
-    .line 120
-    :pswitch_c
-    const p1, 0x7f0b0201
+    :pswitch_b
+    const p1, 0x7f09020b
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentVertical;->stringLightingRes:I
+
+    .line 125
+    goto :goto_2
 
     .line 121
-    goto :goto_2
-
-    .line 117
-    :pswitch_d
-    const p1, 0x7f0b0200
+    :pswitch_c
+    const p1, 0x7f09020a
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentVertical;->stringLightingRes:I
+
+    .line 122
+    goto :goto_2
 
     .line 118
-    goto :goto_2
-
-    .line 114
-    :pswitch_e
-    const p1, 0x7f0b01ff
+    :pswitch_d
+    const p1, 0x7f090209
 
     iput p1, p0, Lcom/android/camera/fragment/FragmentVertical;->stringLightingRes:I
 
-    .line 115
+    .line 119
     goto :goto_2
 
-    .line 111
+    .line 115
+    :pswitch_e
+    const p1, 0x7f090208
+
+    iput p1, p0, Lcom/android/camera/fragment/FragmentVertical;->stringLightingRes:I
+
+    .line 116
+    goto :goto_2
+
+    .line 112
     :pswitch_f
     iput v0, p0, Lcom/android/camera/fragment/FragmentVertical;->stringLightingRes:I
 
-    .line 112
+    .line 113
     nop
 
-    .line 138
+    .line 139
     :goto_2
     iget p1, p0, Lcom/android/camera/fragment/FragmentVertical;->stringLightingRes:I
 
     if-ne p1, v0, :cond_1
 
-    .line 139
+    .line 140
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mLeftLightingPattern:Landroid/widget/TextView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 140
+    .line 141
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mRightLightingPattern:Landroid/widget/TextView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaOutOnSubscribe;->directSetResult(Landroid/view/View;)V
 
     goto :goto_3
 
-    .line 142
+    .line 143
     :cond_1
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mLeftLightingPattern:Landroid/widget/TextView;
 
@@ -909,28 +921,28 @@
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(I)V
 
-    .line 143
+    .line 144
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mRightLightingPattern:Landroid/widget/TextView;
 
     iget v0, p0, Lcom/android/camera/fragment/FragmentVertical;->stringLightingRes:I
 
     invoke-virtual {p1, v0}, Landroid/widget/TextView;->setText(I)V
 
-    .line 144
+    .line 145
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentVertical;->isLeftLandScape()Z
 
     move-result p1
 
     if-eqz p1, :cond_2
 
-    .line 145
+    .line 146
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mLeftLightingPattern:Landroid/widget/TextView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
 
     goto :goto_3
 
-    .line 146
+    .line 147
     :cond_2
     invoke-virtual {p0}, Lcom/android/camera/fragment/FragmentVertical;->isRightLandScape()Z
 
@@ -938,12 +950,12 @@
 
     if-eqz p1, :cond_3
 
-    .line 147
+    .line 148
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentVertical;->mRightLightingPattern:Landroid/widget/TextView;
 
     invoke-static {p1}, Lcom/android/camera/animation/type/AlphaInOnSubscribe;->directSetResult(Landroid/view/View;)V
 
-    .line 150
+    .line 151
     :cond_3
     :goto_3
     return-void
@@ -976,14 +988,14 @@
 .method protected unRegister(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
     .locals 1
 
-    .line 86
+    .line 87
     invoke-super {p0, p1}, Lcom/android/camera/fragment/BaseFragment;->unRegister(Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;)V
 
-    .line 87
+    .line 88
     const/16 v0, 0xc6
 
     invoke-interface {p1, v0, p0}, Lcom/android/camera/protocol/ModeProtocol$ModeCoordinator;->detachProtocol(ILcom/android/camera/protocol/ModeProtocol$BaseProtocol;)V
 
-    .line 88
+    .line 89
     return-void
 .end method

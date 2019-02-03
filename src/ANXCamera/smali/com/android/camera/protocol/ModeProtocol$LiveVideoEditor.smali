@@ -25,16 +25,22 @@
 .method public abstract combineVideoAudio(Ljava/lang/String;Lcom/ss/android/vesdk/VECommonCallback;Lcom/ss/android/vesdk/VECommonCallback;)V
 .end method
 
-.method public abstract init(Landroid/view/TextureView;Ljava/lang/String;Ljava/lang/String;Lcom/ss/android/vesdk/VECommonCallback;Lcom/ss/android/vesdk/VECommonCallback;)V
+.method public abstract init(Landroid/view/TextureView;Ljava/lang/String;Ljava/lang/String;Lcom/ss/android/vesdk/VECommonCallback;Lcom/ss/android/vesdk/VECommonCallback;)Z
 .end method
 
 .method public abstract onDestory()V
 .end method
 
-.method public abstract onResume()V
+.method public abstract pausePlay()V
 .end method
 
-.method public abstract pausePlay()V
+.method public abstract resumePlay()V
+.end method
+
+.method public abstract setEncodeSize(II)V
+.end method
+
+.method public abstract setRecordOrientation(I)V
 .end method
 
 .method public abstract startPlay()V

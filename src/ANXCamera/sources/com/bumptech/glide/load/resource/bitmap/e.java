@@ -23,15 +23,15 @@ public class e implements h<Bitmap> {
     public static final com.bumptech.glide.load.e<Integer> jT = com.bumptech.glide.load.e.a("com.bumptech.glide.load.resource.bitmap.BitmapEncoder.CompressionQuality", Integer.valueOf(90));
     public static final com.bumptech.glide.load.e<CompressFormat> jU = com.bumptech.glide.load.e.g("com.bumptech.glide.load.resource.bitmap.BitmapEncoder.CompressionFormat");
     @Nullable
-    private final b r;
+    private final b v;
 
     public e(@NonNull b bVar) {
-        this.r = bVar;
+        this.v = bVar;
     }
 
     @Deprecated
     public e() {
-        this.r = null;
+        this.v = null;
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:34:0x007b A:{Catch:{ all -> 0x00d0 }} */
@@ -54,8 +54,8 @@ public class e implements h<Bitmap> {
             try {
                 OutputStream fileOutputStream = new FileOutputStream(file);
                 try {
-                    if (this.r != null) {
-                        outputStream = new c(fileOutputStream, this.r);
+                    if (this.v != null) {
+                        outputStream = new c(fileOutputStream, this.v);
                     } else {
                         outputStream = fileOutputStream;
                     }

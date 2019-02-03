@@ -52,7 +52,7 @@ public class FunctionUISetup extends Func1Base<BaseModule, BaseModule> {
             i = 3;
         }
         baseModule.setDisplayRectAndUIStyle(displayRect, uiStyle);
-        if (this.mNeedNotifyUI) {
+        if (this.mNeedNotifyUI && baseDelegate != null) {
             baseDelegate.getAnimationComposite().notifyDataChanged(i, this.mTargetMode);
         }
         LocationManager.instance().recordLocation(CameraSettings.isRecordLocation());

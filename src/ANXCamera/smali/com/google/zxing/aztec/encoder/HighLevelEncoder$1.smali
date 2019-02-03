@@ -32,7 +32,7 @@
 
 # direct methods
 .method constructor <init>(Lcom/google/zxing/aztec/encoder/HighLevelEncoder;)V
-    .locals 0
+    .registers 2
 
     .line 1
     iput-object p1, p0, Lcom/google/zxing/aztec/encoder/HighLevelEncoder$1;->this$0:Lcom/google/zxing/aztec/encoder/HighLevelEncoder;
@@ -46,7 +46,7 @@
 
 # virtual methods
 .method public compare(Lcom/google/zxing/aztec/encoder/State;Lcom/google/zxing/aztec/encoder/State;)I
-    .locals 2
+    .registers 5
     .param p1, "a"    # Lcom/google/zxing/aztec/encoder/State;
     .param p2, "b"    # Lcom/google/zxing/aztec/encoder/State;
 
@@ -65,7 +65,7 @@
 .end method
 
 .method public bridge synthetic compare(Ljava/lang/Object;Ljava/lang/Object;)I
-    .locals 0
+    .registers 3
 
     .line 1
     check-cast p1, Lcom/google/zxing/aztec/encoder/State;

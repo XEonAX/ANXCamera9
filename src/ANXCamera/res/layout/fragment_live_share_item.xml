@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/live_share_item" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:id="@id/live_share_icon" android:layout_width="@dimen/live_share_icon_width" android:layout_height="@dimen/live_share_icon_width" android:scaleType="centerCrop" />
+    <TextView android:textSize="@dimen/live_share_name_text" android:textColor="@color/live_share_name_text" android:gravity="center" android:id="@id/live_share_name" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/live_share_name_margin" android:singleLine="true" />
+</LinearLayout>

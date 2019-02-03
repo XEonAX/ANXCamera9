@@ -22,7 +22,7 @@
 
 # direct methods
 .method constructor <init>(II)V
-    .locals 0
+    .registers 3
     .param p1, "count"    # I
     .param p2, "dataCodewords"    # I
 
@@ -42,7 +42,7 @@
 
 # virtual methods
 .method public getCount()I
-    .locals 1
+    .registers 2
 
     .line 229
     iget v0, p0, Lcom/google/zxing/qrcode/decoder/Version$ECB;->count:I
@@ -51,7 +51,7 @@
 .end method
 
 .method public getDataCodewords()I
-    .locals 1
+    .registers 2
 
     .line 233
     iget v0, p0, Lcom/google/zxing/qrcode/decoder/Version$ECB;->dataCodewords:I

@@ -24,10 +24,10 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.view.Surface;
-import com.aeonax.camera.R;
 import com.android.camera.CameraAppImpl;
 import com.android.camera.CameraSettings;
 import com.android.camera.CameraSize;
+import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.constant.ExceptionConstant;
 import com.android.camera.data.data.config.ComponentManuallyDualLens;
@@ -231,7 +231,7 @@ public class CameraTestManager {
                             mMuxCameraId = parseInt;
                         }
                     }
-                    this.mCapabilities.add(parseInt, new CameraCapabilities(cameraCharacteristics));
+                    this.mCapabilities.add(parseInt, new CameraCapabilities(cameraCharacteristics, parseInt));
                 } catch (NumberFormatException e) {
                     String str2 = TAG;
                     StringBuilder stringBuilder = new StringBuilder();

@@ -16,10 +16,10 @@ import java.util.Queue;
 
 /* compiled from: Util */
 public final class k {
-    private static final int pt = 31;
-    private static final int pu = 17;
-    private static final char[] pv = "0123456789abcdef".toCharArray();
-    private static final char[] pw = new char[64];
+    private static final int ps = 31;
+    private static final int pt = 17;
+    private static final char[] pu = "0123456789abcdef".toCharArray();
+    private static final char[] pv = new char[64];
 
     /* compiled from: Util */
     /* renamed from: com.bumptech.glide.util.k$1 */
@@ -56,8 +56,8 @@ public final class k {
     @NonNull
     public static String j(@NonNull byte[] bArr) {
         String a;
-        synchronized (pw) {
-            a = a(bArr, pw);
+        synchronized (pv) {
+            a = a(bArr, pv);
         }
         return a;
     }
@@ -67,8 +67,8 @@ public final class k {
         for (int i = 0; i < bArr.length; i++) {
             int i2 = bArr[i] & 255;
             int i3 = i * 2;
-            cArr[i3] = pv[i2 >>> 4];
-            cArr[i3 + 1] = pv[i2 & 15];
+            cArr[i3] = pu[i2 >>> 4];
+            cArr[i3 + 1] = pu[i2 & 15];
         }
         return new String(cArr);
     }

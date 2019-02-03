@@ -318,6 +318,15 @@
     return-void
 .end method
 
+.method public getHandler()Landroid/os/Handler;
+    .locals 1
+
+    .line 149
+    iget-object v0, p0, Lcom/ss/android/ugc/effectmanager/effect/repository/EffectRepository;->mHandler:Landroid/os/Handler;
+
+    return-object v0
+.end method
+
 .method public handleMsg(Landroid/os/Message;)V
     .locals 6
 

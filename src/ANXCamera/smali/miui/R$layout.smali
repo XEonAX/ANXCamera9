@@ -1,6 +1,6 @@
 .class public final Lmiui/R$layout;
 .super Ljava/lang/Object;
-.source "SourceFile"
+.source "R.java"
 
 
 # annotations
@@ -40,59 +40,59 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
-    .line 1779
+    .line 1808
     const v0, 0x10030008
 
     sput v0, Lmiui/R$layout;->edit_mode_title:I
 
-    .line 1782
+    .line 1811
     const v0, 0x10030004
 
     sput v0, Lmiui/R$layout;->hybrid_view:I
 
-    .line 1785
+    .line 1814
     const v0, 0x10030003
 
     sput v0, Lmiui/R$layout;->immersion_popup_menu_item:I
 
-    .line 1786
+    .line 1815
     const v0, 0x10030005
 
     sput v0, Lmiui/R$layout;->preference:I
 
-    .line 1787
+    .line 1816
     const v0, 0x10030006
 
     sput v0, Lmiui/R$layout;->preference_category:I
 
-    .line 1788
+    .line 1817
     const v0, 0x10030009
 
     sput v0, Lmiui/R$layout;->preference_value:I
 
-    .line 1791
+    .line 1820
     const/high16 v0, 0x10030000
 
     sput v0, Lmiui/R$layout;->search_stub:I
 
-    .line 1792
+    .line 1821
     const v0, 0x10030007
 
     sput v0, Lmiui/R$layout;->select_dialog_singlechoice:I
 
-    .line 1795
+    .line 1824
     const v0, 0x10030002
 
     sput v0, Lmiui/R$layout;->simple_arrow_popup_item:I
 
-    .line 1798
+    .line 1827
     const v0, 0x10030001
 
     sput v0, Lmiui/R$layout;->simple_spinner_dropdown_item:I
 
-    .line 1799
+    .line 1828
     const v0, 0x1003000a
 
     sput v0, Lmiui/R$layout;->webview_reload:I
@@ -101,9 +101,9 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
-    .line 1778
+    .line 1807
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

@@ -1,6 +1,6 @@
 .class public final Lmiui/R$string;
 .super Ljava/lang/Object;
-.source "SourceFile"
+.source "R.java"
 
 
 # annotations
@@ -70,134 +70,134 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
-    .line 1810
+    .line 1839
     const v0, 0x100c0014
 
     sput v0, Lmiui/R$string;->action_mode_deselect_all:I
 
-    .line 1811
+    .line 1840
     const v0, 0x100c0013
 
     sput v0, Lmiui/R$string;->action_mode_select_all:I
 
-    .line 1812
+    .line 1841
     const v0, 0x100c0012
 
     sput v0, Lmiui/R$string;->action_mode_title_empty:I
 
-    .line 1813
+    .line 1842
     const v0, 0x100c000f
 
     sput v0, Lmiui/R$string;->activating:I
 
-    .line 1817
+    .line 1846
     const v0, 0x100c0002
 
     sput v0, Lmiui/R$string;->close:I
 
-    .line 1821
+    .line 1850
     const v0, 0x100c0006
 
     sput v0, Lmiui/R$string;->copyright:I
 
-    .line 1822
+    .line 1851
     const v0, 0x100c0005
 
     sput v0, Lmiui/R$string;->date_picker_label_day:I
 
-    .line 1823
+    .line 1852
     const v0, 0x100c0004
 
     sput v0, Lmiui/R$string;->date_picker_label_month:I
 
-    .line 1826
+    .line 1855
     const v0, 0x100c0003
 
     sput v0, Lmiui/R$string;->date_picker_label_year:I
 
-    .line 1827
+    .line 1856
     const v0, 0x100c0016
 
     sput v0, Lmiui/R$string;->deselect_all:I
 
-    .line 1828
+    .line 1857
     const v0, 0x100c0017
 
     sput v0, Lmiui/R$string;->instruction:I
 
-    .line 1831
+    .line 1860
     const/high16 v0, 0x100c0000
 
     sput v0, Lmiui/R$string;->label:I
 
-    .line 1832
+    .line 1861
     const v0, 0x100c000a
 
     sput v0, Lmiui/R$string;->no_sim:I
 
-    .line 1833
+    .line 1862
     const v0, 0x100c0008
 
     sput v0, Lmiui/R$string;->privacy_policy:I
 
-    .line 1834
+    .line 1863
     const v0, 0x100c0018
 
     sput v0, Lmiui/R$string;->sar:I
 
-    .line 1835
+    .line 1864
     const v0, 0x100c0015
 
     sput v0, Lmiui/R$string;->select_all:I
 
-    .line 1836
+    .line 1865
     const v0, 0x100c0011
 
     sput v0, Lmiui/R$string;->select_item:I
 
-    .line 1840
+    .line 1869
     const v0, 0x100c0001
 
     sput v0, Lmiui/R$string;->send:I
 
-    .line 1841
+    .line 1870
     const v0, 0x100c000c
 
     sput v0, Lmiui/R$string;->sim_in_airplane_mode:I
 
-    .line 1842
+    .line 1871
     const v0, 0x100c000b
 
     sput v0, Lmiui/R$string;->sim_locked:I
 
-    .line 1843
+    .line 1872
     const v0, 0x100c000d
 
     sput v0, Lmiui/R$string;->sim_not_ready:I
 
-    .line 1844
+    .line 1873
     const v0, 0x100c000e
 
     sput v0, Lmiui/R$string;->sim_unavailable:I
 
-    .line 1848
+    .line 1877
     const v0, 0x100c0010
 
     sput v0, Lmiui/R$string;->sync_one_time_sync:I
 
-    .line 1849
+    .line 1878
     const v0, 0x100c0007
 
     sput v0, Lmiui/R$string;->user_agreement:I
 
-    .line 1850
+    .line 1879
     const v0, 0x100c0019
 
     sput v0, Lmiui/R$string;->user_experience_program:I
 
-    .line 1851
+    .line 1880
     const v0, 0x100c0009
 
     sput v0, Lmiui/R$string;->user_manual:I
@@ -206,9 +206,9 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
-    .line 1809
+    .line 1838
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

@@ -2,10 +2,10 @@ package com.android.camera.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import com.aeonax.camera.R;
 import com.android.camera.CameraSettings;
 import com.android.camera.LocationManager;
 import com.android.camera.OnScreenHint;
+import com.android.camera.R;
 import com.android.camera.RotateDialogController;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.global.DataItemGlobal;
@@ -88,7 +88,7 @@ public class ScreenHint {
             }
             if (z) {
                 boolean contains = dataItemGlobal.contains(CameraSettings.KEY_RECORD_LOCATION);
-                if (b.fO() && !contains && z) {
+                if (b.gi() && !contains && z) {
                     this.mSystemChoiceDialog = RotateDialogController.showSystemChoiceDialog(this.mActivity, this.mActivity.getString(R.string.confirm_location_title), this.mActivity.getString(R.string.confirm_location_message), this.mActivity.getString(R.string.confirm_location_alert), this.mActivity.getString(R.string.start_capture), new Runnable() {
                         public void run() {
                             ScreenHint.this.recordLocation(true);

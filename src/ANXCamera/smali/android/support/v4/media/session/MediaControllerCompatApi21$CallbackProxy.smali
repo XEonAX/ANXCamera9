@@ -35,7 +35,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/support/v4/media/session/MediaControllerCompatApi21$Callback;)V
-    .locals 0
+    .registers 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(TT;)V"
@@ -57,7 +57,7 @@
 
 # virtual methods
 .method public onMetadataChanged(Landroid/media/MediaMetadata;)V
-    .locals 1
+    .registers 3
     .param p1, "metadata"    # Landroid/media/MediaMetadata;
 
     .line 278
@@ -71,7 +71,7 @@
 .end method
 
 .method public onPlaybackStateChanged(Landroid/media/session/PlaybackState;)V
-    .locals 1
+    .registers 3
     .param p1, "state"    # Landroid/media/session/PlaybackState;
 
     .line 273
@@ -85,7 +85,7 @@
 .end method
 
 .method public onSessionDestroyed()V
-    .locals 1
+    .registers 2
 
     .line 263
     .local p0, "this":Landroid/support/v4/media/session/MediaControllerCompatApi21$CallbackProxy;, "Landroid/support/v4/media/session/MediaControllerCompatApi21$CallbackProxy<TT;>;"
@@ -98,7 +98,7 @@
 .end method
 
 .method public onSessionEvent(Ljava/lang/String;Landroid/os/Bundle;)V
-    .locals 1
+    .registers 4
     .param p1, "event"    # Ljava/lang/String;
     .param p2, "extras"    # Landroid/os/Bundle;
 

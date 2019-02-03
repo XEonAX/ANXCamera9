@@ -1,8 +1,8 @@
 package com.android.camera.data.data.config;
 
 import android.text.TextUtils;
-import com.aeonax.camera.R;
 import com.android.camera.CameraSettings;
+import com.android.camera.R;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;
@@ -65,19 +65,19 @@ public class ComponentConfigHdr extends ComponentData {
         if (CameraSettings.isFrontCamera()) {
             return "off";
         }
-        String fr = DataRepository.dataItemFeature().fr();
-        if (!TextUtils.isEmpty(fr)) {
+        String fu = DataRepository.dataItemFeature().fu();
+        if (!TextUtils.isEmpty(fu)) {
             Object obj = -1;
-            int hashCode = fr.hashCode();
+            int hashCode = fu.hashCode();
             if (hashCode != 3551) {
                 if (hashCode != 109935) {
-                    if (hashCode == 3005871 && fr.equals("auto")) {
+                    if (hashCode == 3005871 && fu.equals("auto")) {
                         obj = null;
                     }
-                } else if (fr.equals("off")) {
+                } else if (fu.equals("off")) {
                     obj = 2;
                 }
-            } else if (fr.equals("on")) {
+            } else if (fu.equals("on")) {
                 obj = 1;
             }
             switch (obj) {
@@ -134,7 +134,7 @@ public class ComponentConfigHdr extends ComponentData {
                 this.mAutoSupported = true;
                 this.mItems.add(new ComponentDataItem(getConfigHDRAutoRes(), getConfigHDRAutoRes(), R.string.pref_camera_hdr_entry_auto, "auto"));
             }
-            if (b.pN || !b.gd()) {
+            if (b.pM || !b.gv()) {
                 this.mItems.add(new ComponentDataItem(getConfigHDRNormalRes(), getConfigHDRNormalRes(), R.string.pref_simple_hdr_entry_on, "normal"));
             } else {
                 if (!b.IS_MI2A) {

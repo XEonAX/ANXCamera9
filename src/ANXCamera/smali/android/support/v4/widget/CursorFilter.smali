@@ -17,7 +17,7 @@
 
 # direct methods
 .method constructor <init>(Landroid/support/v4/widget/CursorFilter$CursorFilterClient;)V
-    .locals 0
+    .registers 2
     .param p1, "client"    # Landroid/support/v4/widget/CursorFilter$CursorFilterClient;
 
     .line 39
@@ -33,7 +33,7 @@
 
 # virtual methods
 .method public convertResultToString(Ljava/lang/Object;)Ljava/lang/CharSequence;
-    .locals 2
+    .registers 4
     .param p1, "resultValue"    # Ljava/lang/Object;
 
     .line 45
@@ -51,7 +51,7 @@
 .end method
 
 .method protected performFiltering(Ljava/lang/CharSequence;)Landroid/widget/Filter$FilterResults;
-    .locals 3
+    .registers 5
     .param p1, "constraint"    # Ljava/lang/CharSequence;
 
     .line 50
@@ -69,7 +69,7 @@
 
     .line 53
     .local v1, "results":Landroid/widget/Filter$FilterResults;
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_16
 
     .line 54
     invoke-interface {v0}, Landroid/database/Cursor;->getCount()I
@@ -81,10 +81,10 @@
     .line 55
     iput-object v0, v1, Landroid/widget/Filter$FilterResults;->values:Ljava/lang/Object;
 
-    goto :goto_0
+    goto :goto_1c
 
     .line 57
-    :cond_0
+    :cond_16
     const/4 v2, 0x0
 
     iput v2, v1, Landroid/widget/Filter$FilterResults;->count:I
@@ -95,12 +95,12 @@
     iput-object v2, v1, Landroid/widget/Filter$FilterResults;->values:Ljava/lang/Object;
 
     .line 60
-    :goto_0
+    :goto_1c
     return-object v1
 .end method
 
 .method protected publishResults(Ljava/lang/CharSequence;Landroid/widget/Filter$FilterResults;)V
-    .locals 3
+    .registers 6
     .param p1, "constraint"    # Ljava/lang/CharSequence;
     .param p2, "results"    # Landroid/widget/Filter$FilterResults;
 
@@ -115,11 +115,11 @@
     .local v0, "oldCursor":Landroid/database/Cursor;
     iget-object v1, p2, Landroid/widget/Filter$FilterResults;->values:Ljava/lang/Object;
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_17
 
     iget-object v1, p2, Landroid/widget/Filter$FilterResults;->values:Ljava/lang/Object;
 
-    if-eq v1, v0, :cond_0
+    if-eq v1, v0, :cond_17
 
     .line 68
     iget-object v1, p0, Landroid/support/v4/widget/CursorFilter;->mClient:Landroid/support/v4/widget/CursorFilter$CursorFilterClient;
@@ -131,6 +131,6 @@
     invoke-interface {v1, v2}, Landroid/support/v4/widget/CursorFilter$CursorFilterClient;->changeCursor(Landroid/database/Cursor;)V
 
     .line 70
-    :cond_0
+    :cond_17
     return-void
 .end method

@@ -21,6 +21,9 @@
 .method public abstract initEffectCropView()V
 .end method
 
+.method public abstract isAutoZoomViewEnabled()Z
+.end method
+
 .method public abstract isEffectViewMoved()Z
 .end method
 

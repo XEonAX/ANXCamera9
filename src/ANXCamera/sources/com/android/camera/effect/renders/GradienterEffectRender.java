@@ -1,8 +1,8 @@
 package com.android.camera.effect.renders;
 
 import android.opengl.GLES20;
-import com.aeonax.camera.R;
 import com.android.camera.CameraAppImpl;
+import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.effect.EffectController;
 import com.android.camera.log.Log;

@@ -13,7 +13,7 @@
 
 # direct methods
 .method constructor <init>(ILjava/lang/String;)V
-    .locals 1
+    .registers 4
     .param p1, "newPosition"    # I
     .param p2, "newString"    # Ljava/lang/String;
 
@@ -36,7 +36,7 @@
 .end method
 
 .method constructor <init>(ILjava/lang/String;I)V
-    .locals 1
+    .registers 5
     .param p1, "newPosition"    # I
     .param p2, "newString"    # Ljava/lang/String;
     .param p3, "remainingValue"    # I
@@ -62,7 +62,7 @@
 
 # virtual methods
 .method getNewString()Ljava/lang/String;
-    .locals 1
+    .registers 2
 
     .line 54
     iget-object v0, p0, Lcom/google/zxing/oned/rss/expanded/decoders/DecodedInformation;->newString:Ljava/lang/String;
@@ -71,7 +71,7 @@
 .end method
 
 .method getRemainingValue()I
-    .locals 1
+    .registers 2
 
     .line 62
     iget v0, p0, Lcom/google/zxing/oned/rss/expanded/decoders/DecodedInformation;->remainingValue:I
@@ -80,7 +80,7 @@
 .end method
 
 .method isRemaining()Z
-    .locals 1
+    .registers 2
 
     .line 58
     iget-boolean v0, p0, Lcom/google/zxing/oned/rss/expanded/decoders/DecodedInformation;->remaining:Z

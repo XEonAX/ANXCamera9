@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/ui/CameraSnapView;)V
     .locals 0
 
-    .line 60
+    .line 62
     iput-object p1, p0, Lcom/android/camera/ui/CameraSnapView$1;->this$0:Lcom/android/camera/ui/CameraSnapView;
 
     invoke-direct {p0}, Landroid/os/Handler;-><init>()V
@@ -33,16 +33,29 @@
 
 # virtual methods
 .method public handleMessage(Landroid/os/Message;)V
-    .locals 0
+    .locals 1
 
-    .line 64
+    .line 65
+    iget-object v0, p0, Lcom/android/camera/ui/CameraSnapView$1;->this$0:Lcom/android/camera/ui/CameraSnapView;
+
+    invoke-static {v0}, Lcom/android/camera/ui/CameraSnapView;->access$000(Lcom/android/camera/ui/CameraSnapView;)Lcom/android/camera/ui/CameraSnapView$SnapListener;
+
+    move-result-object v0
+
+    if-nez v0, :cond_0
+
+    .line 66
+    return-void
+
+    .line 69
+    :cond_0
     iget p1, p1, Landroid/os/Message;->what:I
 
     packed-switch p1, :pswitch_data_0
 
     goto :goto_0
 
-    .line 75
+    .line 80
     :pswitch_0
     iget-object p1, p0, Lcom/android/camera/ui/CameraSnapView$1;->this$0:Lcom/android/camera/ui/CameraSnapView;
 
@@ -52,10 +65,10 @@
 
     invoke-interface {p1}, Lcom/android/camera/ui/CameraSnapView$SnapListener;->onSnapLongPressCancelIn()V
 
-    .line 76
+    .line 81
     goto :goto_0
 
-    .line 79
+    .line 84
     :pswitch_1
     iget-object p1, p0, Lcom/android/camera/ui/CameraSnapView$1;->this$0:Lcom/android/camera/ui/CameraSnapView;
 
@@ -67,7 +80,7 @@
 
     goto :goto_0
 
-    .line 71
+    .line 76
     :pswitch_2
     iget-object p1, p0, Lcom/android/camera/ui/CameraSnapView$1;->this$0:Lcom/android/camera/ui/CameraSnapView;
 
@@ -77,10 +90,10 @@
 
     invoke-interface {p1}, Lcom/android/camera/ui/CameraSnapView$SnapListener;->onSnapLongPress()V
 
-    .line 72
+    .line 77
     goto :goto_0
 
-    .line 67
+    .line 72
     :pswitch_3
     iget-object p1, p0, Lcom/android/camera/ui/CameraSnapView$1;->this$0:Lcom/android/camera/ui/CameraSnapView;
 
@@ -90,14 +103,12 @@
 
     invoke-interface {p1}, Lcom/android/camera/ui/CameraSnapView$SnapListener;->onSnapClick()V
 
-    .line 68
+    .line 73
     nop
 
-    .line 83
+    .line 88
     :goto_0
     return-void
-
-    nop
 
     :pswitch_data_0
     .packed-switch 0x1

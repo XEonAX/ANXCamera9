@@ -4,8 +4,10 @@
   "s_z_m": true,
   "s_m_c_t_f": true,
   "c_0x02_p_c_r_v": 0.8327,
-  "s_s_n":true,
+  "s_s_n":true, 
   "c_0x07":true,
   "c_0x08":true,
-  "s_f_9": true
+  "s_f_9": true,
+  "c_0x0c": true,
+  "c_0x16": true
 }

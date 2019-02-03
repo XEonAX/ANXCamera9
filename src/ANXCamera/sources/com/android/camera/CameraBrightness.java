@@ -474,7 +474,7 @@ public class CameraBrightness implements CameraBrightnessCallback {
     }
 
     private void adjustBrightness() {
-        if (this.mCurrentActivity != null && b.fU()) {
+        if (this.mCurrentActivity != null && b.go()) {
             cancelLastTask();
             this.mCameraBrightnessTask = new CameraBrightnessTask(this.mCurrentActivity, this, this.mUseDefaultValue, this.mPaused).execute(new Void[0]);
         }

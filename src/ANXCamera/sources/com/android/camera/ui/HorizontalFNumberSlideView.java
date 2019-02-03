@@ -4,7 +4,9 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import com.aeonax.camera.R;
+import com.android.camera.R;
+import com.android.camera.protocol.ModeCoordinatorImpl;
+import com.android.camera.protocol.ModeProtocol.CameraAction;
 
 public class HorizontalFNumberSlideView extends HorizontalSlideView {
     private int mLineColorSelected;
@@ -36,6 +38,14 @@ public class HorizontalFNumberSlideView extends HorizontalSlideView {
     public HorizontalFNumberSlideView(Context context, AttributeSet attributeSet, int i) {
         super(context, attributeSet, i);
         init(context);
+    }
+
+    public boolean canPositionScroll() {
+        CameraAction cameraAction = (CameraAction) ModeCoordinatorImpl.getInstance().getAttachProtocol(161);
+        if (cameraAction == null || !cameraAction.isDoingAction()) {
+            return true;
+        }
+        return false;
     }
 
     protected void onDraw(Canvas canvas) {

@@ -24,14 +24,14 @@ import java.util.List;
 
 public abstract class ViewTarget<T extends View, Z> extends b<Z> {
     private static final String TAG = "ViewTarget";
-    private static boolean oE;
+    private static boolean oD;
     @Nullable
-    private static Integer oF;
-    private final SizeDeterminer oG;
+    private static Integer oE;
+    private final SizeDeterminer oF;
     @Nullable
-    private OnAttachStateChangeListener oH;
+    private OnAttachStateChangeListener oG;
+    private boolean oH;
     private boolean oI;
-    private boolean oJ;
     protected final T view;
 
     @VisibleForTesting
@@ -39,18 +39,18 @@ public abstract class ViewTarget<T extends View, Z> extends b<Z> {
         @Nullable
         @VisibleForTesting
         static Integer maxDisplayLength;
-        private static final int oL = 0;
+        private static final int oK = 0;
         private final List<m> fN = new ArrayList();
-        boolean oM;
+        boolean oL;
         @Nullable
-        private a oN;
+        private a oM;
         private final View view;
 
         private static final class a implements OnPreDrawListener {
-            private final WeakReference<SizeDeterminer> oO;
+            private final WeakReference<SizeDeterminer> oN;
 
             a(@NonNull SizeDeterminer sizeDeterminer) {
-                this.oO = new WeakReference(sizeDeterminer);
+                this.oN = new WeakReference(sizeDeterminer);
             }
 
             public boolean onPreDraw() {
@@ -61,7 +61,7 @@ public abstract class ViewTarget<T extends View, Z> extends b<Z> {
                     stringBuilder.append(this);
                     Log.v(str, stringBuilder.toString());
                 }
-                SizeDeterminer sizeDeterminer = (SizeDeterminer) this.oO.get();
+                SizeDeterminer sizeDeterminer = (SizeDeterminer) this.oN.get();
                 if (sizeDeterminer != null) {
                     sizeDeterminer.et();
                 }
@@ -73,7 +73,7 @@ public abstract class ViewTarget<T extends View, Z> extends b<Z> {
             this.view = view;
         }
 
-        private static int l(@NonNull Context context) {
+        private static int k(@NonNull Context context) {
             if (maxDisplayLength == null) {
                 Display defaultDisplay = ((WindowManager) i.checkNotNull((WindowManager) context.getSystemService("window"))).getDefaultDisplay();
                 Point point = new Point();
@@ -111,10 +111,10 @@ public abstract class ViewTarget<T extends View, Z> extends b<Z> {
             if (!this.fN.contains(mVar)) {
                 this.fN.add(mVar);
             }
-            if (this.oN == null) {
+            if (this.oM == null) {
                 ViewTreeObserver viewTreeObserver = this.view.getViewTreeObserver();
-                this.oN = new a(this);
-                viewTreeObserver.addOnPreDrawListener(this.oN);
+                this.oM = new a(this);
+                viewTreeObserver.addOnPreDrawListener(this.oM);
             }
         }
 
@@ -125,9 +125,9 @@ public abstract class ViewTarget<T extends View, Z> extends b<Z> {
         void eu() {
             ViewTreeObserver viewTreeObserver = this.view.getViewTreeObserver();
             if (viewTreeObserver.isAlive()) {
-                viewTreeObserver.removeOnPreDrawListener(this.oN);
+                viewTreeObserver.removeOnPreDrawListener(this.oM);
             }
-            this.oN = null;
+            this.oM = null;
             this.fN.clear();
         }
 
@@ -152,7 +152,7 @@ public abstract class ViewTarget<T extends View, Z> extends b<Z> {
             if (i4 > 0) {
                 return i4;
             }
-            if (this.oM && this.view.isLayoutRequested()) {
+            if (this.oL && this.view.isLayoutRequested()) {
                 return 0;
             }
             i -= i3;
@@ -165,7 +165,7 @@ public abstract class ViewTarget<T extends View, Z> extends b<Z> {
             if (Log.isLoggable(ViewTarget.TAG, 4)) {
                 Log.i(ViewTarget.TAG, "Glide treats LayoutParams.WRAP_CONTENT as a request for an image the size of this device's screen dimensions. If you want to load the original image and are ok with the corresponding memory cost and OOMs (depending on the input size), use .override(Target.SIZE_ORIGINAL). Otherwise, use LayoutParams.MATCH_PARENT, set layout_width and layout_height to fixed dimension, or use .override() with fixed dimensions.");
             }
-            return l(this.view.getContext());
+            return k(this.view.getContext());
         }
 
         private boolean R(int i) {
@@ -175,7 +175,7 @@ public abstract class ViewTarget<T extends View, Z> extends b<Z> {
 
     public ViewTarget(@NonNull T t) {
         this.view = (View) i.checkNotNull(t);
-        this.oG = new SizeDeterminer(t);
+        this.oF = new SizeDeterminer(t);
     }
 
     @Deprecated
@@ -188,10 +188,10 @@ public abstract class ViewTarget<T extends View, Z> extends b<Z> {
 
     @NonNull
     public final ViewTarget<T, Z> en() {
-        if (this.oH != null) {
+        if (this.oG != null) {
             return this;
         }
-        this.oH = new OnAttachStateChangeListener() {
+        this.oG = new OnAttachStateChangeListener() {
             public void onViewAttachedToWindow(View view) {
                 ViewTarget.this.eo();
             }
@@ -214,15 +214,15 @@ public abstract class ViewTarget<T extends View, Z> extends b<Z> {
     void ep() {
         c dj = dj();
         if (dj != null && !dj.isCancelled() && !dj.isPaused()) {
-            this.oI = true;
+            this.oH = true;
             dj.pause();
-            this.oI = false;
+            this.oH = false;
         }
     }
 
     @NonNull
     public final ViewTarget<T, Z> eq() {
-        this.oG.oM = true;
+        this.oF.oL = true;
         return this;
     }
 
@@ -233,16 +233,16 @@ public abstract class ViewTarget<T extends View, Z> extends b<Z> {
     }
 
     private void er() {
-        if (this.oH != null && !this.oJ) {
-            this.view.addOnAttachStateChangeListener(this.oH);
-            this.oJ = true;
+        if (this.oG != null && !this.oI) {
+            this.view.addOnAttachStateChangeListener(this.oG);
+            this.oI = true;
         }
     }
 
     private void es() {
-        if (this.oH != null && this.oJ) {
-            this.view.removeOnAttachStateChangeListener(this.oH);
-            this.oJ = false;
+        if (this.oG != null && this.oI) {
+            this.view.removeOnAttachStateChangeListener(this.oG);
+            this.oI = false;
         }
     }
 
@@ -253,19 +253,19 @@ public abstract class ViewTarget<T extends View, Z> extends b<Z> {
 
     @CallSuper
     public void a(@NonNull m mVar) {
-        this.oG.a(mVar);
+        this.oF.a(mVar);
     }
 
     @CallSuper
     public void b(@NonNull m mVar) {
-        this.oG.b(mVar);
+        this.oF.b(mVar);
     }
 
     @CallSuper
     public void d(@Nullable Drawable drawable) {
         super.d(drawable);
-        this.oG.eu();
-        if (!this.oI) {
+        this.oF.eu();
+        if (!this.oH) {
             es();
         }
     }
@@ -294,26 +294,26 @@ public abstract class ViewTarget<T extends View, Z> extends b<Z> {
     }
 
     private void setTag(@Nullable Object obj) {
-        if (oF == null) {
-            oE = true;
+        if (oE == null) {
+            oD = true;
             this.view.setTag(obj);
             return;
         }
-        this.view.setTag(oF.intValue(), obj);
+        this.view.setTag(oE.intValue(), obj);
     }
 
     @Nullable
     private Object getTag() {
-        if (oF == null) {
+        if (oE == null) {
             return this.view.getTag();
         }
-        return this.view.getTag(oF.intValue());
+        return this.view.getTag(oE.intValue());
     }
 
     public static void Q(int i) {
-        if (oF != null || oE) {
+        if (oE != null || oD) {
             throw new IllegalArgumentException("You cannot set the tag id more than once or change the tag id after the first request has been made");
         }
-        oF = Integer.valueOf(i);
+        oE = Integer.valueOf(i);
     }
 }

@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/ui/ToggleSwitch;)V
     .locals 0
 
-    .line 454
+    .line 453
     iput-object p1, p0, Lcom/android/camera/ui/ToggleSwitch$2;->this$0:Lcom/android/camera/ui/ToggleSwitch;
 
     invoke-direct {p0}, Landroid/animation/AnimatorListenerAdapter;-><init>()V
@@ -35,33 +35,33 @@
 .method public onAnimationEnd(Landroid/animation/Animator;)V
     .locals 1
 
-    .line 463
+    .line 462
     invoke-super {p0, p1}, Landroid/animation/AnimatorListenerAdapter;->onAnimationEnd(Landroid/animation/Animator;)V
 
-    .line 464
+    .line 463
     iget-object p1, p0, Lcom/android/camera/ui/ToggleSwitch$2;->this$0:Lcom/android/camera/ui/ToggleSwitch;
 
     const/4 v0, 0x0
 
     invoke-static {p1, v0}, Lcom/android/camera/ui/ToggleSwitch;->access$102(Lcom/android/camera/ui/ToggleSwitch;Z)Z
 
-    .line 465
+    .line 464
     return-void
 .end method
 
 .method public onAnimationStart(Landroid/animation/Animator;)V
     .locals 1
 
-    .line 457
+    .line 456
     invoke-super {p0, p1}, Landroid/animation/AnimatorListenerAdapter;->onAnimationStart(Landroid/animation/Animator;)V
 
-    .line 458
+    .line 457
     iget-object p1, p0, Lcom/android/camera/ui/ToggleSwitch$2;->this$0:Lcom/android/camera/ui/ToggleSwitch;
 
     const/4 v0, 0x1
 
     invoke-static {p1, v0}, Lcom/android/camera/ui/ToggleSwitch;->access$102(Lcom/android/camera/ui/ToggleSwitch;Z)Z
 
-    .line 459
+    .line 458
     return-void
 .end method

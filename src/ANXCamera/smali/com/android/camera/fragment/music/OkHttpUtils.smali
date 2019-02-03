@@ -13,14 +13,14 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 18
+    .line 17
     new-instance v0, Lokhttp3/OkHttpClient;
 
     invoke-direct {v0}, Lokhttp3/OkHttpClient;-><init>()V
 
     sput-object v0, Lcom/android/camera/fragment/music/OkHttpUtils;->client:Lokhttp3/OkHttpClient;
 
-    .line 19
+    .line 18
     const-class v0, Lcom/android/camera/fragment/music/OkHttpUtils;
 
     invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
@@ -35,7 +35,7 @@
 .method public constructor <init>()V
     .locals 0
 
-    .line 16
+    .line 15
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
@@ -44,7 +44,7 @@
 .method static synthetic access$000()Ljava/lang/String;
     .locals 1
 
-    .line 16
+    .line 15
     sget-object v0, Lcom/android/camera/fragment/music/OkHttpUtils;->TAG:Ljava/lang/String;
 
     return-object v0
@@ -63,7 +63,7 @@
         }
     .end annotation
 
-    .line 34
+    .line 33
     if-eqz p0, :cond_3
 
     invoke-interface {p0}, Ljava/util/Map;->isEmpty()Z
@@ -74,13 +74,13 @@
 
     goto :goto_1
 
-    .line 37
+    .line 36
     :cond_0
     new-instance v0, Ljava/lang/StringBuilder;
 
     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
 
-    .line 38
+    .line 37
     invoke-interface {p0}, Ljava/util/Map;->entrySet()Ljava/util/Set;
 
     move-result-object p0
@@ -102,19 +102,19 @@
 
     check-cast v1, Ljava/util/Map$Entry;
 
-    .line 39
+    .line 38
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->length()I
 
     move-result v2
 
     if-lez v2, :cond_1
 
-    .line 40
+    .line 39
     const-string v2, "&"
 
     invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 41
+    .line 40
     :cond_1
     invoke-interface {v1}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
 
@@ -124,12 +124,12 @@
 
     invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 42
+    .line 41
     const-string v2, "="
 
     invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 43
+    .line 42
     invoke-interface {v1}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
 
     move-result-object v1
@@ -138,10 +138,10 @@
 
     invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 44
+    .line 43
     goto :goto_0
 
-    .line 45
+    .line 44
     :cond_2
     invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
 
@@ -149,7 +149,7 @@
 
     return-object p0
 
-    .line 35
+    .line 34
     :cond_3
     :goto_1
     const/4 p0, 0x0
@@ -171,12 +171,12 @@
         }
     .end annotation
 
-    .line 27
+    .line 26
     invoke-static {p1}, Lcom/android/camera/fragment/music/OkHttpUtils;->buildUrlParams(Ljava/util/Map;)Ljava/lang/String;
 
     move-result-object p1
 
-    .line 28
+    .line 27
     new-instance v0, Lokhttp3/Request$Builder;
 
     invoke-direct {v0}, Lokhttp3/Request$Builder;-><init>()V
@@ -201,7 +201,7 @@
 
     move-result-object p0
 
-    .line 29
+    .line 28
     invoke-virtual {v0, p0}, Lokhttp3/Request$Builder;->url(Ljava/lang/String;)Lokhttp3/Request$Builder;
 
     move-result-object p0
@@ -210,7 +210,7 @@
 
     move-result-object p0
 
-    .line 30
+    .line 29
     sget-object p1, Lcom/android/camera/fragment/music/OkHttpUtils;->client:Lokhttp3/OkHttpClient;
 
     invoke-virtual {p1, p0}, Lokhttp3/OkHttpClient;->newCall(Lokhttp3/Request;)Lokhttp3/Call;
@@ -220,15 +220,15 @@
     return-object p0
 .end method
 
-.method public static downloadMp3Async(Ljava/lang/String;Ljava/lang/String;Lcom/android/camera/fragment/live/FragmentLiveMusic$Mp3DownloadCallback;)V
+.method public static downloadMp3Async(Ljava/lang/String;Ljava/lang/String;Lcom/android/camera/fragment/music/FragmentLiveMusic$Mp3DownloadCallback;)V
     .locals 2
 
-    .line 48
+    .line 47
     new-instance v0, Lokhttp3/OkHttpClient;
 
     invoke-direct {v0}, Lokhttp3/OkHttpClient;-><init>()V
 
-    .line 49
+    .line 48
     new-instance v1, Lokhttp3/Request$Builder;
 
     invoke-direct {v1}, Lokhttp3/Request$Builder;-><init>()V
@@ -241,18 +241,18 @@
 
     move-result-object p0
 
-    .line 50
+    .line 49
     invoke-virtual {v0, p0}, Lokhttp3/OkHttpClient;->newCall(Lokhttp3/Request;)Lokhttp3/Call;
 
     move-result-object p0
 
     new-instance v0, Lcom/android/camera/fragment/music/OkHttpUtils$1;
 
-    invoke-direct {v0, p2, p1}, Lcom/android/camera/fragment/music/OkHttpUtils$1;-><init>(Lcom/android/camera/fragment/live/FragmentLiveMusic$Mp3DownloadCallback;Ljava/lang/String;)V
+    invoke-direct {v0, p2, p1}, Lcom/android/camera/fragment/music/OkHttpUtils$1;-><init>(Lcom/android/camera/fragment/music/FragmentLiveMusic$Mp3DownloadCallback;Ljava/lang/String;)V
 
     invoke-interface {p0, v0}, Lokhttp3/Call;->enqueue(Lokhttp3/Callback;)V
 
-    .line 67
+    .line 66
     return-void
 .end method
 
@@ -271,13 +271,13 @@
         }
     .end annotation
 
-    .line 23
+    .line 22
     invoke-static {p0, p1}, Lcom/android/camera/fragment/music/OkHttpUtils;->createGetCall(Ljava/lang/String;Ljava/util/Map;)Lokhttp3/Call;
 
     move-result-object p0
 
     invoke-interface {p0, p2}, Lokhttp3/Call;->enqueue(Lokhttp3/Callback;)V
 
-    .line 24
+    .line 23
     return-void
 .end method

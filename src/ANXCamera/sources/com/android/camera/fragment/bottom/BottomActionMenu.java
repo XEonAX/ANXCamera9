@@ -3,13 +3,13 @@ package com.android.camera.fragment.bottom;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewCompat;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import com.aeonax.camera.R;
+import com.android.camera.R;
 import com.android.camera.fragment.beauty.MenuItem;
+import com.android.camera.log.Log;
 import com.android.camera.ui.EdgeHorizonScrollView;
 import com.android.camera.ui.ModeSelectView;
 import java.lang.annotation.Retention;
@@ -23,7 +23,7 @@ public class BottomActionMenu {
     public static final int BEAUTY_BOTTOM_MENU = 1;
     public static final int CAMERA_OPERATE_BOTTOM_MENU = 0;
     public static final int LIVE_BOTTOM_MENU = 2;
-    private static final String TAG;
+    private static final String TAG = BottomActionMenu.class.getSimpleName();
     private BeautyMenuGroupManager mBeautyOperateMenuView;
     private EdgeHorizonScrollView mCameraOperateMenuView;
     private ModeSelectView mCameraOperateSelectView;
@@ -36,13 +36,6 @@ public class BottomActionMenu {
 
     @Retention(RetentionPolicy.SOURCE)
     public @interface BottomActionMode {
-    }
-
-    static {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("CAM_APP_");
-        stringBuilder.append(BottomActionMenu.class.getSimpleName());
-        TAG = stringBuilder.toString();
     }
 
     public BottomActionMenu(Context context, FrameLayout frameLayout) {

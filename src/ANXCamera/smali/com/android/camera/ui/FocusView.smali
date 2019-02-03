@@ -171,7 +171,7 @@
 
 .field private mIsDown:Z
 
-.field private mIsDraw:Z
+.field private volatile mIsDraw:Z
 
 .field private mIsEvAdjustable:Z
 
@@ -250,7 +250,7 @@
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
     .locals 2
 
-    .line 250
+    .line 248
     invoke-direct {p0, p1, p2}, Landroid/view/View;-><init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
 
     .line 88
@@ -269,35 +269,35 @@
 
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mEVCaptureRatio:F
 
-    .line 208
+    .line 206
     new-instance v0, Lcom/android/camera/ui/FocusView$1;
 
     invoke-direct {v0, p0}, Lcom/android/camera/ui/FocusView$1;-><init>(Lcom/android/camera/ui/FocusView;)V
 
     iput-object v0, p0, Lcom/android/camera/ui/FocusView;->mHandler:Landroid/os/Handler;
 
-    .line 745
+    .line 743
     new-instance v0, Lcom/android/camera/ui/FocusView$2;
 
     invoke-direct {v0, p0}, Lcom/android/camera/ui/FocusView$2;-><init>(Lcom/android/camera/ui/FocusView;)V
 
     iput-object v0, p0, Lcom/android/camera/ui/FocusView;->mSimpleOnGestureListener:Landroid/view/GestureDetector$SimpleOnGestureListener;
 
-    .line 251
+    .line 249
     move-object v0, p1
 
     check-cast v0, Lcom/android/camera/Camera;
 
     iput-object v0, p0, Lcom/android/camera/ui/FocusView;->mActivity:Lcom/android/camera/Camera;
 
-    .line 253
+    .line 251
     new-instance v0, Lmiui/view/animation/CubicEaseOutInterpolator;
 
     invoke-direct {v0}, Lmiui/view/animation/CubicEaseOutInterpolator;-><init>()V
 
     iput-object v0, p0, Lcom/android/camera/ui/FocusView;->mInterpolator:Landroid/view/animation/Interpolator;
 
-    .line 255
+    .line 253
     new-instance v0, Landroid/view/GestureDetector;
 
     iget-object v1, p0, Lcom/android/camera/ui/FocusView;->mSimpleOnGestureListener:Landroid/view/GestureDetector$SimpleOnGestureListener;
@@ -306,17 +306,17 @@
 
     iput-object v0, p0, Lcom/android/camera/ui/FocusView;->mGestureDetector:Landroid/view/GestureDetector;
 
-    .line 256
+    .line 254
     iget-object p1, p0, Lcom/android/camera/ui/FocusView;->mGestureDetector:Landroid/view/GestureDetector;
 
     invoke-virtual {p1, p2}, Landroid/view/GestureDetector;->setIsLongpressEnabled(Z)V
 
-    .line 258
+    .line 256
     invoke-virtual {p0}, Lcom/android/camera/ui/FocusView;->getResources()Landroid/content/res/Resources;
 
     move-result-object p1
 
-    const/high16 p2, 0x7f020000
+    const p2, 0x7f020002
 
     invoke-static {p1, p2}, Landroid/graphics/BitmapFactory;->decodeResource(Landroid/content/res/Resources;I)Landroid/graphics/Bitmap;
 
@@ -324,14 +324,14 @@
 
     iput-object p1, p0, Lcom/android/camera/ui/FocusView;->mCaptureBitmap:Landroid/graphics/Bitmap;
 
-    .line 260
+    .line 258
     new-instance p1, Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;
 
     invoke-direct {p1}, Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;-><init>()V
 
     iput-object p1, p0, Lcom/android/camera/ui/FocusView;->mIndicatorState:Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;
 
-    .line 261
+    .line 259
     new-instance p1, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     invoke-virtual {p0}, Lcom/android/camera/ui/FocusView;->getContext()Landroid/content/Context;
@@ -342,7 +342,7 @@
 
     iput-object p1, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
-    .line 262
+    .line 260
     iget-object p1, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     iget-object p2, p0, Lcom/android/camera/ui/FocusView;->mIndicatorState:Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;
@@ -351,12 +351,12 @@
 
     invoke-virtual {p1, p2, v0}, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;->setIndicatorData(Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;Landroid/graphics/Bitmap;)V
 
-    .line 264
+    .line 262
     invoke-virtual {p0}, Lcom/android/camera/ui/FocusView;->getResources()Landroid/content/res/Resources;
 
     move-result-object p1
 
-    const p2, 0x7f020150
+    const p2, 0x7f020174
 
     invoke-static {p1, p2}, Landroid/graphics/BitmapFactory;->decodeResource(Landroid/content/res/Resources;I)Landroid/graphics/Bitmap;
 
@@ -364,12 +364,12 @@
 
     iput-object p1, p0, Lcom/android/camera/ui/FocusView;->mLockHeadBitmap:Landroid/graphics/Bitmap;
 
-    .line 265
+    .line 263
     invoke-virtual {p0}, Lcom/android/camera/ui/FocusView;->getResources()Landroid/content/res/Resources;
 
     move-result-object p1
 
-    const p2, 0x7f02014f
+    const p2, 0x7f020173
 
     invoke-static {p1, p2}, Landroid/graphics/BitmapFactory;->decodeResource(Landroid/content/res/Resources;I)Landroid/graphics/Bitmap;
 
@@ -377,7 +377,7 @@
 
     iput-object p1, p0, Lcom/android/camera/ui/FocusView;->mLockBodyBitmap:Landroid/graphics/Bitmap;
 
-    .line 266
+    .line 264
     iget-object p1, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     iget-object p2, p0, Lcom/android/camera/ui/FocusView;->mIndicatorState:Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;
@@ -388,12 +388,12 @@
 
     invoke-virtual {p1, p2, v0, v1}, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;->setLockIndicatorData(Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;Landroid/graphics/Bitmap;Landroid/graphics/Bitmap;)V
 
-    .line 267
+    .line 265
     iget-object p1, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     invoke-virtual {p1, p0}, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;->setCallback(Landroid/graphics/drawable/Drawable$Callback;)V
 
-    .line 268
+    .line 266
     return-void
 .end method
 
@@ -728,24 +728,24 @@
 .method private calculateAttribute()V
     .locals 18
 
-    .line 890
+    .line 888
     move-object/from16 v0, p0
 
-    .line 891
+    .line 889
     iget v1, v0, Lcom/android/camera/ui/FocusView;->mCurrentItem:I
 
     invoke-direct {v0, v1}, Lcom/android/camera/ui/FocusView;->getItemRatio(I)F
 
     move-result v1
 
-    .line 892
+    .line 890
     iget v2, v0, Lcom/android/camera/ui/FocusView;->mLastItem:I
 
     invoke-direct {v0, v2}, Lcom/android/camera/ui/FocusView;->getItemRatio(I)F
 
     move-result v2
 
-    .line 894
+    .line 892
     iget v3, v0, Lcom/android/camera/ui/FocusView;->mCurrentViewState:I
 
     const v4, 0x3e4ccccd    # 0.2f
@@ -778,13 +778,13 @@
 
     packed-switch v3, :pswitch_data_0
 
-    .line 948
+    .line 946
     :pswitch_0
     iput v7, v0, Lcom/android/camera/ui/FocusView;->mCenterFlag:I
 
     goto/16 :goto_0
 
-    .line 896
+    .line 894
     :pswitch_1
     iget v3, v0, Lcom/android/camera/ui/FocusView;->mEVAnimationRatio:F
 
@@ -792,12 +792,12 @@
 
     if-gez v3, :cond_0
 
-    .line 897
+    .line 895
     iget v1, v0, Lcom/android/camera/ui/FocusView;->mEVAnimationRatio:F
 
     mul-float v1, v1, v17
 
-    .line 898
+    .line 896
     sub-float/2addr v15, v2
 
     mul-float/2addr v15, v1
@@ -814,7 +814,7 @@
 
     iput v2, v0, Lcom/android/camera/ui/FocusView;->mCurrentRadius:I
 
-    .line 899
+    .line 897
     iget v2, v0, Lcom/android/camera/ui/FocusView;->mCurrentRadius:I
 
     int-to-float v2, v2
@@ -829,7 +829,7 @@
 
     iput v2, v0, Lcom/android/camera/ui/FocusView;->mCurrentMinusCircleCenter:I
 
-    .line 900
+    .line 898
     iget v2, v0, Lcom/android/camera/ui/FocusView;->mCurrentRadius:I
 
     int-to-float v2, v2
@@ -842,12 +842,12 @@
 
     iput v2, v0, Lcom/android/camera/ui/FocusView;->mCurrentMinusCircleRadius:F
 
-    .line 901
+    .line 899
     iput v11, v0, Lcom/android/camera/ui/FocusView;->mCenterFlag:I
 
     goto/16 :goto_0
 
-    .line 903
+    .line 901
     :cond_0
     iget v2, v0, Lcom/android/camera/ui/FocusView;->mEVAnimationRatio:F
 
@@ -855,14 +855,14 @@
 
     mul-float v2, v2, v17
 
-    .line 904
+    .line 902
     invoke-static {v10}, Lcom/android/camera/Util;->dpToPixel(F)I
 
     move-result v3
 
     iput v3, v0, Lcom/android/camera/ui/FocusView;->mCurrentRayWidth:I
 
-    .line 905
+    .line 903
     mul-float v3, v1, v2
 
     sub-float/2addr v15, v2
@@ -879,7 +879,7 @@
 
     iput v4, v0, Lcom/android/camera/ui/FocusView;->mCurrentRayHeight:I
 
-    .line 906
+    .line 904
     mul-float/2addr v3, v13
 
     add-float/2addr v9, v3
@@ -890,7 +890,7 @@
 
     iput v3, v0, Lcom/android/camera/ui/FocusView;->mCurrentRayBottom:I
 
-    .line 907
+    .line 905
     mul-float/2addr v13, v15
 
     add-float/2addr v14, v13
@@ -907,13 +907,13 @@
 
     iput v1, v0, Lcom/android/camera/ui/FocusView;->mCurrentRadius:I
 
-    .line 908
+    .line 906
     iput v8, v0, Lcom/android/camera/ui/FocusView;->mCenterFlag:I
 
-    .line 910
+    .line 908
     goto/16 :goto_0
 
-    .line 912
+    .line 910
     :pswitch_2
     iget v3, v0, Lcom/android/camera/ui/FocusView;->mEVAnimationRatio:F
 
@@ -921,19 +921,19 @@
 
     if-gtz v3, :cond_1
 
-    .line 913
+    .line 911
     iget v1, v0, Lcom/android/camera/ui/FocusView;->mEVAnimationRatio:F
 
     mul-float v1, v1, v17
 
-    .line 914
+    .line 912
     invoke-static {v10}, Lcom/android/camera/Util;->dpToPixel(F)I
 
     move-result v3
 
     iput v3, v0, Lcom/android/camera/ui/FocusView;->mCurrentRayWidth:I
 
-    .line 915
+    .line 913
     sub-float/2addr v15, v1
 
     mul-float v3, v2, v15
@@ -950,7 +950,7 @@
 
     iput v4, v0, Lcom/android/camera/ui/FocusView;->mCurrentRayHeight:I
 
-    .line 916
+    .line 914
     mul-float/2addr v3, v13
 
     add-float/2addr v9, v3
@@ -961,7 +961,7 @@
 
     iput v3, v0, Lcom/android/camera/ui/FocusView;->mCurrentRayBottom:I
 
-    .line 917
+    .line 915
     mul-float/2addr v13, v1
 
     add-float/2addr v14, v13
@@ -978,12 +978,12 @@
 
     iput v1, v0, Lcom/android/camera/ui/FocusView;->mCurrentRadius:I
 
-    .line 918
+    .line 916
     iput v8, v0, Lcom/android/camera/ui/FocusView;->mCenterFlag:I
 
     goto/16 :goto_0
 
-    .line 920
+    .line 918
     :cond_1
     iget v2, v0, Lcom/android/camera/ui/FocusView;->mEVAnimationRatio:F
 
@@ -991,7 +991,7 @@
 
     mul-float v2, v2, v17
 
-    .line 921
+    .line 919
     const/high16 v3, 0x41000000    # 8.0f
 
     sub-float v1, v15, v1
@@ -1008,7 +1008,7 @@
 
     iput v1, v0, Lcom/android/camera/ui/FocusView;->mCurrentRadius:I
 
-    .line 922
+    .line 920
     iget v1, v0, Lcom/android/camera/ui/FocusView;->mCurrentRadius:I
 
     int-to-float v1, v1
@@ -1025,7 +1025,7 @@
 
     iput v1, v0, Lcom/android/camera/ui/FocusView;->mCurrentMinusCircleCenter:I
 
-    .line 923
+    .line 921
     iget v1, v0, Lcom/android/camera/ui/FocusView;->mCurrentRadius:I
 
     int-to-float v1, v1
@@ -1038,17 +1038,17 @@
 
     iput v1, v0, Lcom/android/camera/ui/FocusView;->mCurrentMinusCircleRadius:F
 
-    .line 924
+    .line 922
     iput v11, v0, Lcom/android/camera/ui/FocusView;->mCenterFlag:I
 
-    .line 926
+    .line 924
     goto :goto_0
 
-    .line 928
+    .line 926
     :pswitch_3
     nop
 
-    .line 929
+    .line 927
     iget v2, v0, Lcom/android/camera/ui/FocusView;->mCurrentItem:I
 
     iget-object v3, v0, Lcom/android/camera/ui/FocusView;->mAdapter:Lcom/android/camera/ui/RollAdapter;
@@ -1059,7 +1059,7 @@
 
     if-ge v2, v3, :cond_2
 
-    .line 930
+    .line 928
     mul-float v17, v17, v1
 
     add-float v6, v6, v17
@@ -1070,7 +1070,7 @@
 
     iput v1, v0, Lcom/android/camera/ui/FocusView;->mCurrentRadius:I
 
-    .line 931
+    .line 929
     iget v1, v0, Lcom/android/camera/ui/FocusView;->mCurrentRadius:I
 
     int-to-float v1, v1
@@ -1081,7 +1081,7 @@
 
     iput v1, v0, Lcom/android/camera/ui/FocusView;->mCurrentMinusCircleCenter:I
 
-    .line 932
+    .line 930
     iget v1, v0, Lcom/android/camera/ui/FocusView;->mCurrentRadius:I
 
     int-to-float v1, v1
@@ -1090,12 +1090,12 @@
 
     iput v1, v0, Lcom/android/camera/ui/FocusView;->mCurrentMinusCircleRadius:F
 
-    .line 933
+    .line 931
     iput v11, v0, Lcom/android/camera/ui/FocusView;->mCenterFlag:I
 
     goto :goto_0
 
-    .line 935
+    .line 933
     :cond_2
     invoke-static {v10}, Lcom/android/camera/Util;->dpToPixel(F)I
 
@@ -1103,7 +1103,7 @@
 
     iput v2, v0, Lcom/android/camera/ui/FocusView;->mCurrentRayWidth:I
 
-    .line 936
+    .line 934
     mul-float v17, v17, v1
 
     add-float v14, v14, v17
@@ -1114,7 +1114,7 @@
 
     iput v2, v0, Lcom/android/camera/ui/FocusView;->mCurrentRayHeight:I
 
-    .line 937
+    .line 935
     mul-float/2addr v13, v1
 
     add-float/2addr v9, v13
@@ -1125,24 +1125,24 @@
 
     iput v1, v0, Lcom/android/camera/ui/FocusView;->mCurrentRayBottom:I
 
-    .line 938
+    .line 936
     invoke-static {v14}, Lcom/android/camera/Util;->dpToPixel(F)I
 
     move-result v1
 
     iput v1, v0, Lcom/android/camera/ui/FocusView;->mCurrentRadius:I
 
-    .line 939
+    .line 937
     iput v8, v0, Lcom/android/camera/ui/FocusView;->mCenterFlag:I
 
-    .line 941
+    .line 939
     goto :goto_0
 
-    .line 943
+    .line 941
     :pswitch_4
     nop
 
-    .line 944
+    .line 942
     iget-boolean v1, v0, Lcom/android/camera/ui/FocusView;->mIsTouchFocus:Z
 
     if-eqz v1, :cond_3
@@ -1161,7 +1161,7 @@
 
     iget-object v1, v0, Lcom/android/camera/ui/FocusView;->mExposureViewListener:Lcom/android/camera/ui/FocusView$ExposureViewListener;
 
-    .line 945
+    .line 943
     invoke-interface {v1}, Lcom/android/camera/ui/FocusView$ExposureViewListener;->isSupportFocusShoot()Z
 
     move-result v1
@@ -1175,30 +1175,30 @@
     :cond_3
     iput v7, v0, Lcom/android/camera/ui/FocusView;->mCenterFlag:I
 
-    .line 946
+    .line 944
     nop
 
-    .line 953
+    .line 951
     :goto_0
     iget-object v1, v0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     invoke-virtual {v1}, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;->cancelResetCenter()V
 
-    .line 955
+    .line 953
     iget-object v1, v0, Lcom/android/camera/ui/FocusView;->mIndicatorState:Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;
 
     iget v2, v0, Lcom/android/camera/ui/FocusView;->mCenterFlag:I
 
     iput v2, v1, Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;->mCenterFlag:I
 
-    .line 956
+    .line 954
     iget-object v1, v0, Lcom/android/camera/ui/FocusView;->mIndicatorState:Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;
 
     iget v2, v0, Lcom/android/camera/ui/FocusView;->mCurrentRadius:I
 
     iput v2, v1, Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;->mCurrentRadius:I
 
-    .line 959
+    .line 957
     iget-object v1, v0, Lcom/android/camera/ui/FocusView;->mIndicatorState:Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;
 
     invoke-direct/range {p0 .. p0}, Lcom/android/camera/ui/FocusView;->getCurrentAngle()I
@@ -1209,42 +1209,42 @@
 
     iput v2, v1, Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;->mCurrentAngle:F
 
-    .line 960
+    .line 958
     iget-object v1, v0, Lcom/android/camera/ui/FocusView;->mIndicatorState:Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;
 
     iget v2, v0, Lcom/android/camera/ui/FocusView;->mCurrentRayWidth:I
 
     iput v2, v1, Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;->mCurrentRayWidth:I
 
-    .line 961
+    .line 959
     iget-object v1, v0, Lcom/android/camera/ui/FocusView;->mIndicatorState:Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;
 
     iget v2, v0, Lcom/android/camera/ui/FocusView;->mCurrentRayHeight:I
 
     iput v2, v1, Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;->mCurrentRayHeight:I
 
-    .line 962
+    .line 960
     iget-object v1, v0, Lcom/android/camera/ui/FocusView;->mIndicatorState:Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;
 
     iget v2, v0, Lcom/android/camera/ui/FocusView;->mCurrentRayBottom:I
 
     iput v2, v1, Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;->mCurrentRayBottom:I
 
-    .line 965
+    .line 963
     iget-object v1, v0, Lcom/android/camera/ui/FocusView;->mIndicatorState:Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;
 
     iget v2, v0, Lcom/android/camera/ui/FocusView;->mCurrentMinusCircleCenter:I
 
     iput v2, v1, Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;->mCurrentMinusCircleCenter:I
 
-    .line 966
+    .line 964
     iget-object v1, v0, Lcom/android/camera/ui/FocusView;->mIndicatorState:Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;
 
     iget v0, v0, Lcom/android/camera/ui/FocusView;->mCurrentMinusCircleRadius:F
 
     iput v0, v1, Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;->mCurrentMinusCircleRadius:F
 
-    .line 967
+    .line 965
     return-void
 
     nop
@@ -1262,45 +1262,45 @@
 .method private clearMessages()V
     .locals 2
 
-    .line 673
+    .line 671
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mHandler:Landroid/os/Handler;
 
     const/4 v1, 0x4
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeMessages(I)V
 
-    .line 674
+    .line 672
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mHandler:Landroid/os/Handler;
 
     const/4 v1, 0x5
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeMessages(I)V
 
-    .line 675
+    .line 673
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mHandler:Landroid/os/Handler;
 
     const/4 v1, 0x6
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeMessages(I)V
 
-    .line 676
+    .line 674
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mHandler:Landroid/os/Handler;
 
     const/4 v1, 0x7
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeMessages(I)V
 
-    .line 677
+    .line 675
     return-void
 .end method
 
 .method private getCurrentAngle()I
     .locals 7
 
-    .line 970
+    .line 968
     nop
 
-    .line 971
+    .line 969
     iget v0, p0, Lcom/android/camera/ui/FocusView;->mCursorState:I
 
     const/4 v1, 0x4
@@ -1323,7 +1323,7 @@
 
     if-eq v0, v1, :cond_1
 
-    .line 973
+    .line 971
     iget v0, p0, Lcom/android/camera/ui/FocusView;->mCurrentItem:I
 
     iget-object v1, p0, Lcom/android/camera/ui/FocusView;->mAdapter:Lcom/android/camera/ui/RollAdapter;
@@ -1334,7 +1334,7 @@
 
     if-lt v0, v1, :cond_0
 
-    .line 974
+    .line 972
     iget v0, p0, Lcom/android/camera/ui/FocusView;->mCurrentItem:I
 
     iget-object v1, p0, Lcom/android/camera/ui/FocusView;->mAdapter:Lcom/android/camera/ui/RollAdapter;
@@ -1357,7 +1357,7 @@
 
     goto :goto_0
 
-    .line 976
+    .line 974
     :cond_0
     move v0, v5
 
@@ -1370,7 +1370,7 @@
 
     goto :goto_2
 
-    .line 977
+    .line 975
     :cond_1
     iget v0, p0, Lcom/android/camera/ui/FocusView;->mCurrentViewState:I
 
@@ -1378,28 +1378,28 @@
 
     if-ne v0, v6, :cond_3
 
-    .line 978
+    .line 976
     iget v0, p0, Lcom/android/camera/ui/FocusView;->mBottomRelative:I
 
     iget v1, p0, Lcom/android/camera/ui/FocusView;->mCurrentDistanceY:I
 
     sub-int/2addr v0, v1
 
-    .line 979
+    .line 977
     sget v1, Lcom/android/camera/ui/FocusView;->MAX_SLIDE_DISTANCE:I
 
     invoke-static {v0, v5, v1}, Lcom/android/camera/Util;->clamp(III)I
 
     move-result v0
 
-    .line 980
+    .line 978
     sget v1, Lcom/android/camera/ui/FocusView;->MAX_SLIDE_DISTANCE:I
 
     div-int/2addr v1, v3
 
     if-lt v0, v1, :cond_2
 
-    .line 981
+    .line 979
     sget v1, Lcom/android/camera/ui/FocusView;->MAX_SLIDE_DISTANCE:I
 
     div-int/2addr v1, v3
@@ -1416,7 +1416,7 @@
 
     goto :goto_1
 
-    .line 983
+    .line 981
     :cond_2
     move v0, v5
 
@@ -1427,7 +1427,7 @@
 
     rsub-int v5, v0, 0x168
 
-    .line 984
+    .line 982
     goto :goto_2
 
     :cond_3
@@ -1441,7 +1441,7 @@
 
     if-ne v0, v2, :cond_4
 
-    .line 985
+    .line 983
     iget v0, p0, Lcom/android/camera/ui/FocusView;->mEVAnimationRatio:F
 
     mul-float/2addr v0, v4
@@ -1450,20 +1450,20 @@
 
     float-to-int v0, v6
 
-    .line 986
+    .line 984
     invoke-static {v0, v5, v3}, Lcom/android/camera/Util;->clamp(III)I
 
     move-result v5
 
     goto :goto_2
 
-    .line 987
+    .line 985
     :cond_4
     iget v0, p0, Lcom/android/camera/ui/FocusView;->mCurrentViewState:I
 
     if-ne v0, v1, :cond_5
 
-    .line 988
+    .line 986
     const/high16 v0, 0x3f800000    # 1.0f
 
     iget v1, p0, Lcom/android/camera/ui/FocusView;->mEVAnimationRatio:F
@@ -1480,12 +1480,12 @@
 
     float-to-int v0, v6
 
-    .line 989
+    .line 987
     invoke-static {v0, v5, v3}, Lcom/android/camera/Util;->clamp(III)I
 
     move-result v5
 
-    .line 991
+    .line 989
     :cond_5
     :goto_2
     return v5
@@ -1494,14 +1494,14 @@
 .method private getInterpolation(F)F
     .locals 4
 
-    .line 665
+    .line 663
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mInterpolator:Landroid/view/animation/Interpolator;
 
     invoke-interface {v0, p1}, Landroid/view/animation/Interpolator;->getInterpolation(F)F
 
     move-result p1
 
-    .line 666
+    .line 664
     float-to-double v0, p1
 
     const-wide/high16 v2, 0x3ff0000000000000L    # 1.0
@@ -1510,10 +1510,10 @@
 
     if-lez v0, :cond_0
 
-    .line 667
+    .line 665
     const/high16 p1, 0x3f800000    # 1.0f
 
-    .line 669
+    .line 667
     :cond_0
     return p1
 .end method
@@ -1521,7 +1521,7 @@
 .method private getItemByCoordinate()I
     .locals 3
 
-    .line 711
+    .line 709
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mAdapter:Lcom/android/camera/ui/RollAdapter;
 
     invoke-interface {v0}, Lcom/android/camera/ui/RollAdapter;->getMaxItem()I
@@ -1540,7 +1540,7 @@
 
     div-int/2addr v0, v1
 
-    .line 712
+    .line 710
     iget-object v1, p0, Lcom/android/camera/ui/FocusView;->mAdapter:Lcom/android/camera/ui/RollAdapter;
 
     invoke-interface {v1}, Lcom/android/camera/ui/RollAdapter;->getMaxItem()I
@@ -1553,14 +1553,14 @@
 
     move-result v0
 
-    .line 713
+    .line 711
     return v0
 .end method
 
 .method private getItemRatio(I)F
     .locals 3
 
-    .line 884
+    .line 882
     int-to-float p1, p1
 
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mAdapter:Lcom/android/camera/ui/RollAdapter;
@@ -1573,7 +1573,7 @@
 
     div-float/2addr p1, v0
 
-    .line 885
+    .line 883
     const/high16 v0, 0x3f000000    # 0.5f
 
     cmpl-float v1, p1, v0
@@ -1592,7 +1592,7 @@
     :cond_0
     goto :goto_0
 
-    .line 886
+    .line 884
     :goto_1
     return v2
 .end method
@@ -1600,7 +1600,7 @@
 .method private initRect()V
     .locals 3
 
-    .line 531
+    .line 529
     invoke-virtual {p0}, Lcom/android/camera/ui/FocusView;->getContext()Landroid/content/Context;
 
     move-result-object v0
@@ -1611,7 +1611,7 @@
 
     iput-object v0, p0, Lcom/android/camera/ui/FocusView;->mDisplayRect:Landroid/graphics/Rect;
 
-    .line 533
+    .line 531
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mDisplayRect:Landroid/graphics/Rect;
 
     invoke-virtual {v0}, Landroid/graphics/Rect;->width()I
@@ -1620,7 +1620,7 @@
 
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mWidth:I
 
-    .line 534
+    .line 532
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mDisplayRect:Landroid/graphics/Rect;
 
     invoke-virtual {v0}, Landroid/graphics/Rect;->height()I
@@ -1629,38 +1629,38 @@
 
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mHeight:I
 
-    .line 536
+    .line 534
     iget v0, p0, Lcom/android/camera/ui/FocusView;->mWidth:I
 
     div-int/lit8 v0, v0, 0x2
 
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mCenterX:I
 
-    .line 537
+    .line 535
     iget v0, p0, Lcom/android/camera/ui/FocusView;->mHeight:I
 
     div-int/lit8 v0, v0, 0x2
 
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mCenterY:I
 
-    .line 539
+    .line 537
     iget v0, p0, Lcom/android/camera/ui/FocusView;->mCenterX:I
 
     int-to-float v0, v0
 
     invoke-virtual {p0, v0}, Lcom/android/camera/ui/FocusView;->setPivotX(F)V
 
-    .line 540
+    .line 538
     iget v0, p0, Lcom/android/camera/ui/FocusView;->mCenterY:I
 
     int-to-float v0, v0
 
     invoke-virtual {p0, v0}, Lcom/android/camera/ui/FocusView;->setPivotY(F)V
 
-    .line 542
+    .line 540
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
-    .line 543
+    .line 541
     invoke-virtual {p0}, Lcom/android/camera/ui/FocusView;->getLayoutDirection()I
 
     move-result v1
@@ -1677,10 +1677,10 @@
     :goto_0
     iget-object v1, p0, Lcom/android/camera/ui/FocusView;->mDisplayRect:Landroid/graphics/Rect;
 
-    .line 542
+    .line 540
     invoke-virtual {v0, v2, v1}, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;->setRtlAndDisplayRect(ZLandroid/graphics/Rect;)V
 
-    .line 545
+    .line 543
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     iget v1, p0, Lcom/android/camera/ui/FocusView;->mCenterX:I
@@ -1689,28 +1689,28 @@
 
     invoke-virtual {v0, v1, v2}, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;->setCenter(II)V
 
-    .line 546
+    .line 544
     return-void
 .end method
 
 .method private isInCircle(FFF)Z
     .locals 2
 
-    .line 995
+    .line 993
     iget v0, p0, Lcom/android/camera/ui/FocusView;->mCenterX:I
 
     int-to-float v0, v0
 
     sub-float/2addr p1, v0
 
-    .line 996
+    .line 994
     iget v0, p0, Lcom/android/camera/ui/FocusView;->mCenterY:I
 
     int-to-float v0, v0
 
     sub-float/2addr p2, v0
 
-    .line 997
+    .line 995
     mul-float/2addr p1, p1
 
     mul-float/2addr p2, p2
@@ -1723,7 +1723,7 @@
 
     move-result-wide p1
 
-    .line 998
+    .line 996
     float-to-double v0, p3
 
     cmpg-double p1, p1, v0
@@ -1744,26 +1744,26 @@
 .method private isStableStart()Z
     .locals 2
 
-    .line 654
+    .line 652
     iget-boolean v0, p0, Lcom/android/camera/ui/FocusView;->mIsTouchFocus:Z
 
     const/4 v1, 0x0
 
     if-nez v0, :cond_0
 
-    .line 655
+    .line 653
     return v1
 
-    .line 657
+    .line 655
     :cond_0
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mExposureViewListener:Lcom/android/camera/ui/FocusView$ExposureViewListener;
 
     if-nez v0, :cond_1
 
-    .line 658
+    .line 656
     return v1
 
-    .line 661
+    .line 659
     :cond_1
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mExposureViewListener:Lcom/android/camera/ui/FocusView$ExposureViewListener;
 
@@ -1777,12 +1777,12 @@
 .method private processParameterIfNeeded(F)V
     .locals 1
 
-    .line 321
+    .line 319
     iget-boolean p1, p0, Lcom/android/camera/ui/FocusView;->mIsTouchFocus:Z
 
     if-eqz p1, :cond_0
 
-    .line 322
+    .line 320
     iget p1, p0, Lcom/android/camera/ui/FocusView;->mEVCaptureRatio:F
 
     const/high16 v0, -0x40800000    # -1.0f
@@ -1795,12 +1795,12 @@
 
     if-nez p1, :cond_0
 
-    .line 323
+    .line 321
     const/4 p1, 0x2
 
     iput p1, p0, Lcom/android/camera/ui/FocusView;->mCenterFlag:I
 
-    .line 326
+    .line 324
     :cond_0
     return-void
 .end method
@@ -1808,12 +1808,12 @@
 .method private reload()V
     .locals 2
 
-    .line 680
+    .line 678
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mAdapter:Lcom/android/camera/ui/RollAdapter;
 
     if-eqz v0, :cond_0
 
-    .line 681
+    .line 679
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mAdapter:Lcom/android/camera/ui/RollAdapter;
 
     invoke-static {}, Lcom/android/camera/CameraSettings;->readExposure()I
@@ -1830,10 +1830,10 @@
 
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mCurrentItem:I
 
-    .line 682
+    .line 680
     invoke-direct {p0}, Lcom/android/camera/ui/FocusView;->updateEV()V
 
-    .line 684
+    .line 682
     :cond_0
     return-void
 .end method
@@ -1841,14 +1841,14 @@
 .method private removeMessages()V
     .locals 0
 
-    .line 695
+    .line 693
     return-void
 .end method
 
 .method private reset(I)V
     .locals 4
 
-    .line 512
+    .line 510
     iget-boolean v0, p0, Lcom/android/camera/ui/FocusView;->mIsDraw:Z
 
     const/4 v1, 0x2
@@ -1861,19 +1861,19 @@
 
     if-eq p1, v1, :cond_0
 
-    .line 513
+    .line 511
     return-void
 
-    .line 516
+    .line 514
     :cond_0
     invoke-direct {p0}, Lcom/android/camera/ui/FocusView;->clearMessages()V
 
-    .line 517
+    .line 515
     const/4 v0, 0x0
 
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mState:I
 
-    .line 519
+    .line 517
     iget v2, p0, Lcom/android/camera/ui/FocusView;->mWidth:I
 
     div-int/2addr v2, v1
@@ -1884,52 +1884,52 @@
 
     invoke-virtual {p0, p1, v2, v3}, Lcom/android/camera/ui/FocusView;->setPosition(III)V
 
-    .line 520
+    .line 518
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mCurrentViewState:I
 
-    .line 521
+    .line 519
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mCenterFlag:I
 
-    .line 523
+    .line 521
     iput-boolean v0, p0, Lcom/android/camera/ui/FocusView;->mIsDown:Z
 
-    .line 524
+    .line 522
     invoke-direct {p0}, Lcom/android/camera/ui/FocusView;->stopEvAdjust()V
 
-    .line 526
+    .line 524
     invoke-direct {p0, v0}, Lcom/android/camera/ui/FocusView;->setDraw(Z)V
 
-    .line 527
+    .line 525
     invoke-virtual {p0}, Lcom/android/camera/ui/FocusView;->invalidate()V
 
-    .line 528
+    .line 526
     return-void
 .end method
 
 .method private resetCenter()V
     .locals 2
 
-    .line 549
+    .line 547
     const/4 v0, 0x0
 
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mCurrentViewState:I
 
-    .line 550
+    .line 548
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v0
 
     iput-wide v0, p0, Lcom/android/camera/ui/FocusView;->mAdjustedDoneTime:J
 
-    .line 552
+    .line 550
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mExposureViewListener:Lcom/android/camera/ui/FocusView$ExposureViewListener;
 
     if-nez v0, :cond_0
 
-    .line 553
+    .line 551
     return-void
 
-    .line 557
+    .line 555
     :cond_0
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mExposureViewListener:Lcom/android/camera/ui/FocusView$ExposureViewListener;
 
@@ -1945,24 +1945,24 @@
 
     if-eqz v0, :cond_1
 
-    .line 558
+    .line 556
     const/4 v0, 0x5
 
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mCenterFlag:I
 
-    .line 559
+    .line 557
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mIndicatorState:Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;
 
     iget v1, p0, Lcom/android/camera/ui/FocusView;->mCenterFlag:I
 
     iput v1, v0, Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;->mCenterFlag:I
 
-    .line 560
+    .line 558
     invoke-virtual {p0}, Lcom/android/camera/ui/FocusView;->invalidate()V
 
     goto :goto_0
 
-    .line 561
+    .line 559
     :cond_1
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mExposureViewListener:Lcom/android/camera/ui/FocusView$ExposureViewListener;
 
@@ -1974,29 +1974,29 @@
 
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mExposureViewListener:Lcom/android/camera/ui/FocusView$ExposureViewListener;
 
-    .line 562
+    .line 560
     invoke-interface {v0}, Lcom/android/camera/ui/FocusView$ExposureViewListener;->isSupportFocusShoot()Z
 
     move-result v0
 
     if-eqz v0, :cond_2
 
-    .line 563
+    .line 561
     const/4 v0, 0x2
 
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mCenterFlag:I
 
-    .line 564
+    .line 562
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mIndicatorState:Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;
 
     iget v1, p0, Lcom/android/camera/ui/FocusView;->mCenterFlag:I
 
     iput v1, v0, Lcom/android/camera/ui/drawable/focus/CameraIndicatorState;->mCenterFlag:I
 
-    .line 565
+    .line 563
     invoke-virtual {p0}, Lcom/android/camera/ui/FocusView;->invalidate()V
 
-    .line 567
+    .line 565
     :cond_2
     :goto_0
     return-void
@@ -2005,68 +2005,68 @@
 .method private resetEvValue()V
     .locals 2
 
-    .line 702
+    .line 700
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/ui/FocusView;->mBeingEvAdjusted:Z
 
-    .line 703
+    .line 701
     const/4 v1, 0x0
 
     iput v1, p0, Lcom/android/camera/ui/FocusView;->mEvValue:F
 
-    .line 704
+    .line 702
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mCurrentItem:I
 
-    .line 705
+    .line 703
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mScrollDistanceY:I
 
-    .line 706
+    .line 704
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mCurrentDistanceY:I
 
-    .line 707
+    .line 705
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;->reset()V
 
-    .line 708
+    .line 706
     return-void
 .end method
 
 .method private setCurrentItem(IZ)V
     .locals 1
 
-    .line 717
+    .line 715
     iget p2, p0, Lcom/android/camera/ui/FocusView;->mCurrentItem:I
 
     if-eq p1, p2, :cond_2
 
-    .line 718
+    .line 716
     iput p1, p0, Lcom/android/camera/ui/FocusView;->mCurrentItem:I
 
-    .line 719
+    .line 717
     iget-object p2, p0, Lcom/android/camera/ui/FocusView;->mAdapter:Lcom/android/camera/ui/RollAdapter;
 
     if-eqz p2, :cond_1
 
-    .line 721
+    .line 719
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object p2
 
     const/16 v0, 0xa9
 
-    .line 722
+    .line 720
     invoke-virtual {p2, v0}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object p2
 
     check-cast p2, Lcom/android/camera/protocol/ModeProtocol$EvChangedProtocol;
 
-    .line 723
+    .line 721
     if-nez p2, :cond_0
 
-    .line 724
+    .line 722
     sget-object p1, Lcom/android/camera/ui/FocusView;->TAG:Ljava/lang/String;
 
     const-string p2, "needEvPresenter"
@@ -2075,7 +2075,7 @@
 
     goto :goto_0
 
-    .line 726
+    .line 724
     :cond_0
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mAdapter:Lcom/android/camera/ui/RollAdapter;
 
@@ -2087,12 +2087,12 @@
 
     invoke-interface {p2, p1, v0}, Lcom/android/camera/protocol/ModeProtocol$EvChangedProtocol;->onEvChanged(II)V
 
-    .line 729
+    .line 727
     :cond_1
     :goto_0
     invoke-direct {p0}, Lcom/android/camera/ui/FocusView;->updateEV()V
 
-    .line 731
+    .line 729
     :cond_2
     return-void
 .end method
@@ -2100,7 +2100,7 @@
 .method private setDraw(Z)V
     .locals 1
 
-    .line 687
+    .line 685
     if-eqz p1, :cond_0
 
     iget-boolean v0, p0, Lcom/android/camera/ui/FocusView;->mIsTouchFocus:Z
@@ -2111,21 +2111,21 @@
 
     if-eq v0, p1, :cond_0
 
-    .line 688
+    .line 686
     invoke-direct {p0}, Lcom/android/camera/ui/FocusView;->reload()V
 
-    .line 690
+    .line 688
     :cond_0
     iput-boolean p1, p0, Lcom/android/camera/ui/FocusView;->mIsDraw:Z
 
-    .line 691
+    .line 689
     return-void
 .end method
 
 .method private setTouchDown()V
     .locals 2
 
-    .line 698
+    .line 696
     sget v0, Lcom/android/camera/ui/FocusView;->MAX_SLIDE_DISTANCE:I
 
     int-to-float v0, v0
@@ -2138,7 +2138,7 @@
 
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mBottomRelative:I
 
-    .line 699
+    .line 697
     return-void
 .end method
 
@@ -2149,7 +2149,7 @@
         .end annotation
     .end param
 
-    .line 1014
+    .line 1012
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
@@ -2162,13 +2162,13 @@
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;
 
-    .line 1015
+    .line 1013
     if-nez v0, :cond_0
 
-    .line 1016
+    .line 1014
     return-void
 
-    .line 1018
+    .line 1016
     :cond_0
     invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;->isPortraitHintVisible()Z
 
@@ -2176,83 +2176,83 @@
 
     if-eqz v1, :cond_1
 
-    .line 1019
+    .line 1017
     const/16 v1, 0x8
 
     invoke-interface {v0, v1}, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;->setPortraitHintVisible(I)V
 
-    .line 1021
+    .line 1019
     :cond_1
     const/4 v1, 0x2
 
     invoke-interface {v0, p1, p2, v1}, Lcom/android/camera/protocol/ModeProtocol$BottomPopupTips;->showTips(III)V
 
-    .line 1022
+    .line 1020
     return-void
 .end method
 
 .method private startAnimation()V
     .locals 2
 
-    .line 878
+    .line 876
     invoke-static {}, Landroid/os/SystemClock;->uptimeMillis()J
 
     move-result-wide v0
 
     iput-wide v0, p0, Lcom/android/camera/ui/FocusView;->mEVAnimationStartTime:J
 
-    .line 879
+    .line 877
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mHandler:Landroid/os/Handler;
 
     const/4 v1, 0x7
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeMessages(I)V
 
-    .line 880
+    .line 878
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mHandler:Landroid/os/Handler;
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->sendEmptyMessage(I)Z
 
-    .line 881
+    .line 879
     return-void
 .end method
 
 .method private stopEvAdjust()V
     .locals 3
 
-    .line 734
+    .line 732
     iget-boolean v0, p0, Lcom/android/camera/ui/FocusView;->mBeingEvAdjusted:Z
 
     if-eqz v0, :cond_0
 
-    .line 735
+    .line 733
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/android/camera/ui/FocusView;->mBeingEvAdjusted:Z
 
-    .line 737
+    .line 735
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v1
 
     const/16 v2, 0xa9
 
-    .line 738
+    .line 736
     invoke-virtual {v1, v2}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object v1
 
     check-cast v1, Lcom/android/camera/protocol/ModeProtocol$EvChangedProtocol;
 
-    .line 739
+    .line 737
     if-eqz v1, :cond_0
 
-    .line 740
+    .line 738
     const/4 v2, 0x2
 
     invoke-interface {v1, v0, v2}, Lcom/android/camera/protocol/ModeProtocol$EvChangedProtocol;->onEvChanged(II)V
 
-    .line 743
+    .line 741
     :cond_0
     return-void
 .end method
@@ -2260,12 +2260,12 @@
 .method private updateEV()V
     .locals 3
 
-    .line 581
+    .line 579
     invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getInstance()Lcom/android/camera/module/loader/camera2/Camera2DataContainer;
 
     move-result-object v0
 
-    .line 582
+    .line 580
     invoke-virtual {v0}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getCurrentCameraCapabilities()Lcom/android/camera2/CameraCapabilities;
 
     move-result-object v0
@@ -2274,12 +2274,12 @@
 
     move-result-object v0
 
-    .line 583
+    .line 581
     iget-object v1, p0, Lcom/android/camera/ui/FocusView;->mAdapter:Lcom/android/camera/ui/RollAdapter;
 
     if-eqz v1, :cond_0
 
-    .line 584
+    .line 582
     iget-object v1, p0, Lcom/android/camera/ui/FocusView;->mAdapter:Lcom/android/camera/ui/RollAdapter;
 
     iget v2, p0, Lcom/android/camera/ui/FocusView;->mCurrentItem:I
@@ -2300,13 +2300,13 @@
 
     goto :goto_0
 
-    .line 586
+    .line 584
     :cond_0
     const/4 v0, 0x0
 
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mEvValue:F
 
-    .line 588
+    .line 586
     :goto_0
     return-void
 .end method
@@ -2316,19 +2316,19 @@
 .method public clear()V
     .locals 1
 
-    .line 500
+    .line 498
     const/4 v0, 0x7
 
     invoke-direct {p0, v0}, Lcom/android/camera/ui/FocusView;->reset(I)V
 
-    .line 501
+    .line 499
     return-void
 .end method
 
 .method public clear(I)V
     .locals 3
 
-    .line 504
+    .line 502
     sget-object v0, Lcom/android/camera/ui/FocusView;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -2347,60 +2347,60 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 505
+    .line 503
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     if-eqz v0, :cond_0
 
-    .line 506
+    .line 504
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;->cancelFocusingAnimation()V
 
-    .line 508
+    .line 506
     :cond_0
     invoke-direct {p0, p1}, Lcom/android/camera/ui/FocusView;->reset(I)V
 
-    .line 509
+    .line 507
     return-void
 .end method
 
 .method public enableControls(Z)V
     .locals 0
 
-    .line 397
+    .line 395
     return-void
 .end method
 
 .method public initialize(Lcom/android/camera/ui/FocusView$ExposureViewListener;)V
     .locals 0
 
-    .line 276
+    .line 274
     iput-object p1, p0, Lcom/android/camera/ui/FocusView;->mExposureViewListener:Lcom/android/camera/ui/FocusView$ExposureViewListener;
 
-    .line 277
+    .line 275
     const/16 p1, 0x8
 
     invoke-direct {p0, p1}, Lcom/android/camera/ui/FocusView;->reset(I)V
 
-    .line 278
+    .line 276
     return-void
 .end method
 
 .method public invalidateDrawable(Landroid/graphics/drawable/Drawable;)V
     .locals 0
 
-    .line 272
+    .line 270
     invoke-virtual {p0}, Lcom/android/camera/ui/FocusView;->invalidate()V
 
-    .line 273
+    .line 271
     return-void
 .end method
 
 .method public isEvAdjusted()Z
     .locals 1
 
-    .line 614
+    .line 612
     iget-boolean v0, p0, Lcom/android/camera/ui/FocusView;->mBeingEvAdjusted:Z
 
     return v0
@@ -2409,7 +2409,7 @@
 .method public isEvAdjustedTime()Z
     .locals 7
 
-    .line 618
+    .line 616
     invoke-virtual {p0}, Lcom/android/camera/ui/FocusView;->isShown()Z
 
     move-result v0
@@ -2424,7 +2424,7 @@
 
     if-nez v0, :cond_0
 
-    .line 620
+    .line 618
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v1
@@ -2447,7 +2447,7 @@
     :cond_1
     const/4 v0, 0x0
 
-    .line 618
+    .line 616
     :goto_0
     return v0
 .end method
@@ -2455,7 +2455,7 @@
 .method public isVisible()Z
     .locals 1
 
-    .line 415
+    .line 413
     iget-boolean v0, p0, Lcom/android/camera/ui/FocusView;->mIsDraw:Z
 
     return v0
@@ -2464,52 +2464,52 @@
 .method public onCameraOpen()V
     .locals 0
 
-    .line 336
+    .line 334
     return-void
 .end method
 
 .method public onCreate()V
     .locals 0
 
-    .line 331
+    .line 329
     return-void
 .end method
 
 .method protected onDetachedFromWindow()V
     .locals 2
 
-    .line 1003
+    .line 1001
     invoke-super {p0}, Landroid/view/View;->onDetachedFromWindow()V
 
-    .line 1004
+    .line 1002
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     const/4 v1, 0x0
 
     if-eqz v0, :cond_0
 
-    .line 1005
+    .line 1003
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;->cancelFocusingAnimation()V
 
-    .line 1006
+    .line 1004
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;->setCallback(Landroid/graphics/drawable/Drawable$Callback;)V
 
-    .line 1008
+    .line 1006
     :cond_0
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mHandler:Landroid/os/Handler;
 
     if-eqz v0, :cond_1
 
-    .line 1009
+    .line 1007
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mHandler:Landroid/os/Handler;
 
     invoke-virtual {v0, v1}, Landroid/os/Handler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
 
-    .line 1011
+    .line 1009
     :cond_1
     return-void
 .end method
@@ -2517,26 +2517,26 @@
 .method protected onDraw(Landroid/graphics/Canvas;)V
     .locals 1
 
-    .line 571
+    .line 569
     iget-boolean v0, p0, Lcom/android/camera/ui/FocusView;->mIsDraw:Z
 
     if-nez v0, :cond_0
 
-    .line 572
+    .line 570
     return-void
 
-    .line 575
+    .line 573
     :cond_0
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     if-eqz v0, :cond_1
 
-    .line 576
+    .line 574
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     invoke-virtual {v0, p1}, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;->draw(Landroid/graphics/Canvas;)V
 
-    .line 578
+    .line 576
     :cond_1
     return-void
 .end method
@@ -2544,31 +2544,31 @@
 .method public onPause()V
     .locals 1
 
-    .line 391
+    .line 389
     const/4 v0, 0x0
 
     invoke-direct {p0, v0}, Lcom/android/camera/ui/FocusView;->setDraw(Z)V
 
-    .line 392
+    .line 390
     return-void
 .end method
 
 .method public onResume()V
     .locals 1
 
-    .line 386
+    .line 384
     const/4 v0, 0x0
 
     invoke-direct {p0, v0}, Lcom/android/camera/ui/FocusView;->setDraw(Z)V
 
-    .line 387
+    .line 385
     return-void
 .end method
 
 .method public onViewTouchEvent(Landroid/view/MotionEvent;)Z
     .locals 6
 
-    .line 285
+    .line 283
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mAdapter:Lcom/android/camera/ui/RollAdapter;
 
     const/4 v1, 0x0
@@ -2593,16 +2593,16 @@
 
     goto :goto_2
 
-    .line 289
+    .line 287
     :cond_0
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mGestureDetector:Landroid/view/GestureDetector;
 
     invoke-virtual {v0, p1}, Landroid/view/GestureDetector;->onTouchEvent(Landroid/view/MotionEvent;)Z
 
-    .line 291
+    .line 289
     iget-boolean v0, p0, Lcom/android/camera/ui/FocusView;->mIsDown:Z
 
-    .line 292
+    .line 290
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getActionMasked()I
 
     move-result v2
@@ -2611,15 +2611,15 @@
 
     if-ne v2, v3, :cond_1
 
-    .line 293
+    .line 291
     iget-boolean v2, p0, Lcom/android/camera/ui/FocusView;->mIsDown:Z
 
     if-eqz v2, :cond_1
 
-    .line 294
+    .line 292
     iput-boolean v1, p0, Lcom/android/camera/ui/FocusView;->mIsDown:Z
 
-    .line 298
+    .line 296
     :cond_1
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getAction()I
 
@@ -2631,56 +2631,56 @@
 
     const/4 v2, 0x3
 
-    .line 299
+    .line 297
     invoke-virtual {p1}, Landroid/view/MotionEvent;->getAction()I
 
     move-result p1
 
     if-ne v2, p1, :cond_4
 
-    .line 300
+    .line 298
     :cond_2
     iget-boolean p1, p0, Lcom/android/camera/ui/FocusView;->mBeingEvAdjusted:Z
 
     if-eqz p1, :cond_3
 
-    .line 301
+    .line 299
     invoke-static {}, Lcom/android/camera/statistic/CameraStatUtil;->trackEvAdjusted()V
 
-    .line 302
+    .line 300
     invoke-direct {p0}, Lcom/android/camera/ui/FocusView;->stopEvAdjust()V
 
-    .line 303
+    .line 301
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v4
 
     iput-wide v4, p0, Lcom/android/camera/ui/FocusView;->mAdjustedDoneTime:J
 
-    .line 305
+    .line 303
     iget-object p1, p0, Lcom/android/camera/ui/FocusView;->mHandler:Landroid/os/Handler;
 
     const/4 v2, 0x6
 
     invoke-virtual {p1, v2}, Landroid/os/Handler;->removeMessages(I)V
 
-    .line 306
+    .line 304
     iget-object p1, p0, Lcom/android/camera/ui/FocusView;->mHandler:Landroid/os/Handler;
 
     const-wide/16 v4, 0x3e8
 
     invoke-virtual {p1, v2, v4, v5}, Landroid/os/Handler;->sendEmptyMessageDelayed(IJ)Z
 
-    .line 312
+    .line 310
     :cond_3
     iget-boolean p1, p0, Lcom/android/camera/ui/FocusView;->mIsDraw:Z
 
     if-eqz p1, :cond_4
 
-    .line 313
+    .line 311
     iput-boolean v1, p0, Lcom/android/camera/ui/FocusView;->mIsDown:Z
 
-    .line 317
+    .line 315
     :cond_4
     if-nez v0, :cond_6
 
@@ -2700,7 +2700,7 @@
     :goto_1
     return v1
 
-    .line 286
+    .line 284
     :cond_7
     :goto_2
     return v1
@@ -2709,22 +2709,22 @@
 .method public reInit()V
     .locals 5
 
-    .line 339
+    .line 337
     sget-object v0, Lcom/android/camera/ui/FocusView;->TAG:Ljava/lang/String;
 
     const-string v1, "onCameraOpen>>"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 342
+    .line 340
     invoke-direct {p0}, Lcom/android/camera/ui/FocusView;->initRect()V
 
-    .line 344
+    .line 342
     invoke-static {}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getInstance()Lcom/android/camera/module/loader/camera2/Camera2DataContainer;
 
     move-result-object v0
 
-    .line 345
+    .line 343
     invoke-virtual {v0}, Lcom/android/camera/module/loader/camera2/Camera2DataContainer;->getCurrentCameraCapabilities()Lcom/android/camera2/CameraCapabilities;
 
     move-result-object v0
@@ -2733,7 +2733,7 @@
 
     move-result-object v0
 
-    .line 347
+    .line 345
     invoke-virtual {v0}, Landroid/util/Range;->getLower()Ljava/lang/Comparable;
 
     move-result-object v1
@@ -2744,7 +2744,7 @@
 
     move-result v1
 
-    .line 348
+    .line 346
     invoke-virtual {v0}, Landroid/util/Range;->getUpper()Ljava/lang/Comparable;
 
     move-result-object v0
@@ -2755,14 +2755,14 @@
 
     move-result v0
 
-    .line 349
+    .line 347
     if-eqz v0, :cond_5
 
     if-ne v0, v1, :cond_0
 
     goto/16 :goto_3
 
-    .line 353
+    .line 351
     :cond_0
     new-instance v2, Lcom/android/camera/ui/FloatSlideAdapter;
 
@@ -2792,7 +2792,7 @@
 
     iput-object v2, p0, Lcom/android/camera/ui/FocusView;->mAdapter:Lcom/android/camera/ui/RollAdapter;
 
-    .line 354
+    .line 352
     sget-object v0, Lcom/android/camera/ui/FocusView;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -2813,19 +2813,19 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 355
+    .line 353
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mAdapter:Lcom/android/camera/ui/RollAdapter;
 
     if-nez v0, :cond_2
 
-    .line 356
+    .line 354
     return-void
 
-    .line 359
+    .line 357
     :cond_2
     invoke-direct {p0}, Lcom/android/camera/ui/FocusView;->resetEvValue()V
 
-    .line 361
+    .line 359
     invoke-static {}, Lcom/android/camera/data/DataRepository;->dataItemGlobal()Lcom/android/camera/data/data/global/DataItemGlobal;
 
     move-result-object v0
@@ -2836,24 +2836,24 @@
 
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mCurrentMode:I
 
-    .line 362
+    .line 360
     iget v0, p0, Lcom/android/camera/ui/FocusView;->mCurrentMode:I
 
     const/16 v1, 0xa7
 
     if-eq v0, v1, :cond_3
 
-    .line 364
+    .line 362
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     const/16 v1, 0x8
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;->setEvTextVisible(I)V
 
-    .line 365
+    .line 363
     goto :goto_1
 
-    .line 368
+    .line 366
     :cond_3
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
@@ -2861,7 +2861,7 @@
 
     invoke-virtual {v0, v1}, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;->setEvTextVisible(I)V
 
-    .line 372
+    .line 370
     :goto_1
     invoke-static {}, Lcom/android/camera/CameraSettings;->isEvAdjustable()Z
 
@@ -2869,12 +2869,12 @@
 
     invoke-virtual {p0, v0}, Lcom/android/camera/ui/FocusView;->setEvAdjustable(Z)V
 
-    .line 374
+    .line 372
     invoke-static {}, Lcom/android/camera/CameraSettings;->readExposure()I
 
     move-result v0
 
-    .line 375
+    .line 373
     iget-object v1, p0, Lcom/android/camera/ui/FocusView;->mAdapter:Lcom/android/camera/ui/RollAdapter;
 
     invoke-static {v0}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -2885,10 +2885,10 @@
 
     move-result v0
 
-    .line 376
+    .line 374
     if-gez v0, :cond_4
 
-    .line 377
+    .line 375
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mAdapter:Lcom/android/camera/ui/RollAdapter;
 
     invoke-interface {v0}, Lcom/android/camera/ui/RollAdapter;->getMaxItem()I
@@ -2901,18 +2901,18 @@
 
     goto :goto_2
 
-    .line 379
+    .line 377
     :cond_4
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mCurrentItem:I
 
-    .line 381
+    .line 379
     :goto_2
     invoke-direct {p0}, Lcom/android/camera/ui/FocusView;->updateEV()V
 
-    .line 382
+    .line 380
     return-void
 
-    .line 350
+    .line 348
     :cond_5
     :goto_3
     return-void
@@ -2921,37 +2921,37 @@
 .method public releaseListener()V
     .locals 1
 
-    .line 281
+    .line 279
     const/4 v0, 0x0
 
     iput-object v0, p0, Lcom/android/camera/ui/FocusView;->mExposureViewListener:Lcom/android/camera/ui/FocusView$ExposureViewListener;
 
-    .line 282
+    .line 280
     return-void
 .end method
 
 .method public setEvAdjustable(Z)V
     .locals 3
 
-    .line 591
+    .line 589
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mAdapter:Lcom/android/camera/ui/RollAdapter;
 
     if-nez v0, :cond_0
 
-    .line 592
+    .line 590
     return-void
 
-    .line 594
+    .line 592
     :cond_0
     iput-boolean p1, p0, Lcom/android/camera/ui/FocusView;->mIsEvAdjustable:Z
 
-    .line 595
+    .line 593
     invoke-direct {p0}, Lcom/android/camera/ui/FocusView;->resetEvValue()V
 
-    .line 596
+    .line 594
     invoke-direct {p0}, Lcom/android/camera/ui/FocusView;->calculateAttribute()V
 
-    .line 606
+    .line 604
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     const/16 v1, 0x8
@@ -2968,57 +2968,57 @@
     :goto_0
     invoke-virtual {v0, v2}, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;->setEvAdjustVisible(I)V
 
-    .line 607
+    .line 605
     if-nez p1, :cond_2
 
-    .line 608
+    .line 606
     iget-object p1, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     invoke-virtual {p1, v1}, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;->setEvTextVisible(I)V
 
-    .line 610
+    .line 608
     :cond_2
     invoke-virtual {p0}, Lcom/android/camera/ui/FocusView;->invalidate()V
 
-    .line 611
+    .line 609
     return-void
 .end method
 
 .method public setFocusType(Z)V
     .locals 0
 
-    .line 411
+    .line 409
     iput-boolean p1, p0, Lcom/android/camera/ui/FocusView;->mIsTouchFocus:Z
 
-    .line 412
+    .line 410
     return-void
 .end method
 
 .method public setOrientation(IZ)V
     .locals 0
 
-    .line 401
+    .line 399
     iget p2, p0, Lcom/android/camera/ui/FocusView;->mRotation:I
 
     if-eq p2, p1, :cond_0
 
-    .line 402
+    .line 400
     iput p1, p0, Lcom/android/camera/ui/FocusView;->mRotation:I
 
-    .line 403
+    .line 401
     iget-object p2, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     invoke-virtual {p2, p1}, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;->setOrientation(I)V
 
-    .line 404
+    .line 402
     iget-boolean p1, p0, Lcom/android/camera/ui/FocusView;->mIsDraw:Z
 
     if-eqz p1, :cond_0
 
-    .line 405
+    .line 403
     invoke-virtual {p0}, Lcom/android/camera/ui/FocusView;->invalidate()V
 
-    .line 408
+    .line 406
     :cond_0
     return-void
 .end method
@@ -3026,31 +3026,31 @@
 .method public setPosition(III)V
     .locals 1
 
-    .line 624
+    .line 622
     iput p2, p0, Lcom/android/camera/ui/FocusView;->mCenterX:I
 
-    .line 625
+    .line 623
     iput p3, p0, Lcom/android/camera/ui/FocusView;->mCenterY:I
 
-    .line 627
+    .line 625
     int-to-float v0, p2
 
     invoke-virtual {p0, v0}, Lcom/android/camera/ui/FocusView;->setPivotX(F)V
 
-    .line 628
+    .line 626
     int-to-float v0, p3
 
     invoke-virtual {p0, v0}, Lcom/android/camera/ui/FocusView;->setPivotY(F)V
 
-    .line 629
+    .line 627
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     invoke-virtual {v0, p2, p3}, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;->setCenter(II)V
 
-    .line 630
+    .line 628
     invoke-direct {p0}, Lcom/android/camera/ui/FocusView;->removeMessages()V
 
-    .line 632
+    .line 630
     iget p2, p0, Lcom/android/camera/ui/FocusView;->mEvValue:F
 
     const/4 p3, 0x0
@@ -3059,7 +3059,7 @@
 
     if-eqz p2, :cond_1
 
-    .line 633
+    .line 631
     const/4 p2, 0x5
 
     if-eq p1, p2, :cond_0
@@ -3068,7 +3068,7 @@
 
     goto :goto_0
 
-    .line 638
+    .line 636
     :cond_0
     :pswitch_0
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
@@ -3077,20 +3077,20 @@
 
     const/16 p3, 0xa9
 
-    .line 639
+    .line 637
     invoke-virtual {p2, p3}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object p2
 
     check-cast p2, Lcom/android/camera/protocol/ModeProtocol$EvChangedProtocol;
 
-    .line 640
+    .line 638
     if-eqz p2, :cond_1
 
-    .line 641
+    .line 639
     invoke-interface {p2}, Lcom/android/camera/protocol/ModeProtocol$EvChangedProtocol;->resetEvValue()V
 
-    .line 648
+    .line 646
     :cond_1
     :goto_0
     iget p2, p0, Lcom/android/camera/ui/FocusView;->mCurrentDistanceY:I
@@ -3101,10 +3101,10 @@
 
     if-eq p1, p2, :cond_2
 
-    .line 649
+    .line 647
     invoke-direct {p0}, Lcom/android/camera/ui/FocusView;->resetEvValue()V
 
-    .line 651
+    .line 649
     :cond_2
     return-void
 
@@ -3118,44 +3118,44 @@
 .method public showFail()V
     .locals 4
 
-    .line 486
+    .line 484
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;->startFocusFailAnimation()V
 
-    .line 487
+    .line 485
     sget-object v0, Lcom/android/camera/ui/FocusView;->TAG:Ljava/lang/String;
 
     const-string v1, "showFail"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 488
+    .line 486
     iget v0, p0, Lcom/android/camera/ui/FocusView;->mState:I
 
     const/4 v1, 0x1
 
     if-ne v0, v1, :cond_0
 
-    .line 489
+    .line 487
     invoke-direct {p0}, Lcom/android/camera/ui/FocusView;->clearMessages()V
 
-    .line 490
+    .line 488
     invoke-direct {p0, v1}, Lcom/android/camera/ui/FocusView;->setDraw(Z)V
 
-    .line 491
+    .line 489
     const/4 v0, 0x3
 
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mState:I
 
-    .line 492
+    .line 490
     invoke-static {}, Landroid/os/SystemClock;->uptimeMillis()J
 
     move-result-wide v0
 
     iput-wide v0, p0, Lcom/android/camera/ui/FocusView;->mFailTime:J
 
-    .line 493
+    .line 491
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mHandler:Landroid/os/Handler;
 
     const/4 v1, 0x5
@@ -3164,10 +3164,10 @@
 
     invoke-virtual {v0, v1, v2, v3}, Landroid/os/Handler;->sendEmptyMessageDelayed(IJ)Z
 
-    .line 494
+    .line 492
     invoke-virtual {p0}, Lcom/android/camera/ui/FocusView;->invalidate()V
 
-    .line 496
+    .line 494
     :cond_0
     return-void
 .end method
@@ -3175,73 +3175,73 @@
 .method public showStart()V
     .locals 4
 
-    .line 425
+    .line 423
     sget-object v0, Lcom/android/camera/ui/FocusView;->TAG:Ljava/lang/String;
 
     const-string v1, "showStart"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 426
+    .line 424
     invoke-direct {p0}, Lcom/android/camera/ui/FocusView;->clearMessages()V
 
-    .line 427
+    .line 425
     const/4 v0, 0x1
 
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mState:I
 
-    .line 428
+    .line 426
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mCursorState:I
 
-    .line 429
+    .line 427
     invoke-static {}, Landroid/os/SystemClock;->uptimeMillis()J
 
     move-result-wide v1
 
     iput-wide v1, p0, Lcom/android/camera/ui/FocusView;->mStartTime:J
 
-    .line 431
+    .line 429
     invoke-direct {p0, v0}, Lcom/android/camera/ui/FocusView;->setDraw(Z)V
 
-    .line 434
+    .line 432
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
     invoke-virtual {v0}, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;->startTouchDownAnimation()V
 
-    .line 436
+    .line 434
     invoke-direct {p0}, Lcom/android/camera/ui/FocusView;->isStableStart()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 437
+    .line 435
     const/high16 v0, 0x3f800000    # 1.0f
 
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mEVCaptureRatio:F
 
-    .line 438
+    .line 436
     invoke-virtual {p0}, Lcom/android/camera/ui/FocusView;->showSuccess()V
 
     goto :goto_0
 
-    .line 440
+    .line 438
     :cond_0
     const/high16 v0, -0x40800000    # -1.0f
 
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mEVCaptureRatio:F
 
-    .line 441
+    .line 439
     const/4 v0, 0x0
 
     iput v0, p0, Lcom/android/camera/ui/FocusView;->mCenterFlag:I
 
-    .line 442
+    .line 440
     const/4 v0, 0x0
 
     invoke-direct {p0, v0}, Lcom/android/camera/ui/FocusView;->processParameterIfNeeded(F)V
 
-    .line 444
+    .line 442
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mHandler:Landroid/os/Handler;
 
     const/4 v1, 0x4
@@ -3250,25 +3250,25 @@
 
     invoke-virtual {v0, v1, v2, v3}, Landroid/os/Handler;->sendEmptyMessageDelayed(IJ)Z
 
-    .line 446
+    .line 444
     :goto_0
     invoke-virtual {p0}, Lcom/android/camera/ui/FocusView;->invalidate()V
 
-    .line 447
+    .line 445
     return-void
 .end method
 
 .method public showSuccess()V
     .locals 6
 
-    .line 455
+    .line 453
     sget-object v0, Lcom/android/camera/ui/FocusView;->TAG:Ljava/lang/String;
 
     const-string v1, "showSuccess"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 457
+    .line 455
     iget v0, p0, Lcom/android/camera/ui/FocusView;->mState:I
 
     const/4 v1, 0x5
@@ -3279,51 +3279,51 @@
 
     if-ne v0, v3, :cond_0
 
-    .line 458
+    .line 456
     invoke-direct {p0}, Lcom/android/camera/ui/FocusView;->clearMessages()V
 
-    .line 459
+    .line 457
     invoke-direct {p0, v3}, Lcom/android/camera/ui/FocusView;->setDraw(Z)V
 
-    .line 460
+    .line 458
     iput v2, p0, Lcom/android/camera/ui/FocusView;->mState:I
 
-    .line 461
+    .line 459
     invoke-static {}, Landroid/os/SystemClock;->uptimeMillis()J
 
     move-result-wide v4
 
     iput-wide v4, p0, Lcom/android/camera/ui/FocusView;->mSuccessTime:J
 
-    .line 462
+    .line 460
     iget-boolean v0, p0, Lcom/android/camera/ui/FocusView;->mIsTouchFocus:Z
 
     if-nez v0, :cond_0
 
-    .line 463
+    .line 461
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mHandler:Landroid/os/Handler;
 
     const-wide/16 v4, 0x320
 
     invoke-virtual {v0, v1, v4, v5}, Landroid/os/Handler;->sendEmptyMessageDelayed(IJ)Z
 
-    .line 467
+    .line 465
     :cond_0
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mExposureViewListener:Lcom/android/camera/ui/FocusView$ExposureViewListener;
 
     if-nez v0, :cond_1
 
-    .line 468
+    .line 466
     sget-object v0, Lcom/android/camera/ui/FocusView;->TAG:Ljava/lang/String;
 
     const-string v1, "needExposurePresenter"
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 469
+    .line 467
     return-void
 
-    .line 473
+    .line 471
     :cond_1
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mExposureViewListener:Lcom/android/camera/ui/FocusView$ExposureViewListener;
 
@@ -3339,19 +3339,19 @@
 
     if-eqz v0, :cond_2
 
-    .line 474
+    .line 472
     const/16 v0, 0x8
 
-    const v2, 0x7f0b01b7
+    const v2, 0x7f0901be
 
     invoke-direct {p0, v0, v2}, Lcom/android/camera/ui/FocusView;->showTipMessage(II)V
 
-    .line 475
+    .line 473
     iput v1, p0, Lcom/android/camera/ui/FocusView;->mCenterFlag:I
 
     goto :goto_0
 
-    .line 476
+    .line 474
     :cond_2
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mExposureViewListener:Lcom/android/camera/ui/FocusView$ExposureViewListener;
 
@@ -3369,16 +3369,16 @@
 
     if-eqz v0, :cond_3
 
-    .line 477
+    .line 475
     iput v2, p0, Lcom/android/camera/ui/FocusView;->mCenterFlag:I
 
     goto :goto_0
 
-    .line 479
+    .line 477
     :cond_3
     iput v3, p0, Lcom/android/camera/ui/FocusView;->mCenterFlag:I
 
-    .line 481
+    .line 479
     :goto_0
     iget-object v0, p0, Lcom/android/camera/ui/FocusView;->mCameraFocusAnimateDrawable:Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;
 
@@ -3388,6 +3388,6 @@
 
     invoke-virtual {v0, v1, v2}, Lcom/android/camera/ui/drawable/focus/CameraFocusAnimateDrawable;->startFocusSuccessAnimation(IZ)V
 
-    .line 482
+    .line 480
     return-void
 .end method

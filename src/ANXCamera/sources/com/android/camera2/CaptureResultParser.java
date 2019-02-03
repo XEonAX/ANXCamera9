@@ -1,5 +1,6 @@
 package com.android.camera2;
 
+import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.CaptureResult.Key;
 import android.hardware.camera2.marshal.MarshalRegistry;
@@ -16,15 +17,19 @@ public class CaptureResultParser {
     private static final Key<Integer> AI_SCENE_DETECTED = new Key(VENDER_TAG_ASD_DETECTED_MODES, Integer.TYPE);
     private static final Key<Byte> AI_SCENE_ENABLE = new Key(VENDER_TAG_ASD_ENABLE, Byte.TYPE);
     private static final Key<AWBFrameControl> AWB_FRAME_CONTROL = new Key(VENDOR_TAG_AWB_FRAME_CONTROL, AWBFrameControl.class);
+    private static final Key<Integer> BEAUTY_BODY_SLIM_COUNT = new Key(VENDER_TAG_BEAUTY_BODY_SLIM_COUNT, Integer.TYPE);
     public static final Key<Byte> FAST_ZOOM_RESULT = new Key(VENDOR_TAG_FAST_ZOOM_RESULT, Byte.class);
     public static final Key<Byte[]> KEY_HDR_CHECKTER_EV_VALUES = new Key(VENDOR_TAG_HDR_CHECKER, Byte[].class);
     private static final Key<Integer> LENS_DIRTY_DETECTED = new Key(VENDER_TAG_LENS_DIRTY_DETECTED, Integer.TYPE);
+    private static final CaptureRequest.Key<Integer> MULTIFRAME_INPUTNUM = new CaptureRequest.Key(VENDER_TAG_MULTIFRAME_INPUTNUM, Integer.TYPE);
     private static final String TAG = CaptureResultParser.class.getSimpleName();
     public static final Key<Integer> ULTR_WIDE_RECOMMENDED_RESULT = new Key(VENDER_TAG_ULTRA_WIDE_RECOMMENDED, Integer.TYPE);
     public static final String VENDER_TAG_ASD_DETECTED_MODES = "xiaomi.ai.asd.sceneDetected";
     public static final String VENDER_TAG_ASD_ENABLE = "xiaomi.ai.asd.enabled";
+    public static final String VENDER_TAG_BEAUTY_BODY_SLIM_COUNT = "xiaomi.beauty.bodySlimCnt";
     public static final String VENDER_TAG_HDR_DETECTED_MODES = "xiaomi.hdr.hdrDetected";
     public static final String VENDER_TAG_LENS_DIRTY_DETECTED = "xiaomi.ai.add.lensDirtyDetected";
+    public static final String VENDER_TAG_MULTIFRAME_INPUTNUM = "xiaomi.multiframe.inputNum";
     public static final String VENDER_TAG_ULTRA_WIDE_RECOMMENDED = "xiaomi.ai.misd.ultraWideRecommended";
     public static final String VENDOR_TAG_AEC_FRAME_CONTROL = "org.quic.camera2.statsconfigs.AECFrameControl";
     public static final String VENDOR_TAG_AF_FRAME_CONTROL = "org.quic.camera2.statsconfigs.AFFrameControl";
@@ -127,5 +132,30 @@ public class CaptureResultParser {
             return num.intValue();
         }
         return 0;
+    }
+
+    public static int getRequestMultiFrameInputNum(CaptureRequest captureRequest) {
+        Integer num = (Integer) captureRequest.get(MULTIFRAME_INPUTNUM);
+        if (num == null) {
+            return 0;
+        }
+        return num.intValue();
+    }
+
+    public static int getBeautyBodySlimCountResult(CaptureResult captureResult) {
+        try {
+            Integer num = (Integer) captureResult.get(BEAUTY_BODY_SLIM_COUNT);
+            if (num != null) {
+                return num.intValue();
+            }
+            return 0;
+        } catch (Exception e) {
+            String str = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Could not find tag for key ");
+            stringBuilder.append(BEAUTY_BODY_SLIM_COUNT);
+            Log.e(str, stringBuilder.toString());
+            return -1;
+        }
     }
 }

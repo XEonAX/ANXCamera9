@@ -15,7 +15,7 @@
 
 
 # static fields
-.field public static final pref_ai_detect_enable:I = 0x7f0f0011
+.field public static final pref_ai_detect_enable:I = 0x7f0f0012
 
 .field public static final pref_camera_AEAF_lock_support:I = 0x7f0f0002
 
@@ -33,11 +33,13 @@
 
 .field public static final pref_camera_facedetection_default:I = 0x7f0f0006
 
+.field public static final pref_camera_live_sticker_internal_default:I = 0x7f0f0011
+
 .field public static final pref_camera_long_pressing_shutter_default:I = 0x7f0f0001
 
 .field public static final pref_camera_mfnr_sat_enable_default:I = 0x7f0f000e
 
-.field public static final pref_camera_normal_wide_ldc_default:I = 0x7f0f0015
+.field public static final pref_camera_normal_wide_ldc_default:I = 0x7f0f0016
 
 .field public static final pref_camera_optimized_flash_enable_default:I = 0x7f0f000f
 
@@ -51,11 +53,11 @@
 
 .field public static final pref_camera_statistic_default:I = 0x7f0f000b
 
-.field public static final pref_camera_ultra_wide_ldc_default:I = 0x7f0f0014
+.field public static final pref_camera_ultra_wide_ldc_default:I = 0x7f0f0015
 
-.field public static final pref_dualcamera_watermark_default:I = 0x7f0f0012
+.field public static final pref_device_watermark_default:I = 0x7f0f0013
 
-.field public static final pref_groupshot_with_primitive_default:I = 0x7f0f0013
+.field public static final pref_groupshot_with_primitive_default:I = 0x7f0f0014
 
 .field public static final priority_storage:I = 0x7f0f0000
 
@@ -64,7 +66,7 @@
 .method public constructor <init>()V
     .locals 0
 
-    .line 331
+    .line 350
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void

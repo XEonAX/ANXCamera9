@@ -15,13 +15,14 @@ import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.TypedValue;
-import com.aeonax.camera.R;
 import com.android.camera.ActivityBase;
 import com.android.camera.CameraSettings;
 import com.android.camera.JpegEncodingQualityMappings;
+import com.android.camera.R;
 import com.android.camera.Thumbnail;
 import com.android.camera.Util;
 import com.android.camera.data.DataRepository;
+import com.android.camera.data.data.runing.ComponentRunningTiltValue;
 import com.android.camera.effect.FilterInfo;
 import com.android.camera.effect.FrameBuffer;
 import com.android.camera.effect.ShaderNativeUtil;
@@ -61,9 +62,10 @@ public class SnapshotEffectRender {
     private static final int MAX_QUALITY = 97;
     private static final int QUEUE_LIMIT = 7;
     private static final String TAG = SnapshotEffectRender.class.getSimpleName();
+    private Bitmap m48MCameraWaterMarkBitmap;
     private ActivityBase mActivity;
     private String mCurrentCustomWaterMarkText;
-    private Bitmap mDualCameraWaterMark;
+    private Bitmap mDualCameraWaterMarkBitmap;
     private float mDualCameraWaterMarkPaddingXRatio;
     private float mDualCameraWaterMarkPaddingYRatio;
     private float mDualCameraWaterMarkSizeRatio;
@@ -207,22 +209,34 @@ public class SnapshotEffectRender {
             int i10 = i3;
             int i11 = i4;
             int i12 = i7;
-            if (b.gL()) {
+            if (b.hd()) {
                 if (drawJPEGAttribute2.mTimeWaterMarkText != null) {
                     WaterMark newStyleTextWaterMark;
                     String str = drawJPEGAttribute2.mTimeWaterMarkText;
-                    if (b.fR()) {
+                    if (b.gl()) {
                         newStyleTextWaterMark = new NewStyleTextWaterMark(str, i10, i11, i12);
                     } else {
                         newStyleTextWaterMark = new TextWaterMark(str, i10, i11, i12);
                     }
                     drawWaterMark(newStyleTextWaterMark, i8, i9, i12);
                 }
-                if (drawJPEGAttribute2.mDualCameraWaterMarkEnabled && SnapshotEffectRender.this.mDualCameraWaterMark != null) {
+                if (drawJPEGAttribute2.mDualCameraWaterMarkEnabled && SnapshotEffectRender.this.mDualCameraWaterMarkBitmap != null) {
                     if (!SnapshotEffectRender.this.mCurrentCustomWaterMarkText.equals(CameraSettings.getCustomWatermark())) {
-                        SnapshotEffectRender.this.mDualCameraWaterMark = SnapshotEffectRender.this.loadCameraWatermark(SnapshotEffectRender.this.mActivity);
+                        SnapshotEffectRender.this.mCurrentCustomWaterMarkText = CameraSettings.getCustomWatermark();
+                        SnapshotEffectRender.this.mDualCameraWaterMarkBitmap = SnapshotEffectRender.this.loadCameraWatermark(SnapshotEffectRender.this.mActivity);
                     }
-                    drawWaterMark(new ImageWaterMark(SnapshotEffectRender.this.mDualCameraWaterMark, i10, i11, i12, SnapshotEffectRender.this.mDualCameraWaterMarkSizeRatio, SnapshotEffectRender.this.mDualCameraWaterMarkPaddingXRatio, SnapshotEffectRender.this.mDualCameraWaterMarkPaddingYRatio), i8, i9, i12);
+                    Bitmap access$1200 = SnapshotEffectRender.this.mDualCameraWaterMarkBitmap;
+                    boolean equals = CameraSettings.getCustomWatermark().equals(CameraSettings.getDefaultWatermarkStr());
+                    Object obj = (CameraSettings.isUltraPixelPhotographyOn() || CameraSettings.isRearMenuUltraPixelPhotographyOn()) ? 1 : null;
+                    if (!(obj == null || DataRepository.dataItemFeature().fO() || !equals)) {
+                        if (SnapshotEffectRender.this.m48MCameraWaterMarkBitmap == null) {
+                            SnapshotEffectRender.this.m48MCameraWaterMarkBitmap = SnapshotEffectRender.this.load48MWatermark(SnapshotEffectRender.this.mActivity);
+                        }
+                        if (SnapshotEffectRender.this.m48MCameraWaterMarkBitmap != null) {
+                            access$1200 = SnapshotEffectRender.this.m48MCameraWaterMarkBitmap;
+                        }
+                    }
+                    drawWaterMark(new ImageWaterMark(access$1200, i10, i11, i12, SnapshotEffectRender.this.mDualCameraWaterMarkSizeRatio, SnapshotEffectRender.this.mDualCameraWaterMarkPaddingXRatio, SnapshotEffectRender.this.mDualCameraWaterMarkPaddingYRatio), i8, i9, i12);
                 }
             }
         }
@@ -232,7 +246,7 @@ public class SnapshotEffectRender {
      */
         /* Code decompiled incorrectly, please refer to instructions dump. */
         private void drawAgeGenderAndMagicMirrorWater(List<WaterMarkData> list, int i, int i2, int i3, int i4, int i5, boolean z) {
-            if (b.gL() && !z && CameraSettings.isAgeGenderAndMagicMirrorWaterOpen()) {
+            if (b.hd() && !z && CameraSettings.isAgeGenderAndMagicMirrorWaterOpen()) {
                 WaterMarkBitmap waterMarkBitmap = new WaterMarkBitmap(list);
                 WaterMarkData waterMarkData = waterMarkBitmap.getWaterMarkData();
                 if (waterMarkData != null) {
@@ -243,12 +257,12 @@ public class SnapshotEffectRender {
             }
         }
 
-        /* JADX WARNING: Removed duplicated region for block: B:49:0x0196  */
-        /* JADX WARNING: Removed duplicated region for block: B:47:0x016b  */
-        /* JADX WARNING: Removed duplicated region for block: B:53:0x01b4  */
-        /* JADX WARNING: Removed duplicated region for block: B:52:0x019e  */
-        /* JADX WARNING: Removed duplicated region for block: B:56:0x01e7  */
-        /* JADX WARNING: Removed duplicated region for block: B:59:0x0225  */
+        /* JADX WARNING: Removed duplicated region for block: B:49:0x0194  */
+        /* JADX WARNING: Removed duplicated region for block: B:47:0x0169  */
+        /* JADX WARNING: Removed duplicated region for block: B:53:0x01b2  */
+        /* JADX WARNING: Removed duplicated region for block: B:52:0x019c  */
+        /* JADX WARNING: Removed duplicated region for block: B:56:0x01e5  */
+        /* JADX WARNING: Removed duplicated region for block: B:59:0x0223  */
         /* Code decompiled incorrectly, please refer to instructions dump. */
         private byte[] applyEffect(DrawJPEGAttribute drawJPEGAttribute, int i, boolean z, Size size, Size size2) {
             DrawJPEGAttribute drawJPEGAttribute2 = drawJPEGAttribute;
@@ -293,7 +307,7 @@ public class SnapshotEffectRender {
             int i6;
             int i7;
             long currentTimeMillis2;
-            int access$1900;
+            int access$2100;
             byte[] picture;
             String access$7004;
             StringBuilder stringBuilder4;
@@ -321,7 +335,7 @@ public class SnapshotEffectRender {
             int i9 = i4;
             int i10 = i3;
             int i11 = i2;
-            drawAgeGenderAndMagicMirrorWater(drawJPEGAttribute.getWaterInfos(), i2, i3, i4, i8, drawJPEGAttribute2.mJpegOrientation, drawJPEGAttribute2.mIsPortraitRawData);
+            drawAgeGenderAndMagicMirrorWater(drawJPEGAttribute2.mWaterInfos, i2, i3, i4, i8, drawJPEGAttribute2.mJpegOrientation, drawJPEGAttribute2.mIsPortraitRawData);
             if (!ModuleManager.isSquareModule()) {
                 i3 = 0;
             } else if (i11 > i10) {
@@ -357,11 +371,11 @@ public class SnapshotEffectRender {
                 Log.d(access$7002, stringBuilder2.toString());
                 GLES20.glPixelStorei(3333, 1);
                 currentTimeMillis2 = System.currentTimeMillis();
-                access$1900 = SnapshotEffectRender.this.mQuality;
+                access$2100 = SnapshotEffectRender.this.mQuality;
                 if (z2) {
-                    access$1900 = Math.min(SnapshotEffectRender.this.mQuality, JpegEncodingQualityMappings.getQualityNumber("normal"));
+                    access$2100 = Math.min(SnapshotEffectRender.this.mQuality, JpegEncodingQualityMappings.getQualityNumber("normal"));
                 }
-                picture = ShaderNativeUtil.getPicture(i7, i6, i11, i10, access$1900);
+                picture = ShaderNativeUtil.getPicture(i7, i6, i11, i10, access$2100);
                 access$7004 = SnapshotEffectRender.TAG;
                 stringBuilder4 = new StringBuilder();
                 stringBuilder4.append("readTime=");
@@ -388,10 +402,10 @@ public class SnapshotEffectRender {
             Log.d(access$7002, stringBuilder2.toString());
             GLES20.glPixelStorei(3333, 1);
             currentTimeMillis2 = System.currentTimeMillis();
-            access$1900 = SnapshotEffectRender.this.mQuality;
+            access$2100 = SnapshotEffectRender.this.mQuality;
             if (z2) {
             }
-            picture = ShaderNativeUtil.getPicture(i7, i6, i11, i10, access$1900);
+            picture = ShaderNativeUtil.getPicture(i7, i6, i11, i10, access$2100);
             access$7004 = SnapshotEffectRender.TAG;
             stringBuilder4 = new StringBuilder();
             stringBuilder4.append("readTime=");
@@ -430,9 +444,9 @@ public class SnapshotEffectRender {
             } else if (CameraSettings.isTiltShiftOn()) {
                 fetchRender = null;
                 String componentValue = DataRepository.dataItemRunning().getComponentRunningTiltValue().getComponentValue(160);
-                if (componentValue.equals(CameraSettings.getString(R.string.pref_camera_tilt_shift_entryvalue_circle))) {
+                if (ComponentRunningTiltValue.TILT_CIRCLE.equals(componentValue)) {
                     fetchRender = fetchRender(FilterInfo.FILTER_ID_GAUSSIAN);
-                } else if (componentValue.equals(CameraSettings.getString(R.string.pref_camera_tilt_shift_entryvalue_parallel))) {
+                } else if (ComponentRunningTiltValue.TILT_PARALLEL.equals(componentValue)) {
                     fetchRender = fetchRender(FilterInfo.FILTER_ID_TILTSHIFT);
                 }
                 if (fetchRender != null) {
@@ -482,7 +496,7 @@ public class SnapshotEffectRender {
                 String str = null;
                 if (SnapshotEffectRender.this.mImageSaver != null) {
                     String str2;
-                    ImageSaver access$2100 = SnapshotEffectRender.this.mImageSaver;
+                    ImageSaver access$2300 = SnapshotEffectRender.this.mImageSaver;
                     byte[] bArr = drawJPEGAttribute2.mData;
                     boolean z4 = drawJPEGAttribute2.mNeedThumbnail;
                     if (access$7002 == null) {
@@ -504,7 +518,7 @@ public class SnapshotEffectRender {
                     if (access$7002 == null) {
                         z3 = drawJPEGAttribute2.mFinalImage;
                     }
-                    access$2100.addImage(bArr, z4, str2, str3, j, uri, location, i2, i3, exifInterface, i4, false, false, z3, false, z2, drawJPEGAttribute2.mAlgorithmName, drawJPEGAttribute2.mInfo);
+                    access$2300.addImage(bArr, z4, str2, str3, j, uri, location, i2, i3, exifInterface, i4, false, false, z3, false, z2, drawJPEGAttribute2.mAlgorithmName, drawJPEGAttribute2.mInfo);
                 } else if (drawJPEGAttribute2.mUri == null) {
                     Log.d(SnapshotEffectRender.TAG, "addImageForEffect");
                     Activity access$000 = SnapshotEffectRender.this.mActivity;
@@ -570,7 +584,7 @@ public class SnapshotEffectRender {
             if (z && drawJPEGAttribute2.mExif.getThumbnailBytes() != null) {
                 drawJPEGAttribute2.mUri = Storage.addImage(SnapshotEffectRender.this.mActivity, drawJPEGAttribute2.mTitle, drawJPEGAttribute2.mDate, drawJPEGAttribute2.mLoc, drawJPEGAttribute2.mJpegOrientation, drawJPEGAttribute2.mExif.getThumbnailBytes(), size.width, size.height, false, false, false, z2, false, drawJPEGAttribute2.mAlgorithmName, null);
                 if (drawJPEGAttribute2.mUri != null) {
-                    SnapshotEffectRender.this.mActivity.addSecureUri(drawJPEGAttribute2.mUri);
+                    SnapshotEffectRender.this.mActivity.onNewUriArrived(drawJPEGAttribute2.mUri, drawJPEGAttribute2.mTitle);
                 }
             }
             return true;
@@ -584,22 +598,10 @@ public class SnapshotEffectRender {
         }
 
         private void release() {
-            SnapshotEffectRender.this.mImageSaver = null;
-            SnapshotEffectRender.this.mRelease = true;
-            SnapshotEffectRender.this.mReleasePending = false;
-            SnapshotEffectRender.this.mEgl.eglDestroySurface(SnapshotEffectRender.this.mEglDisplay, SnapshotEffectRender.this.mEglSurface);
-            SnapshotEffectRender.this.mEgl.eglDestroyContext(SnapshotEffectRender.this.mEglDisplay, SnapshotEffectRender.this.mEglContext);
-            SnapshotEffectRender.this.mEgl.eglMakeCurrent(SnapshotEffectRender.this.mEglDisplay, EGL10.EGL_NO_SURFACE, EGL10.EGL_NO_SURFACE, EGL10.EGL_NO_CONTEXT);
-            SnapshotEffectRender.this.mEgl.eglTerminate(SnapshotEffectRender.this.mEglDisplay);
-            SnapshotEffectRender.this.mEglSurface = null;
-            SnapshotEffectRender.this.mEglContext = null;
-            SnapshotEffectRender.this.mEglDisplay = null;
-            SnapshotEffectRender.this.mActivity = null;
             this.mFrameBuffer = null;
-            System.gc();
             this.mGLCanvas.recycledResources();
-            SnapshotEffectRender.this.mEglThread.quit();
             this.mGLCanvas = null;
+            SnapshotEffectRender.this.destroy();
         }
 
         public void sendMessageSync(int i) {
@@ -620,6 +622,7 @@ public class SnapshotEffectRender {
     }
 
     public SnapshotEffectRender(ActivityBase activityBase, boolean z) {
+        Log.d(TAG, "SnapshotEffectRender: has been created!!!");
         this.mActivity = activityBase;
         this.mIsImageCaptureIntent = z;
         this.mEglThread = new HandlerThread("SnapshotEffectProcessor");
@@ -628,7 +631,7 @@ public class SnapshotEffectRender {
         this.mEglHandler.sendMessageSync(0);
         this.mRelease = false;
         if (CameraSettings.isSupportedDualCameraWaterMark()) {
-            this.mDualCameraWaterMark = loadCameraWatermark(activityBase);
+            this.mDualCameraWaterMarkBitmap = loadCameraWatermark(activityBase);
             this.mCurrentCustomWaterMarkText = CameraSettings.getCustomWatermark();
             this.mDualCameraWaterMarkSizeRatio = getResourceFloat(R.dimen.dualcamera_watermark_size_ratio, 0.0f);
             this.mDualCameraWaterMarkPaddingXRatio = getResourceFloat(R.dimen.dualcamera_watermark_padding_x_ratio, 0.0f);
@@ -637,78 +640,84 @@ public class SnapshotEffectRender {
         this.mSquareModeExtraMargin = this.mActivity.getResources().getDimensionPixelSize(R.dimen.square_mode_bottom_cover_extra_margin);
     }
 
-    private Bitmap loadCameraWatermark(Context context) {
+    private Bitmap load48MWatermark(Context context) {
+        AutoCloseable fileInputStream;
+        Throwable th;
+        Throwable th2;
         Options options = new Options();
         options.inScaled = false;
         options.inPurgeable = true;
         options.inPremultiplied = false;
-        Bitmap loadCameraCustomWatermark;
-        if (DataRepository.dataItemFeature().fc()) {
-            if (!new File(context.getFilesDir(), Util.WATERMARK_FILE_NAME).exists()) {
-                Util.generateCustomWatermark2File();
+        if (DataRepository.dataItemFeature().fe()) {
+            File file = new File(context.getFilesDir(), Util.WATERMARK_48M_FILE_NAME);
+            if (!file.exists()) {
+                return Util.generate48MWatermark2File();
             }
-            loadCameraCustomWatermark = loadCameraCustomWatermark(context, options);
-            if (loadCameraCustomWatermark != null) {
-                return loadCameraCustomWatermark;
+            try {
+                fileInputStream = new FileInputStream(file);
+                try {
+                    Bitmap decodeStream = BitmapFactory.decodeStream(fileInputStream, null, options);
+                    $closeResource(null, fileInputStream);
+                    return decodeStream;
+                } catch (Throwable th22) {
+                    Throwable th3 = th22;
+                    th22 = th;
+                    th = th3;
+                }
+            } catch (Throwable e) {
+                Log.d(TAG, "Failed to load app camera watermark ", e);
             }
-        }
-        loadCameraCustomWatermark = BitmapFactory.decodeFile(CameraSettings.getDualCameraWaterMarkFilePathVendor(), options);
-        if (loadCameraCustomWatermark != null) {
-            return loadCameraCustomWatermark;
         }
         return null;
+        $closeResource(th22, fileInputStream);
+        throw th;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:25:0x0049 A:{SYNTHETIC, Splitter: B:25:0x0049} */
-    /* Code decompiled incorrectly, please refer to instructions dump. */
-    private Bitmap loadCameraCustomWatermark(Context context, Options options) {
-        Throwable e;
+    private static /* synthetic */ void $closeResource(Throwable th, AutoCloseable autoCloseable) {
+        if (th != null) {
+            try {
+                autoCloseable.close();
+                return;
+            } catch (Throwable th2) {
+                th.addSuppressed(th2);
+                return;
+            }
+        }
+        autoCloseable.close();
+    }
+
+    private Bitmap loadCameraWatermark(Context context) {
+        AutoCloseable fileInputStream;
         Throwable th;
-        FileInputStream fileInputStream;
+        Throwable th2;
+        Options options = new Options();
+        options.inScaled = false;
+        options.inPurgeable = true;
+        options.inPremultiplied = false;
+        if (!DataRepository.dataItemFeature().fe()) {
+            return BitmapFactory.decodeFile(CameraSettings.getDualCameraWaterMarkFilePathVendor(), options);
+        }
+        File file = new File(context.getFilesDir(), Util.WATERMARK_FILE_NAME);
+        if (!file.exists()) {
+            Util.generateWatermark2File();
+        }
         try {
-            fileInputStream = new FileInputStream(new File(context.getFilesDir(), Util.WATERMARK_FILE_NAME));
+            fileInputStream = new FileInputStream(file);
             try {
                 Bitmap decodeStream = BitmapFactory.decodeStream(fileInputStream, null, options);
-                try {
-                    fileInputStream.close();
-                } catch (Exception e2) {
-                    Log.e(TAG, "exception in loadCameraCustomWatermark: release");
-                }
+                $closeResource(null, fileInputStream);
                 return decodeStream;
-            } catch (Exception e3) {
-                e = e3;
+            } catch (Throwable th22) {
+                Throwable th3 = th22;
+                th22 = th;
+                th = th3;
             }
-        } catch (Exception e4) {
-            e = e4;
-            fileInputStream = null;
-            try {
-                Log.d(TAG, "Failed to load app camera watermark ", e);
-                if (fileInputStream != null) {
-                    try {
-                        fileInputStream.close();
-                    } catch (Exception e5) {
-                        Log.e(TAG, "exception in loadCameraCustomWatermark: release");
-                    }
-                }
-                return null;
-            } catch (Throwable th2) {
-                th = th2;
-                if (fileInputStream != null) {
-                    try {
-                        fileInputStream.close();
-                    } catch (Exception e6) {
-                        Log.e(TAG, "exception in loadCameraCustomWatermark: release");
-                    }
-                }
-                throw th;
-            }
-        } catch (Throwable e7) {
-            fileInputStream = null;
-            th = e7;
-            if (fileInputStream != null) {
-            }
-            throw th;
+        } catch (Throwable th4) {
+            Log.d(TAG, "Failed to load app camera watermark ", th4);
+            return null;
         }
+        $closeResource(th22, fileInputStream);
+        throw th4;
     }
 
     public float getResourceFloat(int i, float f) {
@@ -864,5 +873,26 @@ public class SnapshotEffectRender {
 
     public void prepareEffectRender(int i) {
         this.mEglHandler.obtainMessage(6, i, 0).sendToTarget();
+    }
+
+    private void destroy() {
+        this.mImageSaver = null;
+        this.mRelease = true;
+        this.mReleasePending = false;
+        this.mEgl.eglDestroySurface(this.mEglDisplay, this.mEglSurface);
+        this.mEgl.eglDestroyContext(this.mEglDisplay, this.mEglContext);
+        this.mEgl.eglMakeCurrent(this.mEglDisplay, EGL10.EGL_NO_SURFACE, EGL10.EGL_NO_SURFACE, EGL10.EGL_NO_CONTEXT);
+        this.mEgl.eglTerminate(this.mEglDisplay);
+        this.mEglSurface = null;
+        this.mEglContext = null;
+        this.mEglDisplay = null;
+        this.mActivity = null;
+        this.mEglThread.quit();
+        if (!(this.mDualCameraWaterMarkBitmap == null || this.mDualCameraWaterMarkBitmap.isRecycled())) {
+            this.mDualCameraWaterMarkBitmap.recycle();
+            this.mDualCameraWaterMarkBitmap = null;
+        }
+        System.gc();
+        Log.d(TAG, "SnapshotEffectRender: has been released!!!");
     }
 }

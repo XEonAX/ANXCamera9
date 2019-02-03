@@ -17,10 +17,11 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import com.aeonax.camera.R;
 import com.android.camera.CameraSettings;
+import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.constant.EyeLightConstant;
+import com.android.camera.data.DataRepository;
 import com.android.camera.fragment.DefaultItemAnimator;
 import com.android.camera.fragment.beauty.EyeLightSingleCheckAdapter.EyeLightItem;
 import com.android.camera.protocol.ModeCoordinatorImpl;
@@ -211,18 +212,31 @@ public class BeautyEyeLightFragment extends BaseBeautyFragment implements OnClic
 
     public void userVisibleHint() {
         reSelectItem();
-        updateTipMessage(10, R.string.hint_eye_light, 2);
+        if (hasFrontFlash()) {
+            updateTipMessage(10, R.string.hint_eye_light, 2);
+        }
         BaseDelegate baseDelegate = (BaseDelegate) ModeCoordinatorImpl.getInstance().getAttachProtocol(160);
         if (baseDelegate != null && baseDelegate.getActiveFragment(R.id.bottom_popup_beauty) == 252) {
             baseDelegate.delegateEvent(3);
         }
     }
 
+    /* JADX WARNING: Missing block: B:12:0x0040, code:
+            return;
+     */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public void userInvisibleHit() {
-        hideTipMessage(R.string.hint_eye_light);
+        if (hasFrontFlash()) {
+            hideTipMessage(R.string.hint_eye_light);
+        }
         BaseDelegate baseDelegate = (BaseDelegate) ModeCoordinatorImpl.getInstance().getAttachProtocol(160);
-        if (!(baseDelegate == null || baseDelegate.getActiveFragment(R.id.bottom_popup_beauty) == 252)) {
+        MiBeautyProtocol miBeautyProtocol = (MiBeautyProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(194);
+        if (!(baseDelegate == null || miBeautyProtocol == null || miBeautyProtocol.getBeautyType() == 1 || baseDelegate.getActiveFragment(R.id.bottom_popup_beauty) == 252)) {
             baseDelegate.delegateEvent(3);
         }
+    }
+
+    private static boolean hasFrontFlash() {
+        return DataRepository.dataItemConfig().getComponentFlash().isHardwareSupported();
     }
 }

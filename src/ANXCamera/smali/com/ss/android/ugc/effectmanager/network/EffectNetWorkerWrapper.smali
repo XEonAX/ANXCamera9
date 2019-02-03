@@ -72,7 +72,7 @@
 
     move-result p1
 
-    if-eqz p1, :cond_0
+    if-nez p1, :cond_0
 
     .line 53
     new-instance p1, Ljava/lang/Exception;

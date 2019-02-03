@@ -6,49 +6,49 @@
 # static fields
 .field private static final TAG:Ljava/lang/String; = "GifHeaderParser"
 
-.field private static final bE:I = 0xff
+.field private static final bF:I = 0xff
 
-.field private static final bF:I = 0x2c
+.field private static final bG:I = 0x2c
 
-.field private static final bG:I = 0x21
+.field private static final bH:I = 0x21
 
-.field private static final bH:I = 0x3b
+.field private static final bI:I = 0x3b
 
-.field private static final bI:I = 0xf9
+.field private static final bJ:I = 0xf9
 
-.field private static final bJ:I = 0xff
+.field private static final bK:I = 0xff
 
-.field private static final bK:I = 0xfe
+.field private static final bL:I = 0xfe
 
-.field private static final bL:I = 0x1
+.field private static final bM:I = 0x1
 
-.field private static final bM:I = 0x1c
+.field private static final bN:I = 0x1c
 
-.field private static final bN:I = 0x2
+.field private static final bO:I = 0x2
 
-.field private static final bO:I = 0x1
+.field private static final bP:I = 0x1
 
-.field private static final bP:I = 0x80
+.field private static final bQ:I = 0x80
 
-.field private static final bQ:I = 0x40
+.field private static final bR:I = 0x40
 
-.field private static final bR:I = 0x7
+.field private static final bS:I = 0x7
 
-.field private static final bS:I = 0x80
+.field private static final bT:I = 0x80
 
-.field private static final bT:I = 0x7
+.field private static final bU:I = 0x7
 
-.field static final bU:I = 0x2
+.field static final bV:I = 0x2
 
-.field static final bV:I = 0xa
+.field static final bW:I = 0xa
 
-.field private static final bW:I = 0x100
+.field private static final bX:I = 0x100
 
 
 # instance fields
-.field private bX:Ljava/nio/ByteBuffer;
+.field private bY:Ljava/nio/ByteBuffer;
 
-.field private bY:Lcom/bumptech/glide/b/c;
+.field private bZ:Lcom/bumptech/glide/b/c;
 
 .field private final block:[B
 
@@ -128,7 +128,7 @@
     sub-int v1, v2, v0
 
     .line 477
-    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bX:Ljava/nio/ByteBuffer;
+    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bY:Ljava/nio/ByteBuffer;
 
     iget-object v3, p0, Lcom/bumptech/glide/b/d;->block:[B
 
@@ -195,7 +195,7 @@
 
     .line 486
     :cond_1
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     const/4 v1, 0x1
 
@@ -211,7 +211,7 @@
     .locals 1
 
     .line 513
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     iget v0, v0, Lcom/bumptech/glide/b/c;->status:I
 
@@ -248,9 +248,9 @@
 
     if-nez v2, :cond_8
 
-    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget v2, v2, Lcom/bumptech/glide/b/c;->bB:I
+    iget v2, v2, Lcom/bumptech/glide/b/c;->bC:I
 
     if-gt v2, p1, :cond_8
 
@@ -275,7 +275,7 @@
     if-eq v2, v3, :cond_0
 
     .line 254
-    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     iput v4, v2, Lcom/bumptech/glide/b/c;->status:I
 
@@ -295,20 +295,20 @@
 
     .line 210
     :cond_1
-    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget-object v2, v2, Lcom/bumptech/glide/b/c;->bC:Lcom/bumptech/glide/b/b;
+    iget-object v2, v2, Lcom/bumptech/glide/b/c;->bD:Lcom/bumptech/glide/b/b;
 
     if-nez v2, :cond_2
 
     .line 211
-    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     new-instance v3, Lcom/bumptech/glide/b/b;
 
     invoke-direct {v3}, Lcom/bumptech/glide/b/b;-><init>()V
 
-    iput-object v3, v2, Lcom/bumptech/glide/b/c;->bC:Lcom/bumptech/glide/b/b;
+    iput-object v3, v2, Lcom/bumptech/glide/b/c;->bD:Lcom/bumptech/glide/b/b;
 
     .line 213
     :cond_2
@@ -404,13 +404,13 @@
 
     .line 220
     :cond_6
-    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     new-instance v3, Lcom/bumptech/glide/b/b;
 
     invoke-direct {v3}, Lcom/bumptech/glide/b/b;-><init>()V
 
-    iput-object v3, v2, Lcom/bumptech/glide/b/c;->bC:Lcom/bumptech/glide/b/b;
+    iput-object v3, v2, Lcom/bumptech/glide/b/c;->bD:Lcom/bumptech/glide/b/b;
 
     .line 221
     invoke-direct {p0}, Lcom/bumptech/glide/b/d;->readGraphicControlExt()V
@@ -448,7 +448,7 @@
 
     .line 497
     :try_start_0
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bX:Ljava/nio/ByteBuffer;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Ljava/nio/ByteBuffer;
 
     invoke-virtual {v0}, Ljava/nio/ByteBuffer;->get()B
 
@@ -466,7 +466,7 @@
     move-exception v0
 
     .line 499
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     const/4 v1, 0x1
 
@@ -483,9 +483,9 @@
     .locals 8
 
     .line 303
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget-object v0, v0, Lcom/bumptech/glide/b/c;->bC:Lcom/bumptech/glide/b/b;
+    iget-object v0, v0, Lcom/bumptech/glide/b/c;->bD:Lcom/bumptech/glide/b/b;
 
     invoke-direct {p0}, Lcom/bumptech/glide/b/d;->readShort()I
 
@@ -494,9 +494,9 @@
     iput v1, v0, Lcom/bumptech/glide/b/b;->ix:I
 
     .line 304
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget-object v0, v0, Lcom/bumptech/glide/b/c;->bC:Lcom/bumptech/glide/b/b;
+    iget-object v0, v0, Lcom/bumptech/glide/b/c;->bD:Lcom/bumptech/glide/b/b;
 
     invoke-direct {p0}, Lcom/bumptech/glide/b/d;->readShort()I
 
@@ -505,9 +505,9 @@
     iput v1, v0, Lcom/bumptech/glide/b/b;->iy:I
 
     .line 305
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget-object v0, v0, Lcom/bumptech/glide/b/c;->bC:Lcom/bumptech/glide/b/b;
+    iget-object v0, v0, Lcom/bumptech/glide/b/c;->bD:Lcom/bumptech/glide/b/b;
 
     invoke-direct {p0}, Lcom/bumptech/glide/b/d;->readShort()I
 
@@ -516,9 +516,9 @@
     iput v1, v0, Lcom/bumptech/glide/b/b;->iw:I
 
     .line 306
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget-object v0, v0, Lcom/bumptech/glide/b/c;->bC:Lcom/bumptech/glide/b/b;
+    iget-object v0, v0, Lcom/bumptech/glide/b/c;->bD:Lcom/bumptech/glide/b/b;
 
     invoke-direct {p0}, Lcom/bumptech/glide/b/d;->readShort()I
 
@@ -568,9 +568,9 @@
     double-to-int v4, v4
 
     .line 323
-    iget-object v5, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v5, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget-object v5, v5, Lcom/bumptech/glide/b/c;->bC:Lcom/bumptech/glide/b/b;
+    iget-object v5, v5, Lcom/bumptech/glide/b/c;->bD:Lcom/bumptech/glide/b/b;
 
     and-int/lit8 v0, v0, 0x40
 
@@ -587,9 +587,9 @@
     if-eqz v1, :cond_2
 
     .line 325
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget-object v0, v0, Lcom/bumptech/glide/b/c;->bC:Lcom/bumptech/glide/b/b;
+    iget-object v0, v0, Lcom/bumptech/glide/b/c;->bD:Lcom/bumptech/glide/b/b;
 
     invoke-direct {p0, v4}, Lcom/bumptech/glide/b/d;->readColorTable(I)[I
 
@@ -601,9 +601,9 @@
 
     .line 328
     :cond_2
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget-object v0, v0, Lcom/bumptech/glide/b/c;->bC:Lcom/bumptech/glide/b/b;
+    iget-object v0, v0, Lcom/bumptech/glide/b/c;->bD:Lcom/bumptech/glide/b/b;
 
     const/4 v1, 0x0
 
@@ -611,17 +611,17 @@
 
     .line 332
     :goto_1
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget-object v0, v0, Lcom/bumptech/glide/b/c;->bC:Lcom/bumptech/glide/b/b;
+    iget-object v0, v0, Lcom/bumptech/glide/b/c;->bD:Lcom/bumptech/glide/b/b;
 
-    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bX:Ljava/nio/ByteBuffer;
+    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bY:Ljava/nio/ByteBuffer;
 
     invoke-virtual {v1}, Ljava/nio/ByteBuffer;->position()I
 
     move-result v1
 
-    iput v1, v0, Lcom/bumptech/glide/b/b;->by:I
+    iput v1, v0, Lcom/bumptech/glide/b/b;->bz:I
 
     .line 335
     invoke-direct {p0}, Lcom/bumptech/glide/b/d;->X()V
@@ -638,22 +638,22 @@
 
     .line 341
     :cond_3
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget v1, v0, Lcom/bumptech/glide/b/c;->bB:I
+    iget v1, v0, Lcom/bumptech/glide/b/c;->bC:I
 
     add-int/2addr v1, v3
 
-    iput v1, v0, Lcom/bumptech/glide/b/c;->bB:I
+    iput v1, v0, Lcom/bumptech/glide/b/c;->bC:I
 
     .line 343
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget-object v0, v0, Lcom/bumptech/glide/b/c;->bD:Ljava/util/List;
+    iget-object v0, v0, Lcom/bumptech/glide/b/c;->bE:Ljava/util/List;
 
-    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget-object v1, v1, Lcom/bumptech/glide/b/c;->bC:Lcom/bumptech/glide/b/b;
+    iget-object v1, v1, Lcom/bumptech/glide/b/c;->bD:Lcom/bumptech/glide/b/b;
 
     invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
@@ -681,7 +681,7 @@
     const/4 v2, 0x0
 
     :try_start_0
-    iget-object v3, p0, Lcom/bumptech/glide/b/d;->bX:Ljava/nio/ByteBuffer;
+    iget-object v3, p0, Lcom/bumptech/glide/b/d;->bY:Ljava/nio/ByteBuffer;
 
     invoke-virtual {v3, v1}, Ljava/nio/ByteBuffer;->get([B)Ljava/nio/ByteBuffer;
 
@@ -792,7 +792,7 @@
 
     .line 438
     :cond_1
-    iget-object p1, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object p1, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     const/4 v0, 0x1
 
@@ -827,9 +827,9 @@
     move-result v0
 
     .line 279
-    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget-object v1, v1, Lcom/bumptech/glide/b/c;->bC:Lcom/bumptech/glide/b/b;
+    iget-object v1, v1, Lcom/bumptech/glide/b/c;->bD:Lcom/bumptech/glide/b/b;
 
     and-int/lit8 v2, v0, 0x1c
 
@@ -840,9 +840,9 @@
     iput v2, v1, Lcom/bumptech/glide/b/b;->dispose:I
 
     .line 280
-    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget-object v1, v1, Lcom/bumptech/glide/b/c;->bC:Lcom/bumptech/glide/b/b;
+    iget-object v1, v1, Lcom/bumptech/glide/b/c;->bD:Lcom/bumptech/glide/b/b;
 
     iget v1, v1, Lcom/bumptech/glide/b/b;->dispose:I
 
@@ -851,17 +851,17 @@
     if-nez v1, :cond_0
 
     .line 282
-    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget-object v1, v1, Lcom/bumptech/glide/b/c;->bC:Lcom/bumptech/glide/b/b;
+    iget-object v1, v1, Lcom/bumptech/glide/b/c;->bD:Lcom/bumptech/glide/b/b;
 
     iput v2, v1, Lcom/bumptech/glide/b/b;->dispose:I
 
     .line 284
     :cond_0
-    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget-object v1, v1, Lcom/bumptech/glide/b/c;->bC:Lcom/bumptech/glide/b/b;
+    iget-object v1, v1, Lcom/bumptech/glide/b/c;->bD:Lcom/bumptech/glide/b/b;
 
     and-int/2addr v0, v2
 
@@ -892,18 +892,18 @@
     move v0, v1
 
     :cond_2
-    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget-object v2, v2, Lcom/bumptech/glide/b/c;->bC:Lcom/bumptech/glide/b/b;
+    iget-object v2, v2, Lcom/bumptech/glide/b/c;->bD:Lcom/bumptech/glide/b/b;
 
     mul-int/2addr v0, v1
 
     iput v0, v2, Lcom/bumptech/glide/b/b;->delay:I
 
     .line 293
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget-object v0, v0, Lcom/bumptech/glide/b/c;->bC:Lcom/bumptech/glide/b/b;
+    iget-object v0, v0, Lcom/bumptech/glide/b/c;->bD:Lcom/bumptech/glide/b/b;
 
     invoke-direct {p0}, Lcom/bumptech/glide/b/d;->read()I
 
@@ -963,7 +963,7 @@
     if-nez v0, :cond_1
 
     .line 371
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     const/4 v1, 0x1
 
@@ -977,7 +977,7 @@
     invoke-direct {p0}, Lcom/bumptech/glide/b/d;->readLSD()V
 
     .line 375
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     iget-boolean v0, v0, Lcom/bumptech/glide/b/c;->gctFlag:Z
 
@@ -990,9 +990,9 @@
     if-nez v0, :cond_2
 
     .line 376
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     iget v1, v1, Lcom/bumptech/glide/b/c;->gctSize:I
 
@@ -1003,13 +1003,13 @@
     iput-object v1, v0, Lcom/bumptech/glide/b/c;->gct:[I
 
     .line 377
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     iget-object v1, v1, Lcom/bumptech/glide/b/c;->gct:[I
 
-    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     iget v2, v2, Lcom/bumptech/glide/b/c;->bgIndex:I
 
@@ -1026,7 +1026,7 @@
     .locals 6
 
     .line 386
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     invoke-direct {p0}, Lcom/bumptech/glide/b/d;->readShort()I
 
@@ -1035,7 +1035,7 @@
     iput v1, v0, Lcom/bumptech/glide/b/c;->width:I
 
     .line 387
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     invoke-direct {p0}, Lcom/bumptech/glide/b/d;->readShort()I
 
@@ -1049,7 +1049,7 @@
     move-result v0
 
     .line 400
-    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     and-int/lit16 v2, v0, 0x80
 
@@ -1068,7 +1068,7 @@
     iput-boolean v2, v1, Lcom/bumptech/glide/b/c;->gctFlag:Z
 
     .line 401
-    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     const-wide/high16 v4, 0x4000000000000000L    # 2.0
 
@@ -1087,7 +1087,7 @@
     iput v0, v1, Lcom/bumptech/glide/b/c;->gctSize:I
 
     .line 403
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     invoke-direct {p0}, Lcom/bumptech/glide/b/d;->read()I
 
@@ -1096,7 +1096,7 @@
     iput v1, v0, Lcom/bumptech/glide/b/c;->bgIndex:I
 
     .line 405
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     invoke-direct {p0}, Lcom/bumptech/glide/b/d;->read()I
 
@@ -1143,7 +1143,7 @@
     and-int/lit16 v1, v1, 0xff
 
     .line 356
-    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     shl-int/lit8 v1, v1, 0x8
 
@@ -1172,7 +1172,7 @@
     .locals 1
 
     .line 509
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bX:Ljava/nio/ByteBuffer;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Ljava/nio/ByteBuffer;
 
     invoke-virtual {v0}, Ljava/nio/ByteBuffer;->getShort()S
 
@@ -1187,7 +1187,7 @@
     .line 151
     const/4 v0, 0x0
 
-    iput-object v0, p0, Lcom/bumptech/glide/b/d;->bX:Ljava/nio/ByteBuffer;
+    iput-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Ljava/nio/ByteBuffer;
 
     .line 152
     iget-object v0, p0, Lcom/bumptech/glide/b/d;->block:[B
@@ -1201,7 +1201,7 @@
 
     invoke-direct {v0}, Lcom/bumptech/glide/b/c;-><init>()V
 
-    iput-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iput-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     .line 154
     iput v1, p0, Lcom/bumptech/glide/b/d;->blockSize:I
@@ -1220,7 +1220,7 @@
     move-result v0
 
     .line 461
-    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bX:Ljava/nio/ByteBuffer;
+    iget-object v1, p0, Lcom/bumptech/glide/b/d;->bY:Ljava/nio/ByteBuffer;
 
     invoke-virtual {v1}, Ljava/nio/ByteBuffer;->position()I
 
@@ -1228,7 +1228,7 @@
 
     add-int/2addr v1, v0
 
-    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bX:Ljava/nio/ByteBuffer;
+    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bY:Ljava/nio/ByteBuffer;
 
     invoke-virtual {v2}, Ljava/nio/ByteBuffer;->limit()I
 
@@ -1239,7 +1239,7 @@
     move-result v1
 
     .line 462
-    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bX:Ljava/nio/ByteBuffer;
+    iget-object v2, p0, Lcom/bumptech/glide/b/d;->bY:Ljava/nio/ByteBuffer;
 
     invoke-virtual {v2, v1}, Ljava/nio/ByteBuffer;->position(I)Ljava/nio/Buffer;
 
@@ -1258,7 +1258,7 @@
     .end annotation
 
     .line 159
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bX:Ljava/nio/ByteBuffer;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Ljava/nio/ByteBuffer;
 
     if-eqz v0, :cond_2
 
@@ -1270,7 +1270,7 @@
     if-eqz v0, :cond_0
 
     .line 163
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     return-object v0
 
@@ -1289,14 +1289,14 @@
     invoke-direct {p0}, Lcom/bumptech/glide/b/d;->readContents()V
 
     .line 169
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget v0, v0, Lcom/bumptech/glide/b/c;->bB:I
+    iget v0, v0, Lcom/bumptech/glide/b/c;->bC:I
 
     if-gez v0, :cond_1
 
     .line 170
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     const/4 v1, 0x1
 
@@ -1304,7 +1304,7 @@
 
     .line 174
     :cond_1
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     return-object v0
 
@@ -1334,17 +1334,17 @@
 
     move-result-object p1
 
-    iput-object p1, p0, Lcom/bumptech/glide/b/d;->bX:Ljava/nio/ByteBuffer;
+    iput-object p1, p0, Lcom/bumptech/glide/b/d;->bY:Ljava/nio/ByteBuffer;
 
     .line 130
-    iget-object p1, p0, Lcom/bumptech/glide/b/d;->bX:Ljava/nio/ByteBuffer;
+    iget-object p1, p0, Lcom/bumptech/glide/b/d;->bY:Ljava/nio/ByteBuffer;
 
     const/4 v0, 0x0
 
     invoke-virtual {p1, v0}, Ljava/nio/ByteBuffer;->position(I)Ljava/nio/Buffer;
 
     .line 131
-    iget-object p1, p0, Lcom/bumptech/glide/b/d;->bX:Ljava/nio/ByteBuffer;
+    iget-object p1, p0, Lcom/bumptech/glide/b/d;->bY:Ljava/nio/ByteBuffer;
 
     sget-object v0, Ljava/nio/ByteOrder;->LITTLE_ENDIAN:Ljava/nio/ByteOrder;
 
@@ -1360,10 +1360,10 @@
     .line 146
     const/4 v0, 0x0
 
-    iput-object v0, p0, Lcom/bumptech/glide/b/d;->bX:Ljava/nio/ByteBuffer;
+    iput-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Ljava/nio/ByteBuffer;
 
     .line 147
-    iput-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iput-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     .line 148
     return-void
@@ -1392,10 +1392,10 @@
     :cond_0
     const/4 p1, 0x0
 
-    iput-object p1, p0, Lcom/bumptech/glide/b/d;->bX:Ljava/nio/ByteBuffer;
+    iput-object p1, p0, Lcom/bumptech/glide/b/d;->bY:Ljava/nio/ByteBuffer;
 
     .line 140
-    iget-object p1, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object p1, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
     const/4 v0, 0x2
 
@@ -1426,9 +1426,9 @@
 
     .line 186
     :cond_0
-    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bY:Lcom/bumptech/glide/b/c;
+    iget-object v0, p0, Lcom/bumptech/glide/b/d;->bZ:Lcom/bumptech/glide/b/c;
 
-    iget v0, v0, Lcom/bumptech/glide/b/c;->bB:I
+    iget v0, v0, Lcom/bumptech/glide/b/c;->bC:I
 
     const/4 v1, 0x1
 

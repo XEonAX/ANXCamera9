@@ -37,8 +37,8 @@ public class CameraHandler extends Handler {
     public static final int MSG_SHOW_STEREO_USE_HINT = 40;
     public static final int MSG_STILL_CAPTURE = 52;
     public static final int MSG_UPDATE_FACE_VIEW = 35;
+    public static final int MSG_UPDATE_FOCUS_VIEW = 56;
     public static final int MSG_UPDATE_FPS960_HINT = 54;
-    public static final int MSG_WAITING_BEFORE_CLOSE_FINISH = 47;
     public static final int MSG_WAIT_STOP_CALLBACK_TIMEOUT = 46;
     public static final int MULTI_SNAP_LAUNCH = 12;
     public static final int OPEN_AUDIO_CAPTURE = 29;

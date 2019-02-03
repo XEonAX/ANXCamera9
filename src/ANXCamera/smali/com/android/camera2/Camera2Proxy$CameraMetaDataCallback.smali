@@ -15,5 +15,5 @@
 
 
 # virtual methods
-.method public abstract onCameraMetaData(Landroid/hardware/camera2/CaptureResult;)V
+.method public abstract onPreviewMetaDataUpdate(Landroid/hardware/camera2/CaptureResult;)V
 .end method

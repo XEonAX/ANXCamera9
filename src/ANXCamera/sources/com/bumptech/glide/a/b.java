@@ -10,8 +10,8 @@ import java.nio.charset.Charset;
 
 /* compiled from: StrictLineReader */
 class b implements Closeable {
-    private static final byte bp = (byte) 13;
-    private static final byte bq = (byte) 10;
+    private static final byte bq = (byte) 13;
+    private static final byte br = (byte) 10;
     private byte[] buf;
     private final Charset charset;
     private int end;
@@ -46,7 +46,7 @@ class b implements Closeable {
     }
 
     /* JADX WARNING: Missing block: B:16:0x002a, code:
-            if (r7.buf[r3] == bp) goto L_0x002e;
+            if (r7.buf[r3] == bq) goto L_0x002e;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     public String readLine() throws IOException {
@@ -57,7 +57,7 @@ class b implements Closeable {
                     N();
                 }
                 for (int i2 = this.pos; i2 != this.end; i2++) {
-                    if (this.buf[i2] == bq) {
+                    if (this.buf[i2] == br) {
                         int i3;
                         if (i2 != this.pos) {
                             i3 = i2 - 1;
@@ -70,7 +70,7 @@ class b implements Closeable {
                 }
                 ByteArrayOutputStream anonymousClass1 = new ByteArrayOutputStream((this.end - this.pos) + 80) {
                     public String toString() {
-                        int i = (this.count <= 0 || this.buf[this.count - 1] != b.bp) ? this.count : this.count - 1;
+                        int i = (this.count <= 0 || this.buf[this.count - 1] != b.bq) ? this.count : this.count - 1;
                         try {
                             return new String(this.buf, 0, i, b.this.charset.name());
                         } catch (UnsupportedEncodingException e) {
@@ -85,7 +85,7 @@ class b implements Closeable {
                     N();
                     i = this.pos;
                     while (i != this.end) {
-                        if (this.buf[i] == bq) {
+                        if (this.buf[i] == br) {
                             break loop1;
                         }
                         i++;

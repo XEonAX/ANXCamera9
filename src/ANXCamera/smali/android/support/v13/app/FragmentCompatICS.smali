@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 21
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static setMenuVisibility(Landroid/app/Fragment;Z)V
-    .locals 0
+    .registers 2
     .param p0, "f"    # Landroid/app/Fragment;
     .param p1, "visible"    # Z
 

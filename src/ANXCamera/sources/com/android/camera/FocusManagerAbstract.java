@@ -4,7 +4,6 @@ import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.hardware.camera2.params.MeteringRectangle;
-import com.aeonax.camera.R;
 import com.android.camera.log.Log;
 
 public abstract class FocusManagerAbstract {

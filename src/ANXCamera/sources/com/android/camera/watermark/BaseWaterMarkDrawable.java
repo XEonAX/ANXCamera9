@@ -9,11 +9,11 @@ import android.graphics.Paint.Align;
 import android.graphics.Paint.FontMetricsInt;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
-import com.aeonax.camera.R;
 import com.android.camera.CameraAppImpl;
 import com.android.camera.CameraSettings;
+import com.android.camera.R;
 import com.android.camera.Util;
+import com.android.camera.log.Log;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -98,6 +98,7 @@ public abstract class BaseWaterMarkDrawable {
     private void draw() {
         if (this.mWaterMarkInfos != null && !this.mWaterMarkInfos.isEmpty()) {
             this.mWaterMarkData = new WaterMarkData();
+            this.mWaterMarkData.setWatermarkType(((WaterMarkData) this.mWaterMarkInfos.get(0)).getWatermarkType());
             this.mWaterMarkBitmap = Bitmap.createBitmap(this.mWidth, this.mHeight, Config.ARGB_8888);
             onDraw(new Canvas(this.mWaterMarkBitmap));
         }

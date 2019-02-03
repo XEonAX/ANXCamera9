@@ -7,32 +7,32 @@ import com.bumptech.glide.load.DataSource;
 
 /* compiled from: ViewAnimationFactory */
 public class h<R> implements g<R> {
-    private f<R> oQ;
-    private final a oX;
+    private f<R> oP;
+    private final a oW;
 
     /* compiled from: ViewAnimationFactory */
     private static class a implements a {
-        private final Animation oY;
+        private final Animation oX;
 
         a(Animation animation) {
-            this.oY = animation;
+            this.oX = animation;
         }
 
-        public Animation m(Context context) {
-            return this.oY;
+        public Animation l(Context context) {
+            return this.oX;
         }
     }
 
     /* compiled from: ViewAnimationFactory */
     private static class b implements a {
-        private final int oZ;
+        private final int oY;
 
         b(int i) {
-            this.oZ = i;
+            this.oY = i;
         }
 
-        public Animation m(Context context) {
-            return AnimationUtils.loadAnimation(context, this.oZ);
+        public Animation l(Context context) {
+            return AnimationUtils.loadAnimation(context, this.oY);
         }
     }
 
@@ -45,16 +45,16 @@ public class h<R> implements g<R> {
     }
 
     h(a aVar) {
-        this.oX = aVar;
+        this.oW = aVar;
     }
 
     public f<R> a(DataSource dataSource, boolean z) {
         if (dataSource == DataSource.MEMORY_CACHE || !z) {
             return e.eA();
         }
-        if (this.oQ == null) {
-            this.oQ = new k(this.oX);
+        if (this.oP == null) {
+            this.oP = new k(this.oW);
         }
-        return this.oQ;
+        return this.oP;
     }
 }

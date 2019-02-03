@@ -8,7 +8,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 42
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -17,7 +17,7 @@
 .end method
 
 .method private doDecode(Lcom/google/zxing/BinaryBitmap;Ljava/util/Map;)Lcom/google/zxing/Result;
-    .locals 22
+    .registers 25
     .param p1, "image"    # Lcom/google/zxing/BinaryBitmap;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -64,7 +64,7 @@
     .local v4, "middle":I
     const/4 v6, 0x1
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_1e
 
     sget-object v7, Lcom/google/zxing/DecodeHintType;->TRY_HARDER:Lcom/google/zxing/DecodeHintType;
 
@@ -72,28 +72,28 @@
 
     move-result v7
 
-    if-eqz v7, :cond_0
+    if-eqz v7, :cond_1e
 
     move v7, v6
 
-    goto :goto_0
+    goto :goto_1f
 
-    :cond_0
+    :cond_1e
     const/4 v7, 0x0
 
     .line 111
     .local v7, "tryHarder":Z
-    :goto_0
-    if-eqz v7, :cond_1
+    :goto_1f
+    if-eqz v7, :cond_24
 
     const/16 v8, 0x8
 
-    goto :goto_1
+    goto :goto_25
 
-    :cond_1
+    :cond_24
     const/4 v8, 0x5
 
-    :goto_1
+    :goto_25
     shr-int v8, v2, v8
 
     invoke-static {v6, v8}, Ljava/lang/Math;->max(II)I
@@ -102,23 +102,23 @@
 
     .line 113
     .local v8, "rowStep":I
-    if-eqz v7, :cond_2
+    if-eqz v7, :cond_2f
 
     .line 114
     move v9, v2
 
     .line 115
     .local v9, "maxLines":I
-    goto :goto_2
+    goto :goto_31
 
     .line 116
     .end local v9    # "maxLines":I
-    :cond_2
+    :cond_2f
     const/16 v9, 0xf
 
     .line 119
     .restart local v9    # "maxLines":I
-    :goto_2
+    :goto_31
     const/4 v10, 0x0
 
     .local v10, "x":I
@@ -129,8 +129,8 @@
     .end local p2    # "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
     .local v3, "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
     .local v11, "row":Lcom/google/zxing/common/BitArray;
-    :goto_3
-    if-ge v10, v9, :cond_a
+    :goto_34
+    if-ge v10, v9, :cond_146
 
     .line 122
     add-int/lit8 v0, v10, 0x1
@@ -143,49 +143,49 @@
     .local v13, "rowStepsAboveOrBelow":I
     and-int/lit8 v0, v10, 0x1
 
-    if-nez v0, :cond_3
+    if-nez v0, :cond_41
 
     move v0, v6
 
-    goto :goto_4
+    goto :goto_42
 
-    :cond_3
+    :cond_41
     const/4 v0, 0x0
 
-    :goto_4
+    :goto_42
     move v14, v0
 
     .line 124
     .local v14, "isAbove":Z
-    if-eqz v14, :cond_4
+    if-eqz v14, :cond_47
 
     move v0, v13
 
-    goto :goto_5
+    goto :goto_48
 
-    :cond_4
+    :cond_47
     neg-int v0, v13
 
-    :goto_5
+    :goto_48
     mul-int/2addr v0, v8
 
     add-int v15, v4, v0
 
     .line 125
     .local v15, "rowNumber":I
-    if-ltz v15, :cond_a
+    if-ltz v15, :cond_146
 
-    if-ge v15, v2, :cond_9
+    if-ge v15, v2, :cond_13d
 
     .line 132
     move-object/from16 v5, p1
 
-    :try_start_0
+    :try_start_51
     invoke-virtual {v5, v15, v11}, Lcom/google/zxing/BinaryBitmap;->getBlackRow(ILcom/google/zxing/common/BitArray;)Lcom/google/zxing/common/BitArray;
 
     move-result-object v0
-    :try_end_0
-    .catch Lcom/google/zxing/NotFoundException; {:try_start_0 .. :try_end_0} :catch_5
+    :try_end_55
+    .catch Lcom/google/zxing/NotFoundException; {:try_start_51 .. :try_end_55} :catch_126
 
     move-object v11, v0
 
@@ -204,8 +204,8 @@
 
     .local v0, "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
     .local v3, "attempt":I
-    :goto_6
-    if-lt v3, v12, :cond_5
+    :goto_5d
+    if-lt v3, v12, :cond_6c
 
     .line 119
     .end local v3    # "attempt":I
@@ -224,21 +224,21 @@
 
     const/16 v16, 0x0
 
-    goto/16 :goto_a
+    goto/16 :goto_133
 
     .line 140
     .restart local v3    # "attempt":I
     .restart local v13    # "rowStepsAboveOrBelow":I
     .restart local v14    # "isAbove":Z
     .restart local v15    # "rowNumber":I
-    :cond_5
-    if-ne v3, v6, :cond_6
+    :cond_6c
+    if-ne v3, v6, :cond_8d
 
     .line 141
     invoke-virtual {v11}, Lcom/google/zxing/common/BitArray;->reverse()V
 
     .line 146
-    if-eqz v0, :cond_6
+    if-eqz v0, :cond_8d
 
     sget-object v12, Lcom/google/zxing/DecodeHintType;->NEED_RESULT_POINT_CALLBACK:Lcom/google/zxing/DecodeHintType;
 
@@ -246,7 +246,7 @@
 
     move-result v12
 
-    if-eqz v12, :cond_6
+    if-eqz v12, :cond_8d
 
     .line 147
     new-instance v12, Ljava/util/EnumMap;
@@ -270,23 +270,23 @@
     move-object v0, v6
 
     .end local v6    # "newHints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;Ljava/lang/Object;>;"
-    goto :goto_7
+    goto :goto_8e
 
     .line 155
-    :cond_6
+    :cond_8d
     move-object v6, v0
 
     .end local v0    # "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
     .local v6, "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
-    :goto_7
+    :goto_8e
     move-object/from16 v12, p0
 
-    :try_start_1
+    :try_start_90
     invoke-virtual {v12, v15, v11, v6}, Lcom/google/zxing/oned/OneDReader;->decodeRow(ILcom/google/zxing/common/BitArray;Ljava/util/Map;)Lcom/google/zxing/Result;
 
     move-result-object v0
-    :try_end_1
-    .catch Lcom/google/zxing/ReaderException; {:try_start_1 .. :try_end_1} :catch_4
+    :try_end_94
+    .catch Lcom/google/zxing/ReaderException; {:try_start_90 .. :try_end_94} :catch_10b
 
     .line 157
     .local v0, "result":Lcom/google/zxing/Result;
@@ -294,15 +294,15 @@
 
     const/4 v2, 0x1
 
-    if-ne v3, v2, :cond_8
+    if-ne v3, v2, :cond_104
 
     .line 159
     .end local v2    # "height":I
     .local v17, "height":I
-    :try_start_2
+    :try_start_99
     sget-object v2, Lcom/google/zxing/ResultMetadataType;->ORIENTATION:Lcom/google/zxing/ResultMetadataType;
-    :try_end_2
-    .catch Lcom/google/zxing/ReaderException; {:try_start_2 .. :try_end_2} :catch_3
+    :try_end_9b
+    .catch Lcom/google/zxing/ReaderException; {:try_start_99 .. :try_end_9b} :catch_f9
 
     move/from16 v18, v4
 
@@ -310,7 +310,7 @@
 
     .end local v4    # "middle":I
     .local v18, "middle":I
-    :try_start_3
+    :try_start_9f
     invoke-static {v4}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
 
     move-result-object v4
@@ -324,12 +324,12 @@
 
     .line 162
     .local v2, "points":[Lcom/google/zxing/ResultPoint;
-    if-eqz v2, :cond_7
+    if-eqz v2, :cond_eb
 
     .line 163
     new-instance v4, Lcom/google/zxing/ResultPoint;
-    :try_end_3
-    .catch Lcom/google/zxing/ReaderException; {:try_start_3 .. :try_end_3} :catch_2
+    :try_end_ae
+    .catch Lcom/google/zxing/ReaderException; {:try_start_9f .. :try_end_ae} :catch_f0
 
     int-to-float v5, v1
 
@@ -337,7 +337,7 @@
 
     const/16 v16, 0x0
 
-    :try_start_4
+    :try_start_b3
     aget-object v6, v2, v16
 
     .end local v6    # "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
@@ -364,8 +364,8 @@
 
     .line 164
     new-instance v4, Lcom/google/zxing/ResultPoint;
-    :try_end_4
-    .catch Lcom/google/zxing/ReaderException; {:try_start_4 .. :try_end_4} :catch_1
+    :try_end_ca
+    .catch Lcom/google/zxing/ReaderException; {:try_start_b3 .. :try_end_ca} :catch_e6
 
     int-to-float v5, v1
 
@@ -373,7 +373,7 @@
 
     const/4 v6, 0x1
 
-    :try_start_5
+    :try_start_ce
     aget-object v1, v2, v6
 
     .end local v1    # "width":I
@@ -397,22 +397,22 @@
     invoke-direct {v4, v5, v1}, Lcom/google/zxing/ResultPoint;-><init>(FF)V
 
     aput-object v4, v2, v6
-    :try_end_5
-    .catch Lcom/google/zxing/ReaderException; {:try_start_5 .. :try_end_5} :catch_0
+    :try_end_e3
+    .catch Lcom/google/zxing/ReaderException; {:try_start_ce .. :try_end_e3} :catch_e4
 
     .end local v2    # "points":[Lcom/google/zxing/ResultPoint;
-    goto :goto_8
+    goto :goto_10a
 
     .line 168
     .end local v0    # "result":Lcom/google/zxing/Result;
-    :catch_0
+    :catch_e4
     move-exception v0
 
-    goto :goto_9
+    goto :goto_117
 
     .end local v20    # "width":I
     .restart local v1    # "width":I
-    :catch_1
+    :catch_e6
     move-exception v0
 
     move/from16 v20, v1
@@ -421,7 +421,7 @@
 
     .end local v1    # "width":I
     .restart local v20    # "width":I
-    goto :goto_9
+    goto :goto_117
 
     .line 167
     .end local v19    # "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
@@ -429,7 +429,7 @@
     .restart local v0    # "result":Lcom/google/zxing/Result;
     .restart local v1    # "width":I
     .restart local v6    # "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
-    :cond_7
+    :cond_eb
     move/from16 v20, v1
 
     move-object/from16 v19, v6
@@ -438,7 +438,7 @@
     .end local v6    # "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
     .restart local v19    # "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
     .restart local v20    # "width":I
-    goto :goto_8
+    goto :goto_10a
 
     .line 168
     .end local v0    # "result":Lcom/google/zxing/Result;
@@ -446,7 +446,7 @@
     .end local v20    # "width":I
     .restart local v1    # "width":I
     .restart local v6    # "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
-    :catch_2
+    :catch_f0
     move-exception v0
 
     move/from16 v20, v1
@@ -461,7 +461,7 @@
     .end local v6    # "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
     .restart local v19    # "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
     .restart local v20    # "width":I
-    goto :goto_9
+    goto :goto_117
 
     .end local v18    # "middle":I
     .end local v19    # "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
@@ -469,7 +469,7 @@
     .restart local v1    # "width":I
     .restart local v4    # "middle":I
     .restart local v6    # "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
-    :catch_3
+    :catch_f9
     move-exception v0
 
     move/from16 v20, v1
@@ -488,7 +488,7 @@
     .restart local v18    # "middle":I
     .restart local v19    # "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
     .restart local v20    # "width":I
-    goto :goto_9
+    goto :goto_117
 
     .line 167
     .end local v18    # "middle":I
@@ -498,7 +498,7 @@
     .restart local v1    # "width":I
     .restart local v4    # "middle":I
     .restart local v6    # "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
-    :cond_8
+    :cond_104
     move/from16 v20, v1
 
     move/from16 v18, v4
@@ -511,7 +511,7 @@
     .restart local v18    # "middle":I
     .restart local v19    # "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
     .restart local v20    # "width":I
-    :goto_8
+    :goto_10a
     return-object v0
 
     .line 168
@@ -524,7 +524,7 @@
     .local v2, "height":I
     .restart local v4    # "middle":I
     .restart local v6    # "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
-    :catch_4
+    :catch_10b
     move-exception v0
 
     move/from16 v20, v1
@@ -548,7 +548,7 @@
     .restart local v18    # "middle":I
     .restart local v19    # "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
     .restart local v20    # "width":I
-    :goto_9
+    :goto_117
     add-int/lit8 v3, v3, 0x1
 
     move/from16 v2, v17
@@ -563,7 +563,7 @@
 
     const/4 v12, 0x2
 
-    goto/16 :goto_6
+    goto/16 :goto_5d
 
     .line 133
     .end local v17    # "height":I
@@ -574,7 +574,7 @@
     .restart local v2    # "height":I
     .local v3, "hints":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/DecodeHintType;*>;"
     .restart local v4    # "middle":I
-    :catch_5
+    :catch_126
     move-exception v0
 
     move-object/from16 v12, p0
@@ -604,7 +604,7 @@
     .end local v13    # "rowStepsAboveOrBelow":I
     .end local v14    # "isAbove":Z
     .end local v15    # "rowNumber":I
-    :goto_a
+    :goto_133
     add-int/lit8 v10, v10, 0x1
 
     move/from16 v2, v17
@@ -613,7 +613,7 @@
 
     move/from16 v1, v20
 
-    goto/16 :goto_3
+    goto/16 :goto_34
 
     .line 127
     .end local v17    # "height":I
@@ -625,7 +625,7 @@
     .restart local v13    # "rowStepsAboveOrBelow":I
     .restart local v14    # "isAbove":Z
     .restart local v15    # "rowNumber":I
-    :cond_9
+    :cond_13d
     move-object/from16 v12, p0
 
     move/from16 v20, v1
@@ -640,7 +640,7 @@
     .restart local v17    # "height":I
     .restart local v18    # "middle":I
     .restart local v20    # "width":I
-    goto :goto_b
+    goto :goto_14e
 
     .line 174
     .end local v10    # "x":I
@@ -653,7 +653,7 @@
     .restart local v1    # "width":I
     .restart local v2    # "height":I
     .restart local v4    # "middle":I
-    :cond_a
+    :cond_146
     move-object/from16 v12, p0
 
     move/from16 v20, v1
@@ -668,7 +668,7 @@
     .restart local v17    # "height":I
     .restart local v18    # "middle":I
     .restart local v20    # "width":I
-    :goto_b
+    :goto_14e
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v0
@@ -677,7 +677,7 @@
 .end method
 
 .method protected static patternMatchVariance([I[IF)F
-    .locals 11
+    .registers 14
     .param p0, "counters"    # [I
     .param p1, "pattern"    # [I
     .param p2, "maxIndividualVariance"    # F
@@ -698,20 +698,20 @@
     const/4 v3, 0x0
 
     .local v3, "i":I
-    :goto_0
-    if-lt v3, v0, :cond_4
+    :goto_4
+    if-lt v3, v0, :cond_33
 
     .line 260
     .end local v3    # "i":I
     const/high16 v4, 0x7f800000    # Float.POSITIVE_INFINITY
 
-    if-ge v1, v2, :cond_0
+    if-ge v1, v2, :cond_b
 
     .line 263
     return v4
 
     .line 266
-    :cond_0
+    :cond_b
     int-to-float v3, v1
 
     int-to-float v5, v2
@@ -732,8 +732,8 @@
     const/4 v3, 0x0
 
     .local v3, "x":I
-    :goto_1
-    if-lt v3, v0, :cond_1
+    :goto_13
+    if-lt v3, v0, :cond_19
 
     .line 279
     .end local v3    # "x":I
@@ -745,7 +745,7 @@
 
     .line 271
     .restart local v3    # "x":I
-    :cond_1
+    :cond_19
     aget v7, p0, v3
 
     .line 272
@@ -762,31 +762,31 @@
 
     cmpl-float v9, v9, v8
 
-    if-lez v9, :cond_2
+    if-lez v9, :cond_27
 
     int-to-float v9, v7
 
     sub-float/2addr v9, v8
 
-    goto :goto_2
+    goto :goto_2a
 
-    :cond_2
+    :cond_27
     int-to-float v9, v7
 
     sub-float v9, v8, v9
 
     .line 274
     .local v9, "variance":F
-    :goto_2
+    :goto_2a
     cmpl-float v10, v9, v6
 
-    if-lez v10, :cond_3
+    if-lez v10, :cond_2f
 
     .line 275
     return v4
 
     .line 277
-    :cond_3
+    :cond_2f
     add-float/2addr p2, v9
 
     .line 270
@@ -795,14 +795,14 @@
     .end local v9    # "variance":F
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_1
+    goto :goto_13
 
     .line 257
     .end local v5    # "unitBarWidth":F
     .end local v6    # "maxIndividualVariance":F
     .local v3, "i":I
     .local p2, "maxIndividualVariance":F
-    :cond_4
+    :cond_33
     aget v4, p0, v3
 
     add-int/2addr v1, v4
@@ -815,11 +815,11 @@
     .line 256
     add-int/lit8 v3, v3, 0x1
 
-    goto :goto_0
+    goto :goto_4
 .end method
 
 .method protected static recordPattern(Lcom/google/zxing/common/BitArray;I[I)V
-    .locals 8
+    .registers 11
     .param p0, "row"    # Lcom/google/zxing/common/BitArray;
     .param p1, "start"    # I
     .param p2, "counters"    # [I
@@ -845,7 +845,7 @@
 
     .line 196
     .local v2, "end":I
-    if-ge p1, v2, :cond_6
+    if-ge p1, v2, :cond_42
 
     .line 199
     invoke-virtual {p0, p1}, Lcom/google/zxing/common/BitArray;->get(I)Z
@@ -866,20 +866,20 @@
 
     .line 202
     .local v6, "i":I
-    :goto_0
-    if-lt v6, v2, :cond_0
+    :goto_13
+    if-lt v6, v2, :cond_16
 
-    goto :goto_1
+    goto :goto_28
 
     .line 203
-    :cond_0
+    :cond_16
     invoke-virtual {p0, v6}, Lcom/google/zxing/common/BitArray;->get(I)Z
 
     move-result v7
 
     xor-int/2addr v7, v3
 
-    if-eqz v7, :cond_1
+    if-eqz v7, :cond_23
 
     .line 204
     aget v7, p2, v5
@@ -889,32 +889,32 @@
     aput v7, p2, v5
 
     .line 205
-    goto :goto_4
+    goto :goto_3f
 
     .line 206
-    :cond_1
+    :cond_23
     add-int/lit8 v5, v5, 0x1
 
     .line 207
-    if-ne v5, v0, :cond_4
+    if-ne v5, v0, :cond_37
 
     .line 208
     nop
 
     .line 218
-    :goto_1
-    if-eq v5, v0, :cond_3
+    :goto_28
+    if-eq v5, v0, :cond_36
 
     add-int/lit8 v1, v0, -0x1
 
-    if-ne v5, v1, :cond_2
+    if-ne v5, v1, :cond_31
 
-    if-ne v6, v2, :cond_2
+    if-ne v6, v2, :cond_31
 
-    goto :goto_2
+    goto :goto_36
 
     .line 219
-    :cond_2
+    :cond_31
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v1
@@ -922,38 +922,38 @@
     throw v1
 
     .line 221
-    :cond_3
-    :goto_2
+    :cond_36
+    :goto_36
     return-void
 
     .line 210
-    :cond_4
+    :cond_37
     aput v4, p2, v5
 
     .line 211
-    if-eqz v3, :cond_5
+    if-eqz v3, :cond_3d
 
     move v7, v1
 
-    goto :goto_3
+    goto :goto_3e
 
-    :cond_5
+    :cond_3d
     move v7, v4
 
-    :goto_3
+    :goto_3e
     move v3, v7
 
     .line 214
-    :goto_4
+    :goto_3f
     add-int/lit8 v6, v6, 0x1
 
-    goto :goto_0
+    goto :goto_13
 
     .line 197
     .end local v3    # "isWhite":Z
     .end local v5    # "counterPosition":I
     .end local v6    # "i":I
-    :cond_6
+    :cond_42
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v1
@@ -962,7 +962,7 @@
 .end method
 
 .method protected static recordPatternInReverse(Lcom/google/zxing/common/BitArray;I[I)V
-    .locals 3
+    .registers 6
     .param p0, "row"    # Lcom/google/zxing/common/BitArray;
     .param p1, "start"    # I
     .param p2, "counters"    # [I
@@ -983,46 +983,46 @@
 
     .line 228
     .local v1, "last":Z
-    :cond_0
-    :goto_0
-    if-lez p1, :cond_3
+    :cond_5
+    :goto_5
+    if-lez p1, :cond_1b
 
-    if-gez v0, :cond_1
+    if-gez v0, :cond_a
 
-    goto :goto_2
+    goto :goto_1b
 
     .line 229
-    :cond_1
+    :cond_a
     add-int/lit8 p1, p1, -0x1
 
     invoke-virtual {p0, p1}, Lcom/google/zxing/common/BitArray;->get(I)Z
 
     move-result v2
 
-    if-eq v2, v1, :cond_0
+    if-eq v2, v1, :cond_5
 
     .line 230
     add-int/lit8 v0, v0, -0x1
 
     .line 231
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_18
 
     const/4 v2, 0x0
 
-    goto :goto_1
+    goto :goto_19
 
-    :cond_2
+    :cond_18
     const/4 v2, 0x1
 
-    :goto_1
+    :goto_19
     move v1, v2
 
-    goto :goto_0
+    goto :goto_5
 
     .line 234
-    :cond_3
-    :goto_2
-    if-gez v0, :cond_4
+    :cond_1b
+    :goto_1b
+    if-gez v0, :cond_23
 
     .line 237
     add-int/lit8 v2, p1, 0x1
@@ -1033,7 +1033,7 @@
     return-void
 
     .line 235
-    :cond_4
+    :cond_23
     invoke-static {}, Lcom/google/zxing/NotFoundException;->getNotFoundInstance()Lcom/google/zxing/NotFoundException;
 
     move-result-object v2
@@ -1044,7 +1044,7 @@
 
 # virtual methods
 .method public decode(Lcom/google/zxing/BinaryBitmap;)Lcom/google/zxing/Result;
-    .locals 1
+    .registers 3
     .param p1, "image"    # Lcom/google/zxing/BinaryBitmap;
     .annotation system Ldalvik/annotation/Throws;
         value = {
@@ -1064,7 +1064,7 @@
 .end method
 
 .method public decode(Lcom/google/zxing/BinaryBitmap;Ljava/util/Map;)Lcom/google/zxing/Result;
-    .locals 12
+    .registers 15
     .param p1, "image"    # Lcom/google/zxing/BinaryBitmap;
     .annotation system Ldalvik/annotation/Signature;
         value = {
@@ -1090,18 +1090,18 @@
     invoke-direct {p0, p1, p2}, Lcom/google/zxing/oned/OneDReader;->doDecode(Lcom/google/zxing/BinaryBitmap;Ljava/util/Map;)Lcom/google/zxing/Result;
 
     move-result-object v0
-    :try_end_0
-    .catch Lcom/google/zxing/NotFoundException; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_4
+    .catch Lcom/google/zxing/NotFoundException; {:try_start_0 .. :try_end_4} :catch_5
 
     return-object v0
 
     .line 55
-    :catch_0
+    :catch_5
     move-exception v0
 
     .line 56
     .local v0, "nfe":Lcom/google/zxing/NotFoundException;
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_12
 
     sget-object v1, Lcom/google/zxing/DecodeHintType;->TRY_HARDER:Lcom/google/zxing/DecodeHintType;
 
@@ -1109,25 +1109,25 @@
 
     move-result v1
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_12
 
     const/4 v1, 0x1
 
-    goto :goto_0
+    goto :goto_13
 
-    :cond_0
+    :cond_12
     const/4 v1, 0x0
 
     .line 57
     .local v1, "tryHarder":Z
-    :goto_0
-    if-eqz v1, :cond_4
+    :goto_13
+    if-eqz v1, :cond_78
 
     invoke-virtual {p1}, Lcom/google/zxing/BinaryBitmap;->isRotateSupported()Z
 
     move-result v2
 
-    if-eqz v2, :cond_4
+    if-eqz v2, :cond_78
 
     .line 58
     invoke-virtual {p1}, Lcom/google/zxing/BinaryBitmap;->rotateCounterClockwise()Lcom/google/zxing/BinaryBitmap;
@@ -1152,7 +1152,7 @@
 
     .line 63
     .local v5, "orientation":I
-    if-eqz v4, :cond_1
+    if-eqz v4, :cond_44
 
     sget-object v6, Lcom/google/zxing/ResultMetadataType;->ORIENTATION:Lcom/google/zxing/ResultMetadataType;
 
@@ -1160,7 +1160,7 @@
 
     move-result v6
 
-    if-eqz v6, :cond_1
+    if-eqz v6, :cond_44
 
     .line 65
     nop
@@ -1188,7 +1188,7 @@
     rem-int/lit16 v5, v6, 0x168
 
     .line 68
-    :cond_1
+    :cond_44
     sget-object v6, Lcom/google/zxing/ResultMetadataType;->ORIENTATION:Lcom/google/zxing/ResultMetadataType;
 
     invoke-static {v5}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
@@ -1204,7 +1204,7 @@
 
     .line 71
     .local v6, "points":[Lcom/google/zxing/ResultPoint;
-    if-eqz v6, :cond_3
+    if-eqz v6, :cond_77
 
     .line 72
     invoke-virtual {v2}, Lcom/google/zxing/BinaryBitmap;->getHeight()I
@@ -1216,19 +1216,19 @@
     const/4 v8, 0x0
 
     .local v8, "i":I
-    :goto_1
+    :goto_58
     array-length v9, v6
 
-    if-lt v8, v9, :cond_2
+    if-lt v8, v9, :cond_5c
 
     .end local v7    # "height":I
     .end local v8    # "i":I
-    goto :goto_2
+    goto :goto_77
 
     .line 74
     .restart local v7    # "height":I
     .restart local v8    # "i":I
-    :cond_2
+    :cond_5c
     new-instance v9, Lcom/google/zxing/ResultPoint;
 
     int-to-float v10, v7
@@ -1258,13 +1258,13 @@
     .line 73
     add-int/lit8 v8, v8, 0x1
 
-    goto :goto_1
+    goto :goto_58
 
     .line 77
     .end local v7    # "height":I
     .end local v8    # "i":I
-    :cond_3
-    :goto_2
+    :cond_77
+    :goto_77
     return-object v3
 
     .line 79
@@ -1273,7 +1273,7 @@
     .end local v4    # "metadata":Ljava/util/Map;, "Ljava/util/Map<Lcom/google/zxing/ResultMetadataType;*>;"
     .end local v5    # "orientation":I
     .end local v6    # "points":[Lcom/google/zxing/ResultPoint;
-    :cond_4
+    :cond_78
     throw v0
 .end method
 
@@ -1299,7 +1299,7 @@
 .end method
 
 .method public reset()V
-    .locals 0
+    .registers 1
 
     .line 87
     return-void

@@ -7,11 +7,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.SparseArray;
 import android.util.SparseIntArray;
-import com.aeonax.camera.R;
 import com.android.camera.Camera;
-import com.android.camera.Util;
+import com.android.camera.R;
 import com.android.camera.animation.AnimationComposite;
 import com.android.camera.animation.AnimationDelegate.AnimationResource;
+import com.android.camera.data.DataRepository;
 import com.android.camera.fragment.beauty.FragmentBlankBeauty;
 import com.android.camera.fragment.beauty.FragmentPopuEyeLightTip;
 import com.android.camera.fragment.beauty.FragmentPopupBeauty;
@@ -21,6 +21,7 @@ import com.android.camera.fragment.bottom.FragmentBottomAction;
 import com.android.camera.fragment.dual.FragmentDualCameraAdjust;
 import com.android.camera.fragment.dual.FragmentDualCameraBokehAdjust;
 import com.android.camera.fragment.dual.FragmentDualStereo;
+import com.android.camera.fragment.fullscreen.FragmentFullScreen;
 import com.android.camera.fragment.lifeCircle.BaseLifeCircleBindFragment;
 import com.android.camera.fragment.lifeCircle.BaseLifecycleListener;
 import com.android.camera.fragment.live.FragmentLiveSpeed;
@@ -41,8 +42,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseFragmentDelegate implements BaseDelegate {
-    public static final int BEAUTY_FRAGMENT_CONTAINER_ID = 2131558424;
-    public static final int EYE_LIGHT_POPU_TIP_FRAGMENT_CONTAINER_ID = 2131558626;
+    public static final int BEAUTY_FRAGMENT_CONTAINER_ID = 2131558426;
+    public static final int EYE_LIGHT_POPU_TIP_FRAGMENT_CONTAINER_ID = 2131558655;
     public static final int FRAGMENT_BEAUTY = 251;
     public static final int FRAGMENT_BLANK_BEAUTY = 4090;
     public static final int FRAGMENT_BOTTOM_ACTION = 241;
@@ -71,7 +72,7 @@ public class BaseFragmentDelegate implements BaseDelegate {
     public static final int FRAGMENT_TOP_CONFIG = 244;
     public static final int FRAGMENT_TOP_CONFIG_EXTRA = 245;
     public static final int FRAGMENT_VERTICAL = 4088;
-    public static final int MAKE_UP_POPU_FRAGMENT_CONTAINER_ID = 2131558625;
+    public static final int MAKE_UP_POPU_FRAGMENT_CONTAINER_ID = 2131558654;
     private static final String TAG = BaseFragmentDelegate.class.getSimpleName();
     private AnimationComposite animationComposite = new AnimationComposite();
     private SparseArray<List<Integer>> currentFragments;
@@ -119,7 +120,7 @@ public class BaseFragmentDelegate implements BaseDelegate {
         beginTransaction.replace(R.id.main_vertical, constructFragment9, constructFragment9.getFragmentTag());
         if (b.isSupportedOpticalZoom()) {
             constructFragment = constructFragment(true, 4084, 240, baseLifecycleListener2);
-        } else if (b.ha()) {
+        } else if (b.hs()) {
             constructFragment = constructFragment(true, 4085, 240, baseLifecycleListener2);
         } else {
             constructFragment = null;
@@ -131,7 +132,7 @@ public class BaseFragmentDelegate implements BaseDelegate {
         } else {
             this.originalFragments.put(R.id.bottom_popup_dual_camera_adjust, 240);
         }
-        if (Util.UI_DEBUG()) {
+        if (DataRepository.dataItemFeature().isSupportBokehAdjust()) {
             Fragment constructFragment10 = constructFragment(true, 4091, 240, baseLifecycleListener2);
             this.originalFragments.put(R.id.bottom_popup_dual_camera_bokeh_adjust, constructFragment10.getFragmentInto());
             this.animationComposite.put(constructFragment10.getFragmentInto(), constructFragment10);
@@ -538,7 +539,7 @@ public class BaseFragmentDelegate implements BaseDelegate {
                         arrayList.add(BaseFragmentOperation.create(R.id.main_content).show(getOriginalFragment(R.id.main_content)));
                     }
                     arrayList.add(BaseFragmentOperation.create(R.id.bottom_popup_tips).show(getOriginalFragment(R.id.bottom_popup_tips)));
-                    if (b.isSupportedOpticalZoom() || b.ha()) {
+                    if (b.isSupportedOpticalZoom() || b.hs()) {
                         arrayList.add(BaseFragmentOperation.create(R.id.bottom_popup_dual_camera_adjust).show(getOriginalFragment(R.id.bottom_popup_dual_camera_adjust)));
                         break;
                     }

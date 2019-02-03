@@ -62,6 +62,7 @@ public final class R {
         public static int autoGravityRotation = 268501061;
         public static int buttonBarDefaultButtonStyle = 268501075;
         public static int children_sequence_state = 268501013;
+        public static int circleProgressBarColor = 268501147;
         public static int colorAccent = 268501124;
         public static int colorDividerLine = 268501129;
         public static int colorPrimary = 268501123;
@@ -77,6 +78,7 @@ public final class R {
         public static int drawerMode = 268501095;
         public static int dropdownListViewBackground = 268501099;
         public static int editTextSearchStyle = 268501076;
+        public static int editTextSpinnerBackground = 268501149;
         public static int extensionAction = 268501137;
         public static int extensionInvoker = 268501138;
         public static int extensionTarget = 268501136;
@@ -99,6 +101,7 @@ public final class R {
         public static int listMenuBackground = 268501074;
         public static int listPopupItemBackground = 268501020;
         public static int listViewItemBackground = 268501062;
+        public static int listViewItemBackgroundDialog = 268501150;
         public static int lunarCalendar = 268501050;
         public static int maxLevel = 268501093;
         public static int maxRotationDegree = 268501060;
@@ -131,6 +134,7 @@ public final class R {
         public static int showDay = 268501053;
         public static int showMonth = 268501052;
         public static int showYear = 268501051;
+        public static int spinnerEditBackground = 268501148;
         public static int startingWindowOverlay = 268501108;
         public static int state_first_h = 268501005;
         public static int state_first_v = 268501009;
@@ -292,12 +296,17 @@ public final class R {
         public static int arrow_right = 268566632;
         public static int btn_comment_bg_light = 268566620;
         public static int btn_favorite_bg_light = 268566621;
+        public static int btn_inline_delete_dark = 268566683;
         public static int btn_inline_delete_light = 268566641;
+        public static int btn_inline_detail_dark = 268566682;
         public static int btn_inline_detail_light = 268566640;
         public static int btn_share_bg_light = 268566622;
+        public static int edit_text_bg_spinner_dark = 268566688;
         public static int edit_text_bg_spinner_light = 268566639;
         public static int edit_text_search_bg_light = 268566624;
+        public static int expander_close_dark = 268566685;
         public static int expander_close_light = 268566635;
+        public static int expander_open_dark = 268566684;
         public static int expander_open_light = 268566634;
         public static int file_icon_3gpp = 268566619;
         public static int file_icon_aac = 268566612;
@@ -343,6 +352,7 @@ public final class R {
         public static int icon_search_light = 268566627;
         public static int icon_settings_dark = 268566629;
         public static int icon_settings_light = 268566628;
+        public static int list_item_bg_dialog_dark = 268566686;
         public static int list_item_bg_dialog_light = 268566633;
         public static int loading_view_bg = 268566623;
         public static int preference_category_background = 268566636;
@@ -353,6 +363,7 @@ public final class R {
         public static int screen_view_seek_point_selector = 268566630;
         public static int scroll_divider_dark = 268566644;
         public static int scroll_divider_light = 268566643;
+        public static int spinner_bg_edit_dark = 268566687;
         public static int spinner_bg_edit_light = 268566631;
         public static int window_bg_secondary_dark = 268566653;
         public static int window_bg_secondary_light = 268566652;
@@ -480,15 +491,38 @@ public final class R {
         public static int Theme_Dark_ActionBar_TabShowTitle = 269287551;
         public static int Theme_Dark_Dialog = 269287476;
         public static int Theme_Dark_Dialog_Alert = 269287477;
+        public static int Theme_Dark_Dialog_Edit = 269287644;
+        public static int Theme_Dark_Dialog_Edit_Default = 269287645;
         public static int Theme_Dark_Dialog_FixedSize = 269287541;
         public static int Theme_Dark_Dialog_FixedSize_Small = 269287562;
+        public static int Theme_Dark_Dialog_NoTitle = 269287641;
         public static int Theme_Dark_HidePopupArrow = 269287542;
         public static int Theme_Dark_Navigation = 269287536;
         public static int Theme_Dark_NoTitle = 269287496;
         public static int Theme_Dark_RemoteViews = 269287610;
         public static int Theme_Dark_Settings = 269287534;
         public static int Theme_Dark_Settings_Navigation = 269287535;
+        public static int Theme_Dark_Settings_NoTitle = 269287648;
         public static int Theme_Dark_Settings_TabShowTitle = 269287552;
+        public static int Theme_DayNight = 269287621;
+        public static int Theme_DayNight_ActionBarMovable = 269287633;
+        public static int Theme_DayNight_ActionBar_EmbedTabs = 269287639;
+        public static int Theme_DayNight_ActionBar_NoTitle = 269287637;
+        public static int Theme_DayNight_ActionBar_TabShowTitle = 269287629;
+        public static int Theme_DayNight_Dialog = 269287622;
+        public static int Theme_DayNight_Dialog_Alert = 269287623;
+        public static int Theme_DayNight_Dialog_Edit = 269287635;
+        public static int Theme_DayNight_Dialog_Edit_Default = 269287636;
+        public static int Theme_DayNight_Dialog_FixedSize = 269287624;
+        public static int Theme_DayNight_Dialog_FixedSize_Small = 269287625;
+        public static int Theme_DayNight_HidePopupArrow = 269287638;
+        public static int Theme_DayNight_Navigation = 269287631;
+        public static int Theme_DayNight_NoTitle = 269287632;
+        public static int Theme_DayNight_RemoteViews = 269287634;
+        public static int Theme_DayNight_Settings = 269287626;
+        public static int Theme_DayNight_Settings_Navigation = 269287628;
+        public static int Theme_DayNight_Settings_NoTitle = 269287627;
+        public static int Theme_DayNight_Settings_TabShowTitle = 269287630;
         public static int Theme_Light = 269287447;
         public static int Theme_Light_ActionBarMovable = 269287546;
         public static int Theme_Light_ActionBar_EmbedTabs = 269287520;
@@ -497,8 +531,11 @@ public final class R {
         public static int Theme_Light_DarkActionBar = 269287614;
         public static int Theme_Light_Dialog = 269287474;
         public static int Theme_Light_Dialog_Alert = 269287475;
+        public static int Theme_Light_Dialog_Edit = 269287642;
+        public static int Theme_Light_Dialog_Edit_Default = 269287643;
         public static int Theme_Light_Dialog_FixedSize = 269287540;
         public static int Theme_Light_Dialog_FixedSize_Small = 269287561;
+        public static int Theme_Light_Dialog_NoTitle = 269287640;
         public static int Theme_Light_HidePopupArrow = 269287516;
         public static int Theme_Light_Navigation = 269287514;
         public static int Theme_Light_NoTitle = 269287495;
@@ -507,6 +544,8 @@ public final class R {
         public static int Theme_Light_Settings_Navigation = 269287515;
         public static int Theme_Light_Settings_NoTitle = 269287506;
         public static int Theme_Light_Settings_TabShowTitle = 269287550;
+        public static int Theme_MenuDialog_Dark = 269287647;
+        public static int Theme_MenuDialog_Light = 269287646;
         public static int Theme_NoDisplay = 269287507;
         public static int Theme_Translucent = 269287607;
         public static int Theme_Translucent_NoTitleBar = 269287608;
@@ -635,7 +674,7 @@ public final class R {
     }
 
     public static final class styleable {
-        public static final int[] ActionBar = new int[]{16842754, 16842964, 16843049, 16843093, 16843233, 16843454, 16843471, 16843472, 16843473, 16843474, 16843512, 16843513, 16843545, 16843549, 16843565, 16843658, 16843659, 268500998, 268500999, 268501064, 268501084, 268501085, 268501159};
+        public static final int[] ActionBar = new int[]{16842754, 16842964, 16843049, 16843093, 16843233, 16843454, 16843471, 16843472, 16843473, 16843474, 16843512, 16843513, 16843545, 16843549, 16843565, 16843658, 16843659, 268500998, 268500999, 268501064, 268501084, 268501085, 268501163};
         public static final int[] ActionBarMovableLayout = new int[]{268501056, 268501057, 268501058};
         public static int ActionBarMovableLayout_overScrollRange = 0;
         public static int ActionBarMovableLayout_scrollRange = 1;
@@ -662,23 +701,23 @@ public final class R {
         public static int ActionBar_miui_actionBarStackedBackground = 21;
         public static int ActionBar_tabIndicator = 17;
         public static int ActionBar_translucentTabIndicator = 18;
-        public static final int[] ActionMenu = new int[]{268501161};
+        public static final int[] ActionMenu = new int[]{268501165};
         public static final int[] ActionMode = new int[]{16842964, 16843093, 16843512, 16843513, 16843659};
         public static int ActionMode_android_background = 0;
         public static int ActionMode_android_backgroundSplit = 4;
         public static int ActionMode_android_height = 1;
         public static int ActionMode_android_subtitleTextStyle = 3;
         public static int ActionMode_android_titleTextStyle = 2;
-        public static final int[] AlertDialog = new int[]{268501210, 268501211, 268501212, 268501213, 268501214, 268501215, 268501216};
-        public static final int[] AlphabetFastIndexer = new int[]{268501127, 268501128, 268501221, 268501222, 268501223, 268501224, 268501225, 268501226, 268501227, 268501228, 268501229, 268501230};
+        public static final int[] AlertDialog = new int[]{268501216, 268501217, 268501218, 268501219, 268501220, 268501221, 268501222};
+        public static final int[] AlphabetFastIndexer = new int[]{268501127, 268501128, 268501227, 268501228, 268501229, 268501230, 268501231, 268501232, 268501233, 268501234, 268501235, 268501236};
         public static int AlphabetFastIndexer_drawOverlay = 1;
         public static int AlphabetFastIndexer_indexerTextHighlightColor = 0;
-        public static final int[] ArrowPopupView = new int[]{268501175, 268501176, 268501177, 268501178, 268501179, 268501180, 268501181, 268501182, 268501183};
+        public static final int[] ArrowPopupView = new int[]{268501180, 268501181, 268501182, 268501183, 268501184, 268501185, 268501186, 268501187, 268501188};
         public static final int[] AutoScaleTextView = new int[]{268501115};
         public static int AutoScaleTextView_minTextSize = 0;
         public static final int[] DataUpdate = new int[]{268501086};
         public static int DataUpdate_serviceName = 0;
-        public static final int[] DatePicker = new int[]{268501050, 268501051, 268501052, 268501053, 268501204, 268501205, 268501206, 268501207, 268501208, 268501209};
+        public static final int[] DatePicker = new int[]{268501050, 268501051, 268501052, 268501053, 268501210, 268501211, 268501212, 268501213, 268501214, 268501215};
         public static int DatePicker_lunarCalendar = 0;
         public static int DatePicker_showDay = 3;
         public static int DatePicker_showMonth = 2;
@@ -704,7 +743,7 @@ public final class R {
         public static final int[] FloatingActionButton = new int[]{268501142, 268501143};
         public static int FloatingActionButton_fabColor = 0;
         public static int FloatingActionButton_fabShadowEnabled = 1;
-        public static final int[] GuidePopupView = new int[]{16842801, 16842901, 16842904, 268501184, 268501185, 268501186, 268501187};
+        public static final int[] GuidePopupView = new int[]{16842801, 16842901, 16842904, 268501189, 268501190, 268501191, 268501192};
         public static int GuidePopupView_android_colorBackground = 0;
         public static int GuidePopupView_android_textColor = 2;
         public static int GuidePopupView_android_textSize = 1;
@@ -716,7 +755,7 @@ public final class R {
         public static int Level_maxLevel = 2;
         public static int Level_minLevel = 0;
         public static int Level_targetLevel = 1;
-        public static final int[] MenuView = new int[]{16842926, 16843052, 16843053, 16843054, 16843055, 16843056, 16843057, 16844079};
+        public static final int[] MenuView = new int[]{16842926, 16843052, 16843053, 16843054, 16843055, 16843056, 16843057, 268501179};
         public static int MenuView_android_headerBackground = 4;
         public static int MenuView_android_horizontalDivider = 2;
         public static int MenuView_android_itemBackground = 5;
@@ -724,7 +763,7 @@ public final class R {
         public static int MenuView_android_itemTextAppearance = 1;
         public static int MenuView_android_verticalDivider = 3;
         public static int MenuView_android_windowAnimationStyle = 0;
-        public static final int[] MessageView = new int[]{16842904, 16843087, 268501249};
+        public static final int[] MessageView = new int[]{16842904, 16843087, 268501260};
         public static int MessageView_android_text = 1;
         public static int MessageView_android_textColor = 0;
         public static final int[] MiuiManifest = new int[]{268501089, 268501090, 268501094};
@@ -755,7 +794,7 @@ public final class R {
         public static int NestedHeaderLayout_rangeOffset = 1;
         public static final int[] NestedScrollingLayout = new int[]{268501111};
         public static int NestedScrollingLayout_scrollableView = 0;
-        public static final int[] NumberPicker = new int[]{16842905, 16842906, 16843087, 16843317, 268501200, 268501201, 268501202, 268501203};
+        public static final int[] NumberPicker = new int[]{16842905, 16842906, 16843087, 16843317, 268501206, 268501207, 268501208, 268501209};
         public static int NumberPicker_android_labelTextSize = 3;
         public static int NumberPicker_android_text = 2;
         public static int NumberPicker_android_textColorHighlight = 0;
@@ -768,7 +807,7 @@ public final class R {
         public static final int[] PlaceholderDrawableSize = new int[]{16843093, 16843097};
         public static int PlaceholderDrawableSize_android_height = 0;
         public static int PlaceholderDrawableSize_android_width = 1;
-        public static final int[] ProgressBar = new int[]{268501044, 268501195, 268501196};
+        public static final int[] ProgressBar = new int[]{268501044, 268501200, 268501201};
         public static int ProgressBar_progressMask = 0;
         public static final int[] RadioButtonPreference = new int[]{16842994, 16843243};
         public static int RadioButtonPreference_android_layout = 0;
@@ -785,7 +824,7 @@ public final class R {
         public static int ScrollableViewDrawer_scrollDivider = 4;
         public static int ScrollableViewDrawer_scrollableView = 2;
         public static int ScrollableViewDrawer_targetView = 1;
-        public static final int[] SlidingButton = new int[]{16842964, 268501188, 268501189, 268501190, 268501191, 268501192, 268501193, 268501194};
+        public static final int[] SlidingButton = new int[]{16842964, 268501193, 268501194, 268501195, 268501196, 268501197, 268501198, 268501199};
         public static int SlidingButton_android_background = 0;
         public static final int[] TriggerViewDrawer = new int[]{268501109, 268501110, 268501111, 268501112, 268501117, 268501133, 268501134};
         public static int TriggerViewDrawer_contentView = 0;
@@ -797,7 +836,7 @@ public final class R {
         public static int TriggerViewDrawer_triggerView = 5;
         public static final int[] VolumePreference = new int[]{16843273};
         public static int VolumePreference_android_streamType = 0;
-        public static final int[] Window = new int[]{268501002, 268501003, 268501004, 268501063, 268501065, 268501066, 268501067, 268501068, 268501069, 268501070, 268501071, 268501081, 268501088, 268501097, 268501107, 268501108, 268501140, 268501147, 268501148, 268501149, 268501150, 268501151, 268501152, 268501153, 268501154, 268501155, 268501156, 268501157};
+        public static final int[] Window = new int[]{268501002, 268501003, 268501004, 268501063, 268501065, 268501066, 268501067, 268501068, 268501069, 268501070, 268501071, 268501081, 268501088, 268501097, 268501107, 268501108, 268501140, 268501151, 268501152, 268501153, 268501154, 268501155, 268501156, 268501157, 268501158, 268501159, 268501160, 268501161};
         public static int Window_contentAutoFitSystemWindow = 3;
         public static int Window_contentHeaderBackground = 4;
         public static int Window_immersionMenuEnabled = 5;

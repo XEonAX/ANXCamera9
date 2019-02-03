@@ -12,101 +12,127 @@ import com.android.camera.db.DbRepository;
 import com.android.camera.db.element.SaveTask;
 import com.android.camera.log.Log;
 import com.xiaomi.camera.base.PerformanceTracker;
+import com.xiaomi.camera.core.PictureInfo;
 import com.xiaomi.camera.parallelservice.util.ParallelUtil;
 
-public class ParallelSaveRequest implements SaveRequest {
-    private Context context;
-    private byte[] data;
-    private int imageHeight;
-    private int imageWidth;
-    private int jpegRotation;
-    private Location loc;
-    private String savePath;
-    private SaverCallback saverCallback;
-    private int size;
-    private long startTime;
+public final class ParallelSaveRequest implements SaveRequest {
+    private static final String TAG = ParallelSaveRequest.class.getSimpleName();
+    private String mAlgorithmName;
+    private Context mContext;
+    private byte[] mData;
+    private int mImageHeight;
+    private int mImageWidth;
+    private PictureInfo mInfo;
+    private int mJpegRotation;
+    private Location mLocation;
+    private boolean mNeedThumbnail;
+    private String mSavePath;
+    private SaverCallback mSaverCallback;
+    private int mSize;
+    private long mStartTime;
 
     public void setContextAndCallback(Context context, SaverCallback saverCallback) {
-        this.context = context;
-        this.saverCallback = saverCallback;
+        this.mContext = context;
+        this.mSaverCallback = saverCallback;
     }
 
-    public ParallelSaveRequest(byte[] bArr, long j, Location location, int i, String str, int i2, int i3) {
-        this.data = bArr;
-        this.startTime = j;
-        this.size = bArr.length;
-        this.loc = location == null ? null : new Location(location);
-        this.jpegRotation = i;
-        this.savePath = str;
-        this.imageWidth = i2;
-        this.imageHeight = i3;
+    public ParallelSaveRequest(byte[] bArr, long j, Location location, int i, String str, int i2, int i3, boolean z, String str2, PictureInfo pictureInfo) {
+        this.mData = bArr;
+        this.mStartTime = j;
+        this.mSize = bArr.length;
+        this.mLocation = location == null ? null : new Location(location);
+        this.mJpegRotation = i;
+        this.mSavePath = str;
+        this.mImageWidth = i2;
+        this.mImageHeight = i3;
+        this.mNeedThumbnail = z;
+        this.mAlgorithmName = str2;
+        this.mInfo = pictureInfo;
     }
 
     public void save() {
+        String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(this.savePath);
+        stringBuilder.append("save: ");
+        stringBuilder.append(this.mSavePath);
         stringBuilder.append(" | ");
-        stringBuilder.append(this.startTime);
-        Log.e("algo save!!!!:", stringBuilder.toString());
-        int i = this.imageWidth;
-        int i2 = this.imageHeight;
-        int orientation = Exif.getOrientation(this.data);
-        if ((this.jpegRotation + orientation) % 180 != 0) {
+        stringBuilder.append(this.mStartTime);
+        Log.d(str, stringBuilder.toString());
+        int i = this.mImageWidth;
+        int i2 = this.mImageHeight;
+        int orientation = Exif.getOrientation(this.mData);
+        if ((this.mJpegRotation + orientation) % 180 != 0) {
             int i3 = i2;
             i2 = i;
             i = i3;
         }
-        SaveTask itemByPath = DbRepository.dbItemSaveTask().getItemByPath(this.savePath);
+        SaveTask itemByPath = DbRepository.dbItemSaveTask().getItemByPath(this.mSavePath);
         Uri addImage;
         if (itemByPath == null || !itemByPath.isValid()) {
+            Object obj = null;
             long currentTimeMillis = System.currentTimeMillis();
-            addImage = Storage.addImage(this.context, Util.createJpegName(currentTimeMillis), currentTimeMillis, this.loc, orientation, this.data, i, i2, false, false, false, false, false, null, null);
+            String fileTitleFromPath = this.mSavePath != null ? Util.getFileTitleFromPath(this.mSavePath) : Util.createJpegName(currentTimeMillis);
+            String str2 = fileTitleFromPath;
+            addImage = Storage.addImage(this.mContext, fileTitleFromPath, currentTimeMillis, this.mLocation, orientation, this.mData, i, i2, false, false, false, false, false, this.mAlgorithmName, this.mInfo);
             if (addImage != null) {
-                Thumbnail createThumbnail = Thumbnail.createThumbnail(this.data, orientation, Integer.highestOneBit((int) Math.ceil(Math.max((double) i, (double) i2) / 512.0d)), addImage, false);
-                if (createThumbnail != null) {
-                    this.saverCallback.postUpdateThumbnail(createThumbnail, true);
-                } else {
-                    this.saverCallback.postHideThumbnailProgressing();
+                if (this.mNeedThumbnail) {
+                    Thumbnail createThumbnail = Thumbnail.createThumbnail(this.mData, orientation, Integer.highestOneBit((int) Math.ceil(Math.max((double) i, (double) i2) / 512.0d)), addImage, false);
+                    if (createThumbnail != null) {
+                        this.mSaverCallback.postUpdateThumbnail(createThumbnail, true);
+                    } else {
+                        this.mSaverCallback.postHideThumbnailProgressing();
+                    }
                 }
-                this.saverCallback.notifyNewImage(addImage, isFinal());
+                this.mSaverCallback.notifyNewMediaData(addImage, str2, 31);
                 return;
             }
             return;
         }
-        String fileTitleFromPath = Util.getFileTitleFromPath(this.savePath);
+        String fileTitleFromPath2 = Util.getFileTitleFromPath(this.mSavePath);
         addImage = ParallelUtil.getResultUri(itemByPath.getMediaStoreId().longValue());
+        String str3 = TAG;
         StringBuilder stringBuilder2 = new StringBuilder();
-        stringBuilder2.append("uri :");
+        stringBuilder2.append("algo mark: uri: ");
         stringBuilder2.append(addImage.toString());
         stringBuilder2.append(" | ");
         stringBuilder2.append(itemByPath.getPath());
-        Log.e("algo mark:", stringBuilder2.toString());
+        Log.d(str3, stringBuilder2.toString());
+        String str4 = TAG;
         StringBuilder stringBuilder3 = new StringBuilder();
-        stringBuilder3.append(this.jpegRotation);
+        stringBuilder3.append("algo mark: ");
+        stringBuilder3.append(this.mJpegRotation);
         stringBuilder3.append(" | ");
         stringBuilder3.append(i);
         stringBuilder3.append(" | ");
         stringBuilder3.append(i2);
         stringBuilder3.append(" | ");
         stringBuilder3.append(orientation);
-        stringBuilder3.append(" | ");
-        Log.e("algo mark:", stringBuilder3.toString());
-        Storage.updateImage(this.context, this.data, null, ContentUris.withAppendedId(Media.EXTERNAL_CONTENT_URI, itemByPath.getMediaStoreId().longValue()), fileTitleFromPath, this.loc, orientation, i, i2, null);
-        ParallelUtil.markTaskFinish(this.context, itemByPath, false);
+        Log.d(str4, stringBuilder3.toString());
+        Uri withAppendedId = ContentUris.withAppendedId(Media.EXTERNAL_CONTENT_URI, itemByPath.getMediaStoreId().longValue());
+        Context context = this.mContext;
+        byte[] bArr = this.mData;
+        Location location = this.mLocation;
+        int i4 = i;
+        str = this.mAlgorithmName;
+        int i5 = i2;
+        Object obj2 = null;
+        SaveTask saveTask = itemByPath;
+        Storage.updateImageWithExtraExif(context, bArr, null, withAppendedId, fileTitleFromPath2, location, orientation, i4, i5, null, false, false, str, this.mInfo);
+        ParallelUtil.markTaskFinish(this.mContext, saveTask, false);
     }
 
     public int getSize() {
-        return this.size;
+        return this.mSize;
     }
 
     public boolean isFinal() {
-        return false;
+        return true;
     }
 
     public void onFinish() {
-        PerformanceTracker.trackImageSaver(this.data, 1);
-        this.data = null;
-        this.saverCallback.onSaveFinish(this.size);
+        PerformanceTracker.trackImageSaver(this.mData, 1);
+        this.mData = null;
+        this.mSaverCallback.onSaveFinish(this.mSize);
     }
 
     public void run() {

@@ -4,6 +4,7 @@ import android.media.MediaCodec;
 import android.media.MediaFormat;
 import android.opengl.EGLContext;
 import android.os.Handler;
+import android.provider.MiuiSettings.System;
 import android.view.Surface;
 import com.android.camera.effect.draw_mode.DrawExtTexAttribute;
 import com.android.camera.log.Log;
@@ -15,10 +16,16 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class CircularVideoEncoder extends CircularMediaEncoder {
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG_FPS = true;
     private static final String TAG = CircularVideoEncoder.class.getSimpleName();
-    private volatile long mFrameNum = 0;
+    protected long mFirstPresentationTimeUs;
+    private int mFpsOutputInterval = System.SCREEN_KEY_LONG_PRESS_TIMEOUT_DEFAULT;
+    private long mFrameStartTimestampNs = 0;
+    private int mFramesRendered = 0;
     private Surface mInputSurface;
+    protected long mLastPresentationTimeUs;
+    private long mMinFrameRenderPeriodNs;
+    private long mNextFrameTimestampNs;
     private final int mPreviewHeight;
     private final int mPreviewWidth;
     private RenderThread mRenderThread;
@@ -56,6 +63,33 @@ public class CircularVideoEncoder extends CircularMediaEncoder {
         }
     }
 
+    public void setFpsReduction(float f) {
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("setFpsReduction: ");
+        stringBuilder.append(f);
+        Log.d(str, stringBuilder.toString());
+        if (f <= 0.0f) {
+            this.mMinFrameRenderPeriodNs = Long.MAX_VALUE;
+        } else {
+            this.mMinFrameRenderPeriodNs = (long) (((float) TimeUnit.SECONDS.toNanos(1)) / f);
+        }
+    }
+
+    protected long getNextPresentationTimeUs(long j) {
+        if (this.mFirstPresentationTimeUs == 0) {
+            this.mFirstPresentationTimeUs = j;
+            return 0;
+        }
+        j -= this.mFirstPresentationTimeUs;
+        if (this.mLastPresentationTimeUs >= j) {
+            this.mLastPresentationTimeUs += 9643;
+            return this.mLastPresentationTimeUs;
+        }
+        this.mLastPresentationTimeUs = j;
+        return j;
+    }
+
     public void doStart() {
         Log.d(TAG, "start(): E");
         if (!this.mIsInitialized) {
@@ -63,15 +97,17 @@ public class CircularVideoEncoder extends CircularMediaEncoder {
         } else if (this.mIsBuffering) {
             Log.d(TAG, "start(): encoder is already running");
         } else {
-            this.mCircularBuffer.clear();
+            this.mCyclicBuffer.clear();
             this.mMediaCodec.configure(this.mDesiredMediaFormat, null, null, 1);
             this.mInputSurface = this.mMediaCodec.createInputSurface();
             this.mRenderThread = new RenderThread(TAG, this.mPreviewWidth, this.mPreviewHeight, this.mSharedEGLContext, this.mInputSurface, true);
             this.mRenderThread.start();
             this.mRenderThread.waitUntilReady();
             this.mMediaCodec.setCallback(this, new Handler(this.mEncodingThread.getLooper()));
-            super.doStart();
             this.mCurrentPresentationTimeUs = 0;
+            this.mFirstPresentationTimeUs = 0;
+            this.mLastPresentationTimeUs = 0;
+            super.doStart();
             this.mIsBuffering = true;
             Log.d(TAG, "start(): X");
         }
@@ -122,7 +158,6 @@ public class CircularVideoEncoder extends CircularMediaEncoder {
     }
 
     public void doRelease() {
-        Log.d(TAG, "releasing encoder objects");
         if (this.mIsInitialized) {
             super.doRelease();
             this.mIsInitialized = false;
@@ -138,14 +173,43 @@ public class CircularVideoEncoder extends CircularMediaEncoder {
         }
     }
 
+    /* JADX WARNING: Missing block: B:28:0x0083, code:
+            return;
+     */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     public synchronized void onSurfaceTextureUpdated(DrawExtTexAttribute drawExtTexAttribute) {
         if (!this.mIsInitialized) {
             return;
         }
         if (this.mIsBuffering) {
-            this.mFrameNum++;
-            if (this.mFrameNum % 2 == 0) {
-                this.mRenderThread.draw(drawExtTexAttribute);
+            long nanoTime;
+            if (this.mMinFrameRenderPeriodNs > 0) {
+                nanoTime = System.nanoTime();
+                if (nanoTime < this.mNextFrameTimestampNs) {
+                    Log.d(TAG, "Dropping frame - fps reduction is active.");
+                    return;
+                } else {
+                    this.mNextFrameTimestampNs += this.mMinFrameRenderPeriodNs;
+                    this.mNextFrameTimestampNs = Math.max(this.mNextFrameTimestampNs, nanoTime);
+                }
+            }
+            this.mRenderThread.draw(drawExtTexAttribute);
+            nanoTime = TimeUnit.NANOSECONDS.toMillis(System.nanoTime());
+            if (this.mFrameStartTimestampNs > 0) {
+                long j = nanoTime - this.mFrameStartTimestampNs;
+                this.mFramesRendered++;
+                if (j > ((long) this.mFpsOutputInterval)) {
+                    double d = ((double) (this.mFramesRendered * 1000)) / ((double) j);
+                    String str = TAG;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("onSurfaceTextureUpdated(): ");
+                    stringBuilder.append(d);
+                    Log.d(str, stringBuilder.toString());
+                    this.mFrameStartTimestampNs = nanoTime;
+                    this.mFramesRendered = 0;
+                }
+            } else {
+                this.mFrameStartTimestampNs = nanoTime;
             }
         }
     }

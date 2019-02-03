@@ -52,7 +52,7 @@
     .line 25
     new-instance v1, Lcom/android/camera/fragment/beauty/SingleCheckAdapter$LevelItem;
 
-    const v2, 0x7f020036
+    const v2, 0x7f0200d2
 
     invoke-direct {v1, v2}, Lcom/android/camera/fragment/beauty/SingleCheckAdapter$LevelItem;-><init>(I)V
 
@@ -61,7 +61,7 @@
     .line 26
     new-instance v1, Lcom/android/camera/fragment/beauty/SingleCheckAdapter$LevelItem;
 
-    const v2, 0x7f020030
+    const v2, 0x7f02003e
 
     invoke-direct {v1, v2}, Lcom/android/camera/fragment/beauty/SingleCheckAdapter$LevelItem;-><init>(I)V
 
@@ -70,7 +70,7 @@
     .line 27
     new-instance v1, Lcom/android/camera/fragment/beauty/SingleCheckAdapter$LevelItem;
 
-    const v2, 0x7f020031
+    const v2, 0x7f02003f
 
     invoke-direct {v1, v2}, Lcom/android/camera/fragment/beauty/SingleCheckAdapter$LevelItem;-><init>(I)V
 
@@ -79,7 +79,7 @@
     .line 28
     new-instance v1, Lcom/android/camera/fragment/beauty/SingleCheckAdapter$LevelItem;
 
-    const v2, 0x7f020032
+    const v2, 0x7f020040
 
     invoke-direct {v1, v2}, Lcom/android/camera/fragment/beauty/SingleCheckAdapter$LevelItem;-><init>(I)V
 
@@ -130,7 +130,7 @@
 
     move-result-object v0
 
-    const v1, 0x7f09006f
+    const v1, 0x7f0a006f
 
     invoke-virtual {v0, v1}, Landroid/content/res/Resources;->getDimensionPixelSize(I)I
 

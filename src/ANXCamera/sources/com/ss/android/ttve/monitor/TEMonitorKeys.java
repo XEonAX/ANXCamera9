@@ -64,7 +64,7 @@ public class TEMonitorKeys {
         sIntKeys.add(TETRACKER_KEY_COMPOSITION_VIDEO_DECODE_MODE);
         sIntKeys.add(TETRACKER_KEY_COMPOSITION_AUDIO_ENCODE_MODE);
         sIntKeys.add(TETRACKER_KEY_COMPOSITION_AUDIO_DECODE_MODE);
-        sIntKeys.add(TETRACKER_KEY_COMPLETE);
+        sIntKeys.add("completed");
         sIntKeys.add(TETRACKER_KEY_RECORD_CAMERA_TYPE);
         sDoubleKeys.add(TETRACKER_KEY_RECORD_FPS);
         sDoubleKeys.add(TETRACKER_KEY_RECORD_VIDEO_FRAME_ENCODE_TIME);

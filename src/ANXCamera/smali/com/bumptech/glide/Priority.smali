@@ -14,15 +14,15 @@
 
 
 # static fields
-.field public static final enum am:Lcom/bumptech/glide/Priority;
-
 .field public static final enum an:Lcom/bumptech/glide/Priority;
 
 .field public static final enum ao:Lcom/bumptech/glide/Priority;
 
 .field public static final enum ap:Lcom/bumptech/glide/Priority;
 
-.field private static final synthetic aq:[Lcom/bumptech/glide/Priority;
+.field public static final enum aq:Lcom/bumptech/glide/Priority;
+
+.field private static final synthetic ar:[Lcom/bumptech/glide/Priority;
 
 
 # direct methods
@@ -38,7 +38,7 @@
 
     invoke-direct {v0, v1, v2}, Lcom/bumptech/glide/Priority;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/bumptech/glide/Priority;->am:Lcom/bumptech/glide/Priority;
+    sput-object v0, Lcom/bumptech/glide/Priority;->an:Lcom/bumptech/glide/Priority;
 
     .line 10
     new-instance v0, Lcom/bumptech/glide/Priority;
@@ -49,7 +49,7 @@
 
     invoke-direct {v0, v1, v3}, Lcom/bumptech/glide/Priority;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/bumptech/glide/Priority;->an:Lcom/bumptech/glide/Priority;
+    sput-object v0, Lcom/bumptech/glide/Priority;->ao:Lcom/bumptech/glide/Priority;
 
     .line 11
     new-instance v0, Lcom/bumptech/glide/Priority;
@@ -60,7 +60,7 @@
 
     invoke-direct {v0, v1, v4}, Lcom/bumptech/glide/Priority;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/bumptech/glide/Priority;->ao:Lcom/bumptech/glide/Priority;
+    sput-object v0, Lcom/bumptech/glide/Priority;->ap:Lcom/bumptech/glide/Priority;
 
     .line 12
     new-instance v0, Lcom/bumptech/glide/Priority;
@@ -71,30 +71,30 @@
 
     invoke-direct {v0, v1, v5}, Lcom/bumptech/glide/Priority;-><init>(Ljava/lang/String;I)V
 
-    sput-object v0, Lcom/bumptech/glide/Priority;->ap:Lcom/bumptech/glide/Priority;
+    sput-object v0, Lcom/bumptech/glide/Priority;->aq:Lcom/bumptech/glide/Priority;
 
     .line 8
     const/4 v0, 0x4
 
     new-array v0, v0, [Lcom/bumptech/glide/Priority;
 
-    sget-object v1, Lcom/bumptech/glide/Priority;->am:Lcom/bumptech/glide/Priority;
+    sget-object v1, Lcom/bumptech/glide/Priority;->an:Lcom/bumptech/glide/Priority;
 
     aput-object v1, v0, v2
 
-    sget-object v1, Lcom/bumptech/glide/Priority;->an:Lcom/bumptech/glide/Priority;
+    sget-object v1, Lcom/bumptech/glide/Priority;->ao:Lcom/bumptech/glide/Priority;
 
     aput-object v1, v0, v3
 
-    sget-object v1, Lcom/bumptech/glide/Priority;->ao:Lcom/bumptech/glide/Priority;
+    sget-object v1, Lcom/bumptech/glide/Priority;->ap:Lcom/bumptech/glide/Priority;
 
     aput-object v1, v0, v4
 
-    sget-object v1, Lcom/bumptech/glide/Priority;->ap:Lcom/bumptech/glide/Priority;
+    sget-object v1, Lcom/bumptech/glide/Priority;->aq:Lcom/bumptech/glide/Priority;
 
     aput-object v1, v0, v5
 
-    sput-object v0, Lcom/bumptech/glide/Priority;->aq:[Lcom/bumptech/glide/Priority;
+    sput-object v0, Lcom/bumptech/glide/Priority;->ar:[Lcom/bumptech/glide/Priority;
 
     return-void
 .end method
@@ -132,7 +132,7 @@
     .locals 1
 
     .line 8
-    sget-object v0, Lcom/bumptech/glide/Priority;->aq:[Lcom/bumptech/glide/Priority;
+    sget-object v0, Lcom/bumptech/glide/Priority;->ar:[Lcom/bumptech/glide/Priority;
 
     invoke-virtual {v0}, [Lcom/bumptech/glide/Priority;->clone()Ljava/lang/Object;
 

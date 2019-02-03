@@ -20,13 +20,17 @@
 # instance fields
 .field final synthetic this$0:Lcom/android/camera2/MiCamera2;
 
+.field final synthetic val$lightCallback:Lcom/android/camera2/Camera2Proxy$ScreenLightCallback;
+
 
 # direct methods
-.method constructor <init>(Lcom/android/camera2/MiCamera2;)V
+.method constructor <init>(Lcom/android/camera2/MiCamera2;Lcom/android/camera2/Camera2Proxy$ScreenLightCallback;)V
     .locals 0
 
-    .line 2398
+    .line 2561
     iput-object p1, p0, Lcom/android/camera2/MiCamera2$8;->this$0:Lcom/android/camera2/MiCamera2;
+
+    iput-object p2, p0, Lcom/android/camera2/MiCamera2$8;->val$lightCallback:Lcom/android/camera2/Camera2Proxy$ScreenLightCallback;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
@@ -38,13 +42,11 @@
 .method public run()V
     .locals 1
 
-    .line 2401
-    iget-object v0, p0, Lcom/android/camera2/MiCamera2$8;->this$0:Lcom/android/camera2/MiCamera2;
-
-    iget-object v0, v0, Lcom/android/camera2/MiCamera2;->mScreenLightCallback:Lcom/android/camera2/Camera2Proxy$ScreenLightCallback;
+    .line 2564
+    iget-object v0, p0, Lcom/android/camera2/MiCamera2$8;->val$lightCallback:Lcom/android/camera2/Camera2Proxy$ScreenLightCallback;
 
     invoke-interface {v0}, Lcom/android/camera2/Camera2Proxy$ScreenLightCallback;->stopScreenLight()V
 
-    .line 2402
+    .line 2565
     return-void
 .end method

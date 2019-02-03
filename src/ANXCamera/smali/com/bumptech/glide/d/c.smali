@@ -4,7 +4,7 @@
 
 
 # static fields
-.field private static final mO:Lcom/bumptech/glide/load/engine/n;
+.field private static final mN:Lcom/bumptech/glide/load/engine/n;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Lcom/bumptech/glide/load/engine/n<",
@@ -15,7 +15,7 @@
 
 
 # instance fields
-.field private final mP:Landroid/support/v4/util/ArrayMap;
+.field private final mO:Landroid/support/v4/util/ArrayMap;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Landroid/support/v4/util/ArrayMap<",
@@ -26,7 +26,7 @@
     .end annotation
 .end field
 
-.field private final mQ:Ljava/util/concurrent/atomic/AtomicReference;
+.field private final mP:Ljava/util/concurrent/atomic/AtomicReference;
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Ljava/util/concurrent/atomic/AtomicReference<",
@@ -84,7 +84,7 @@
 
     invoke-direct/range {v0 .. v5}, Lcom/bumptech/glide/load/engine/n;-><init>(Ljava/lang/Class;Ljava/lang/Class;Ljava/lang/Class;Ljava/util/List;Landroid/support/v4/util/Pools$Pool;)V
 
-    sput-object v6, Lcom/bumptech/glide/d/c;->mO:Lcom/bumptech/glide/load/engine/n;
+    sput-object v6, Lcom/bumptech/glide/d/c;->mN:Lcom/bumptech/glide/load/engine/n;
 
     .line 18
     return-void
@@ -101,14 +101,14 @@
 
     invoke-direct {v0}, Landroid/support/v4/util/ArrayMap;-><init>()V
 
-    iput-object v0, p0, Lcom/bumptech/glide/d/c;->mP:Landroid/support/v4/util/ArrayMap;
+    iput-object v0, p0, Lcom/bumptech/glide/d/c;->mO:Landroid/support/v4/util/ArrayMap;
 
     .line 34
     new-instance v0, Ljava/util/concurrent/atomic/AtomicReference;
 
     invoke-direct {v0}, Ljava/util/concurrent/atomic/AtomicReference;-><init>()V
 
-    iput-object v0, p0, Lcom/bumptech/glide/d/c;->mQ:Ljava/util/concurrent/atomic/AtomicReference;
+    iput-object v0, p0, Lcom/bumptech/glide/d/c;->mP:Ljava/util/concurrent/atomic/AtomicReference;
 
     return-void
 .end method
@@ -129,7 +129,7 @@
     .end annotation
 
     .line 77
-    iget-object v0, p0, Lcom/bumptech/glide/d/c;->mQ:Ljava/util/concurrent/atomic/AtomicReference;
+    iget-object v0, p0, Lcom/bumptech/glide/d/c;->mP:Ljava/util/concurrent/atomic/AtomicReference;
 
     const/4 v1, 0x0
 
@@ -178,13 +178,13 @@
     .end annotation
 
     .line 68
-    iget-object v0, p0, Lcom/bumptech/glide/d/c;->mP:Landroid/support/v4/util/ArrayMap;
+    iget-object v0, p0, Lcom/bumptech/glide/d/c;->mO:Landroid/support/v4/util/ArrayMap;
 
     monitor-enter v0
 
     .line 69
     :try_start_0
-    iget-object v1, p0, Lcom/bumptech/glide/d/c;->mP:Landroid/support/v4/util/ArrayMap;
+    iget-object v1, p0, Lcom/bumptech/glide/d/c;->mO:Landroid/support/v4/util/ArrayMap;
 
     new-instance v2, Lcom/bumptech/glide/util/h;
 
@@ -196,7 +196,7 @@
     goto :goto_0
 
     :cond_0
-    sget-object p4, Lcom/bumptech/glide/d/c;->mO:Lcom/bumptech/glide/load/engine/n;
+    sget-object p4, Lcom/bumptech/glide/d/c;->mN:Lcom/bumptech/glide/load/engine/n;
 
     .line 69
     :goto_0
@@ -234,7 +234,7 @@
     .end annotation
 
     .line 42
-    sget-object v0, Lcom/bumptech/glide/d/c;->mO:Lcom/bumptech/glide/load/engine/n;
+    sget-object v0, Lcom/bumptech/glide/d/c;->mN:Lcom/bumptech/glide/load/engine/n;
 
     invoke-virtual {v0, p1}, Ljava/lang/Object;->equals(Ljava/lang/Object;)Z
 
@@ -274,13 +274,13 @@
     move-result-object p1
 
     .line 56
-    iget-object p2, p0, Lcom/bumptech/glide/d/c;->mP:Landroid/support/v4/util/ArrayMap;
+    iget-object p2, p0, Lcom/bumptech/glide/d/c;->mO:Landroid/support/v4/util/ArrayMap;
 
     monitor-enter p2
 
     .line 57
     :try_start_0
-    iget-object p3, p0, Lcom/bumptech/glide/d/c;->mP:Landroid/support/v4/util/ArrayMap;
+    iget-object p3, p0, Lcom/bumptech/glide/d/c;->mO:Landroid/support/v4/util/ArrayMap;
 
     invoke-virtual {p3, p1}, Landroid/support/v4/util/ArrayMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -294,7 +294,7 @@
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
     .line 59
-    iget-object p2, p0, Lcom/bumptech/glide/d/c;->mQ:Ljava/util/concurrent/atomic/AtomicReference;
+    iget-object p2, p0, Lcom/bumptech/glide/d/c;->mP:Ljava/util/concurrent/atomic/AtomicReference;
 
     invoke-virtual {p2, p1}, Ljava/util/concurrent/atomic/AtomicReference;->set(Ljava/lang/Object;)V
 

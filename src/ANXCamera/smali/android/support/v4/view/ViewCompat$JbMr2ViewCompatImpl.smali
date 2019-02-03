@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 1361
     invoke-direct {p0}, Landroid/support/v4/view/ViewCompat$JbMr1ViewCompatImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public getClipBounds(Landroid/view/View;)Landroid/graphics/Rect;
-    .locals 1
+    .registers 3
     .param p1, "view"    # Landroid/view/View;
 
     .line 1369
@@ -39,7 +39,7 @@
 .end method
 
 .method public setClipBounds(Landroid/view/View;Landroid/graphics/Rect;)V
-    .locals 0
+    .registers 3
     .param p1, "view"    # Landroid/view/View;
     .param p2, "clipBounds"    # Landroid/graphics/Rect;
 

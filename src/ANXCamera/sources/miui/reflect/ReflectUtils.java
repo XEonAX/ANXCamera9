@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.WeakHashMap;
 
 public class ReflectUtils {
-    private static final String EO = "this$0";
-    private static Class<?>[] EP = new Class[]{Boolean.TYPE, Byte.TYPE, Character.TYPE, Short.TYPE, Integer.TYPE, Long.TYPE, Float.TYPE, Double.TYPE, Void.TYPE};
-    private static String[] EQ = new String[]{Field.BOOLEAN_SIGNATURE_PRIMITIVE, Field.BYTE_SIGNATURE_PRIMITIVE, Field.CHAR_SIGNATURE_PRIMITIVE, "S", Field.INT_SIGNATURE_PRIMITIVE, Field.LONG_SIGNATURE_PRIMITIVE, Field.FLOAT_SIGNATURE_PRIMITIVE, Field.DOUBLE_SIGNATURE_PRIMITIVE, "V"};
-    private static final WeakHashMap<Object, HashMap<String, Object>> EU = new WeakHashMap();
+    private static final String Fa = "this$0";
+    private static Class<?>[] Fb = new Class[]{Boolean.TYPE, Byte.TYPE, Character.TYPE, Short.TYPE, Integer.TYPE, Long.TYPE, Float.TYPE, Double.TYPE, Void.TYPE};
+    private static String[] Fc = new String[]{Field.BOOLEAN_SIGNATURE_PRIMITIVE, Field.BYTE_SIGNATURE_PRIMITIVE, Field.CHAR_SIGNATURE_PRIMITIVE, "S", Field.INT_SIGNATURE_PRIMITIVE, Field.LONG_SIGNATURE_PRIMITIVE, Field.FLOAT_SIGNATURE_PRIMITIVE, Field.DOUBLE_SIGNATURE_PRIMITIVE, "V"};
+    private static final WeakHashMap<Object, HashMap<String, Object>> Fd = new WeakHashMap();
     public static final String OBJECT_CONSTRUCTOR = "<init>";
 
     protected ReflectUtils() throws InstantiationException {
@@ -16,22 +16,22 @@ public class ReflectUtils {
     }
 
     public static Object getSurroundingThis(Object obj) {
-        return Field.of(obj.getClass(), EO, getSignature(obj.getClass())).get(obj);
+        return Field.of(obj.getClass(), Fa, getSignature(obj.getClass())).get(obj);
     }
 
     public static String getSignature(Class<?> cls) {
-        for (int i = 0; i < EP.length; i++) {
-            if (cls == EP[i]) {
-                return EQ[i];
+        for (int i = 0; i < Fb.length; i++) {
+            if (cls == Fb[i]) {
+                return Fc[i];
             }
         }
         return getSignature(cls.getName());
     }
 
     public static String getSignature(String str) {
-        for (int i = 0; i < EP.length; i++) {
-            if (EP[i].getName().equals(str)) {
-                str = EQ[i];
+        for (int i = 0; i < Fb.length; i++) {
+            if (Fb[i].getName().equals(str)) {
+                str = Fc[i];
             }
         }
         str = str.replace(".", "/");
@@ -91,11 +91,11 @@ public class ReflectUtils {
             throw new NullPointerException("object must not be null");
         } else if (str != null) {
             HashMap hashMap;
-            synchronized (EU) {
-                hashMap = (HashMap) EU.get(obj);
+            synchronized (Fd) {
+                hashMap = (HashMap) Fd.get(obj);
                 if (hashMap == null) {
                     hashMap = new HashMap();
-                    EU.put(obj, hashMap);
+                    Fd.put(obj, hashMap);
                 }
             }
             synchronized (hashMap) {
@@ -111,8 +111,8 @@ public class ReflectUtils {
         if (obj == null) {
             throw new NullPointerException("object must not be null");
         } else if (str != null) {
-            synchronized (EU) {
-                HashMap hashMap = (HashMap) EU.get(obj);
+            synchronized (Fd) {
+                HashMap hashMap = (HashMap) Fd.get(obj);
                 if (hashMap == null) {
                     return null;
                 }
@@ -131,8 +131,8 @@ public class ReflectUtils {
         if (obj == null) {
             throw new NullPointerException("object must not be null");
         } else if (str != null) {
-            synchronized (EU) {
-                HashMap hashMap = (HashMap) EU.get(obj);
+            synchronized (Fd) {
+                HashMap hashMap = (HashMap) Fd.get(obj);
                 if (hashMap == null) {
                     return null;
                 }

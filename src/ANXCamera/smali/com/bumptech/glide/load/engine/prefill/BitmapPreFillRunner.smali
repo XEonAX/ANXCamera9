@@ -33,7 +33,7 @@
 
 
 # instance fields
-.field private dp:Z
+.field private dq:Z
 
 .field private final handler:Landroid/os/Handler;
 
@@ -435,7 +435,7 @@
 
     .line 143
     :cond_3
-    iget-boolean v0, p0, Lcom/bumptech/glide/load/engine/prefill/BitmapPreFillRunner;->dp:Z
+    iget-boolean v0, p0, Lcom/bumptech/glide/load/engine/prefill/BitmapPreFillRunner;->dq:Z
 
     if-nez v0, :cond_4
 
@@ -464,7 +464,7 @@
     .line 95
     const/4 v0, 0x1
 
-    iput-boolean v0, p0, Lcom/bumptech/glide/load/engine/prefill/BitmapPreFillRunner;->dp:Z
+    iput-boolean v0, p0, Lcom/bumptech/glide/load/engine/prefill/BitmapPreFillRunner;->dq:Z
 
     .line 96
     return-void

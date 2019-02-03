@@ -8,7 +8,7 @@
 
 # annotations
 .annotation system Ldalvik/annotation/EnclosingMethod;
-    value = Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;->alphaOutZoomButtonAndSlideView()V
+    value = Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;->hideSlideView()V
 .end annotation
 
 .annotation system Ldalvik/annotation/InnerClass;
@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;)V
     .locals 0
 
-    .line 676
+    .line 736
     iput-object p1, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$7;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -43,17 +43,17 @@
         }
     .end annotation
 
-    .line 679
+    .line 739
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$7;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
     const/4 v1, 0x0
 
-    invoke-static {v0, v1}, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;->access$1402(Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;Z)Z
+    invoke-static {v0, v1}, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;->access$1302(Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;Z)Z
 
-    .line 680
+    .line 740
     iget-object v0, p0, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust$7;->this$0:Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;
 
-    invoke-static {v0}, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;->access$1500(Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;)Landroid/view/ViewGroup;
+    invoke-static {v0}, Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;->access$1400(Lcom/android/camera/fragment/dual/FragmentDualCameraAdjust;)Landroid/view/ViewGroup;
 
     move-result-object v0
 
@@ -61,6 +61,6 @@
 
     invoke-virtual {v0, v1}, Landroid/view/ViewGroup;->setVisibility(I)V
 
-    .line 681
+    .line 741
     return-void
 .end method

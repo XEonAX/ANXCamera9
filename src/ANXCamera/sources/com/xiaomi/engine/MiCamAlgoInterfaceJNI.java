@@ -31,7 +31,7 @@ class MiCamAlgoInterfaceJNI {
 
     static {
         try {
-            Log.e(TAG, "start loading mia_mpbase");
+            Log.e(TAG, "start loading com.xiaomi.camera.algojni");
             System.loadLibrary(LIB_NAME);
             Log.d(TAG, "static initializer: loadLibrary com.xiaomi.camera.algojni");
         } catch (Throwable e) {

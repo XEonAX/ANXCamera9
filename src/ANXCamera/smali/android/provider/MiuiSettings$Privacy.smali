@@ -22,20 +22,20 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
-    .line 6825
+    .line 6852
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     return-void
 .end method
 
 .method public static isEnabled(Landroid/content/Context;Ljava/lang/String;)Z
-    .locals 2
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "key"    # Ljava/lang/String;
 
-    .line 6841
+    .line 6868
     const-string/jumbo v0, "security"
 
     invoke-virtual {p0, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
@@ -44,7 +44,7 @@
 
     check-cast v0, Lmiui/security/SecurityManager;
 
-    .line 6842
+    .line 6869
     .local v0, "securityManager":Lmiui/security/SecurityManager;
     invoke-virtual {v0, p1}, Lmiui/security/SecurityManager;->isAppPrivacyEnabled(Ljava/lang/String;)Z
 
@@ -54,12 +54,12 @@
 .end method
 
 .method public static setEnabled(Landroid/content/Context;Ljava/lang/String;Z)V
-    .locals 1
+    .registers 4
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "key"    # Ljava/lang/String;
     .param p2, "enabled"    # Z
 
-    .line 6833
+    .line 6860
     const-string/jumbo v0, "security"
 
     invoke-virtual {p0, v0}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
@@ -68,10 +68,10 @@
 
     check-cast v0, Lmiui/security/SecurityManager;
 
-    .line 6834
+    .line 6861
     .local v0, "securityManager":Lmiui/security/SecurityManager;
     invoke-virtual {v0, p1, p2}, Lmiui/security/SecurityManager;->setAppPrivacyStatus(Ljava/lang/String;Z)V
 
-    .line 6835
+    .line 6862
     return-void
 .end method

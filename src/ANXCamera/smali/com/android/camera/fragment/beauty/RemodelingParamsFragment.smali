@@ -48,9 +48,9 @@
 
     sget-object v3, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->FACE_3D_SHRINK_FACE_RATIO:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
-    const v4, 0x7f02015b
+    const v4, 0x7f02017e
 
-    const v5, 0x7f0b01d1
+    const v5, 0x7f0901d8
 
     invoke-direct {v2, v4, v5, v3}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(IILcom/android/camera/fragment/beauty/CameraBeautyParameterType;)V
 
@@ -65,9 +65,9 @@
 
     sget-object v3, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->FACE_3D_ENLARGE_EYE_RATIO:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
-    const v4, 0x7f020158
+    const v4, 0x7f02017b
 
-    const v5, 0x7f0b01d0
+    const v5, 0x7f0901d7
 
     invoke-direct {v2, v4, v5, v3}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(IILcom/android/camera/fragment/beauty/CameraBeautyParameterType;)V
 
@@ -82,9 +82,9 @@
 
     sget-object v3, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->FACE_3D_NOSE_RATIO:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
-    const v4, 0x7f020164
+    const v4, 0x7f020187
 
-    const v5, 0x7f0b01d2
+    const v5, 0x7f0901d9
 
     invoke-direct {v2, v4, v5, v3}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(IILcom/android/camera/fragment/beauty/CameraBeautyParameterType;)V
 
@@ -99,9 +99,9 @@
 
     sget-object v3, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->FACE_3D_RISORIUS_RATIO:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
-    const v4, 0x7f020166
+    const v4, 0x7f020189
 
-    const v5, 0x7f0b01d3
+    const v5, 0x7f0901da
 
     invoke-direct {v2, v4, v5, v3}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(IILcom/android/camera/fragment/beauty/CameraBeautyParameterType;)V
 
@@ -116,9 +116,9 @@
 
     sget-object v3, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->FACE_3D_LIPS_RATIO:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
-    const v4, 0x7f02015f
+    const v4, 0x7f020182
 
-    const v5, 0x7f0b01d4
+    const v5, 0x7f0901db
 
     invoke-direct {v2, v4, v5, v3}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(IILcom/android/camera/fragment/beauty/CameraBeautyParameterType;)V
 
@@ -133,9 +133,9 @@
 
     sget-object v3, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->FACE_3D_CHIN_RATIO:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
-    const v4, 0x7f020154
+    const v4, 0x7f020178
 
-    const v5, 0x7f0b01d5
+    const v5, 0x7f0901dc
 
     invoke-direct {v2, v4, v5, v3}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(IILcom/android/camera/fragment/beauty/CameraBeautyParameterType;)V
 
@@ -150,9 +150,9 @@
 
     sget-object v3, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->FACE_3D_NECK_RATIO:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
-    const v4, 0x7f020163
+    const v4, 0x7f020186
 
-    const v5, 0x7f0b01d6
+    const v5, 0x7f0901dd
 
     invoke-direct {v2, v4, v5, v3}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(IILcom/android/camera/fragment/beauty/CameraBeautyParameterType;)V
 
@@ -167,9 +167,9 @@
 
     sget-object v3, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->FACE_3D_SMILE_RATIO:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
-    const v4, 0x7f020168
+    const v4, 0x7f02018b
 
-    const v5, 0x7f0b01d7
+    const v5, 0x7f0901de
 
     invoke-direct {v2, v4, v5, v3}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(IILcom/android/camera/fragment/beauty/CameraBeautyParameterType;)V
 
@@ -184,9 +184,9 @@
 
     sget-object v3, Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;->FACE_3D_SLIM_NOSE_RATIO:Lcom/android/camera/fragment/beauty/CameraBeautyParameterType;
 
-    const v4, 0x7f020169
+    const v4, 0x7f02018c
 
-    const v5, 0x7f0b01d8
+    const v5, 0x7f0901df
 
     invoke-direct {v2, v4, v5, v3}, Lcom/android/camera/fragment/beauty/MakeupSingleCheckAdapter$MakeupItem;-><init>(IILcom/android/camera/fragment/beauty/CameraBeautyParameterType;)V
 

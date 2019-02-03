@@ -47,8 +47,23 @@
     return-void
 .end method
 
+.method static synthetic access$000(Lorg/json/JSONObject;)V
+    .locals 0
+
+    .line 23
+    invoke-static {p0}, Lcom/ss/android/ttve/monitor/TEMonitor;->monitorVELog(Lorg/json/JSONObject;)V
+
+    return-void
+.end method
+
 .method public static clear()V
     .locals 0
+
+    .line 76
+    invoke-static {}, Lcom/ss/android/ttve/monitor/TEMonitorInvoker;->nativeReset()V
+
+    .line 77
+    invoke-static {}, Lcom/ss/android/medialib/log/VEMonitor;->clear()V
 
     .line 78
     return-void
@@ -77,15 +92,62 @@
 .end method
 
 .method private static getIsComplete(Lorg/json/JSONObject;)I
-    .locals 0
+    .locals 3
 
-    .line 317
+    .line 335
+    const/4 v0, 0x0
+
+    :try_start_0
+    const-string v1, "completed"
+
+    invoke-virtual {p0, v1}, Lorg/json/JSONObject;->has(Ljava/lang/String;)Z
+
+    move-result v1
+
+    if-eqz v1, :cond_0
+
+    const-string v1, "completed"
+
+    .line 336
+    invoke-virtual {p0, v1}, Lorg/json/JSONObject;->getInt(Ljava/lang/String;)I
+
+    move-result p0
+    :try_end_0
+    .catch Lorg/json/JSONException; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 342
+    move v0, p0
+
+    goto :goto_0
+
+    .line 336
+    :cond_0
     nop
 
-    .line 327
-    const/4 p0, 0x0
+    .line 342
+    :goto_0
+    goto :goto_1
 
-    return p0
+    .line 338
+    :catch_0
+    move-exception p0
+
+    .line 339
+    const-string v1, "TEMonitor"
+
+    const-string v2, "get complete filed error!"
+
+    invoke-static {v1, v2}, Lcom/ss/android/ttve/common/TELogUtil;->e(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 340
+    nop
+
+    .line 341
+    invoke-virtual {p0}, Lorg/json/JSONException;->printStackTrace()V
+
+    .line 343
+    :goto_1
+    return v0
 .end method
 
 .method public static getUserId()Ljava/lang/String;
@@ -100,13 +162,59 @@
 .end method
 
 .method public static init()V
-    .locals 0
+    .locals 2
 
-    .line 49
+    .line 41
+    invoke-static {}, Lcom/ss/android/vesdk/runtime/VERuntime;->getInstance()Lcom/ss/android/vesdk/runtime/VERuntime;
+
+    move-result-object v0
+
+    invoke-virtual {v0}, Lcom/ss/android/vesdk/runtime/VERuntime;->getContext()Landroid/content/Context;
+
+    move-result-object v0
+
+    const/4 v1, 0x0
+
+    invoke-static {v0, v1, v1, v1}, Lcom/ss/android/ttve/monitor/MonitorUtils;->init(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 42
+    invoke-static {}, Lcom/ss/android/ttve/monitor/TEMonitorInvoker;->nativeInit()V
+
+    .line 44
+    new-instance v0, Lcom/ss/android/ttve/monitor/TEMonitor$1;
+
+    invoke-direct {v0}, Lcom/ss/android/ttve/monitor/TEMonitor$1;-><init>()V
+
+    invoke-static {v0}, Lcom/ss/android/medialib/log/VEMonitor;->register(Lcom/ss/android/medialib/log/IMonitor;)V
+
+    .line 50
     return-void
 .end method
 
 .method public static monitorTELog(Ljava/lang/String;Ljava/lang/String;F)Z
+    .locals 1
+
+    .line 241
+    new-instance v0, Ljava/util/HashMap;
+
+    invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
+
+    .line 242
+    invoke-static {p2}, Ljava/lang/Float;->valueOf(F)Ljava/lang/Float;
+
+    move-result-object p2
+
+    invoke-interface {v0, p1, p2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+
+    .line 243
+    invoke-static {p0, p1, v0}, Lcom/ss/android/ttve/monitor/TEMonitor;->monitorTELog(Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)Z
+
+    move-result p0
+
+    return p0
+.end method
+
+.method public static monitorTELog(Ljava/lang/String;Ljava/lang/String;J)Z
     .locals 1
 
     .line 226
@@ -115,7 +223,7 @@
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
     .line 227
-    invoke-static {p2}, Ljava/lang/Float;->valueOf(F)Ljava/lang/Float;
+    invoke-static {p2, p3}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
 
     move-result-object p2
 
@@ -129,41 +237,18 @@
     return p0
 .end method
 
-.method public static monitorTELog(Ljava/lang/String;Ljava/lang/String;J)Z
-    .locals 1
-
-    .line 211
-    new-instance v0, Ljava/util/HashMap;
-
-    invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
-
-    .line 212
-    invoke-static {p2, p3}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
-
-    move-result-object p2
-
-    invoke-interface {v0, p1, p2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
-
-    .line 213
-    invoke-static {p0, p1, v0}, Lcom/ss/android/ttve/monitor/TEMonitor;->monitorTELog(Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)Z
-
-    move-result p0
-
-    return p0
-.end method
-
 .method public static monitorTELog(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Z
     .locals 1
 
-    .line 241
+    .line 256
     new-instance v0, Ljava/util/HashMap;
 
     invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
 
-    .line 242
+    .line 257
     invoke-interface {v0, p1, p2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
 
-    .line 243
+    .line 258
     invoke-static {p0, p1, v0}, Lcom/ss/android/ttve/monitor/TEMonitor;->monitorTELog(Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)Z
 
     move-result p0
@@ -174,7 +259,7 @@
 .method public static monitorTELog(Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)Z
     .locals 1
 
-    .line 255
+    .line 270
     sget-object v0, Lcom/ss/android/ttve/monitor/TEMonitor;->sMonitor:Ljava/lang/ref/WeakReference;
 
     invoke-static {v0, p0, p1, p2}, Lcom/ss/android/ttve/monitor/TEMonitor;->monitorTELog(Ljava/lang/ref/WeakReference;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)Z
@@ -185,7 +270,7 @@
 .end method
 
 .method private static monitorTELog(Ljava/lang/ref/WeakReference;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)Z
-    .locals 0
+    .locals 2
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -199,71 +284,123 @@
         }
     .end annotation
 
-    .line 263
+    .line 278
+    const/4 v0, 0x0
+
     if-nez p0, :cond_0
 
-    .line 264
+    .line 279
     const-string p0, "TEMonitor"
 
     const-string p1, "No monitor callback, return"
 
     invoke-static {p0, p1}, Lcom/ss/android/ttve/common/TELogUtil;->d(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 265
-    const/4 p0, 0x0
+    .line 280
+    return v0
 
-    return p0
+    .line 284
+    :cond_0
+    invoke-static {}, Lcom/ss/android/medialib/log/VEMonitor;->getMap()Ljava/util/Map;
+
+    move-result-object v1
+
+    .line 286
+    invoke-interface {p3, v1}, Ljava/util/Map;->putAll(Ljava/util/Map;)V
 
     .line 288
-    :cond_0
+    new-instance v1, Lorg/json/JSONObject;
+
+    invoke-direct {v1}, Lorg/json/JSONObject;-><init>()V
+
+    .line 290
+    :try_start_0
+    invoke-static {p3, v1}, Lcom/ss/android/ttve/monitor/TEMonitor;->putAll(Ljava/util/Map;Lorg/json/JSONObject;)V
+
+    .line 292
+    invoke-static {p2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result p3
+
+    if-nez p3, :cond_1
+
+    .line 293
+    const-string p3, "service"
+
+    invoke-virtual {v1, p3, p2}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
+    :try_end_0
+    .catch Lorg/json/JSONException; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 298
+    :cond_1
+    nop
+
+    .line 301
+    invoke-static {p0, p1, v1}, Lcom/ss/android/ttve/monitor/TEMonitor;->reportMonitor(Ljava/lang/ref/WeakReference;Ljava/lang/String;Lorg/json/JSONObject;)V
+
+    .line 303
     const/4 p0, 0x1
 
     return p0
+
+    .line 295
+    :catch_0
+    move-exception p0
+
+    .line 296
+    const-string p0, "TEMonitor"
+
+    const-string p1, "No monitor callback, skip"
+
+    invoke-static {p0, p1}, Lcom/ss/android/ttve/common/TELogUtil;->d(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 297
+    return v0
 .end method
 
 .method private static monitorVELog(Lorg/json/JSONObject;)V
     .locals 3
 
-    .line 296
+    .line 312
     invoke-static {}, Lcom/ss/android/ttve/monitor/TEMonitorInvoker;->nativeGetMap()Ljava/util/Map;
 
     move-result-object v0
 
-    .line 299
+    .line 315
     :try_start_0
     invoke-static {v0, p0}, Lcom/ss/android/ttve/monitor/TEMonitor;->putAll(Ljava/util/Map;Lorg/json/JSONObject;)V
     :try_end_0
     .catch Lorg/json/JSONException; {:try_start_0 .. :try_end_0} :catch_0
 
-    .line 303
+    .line 319
     goto :goto_0
 
-    .line 300
+    .line 316
     :catch_0
     move-exception v0
 
-    .line 301
+    .line 317
     const-string v1, "TEMonitor"
 
     const-string v2, "merge monitor logs error"
 
     invoke-static {v1, v2}, Lcom/ss/android/ttve/common/TELogUtil;->e(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 302
+    .line 318
     invoke-virtual {v0}, Lorg/json/JSONException;->printStackTrace()V
 
-    .line 305
+    .line 321
     :goto_0
     invoke-static {p0}, Lcom/ss/android/ttve/monitor/TEMonitor;->getIsComplete(Lorg/json/JSONObject;)I
 
-    .line 307
+    .line 323
     sget-object v0, Lcom/ss/android/ttve/monitor/TEMonitor;->sMonitor:Ljava/lang/ref/WeakReference;
 
     const-string v1, "sdk_video_edit_compose"
 
     invoke-static {v0, v1, p0}, Lcom/ss/android/ttve/monitor/TEMonitor;->reportMonitor(Ljava/lang/ref/WeakReference;Ljava/lang/String;Lorg/json/JSONObject;)V
 
-    .line 308
+    .line 324
     return-void
 .end method
 
@@ -351,6 +488,39 @@
     return-void
 .end method
 
+.method public static perfString(Ljava/lang/String;Ljava/lang/String;)V
+    .locals 1
+
+    .line 209
+    invoke-static {p0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+
+    move-result v0
+
+    if-eqz v0, :cond_0
+
+    .line 210
+    const-string p0, "TEMonitor"
+
+    const-string p1, "perfString: key is null"
+
+    invoke-static {p0, p1}, Lcom/ss/android/ttve/common/TELogUtil;->w(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 211
+    return-void
+
+    .line 213
+    :cond_0
+    if-nez p1, :cond_1
+
+    const-string p1, ""
+
+    :cond_1
+    invoke-static {p0, p1}, Lcom/ss/android/ttve/monitor/TEMonitorInvoker;->nativePerfString(Ljava/lang/String;Ljava/lang/String;)V
+
+    .line 214
+    return-void
+.end method
+
 .method private static putAll(Ljava/util/Map;Lorg/json/JSONObject;)V
     .locals 5
     .annotation system Ldalvik/annotation/Throws;
@@ -359,7 +529,7 @@
         }
     .end annotation
 
-    .line 358
+    .line 388
     invoke-interface {p0}, Ljava/util/Map;->keySet()Ljava/util/Set;
 
     move-result-object v0
@@ -373,26 +543,44 @@
 
     move-result v1
 
-    if-eqz v1, :cond_2
+    if-eqz v1, :cond_3
 
     invoke-interface {v0}, Ljava/util/Iterator;->next()Ljava/lang/Object;
 
     move-result-object v1
 
-    .line 359
+    .line 389
     check-cast v1, Ljava/lang/String;
 
-    .line 364
+    .line 391
+    const-string v2, "iesve_"
+
+    invoke-virtual {v1, v2}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    .line 392
+    invoke-static {v1}, Lcom/ss/android/medialib/log/VEMonitorKeys;->getType(Ljava/lang/String;)I
+
+    move-result v2
+
+    goto :goto_1
+
+    .line 394
+    :cond_0
     invoke-static {v1}, Lcom/ss/android/ttve/monitor/TEMonitorKeys;->getType(Ljava/lang/String;)I
 
     move-result v2
 
-    .line 366
+    .line 396
+    :goto_1
     sget v3, Lcom/ss/android/ttve/monitor/TEMonitorKeys;->TYPE_INT:I
 
-    if-ne v2, v3, :cond_0
+    if-ne v2, v3, :cond_1
 
-    .line 368
+    .line 398
     :try_start_0
     invoke-interface {p0, v1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -404,18 +592,18 @@
 
     move-result v2
 
-    .line 369
+    .line 399
     invoke-virtual {p1, v1, v2}, Lorg/json/JSONObject;->put(Ljava/lang/String;I)Lorg/json/JSONObject;
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
 
-    goto :goto_1
+    goto :goto_2
 
-    .line 370
+    .line 400
     :catch_0
     move-exception v2
 
-    .line 371
+    .line 401
     const-string v2, "TEMonitor"
 
     new-instance v3, Ljava/lang/StringBuilder;
@@ -438,17 +626,17 @@
 
     invoke-static {v2, v1}, Lcom/ss/android/ttve/common/TELogUtil;->d(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 372
-    :goto_1
-    goto :goto_3
+    .line 402
+    :goto_2
+    goto :goto_4
 
-    .line 374
-    :cond_0
+    .line 404
+    :cond_1
     sget v3, Lcom/ss/android/ttve/monitor/TEMonitorKeys;->TYPE_DOUBLE:I
 
-    if-ne v2, v3, :cond_1
+    if-ne v2, v3, :cond_2
 
-    .line 376
+    .line 406
     :try_start_1
     invoke-interface {p0, v1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
@@ -460,52 +648,49 @@
 
     move-result v2
 
-    .line 377
+    .line 407
     float-to-double v2, v2
 
     invoke-virtual {p1, v1, v2, v3}, Lorg/json/JSONObject;->put(Ljava/lang/String;D)Lorg/json/JSONObject;
     :try_end_1
     .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
 
-    goto :goto_2
+    goto :goto_3
 
-    .line 378
+    .line 408
     :catch_1
     move-exception v1
 
-    .line 379
+    .line 409
     const-string v1, "TEMonitor"
 
     const-string v2, "Parse float error"
 
     invoke-static {v1, v2}, Lcom/ss/android/ttve/common/TELogUtil;->d(Ljava/lang/String;Ljava/lang/String;)V
 
-    .line 380
-    :goto_2
-    goto :goto_3
+    .line 410
+    :goto_3
+    goto :goto_4
 
-    .line 383
-    :cond_1
+    .line 413
+    :cond_2
     invoke-interface {p0, v1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
 
     move-result-object v2
 
     invoke-virtual {p1, v1, v2}, Lorg/json/JSONObject;->put(Ljava/lang/String;Ljava/lang/Object;)Lorg/json/JSONObject;
 
-    .line 385
-    :goto_3
+    .line 415
+    :goto_4
     goto :goto_0
 
-    .line 386
-    :cond_2
+    .line 416
+    :cond_3
     return-void
 .end method
 
 .method public static register(Lcom/ss/android/ttve/monitor/IMonitor;)V
     .locals 1
-
-    .line 62
-    invoke-static {}, Lcom/ss/android/ttve/monitor/TEMonitorInvoker;->nativeInit()V
 
     .line 63
     new-instance v0, Ljava/lang/ref/WeakReference;
@@ -521,15 +706,15 @@
 .method public static report(I)V
     .locals 0
 
-    .line 58
+    .line 59
     invoke-static {p0}, Lcom/ss/android/ttve/monitor/TEMonitorInvoker;->nativeMonitorPerf(I)V
 
-    .line 59
+    .line 60
     return-void
 .end method
 
 .method private static reportMonitor(Ljava/lang/ref/WeakReference;Ljava/lang/String;Lorg/json/JSONObject;)V
-    .locals 2
+    .locals 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -542,27 +727,72 @@
         }
     .end annotation
 
-    .line 339
+    .line 358
+    nop
+
+    .line 359
+    const-string v0, "sdk_video_edit_compose"
+
+    .line 360
+    if-eqz p2, :cond_1
+
+    .line 361
     invoke-static {p2}, Lcom/ss/android/ttve/monitor/TEMonitor;->getIsComplete(Lorg/json/JSONObject;)I
 
-    move-result v0
+    move-result v1
 
-    .line 341
-    const-string v1, "sdk_video_edit_compose"
+    .line 363
+    :try_start_0
+    const-string v2, "service"
 
-    invoke-static {v1, v0, p2}, Lcom/ss/android/ttve/monitor/MonitorUtils;->monitorStatusRate(Ljava/lang/String;ILorg/json/JSONObject;)V
+    invoke-virtual {p2, v2}, Lorg/json/JSONObject;->has(Ljava/lang/String;)Z
 
-    .line 342
-    if-eqz p0, :cond_0
+    move-result v2
+
+    if-eqz v2, :cond_0
+
+    .line 364
+    const-string v2, "service"
+
+    invoke-virtual {p2, v2}, Lorg/json/JSONObject;->getString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v2
+    :try_end_0
+    .catch Lorg/json/JSONException; {:try_start_0 .. :try_end_0} :catch_0
+
+    .line 368
+    move-object v0, v2
+
+    :cond_0
+    goto :goto_0
+
+    .line 366
+    :catch_0
+    move-exception v2
+
+    .line 367
+    invoke-virtual {v2}, Lorg/json/JSONException;->printStackTrace()V
+
+    goto :goto_0
+
+    .line 371
+    :cond_1
+    const/4 v1, 0x0
+
+    :goto_0
+    invoke-static {v0, v1, p2}, Lcom/ss/android/ttve/monitor/MonitorUtils;->monitorStatusRate(Ljava/lang/String;ILorg/json/JSONObject;)V
+
+    .line 372
+    if-eqz p0, :cond_2
 
     invoke-virtual {p0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
 
     move-result-object v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_2
 
-    .line 345
-    :try_start_0
+    .line 375
+    :try_start_1
     invoke-virtual {p0}, Ljava/lang/ref/WeakReference;->get()Ljava/lang/Object;
 
     move-result-object p0
@@ -570,26 +800,26 @@
     check-cast p0, Lcom/ss/android/ttve/monitor/IMonitor;
 
     invoke-interface {p0, p1, p2}, Lcom/ss/android/ttve/monitor/IMonitor;->monitorLog(Ljava/lang/String;Lorg/json/JSONObject;)V
-    :try_end_0
-    .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_0
+    :try_end_1
+    .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
 
-    .line 348
-    goto :goto_0
+    .line 378
+    goto :goto_1
 
-    .line 346
-    :catch_0
+    .line 376
+    :catch_1
     move-exception p0
 
-    .line 347
+    .line 377
     const-string p1, "TEMonitor"
 
     const-string p2, "Something happened when monitor log"
 
     invoke-static {p1, p2, p0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
 
-    .line 350
-    :cond_0
-    :goto_0
+    .line 380
+    :cond_2
+    :goto_1
     return-void
 .end method
 

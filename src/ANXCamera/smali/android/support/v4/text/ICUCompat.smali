@@ -20,7 +20,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
     .line 53
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
@@ -29,7 +29,7 @@
     .local v0, "version":I
     const/16 v1, 0x15
 
-    if-lt v0, v1, :cond_0
+    if-lt v0, v1, :cond_e
 
     .line 55
     new-instance v1, Landroid/support/v4/text/ICUCompat$ICUCompatImplLollipop;
@@ -38,13 +38,13 @@
 
     sput-object v1, Landroid/support/v4/text/ICUCompat;->IMPL:Landroid/support/v4/text/ICUCompat$ICUCompatImpl;
 
-    goto :goto_0
+    goto :goto_21
 
     .line 56
-    :cond_0
+    :cond_e
     const/16 v1, 0xe
 
-    if-lt v0, v1, :cond_1
+    if-lt v0, v1, :cond_1a
 
     .line 57
     new-instance v1, Landroid/support/v4/text/ICUCompat$ICUCompatImplIcs;
@@ -53,10 +53,10 @@
 
     sput-object v1, Landroid/support/v4/text/ICUCompat;->IMPL:Landroid/support/v4/text/ICUCompat$ICUCompatImpl;
 
-    goto :goto_0
+    goto :goto_21
 
     .line 59
-    :cond_1
+    :cond_1a
     new-instance v1, Landroid/support/v4/text/ICUCompat$ICUCompatImplBase;
 
     invoke-direct {v1}, Landroid/support/v4/text/ICUCompat$ICUCompatImplBase;-><init>()V
@@ -65,12 +65,12 @@
 
     .line 61
     .end local v0    # "version":I
-    :goto_0
+    :goto_21
     return-void
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 23
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -80,7 +80,7 @@
 .end method
 
 .method public static maximizeAndGetScript(Ljava/util/Locale;)Ljava/lang/String;
-    .locals 1
+    .registers 2
     .param p0, "locale"    # Ljava/util/Locale;
 
     .line 87

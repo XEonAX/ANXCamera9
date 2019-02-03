@@ -140,11 +140,11 @@
     </style>
     <style name="ZoomButtonDigitsTextStyle">
         <item name="android:textSize">@dimen/zoom_button_digits_textSize</item>
-        <item name="android:textColor">@color/white_alpha_cc</item>
+        <item name="android:textColor">@color/white</item>
     </style>
     <style name="ZoomButtonXTextStyle">
         <item name="android:textSize">@dimen/zoom_button_x_textSize</item>
-        <item name="android:textColor">@color/white_alpha_cc</item>
+        <item name="android:textColor">@color/white</item>
     </style>
     <style name="ZoomPopupDigitsTextStyle">
         <item name="android:textSize">@dimen/zoom_popup_digits_textSize</item>
@@ -201,6 +201,10 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
     <style name="LensDirtyDetectDialogFragment" parent="@style/DialogFragmentFullScreen">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+    <style name="TTMusicDialogFragment" parent="@style/DialogFragmentFullScreen">
         <item name="android:windowIsFloating">false</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>

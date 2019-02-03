@@ -187,7 +187,7 @@
     .end annotation
 
     .line 38
-    invoke-static {}, Lcom/mi/config/b;->hA()Z
+    invoke-static {}, Lcom/mi/config/b;->hR()Z
 
     move-result v0
 

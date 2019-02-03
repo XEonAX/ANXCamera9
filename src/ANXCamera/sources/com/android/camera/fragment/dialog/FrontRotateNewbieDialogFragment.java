@@ -10,9 +10,10 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.aeonax.camera.R;
+import com.android.camera.R;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.BackStack;
+import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
 import miui.view.animation.CubicEaseInOutInterpolator;
 
 public class FrontRotateNewbieDialogFragment extends BaseDialogFragment {
@@ -65,11 +66,11 @@ public class FrontRotateNewbieDialogFragment extends BaseDialogFragment {
 
     public void onCancel(DialogInterface dialogInterface) {
         super.onCancel(dialogInterface);
-        animateOut(400);
+        animateOut(MonitorCommonConstants.MAX_COUNT_UPLOAD_SINGLE_TIME);
     }
 
     public boolean onBackEvent(int i) {
-        animateOut(400);
+        animateOut(MonitorCommonConstants.MAX_COUNT_UPLOAD_SINGLE_TIME);
         return true;
     }
 

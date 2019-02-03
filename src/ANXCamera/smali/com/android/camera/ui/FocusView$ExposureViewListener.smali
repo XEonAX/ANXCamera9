@@ -21,9 +21,6 @@
 .method public abstract isNeedHapticFeedback()Z
 .end method
 
-.method public abstract isNeedMute()Z
-.end method
-
 .method public abstract isShowAeAfLockIndicator()Z
 .end method
 

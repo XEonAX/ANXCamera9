@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 23
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static combineMeasuredStates(II)I
-    .locals 1
+    .registers 3
     .param p0, "curState"    # I
     .param p1, "newState"    # I
 
@@ -27,7 +27,7 @@
 .end method
 
 .method public static getAlpha(Landroid/view/View;)F
-    .locals 1
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
 
     .line 29
@@ -39,7 +39,7 @@
 .end method
 
 .method static getFrameTime()J
-    .locals 2
+    .registers 2
 
     .line 25
     invoke-static {}, Landroid/animation/ValueAnimator;->getFrameDelay()J
@@ -50,7 +50,7 @@
 .end method
 
 .method public static getLayerType(Landroid/view/View;)I
-    .locals 1
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
 
     .line 37
@@ -62,7 +62,7 @@
 .end method
 
 .method public static getMeasuredHeightAndState(Landroid/view/View;)I
-    .locals 1
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
 
     .line 49
@@ -74,7 +74,7 @@
 .end method
 
 .method public static getMeasuredState(Landroid/view/View;)I
-    .locals 1
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
 
     .line 53
@@ -86,7 +86,7 @@
 .end method
 
 .method public static getMeasuredWidthAndState(Landroid/view/View;)I
-    .locals 1
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
 
     .line 45
@@ -98,7 +98,7 @@
 .end method
 
 .method public static getPivotX(Landroid/view/View;)F
-    .locals 1
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
 
     .line 141
@@ -110,7 +110,7 @@
 .end method
 
 .method public static getPivotY(Landroid/view/View;)F
-    .locals 1
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
 
     .line 145
@@ -122,7 +122,7 @@
 .end method
 
 .method public static getRotation(Landroid/view/View;)F
-    .locals 1
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
 
     .line 73
@@ -134,7 +134,7 @@
 .end method
 
 .method public static getRotationX(Landroid/view/View;)F
-    .locals 1
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
 
     .line 77
@@ -146,7 +146,7 @@
 .end method
 
 .method public static getRotationY(Landroid/view/View;)F
-    .locals 1
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
 
     .line 81
@@ -158,7 +158,7 @@
 .end method
 
 .method public static getScaleX(Landroid/view/View;)F
-    .locals 1
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
 
     .line 85
@@ -170,7 +170,7 @@
 .end method
 
 .method public static getScaleY(Landroid/view/View;)F
-    .locals 1
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
 
     .line 89
@@ -182,7 +182,7 @@
 .end method
 
 .method public static getTranslationX(Landroid/view/View;)F
-    .locals 1
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
 
     .line 57
@@ -194,7 +194,7 @@
 .end method
 
 .method public static getTranslationY(Landroid/view/View;)F
-    .locals 1
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
 
     .line 61
@@ -206,7 +206,7 @@
 .end method
 
 .method public static getX(Landroid/view/View;)F
-    .locals 1
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
 
     .line 65
@@ -218,7 +218,7 @@
 .end method
 
 .method public static getY(Landroid/view/View;)F
-    .locals 1
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
 
     .line 69
@@ -230,7 +230,7 @@
 .end method
 
 .method public static jumpDrawablesToCurrentState(Landroid/view/View;)V
-    .locals 0
+    .registers 1
     .param p0, "view"    # Landroid/view/View;
 
     .line 149
@@ -241,7 +241,7 @@
 .end method
 
 .method public static resolveSizeAndState(III)I
-    .locals 1
+    .registers 4
     .param p0, "size"    # I
     .param p1, "measureSpec"    # I
     .param p2, "childMeasuredState"    # I
@@ -255,7 +255,7 @@
 .end method
 
 .method public static setActivated(Landroid/view/View;Z)V
-    .locals 0
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
     .param p1, "activated"    # Z
 
@@ -267,7 +267,7 @@
 .end method
 
 .method public static setAlpha(Landroid/view/View;F)V
-    .locals 0
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -279,7 +279,7 @@
 .end method
 
 .method public static setLayerType(Landroid/view/View;ILandroid/graphics/Paint;)V
-    .locals 0
+    .registers 3
     .param p0, "view"    # Landroid/view/View;
     .param p1, "layerType"    # I
     .param p2, "paint"    # Landroid/graphics/Paint;
@@ -292,7 +292,7 @@
 .end method
 
 .method public static setPivotX(Landroid/view/View;F)V
-    .locals 0
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -304,7 +304,7 @@
 .end method
 
 .method public static setPivotY(Landroid/view/View;F)V
-    .locals 0
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -316,7 +316,7 @@
 .end method
 
 .method public static setRotation(Landroid/view/View;F)V
-    .locals 0
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -328,7 +328,7 @@
 .end method
 
 .method public static setRotationX(Landroid/view/View;F)V
-    .locals 0
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -340,7 +340,7 @@
 .end method
 
 .method public static setRotationY(Landroid/view/View;F)V
-    .locals 0
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -352,7 +352,7 @@
 .end method
 
 .method public static setSaveFromParentEnabled(Landroid/view/View;Z)V
-    .locals 0
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
     .param p1, "enabled"    # Z
 
@@ -364,7 +364,7 @@
 .end method
 
 .method public static setScaleX(Landroid/view/View;F)V
-    .locals 0
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -376,7 +376,7 @@
 .end method
 
 .method public static setScaleY(Landroid/view/View;F)V
-    .locals 0
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -388,7 +388,7 @@
 .end method
 
 .method public static setTranslationX(Landroid/view/View;F)V
-    .locals 0
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -400,7 +400,7 @@
 .end method
 
 .method public static setTranslationY(Landroid/view/View;F)V
-    .locals 0
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -412,7 +412,7 @@
 .end method
 
 .method public static setX(Landroid/view/View;F)V
-    .locals 0
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 
@@ -424,7 +424,7 @@
 .end method
 
 .method public static setY(Landroid/view/View;F)V
-    .locals 0
+    .registers 2
     .param p0, "view"    # Landroid/view/View;
     .param p1, "value"    # F
 

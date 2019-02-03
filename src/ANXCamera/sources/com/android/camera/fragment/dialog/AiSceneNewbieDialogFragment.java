@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
-import com.aeonax.camera.R;
 import com.android.camera.Camera;
+import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.data.DataRepository;
 import com.android.camera.log.Log;
@@ -44,7 +44,7 @@ public class AiSceneNewbieDialogFragment extends BaseDialogFragment {
         return isAdded();
     }
 
-    private void adjustViewHeight(View view) {
+    protected void adjustViewHeight(View view) {
         int i = (int) (((float) getResources().getDisplayMetrics().widthPixels) / 0.75f);
         int dialogTopMargin = Util.getDialogTopMargin((Util.sWindowHeight - i) - Util.getBottomHeight(getContext().getResources()));
         MarginLayoutParams marginLayoutParams = (MarginLayoutParams) view.getLayoutParams();

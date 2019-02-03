@@ -6,15 +6,14 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.view.ViewPropertyAnimatorListener;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
-import com.aeonax.camera.R;
 import com.android.camera.CameraSettings;
+import com.android.camera.R;
 import com.android.camera.animation.FragmentAnimationFactory;
 import com.android.camera.data.DataRepository;
 import com.android.camera.fragment.beauty.BeautyEyeLightFragment;
@@ -27,6 +26,7 @@ import com.android.camera.fragment.beauty.FrontBeautyLevelFragment;
 import com.android.camera.fragment.beauty.LegacyBeautyLevelFragment;
 import com.android.camera.fragment.beauty.MenuItem;
 import com.android.camera.fragment.beauty.MiBeauty;
+import com.android.camera.log.Log;
 import com.android.camera.module.ModuleManager;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.BaseDelegate;
@@ -39,6 +39,7 @@ import com.android.camera.protocol.ModeProtocol.FaceBeautyProtocol;
 import com.android.camera.protocol.ModeProtocol.HandleBackTrace;
 import com.android.camera.protocol.ModeProtocol.MiBeautyProtocol;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
+import com.android.camera.protocol.ModeProtocol.TopAlert;
 import com.android.camera.ui.NoScrollViewPager;
 import com.mi.config.b;
 import com.miui.filtersdk.beauty.BeautyParameterType;
@@ -76,9 +77,9 @@ public class FragmentBeauty extends BaseFragment implements OnClickListener, Han
             Log.d(str, stringBuilder.toString());
             Fragment fragment = (Fragment) this.mFragmentList.get(i);
             if (fragment == null) {
-                if (b.hp()) {
+                if (b.hG()) {
                     fragment = new LegacyBeautyLevelFragment();
-                } else if (b.hA()) {
+                } else if (b.hR()) {
                     fragment = new FrontBeautyLevelFragment();
                 }
                 Log.e(BeautyParameters.TAG, "beauty pager get fragment item is null!");
@@ -112,7 +113,6 @@ public class FragmentBeauty extends BaseFragment implements OnClickListener, Han
                 if (!(BeautyParameters.isCurrentModeSupportVideoBeauty() && (cameraAction == null || cameraAction.isDoingAction()))) {
                     ((BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175)).reInitTipImage();
                 }
-                FragmentBeauty.this.showZoomTipImage();
                 FragmentBeauty.this.mRemoveFragmentBeauty = false;
             }
         }
@@ -222,20 +222,26 @@ public class FragmentBeauty extends BaseFragment implements OnClickListener, Han
         if (!(i == 163 || i == 173)) {
             switch (i) {
                 case 165:
-                case 166:
                     break;
-                default:
-                    return;
+                case 166:
+                    if (!DataRepository.dataItemFeature().fK()) {
+                        return;
+                    }
+                    break;
             }
         }
         DualController dualController = (DualController) ModeCoordinatorImpl.getInstance().getAttachProtocol(182);
-        if (dualController != null) {
+        if (!(dualController == null || CameraSettings.isFrontCamera() || CameraSettings.isUltraWideConfigOpen(this.mCurrentMode) || CameraSettings.isRearMenuUltraPixelPhotographyOn())) {
             dualController.showZoomButton();
+            TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
+            if (topAlert != null) {
+                topAlert.clearAlertStatus();
+            }
         }
     }
 
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        super.provideAnimateElement(i, list, z);
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        super.provideAnimateElement(i, list, i2);
         onBackEvent(4);
     }
 
@@ -244,7 +250,7 @@ public class FragmentBeauty extends BaseFragment implements OnClickListener, Han
         if (removeFragmentBeauty) {
             notifyTipsMargin(0);
         }
-        if (removeFragmentBeauty && this.mCurrentMode == 171) {
+        if (removeFragmentBeauty && i != 4 && this.mCurrentMode == 171) {
             BokehFNumberController bokehFNumberController = (BokehFNumberController) ModeCoordinatorImpl.getInstance().getAttachProtocol(210);
             if (bokehFNumberController != null) {
                 bokehFNumberController.showFNumberPanel();
@@ -288,12 +294,6 @@ public class FragmentBeauty extends BaseFragment implements OnClickListener, Han
     public void onPause() {
         super.onPause();
         removeFragmentBeauty(4);
-        if (this.mCurrentMode == 171) {
-            BokehFNumberController bokehFNumberController = (BokehFNumberController) ModeCoordinatorImpl.getInstance().getAttachProtocol(210);
-            if (bokehFNumberController != null) {
-                bokehFNumberController.showFNumberPanel();
-            }
-        }
     }
 
     private boolean removeFragmentBeauty(int i) {
@@ -307,10 +307,11 @@ public class FragmentBeauty extends BaseFragment implements OnClickListener, Han
     public void onDestroyView() {
         super.onDestroyView();
         notifyTipsMargin(0);
+        showZoomTipImage();
     }
 
     private void showHideEyeLighting(boolean z) {
-        if (DataRepository.dataItemFeature().fl() && CameraSettings.isSupportBeautyMakeup()) {
+        if (DataRepository.dataItemFeature().fn() && CameraSettings.isSupportBeautyMakeup()) {
             if (this.mEyeLightFragment == null) {
                 this.mEyeLightFragment = new BeautyEyeLightFragment();
             }
@@ -424,5 +425,12 @@ public class FragmentBeauty extends BaseFragment implements OnClickListener, Han
 
     public int getBeautyType() {
         return this.mMiBeautyBusiness.getBeautyType();
+    }
+
+    public boolean needViewClear() {
+        if (CameraSettings.isRearMenuUltraPixelPhotographyOn()) {
+            return true;
+        }
+        return super.needViewClear();
     }
 }

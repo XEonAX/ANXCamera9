@@ -8,36 +8,14 @@
 
 
 # instance fields
-.field private mImageQueue:Ljava/util/concurrent/LinkedBlockingQueue;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/concurrent/LinkedBlockingQueue<",
-            "Landroid/media/Image;",
-            ">;"
-        }
-    .end annotation
-.end field
-
-.field private mIsCaptureResultReady:Z
-
-.field private mIsImageReady:Z
-
-.field private mResultQueue:Ljava/util/concurrent/LinkedBlockingQueue;
-    .annotation system Ldalvik/annotation/Signature;
-        value = {
-            "Ljava/util/concurrent/LinkedBlockingQueue<",
-            "Lcom/xiaomi/protocol/ICustomCaptureResult;",
-            ">;"
-        }
-    .end annotation
-.end field
+.field private mNeedProcessImageSize:Ljava/util/concurrent/atomic/AtomicInteger;
 
 
 # direct methods
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 29
+    .line 32
     const-class v0, Lcom/xiaomi/camera/core/SingleCameraProcessor;
 
     invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
@@ -49,96 +27,115 @@
     return-void
 .end method
 
-.method public constructor <init>(Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;)V
-    .locals 1
+.method constructor <init>(Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;Z)V
+    .locals 0
 
-    .line 41
-    invoke-direct {p0, p1}, Lcom/xiaomi/camera/core/ImageProcessor;-><init>(Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;)V
+    .line 37
+    invoke-direct {p0, p1, p2}, Lcom/xiaomi/camera/core/ImageProcessor;-><init>(Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;Z)V
 
-    .line 31
-    const/4 p1, 0x0
+    .line 34
+    new-instance p1, Ljava/util/concurrent/atomic/AtomicInteger;
 
-    iput-boolean p1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mIsImageReady:Z
+    const/4 p2, 0x0
 
-    .line 32
-    iput-boolean p1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mIsCaptureResultReady:Z
+    invoke-direct {p1, p2}, Ljava/util/concurrent/atomic/AtomicInteger;-><init>(I)V
 
-    .line 42
-    new-instance p1, Ljava/util/concurrent/LinkedBlockingQueue;
+    iput-object p1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mNeedProcessImageSize:Ljava/util/concurrent/atomic/AtomicInteger;
 
-    const/16 v0, 0xa
-
-    invoke-direct {p1, v0}, Ljava/util/concurrent/LinkedBlockingQueue;-><init>(I)V
-
-    iput-object p1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mResultQueue:Ljava/util/concurrent/LinkedBlockingQueue;
-
-    .line 43
-    new-instance p1, Ljava/util/concurrent/LinkedBlockingQueue;
-
-    invoke-direct {p1, v0}, Ljava/util/concurrent/LinkedBlockingQueue;-><init>(I)V
-
-    iput-object p1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mImageQueue:Ljava/util/concurrent/LinkedBlockingQueue;
-
-    .line 44
+    .line 38
     return-void
 .end method
 
 .method static synthetic access$000()Ljava/lang/String;
     .locals 1
 
-    .line 28
+    .line 31
     sget-object v0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->TAG:Ljava/lang/String;
 
     return-object v0
 .end method
 
+.method static synthetic access$100(Lcom/xiaomi/camera/core/SingleCameraProcessor;)Ljava/util/concurrent/atomic/AtomicInteger;
+    .locals 0
+
+    .line 31
+    iget-object p0, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mNeedProcessImageSize:Ljava/util/concurrent/atomic/AtomicInteger;
+
+    return-object p0
+.end method
+
 .method private processCaptureResult(Lcom/xiaomi/protocol/ICustomCaptureResult;Landroid/media/Image;)V
-    .locals 7
+    .locals 9
 
-    .line 137
-    new-instance v6, Lcom/xiaomi/engine/FrameData;
+    .line 140
+    sget-object v0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->TAG:Ljava/lang/String;
 
-    .line 138
+    new-instance v1, Ljava/lang/StringBuilder;
+
+    invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+
+    const-string v2, "processCaptureResult: processFrame image -- "
+
+    invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1, p2}, Ljava/lang/StringBuilder;->append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+
+    invoke-virtual {v1}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+
+    move-result-object v1
+
+    invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+    .line 141
+    new-instance v0, Lcom/xiaomi/engine/FrameData;
+
+    .line 142
+    invoke-virtual {p1}, Lcom/xiaomi/protocol/ICustomCaptureResult;->getSequenceId()I
+
+    move-result v4
+
+    .line 143
     invoke-virtual {p1}, Lcom/xiaomi/protocol/ICustomCaptureResult;->getFrameNumber()J
 
-    move-result-wide v2
+    move-result-wide v5
 
+    .line 144
     invoke-virtual {p1}, Lcom/xiaomi/protocol/ICustomCaptureResult;->getResults()Landroid/os/Parcelable;
 
-    move-result-object v4
+    move-result-object v7
 
-    const/4 v1, 0x0
+    const/4 v3, 0x0
 
-    move-object v0, v6
+    move-object v2, v0
 
-    move-object v5, p2
+    move-object v8, p2
 
-    invoke-direct/range {v0 .. v5}, Lcom/xiaomi/engine/FrameData;-><init>(IJLandroid/os/Parcelable;Landroid/media/Image;)V
+    invoke-direct/range {v2 .. v8}, Lcom/xiaomi/engine/FrameData;-><init>(IIJLandroid/os/Parcelable;Landroid/media/Image;)V
 
-    .line 139
-    new-instance p1, Lcom/xiaomi/camera/core/SingleCameraProcessor$2;
+    .line 145
+    new-instance p1, Lcom/xiaomi/camera/core/SingleCameraProcessor$5;
 
-    invoke-direct {p1, p0}, Lcom/xiaomi/camera/core/SingleCameraProcessor$2;-><init>(Lcom/xiaomi/camera/core/SingleCameraProcessor;)V
+    invoke-direct {p1, p0}, Lcom/xiaomi/camera/core/SingleCameraProcessor$5;-><init>(Lcom/xiaomi/camera/core/SingleCameraProcessor;)V
 
-    invoke-virtual {v6, p1}, Lcom/xiaomi/engine/FrameData;->setFrameCallback(Lcom/xiaomi/engine/FrameData$FrameStatusCallback;)V
+    invoke-virtual {v0, p1}, Lcom/xiaomi/engine/FrameData;->setFrameCallback(Lcom/xiaomi/engine/FrameData$FrameStatusCallback;)V
 
-    .line 150
+    .line 156
     iget-object p1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mTaskSession:Lcom/xiaomi/engine/TaskSession;
 
-    new-instance p2, Lcom/xiaomi/camera/core/SingleCameraProcessor$3;
+    new-instance p2, Lcom/xiaomi/camera/core/SingleCameraProcessor$6;
 
-    invoke-direct {p2, p0}, Lcom/xiaomi/camera/core/SingleCameraProcessor$3;-><init>(Lcom/xiaomi/camera/core/SingleCameraProcessor;)V
+    invoke-direct {p2, p0}, Lcom/xiaomi/camera/core/SingleCameraProcessor$6;-><init>(Lcom/xiaomi/camera/core/SingleCameraProcessor;)V
 
-    invoke-virtual {p1, v6, p2}, Lcom/xiaomi/engine/TaskSession;->processFrame(Lcom/xiaomi/engine/FrameData;Lcom/xiaomi/engine/TaskSession$FrameCallback;)V
+    invoke-virtual {p1, v0, p2}, Lcom/xiaomi/engine/TaskSession;->processFrame(Lcom/xiaomi/engine/FrameData;Lcom/xiaomi/engine/TaskSession$FrameCallback;)V
 
-    .line 157
+    .line 163
     return-void
 .end method
 
 
 # virtual methods
 .method public configOutputConfigurations(Lcom/xiaomi/engine/BufferFormat;)Ljava/util/List;
-    .locals 0
+    .locals 5
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -150,13 +147,192 @@
         }
     .end annotation
 
-    .annotation runtime Ljava/lang/Deprecated;
-    .end annotation
+    .line 42
+    new-instance v0, Ljava/util/ArrayList;
 
-    .line 74
-    const/4 p1, 0x0
+    invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    return-object p1
+    .line 43
+    invoke-virtual {p1}, Lcom/xiaomi/engine/BufferFormat;->getBufferWidth()I
+
+    move-result v1
+
+    .line 44
+    invoke-virtual {p1}, Lcom/xiaomi/engine/BufferFormat;->getBufferHeight()I
+
+    move-result v2
+
+    invoke-virtual {p1}, Lcom/xiaomi/engine/BufferFormat;->getBufferFormat()I
+
+    move-result v3
+
+    invoke-virtual {p0}, Lcom/xiaomi/camera/core/SingleCameraProcessor;->getImageBufferQueueSize()I
+
+    move-result v4
+
+    .line 43
+    invoke-static {v1, v2, v3, v4}, Landroid/media/ImageReader;->newInstance(IIII)Landroid/media/ImageReader;
+
+    move-result-object v1
+
+    iput-object v1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mEffectImageReaderHolder:Landroid/media/ImageReader;
+
+    .line 45
+    iget-object v1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mEffectImageReaderHolder:Landroid/media/ImageReader;
+
+    new-instance v2, Lcom/xiaomi/camera/core/SingleCameraProcessor$1;
+
+    invoke-direct {v2, p0}, Lcom/xiaomi/camera/core/SingleCameraProcessor$1;-><init>(Lcom/xiaomi/camera/core/SingleCameraProcessor;)V
+
+    .line 58
+    invoke-virtual {p0}, Lcom/xiaomi/camera/core/SingleCameraProcessor;->getHandler()Landroid/os/Handler;
+
+    move-result-object v3
+
+    .line 45
+    invoke-virtual {v1, v2, v3}, Landroid/media/ImageReader;->setOnImageAvailableListener(Landroid/media/ImageReader$OnImageAvailableListener;Landroid/os/Handler;)V
+
+    .line 60
+    new-instance v1, Landroid/hardware/camera2/params/OutputConfiguration;
+
+    iget-object v2, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mEffectImageReaderHolder:Landroid/media/ImageReader;
+
+    .line 61
+    invoke-virtual {v2}, Landroid/media/ImageReader;->getSurface()Landroid/view/Surface;
+
+    move-result-object v2
+
+    const/4 v3, 0x0
+
+    invoke-direct {v1, v3, v2}, Landroid/hardware/camera2/params/OutputConfiguration;-><init>(ILandroid/view/Surface;)V
+
+    .line 62
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 64
+    iget-boolean v1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mIsBokehMode:Z
+
+    if-eqz v1, :cond_0
+
+    .line 65
+    invoke-virtual {p1}, Lcom/xiaomi/engine/BufferFormat;->getBufferWidth()I
+
+    move-result v1
+
+    .line 66
+    invoke-virtual {p1}, Lcom/xiaomi/engine/BufferFormat;->getBufferHeight()I
+
+    move-result v2
+
+    invoke-virtual {p1}, Lcom/xiaomi/engine/BufferFormat;->getBufferFormat()I
+
+    move-result v3
+
+    invoke-virtual {p0}, Lcom/xiaomi/camera/core/SingleCameraProcessor;->getImageBufferQueueSize()I
+
+    move-result v4
+
+    .line 65
+    invoke-static {v1, v2, v3, v4}, Landroid/media/ImageReader;->newInstance(IIII)Landroid/media/ImageReader;
+
+    move-result-object v1
+
+    iput-object v1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mRawImageReaderHolder:Landroid/media/ImageReader;
+
+    .line 67
+    iget-object v1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mRawImageReaderHolder:Landroid/media/ImageReader;
+
+    new-instance v2, Lcom/xiaomi/camera/core/SingleCameraProcessor$2;
+
+    invoke-direct {v2, p0}, Lcom/xiaomi/camera/core/SingleCameraProcessor$2;-><init>(Lcom/xiaomi/camera/core/SingleCameraProcessor;)V
+
+    .line 78
+    invoke-virtual {p0}, Lcom/xiaomi/camera/core/SingleCameraProcessor;->getHandler()Landroid/os/Handler;
+
+    move-result-object v3
+
+    .line 67
+    invoke-virtual {v1, v2, v3}, Landroid/media/ImageReader;->setOnImageAvailableListener(Landroid/media/ImageReader$OnImageAvailableListener;Landroid/os/Handler;)V
+
+    .line 79
+    new-instance v1, Landroid/hardware/camera2/params/OutputConfiguration;
+
+    const/4 v2, 0x1
+
+    iget-object v3, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mRawImageReaderHolder:Landroid/media/ImageReader;
+
+    .line 80
+    invoke-virtual {v3}, Landroid/media/ImageReader;->getSurface()Landroid/view/Surface;
+
+    move-result-object v3
+
+    invoke-direct {v1, v2, v3}, Landroid/hardware/camera2/params/OutputConfiguration;-><init>(ILandroid/view/Surface;)V
+
+    .line 79
+    invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 83
+    invoke-virtual {p1}, Lcom/xiaomi/engine/BufferFormat;->getBufferWidth()I
+
+    move-result v1
+
+    const/4 v2, 0x2
+
+    div-int/2addr v1, v2
+
+    .line 84
+    invoke-virtual {p1}, Lcom/xiaomi/engine/BufferFormat;->getBufferHeight()I
+
+    move-result p1
+
+    div-int/2addr p1, v2
+
+    const v3, 0x20363159
+
+    invoke-virtual {p0}, Lcom/xiaomi/camera/core/SingleCameraProcessor;->getImageBufferQueueSize()I
+
+    move-result v4
+
+    .line 83
+    invoke-static {v1, p1, v3, v4}, Landroid/media/ImageReader;->newInstance(IIII)Landroid/media/ImageReader;
+
+    move-result-object p1
+
+    iput-object p1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mDepthImageReaderHolder:Landroid/media/ImageReader;
+
+    .line 85
+    iget-object p1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mDepthImageReaderHolder:Landroid/media/ImageReader;
+
+    new-instance v1, Lcom/xiaomi/camera/core/SingleCameraProcessor$3;
+
+    invoke-direct {v1, p0}, Lcom/xiaomi/camera/core/SingleCameraProcessor$3;-><init>(Lcom/xiaomi/camera/core/SingleCameraProcessor;)V
+
+    .line 96
+    invoke-virtual {p0}, Lcom/xiaomi/camera/core/SingleCameraProcessor;->getHandler()Landroid/os/Handler;
+
+    move-result-object v3
+
+    .line 85
+    invoke-virtual {p1, v1, v3}, Landroid/media/ImageReader;->setOnImageAvailableListener(Landroid/media/ImageReader$OnImageAvailableListener;Landroid/os/Handler;)V
+
+    .line 97
+    new-instance p1, Landroid/hardware/camera2/params/OutputConfiguration;
+
+    iget-object v1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mDepthImageReaderHolder:Landroid/media/ImageReader;
+
+    .line 98
+    invoke-virtual {v1}, Landroid/media/ImageReader;->getSurface()Landroid/view/Surface;
+
+    move-result-object v1
+
+    invoke-direct {p1, v2, v1}, Landroid/hardware/camera2/params/OutputConfiguration;-><init>(ILandroid/view/Surface;)V
+
+    .line 97
+    invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+
+    .line 101
+    :cond_0
+    return-object v0
 .end method
 
 .method public configOutputSurfaces(Lcom/xiaomi/engine/BufferFormat;)Ljava/util/List;
@@ -172,17 +348,17 @@
         }
     .end annotation
 
-    .line 79
+    .line 106
     new-instance v0, Ljava/util/ArrayList;
 
     invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
 
-    .line 80
+    .line 107
     invoke-virtual {p1}, Lcom/xiaomi/engine/BufferFormat;->getBufferWidth()I
 
     move-result v1
 
-    .line 81
+    .line 108
     invoke-virtual {p1}, Lcom/xiaomi/engine/BufferFormat;->getBufferHeight()I
 
     move-result v2
@@ -191,307 +367,89 @@
 
     move-result p1
 
-    iget v3, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mImageBufferQueueSize:I
+    invoke-virtual {p0}, Lcom/xiaomi/camera/core/SingleCameraProcessor;->getImageBufferQueueSize()I
 
-    .line 80
+    move-result v3
+
+    .line 107
     invoke-static {v1, v2, p1, v3}, Landroid/media/ImageReader;->newInstance(IIII)Landroid/media/ImageReader;
 
     move-result-object p1
 
-    .line 82
-    new-instance v1, Lcom/xiaomi/camera/core/SingleCameraProcessor$1;
+    iput-object p1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mEffectImageReaderHolder:Landroid/media/ImageReader;
 
-    invoke-direct {v1, p0, p1}, Lcom/xiaomi/camera/core/SingleCameraProcessor$1;-><init>(Lcom/xiaomi/camera/core/SingleCameraProcessor;Landroid/media/ImageReader;)V
+    .line 109
+    iget-object p1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mEffectImageReaderHolder:Landroid/media/ImageReader;
 
-    .line 91
+    new-instance v1, Lcom/xiaomi/camera/core/SingleCameraProcessor$4;
+
+    invoke-direct {v1, p0}, Lcom/xiaomi/camera/core/SingleCameraProcessor$4;-><init>(Lcom/xiaomi/camera/core/SingleCameraProcessor;)V
+
+    .line 121
     invoke-virtual {p0}, Lcom/xiaomi/camera/core/SingleCameraProcessor;->getHandler()Landroid/os/Handler;
 
     move-result-object v2
 
-    .line 82
+    .line 109
     invoke-virtual {p1, v1, v2}, Landroid/media/ImageReader;->setOnImageAvailableListener(Landroid/media/ImageReader$OnImageAvailableListener;Landroid/os/Handler;)V
 
-    .line 92
-    iget-object v1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mImageReaderList:Ljava/util/List;
+    .line 122
+    iget-object p1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mEffectImageReaderHolder:Landroid/media/ImageReader;
 
-    invoke-interface {v1, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
-
-    .line 93
     invoke-virtual {p1}, Landroid/media/ImageReader;->getSurface()Landroid/view/Surface;
 
     move-result-object p1
 
     invoke-interface {v0, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
 
-    .line 94
+    .line 123
     return-object v0
 .end method
 
-.method onCaptureReceived(Lcom/xiaomi/protocol/ICustomCaptureResult;I)V
+.method isIdle()Z
     .locals 1
-    .annotation build Landroid/support/annotation/WorkerThread;
-    .end annotation
 
-    .line 63
-    :try_start_0
-    iget-object p2, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mResultQueue:Ljava/util/concurrent/LinkedBlockingQueue;
+    .line 136
+    iget-object v0, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mNeedProcessImageSize:Ljava/util/concurrent/atomic/AtomicInteger;
 
-    invoke-virtual {p2, p1}, Ljava/util/concurrent/LinkedBlockingQueue;->put(Ljava/lang/Object;)V
+    invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicInteger;->get()I
 
-    .line 64
-    const/4 p1, 0x1
-
-    iput-boolean p1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mIsCaptureResultReady:Z
-    :try_end_0
-    .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 67
-    goto :goto_0
-
-    .line 65
-    :catch_0
-    move-exception p1
-
-    .line 66
-    sget-object p2, Lcom/xiaomi/camera/core/SingleCameraProcessor;->TAG:Ljava/lang/String;
-
-    const-string v0, "onCaptureReceived: failed!"
-
-    invoke-static {p2, v0, p1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-
-    .line 68
-    :goto_0
-    invoke-virtual {p0}, Lcom/xiaomi/camera/core/SingleCameraProcessor;->processImage()V
-
-    .line 69
-    return-void
-.end method
-
-.method onImageReceived(Landroid/media/Image;I)V
-    .locals 1
-    .annotation build Landroid/support/annotation/WorkerThread;
-    .end annotation
-
-    .line 49
-    sget-object p2, Lcom/xiaomi/camera/core/SingleCameraProcessor;->TAG:Ljava/lang/String;
-
-    const-string v0, "putWideCameraImage: received a wide image"
-
-    invoke-static {p2, v0}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
-
-    .line 51
-    :try_start_0
-    iget-object p2, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mImageQueue:Ljava/util/concurrent/LinkedBlockingQueue;
-
-    invoke-virtual {p2, p1}, Ljava/util/concurrent/LinkedBlockingQueue;->put(Ljava/lang/Object;)V
-
-    .line 52
-    const/4 p1, 0x1
-
-    iput-boolean p1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mIsImageReady:Z
-    :try_end_0
-    .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 55
-    goto :goto_0
-
-    .line 53
-    :catch_0
-    move-exception p1
-
-    .line 54
-    sget-object p2, Lcom/xiaomi/camera/core/SingleCameraProcessor;->TAG:Ljava/lang/String;
-
-    const-string v0, "onImageReceived: failed!"
-
-    invoke-static {p2, v0, p1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-
-    .line 56
-    :goto_0
-    invoke-virtual {p0}, Lcom/xiaomi/camera/core/SingleCameraProcessor;->processImage()V
-
-    .line 57
-    return-void
-.end method
-
-.method processImage()V
-    .locals 10
-    .annotation build Landroid/support/annotation/WorkerThread;
-    .end annotation
-
-    .line 100
-    iget-boolean v0, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mIsImageReady:Z
-
-    if-eqz v0, :cond_6
-
-    iget-boolean v0, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mIsCaptureResultReady:Z
+    move-result v0
 
     if-nez v0, :cond_0
 
-    goto/16 :goto_3
+    const/4 v0, 0x1
 
-    .line 103
+    goto :goto_0
+
     :cond_0
-    iget-object v0, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mResultQueue:Ljava/util/concurrent/LinkedBlockingQueue;
+    const/4 v0, 0x0
 
-    invoke-virtual {v0}, Ljava/util/concurrent/LinkedBlockingQueue;->peek()Ljava/lang/Object;
-
-    move-result-object v0
-
-    check-cast v0, Lcom/xiaomi/protocol/ICustomCaptureResult;
-
-    .line 104
-    iget-object v1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mImageQueue:Ljava/util/concurrent/LinkedBlockingQueue;
-
-    invoke-virtual {v1}, Ljava/util/concurrent/LinkedBlockingQueue;->peek()Ljava/lang/Object;
-
-    move-result-object v1
-
-    check-cast v1, Landroid/media/Image;
-
-    .line 107
-    if-eqz v0, :cond_5
-
-    if-nez v1, :cond_1
-
-    goto :goto_2
-
-    .line 110
-    :cond_1
-    invoke-virtual {v0}, Lcom/xiaomi/protocol/ICustomCaptureResult;->getTimeStamp()J
-
-    move-result-wide v2
-
-    .line 113
-    :try_start_0
-    invoke-virtual {v1}, Landroid/media/Image;->getTimestamp()J
-
-    move-result-wide v4
-
-    cmp-long v4, v4, v2
-
-    const/4 v5, 0x0
-
-    const-wide/16 v6, 0xbb8
-
-    if-nez v4, :cond_2
-
-    .line 114
-    iget-object v2, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mResultQueue:Ljava/util/concurrent/LinkedBlockingQueue;
-
-    sget-object v3, Ljava/util/concurrent/TimeUnit;->MICROSECONDS:Ljava/util/concurrent/TimeUnit;
-
-    invoke-virtual {v2, v6, v7, v3}, Ljava/util/concurrent/LinkedBlockingQueue;->poll(JLjava/util/concurrent/TimeUnit;)Ljava/lang/Object;
-
-    .line 115
-    iget-object v2, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mImageQueue:Ljava/util/concurrent/LinkedBlockingQueue;
-
-    sget-object v3, Ljava/util/concurrent/TimeUnit;->MICROSECONDS:Ljava/util/concurrent/TimeUnit;
-
-    invoke-virtual {v2, v6, v7, v3}, Ljava/util/concurrent/LinkedBlockingQueue;->poll(JLjava/util/concurrent/TimeUnit;)Ljava/lang/Object;
-
-    .line 116
-    invoke-direct {p0, v0, v1}, Lcom/xiaomi/camera/core/SingleCameraProcessor;->processCaptureResult(Lcom/xiaomi/protocol/ICustomCaptureResult;Landroid/media/Image;)V
-
-    .line 118
-    iget-object v1, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mImageProcessorStatusCallback:Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;
-
-    invoke-virtual {v0}, Lcom/xiaomi/protocol/ICustomCaptureResult;->getTimeStamp()J
-
-    move-result-wide v2
-
-    invoke-interface {v1, v2, v3}, Lcom/xiaomi/camera/core/ImageProcessor$ImageProcessorStatusCallback;->onImageProcessStart(J)V
-
-    .line 119
-    iput-boolean v5, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mIsImageReady:Z
-
-    .line 120
-    iput-boolean v5, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mIsCaptureResultReady:Z
-
-    goto :goto_0
-
-    .line 121
-    :cond_2
-    invoke-virtual {v1}, Landroid/media/Image;->getTimestamp()J
-
-    move-result-wide v8
-
-    cmp-long v0, v8, v2
-
-    if-gez v0, :cond_3
-
-    .line 123
-    iget-object v0, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mImageQueue:Ljava/util/concurrent/LinkedBlockingQueue;
-
-    sget-object v1, Ljava/util/concurrent/TimeUnit;->MICROSECONDS:Ljava/util/concurrent/TimeUnit;
-
-    invoke-virtual {v0, v6, v7, v1}, Ljava/util/concurrent/LinkedBlockingQueue;->poll(JLjava/util/concurrent/TimeUnit;)Ljava/lang/Object;
-
-    .line 124
-    iput-boolean v5, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mIsImageReady:Z
-
-    goto :goto_0
-
-    .line 125
-    :cond_3
-    invoke-virtual {v1}, Landroid/media/Image;->getTimestamp()J
-
-    move-result-wide v0
-
-    cmp-long v0, v0, v2
-
-    if-lez v0, :cond_4
-
-    .line 127
-    iget-object v0, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mResultQueue:Ljava/util/concurrent/LinkedBlockingQueue;
-
-    sget-object v1, Ljava/util/concurrent/TimeUnit;->MICROSECONDS:Ljava/util/concurrent/TimeUnit;
-
-    invoke-virtual {v0, v6, v7, v1}, Ljava/util/concurrent/LinkedBlockingQueue;->poll(JLjava/util/concurrent/TimeUnit;)Ljava/lang/Object;
-
-    .line 128
-    iput-boolean v5, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mIsCaptureResultReady:Z
-    :try_end_0
-    .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_0} :catch_0
-
-    .line 132
-    :cond_4
     :goto_0
-    goto :goto_1
-
-    .line 130
-    :catch_0
-    move-exception v0
-
-    .line 131
-    sget-object v1, Lcom/xiaomi/camera/core/SingleCameraProcessor;->TAG:Ljava/lang/String;
-
-    const-string v2, "onImageReceive: poll result time out!"
-
-    invoke-virtual {v0}, Ljava/lang/InterruptedException;->getCause()Ljava/lang/Throwable;
-
-    move-result-object v0
-
-    invoke-static {v1, v2, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
-
-    .line 134
-    :goto_1
-    return-void
-
-    .line 108
-    :cond_5
-    :goto_2
-    return-void
-
-    .line 101
-    :cond_6
-    :goto_3
-    return-void
+    return v0
 .end method
 
-.method public releaseResource()V
-    .locals 0
+.method processImage(Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;)V
+    .locals 1
 
-    .line 163
+    .line 128
+    iget-object v0, p0, Lcom/xiaomi/camera/core/SingleCameraProcessor;->mNeedProcessImageSize:Ljava/util/concurrent/atomic/AtomicInteger;
+
+    invoke-virtual {v0}, Ljava/util/concurrent/atomic/AtomicInteger;->getAndIncrement()I
+
+    .line 129
+    invoke-virtual {p1}, Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;->getResult()Lcom/xiaomi/protocol/ICustomCaptureResult;
+
+    move-result-object v0
+
+    .line 130
+    invoke-virtual {p1}, Lcom/xiaomi/camera/core/CaptureData$CaptureDataBean;->getMainImage()Landroid/media/Image;
+
+    move-result-object p1
+
+    .line 131
+    invoke-direct {p0, v0, p1}, Lcom/xiaomi/camera/core/SingleCameraProcessor;->processCaptureResult(Lcom/xiaomi/protocol/ICustomCaptureResult;Landroid/media/Image;)V
+
+    .line 132
     return-void
 .end method

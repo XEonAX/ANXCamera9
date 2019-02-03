@@ -5,10 +5,10 @@ import java.util.HashMap;
 import miui.util.concurrent.ConcurrentRingQueue;
 
 public final class Pools {
-    private static final HashMap<Class<?>, InstanceHolder<?>> Jv = new HashMap();
-    private static final HashMap<Class<?>, SoftReferenceInstanceHolder<?>> Jw = new HashMap();
-    private static final Pool<StringBuilder> Jx = createSoftReferencePool(new Manager<StringBuilder>() {
-        /* renamed from: db */
+    private static final HashMap<Class<?>, InstanceHolder<?>> JF = new HashMap();
+    private static final HashMap<Class<?>, SoftReferenceInstanceHolder<?>> JG = new HashMap();
+    private static final Pool<StringBuilder> JH = createSoftReferencePool(new Manager<StringBuilder>() {
+        /* renamed from: dc */
         public StringBuilder createInstance() {
             return new StringBuilder();
         }
@@ -43,10 +43,10 @@ public final class Pools {
     }
 
     static abstract class BasePool<T> implements Pool<T> {
-        private final int Hf;
-        private final Manager<T> Jy;
-        private IInstanceHolder<T> Jz;
-        private final Object zM = new Object() {
+        private final int Ho;
+        private final Manager<T> JI;
+        private IInstanceHolder<T> JJ;
+        private final Object zV = new Object() {
             protected void finalize() throws Throwable {
                 try {
                     BasePool.this.close();
@@ -62,14 +62,14 @@ public final class Pools {
 
         public BasePool(Manager<T> manager, int i) {
             if (manager == null || i < 1) {
-                this.Hf = this.zM.hashCode();
+                this.Ho = this.zV.hashCode();
                 throw new IllegalArgumentException("manager cannot be null and size cannot less then 1");
             }
-            this.Jy = manager;
-            this.Hf = i;
-            Object createInstance = this.Jy.createInstance();
+            this.JI = manager;
+            this.Ho = i;
+            Object createInstance = this.JI.createInstance();
             if (createInstance != null) {
-                this.Jz = d(createInstance.getClass(), i);
+                this.JJ = d(createInstance.getClass(), i);
                 doRelease(createInstance);
                 return;
             }
@@ -77,27 +77,27 @@ public final class Pools {
         }
 
         protected final T doAcquire() {
-            if (this.Jz != null) {
-                T t = this.Jz.get();
+            if (this.JJ != null) {
+                T t = this.JJ.get();
                 if (t == null) {
-                    t = this.Jy.createInstance();
+                    t = this.JI.createInstance();
                     if (t == null) {
                         throw new IllegalStateException("manager create instance cannot return null");
                     }
                 }
-                this.Jy.onAcquire(t);
+                this.JI.onAcquire(t);
                 return t;
             }
             throw new IllegalStateException("Cannot acquire object after close()");
         }
 
         protected final void doRelease(T t) {
-            if (this.Jz == null) {
+            if (this.JJ == null) {
                 throw new IllegalStateException("Cannot release object after close()");
             } else if (t != null) {
-                this.Jy.onRelease(t);
-                if (!this.Jz.put(t)) {
-                    this.Jy.onDestroy(t);
+                this.JI.onRelease(t);
+                if (!this.JJ.put(t)) {
+                    this.JI.onDestroy(t);
                 }
             }
         }
@@ -111,19 +111,19 @@ public final class Pools {
         }
 
         public void close() {
-            if (this.Jz != null) {
-                a(this.Jz, this.Hf);
-                this.Jz = null;
+            if (this.JJ != null) {
+                a(this.JJ, this.Ho);
+                this.JJ = null;
             }
         }
 
         public int getSize() {
-            return this.Jz == null ? 0 : this.Hf;
+            return this.JJ == null ? 0 : this.Ho;
         }
     }
 
     private interface IInstanceHolder<T> {
-        Class<T> dD();
+        Class<T> dE();
 
         T get();
 
@@ -135,20 +135,20 @@ public final class Pools {
     }
 
     private static class InstanceHolder<T> implements IInstanceHolder<T> {
-        private final Class<T> JB;
-        private final ConcurrentRingQueue<T> JC;
+        private final Class<T> JL;
+        private final ConcurrentRingQueue<T> JN;
 
         InstanceHolder(Class<T> cls, int i) {
-            this.JB = cls;
-            this.JC = new ConcurrentRingQueue(i, false, true);
+            this.JL = cls;
+            this.JN = new ConcurrentRingQueue(i, false, true);
         }
 
-        public Class<T> dD() {
-            return this.JB;
+        public Class<T> dE() {
+            return this.JL;
         }
 
         public int getSize() {
-            return this.JC.getCapacity();
+            return this.JN.getCapacity();
         }
 
         /* JADX WARNING: Missing block: B:20:0x002f, code:
@@ -156,24 +156,24 @@ public final class Pools {
      */
         /* Code decompiled incorrectly, please refer to instructions dump. */
         public synchronized void resize(int i) {
-            i += this.JC.getCapacity();
+            i += this.JN.getCapacity();
             if (i <= 0) {
-                synchronized (Pools.Jv) {
-                    Pools.Jv.remove(dD());
+                synchronized (Pools.JF) {
+                    Pools.JF.remove(dE());
                 }
             } else if (i > 0) {
-                this.JC.increaseCapacity(i);
+                this.JN.increaseCapacity(i);
             } else {
-                this.JC.decreaseCapacity(-i);
+                this.JN.decreaseCapacity(-i);
             }
         }
 
         public T get() {
-            return this.JC.get();
+            return this.JN.get();
         }
 
         public boolean put(T t) {
-            return this.JC.put(t);
+            return this.JN.put(t);
         }
     }
 
@@ -192,23 +192,23 @@ public final class Pools {
     }
 
     private static class SoftReferenceInstanceHolder<T> implements IInstanceHolder<T> {
-        private volatile int Hf;
-        private final Class<T> JB;
-        private volatile SoftReference<T>[] JD;
+        private volatile int Ho;
+        private final Class<T> JL;
+        private volatile SoftReference<T>[] JQ;
         private volatile int mIndex = 0;
 
         SoftReferenceInstanceHolder(Class<T> cls, int i) {
-            this.JB = cls;
-            this.Hf = i;
-            this.JD = new SoftReference[i];
+            this.JL = cls;
+            this.Ho = i;
+            this.JQ = new SoftReference[i];
         }
 
-        public Class<T> dD() {
-            return this.JB;
+        public Class<T> dE() {
+            return this.JL;
         }
 
         public int getSize() {
-            return this.Hf;
+            return this.Ho;
         }
 
         /* JADX WARNING: Missing block: B:20:0x002e, code:
@@ -216,26 +216,26 @@ public final class Pools {
      */
         /* Code decompiled incorrectly, please refer to instructions dump. */
         public synchronized void resize(int i) {
-            i += this.Hf;
+            i += this.Ho;
             if (i <= 0) {
-                synchronized (Pools.Jw) {
-                    Pools.Jw.remove(dD());
+                synchronized (Pools.JG) {
+                    Pools.JG.remove(dE());
                 }
                 return;
             }
-            this.Hf = i;
-            Object obj = this.JD;
+            this.Ho = i;
+            Object obj = this.JQ;
             int i2 = this.mIndex;
             if (i > obj.length) {
                 Object obj2 = new SoftReference[i];
                 System.arraycopy(obj, 0, obj2, 0, i2);
-                this.JD = obj2;
+                this.JQ = obj2;
             }
         }
 
         public synchronized T get() {
             int i = this.mIndex;
-            SoftReference[] softReferenceArr = this.JD;
+            SoftReference[] softReferenceArr = this.JQ;
             while (i != 0) {
                 i--;
                 if (softReferenceArr[i] != null) {
@@ -252,8 +252,8 @@ public final class Pools {
 
         public synchronized boolean put(T t) {
             int i = this.mIndex;
-            SoftReference[] softReferenceArr = this.JD;
-            if (i >= this.Hf) {
+            SoftReference[] softReferenceArr = this.JQ;
+            if (i >= this.Ho) {
                 int i2 = 0;
                 while (i2 < i) {
                     if (softReferenceArr[i2] == null || softReferenceArr[i2].get() == null) {
@@ -285,16 +285,16 @@ public final class Pools {
     }
 
     public static Pool<StringBuilder> getStringBuilderPool() {
-        return Jx;
+        return JH;
     }
 
     static <T> InstanceHolder<T> b(Class<T> cls, int i) {
         InstanceHolder<T> instanceHolder;
-        synchronized (Jv) {
-            instanceHolder = (InstanceHolder) Jv.get(cls);
+        synchronized (JF) {
+            instanceHolder = (InstanceHolder) JF.get(cls);
             if (instanceHolder == null) {
                 instanceHolder = new InstanceHolder(cls, i);
-                Jv.put(cls, instanceHolder);
+                JF.put(cls, instanceHolder);
             } else {
                 instanceHolder.resize(i);
             }
@@ -303,18 +303,18 @@ public final class Pools {
     }
 
     static <T> void a(InstanceHolder<T> instanceHolder, int i) {
-        synchronized (Jv) {
+        synchronized (JF) {
             instanceHolder.resize(-i);
         }
     }
 
     static <T> SoftReferenceInstanceHolder<T> c(Class<T> cls, int i) {
         SoftReferenceInstanceHolder<T> softReferenceInstanceHolder;
-        synchronized (Jw) {
-            softReferenceInstanceHolder = (SoftReferenceInstanceHolder) Jw.get(cls);
+        synchronized (JG) {
+            softReferenceInstanceHolder = (SoftReferenceInstanceHolder) JG.get(cls);
             if (softReferenceInstanceHolder == null) {
                 softReferenceInstanceHolder = new SoftReferenceInstanceHolder(cls, i);
-                Jw.put(cls, softReferenceInstanceHolder);
+                JG.put(cls, softReferenceInstanceHolder);
             } else {
                 softReferenceInstanceHolder.resize(i);
             }
@@ -323,7 +323,7 @@ public final class Pools {
     }
 
     static <T> void a(SoftReferenceInstanceHolder<T> softReferenceInstanceHolder, int i) {
-        synchronized (Jw) {
+        synchronized (JG) {
             softReferenceInstanceHolder.resize(-i);
         }
     }

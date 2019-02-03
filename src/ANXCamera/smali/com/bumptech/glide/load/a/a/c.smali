@@ -29,9 +29,9 @@
 
 
 # instance fields
-.field private final dE:Landroid/net/Uri;
+.field private final dF:Landroid/net/Uri;
 
-.field private final dF:Lcom/bumptech/glide/load/a/a/e;
+.field private final dG:Lcom/bumptech/glide/load/a/a/e;
 
 .field private inputStream:Ljava/io/InputStream;
 
@@ -46,10 +46,10 @@
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 50
-    iput-object p1, p0, Lcom/bumptech/glide/load/a/a/c;->dE:Landroid/net/Uri;
+    iput-object p1, p0, Lcom/bumptech/glide/load/a/a/c;->dF:Landroid/net/Uri;
 
     .line 51
-    iput-object p2, p0, Lcom/bumptech/glide/load/a/a/c;->dF:Lcom/bumptech/glide/load/a/a/e;
+    iput-object p2, p0, Lcom/bumptech/glide/load/a/a/c;->dG:Lcom/bumptech/glide/load/a/a/e;
 
     .line 52
     return-void
@@ -126,9 +126,9 @@
     .end annotation
 
     .line 71
-    iget-object v0, p0, Lcom/bumptech/glide/load/a/a/c;->dF:Lcom/bumptech/glide/load/a/a/e;
+    iget-object v0, p0, Lcom/bumptech/glide/load/a/a/c;->dG:Lcom/bumptech/glide/load/a/a/e;
 
-    iget-object v1, p0, Lcom/bumptech/glide/load/a/a/c;->dE:Landroid/net/Uri;
+    iget-object v1, p0, Lcom/bumptech/glide/load/a/a/c;->dF:Landroid/net/Uri;
 
     invoke-virtual {v0, v1}, Lcom/bumptech/glide/load/a/a/e;->i(Landroid/net/Uri;)Ljava/io/InputStream;
 
@@ -143,9 +143,9 @@
     if-eqz v0, :cond_0
 
     .line 75
-    iget-object v2, p0, Lcom/bumptech/glide/load/a/a/c;->dF:Lcom/bumptech/glide/load/a/a/e;
+    iget-object v2, p0, Lcom/bumptech/glide/load/a/a/c;->dG:Lcom/bumptech/glide/load/a/a/e;
 
-    iget-object v3, p0, Lcom/bumptech/glide/load/a/a/c;->dE:Landroid/net/Uri;
+    iget-object v3, p0, Lcom/bumptech/glide/load/a/a/c;->dF:Landroid/net/Uri;
 
     invoke-virtual {v2, v3}, Lcom/bumptech/glide/load/a/a/e;->h(Landroid/net/Uri;)I
 
@@ -291,7 +291,7 @@
     .end annotation
 
     .line 109
-    sget-object v0, Lcom/bumptech/glide/load/DataSource;->cr:Lcom/bumptech/glide/load/DataSource;
+    sget-object v0, Lcom/bumptech/glide/load/DataSource;->ct:Lcom/bumptech/glide/load/DataSource;
 
     return-object v0
 .end method

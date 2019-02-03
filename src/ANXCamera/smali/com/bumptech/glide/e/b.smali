@@ -7,7 +7,7 @@
 
 
 # static fields
-.field private static final pd:Lcom/bumptech/glide/e/b;
+.field private static final pc:Lcom/bumptech/glide/e/b;
 
 
 # direct methods
@@ -19,7 +19,7 @@
 
     invoke-direct {v0}, Lcom/bumptech/glide/e/b;-><init>()V
 
-    sput-object v0, Lcom/bumptech/glide/e/b;->pd:Lcom/bumptech/glide/e/b;
+    sput-object v0, Lcom/bumptech/glide/e/b;->pc:Lcom/bumptech/glide/e/b;
 
     return-void
 .end method
@@ -40,7 +40,7 @@
     .end annotation
 
     .line 15
-    sget-object v0, Lcom/bumptech/glide/e/b;->pd:Lcom/bumptech/glide/e/b;
+    sget-object v0, Lcom/bumptech/glide/e/b;->pc:Lcom/bumptech/glide/e/b;
 
     return-object v0
 .end method

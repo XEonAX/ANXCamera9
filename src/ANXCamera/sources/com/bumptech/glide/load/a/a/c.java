@@ -20,39 +20,39 @@ import java.io.InputStream;
 /* compiled from: ThumbFetcher */
 public class c implements d<InputStream> {
     private static final String TAG = "MediaStoreThumbFetcher";
-    private final Uri dE;
-    private final e dF;
+    private final Uri dF;
+    private final e dG;
     private InputStream inputStream;
 
     /* compiled from: ThumbFetcher */
     static class a implements d {
-        private static final String[] dG = new String[]{"_data"};
-        private static final String dH = "kind = 1 AND image_id = ?";
-        private final ContentResolver dv;
+        private static final String[] dH = new String[]{"_data"};
+        private static final String dI = "kind = 1 AND image_id = ?";
+        private final ContentResolver dw;
 
         a(ContentResolver contentResolver) {
-            this.dv = contentResolver;
+            this.dw = contentResolver;
         }
 
         public Cursor g(Uri uri) {
             String lastPathSegment = uri.getLastPathSegment();
-            return this.dv.query(Thumbnails.EXTERNAL_CONTENT_URI, dG, dH, new String[]{lastPathSegment}, null);
+            return this.dw.query(Thumbnails.EXTERNAL_CONTENT_URI, dH, dI, new String[]{lastPathSegment}, null);
         }
     }
 
     /* compiled from: ThumbFetcher */
     static class b implements d {
-        private static final String[] dG = new String[]{"_data"};
-        private static final String dH = "kind = 1 AND video_id = ?";
-        private final ContentResolver dv;
+        private static final String[] dH = new String[]{"_data"};
+        private static final String dI = "kind = 1 AND video_id = ?";
+        private final ContentResolver dw;
 
         b(ContentResolver contentResolver) {
-            this.dv = contentResolver;
+            this.dw = contentResolver;
         }
 
         public Cursor g(Uri uri) {
             String lastPathSegment = uri.getLastPathSegment();
-            return this.dv.query(Video.Thumbnails.EXTERNAL_CONTENT_URI, dG, dH, new String[]{lastPathSegment}, null);
+            return this.dw.query(Video.Thumbnails.EXTERNAL_CONTENT_URI, dH, dI, new String[]{lastPathSegment}, null);
         }
     }
 
@@ -70,8 +70,8 @@ public class c implements d<InputStream> {
 
     @VisibleForTesting
     c(Uri uri, e eVar) {
-        this.dE = uri;
-        this.dF = eVar;
+        this.dF = uri;
+        this.dG = eVar;
     }
 
     public void a(@NonNull Priority priority, @NonNull com.bumptech.glide.load.a.d.a<? super InputStream> aVar) {
@@ -88,9 +88,9 @@ public class c implements d<InputStream> {
 
     private InputStream ai() throws FileNotFoundException {
         int h;
-        InputStream i = this.dF.i(this.dE);
+        InputStream i = this.dG.i(this.dF);
         if (i != null) {
-            h = this.dF.h(this.dE);
+            h = this.dG.h(this.dF);
         } else {
             h = -1;
         }

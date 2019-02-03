@@ -3,6 +3,7 @@ package miui.hardware.display;
 import android.os.HwParcel;
 import android.os.IBinder;
 import android.os.IHwBinder;
+import android.os.IHwInterface;
 import android.os.Parcel;
 import android.os.RemoteException;
 import android.text.TextUtils;
@@ -11,6 +12,7 @@ import miui.os.DeviceFeature;
 
 class DisplayFeatureServiceProxy {
     private static final int HIDL_TRANSACTION_interfaceDescriptor = 256136003;
+    private static final int HIDL_TRANSACTION_registerCallback = 2;
     private static final int HIDL_TRANSACTION_setFeature = 1;
     private static final String HWBINDER_BASE_INTERFACE_DESCRIPTOR = "android.hidl.base@1.0::IBase";
     private static final String HWBINDER_INTERFACE_DESCRIPTOR = "vendor.xiaomi.hardware.displayfeature@1.0::IDisplayFeature";
@@ -42,10 +44,16 @@ class DisplayFeatureServiceProxy {
 
     void setFeature(int displayId, int mode, int value, int cookie) {
         if (DeviceFeature.SUPPORT_DISPLAYFEATURE_HIDL) {
-            callHwBinderTransact(1, displayId, mode, value, cookie);
+            callHwBinderTransact(1, 0, Integer.valueOf(displayId), Integer.valueOf(mode), Integer.valueOf(value), Integer.valueOf(cookie));
             return;
         }
-        callBinderTransact(100, displayId, mode, value, cookie);
+        callBinderTransact(100, 0, Integer.valueOf(displayId), Integer.valueOf(mode), Integer.valueOf(value), Integer.valueOf(cookie));
+    }
+
+    void registerCallback(int displayId, Object callback) {
+        if (DeviceFeature.SUPPORT_DISPLAYFEATURE_HIDL) {
+            callHwBinderTransact(2, 0, Integer.valueOf(displayId), callback);
+        }
     }
 
     public String interfaceDescriptor() throws RemoteException {
@@ -63,16 +71,18 @@ class DisplayFeatureServiceProxy {
         }
     }
 
-    private int callBinderTransact(int transactId, int... params) {
+    private int callBinderTransact(int transactId, int flag, Object... params) {
         Parcel data = Parcel.obtain();
         Parcel reply = Parcel.obtain();
         int result = -1;
         try {
             data.writeInterfaceToken(this.mDescriptor);
-            for (int param : params) {
-                data.writeInt(param);
+            for (Object param : params) {
+                if (param instanceof Integer) {
+                    data.writeInt(((Integer) param).intValue());
+                }
             }
-            if (this.mService.transact(transactId, data, reply, 0)) {
+            if (this.mService.transact(transactId, data, reply, flag)) {
                 reply.readException();
                 result = reply.readInt();
             }
@@ -91,15 +101,19 @@ class DisplayFeatureServiceProxy {
         return result;
     }
 
-    private void callHwBinderTransact(int _hidl_code, int... params) {
+    private void callHwBinderTransact(int _hidl_code, int flag, Object... params) {
         HwParcel hidl_reply = new HwParcel();
         try {
             HwParcel hidl_request = new HwParcel();
             hidl_request.writeInterfaceToken(this.mDescriptor);
-            for (int param : params) {
-                hidl_request.writeInt32(param);
+            for (Object param : params) {
+                if (param instanceof Integer) {
+                    hidl_request.writeInt32(((Integer) param).intValue());
+                } else if (param instanceof IHwInterface) {
+                    hidl_request.writeStrongBinder(((IHwInterface) param).asBinder());
+                }
             }
-            this.mHwService.transact(_hidl_code, hidl_request, hidl_reply, 0);
+            this.mHwService.transact(_hidl_code, hidl_request, hidl_reply, flag);
             hidl_reply.verifySuccess();
             hidl_request.releaseTemporaryStorage();
         } catch (RemoteException e) {

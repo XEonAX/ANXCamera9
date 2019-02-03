@@ -1,6 +1,11 @@
 package com.android.camera.groupshot;
 
+import android.media.Image;
+import android.media.Image.Plane;
 import com.android.camera.log.Log;
+import java.io.FileDescriptor;
+import java.lang.reflect.Field;
+import java.nio.ByteBuffer;
 import java.util.Locale;
 
 public class GroupShot {
@@ -15,6 +20,8 @@ public class GroupShot {
 
     private final native int attach(long j, byte[] bArr);
 
+    private final native int attachYuv(long j, ByteBuffer byteBuffer, ByteBuffer byteBuffer2, int i, int i2);
+
     private final native int changeMaxNum(long j, int i, int i2);
 
     private final native int clearImages(long j);
@@ -27,7 +34,7 @@ public class GroupShot {
 
     private final native int getImage(long j, byte[] bArr);
 
-    private final native int getImageAndSaveJpeg(long j, String str);
+    private final native int getImageAndSaveJpeg(long j, String str, int i);
 
     private final native int getImageNum(long j);
 
@@ -52,6 +59,8 @@ public class GroupShot {
     private final native int getTargetNum(long j);
 
     private final native int getTargetRects(long j, int[] iArr);
+
+    private final native int getYuvImage(long j, ByteBuffer byteBuffer, ByteBuffer byteBuffer2, int i, int i2);
 
     private final native int initializeNativeObject(long j, int i, int i2, int i3, int i4, int i5, int i6, int i7);
 
@@ -155,6 +164,24 @@ public class GroupShot {
         return attach(this.mNative, bArr);
     }
 
+    public int attach(Image image) {
+        Log.v(TAG, String.format("GroupShot attach mNative=%x", new Object[]{Long.valueOf(this.mNative)}));
+        if (this.mNative == 0) {
+            return -1;
+        }
+        if (35 == image.getFormat()) {
+            Plane[] planes = image.getPlanes();
+            Log.d(TAG, String.format(Locale.ENGLISH, "attach: size=%dx%d stride=%dx%d", new Object[]{Integer.valueOf(image.getWidth()), Integer.valueOf(image.getHeight()), Integer.valueOf(planes[0].getRowStride()), Integer.valueOf(planes[1].getRowStride())}));
+            return attachYuv(this.mNative, planes[0].getBuffer(), planes[1].getBuffer(), planes[0].getRowStride(), planes[1].getRowStride());
+        }
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("unexpected image format ");
+        stringBuilder.append(image.getFormat());
+        Log.e(str, stringBuilder.toString());
+        return -1;
+    }
+
     public int attach_end() {
         Log.v(TAG, String.format("GroupShot attach end, mNative=%x", new Object[]{Long.valueOf(this.mNative)}));
         if (this.mNative == 0) {
@@ -254,12 +281,45 @@ public class GroupShot {
         return selectTarget(this.mNative, i, i2);
     }
 
+    public int getImageAndSaveJpeg(FileDescriptor fileDescriptor) {
+        if (this.mNative == 0) {
+            return -1;
+        }
+        int fd = getFD(fileDescriptor);
+        Log.v(TAG, String.format("getImageAndSaveJpeg: mNative=%x fd=%s", new Object[]{Long.valueOf(this.mNative), Integer.valueOf(fd)}));
+        if (fd < 0) {
+            return -1;
+        }
+        return getImageAndSaveJpeg(this.mNative, null, fd);
+    }
+
     public int getImageAndSaveJpeg(String str) {
         if (this.mNative == 0) {
             return -1;
         }
-        Log.v(TAG, String.format("GroupShot getImageAndSaveJpeg, mNative=%x filename=%s", new Object[]{Long.valueOf(this.mNative), str}));
-        return getImageAndSaveJpeg(this.mNative, str);
+        Log.v(TAG, String.format("getImageAndSaveJpeg: mNative=%x filename=%s", new Object[]{Long.valueOf(this.mNative), str}));
+        return getImageAndSaveJpeg(this.mNative, str, -1);
+    }
+
+    public int getYuvImage(Image image) {
+        String str;
+        StringBuilder stringBuilder;
+        if (image == null || 35 != image.getFormat()) {
+            str = TAG;
+            stringBuilder = new StringBuilder();
+            stringBuilder.append("getYuvImage: invalid image ");
+            stringBuilder.append(image);
+            Log.e(str, stringBuilder.toString());
+            return -1;
+        }
+        Plane[] planes = image.getPlanes();
+        int yuvImage = getYuvImage(this.mNative, planes[0].getBuffer(), planes[1].getBuffer(), planes[0].getRowStride(), planes[1].getRowStride());
+        str = TAG;
+        stringBuilder = new StringBuilder();
+        stringBuilder.append("getYuvImage: result=");
+        stringBuilder.append(yuvImage);
+        Log.d(str, stringBuilder.toString());
+        return yuvImage;
     }
 
     public int getScaledImageAndSaveJpeg(int i, int i2, String str) {
@@ -289,5 +349,19 @@ public class GroupShot {
             return -1;
         }
         return setBestFace(this.mNative);
+    }
+
+    /* JADX WARNING: Removed duplicated region for block: B:3:0x0011 A:{Splitter: B:0:0x0000, ExcHandler: java.lang.NoSuchFieldException (e java.lang.NoSuchFieldException)} */
+    /* JADX WARNING: Missing block: B:5:0x0013, code:
+            return -1;
+     */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static int getFD(FileDescriptor fileDescriptor) {
+        try {
+            Field declaredField = FileDescriptor.class.getDeclaredField("descriptor");
+            declaredField.setAccessible(true);
+            return declaredField.getInt(fileDescriptor);
+        } catch (NoSuchFieldException e) {
+        }
     }
 }

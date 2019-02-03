@@ -3,6 +3,7 @@ package com.android.camera;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewCompat;
 import com.android.camera.panorama.NativeMemoryAllocator;
+import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.text.SimpleDateFormat;
@@ -52,7 +53,7 @@ public class PanoUtil {
                 }
                 int i14 = 1192 * i12;
                 i12 = (1634 * i9) + i14;
-                int i15 = (i14 - (833 * i9)) - (400 * i10);
+                int i15 = (i14 - (833 * i9)) - (MonitorCommonConstants.MAX_COUNT_UPLOAD_SINGLE_TIME * i10);
                 i14 += 2066 * i10;
                 if (i12 < 0) {
                     i12 = 0;

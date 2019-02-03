@@ -8,7 +8,7 @@ import android.support.v7.widget.RecyclerView.Adapter;
 import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.view.View;
 import android.widget.ListAdapter;
-import com.aeonax.camera.R;
+import com.android.camera.R;
 import com.android.camera.animation.type.SlideInOnSubscribe;
 import com.android.camera.animation.type.SlideOutOnSubscribe;
 import com.android.camera.data.DataRepository;
@@ -178,8 +178,8 @@ public class FragmentManuallyExtra extends BaseFragment {
         return 254;
     }
 
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        super.provideAnimateElement(i, list, z);
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        super.provideAnimateElement(i, list, i2);
     }
 
     public void notifyDataChanged(int i, int i2) {

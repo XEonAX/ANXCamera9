@@ -1,30 +1,34 @@
 package com.xiaomi.camera.liveshot;
 
 import android.media.CamcorderProfile;
-import android.media.MediaCodec.BufferInfo;
 import android.media.MediaFormat;
 import android.media.MediaMuxer;
 import android.opengl.EGLContext;
 import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.support.annotation.WorkerThread;
 import com.android.camera.CameraSettings;
 import com.android.camera.Util;
 import com.android.camera.effect.draw_mode.DrawExtTexAttribute;
 import com.android.camera.log.Log;
 import com.xiaomi.camera.liveshot.encoder.CircularAudioEncoder;
-import com.xiaomi.camera.liveshot.encoder.CircularMediaEncoder.Sample;
 import com.xiaomi.camera.liveshot.encoder.CircularMediaEncoder.Snapshot;
 import com.xiaomi.camera.liveshot.encoder.CircularVideoEncoder;
 import com.xiaomi.camera.liveshot.util.BackgroundTaskScheduler;
-import com.xiaomi.camera.liveshot.util.BackgroundTaskScheduler.Cancellable;
+import com.xiaomi.camera.liveshot.util.BackgroundTaskScheduler.CancellableTask;
+import com.xiaomi.camera.liveshot.writer.AudioSampleWriter;
+import com.xiaomi.camera.liveshot.writer.SampleWriter.StatusNotifier;
+import com.xiaomi.camera.liveshot.writer.VideoSampleWriter;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.Future;
 
 public class CircularMediaRecorder {
     private static final int AUDIO_BIT_RATE = 64000;
@@ -41,30 +45,31 @@ public class CircularMediaRecorder {
     private static final String TAG = CircularMediaRecorder.class.getSimpleName();
     private static final int VIDEO_BIT_RATE = 20000000;
     private static final int VIDEO_FRAME_RATE = 15;
-    private static final float VIDEO_IFRAME_INTERVAL = 0.5f;
-    private static final String VIDEO_MIME_TYPE;
+    private static final float VIDEO_I_FRAME_INTERVAL = 0.2f;
     private final CircularAudioEncoder mCircularAudioEncoder;
     private final CircularVideoEncoder mCircularVideoEncoder;
     private int mOrientationHint = 0;
-    private final BackgroundTaskScheduler mSavingRequestScheduler;
+    private final BackgroundTaskScheduler mSnapshotRequestScheduler;
 
     public interface VideoClipSavingCallback {
+        @WorkerThread
         void onVideoClipSavingCancelled();
 
+        @WorkerThread
         void onVideoClipSavingCompleted(@NonNull byte[] bArr, long j);
 
+        @WorkerThread
         void onVideoClipSavingException(@NonNull Throwable th);
     }
 
-    private static final class VideoClipSavingRequest implements Cancellable {
+    private static final class SnapshotRequest extends CancellableTask {
         private final Snapshot mAudioSnapshot;
-        private final AtomicBoolean mCancelled;
         private final int mOrientationHint;
+        private final ExecutorService mSampleWriterExecutor;
         private final VideoClipSavingCallback mVideoClipSavingCallback;
         private final Snapshot mVideoSnapshot;
 
-        private VideoClipSavingRequest(Snapshot snapshot, Snapshot snapshot2, int i, VideoClipSavingCallback videoClipSavingCallback) {
-            this.mCancelled = new AtomicBoolean();
+        private SnapshotRequest(Snapshot snapshot, Snapshot snapshot2, int i, VideoClipSavingCallback videoClipSavingCallback) {
             if (snapshot2 == null && snapshot == null) {
                 throw new IllegalStateException("At least one non-null snapshot should be provided");
             }
@@ -72,30 +77,23 @@ public class CircularMediaRecorder {
             this.mVideoSnapshot = snapshot2;
             this.mOrientationHint = i;
             this.mVideoClipSavingCallback = videoClipSavingCallback;
+            this.mSampleWriterExecutor = Executors.newFixedThreadPool(2);
         }
 
-        public final void cancel() {
-            this.mCancelled.set(true);
-        }
-
-        private boolean isCancelled() {
-            return this.mCancelled.get();
-        }
-
-        /* JADX WARNING: Removed duplicated region for block: B:79:0x01b6 A:{SYNTHETIC, Splitter: B:79:0x01b6} */
-        /* JADX WARNING: Removed duplicated region for block: B:89:0x01fa  */
-        /* JADX WARNING: Removed duplicated region for block: B:85:0x01d9 A:{SKIP} */
-        /* JADX WARNING: Removed duplicated region for block: B:61:0x014f A:{Catch:{ all -> 0x01b3 }} */
-        /* JADX WARNING: Removed duplicated region for block: B:63:0x0156 A:{SYNTHETIC, Splitter: B:63:0x0156} */
-        /* JADX WARNING: Removed duplicated region for block: B:71:0x0192 A:{SKIP} */
-        /* JADX WARNING: Removed duplicated region for block: B:69:0x0179  */
-        /* JADX WARNING: Removed duplicated region for block: B:79:0x01b6 A:{SYNTHETIC, Splitter: B:79:0x01b6} */
-        /* JADX WARNING: Removed duplicated region for block: B:85:0x01d9 A:{SKIP} */
-        /* JADX WARNING: Removed duplicated region for block: B:89:0x01fa  */
-        /* JADX WARNING: Removed duplicated region for block: B:61:0x014f A:{Catch:{ all -> 0x01b3 }} */
-        /* JADX WARNING: Removed duplicated region for block: B:63:0x0156 A:{SYNTHETIC, Splitter: B:63:0x0156} */
-        /* JADX WARNING: Removed duplicated region for block: B:69:0x0179  */
-        /* JADX WARNING: Removed duplicated region for block: B:71:0x0192 A:{SKIP} */
+        /* JADX WARNING: Removed duplicated region for block: B:72:0x016f A:{Catch:{ all -> 0x01d9 }} */
+        /* JADX WARNING: Removed duplicated region for block: B:74:0x0176 A:{SYNTHETIC, Splitter: B:74:0x0176} */
+        /* JADX WARNING: Removed duplicated region for block: B:82:0x01b2 A:{SKIP} */
+        /* JADX WARNING: Removed duplicated region for block: B:80:0x0199  */
+        /* JADX WARNING: Removed duplicated region for block: B:91:0x01dc A:{SYNTHETIC, Splitter: B:91:0x01dc} */
+        /* JADX WARNING: Removed duplicated region for block: B:101:0x0220  */
+        /* JADX WARNING: Removed duplicated region for block: B:97:0x01ff A:{SKIP} */
+        /* JADX WARNING: Removed duplicated region for block: B:72:0x016f A:{Catch:{ all -> 0x01d9 }} */
+        /* JADX WARNING: Removed duplicated region for block: B:74:0x0176 A:{SYNTHETIC, Splitter: B:74:0x0176} */
+        /* JADX WARNING: Removed duplicated region for block: B:80:0x0199  */
+        /* JADX WARNING: Removed duplicated region for block: B:82:0x01b2 A:{SKIP} */
+        /* JADX WARNING: Removed duplicated region for block: B:91:0x01dc A:{SYNTHETIC, Splitter: B:91:0x01dc} */
+        /* JADX WARNING: Removed duplicated region for block: B:97:0x01ff A:{SKIP} */
+        /* JADX WARNING: Removed duplicated region for block: B:101:0x0220  */
         /* Code decompiled incorrectly, please refer to instructions dump. */
         public void run() {
             MediaMuxer mediaMuxer;
@@ -103,16 +101,18 @@ public class CircularMediaRecorder {
             Throwable e;
             String access$100;
             StringBuilder stringBuilder;
+            String access$1002;
             StringBuilder stringBuilder2;
             if (isCancelled()) {
-                Log.d(CircularMediaRecorder.TAG, "Saving request is requested to be cancelled before executing");
+                Log.d(CircularMediaRecorder.TAG, "Saving request is cancelled before executing");
+                this.mSampleWriterExecutor.shutdown();
                 if (this.mVideoClipSavingCallback != null) {
                     this.mVideoClipSavingCallback.onVideoClipSavingCancelled();
                 }
                 return;
             }
+            StatusNotifier statusNotifier = null;
             File file;
-            String access$1002;
             StringBuilder stringBuilder3;
             try {
                 if (CircularMediaRecorder.SAVE_MICRO_VIDEO_IN_SDCARD) {
@@ -141,30 +141,10 @@ public class CircularMediaRecorder {
                     } catch (Throwable th2) {
                         e = th2;
                         if (mediaMuxer != null) {
-                            try {
-                                mediaMuxer.release();
-                            } catch (Exception e3) {
-                                access$100 = CircularMediaRecorder.TAG;
-                                stringBuilder = new StringBuilder();
-                                stringBuilder.append("Failed to release the media muxer: ");
-                                stringBuilder.append(mediaMuxer);
-                                Log.d(access$100, stringBuilder.toString());
-                            }
                         }
-                        String access$1003;
-                        if (CircularMediaRecorder.SAVE_MICRO_VIDEO_IN_SDCARD) {
-                            access$1003 = CircularMediaRecorder.TAG;
-                            stringBuilder2 = new StringBuilder();
-                            stringBuilder2.append("Ignore deleting the temporary mp4 file: ");
-                            stringBuilder2.append(file);
-                            Log.d(access$1003, stringBuilder2.toString());
-                        } else if (!(file == null || file.delete())) {
-                            access$1003 = CircularMediaRecorder.TAG;
-                            stringBuilder2 = new StringBuilder();
-                            stringBuilder2.append("Failed to delete the temporary mp4 file: ");
-                            stringBuilder2.append(file);
-                            Log.d(access$1003, stringBuilder2.toString());
+                        if (!CircularMediaRecorder.SAVE_MICRO_VIDEO_IN_SDCARD) {
                         }
+                        this.mSampleWriterExecutor.shutdown();
                         throw e;
                     }
                 } catch (Throwable e22) {
@@ -173,15 +153,14 @@ public class CircularMediaRecorder {
                     e = th;
                     if (mediaMuxer != null) {
                     }
-                    if (CircularMediaRecorder.SAVE_MICRO_VIDEO_IN_SDCARD) {
+                    if (!CircularMediaRecorder.SAVE_MICRO_VIDEO_IN_SDCARD) {
                     }
+                    this.mSampleWriterExecutor.shutdown();
                     throw e;
                 }
                 try {
                     int addTrack;
                     int addTrack2;
-                    long j;
-                    StringBuilder stringBuilder4;
                     mediaMuxer.setOrientationHint(this.mOrientationHint);
                     if (this.mVideoSnapshot != null) {
                         addTrack = mediaMuxer.addTrack(this.mVideoSnapshot.format);
@@ -194,35 +173,30 @@ public class CircularMediaRecorder {
                         addTrack2 = -1;
                     }
                     mediaMuxer.start();
-                    long j2 = -1;
-                    if (this.mVideoSnapshot == null || addTrack == -1) {
-                        j = -1;
-                    } else {
-                        j = writeVideoSamples(mediaMuxer, this.mVideoSnapshot, addTrack);
-                        access$1002 = CircularMediaRecorder.TAG;
-                        stringBuilder4 = new StringBuilder();
-                        stringBuilder4.append("VIDEO DURATION: ");
-                        stringBuilder4.append(j);
-                        stringBuilder4.append(" Usec");
-                        Log.d(access$1002, stringBuilder4.toString());
+                    List<Future> arrayList = new ArrayList(2);
+                    if (!(this.mVideoSnapshot == null || addTrack == -1)) {
+                        statusNotifier = new StatusNotifier(Long.valueOf(0));
+                        arrayList.add(this.mSampleWriterExecutor.submit(new VideoSampleWriter(mediaMuxer, this.mVideoSnapshot, addTrack, statusNotifier)));
                     }
                     if (!(this.mAudioSnapshot == null || addTrack2 == -1)) {
-                        long writeAudioSamples = writeAudioSamples(mediaMuxer, this.mAudioSnapshot, addTrack2, j);
-                        access$1002 = CircularMediaRecorder.TAG;
-                        stringBuilder4 = new StringBuilder();
-                        stringBuilder4.append("AUDIO DURATION: ");
-                        stringBuilder4.append(writeAudioSamples);
-                        stringBuilder4.append(" Usec");
-                        Log.d(access$1002, stringBuilder4.toString());
+                        arrayList.add(this.mSampleWriterExecutor.submit(new AudioSampleWriter(mediaMuxer, this.mAudioSnapshot, addTrack2, statusNotifier)));
+                    }
+                    for (Future future : arrayList) {
+                        if (future != null) {
+                            try {
+                                future.get();
+                            } catch (InterruptedException e3) {
+                                String access$1003 = CircularMediaRecorder.TAG;
+                                StringBuilder stringBuilder4 = new StringBuilder();
+                                stringBuilder4.append("Writing is interrupted and the generated video may be corrupted: ");
+                                stringBuilder4.append(e3);
+                                Log.d(access$1003, stringBuilder4.toString());
+                            }
+                        }
                     }
                     mediaMuxer.stop();
                     if (this.mVideoClipSavingCallback != null) {
-                        byte[] readFully = readFully(file.getPath());
-                        VideoClipSavingCallback videoClipSavingCallback = this.mVideoClipSavingCallback;
-                        if (this.mVideoSnapshot != null) {
-                            j2 = this.mVideoSnapshot.curr;
-                        }
-                        videoClipSavingCallback.onVideoClipSavingCompleted(readFully, j2);
+                        this.mVideoClipSavingCallback.onVideoClipSavingCompleted(readFully(file.getPath()), this.mVideoSnapshot == null ? -1 : this.mVideoSnapshot.time);
                     }
                     try {
                         mediaMuxer.release();
@@ -239,6 +213,7 @@ public class CircularMediaRecorder {
                         stringBuilder3.append("Ignore deleting the temporary mp4 file: ");
                         stringBuilder3.append(r1);
                         Log.d(access$1002, stringBuilder3.toString());
+                        this.mSampleWriterExecutor.shutdown();
                     }
                     if (!(file == null || file.delete())) {
                         access$1002 = CircularMediaRecorder.TAG;
@@ -247,6 +222,7 @@ public class CircularMediaRecorder {
                         stringBuilder3.append(r1);
                         Log.d(access$1002, stringBuilder3.toString());
                     }
+                    this.mSampleWriterExecutor.shutdown();
                 } catch (Exception e5) {
                     e = e5;
                     access$100 = CircularMediaRecorder.TAG;
@@ -290,6 +266,7 @@ public class CircularMediaRecorder {
                     stringBuilder3.append("Ignore deleting the temporary mp4 file: ");
                     stringBuilder3.append(r1);
                     Log.d(access$1002, stringBuilder3.toString());
+                    this.mSampleWriterExecutor.shutdown();
                 }
                 if (!(file == null || file.delete())) {
                     access$1002 = CircularMediaRecorder.TAG;
@@ -298,142 +275,39 @@ public class CircularMediaRecorder {
                     stringBuilder3.append(r1);
                     Log.d(access$1002, stringBuilder3.toString());
                 }
+                this.mSampleWriterExecutor.shutdown();
             } catch (Throwable e62) {
                 mediaMuxer = null;
                 e = e62;
                 file = mediaMuxer;
                 if (mediaMuxer != null) {
+                    try {
+                        mediaMuxer.release();
+                    } catch (Exception e8) {
+                        access$100 = CircularMediaRecorder.TAG;
+                        stringBuilder = new StringBuilder();
+                        stringBuilder.append("Failed to release the media muxer: ");
+                        stringBuilder.append(mediaMuxer);
+                        Log.d(access$100, stringBuilder.toString());
+                    }
                 }
-                if (CircularMediaRecorder.SAVE_MICRO_VIDEO_IN_SDCARD) {
+                String access$1004;
+                if (!CircularMediaRecorder.SAVE_MICRO_VIDEO_IN_SDCARD) {
+                    access$1004 = CircularMediaRecorder.TAG;
+                    stringBuilder2 = new StringBuilder();
+                    stringBuilder2.append("Ignore deleting the temporary mp4 file: ");
+                    stringBuilder2.append(file);
+                    Log.d(access$1004, stringBuilder2.toString());
+                } else if (!(file == null || file.delete())) {
+                    access$1004 = CircularMediaRecorder.TAG;
+                    stringBuilder2 = new StringBuilder();
+                    stringBuilder2.append("Failed to delete the temporary mp4 file: ");
+                    stringBuilder2.append(file);
+                    Log.d(access$1004, stringBuilder2.toString());
                 }
+                this.mSampleWriterExecutor.shutdown();
                 throw e;
             }
-        }
-
-        private static long writeVideoSamples(MediaMuxer mediaMuxer, Snapshot snapshot, int i) {
-            Snapshot snapshot2 = snapshot;
-            Log.e(CircularMediaRecorder.TAG, "SAVE VIDEO: E");
-            long j = -1;
-            Object obj = null;
-            int i2 = 0;
-            long j2 = 0;
-            while (obj == null) {
-                Log.d(CircularMediaRecorder.TAG, "VIDEO PACKET WAITING: E");
-                MediaMuxer mediaMuxer2;
-                try {
-                    Sample sample = (Sample) snapshot2.samples.take();
-                    Log.d(CircularMediaRecorder.TAG, "VIDEO PACKET WAITING: X");
-                    ByteBuffer byteBuffer = sample.data;
-                    BufferInfo bufferInfo = sample.info;
-                    if ((bufferInfo.flags & 1) == 0 && i2 == 0) {
-                        mediaMuxer2 = mediaMuxer;
-                    } else {
-                        if (j < bufferInfo.presentationTimeUs - j2) {
-                            if (i2 == 0) {
-                                j2 = bufferInfo.presentationTimeUs;
-                                i2 = 1;
-                            }
-                            bufferInfo.presentationTimeUs -= j2;
-                            mediaMuxer.writeSampleData(i, byteBuffer, bufferInfo);
-                            j = bufferInfo.presentationTimeUs;
-                            String access$100 = CircularMediaRecorder.TAG;
-                            StringBuilder stringBuilder = new StringBuilder();
-                            stringBuilder.append("WRITE VIDEO PACKET: time = ");
-                            stringBuilder.append(bufferInfo.presentationTimeUs);
-                            stringBuilder.append(", size = ");
-                            stringBuilder.append(bufferInfo.size);
-                            stringBuilder.append(", offset = ");
-                            stringBuilder.append(bufferInfo.offset);
-                            stringBuilder.append(", capacity = ");
-                            stringBuilder.append(byteBuffer.capacity());
-                            Log.d(access$100, stringBuilder.toString());
-                        } else {
-                            mediaMuxer2 = mediaMuxer;
-                        }
-                        obj = (byteBuffer.limit() == 0 || (bufferInfo.flags & 4) != 0) ? 1 : null;
-                    }
-                } catch (Throwable e) {
-                    mediaMuxer2 = mediaMuxer;
-                    Log.d(CircularMediaRecorder.TAG, "VIDEO PACKET WAITING INTERRUPTED", e);
-                }
-            }
-            snapshot2.curr = Math.max(0, snapshot2.curr - j2);
-            String access$1002 = CircularMediaRecorder.TAG;
-            StringBuilder stringBuilder2 = new StringBuilder();
-            stringBuilder2.append("VIDEO COVER FRAME TIMESTAMP: ");
-            stringBuilder2.append(snapshot2.curr);
-            Log.d(access$1002, stringBuilder2.toString());
-            Log.e(CircularMediaRecorder.TAG, "SAVE VIDEO: X");
-            return j;
-        }
-
-        private static long writeAudioSamples(MediaMuxer mediaMuxer, Snapshot snapshot, int i, long j) {
-            long j2;
-            Snapshot snapshot2 = snapshot;
-            Log.e(CircularMediaRecorder.TAG, "SAVE AUDIO: E");
-            if (j == -1) {
-                j2 = CircularMediaRecorder.CAPTURE_DURATION_IN_MICROSECOND;
-            } else {
-                j2 = j;
-            }
-            long max = Math.max(0, snapshot2.tail - j2);
-            long j3 = snapshot2.tail;
-            long j4 = 0;
-            Object obj = null;
-            long j5 = -1;
-            Object obj2 = null;
-            while (obj2 == null) {
-                Log.d(CircularMediaRecorder.TAG, "AUDIO PACKET WAITING: E");
-                MediaMuxer mediaMuxer2;
-                int i2;
-                try {
-                    Sample sample = (Sample) snapshot2.samples.take();
-                    Log.d(CircularMediaRecorder.TAG, "AUDIO PACKET WAITING: X");
-                    ByteBuffer byteBuffer = sample.data;
-                    BufferInfo bufferInfo = sample.info;
-                    if (bufferInfo.presentationTimeUs < max || j5 >= bufferInfo.presentationTimeUs - j4) {
-                        mediaMuxer2 = mediaMuxer;
-                        i2 = i;
-                    } else {
-                        if (obj == null) {
-                            j4 = bufferInfo.presentationTimeUs;
-                            obj = 1;
-                        }
-                        bufferInfo.presentationTimeUs -= j4;
-                        if (bufferInfo.presentationTimeUs >= j3) {
-                            bufferInfo.flags = 4;
-                        }
-                        mediaMuxer.writeSampleData(i, byteBuffer, bufferInfo);
-                        j5 = bufferInfo.presentationTimeUs;
-                        String access$100 = CircularMediaRecorder.TAG;
-                        StringBuilder stringBuilder = new StringBuilder();
-                        stringBuilder.append("WRITE AUDIO PACKET: time = ");
-                        long j6 = j5;
-                        stringBuilder.append(bufferInfo.presentationTimeUs);
-                        stringBuilder.append(", size = ");
-                        stringBuilder.append(bufferInfo.size);
-                        stringBuilder.append(", offset = ");
-                        stringBuilder.append(bufferInfo.offset);
-                        stringBuilder.append(", capacity = ");
-                        stringBuilder.append(byteBuffer.capacity());
-                        Log.d(access$100, stringBuilder.toString());
-                        j5 = j6;
-                    }
-                    if (byteBuffer.limit() == 0 || (bufferInfo.flags & 4) != 0) {
-                        obj2 = 1;
-                        snapshot2 = snapshot;
-                    } else {
-                        obj2 = null;
-                        snapshot2 = snapshot;
-                    }
-                } catch (Throwable e) {
-                    mediaMuxer2 = mediaMuxer;
-                    i2 = i;
-                    Log.d(CircularMediaRecorder.TAG, "AUDIO PACKET INTERRUPTED", e);
-                }
-            }
-            Log.e(CircularMediaRecorder.TAG, "SAVE AUDIO: X");
-            return j5;
         }
 
         private static byte[] readFully(String str) {
@@ -465,7 +339,7 @@ public class CircularMediaRecorder {
             } catch (IOException e) {
                 String access$100 = CircularMediaRecorder.TAG;
                 StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("Failed to read the mp4 file content into memory: ");
+                stringBuilder.append("Failed to load the mp4 file content into memory: ");
                 stringBuilder.append(e);
                 Log.d(access$100, stringBuilder.toString());
                 return new byte[0];
@@ -530,11 +404,6 @@ public class CircularMediaRecorder {
         stringBuilder.append("        duration: ");
         stringBuilder.append(camcorderProfile.duration);
         Log.d("QUALITY_1080P_PROFILE", stringBuilder.toString());
-        if (CameraSettings.getVideoEncoder() == 5 && MediaCodecCapability.isH265EncodingSupported()) {
-            VIDEO_MIME_TYPE = "video/hevc";
-        } else {
-            VIDEO_MIME_TYPE = "video/avc";
-        }
     }
 
     public CircularMediaRecorder(int i, int i2, EGLContext eGLContext, boolean z) {
@@ -544,7 +413,13 @@ public class CircularMediaRecorder {
         } else {
             this.mCircularAudioEncoder = null;
         }
-        this.mSavingRequestScheduler = new BackgroundTaskScheduler(Executors.newSingleThreadExecutor());
+        this.mSnapshotRequestScheduler = new BackgroundTaskScheduler(Executors.newSingleThreadExecutor());
+    }
+
+    public void setFpsReduction(float f) {
+        if (this.mCircularVideoEncoder != null) {
+            this.mCircularVideoEncoder.setFpsReduction(f);
+        }
     }
 
     public void start() {
@@ -560,7 +435,7 @@ public class CircularMediaRecorder {
 
     public void stop() {
         Log.d(TAG, "stop(): E");
-        this.mSavingRequestScheduler.abortRemainingTasks();
+        this.mSnapshotRequestScheduler.abortRemainingTasks();
         if (this.mCircularVideoEncoder != null) {
             this.mCircularVideoEncoder.stop();
         }
@@ -572,6 +447,7 @@ public class CircularMediaRecorder {
 
     public void release() {
         Log.d(TAG, "release(): E");
+        this.mSnapshotRequestScheduler.shutdown();
         if (this.mCircularVideoEncoder != null) {
             this.mCircularVideoEncoder.release();
         }
@@ -594,12 +470,12 @@ public class CircularMediaRecorder {
     }
 
     public void setOrientationHint(int i) {
-        this.mOrientationHint = i;
         String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("setOrientationHint(): mOrientationHint = ");
+        stringBuilder.append("setOrientationHint(): ");
         stringBuilder.append(i);
         Log.d(str, stringBuilder.toString());
+        this.mOrientationHint = i;
     }
 
     public void snapshot(int i, VideoClipSavingCallback videoClipSavingCallback) {
@@ -618,7 +494,7 @@ public class CircularMediaRecorder {
         if (i == -1) {
             i = this.mOrientationHint;
         }
-        this.mSavingRequestScheduler.submit(new VideoClipSavingRequest(snapshot, snapshot2, i, videoClipSavingCallback));
+        this.mSnapshotRequestScheduler.execute(new SnapshotRequest(snapshot, snapshot2, i, videoClipSavingCallback));
     }
 
     private static MediaFormat createAudioFormat(int i, int i2) {
@@ -631,11 +507,15 @@ public class CircularMediaRecorder {
     }
 
     private static MediaFormat createVideoFormat(int i, int i2) {
-        MediaFormat createVideoFormat = MediaFormat.createVideoFormat(VIDEO_MIME_TYPE, i, i2);
+        MediaFormat createVideoFormat = MediaFormat.createVideoFormat(isH265EncodingPreferred() ? "video/hevc" : "video/avc", i, i2);
         createVideoFormat.setInteger("color-format", 2130708361);
         createVideoFormat.setInteger("bitrate", VIDEO_BIT_RATE);
         createVideoFormat.setInteger("frame-rate", 15);
-        createVideoFormat.setFloat("i-frame-interval", 0.5f);
+        createVideoFormat.setFloat("i-frame-interval", VIDEO_I_FRAME_INTERVAL);
         return createVideoFormat;
+    }
+
+    private static boolean isH265EncodingPreferred() {
+        return CameraSettings.getVideoEncoder() == 5 && MediaCodecCapability.isH265EncodingSupported();
     }
 }

@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 86
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -28,7 +28,7 @@
 .end method
 
 .method private static withinStyle(Ljava/lang/StringBuilder;Ljava/lang/CharSequence;II)V
-    .locals 4
+    .registers 8
     .param p0, "out"    # Ljava/lang/StringBuilder;
     .param p1, "text"    # Ljava/lang/CharSequence;
     .param p2, "start"    # I
@@ -38,8 +38,8 @@
     move v0, p2
 
     .local v0, "i":I
-    :goto_0
-    if-ge v0, p3, :cond_7
+    :goto_1
+    if-ge v0, p3, :cond_68
 
     .line 100
     invoke-interface {p1, v0}, Ljava/lang/CharSequence;->charAt(I)C
@@ -50,62 +50,62 @@
     .local v1, "c":C
     const/16 v2, 0x3c
 
-    if-ne v1, v2, :cond_0
+    if-ne v1, v2, :cond_11
 
     .line 103
     const-string v2, "&lt;"
 
     invoke-virtual {p0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    goto :goto_3
+    goto :goto_65
 
     .line 104
-    :cond_0
+    :cond_11
     const/16 v2, 0x3e
 
-    if-ne v1, v2, :cond_1
+    if-ne v1, v2, :cond_1b
 
     .line 105
     const-string v2, "&gt;"
 
     invoke-virtual {p0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    goto :goto_3
+    goto :goto_65
 
     .line 106
-    :cond_1
+    :cond_1b
     const/16 v2, 0x26
 
-    if-ne v1, v2, :cond_2
+    if-ne v1, v2, :cond_25
 
     .line 107
     const-string v2, "&amp;"
 
     invoke-virtual {p0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    goto :goto_3
+    goto :goto_65
 
     .line 108
-    :cond_2
+    :cond_25
     const/16 v2, 0x7e
 
-    if-gt v1, v2, :cond_6
+    if-gt v1, v2, :cond_4c
 
     const/16 v2, 0x20
 
-    if-ge v1, v2, :cond_3
+    if-ge v1, v2, :cond_2e
 
-    goto :goto_2
+    goto :goto_4c
 
     .line 110
-    :cond_3
-    if-ne v1, v2, :cond_5
+    :cond_2e
+    if-ne v1, v2, :cond_48
 
     .line 111
-    :goto_1
+    :goto_30
     add-int/lit8 v3, v0, 0x1
 
-    if-ge v3, p3, :cond_4
+    if-ge v3, p3, :cond_44
 
     add-int/lit8 v3, v0, 0x1
 
@@ -113,7 +113,7 @@
 
     move-result v3
 
-    if-ne v3, v2, :cond_4
+    if-ne v3, v2, :cond_44
 
     .line 112
     const-string v3, "&nbsp;"
@@ -123,25 +123,25 @@
     .line 113
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_1
+    goto :goto_30
 
     .line 116
-    :cond_4
+    :cond_44
     invoke-virtual {p0, v2}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
-    goto :goto_3
+    goto :goto_65
 
     .line 118
-    :cond_5
+    :cond_48
     invoke-virtual {p0, v1}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
 
     .end local v1    # "c":C
-    goto :goto_3
+    goto :goto_65
 
     .line 109
     .restart local v1    # "c":C
-    :cond_6
-    :goto_2
+    :cond_4c
+    :goto_4c
     new-instance v2, Ljava/lang/StringBuilder;
 
     invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
@@ -164,21 +164,21 @@
 
     .line 99
     .end local v1    # "c":C
-    :goto_3
+    :goto_65
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_0
+    goto :goto_1
 
     .line 121
     .end local v0    # "i":I
-    :cond_7
+    :cond_68
     return-void
 .end method
 
 
 # virtual methods
 .method public configureMenuItem(Landroid/view/MenuItem;Landroid/support/v4/app/ShareCompat$IntentBuilder;)V
-    .locals 1
+    .registers 4
     .param p1, "item"    # Landroid/view/MenuItem;
     .param p2, "shareIntent"    # Landroid/support/v4/app/ShareCompat$IntentBuilder;
 
@@ -194,7 +194,7 @@
 .end method
 
 .method public escapeHtml(Ljava/lang/CharSequence;)Ljava/lang/String;
-    .locals 3
+    .registers 5
     .param p1, "text"    # Ljava/lang/CharSequence;
 
     .line 92

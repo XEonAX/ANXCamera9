@@ -11,7 +11,7 @@
 
 # direct methods
 .method public constructor <init>(Lcom/google/zxing/common/BitMatrix;[Lcom/google/zxing/ResultPoint;)V
-    .locals 0
+    .registers 3
     .param p1, "bits"    # Lcom/google/zxing/common/BitMatrix;
     .param p2, "points"    # [Lcom/google/zxing/ResultPoint;
 
@@ -31,7 +31,7 @@
 
 # virtual methods
 .method public final getBits()Lcom/google/zxing/common/BitMatrix;
-    .locals 1
+    .registers 2
 
     .line 39
     iget-object v0, p0, Lcom/google/zxing/common/DetectorResult;->bits:Lcom/google/zxing/common/BitMatrix;
@@ -40,7 +40,7 @@
 .end method
 
 .method public final getPoints()[Lcom/google/zxing/ResultPoint;
-    .locals 1
+    .registers 2
 
     .line 43
     iget-object v0, p0, Lcom/google/zxing/common/DetectorResult;->points:[Lcom/google/zxing/ResultPoint;

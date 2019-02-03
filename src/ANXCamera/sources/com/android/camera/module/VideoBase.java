@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
+import android.hardware.SensorEvent;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CaptureResult;
 import android.location.Location;
@@ -21,7 +22,6 @@ import android.telephony.TelephonyManager;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Toast;
-import com.aeonax.camera.R;
 import com.android.camera.BasePreferenceActivity;
 import com.android.camera.CameraPreferenceActivity;
 import com.android.camera.CameraSettings;
@@ -30,6 +30,7 @@ import com.android.camera.ChangeManager;
 import com.android.camera.FileCompat;
 import com.android.camera.LocationManager;
 import com.android.camera.OnClickAttr;
+import com.android.camera.R;
 import com.android.camera.RotateDialogController;
 import com.android.camera.SensorStateManager.SensorStateListener;
 import com.android.camera.ThermalDetector;
@@ -54,6 +55,7 @@ import com.android.camera.protocol.ModeProtocol.BaseDelegate;
 import com.android.camera.protocol.ModeProtocol.CameraAction;
 import com.android.camera.protocol.ModeProtocol.OnFaceBeautyChangedProtocol;
 import com.android.camera.protocol.ModeProtocol.PlayVideoProtocol;
+import com.android.camera.protocol.ModeProtocol.RecordState;
 import com.android.camera.statistic.CameraStat;
 import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.storage.Storage;
@@ -129,7 +131,7 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
         }
 
         public boolean isWorking() {
-            return VideoBase.this.mPreviewing;
+            return VideoBase.this.isAlive() && VideoBase.this.mPreviewing;
         }
 
         public void onDeviceKeepMoving(double d) {
@@ -149,6 +151,12 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
 
         public void notifyDevicePostureChanged() {
             VideoBase.this.mActivity.getEdgeShutterView().onDevicePostureChanged();
+        }
+
+        public void onDeviceRotationChanged(float[] fArr) {
+        }
+
+        public void onSensorChanged(SensorEvent sensorEvent) {
         }
     };
     protected boolean mSnapshotInProgress;
@@ -225,13 +233,6 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
                         break;
                     case 46:
                         VideoBase.this.onWaitStopCallbackTimeout();
-                        break;
-                    case 47:
-                        if (VideoBase.this.mHandlerFinishEmitter != null) {
-                            VideoBase.this.mHandlerFinishEmitter.onComplete();
-                            VideoBase.this.mHandlerFinishEmitter = null;
-                            break;
-                        }
                         break;
                     case 51:
                         VideoBase.this.stopVideoRecording(true, false);
@@ -367,7 +368,7 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
 
     public void setFrameAvailable(boolean z) {
         super.setFrameAvailable(z);
-        if (CameraSettings.isCameraSoundOpen()) {
+        if (z && CameraSettings.isCameraSoundOpen()) {
             this.mActivity.loadCameraSound(1);
             this.mActivity.loadCameraSound(0);
             this.mActivity.loadCameraSound(2);
@@ -576,16 +577,26 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
     }
 
     public boolean shouldReleaseLater() {
-        return isVideoRecording() || isSelectingCapturedVideo();
+        return this.mInStartingFocusRecording || isVideoRecording() || isSelectingCapturedResult();
     }
 
     public void notifyError() {
-        super.notifyError();
-        if (currentIsMainThread()) {
+        if (currentIsMainThread() && isVideoRecording() && !isPostProcessing()) {
             stopVideoRecording(true, false);
-            if (this.mPaused) {
-                closeCamera();
+        }
+        super.notifyError();
+    }
+
+    public void onHostStopAndNotifyActionStop() {
+        if (this.mInStartingFocusRecording) {
+            this.mInStartingFocusRecording = false;
+            RecordState recordState = (RecordState) ModeCoordinatorImpl.getInstance().getAttachProtocol(212);
+            if (recordState != null) {
+                recordState.onFinish();
             }
+        }
+        if (isVideoRecording() && !isPostProcessing() && isCameraSessionReady()) {
+            stopVideoRecording(true, true);
         }
     }
 
@@ -596,7 +607,7 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
     }
 
     protected void updateRecordingTime() {
-        if (isThermalThreshold() && "1".equals(CameraSettings.getFlashMode(this.mModuleIndex))) {
+        if (isThermalThreshold() && !"0".equals(CameraSettings.getFlashMode(this.mModuleIndex))) {
             ThermalDetector.getInstance().onThermalNotification();
         }
     }
@@ -620,13 +631,7 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
     }
 
     public boolean onBackPressed() {
-        if (!isCreated()) {
-            return false;
-        }
-        if (this.mPaused) {
-            return true;
-        }
-        if (this.mStereoSwitchThread != null) {
+        if (!isFrameAvailable() || this.mStereoSwitchThread != null) {
             return false;
         }
         if (this.mMediaRecorderRecording) {
@@ -740,7 +745,7 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
 
     @OnClickAttr
     public void onReviewCancelClicked() {
-        if (isSelectingCapturedVideo()) {
+        if (isSelectingCapturedResult()) {
             deleteCurrentVideo();
             hideAlert();
             return;
@@ -749,7 +754,7 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
         doReturnToCaller(false);
     }
 
-    public boolean isSelectingCapturedVideo() {
+    public boolean isSelectingCapturedResult() {
         if (isCaptureIntent() && ((BaseDelegate) ModeCoordinatorImpl.getInstance().getAttachProtocol(160)).getActiveFragment(R.id.bottom_action) == 4083) {
             return true;
         }
@@ -808,62 +813,64 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
     }
 
     protected ContentValues genContentValues(int i, int i2) {
-        return genContentValues(i, i2, false);
+        return genContentValues(i, i2, false, true);
     }
 
-    protected ContentValues genContentValues(int i, int i2, boolean z) {
+    protected ContentValues genContentValues(int i, int i2, boolean z, boolean z2) {
         String format;
-        String stringBuilder;
-        StringBuilder stringBuilder2;
+        StringBuilder stringBuilder;
+        String stringBuilder2;
         long currentTimeMillis = System.currentTimeMillis();
         String createName = createName(currentTimeMillis, i2);
         if (i2 > 0) {
             format = String.format(Locale.ENGLISH, "_%d", new Object[]{Integer.valueOf(i2)});
-            StringBuilder stringBuilder3 = new StringBuilder();
-            stringBuilder3.append(createName);
-            stringBuilder3.append(format);
-            createName = stringBuilder3.toString();
+            stringBuilder = new StringBuilder();
+            stringBuilder.append(createName);
+            stringBuilder.append(format);
+            createName = stringBuilder.toString();
         }
-        StringBuilder stringBuilder4 = new StringBuilder();
-        stringBuilder4.append(createName);
-        stringBuilder4.append(Util.convertOutputFormatToFileExt(i));
-        format = stringBuilder4.toString();
+        StringBuilder stringBuilder3 = new StringBuilder();
+        stringBuilder3.append(createName);
+        stringBuilder3.append(Util.convertOutputFormatToFileExt(i));
+        format = stringBuilder3.toString();
         String convertOutputFormatToMimeType = Util.convertOutputFormatToMimeType(i);
-        StringBuilder stringBuilder5;
+        StringBuilder stringBuilder4;
         if (z) {
-            stringBuilder5 = new StringBuilder();
-            stringBuilder5.append(Storage.CAMERA_TEMP_DIRECTORY);
-            stringBuilder5.append('/');
-            stringBuilder5.append(format);
-            stringBuilder = stringBuilder5.toString();
-            stringBuilder2 = new StringBuilder();
-            stringBuilder2.append(Storage.CAMERA_TEMP_DIRECTORY);
-            stringBuilder2.append(File.separator);
-            stringBuilder2.append(Storage.AVOID_SCAN_FILE_NAME);
-            Util.createFile(new File(stringBuilder2.toString()));
+            stringBuilder4 = new StringBuilder();
+            stringBuilder4.append(Storage.generatePrimaryTempFile());
+            stringBuilder4.append('/');
+            stringBuilder4.append(format);
+            stringBuilder2 = stringBuilder4.toString();
+            stringBuilder = new StringBuilder();
+            stringBuilder.append(Storage.generatePrimaryTempFile());
+            stringBuilder.append(File.separator);
+            stringBuilder.append(Storage.AVOID_SCAN_FILE_NAME);
+            Util.createFile(new File(stringBuilder.toString()));
+        } else if (z2) {
+            stringBuilder4 = new StringBuilder();
+            stringBuilder4.append(Storage.DIRECTORY);
+            stringBuilder4.append('/');
+            stringBuilder4.append(format);
+            stringBuilder2 = stringBuilder4.toString();
         } else {
-            stringBuilder5 = new StringBuilder();
-            stringBuilder5.append(Storage.DIRECTORY);
-            stringBuilder5.append('/');
-            stringBuilder5.append(format);
-            stringBuilder = stringBuilder5.toString();
+            stringBuilder2 = Storage.generatePrimaryFilepath(format);
         }
         String str = TAG;
-        stringBuilder2 = new StringBuilder();
-        stringBuilder2.append("genContentValues: path=");
-        stringBuilder2.append(stringBuilder);
-        Log.v(str, stringBuilder2.toString());
+        stringBuilder = new StringBuilder();
+        stringBuilder.append("genContentValues: path=");
+        stringBuilder.append(stringBuilder2);
+        Log.v(str, stringBuilder.toString());
         ContentValues contentValues = new ContentValues(8);
         contentValues.put("title", createName);
         contentValues.put("_display_name", format);
         contentValues.put("datetaken", Long.valueOf(currentTimeMillis));
         contentValues.put("mime_type", convertOutputFormatToMimeType);
-        contentValues.put("_data", stringBuilder);
-        stringBuilder4 = new StringBuilder();
-        stringBuilder4.append(Integer.toString(this.mVideoSize.width));
-        stringBuilder4.append("x");
-        stringBuilder4.append(Integer.toString(this.mVideoSize.height));
-        contentValues.put("resolution", stringBuilder4.toString());
+        contentValues.put("_data", stringBuilder2);
+        stringBuilder3 = new StringBuilder();
+        stringBuilder3.append(Integer.toString(this.mVideoSize.width));
+        stringBuilder3.append("x");
+        stringBuilder3.append(Integer.toString(this.mVideoSize.height));
+        contentValues.put("resolution", stringBuilder3.toString());
         Location currentLocation = LocationManager.instance().getCurrentLocation();
         if (!(currentLocation == null || (currentLocation.getLatitude() == 0.0d && currentLocation.getLongitude() == 0.0d))) {
             contentValues.put("latitude", Double.valueOf(currentLocation.getLatitude()));
@@ -1176,6 +1183,10 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
         return false;
     }
 
+    protected boolean isCameraSessionReady() {
+        return this.mCamera2Device != null && this.mCamera2Device.isSessionReady();
+    }
+
     protected boolean isSessionReady() {
         return this.mIsSessionReady;
     }
@@ -1197,6 +1208,10 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
     }
 
     public void onPreviewSessionFailed(CameraCaptureSession cameraCaptureSession) {
+        if (isTextureExpired() && retryOnceIfCameraError(this.mHandler)) {
+            Log.d(TAG, "sessionFailed due to surfaceTexture expired, retry");
+            return;
+        }
         String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("onPreviewSessionFailed: ");
@@ -1253,6 +1268,9 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
     }
 
     public boolean onWaitingFocusFinished() {
+        if (!isFrameAvailable()) {
+            return false;
+        }
         Log.v(TAG, CameraStat.CATEGORY_CAMERA);
         this.mHandler.removeMessages(55);
         if (!this.mInStartingFocusRecording) {
@@ -1306,9 +1324,9 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
         return false;
     }
 
-    public void onCameraMetaData(CaptureResult captureResult) {
+    public void onPreviewMetaDataUpdate(CaptureResult captureResult) {
         if (captureResult != null) {
-            super.onCameraMetaData(captureResult);
+            super.onPreviewMetaDataUpdate(captureResult);
             if (this.mMetaDataFlowableEmitter != null) {
                 this.mMetaDataFlowableEmitter.onNext(captureResult);
             }
@@ -1322,10 +1340,8 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
         updatePreferenceTrampoline(3);
     }
 
-    public void playSound(int i) {
-        if (!isNeedMute()) {
-            playCameraSound(i);
-        }
+    public void playFocusSound(int i) {
+        playCameraSound(i);
     }
 
     public boolean isShowAeAfLockIndicator() {
@@ -1375,7 +1391,9 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
         if (this.mAeLockSupported) {
             this.mCamera2Device.setAELock(false);
         }
-        this.mFocusManager.setAeAwbLock(false);
+        if (this.mFocusManager != null) {
+            this.mFocusManager.setAeAwbLock(false);
+        }
     }
 
     protected void lockAEAF() {
@@ -1448,7 +1466,7 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
             }
             this.mBeautyValues.mBeautyLevel = CameraSettings.getFaceBeautyCloseValue();
             if (!DataRepository.dataItemConfig().getComponentConfigBeauty().isClosed(this.mModuleIndex)) {
-                CameraSettings.initBeautyValues(this.mBeautyValues, b.hp());
+                CameraSettings.initBeautyValues(this.mBeautyValues, b.hG());
             }
             if (!BeautyConstant.LEVEL_CLOSE.equals(this.mBeautyValues.mBeautyLevel)) {
                 this.mCamera2Device.setBeautyValues(this.mBeautyValues);
@@ -1479,8 +1497,11 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
     }
 
     public boolean isThermalThreshold() {
-        long uptimeMillis = (SystemClock.uptimeMillis() - this.mRecordingStartTime) / 60000;
         boolean z = false;
+        if (!this.mMediaRecorderRecording) {
+            return false;
+        }
+        long uptimeMillis = (SystemClock.uptimeMillis() - this.mRecordingStartTime) / 60000;
         if (isFrontCamera()) {
             if (uptimeMillis >= 10) {
                 z = true;

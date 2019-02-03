@@ -13,9 +13,9 @@ public class NewStyleTextWaterMark extends WaterMark {
     private int mCenterX;
     private int mCenterY;
     private int mCharMargin;
-    private int mHorizontalPadding;
     private int mPadding;
-    private int mVerticalPadding;
+    private int mPaddingX;
+    private int mPaddingY;
     private int mWaterHeight = this.mWaterTexture.getHeight();
     private String mWaterText;
     private BasicTexture mWaterTexture;
@@ -28,8 +28,8 @@ public class NewStyleTextWaterMark extends WaterMark {
         this.mWaterTexture = StringTexture.newInstance(this.mWaterText, 30.079576f * min, -1, 2);
         this.mPadding = (int) Math.round(43.687002653d * ((double) min));
         this.mCharMargin = (int) ((((float) this.mWaterHeight) * 0.13f) / 2.0f);
-        this.mHorizontalPadding = this.mPadding & -2;
-        this.mVerticalPadding = (this.mPadding - this.mCharMargin) & -2;
+        this.mPaddingX = this.mPadding & -2;
+        this.mPaddingY = (this.mPadding - this.mCharMargin) & -2;
         calcCenterAxis();
         if (Util.sIsDumpLog) {
             print();
@@ -39,17 +39,17 @@ public class NewStyleTextWaterMark extends WaterMark {
     private void calcCenterAxis() {
         int i = this.mOrientation;
         if (i == 0) {
-            this.mCenterX = (this.mPictureWidth - this.mHorizontalPadding) - (this.mWaterWidth / 2);
-            this.mCenterY = (this.mPictureHeight - this.mVerticalPadding) - (this.mWaterHeight / 2);
+            this.mCenterX = (this.mPictureWidth - this.mPaddingX) - (this.mWaterWidth / 2);
+            this.mCenterY = (this.mPictureHeight - this.mPaddingY) - (this.mWaterHeight / 2);
         } else if (i == 90) {
-            this.mCenterX = (this.mPictureWidth - this.mVerticalPadding) - (this.mWaterHeight / 2);
-            this.mCenterY = this.mHorizontalPadding + (this.mWaterWidth / 2);
+            this.mCenterX = (this.mPictureWidth - this.mPaddingY) - (this.mWaterHeight / 2);
+            this.mCenterY = this.mPaddingX + (this.mWaterWidth / 2);
         } else if (i == 180) {
-            this.mCenterX = this.mHorizontalPadding + (this.mWaterWidth / 2);
-            this.mCenterY = this.mVerticalPadding + (this.mWaterHeight / 2);
+            this.mCenterX = this.mPaddingX + (this.mWaterWidth / 2);
+            this.mCenterY = this.mPaddingY + (this.mWaterHeight / 2);
         } else if (i == 270) {
-            this.mCenterX = this.mVerticalPadding + (this.mWaterHeight / 2);
-            this.mCenterY = (this.mPictureHeight - this.mHorizontalPadding) - (this.mWaterWidth / 2);
+            this.mCenterX = this.mPaddingY + (this.mWaterHeight / 2);
+            this.mCenterY = (this.mPictureHeight - this.mPaddingX) - (this.mWaterWidth / 2);
         }
     }
 
@@ -71,6 +71,14 @@ public class NewStyleTextWaterMark extends WaterMark {
 
     public BasicTexture getTexture() {
         return this.mWaterTexture;
+    }
+
+    public int getPaddingX() {
+        return this.mPaddingX;
+    }
+
+    public int getPaddingY() {
+        return this.mPaddingY;
     }
 
     private void print() {

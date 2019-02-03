@@ -16,7 +16,7 @@
 
 # direct methods
 .method private constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 100
     const/4 v0, 0x0
@@ -27,7 +27,7 @@
 .end method
 
 .method synthetic constructor <init>(Landroid/support/v4/text/TextUtilsCompat$1;)V
-    .locals 0
+    .registers 2
     .param p1, "x0"    # Landroid/support/v4/text/TextUtilsCompat$1;
 
     .line 100
@@ -39,7 +39,7 @@
 
 # virtual methods
 .method public getLayoutDirectionFromLocale(Ljava/util/Locale;)I
-    .locals 1
+    .registers 3
     .param p1, "locale"    # Ljava/util/Locale;
         .annotation build Landroid/support/annotation/Nullable;
         .end annotation
@@ -54,7 +54,7 @@
 .end method
 
 .method public htmlEncode(Ljava/lang/String;)Ljava/lang/String;
-    .locals 1
+    .registers 3
     .param p1, "s"    # Ljava/lang/String;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation

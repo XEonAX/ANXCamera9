@@ -32,7 +32,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 65
     new-instance v0, Landroid/support/v4/media/session/ParcelableVolumeInfo$1;
@@ -45,7 +45,7 @@
 .end method
 
 .method public constructor <init>(IIIII)V
-    .locals 0
+    .registers 6
     .param p1, "volumeType"    # I
     .param p2, "audioStream"    # I
     .param p3, "controlType"    # I
@@ -75,7 +75,7 @@
 .end method
 
 .method public constructor <init>(Landroid/os/Parcel;)V
-    .locals 1
+    .registers 3
     .param p1, "from"    # Landroid/os/Parcel;
 
     .line 42
@@ -123,7 +123,7 @@
 
 # virtual methods
 .method public describeContents()I
-    .locals 1
+    .registers 2
 
     .line 52
     const/4 v0, 0x0
@@ -132,7 +132,7 @@
 .end method
 
 .method public writeToParcel(Landroid/os/Parcel;I)V
-    .locals 1
+    .registers 4
     .param p1, "dest"    # Landroid/os/Parcel;
     .param p2, "flags"    # I
 

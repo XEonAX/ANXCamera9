@@ -11,7 +11,7 @@
 
 # direct methods
 .method constructor <init>(Lcom/google/zxing/oned/rss/expanded/decoders/DecodedInformation;Z)V
-    .locals 0
+    .registers 3
     .param p1, "information"    # Lcom/google/zxing/oned/rss/expanded/decoders/DecodedInformation;
     .param p2, "finished"    # Z
 
@@ -29,7 +29,7 @@
 .end method
 
 .method constructor <init>(Z)V
-    .locals 1
+    .registers 3
     .param p1, "finished"    # Z
 
     .line 39
@@ -44,7 +44,7 @@
 
 # virtual methods
 .method getDecodedInformation()Lcom/google/zxing/oned/rss/expanded/decoders/DecodedInformation;
-    .locals 1
+    .registers 2
 
     .line 48
     iget-object v0, p0, Lcom/google/zxing/oned/rss/expanded/decoders/BlockParsedResult;->decodedInformation:Lcom/google/zxing/oned/rss/expanded/decoders/DecodedInformation;
@@ -53,7 +53,7 @@
 .end method
 
 .method isFinished()Z
-    .locals 1
+    .registers 2
 
     .line 52
     iget-boolean v0, p0, Lcom/google/zxing/oned/rss/expanded/decoders/BlockParsedResult;->finished:Z

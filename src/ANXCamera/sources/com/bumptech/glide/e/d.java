@@ -33,6 +33,6 @@ public final class d implements c {
     }
 
     public void updateDiskCacheKey(@NonNull MessageDigest messageDigest) {
-        messageDigest.update(this.object.toString().getBytes(cT));
+        messageDigest.update(this.object.toString().getBytes(cU));
     }
 }

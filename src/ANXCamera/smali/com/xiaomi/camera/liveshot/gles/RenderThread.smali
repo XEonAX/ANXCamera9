@@ -24,11 +24,11 @@
 # instance fields
 .field private mCanvas:Lcom/android/camera/effect/VideoRecorderCanvas;
 
+.field private mDrawExtTexAttribute:Lcom/android/camera/effect/draw_mode/DrawExtTexAttribute;
+
 .field private mEglCore:Lcom/xiaomi/camera/liveshot/gles/EglCore;
 
 .field private mEglSurfaceBase:Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;
-
-.field private mExtTexture:Lcom/android/camera/effect/draw_mode/DrawExtTexAttribute;
 
 .field private mHandler:Lcom/xiaomi/camera/liveshot/gles/RenderThread$RenderHandler;
 
@@ -85,7 +85,7 @@
 
     invoke-direct {p1}, Lcom/android/camera/effect/draw_mode/DrawExtTexAttribute;-><init>()V
 
-    iput-object p1, p0, Lcom/xiaomi/camera/liveshot/gles/RenderThread;->mExtTexture:Lcom/android/camera/effect/draw_mode/DrawExtTexAttribute;
+    iput-object p1, p0, Lcom/xiaomi/camera/liveshot/gles/RenderThread;->mDrawExtTexAttribute:Lcom/android/camera/effect/draw_mode/DrawExtTexAttribute;
 
     .line 42
     const/4 p1, 0x0
@@ -257,7 +257,7 @@
 
     if-eqz v0, :cond_3
 
-    iget-object v0, p0, Lcom/xiaomi/camera/liveshot/gles/RenderThread;->mExtTexture:Lcom/android/camera/effect/draw_mode/DrawExtTexAttribute;
+    iget-object v0, p0, Lcom/xiaomi/camera/liveshot/gles/RenderThread;->mDrawExtTexAttribute:Lcom/android/camera/effect/draw_mode/DrawExtTexAttribute;
 
     if-eqz v0, :cond_3
 
@@ -269,7 +269,7 @@
     .line 153
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/gles/RenderThread;->mCanvas:Lcom/android/camera/effect/VideoRecorderCanvas;
 
-    iget-object v1, p0, Lcom/xiaomi/camera/liveshot/gles/RenderThread;->mExtTexture:Lcom/android/camera/effect/draw_mode/DrawExtTexAttribute;
+    iget-object v1, p0, Lcom/xiaomi/camera/liveshot/gles/RenderThread;->mDrawExtTexAttribute:Lcom/android/camera/effect/draw_mode/DrawExtTexAttribute;
 
     invoke-virtual {v0, v1}, Lcom/android/camera/effect/VideoRecorderCanvas;->draw(Lcom/android/camera/effect/draw_mode/DrawAttribute;)V
 
@@ -474,7 +474,7 @@
 
     .line 112
     :cond_0
-    iget-object v1, p0, Lcom/xiaomi/camera/liveshot/gles/RenderThread;->mExtTexture:Lcom/android/camera/effect/draw_mode/DrawExtTexAttribute;
+    iget-object v1, p0, Lcom/xiaomi/camera/liveshot/gles/RenderThread;->mDrawExtTexAttribute:Lcom/android/camera/effect/draw_mode/DrawExtTexAttribute;
 
     iget-object v2, p1, Lcom/android/camera/effect/draw_mode/DrawExtTexAttribute;->mExtTexture:Lcom/android/gallery3d/ui/ExtTexture;
 

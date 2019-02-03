@@ -21,7 +21,7 @@
 
 # direct methods
 .method public constructor <init>([BIIIIIIZ)V
-    .locals 2
+    .registers 11
     .param p1, "yuvData"    # [B
     .param p2, "dataWidth"    # I
     .param p3, "dataHeight"    # I
@@ -37,11 +37,11 @@
     .line 49
     add-int v0, p4, p6
 
-    if-gt v0, p2, :cond_1
+    if-gt v0, p2, :cond_1b
 
     add-int v0, p5, p7
 
-    if-gt v0, p3, :cond_1
+    if-gt v0, p3, :cond_1b
 
     .line 53
     iput-object p1, p0, Lcom/google/zxing/PlanarYUVLuminanceSource;->yuvData:[B
@@ -59,17 +59,17 @@
     iput p5, p0, Lcom/google/zxing/PlanarYUVLuminanceSource;->top:I
 
     .line 58
-    if-eqz p8, :cond_0
+    if-eqz p8, :cond_1a
 
     .line 59
     invoke-direct {p0, p6, p7}, Lcom/google/zxing/PlanarYUVLuminanceSource;->reverseHorizontal(II)V
 
     .line 61
-    :cond_0
+    :cond_1a
     return-void
 
     .line 50
-    :cond_1
+    :cond_1b
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     const-string v1, "Crop rectangle does not fit within image data."
@@ -80,7 +80,7 @@
 .end method
 
 .method private reverseHorizontal(II)V
-    .locals 8
+    .registers 11
     .param p1, "width"    # I
     .param p2, "height"    # I
 
@@ -103,8 +103,8 @@
     add-int/2addr v2, v3
 
     .local v2, "rowStart":I
-    :goto_0
-    if-lt v1, p2, :cond_0
+    :goto_b
+    if-lt v1, p2, :cond_e
 
     .line 167
     .end local v1    # "y":I
@@ -114,7 +114,7 @@
     .line 160
     .restart local v1    # "y":I
     .restart local v2    # "rowStart":I
-    :cond_0
+    :cond_e
     div-int/lit8 v3, p1, 0x2
 
     add-int/2addr v3, v2
@@ -129,8 +129,8 @@
     add-int/lit8 v5, v5, -0x1
 
     .local v5, "x2":I
-    :goto_1
-    if-lt v4, v3, :cond_1
+    :goto_16
+    if-lt v4, v3, :cond_1e
 
     .line 159
     .end local v3    # "middle":I
@@ -142,13 +142,13 @@
 
     add-int/2addr v2, v3
 
-    goto :goto_0
+    goto :goto_b
 
     .line 162
     .restart local v3    # "middle":I
     .restart local v4    # "x1":I
     .restart local v5    # "x2":I
-    :cond_1
+    :cond_1e
     aget-byte v6, v0, v4
 
     .line 163
@@ -166,13 +166,13 @@
 
     add-int/lit8 v5, v5, -0x1
 
-    goto :goto_1
+    goto :goto_16
 .end method
 
 
 # virtual methods
 .method public crop(IIII)Lcom/google/zxing/LuminanceSource;
-    .locals 10
+    .registers 15
     .param p1, "left"    # I
     .param p2, "top"    # I
     .param p3, "width"    # I
@@ -223,7 +223,7 @@
 .end method
 
 .method public getMatrix()[B
-    .locals 9
+    .registers 10
 
     .line 79
     invoke-virtual {p0}, Lcom/google/zxing/PlanarYUVLuminanceSource;->getWidth()I
@@ -240,11 +240,11 @@
     .local v1, "height":I
     iget v2, p0, Lcom/google/zxing/PlanarYUVLuminanceSource;->dataWidth:I
 
-    if-ne v0, v2, :cond_0
+    if-ne v0, v2, :cond_13
 
     iget v2, p0, Lcom/google/zxing/PlanarYUVLuminanceSource;->dataHeight:I
 
-    if-ne v1, v2, :cond_0
+    if-ne v1, v2, :cond_13
 
     .line 85
     iget-object v2, p0, Lcom/google/zxing/PlanarYUVLuminanceSource;->yuvData:[B
@@ -252,7 +252,7 @@
     return-object v2
 
     .line 88
-    :cond_0
+    :cond_13
     mul-int v2, v0, v1
 
     .line 89
@@ -275,7 +275,7 @@
     .local v4, "inputOffset":I
     iget v5, p0, Lcom/google/zxing/PlanarYUVLuminanceSource;->dataWidth:I
 
-    if-ne v0, v5, :cond_1
+    if-ne v0, v5, :cond_2a
 
     .line 94
     iget-object v5, p0, Lcom/google/zxing/PlanarYUVLuminanceSource;->yuvData:[B
@@ -288,7 +288,7 @@
     return-object v3
 
     .line 99
-    :cond_1
+    :cond_2a
     iget-object v5, p0, Lcom/google/zxing/PlanarYUVLuminanceSource;->yuvData:[B
 
     .line 100
@@ -296,8 +296,8 @@
     const/4 v6, 0x0
 
     .local v6, "y":I
-    :goto_0
-    if-lt v6, v1, :cond_2
+    :goto_2d
+    if-lt v6, v1, :cond_30
 
     .line 105
     .end local v6    # "y":I
@@ -305,7 +305,7 @@
 
     .line 101
     .restart local v6    # "y":I
-    :cond_2
+    :cond_30
     mul-int v7, v6, v0
 
     .line 102
@@ -321,22 +321,22 @@
     .end local v7    # "outputOffset":I
     add-int/lit8 v6, v6, 0x1
 
-    goto :goto_0
+    goto :goto_2d
 .end method
 
 .method public getRow(I[B)[B
-    .locals 4
+    .registers 7
     .param p1, "y"    # I
     .param p2, "row"    # [B
 
     .line 65
-    if-ltz p1, :cond_2
+    if-ltz p1, :cond_23
 
     invoke-virtual {p0}, Lcom/google/zxing/PlanarYUVLuminanceSource;->getHeight()I
 
     move-result v0
 
-    if-ge p1, v0, :cond_2
+    if-ge p1, v0, :cond_23
 
     .line 68
     invoke-virtual {p0}, Lcom/google/zxing/PlanarYUVLuminanceSource;->getWidth()I
@@ -345,18 +345,18 @@
 
     .line 69
     .local v0, "width":I
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_11
 
     array-length v1, p2
 
-    if-ge v1, v0, :cond_1
+    if-ge v1, v0, :cond_13
 
     .line 70
-    :cond_0
+    :cond_11
     new-array p2, v0, [B
 
     .line 72
-    :cond_1
+    :cond_13
     iget v1, p0, Lcom/google/zxing/PlanarYUVLuminanceSource;->top:I
 
     add-int/2addr v1, p1
@@ -383,7 +383,7 @@
     .line 66
     .end local v0    # "width":I
     .end local v1    # "offset":I
-    :cond_2
+    :cond_23
     new-instance v0, Ljava/lang/IllegalArgumentException;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -404,7 +404,7 @@
 .end method
 
 .method public getThumbnailHeight()I
-    .locals 1
+    .registers 2
 
     .line 154
     invoke-virtual {p0}, Lcom/google/zxing/PlanarYUVLuminanceSource;->getHeight()I
@@ -417,7 +417,7 @@
 .end method
 
 .method public getThumbnailWidth()I
-    .locals 1
+    .registers 2
 
     .line 147
     invoke-virtual {p0}, Lcom/google/zxing/PlanarYUVLuminanceSource;->getWidth()I
@@ -430,7 +430,7 @@
 .end method
 
 .method public isCropSupported()Z
-    .locals 1
+    .registers 2
 
     .line 110
     const/4 v0, 0x1
@@ -439,7 +439,7 @@
 .end method
 
 .method public renderThumbnail()[I
-    .locals 12
+    .registers 13
 
     .line 126
     invoke-virtual {p0}, Lcom/google/zxing/PlanarYUVLuminanceSource;->getWidth()I
@@ -483,8 +483,8 @@
     const/4 v5, 0x0
 
     .local v5, "y":I
-    :goto_0
-    if-lt v5, v1, :cond_0
+    :goto_1b
+    if-lt v5, v1, :cond_1e
 
     .line 140
     .end local v5    # "y":I
@@ -492,7 +492,7 @@
 
     .line 133
     .restart local v5    # "y":I
-    :cond_0
+    :cond_1e
     mul-int v6, v5, v0
 
     .line 134
@@ -500,8 +500,8 @@
     const/4 v7, 0x0
 
     .local v7, "x":I
-    :goto_1
-    if-lt v7, v0, :cond_1
+    :goto_21
+    if-lt v7, v0, :cond_2b
 
     .line 138
     .end local v7    # "x":I
@@ -515,12 +515,12 @@
     .end local v6    # "outputOffset":I
     add-int/lit8 v5, v5, 0x1
 
-    goto :goto_0
+    goto :goto_1b
 
     .line 135
     .restart local v6    # "outputOffset":I
     .restart local v7    # "x":I
-    :cond_1
+    :cond_2b
     mul-int/lit8 v8, v7, 0x2
 
     add-int/2addr v8, v4
@@ -547,5 +547,5 @@
     .end local v8    # "grey":I
     add-int/lit8 v7, v7, 0x1
 
-    goto :goto_1
+    goto :goto_21
 .end method

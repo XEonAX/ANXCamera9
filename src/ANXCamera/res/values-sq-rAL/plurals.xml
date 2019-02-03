@@ -5,7 +5,7 @@
         <item quantity="one">Fokusuar. %d fytyrë e zbuluar</item>
     </plurals>
     <plurals name="toast_burst_snap_finished_summary">
-        <item quantity="other">Burst shot done, %1$s photos taken</item>
-        <item quantity="one">Burst shot done, %1$s photo taken</item>
+        <item quantity="other">Shkrepja e vazhdueshme u bë, %1$s fotografit janë bërë</item>
+        <item quantity="one">Shkrepja e vazhdueshme u bë, %1$s fotografi është bërë</item>
     </plurals>
 </resources>

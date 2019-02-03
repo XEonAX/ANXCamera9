@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 22
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -14,7 +14,7 @@
 .end method
 
 .method public static getLayoutDirection(Landroid/view/ViewGroup$MarginLayoutParams;)I
-    .locals 1
+    .registers 2
     .param p0, "lp"    # Landroid/view/ViewGroup$MarginLayoutParams;
 
     .line 44
@@ -26,7 +26,7 @@
 .end method
 
 .method public static getMarginEnd(Landroid/view/ViewGroup$MarginLayoutParams;)I
-    .locals 1
+    .registers 2
     .param p0, "lp"    # Landroid/view/ViewGroup$MarginLayoutParams;
 
     .line 28
@@ -38,7 +38,7 @@
 .end method
 
 .method public static getMarginStart(Landroid/view/ViewGroup$MarginLayoutParams;)I
-    .locals 1
+    .registers 2
     .param p0, "lp"    # Landroid/view/ViewGroup$MarginLayoutParams;
 
     .line 24
@@ -50,7 +50,7 @@
 .end method
 
 .method public static isMarginRelative(Landroid/view/ViewGroup$MarginLayoutParams;)Z
-    .locals 1
+    .registers 2
     .param p0, "lp"    # Landroid/view/ViewGroup$MarginLayoutParams;
 
     .line 40
@@ -62,7 +62,7 @@
 .end method
 
 .method public static resolveLayoutDirection(Landroid/view/ViewGroup$MarginLayoutParams;I)V
-    .locals 0
+    .registers 2
     .param p0, "lp"    # Landroid/view/ViewGroup$MarginLayoutParams;
     .param p1, "layoutDirection"    # I
 
@@ -74,7 +74,7 @@
 .end method
 
 .method public static setLayoutDirection(Landroid/view/ViewGroup$MarginLayoutParams;I)V
-    .locals 0
+    .registers 2
     .param p0, "lp"    # Landroid/view/ViewGroup$MarginLayoutParams;
     .param p1, "layoutDirection"    # I
 
@@ -86,7 +86,7 @@
 .end method
 
 .method public static setMarginEnd(Landroid/view/ViewGroup$MarginLayoutParams;I)V
-    .locals 0
+    .registers 2
     .param p0, "lp"    # Landroid/view/ViewGroup$MarginLayoutParams;
     .param p1, "marginEnd"    # I
 
@@ -98,7 +98,7 @@
 .end method
 
 .method public static setMarginStart(Landroid/view/ViewGroup$MarginLayoutParams;I)V
-    .locals 0
+    .registers 2
     .param p0, "lp"    # Landroid/view/ViewGroup$MarginLayoutParams;
     .param p1, "marginStart"    # I
 

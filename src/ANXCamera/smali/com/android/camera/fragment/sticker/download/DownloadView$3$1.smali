@@ -22,7 +22,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/sticker/download/DownloadView$3;)V
     .locals 1
 
-    .line 80
+    .line 87
     iput-object p1, p0, Lcom/android/camera/fragment/sticker/download/DownloadView$3$1;->this$1:Lcom/android/camera/fragment/sticker/download/DownloadView$3;
 
     iget-object p1, p1, Lcom/android/camera/fragment/sticker/download/DownloadView$3;->this$0:Lcom/android/camera/fragment/sticker/download/DownloadView;
@@ -39,7 +39,7 @@
 .method public onAnimationEnd(Landroid/animation/Animator;)V
     .locals 2
 
-    .line 83
+    .line 90
     iget-object p1, p0, Lcom/android/camera/fragment/sticker/download/DownloadView$3$1;->this$1:Lcom/android/camera/fragment/sticker/download/DownloadView$3;
 
     iget-object p1, p1, Lcom/android/camera/fragment/sticker/download/DownloadView$3;->this$0:Lcom/android/camera/fragment/sticker/download/DownloadView;
@@ -48,10 +48,12 @@
 
     iget-object v0, v0, Lcom/android/camera/fragment/sticker/download/DownloadView$3;->this$0:Lcom/android/camera/fragment/sticker/download/DownloadView;
 
-    const/4 v1, 0x0
+    new-instance v1, Lcom/android/camera/fragment/sticker/download/DownloadView$3$1$1;
 
-    invoke-static {p1, v0, v1}, Lcom/android/camera/fragment/sticker/download/DownloadView;->access$400(Lcom/android/camera/fragment/sticker/download/DownloadView;Landroid/view/View;Landroid/animation/Animator$AnimatorListener;)V
+    invoke-direct {v1, p0}, Lcom/android/camera/fragment/sticker/download/DownloadView$3$1$1;-><init>(Lcom/android/camera/fragment/sticker/download/DownloadView$3$1;)V
 
-    .line 84
+    invoke-static {p1, v0, v1}, Lcom/android/camera/fragment/sticker/download/DownloadView;->access$500(Lcom/android/camera/fragment/sticker/download/DownloadView;Landroid/view/View;Landroid/animation/Animator$AnimatorListener;)V
+
+    .line 98
     return-void
 .end method

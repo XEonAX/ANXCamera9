@@ -23,13 +23,13 @@ public class j implements d<InputStream> {
     @VisibleForTesting
     static final b DEFAULT_CONNECTION_FACTORY = new a();
     private static final String TAG = "HttpUrlFetcher";
-    private static final int dj = 5;
-    private static final int dk = -1;
-    private final g dl;
-    private final b dm;
+    private static final int dk = 5;
+    private static final int dl = -1;
+    private final g dm;
     /* renamed from: do */
-    private InputStream f1do;
-    private volatile boolean dp;
+    private final b f2do;
+    private InputStream dp;
+    private volatile boolean dq;
     private final int timeout;
     private HttpURLConnection urlConnection;
 
@@ -54,9 +54,9 @@ public class j implements d<InputStream> {
 
     @VisibleForTesting
     j(g gVar, int i, b bVar) {
-        this.dl = gVar;
+        this.dm = gVar;
         this.timeout = i;
-        this.dm = bVar;
+        this.f2do = bVar;
     }
 
     public void a(@NonNull Priority priority, @NonNull com.bumptech.glide.load.a.d.a<? super InputStream> aVar) {
@@ -64,7 +64,7 @@ public class j implements d<InputStream> {
         String str;
         StringBuilder stringBuilder;
         try {
-            aVar.i(a(this.dl.toURL(), 0, null, this.dl.getHeaders()));
+            aVar.i(a(this.dm.toURL(), 0, null, this.dm.getHeaders()));
             if (Log.isLoggable(TAG, 2)) {
                 str = TAG;
                 stringBuilder = new StringBuilder();
@@ -101,7 +101,7 @@ public class j implements d<InputStream> {
                 } catch (URISyntaxException e) {
                 }
             }
-            this.urlConnection = this.dm.c(url);
+            this.urlConnection = this.f2do.c(url);
             for (Entry entry : map.entrySet()) {
                 this.urlConnection.addRequestProperty((String) entry.getKey(), (String) entry.getValue());
             }
@@ -111,8 +111,8 @@ public class j implements d<InputStream> {
             this.urlConnection.setDoInput(true);
             this.urlConnection.setInstanceFollowRedirects(false);
             this.urlConnection.connect();
-            this.f1do = this.urlConnection.getInputStream();
-            if (this.dp) {
+            this.dp = this.urlConnection.getInputStream();
+            if (this.dq) {
                 return null;
             }
             int responseCode = this.urlConnection.getResponseCode();
@@ -146,7 +146,7 @@ public class j implements d<InputStream> {
 
     private InputStream a(HttpURLConnection httpURLConnection) throws IOException {
         if (TextUtils.isEmpty(httpURLConnection.getContentEncoding())) {
-            this.f1do = com.bumptech.glide.util.b.a(httpURLConnection.getInputStream(), (long) httpURLConnection.getContentLength());
+            this.dp = com.bumptech.glide.util.b.a(httpURLConnection.getInputStream(), (long) httpURLConnection.getContentLength());
         } else {
             if (Log.isLoggable(TAG, 3)) {
                 String str = TAG;
@@ -155,15 +155,15 @@ public class j implements d<InputStream> {
                 stringBuilder.append(httpURLConnection.getContentEncoding());
                 Log.d(str, stringBuilder.toString());
             }
-            this.f1do = httpURLConnection.getInputStream();
+            this.dp = httpURLConnection.getInputStream();
         }
-        return this.f1do;
+        return this.dp;
     }
 
     public void cleanup() {
-        if (this.f1do != null) {
+        if (this.dp != null) {
             try {
-                this.f1do.close();
+                this.dp.close();
             } catch (IOException e) {
             }
         }
@@ -174,7 +174,7 @@ public class j implements d<InputStream> {
     }
 
     public void cancel() {
-        this.dp = true;
+        this.dq = true;
     }
 
     @NonNull

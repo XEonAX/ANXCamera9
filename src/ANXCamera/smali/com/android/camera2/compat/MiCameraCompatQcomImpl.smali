@@ -24,7 +24,7 @@
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "Landroid/hardware/camera2/CaptureRequest$Key<",
-            "Ljava/lang/String;",
+            "Ljava/lang/Integer;",
             ">;"
         }
     .end annotation
@@ -282,7 +282,7 @@
 
     const-string v1, "xiaomi.ai.asd.sceneApplied"
 
-    const-class v2, Ljava/lang/String;
+    const-class v2, Ljava/lang/Integer;
 
     invoke-direct {v0, v1, v2}, Landroid/hardware/camera2/CaptureRequest$Key;-><init>(Ljava/lang/String;Ljava/lang/Class;)V
 
@@ -384,11 +384,15 @@
     return-void
 .end method
 
-.method public applyASDScene(Landroid/hardware/camera2/CaptureRequest$Builder;Ljava/lang/String;)V
+.method public applyASDScene(Landroid/hardware/camera2/CaptureRequest$Builder;I)V
     .locals 1
 
     .line 269
     sget-object v0, Lcom/android/camera2/compat/MiCameraCompatQcomImpl;->AI_SCENE_APPLY:Landroid/hardware/camera2/CaptureRequest$Key;
+
+    invoke-static {p2}, Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+
+    move-result-object p2
 
     invoke-virtual {p1, v0, p2}, Landroid/hardware/camera2/CaptureRequest$Builder;->set(Landroid/hardware/camera2/CaptureRequest$Key;Ljava/lang/Object;)V
 

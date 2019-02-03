@@ -2,7 +2,7 @@ package com.android.camera.fragment.live;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import com.aeonax.camera.R;
+import com.android.camera.R;
 import com.android.camera.fragment.sticker.download.DownloadView;
 
 public class LiveDownloadView extends DownloadView {
@@ -28,5 +28,9 @@ public class LiveDownloadView extends DownloadView {
             default:
                 return 0;
         }
+    }
+
+    protected float getAlphaNormal() {
+        return 0.9f;
     }
 }

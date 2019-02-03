@@ -17,7 +17,7 @@
 
 # direct methods
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 24
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -27,7 +27,7 @@
 .end method
 
 .method public static createPlaybackPositionUpdateListener(Landroid/support/v4/media/session/MediaSessionCompatApi14$Callback;)Ljava/lang/Object;
-    .locals 1
+    .registers 2
     .param p0, "callback"    # Landroid/support/v4/media/session/MediaSessionCompatApi14$Callback;
 
     .line 30
@@ -39,7 +39,7 @@
 .end method
 
 .method static getRccTransportControlFlagsFromActions(J)I
-    .locals 5
+    .registers 7
     .param p0, "actions"    # J
 
     .line 72
@@ -57,18 +57,18 @@
 
     cmp-long v1, v1, v3
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_f
 
     .line 75
     or-int/lit16 v0, v0, 0x100
 
     .line 77
-    :cond_0
+    :cond_f
     return v0
 .end method
 
 .method public static registerMediaButtonEventReceiver(Landroid/content/Context;Landroid/app/PendingIntent;)V
-    .locals 1
+    .registers 3
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "pi"    # Landroid/app/PendingIntent;
 
@@ -90,7 +90,7 @@
 .end method
 
 .method public static setOnPlaybackPositionUpdateListener(Ljava/lang/Object;Ljava/lang/Object;)V
-    .locals 2
+    .registers 4
     .param p0, "rccObj"    # Ljava/lang/Object;
     .param p1, "onPositionUpdateObj"    # Ljava/lang/Object;
 
@@ -110,7 +110,7 @@
 .end method
 
 .method public static setState(Ljava/lang/Object;IJFJ)V
-    .locals 6
+    .registers 13
     .param p0, "rccObj"    # Ljava/lang/Object;
     .param p1, "state"    # I
     .param p2, "position"    # J
@@ -126,13 +126,13 @@
     .local v0, "currTime":J
     const/4 v2, 0x3
 
-    if-ne p1, v2, :cond_1
+    if-ne p1, v2, :cond_24
 
     const-wide/16 v2, 0x0
 
     cmp-long v4, p2, v2
 
-    if-lez v4, :cond_1
+    if-lez v4, :cond_24
 
     .line 47
     const-wide/16 v4, 0x0
@@ -141,7 +141,7 @@
     .local v4, "diff":J
     cmp-long v2, p5, v2
 
-    if-lez v2, :cond_0
+    if-lez v2, :cond_23
 
     .line 49
     sub-long v4, v0, p5
@@ -151,13 +151,13 @@
 
     cmpl-float v2, p4, v2
 
-    if-lez v2, :cond_0
+    if-lez v2, :cond_23
 
     const/high16 v2, 0x3f800000    # 1.0f
 
     cmpl-float v2, p4, v2
 
-    if-eqz v2, :cond_0
+    if-eqz v2, :cond_23
 
     .line 51
     long-to-float v2, v4
@@ -167,12 +167,12 @@
     float-to-long v4, v2
 
     .line 54
-    :cond_0
+    :cond_23
     add-long/2addr p2, v4
 
     .line 56
     .end local v4    # "diff":J
-    :cond_1
+    :cond_24
     invoke-static {p1}, Landroid/support/v4/media/session/MediaSessionCompatApi14;->getRccStateFromState(I)I
 
     move-result p1
@@ -189,7 +189,7 @@
 .end method
 
 .method public static setTransportControlFlags(Ljava/lang/Object;J)V
-    .locals 2
+    .registers 5
     .param p0, "rccObj"    # Ljava/lang/Object;
     .param p1, "actions"    # J
 
@@ -209,7 +209,7 @@
 .end method
 
 .method public static unregisterMediaButtonEventReceiver(Landroid/content/Context;Landroid/app/PendingIntent;)V
-    .locals 1
+    .registers 3
     .param p0, "context"    # Landroid/content/Context;
     .param p1, "pi"    # Landroid/app/PendingIntent;
 

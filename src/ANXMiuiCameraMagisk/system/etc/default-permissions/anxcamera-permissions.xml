@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <exceptions>
-    <exception package="com.aeonax.camera">
+    <exception package="com.android.camera">
         <!-- Camera -->
         <permission name="android.permission.CAMERA" 
             fixed="true" />

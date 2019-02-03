@@ -20,7 +20,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 2
+    .registers 2
 
     .line 129
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
@@ -29,7 +29,7 @@
     .local v0, "version":I
     const/16 v1, 0x12
 
-    if-lt v0, v1, :cond_0
+    if-lt v0, v1, :cond_e
 
     .line 131
     new-instance v1, Landroid/support/v4/widget/TextViewCompat$JbMr2TextViewCompatImpl;
@@ -38,13 +38,13 @@
 
     sput-object v1, Landroid/support/v4/widget/TextViewCompat;->IMPL:Landroid/support/v4/widget/TextViewCompat$TextViewCompatImpl;
 
-    goto :goto_0
+    goto :goto_21
 
     .line 132
-    :cond_0
+    :cond_e
     const/16 v1, 0x11
 
-    if-lt v0, v1, :cond_1
+    if-lt v0, v1, :cond_1a
 
     .line 133
     new-instance v1, Landroid/support/v4/widget/TextViewCompat$JbMr1TextViewCompatImpl;
@@ -53,10 +53,10 @@
 
     sput-object v1, Landroid/support/v4/widget/TextViewCompat;->IMPL:Landroid/support/v4/widget/TextViewCompat$TextViewCompatImpl;
 
-    goto :goto_0
+    goto :goto_21
 
     .line 135
-    :cond_1
+    :cond_1a
     new-instance v1, Landroid/support/v4/widget/TextViewCompat$BaseTextViewCompatImpl;
 
     invoke-direct {v1}, Landroid/support/v4/widget/TextViewCompat$BaseTextViewCompatImpl;-><init>()V
@@ -65,12 +65,12 @@
 
     .line 137
     .end local v0    # "version":I
-    :goto_0
+    :goto_21
     return-void
 .end method
 
 .method private constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 32
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -80,7 +80,7 @@
 .end method
 
 .method public static setCompoundDrawablesRelative(Landroid/widget/TextView;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;)V
-    .locals 6
+    .registers 11
     .param p0, "textView"    # Landroid/widget/TextView;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
@@ -122,7 +122,7 @@
 .end method
 
 .method public static setCompoundDrawablesRelativeWithIntrinsicBounds(Landroid/widget/TextView;IIII)V
-    .locals 6
+    .registers 11
     .param p0, "textView"    # Landroid/widget/TextView;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation
@@ -152,7 +152,7 @@
 .end method
 
 .method public static setCompoundDrawablesRelativeWithIntrinsicBounds(Landroid/widget/TextView;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;Landroid/graphics/drawable/Drawable;)V
-    .locals 6
+    .registers 11
     .param p0, "textView"    # Landroid/widget/TextView;
         .annotation build Landroid/support/annotation/NonNull;
         .end annotation

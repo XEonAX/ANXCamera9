@@ -22,6 +22,9 @@ public final class CameraMetadataSerializer {
         void write(Writer writer) throws IOException;
     }
 
+    private CameraMetadataSerializer() {
+    }
+
     public static void serialize(String str, CameraMetadata<?> cameraMetadata, File file) {
         try {
             Writer fileWriter = new FileWriter(file, true);

@@ -34,7 +34,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/Context;)V
-    .locals 2
+    .registers 4
     .param p1, "context"    # Landroid/content/Context;
 
     .line 230
@@ -45,7 +45,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_11
 
     .line 232
     new-instance v0, Landroid/support/v4/print/PrintHelper$PrintHelperKitkatImpl;
@@ -54,10 +54,10 @@
 
     iput-object v0, p0, Landroid/support/v4/print/PrintHelper;->mImpl:Landroid/support/v4/print/PrintHelper$PrintHelperVersionImpl;
 
-    goto :goto_0
+    goto :goto_19
 
     .line 234
-    :cond_0
+    :cond_11
     new-instance v0, Landroid/support/v4/print/PrintHelper$PrintHelperStubImpl;
 
     const/4 v1, 0x0
@@ -67,19 +67,19 @@
     iput-object v0, p0, Landroid/support/v4/print/PrintHelper;->mImpl:Landroid/support/v4/print/PrintHelper$PrintHelperVersionImpl;
 
     .line 236
-    :goto_0
+    :goto_19
     return-void
 .end method
 
 .method public static systemSupportsPrint()Z
-    .locals 2
+    .registers 2
 
     .line 81
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0x13
 
-    if-lt v0, v1, :cond_0
+    if-lt v0, v1, :cond_8
 
     .line 83
     const/4 v0, 0x1
@@ -87,7 +87,7 @@
     return v0
 
     .line 85
-    :cond_0
+    :cond_8
     const/4 v0, 0x0
 
     return v0
@@ -96,7 +96,7 @@
 
 # virtual methods
 .method public getColorMode()I
-    .locals 1
+    .registers 2
 
     .line 280
     iget-object v0, p0, Landroid/support/v4/print/PrintHelper;->mImpl:Landroid/support/v4/print/PrintHelper$PrintHelperVersionImpl;
@@ -109,7 +109,7 @@
 .end method
 
 .method public getOrientation()I
-    .locals 1
+    .registers 2
 
     .line 301
     iget-object v0, p0, Landroid/support/v4/print/PrintHelper;->mImpl:Landroid/support/v4/print/PrintHelper$PrintHelperVersionImpl;
@@ -122,7 +122,7 @@
 .end method
 
 .method public getScaleMode()I
-    .locals 1
+    .registers 2
 
     .line 258
     iget-object v0, p0, Landroid/support/v4/print/PrintHelper;->mImpl:Landroid/support/v4/print/PrintHelper$PrintHelperVersionImpl;
@@ -135,7 +135,7 @@
 .end method
 
 .method public printBitmap(Ljava/lang/String;Landroid/graphics/Bitmap;)V
-    .locals 2
+    .registers 5
     .param p1, "jobName"    # Ljava/lang/String;
     .param p2, "bitmap"    # Landroid/graphics/Bitmap;
 
@@ -151,7 +151,7 @@
 .end method
 
 .method public printBitmap(Ljava/lang/String;Landroid/graphics/Bitmap;Landroid/support/v4/print/PrintHelper$OnPrintFinishCallback;)V
-    .locals 1
+    .registers 5
     .param p1, "jobName"    # Ljava/lang/String;
     .param p2, "bitmap"    # Landroid/graphics/Bitmap;
     .param p3, "callback"    # Landroid/support/v4/print/PrintHelper$OnPrintFinishCallback;
@@ -166,7 +166,7 @@
 .end method
 
 .method public printBitmap(Ljava/lang/String;Landroid/net/Uri;)V
-    .locals 2
+    .registers 5
     .param p1, "jobName"    # Ljava/lang/String;
     .param p2, "imageFile"    # Landroid/net/Uri;
     .annotation system Ldalvik/annotation/Throws;
@@ -187,7 +187,7 @@
 .end method
 
 .method public printBitmap(Ljava/lang/String;Landroid/net/Uri;Landroid/support/v4/print/PrintHelper$OnPrintFinishCallback;)V
-    .locals 1
+    .registers 5
     .param p1, "jobName"    # Ljava/lang/String;
     .param p2, "imageFile"    # Landroid/net/Uri;
     .param p3, "callback"    # Landroid/support/v4/print/PrintHelper$OnPrintFinishCallback;
@@ -207,7 +207,7 @@
 .end method
 
 .method public setColorMode(I)V
-    .locals 1
+    .registers 3
     .param p1, "colorMode"    # I
 
     .line 270
@@ -220,7 +220,7 @@
 .end method
 
 .method public setOrientation(I)V
-    .locals 1
+    .registers 3
     .param p1, "orientation"    # I
 
     .line 291
@@ -233,7 +233,7 @@
 .end method
 
 .method public setScaleMode(I)V
-    .locals 1
+    .registers 3
     .param p1, "scaleMode"    # I
 
     .line 248

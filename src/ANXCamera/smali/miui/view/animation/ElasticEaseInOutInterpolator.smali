@@ -7,14 +7,14 @@
 
 
 # instance fields
-.field private final NT:F
+.field private final Oe:F
 
-.field private final NV:F
+.field private final Of:F
 
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 21
     const/4 v0, 0x0
@@ -26,16 +26,16 @@
 .end method
 
 .method public constructor <init>(FF)V
-    .locals 0
+    .registers 3
 
     .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 29
-    iput p1, p0, Lmiui/view/animation/ElasticEaseInOutInterpolator;->NT:F
+    iput p1, p0, Lmiui/view/animation/ElasticEaseInOutInterpolator;->Oe:F
 
     .line 30
-    iput p2, p0, Lmiui/view/animation/ElasticEaseInOutInterpolator;->NV:F
+    iput p2, p0, Lmiui/view/animation/ElasticEaseInOutInterpolator;->Of:F
 
     .line 31
     return-void
@@ -44,26 +44,26 @@
 
 # virtual methods
 .method public getInterpolation(F)F
-    .locals 13
+    .registers 15
 
     .line 35
-    iget v0, p0, Lmiui/view/animation/ElasticEaseInOutInterpolator;->NV:F
+    iget v0, p0, Lmiui/view/animation/ElasticEaseInOutInterpolator;->Of:F
 
     .line 36
-    iget v1, p0, Lmiui/view/animation/ElasticEaseInOutInterpolator;->NT:F
+    iget v1, p0, Lmiui/view/animation/ElasticEaseInOutInterpolator;->Oe:F
 
     .line 39
     const/4 v2, 0x0
 
     cmpl-float v3, p1, v2
 
-    if-nez v3, :cond_0
+    if-nez v3, :cond_a
 
     .line 40
     return v2
 
     .line 43
-    :cond_0
+    :cond_a
     const/high16 v3, 0x3f000000    # 0.5f
 
     div-float/2addr p1, v3
@@ -75,36 +75,36 @@
 
     const/high16 v4, 0x3f800000    # 1.0f
 
-    if-nez v3, :cond_1
+    if-nez v3, :cond_16
 
     .line 45
     return v4
 
     .line 47
-    :cond_1
+    :cond_16
     cmpl-float v3, v0, v2
 
-    if-nez v3, :cond_2
+    if-nez v3, :cond_1d
 
     .line 48
     const v0, 0x3ee66667    # 0.45000002f
 
     .line 50
-    :cond_2
+    :cond_1d
     cmpl-float v2, v1, v2
 
     const-wide v5, 0x401921fb54442d18L    # 6.283185307179586
 
-    if-eqz v2, :cond_4
+    if-eqz v2, :cond_37
 
     cmpg-float v2, v1, v4
 
-    if-gez v2, :cond_3
+    if-gez v2, :cond_2b
 
-    goto :goto_0
+    goto :goto_37
 
     .line 54
-    :cond_3
+    :cond_2b
     float-to-double v2, v0
 
     div-double/2addr v2, v5
@@ -121,11 +121,11 @@
 
     double-to-float v2, v2
 
-    goto :goto_1
+    goto :goto_3d
 
     .line 51
-    :cond_4
-    :goto_0
+    :cond_37
+    :goto_37
     nop
 
     .line 52
@@ -136,12 +136,12 @@
     .line 56
     move v1, v4
 
-    :goto_1
+    :goto_3d
     cmpg-float v3, p1, v4
 
     const-wide/high16 v7, 0x4000000000000000L    # 2.0
 
-    if-gez v3, :cond_5
+    if-gez v3, :cond_5d
 
     .line 57
     sub-float/2addr p1, v4
@@ -186,7 +186,7 @@
     return v3
 
     .line 62
-    :cond_5
+    :cond_5d
     sub-float/2addr p1, v4
 
     .line 63

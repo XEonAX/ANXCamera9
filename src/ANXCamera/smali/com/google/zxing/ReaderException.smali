@@ -5,7 +5,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 28
     invoke-direct {p0}, Ljava/lang/Exception;-><init>()V
@@ -17,7 +17,7 @@
 
 # virtual methods
 .method public final fillInStackTrace()Ljava/lang/Throwable;
-    .locals 1
+    .registers 2
 
     .line 37
     const/4 v0, 0x0

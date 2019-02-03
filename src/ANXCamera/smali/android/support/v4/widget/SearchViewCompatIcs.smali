@@ -13,7 +13,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 26
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -23,7 +23,7 @@
 .end method
 
 .method public static newSearchView(Landroid/content/Context;)Landroid/view/View;
-    .locals 1
+    .registers 2
     .param p0, "context"    # Landroid/content/Context;
 
     .line 43
@@ -35,7 +35,7 @@
 .end method
 
 .method public static setImeOptions(Landroid/view/View;I)V
-    .locals 1
+    .registers 3
     .param p0, "searchView"    # Landroid/view/View;
     .param p1, "imeOptions"    # I
 
@@ -51,7 +51,7 @@
 .end method
 
 .method public static setInputType(Landroid/view/View;I)V
-    .locals 1
+    .registers 3
     .param p0, "searchView"    # Landroid/view/View;
     .param p1, "inputType"    # I
 

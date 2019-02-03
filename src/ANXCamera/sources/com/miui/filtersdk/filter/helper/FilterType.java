@@ -74,6 +74,10 @@ public enum FilterType {
     B_RIDDLE(FilterScene.BEAUTY),
     B_MOVIE(FilterScene.BEAUTY),
     B_WHITEANDBLACK(FilterScene.BEAUTY),
+    B_M_TEA(FilterScene.BEAUTY),
+    B_M_LILT(FilterScene.BEAUTY),
+    B_M_SEPIA(FilterScene.BEAUTY),
+    B_M_WHITEANDBLACK(FilterScene.BEAUTY),
     BI_SUNNY(FilterScene.BEAUTY_INDIA),
     BI_PINK(FilterScene.BEAUTY_INDIA),
     BI_MEMORY(FilterScene.BEAUTY_INDIA),
@@ -84,7 +88,12 @@ public enum FilterType {
     BI_RETRO(FilterScene.BEAUTY_INDIA),
     BI_YOUNG(FilterScene.BEAUTY_INDIA),
     BI_ROMANTIC(FilterScene.BEAUTY_INDIA),
-    BI_MONO(FilterScene.BEAUTY_INDIA);
+    BI_MONO(FilterScene.BEAUTY_INDIA),
+    BI_M_DUSK(FilterScene.BEAUTY_INDIA),
+    BI_M_LILT(FilterScene.BEAUTY_INDIA),
+    BI_M_TEA(FilterScene.BEAUTY_INDIA),
+    BI_M_SEPIA(FilterScene.BEAUTY_INDIA),
+    BI_M_WHITEANDBLACK(FilterScene.BEAUTY_INDIA);
     
     public FilterScene mScene;
 

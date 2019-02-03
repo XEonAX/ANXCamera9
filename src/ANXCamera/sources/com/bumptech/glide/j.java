@@ -9,7 +9,7 @@ import com.bumptech.glide.request.a.j.a;
 
 /* compiled from: TransitionOptions */
 public abstract class j<CHILD extends j<CHILD, TranscodeType>, TranscodeType> implements Cloneable {
-    private g<? super TranscodeType> bg = e.ez();
+    private g<? super TranscodeType> bh = e.ez();
 
     @NonNull
     public final CHILD G() {
@@ -28,7 +28,7 @@ public abstract class j<CHILD extends j<CHILD, TranscodeType>, TranscodeType> im
 
     @NonNull
     public final CHILD b(@NonNull g<? super TranscodeType> gVar) {
-        this.bg = (g) com.bumptech.glide.util.i.checkNotNull(gVar);
+        this.bh = (g) com.bumptech.glide.util.i.checkNotNull(gVar);
         return J();
     }
 
@@ -42,7 +42,7 @@ public abstract class j<CHILD extends j<CHILD, TranscodeType>, TranscodeType> im
     }
 
     final g<? super TranscodeType> I() {
-        return this.bg;
+        return this.bh;
     }
 
     private CHILD J() {

@@ -1,61 +1,58 @@
 package com.xiaomi.camera.core;
 
-import android.util.Log;
-import com.aeonax.camera.R;
-import com.android.camera.CameraSettings;
+import android.media.Image;
+import android.support.annotation.NonNull;
+import android.util.Size;
 import com.android.camera.effect.EffectController;
 import com.android.camera.effect.FilterInfo;
 import com.android.camera.effect.draw_mode.DrawYuvAttribute;
 import com.android.camera.effect.renders.DualWatermarkParam;
 import com.android.camera.effect.renders.SnapshotRender;
-import com.xiaomi.camera.imagecodec.MiImage;
-import com.xiaomi.camera.imagecodec.MiImage.Plane;
-import java.nio.ByteBuffer;
+import com.android.camera.log.Log;
 
 public class FilterProcessor {
     private static final String TAG = FilterProcessor.class.getSimpleName();
-    private int mHeight;
-    private int mWidth;
+    private Size mRenderSize = new Size(0, 0);
     private SnapshotRender mYuvSnapshotRender;
 
-    public void init(int i, int i2) {
-        prepareEffectProcessor(FilterInfo.FILTER_ID_NONE, i, i2);
+    public void init(Size size) {
+        releaseEffectProcessor();
+        this.mYuvSnapshotRender = new SnapshotRender(size);
+        this.mRenderSize = size;
     }
 
     public void deInit() {
         releaseEffectProcessor();
     }
 
-    public MiImage doFilterSync(ParallelTaskData parallelTaskData, MiImage miImage, int i) {
+    public Image doFilterSync(@NonNull ParallelTaskData parallelTaskData, @NonNull Image image, @NonNull int i) {
+        ParallelTaskDataParameter dataParameter = parallelTaskData.getDataParameter();
         if (shouldApplyEffect(parallelTaskData)) {
-            prepareEffectProcessor(parallelTaskData.getFilterId(), parallelTaskData.getPreviewWidth(), parallelTaskData.getPictureHeight());
-            Plane[] planes = miImage.getPlanes();
-            ByteBuffer buffer = planes[0].getBuffer();
-            ByteBuffer buffer2 = planes[1].getBuffer();
-            boolean z = 1 == i && isWatermarkEnabled(parallelTaskData);
-            this.mYuvSnapshotRender.processImageSync(getDrawYuvAttribute(buffer, buffer2, z, false, null, parallelTaskData));
+            prepareEffectProcessor(dataParameter);
+            boolean z = i == 0 && isWatermarkEnabled(parallelTaskData);
+            this.mYuvSnapshotRender.processImageSync(getDrawYuvAttribute(image, z, parallelTaskData));
         }
-        return miImage;
+        return image;
     }
 
-    private void prepareEffectProcessor(int i, int i2, int i3) {
-        Log.d(TAG, String.format("prepareEffectProcessor: %x", new Object[]{Integer.valueOf(i)}));
-        if (!(this.mYuvSnapshotRender != null && this.mWidth == i2 && this.mHeight == i3)) {
-            this.mYuvSnapshotRender = new SnapshotRender(new DualWatermarkParam(CameraSettings.getDualCameraWaterMarkFilePathVendor(), CameraSettings.getResourceFloat(R.dimen.dualcamera_watermark_size_ratio, 0.0f), CameraSettings.getResourceFloat(R.dimen.dualcamera_watermark_padding_x_ratio, 0.0f), CameraSettings.getResourceFloat(R.dimen.dualcamera_watermark_padding_y_ratio, 0.0f)), i2, i3);
-            this.mWidth = i2;
-            this.mHeight = i3;
+    private void prepareEffectProcessor(ParallelTaskDataParameter parallelTaskDataParameter) {
+        int filterId = parallelTaskDataParameter.getFilterId();
+        Size pictureSize = parallelTaskDataParameter.getPictureSize();
+        DualWatermarkParam dualWatermarkParam = parallelTaskDataParameter.getDualWatermarkParam();
+        if (this.mYuvSnapshotRender == null || !this.mRenderSize.equals(pictureSize)) {
+            init(pictureSize);
         }
-        if (FilterInfo.FILTER_ID_NONE != i) {
-            this.mYuvSnapshotRender.prepareEffectRender(i);
-        }
+        Log.d(TAG, String.format("prepareEffectProcessor: %x", new Object[]{Integer.valueOf(filterId)}));
+        this.mYuvSnapshotRender.prepareEffectRender(dualWatermarkParam, filterId);
     }
 
     private boolean isWatermarkEnabled(ParallelTaskData parallelTaskData) {
-        return parallelTaskData.isHasDualWaterMark() || parallelTaskData.getTimeWaterMarkString() != null || parallelTaskData.isAgeGenderAndMagicMirrorWater();
+        ParallelTaskDataParameter dataParameter = parallelTaskData.getDataParameter();
+        return dataParameter.isHasDualWaterMark() || dataParameter.getTimeWaterMarkString() != null || dataParameter.isAgeGenderAndMagicMirrorWater();
     }
 
-    private boolean shouldApplyEffect(ParallelTaskData parallelTaskData) {
-        return FilterInfo.FILTER_ID_NONE != parallelTaskData.getFilterId() || isWatermarkEnabled(parallelTaskData);
+    private boolean shouldApplyEffect(@NonNull ParallelTaskData parallelTaskData) {
+        return FilterInfo.FILTER_ID_NONE != parallelTaskData.getDataParameter().getFilterId() || isWatermarkEnabled(parallelTaskData);
     }
 
     private void releaseEffectProcessor() {
@@ -65,7 +62,8 @@ public class FilterProcessor {
         }
     }
 
-    private DrawYuvAttribute getDrawYuvAttribute(ByteBuffer byteBuffer, ByteBuffer byteBuffer2, boolean z, boolean z2, String str, ParallelTaskData parallelTaskData) {
-        return new DrawYuvAttribute(byteBuffer, byteBuffer2, parallelTaskData.getPreviewWidth(), parallelTaskData.getPreviewHeight(), parallelTaskData.getPictureWidth(), parallelTaskData.getPictureHeight(), parallelTaskData.getFilterId(), parallelTaskData.getOrientation(), parallelTaskData.getJpegRotation(), parallelTaskData.getShootRotation(), System.currentTimeMillis(), parallelTaskData.isMirror(), z, z2, str, parallelTaskData.getTimeWaterMarkString(), EffectController.getInstance().copyEffectRectAttribute(), parallelTaskData.getFaceWaterMarkList());
+    private static DrawYuvAttribute getDrawYuvAttribute(Image image, boolean z, ParallelTaskData parallelTaskData) {
+        ParallelTaskDataParameter dataParameter = parallelTaskData.getDataParameter();
+        return new DrawYuvAttribute(image, dataParameter.getPreviewSize(), dataParameter.getPictureSize(), dataParameter.getFilterId(), dataParameter.getOrientation(), dataParameter.getJpegRotation(), dataParameter.getShootRotation(), System.currentTimeMillis(), dataParameter.isMirror(), z, dataParameter.isGradienterOn(), dataParameter.getTiltShiftMode(), dataParameter.getTimeWaterMarkString(), EffectController.getInstance().copyEffectRectAttribute(), dataParameter.getFaceWaterMarkList());
     }
 }

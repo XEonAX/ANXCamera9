@@ -1,7 +1,7 @@
 package com.android.camera.data.data.runing;
 
-import com.aeonax.camera.R;
 import com.android.camera.CameraSettings;
+import com.android.camera.R;
 import com.android.camera.constant.LightingConstant;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;
@@ -46,9 +46,9 @@ public class ComponentRunningLighting extends ComponentData {
         this.mItems.add(new ComponentDataItem(R.drawable.ic_lighting_stage, R.drawable.ic_lighting_stage, R.string.lighting_pattern_stage, "2"));
         this.mItems.add(new ComponentDataItem(R.drawable.ic_lighting_movie, R.drawable.ic_lighting_movie, R.string.lighting_pattern_movie, "3"));
         this.mItems.add(new ComponentDataItem(R.drawable.ic_lighting_rainbow, R.drawable.ic_lighting_rainbow, R.string.lighting_pattern_rainbow, "4"));
-        this.mItems.add(new ComponentDataItem(R.drawable.ic_lighting_shutter, R.drawable.ic_lighting_shutter, R.string.lighting_pattern_leaf, "5"));
+        this.mItems.add(new ComponentDataItem(R.drawable.ic_lighting_shutter, R.drawable.ic_lighting_shutter, R.string.lighting_pattern_shutter, "5"));
         this.mItems.add(new ComponentDataItem(R.drawable.ic_lighting_dot, R.drawable.ic_lighting_dot, R.string.lighting_pattern_dot, "6"));
-        this.mItems.add(new ComponentDataItem(R.drawable.ic_lighting_leaf, R.drawable.ic_lighting_leaf, R.string.lighting_pattern_shutter, LightingConstant.LIGHTING_LEAF));
+        this.mItems.add(new ComponentDataItem(R.drawable.ic_lighting_leaf, R.drawable.ic_lighting_leaf, R.string.lighting_pattern_leaf, LightingConstant.LIGHTING_LEAF));
     }
 
     public boolean isSwitchOn(int i) {

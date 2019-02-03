@@ -28,7 +28,7 @@ public class ByteBufferGifDecoder implements g<ByteBuffer, b> {
     private static final GifDecoderFactory lv = new GifDecoderFactory();
     private static final GifHeaderParserPool lw = new GifHeaderParserPool();
     private final Context context;
-    private final List<ImageHeaderParser> dL;
+    private final List<ImageHeaderParser> dM;
     private final GifHeaderParserPool lx;
     private final GifDecoderFactory ly;
     private final a lz;
@@ -76,14 +76,14 @@ public class ByteBufferGifDecoder implements g<ByteBuffer, b> {
     @VisibleForTesting
     ByteBufferGifDecoder(Context context, List<ImageHeaderParser> list, com.bumptech.glide.load.engine.bitmap_recycle.d dVar, b bVar, GifHeaderParserPool gifHeaderParserPool, GifDecoderFactory gifDecoderFactory) {
         this.context = context.getApplicationContext();
-        this.dL = list;
+        this.dM = list;
         this.ly = gifDecoderFactory;
         this.lz = new a(dVar, bVar);
         this.lx = gifHeaderParserPool;
     }
 
     public boolean a(@NonNull ByteBuffer byteBuffer, @NonNull f fVar) throws IOException {
-        return !((Boolean) fVar.a(g.lY)).booleanValue() && com.bumptech.glide.load.b.a(this.dL, byteBuffer) == ImageType.GIF;
+        return !((Boolean) fVar.a(g.lX)).booleanValue() && com.bumptech.glide.load.b.a(this.dM, byteBuffer) == ImageType.GIF;
     }
 
     /* renamed from: b */

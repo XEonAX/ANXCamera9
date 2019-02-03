@@ -16,7 +16,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 1373
     invoke-direct {p0}, Landroid/support/v4/view/ViewCompat$JbMr2ViewCompatImpl;-><init>()V
@@ -27,7 +27,7 @@
 
 # virtual methods
 .method public getAccessibilityLiveRegion(Landroid/view/View;)I
-    .locals 1
+    .registers 3
     .param p1, "view"    # Landroid/view/View;
 
     .line 1376
@@ -39,7 +39,7 @@
 .end method
 
 .method public isAttachedToWindow(Landroid/view/View;)Z
-    .locals 1
+    .registers 3
     .param p1, "view"    # Landroid/view/View;
 
     .line 1396
@@ -51,7 +51,7 @@
 .end method
 
 .method public isLaidOut(Landroid/view/View;)Z
-    .locals 1
+    .registers 3
     .param p1, "view"    # Landroid/view/View;
 
     .line 1391
@@ -63,7 +63,7 @@
 .end method
 
 .method public setAccessibilityLiveRegion(Landroid/view/View;I)V
-    .locals 0
+    .registers 3
     .param p1, "view"    # Landroid/view/View;
     .param p2, "mode"    # I
 
@@ -75,7 +75,7 @@
 .end method
 
 .method public setImportantForAccessibility(Landroid/view/View;I)V
-    .locals 0
+    .registers 3
     .param p1, "view"    # Landroid/view/View;
     .param p2, "mode"    # I
 

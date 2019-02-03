@@ -25,7 +25,7 @@
 .method constructor <init>(Lcom/android/camera/fragment/top/FragmentTopConfigExtra;)V
     .locals 0
 
-    .line 232
+    .line 238
     iput-object p1, p0, Lcom/android/camera/fragment/top/FragmentTopConfigExtra$1;->this$0:Lcom/android/camera/fragment/top/FragmentTopConfigExtra;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -38,7 +38,20 @@
 .method public onAnimationEnd(Landroid/view/animation/Animation;)V
     .locals 1
 
-    .line 240
+    .line 246
+    iget-object p1, p0, Lcom/android/camera/fragment/top/FragmentTopConfigExtra$1;->this$0:Lcom/android/camera/fragment/top/FragmentTopConfigExtra;
+
+    invoke-virtual {p1}, Lcom/android/camera/fragment/top/FragmentTopConfigExtra;->canProvide()Z
+
+    move-result p1
+
+    if-nez p1, :cond_0
+
+    .line 247
+    return-void
+
+    .line 249
+    :cond_0
     iget-object p1, p0, Lcom/android/camera/fragment/top/FragmentTopConfigExtra$1;->this$0:Lcom/android/camera/fragment/top/FragmentTopConfigExtra;
 
     invoke-virtual {p1}, Lcom/android/camera/fragment/top/FragmentTopConfigExtra;->getFragmentManager()Landroid/support/v4/app/FragmentManager;
@@ -53,27 +66,27 @@
 
     invoke-static {p1, v0}, Lcom/android/camera/fragment/FragmentUtils;->removeFragmentByTag(Landroid/support/v4/app/FragmentManager;Ljava/lang/String;)Z
 
-    .line 241
+    .line 250
     return-void
 .end method
 
 .method public onAnimationRepeat(Landroid/view/animation/Animation;)V
     .locals 0
 
-    .line 246
+    .line 255
     return-void
 .end method
 
 .method public onAnimationStart(Landroid/view/animation/Animation;)V
     .locals 1
 
-    .line 235
+    .line 241
     iget-object p1, p0, Lcom/android/camera/fragment/top/FragmentTopConfigExtra$1;->this$0:Lcom/android/camera/fragment/top/FragmentTopConfigExtra;
 
     const/4 v0, 0x0
 
     invoke-virtual {p1, v0}, Lcom/android/camera/fragment/top/FragmentTopConfigExtra;->setClickEnable(Z)V
 
-    .line 236
+    .line 242
     return-void
 .end method

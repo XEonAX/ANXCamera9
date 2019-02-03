@@ -17,11 +17,11 @@ import android.view.animation.Interpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.aeonax.camera.R;
 import com.android.camera.ActivityBase;
 import com.android.camera.CameraScreenNail;
 import com.android.camera.CameraScreenNail.RequestRenderListener;
 import com.android.camera.CameraSettings;
+import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.animation.type.AlphaInOnSubscribe;
 import com.android.camera.animation.type.AlphaOutOnSubscribe;
@@ -339,8 +339,8 @@ public class FragmentPanorama extends BaseFragment implements OnClickListener, R
         this.mIndicator.setVisibility(4);
     }
 
-    public void provideAnimateElement(int i, List<Completable> list, boolean z) {
-        super.provideAnimateElement(i, list, z);
+    public void provideAnimateElement(int i, List<Completable> list, int i2) {
+        super.provideAnimateElement(i, list, i2);
         if (i != 166 && this.mPanoramaViewRoot.getVisibility() == 0) {
             if (list == null) {
                 AlphaOutOnSubscribe.directSetResult(this.mPanoramaViewRoot);

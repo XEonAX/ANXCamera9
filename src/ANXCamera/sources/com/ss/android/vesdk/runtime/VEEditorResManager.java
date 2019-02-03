@@ -16,6 +16,10 @@ public class VEEditorResManager {
         this.mWorkSpace = str;
     }
 
+    public String getWorkspace() {
+        return this.mWorkSpace;
+    }
+
     public String genComposedVideoPath() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(VEResManager.getFolder(this.mWorkSpace, "compose"));

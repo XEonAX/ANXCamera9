@@ -5,6 +5,12 @@ public class VEException extends RuntimeException {
     private int ret;
 
     public VEException(int i, String str) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("VESDK exception ret: ");
+        stringBuilder.append(i);
+        stringBuilder.append("msg: ");
+        stringBuilder.append(str);
+        super(stringBuilder.toString());
         this.ret = i;
         this.msgDes = str;
     }

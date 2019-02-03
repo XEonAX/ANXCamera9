@@ -9,7 +9,7 @@ import java.util.Locale;
 import java.util.WeakHashMap;
 
 public abstract class BasicTexture implements Texture {
-    private static final int MAX_TEXTURE_SIZE = 4096;
+    private static final int MAX_TEXTURE_SIZE = 5760;
     protected static final int STATE_ERROR = -1;
     protected static final int STATE_LOADED = 1;
     protected static final int STATE_UNLOADED = 0;
@@ -55,7 +55,7 @@ public abstract class BasicTexture implements Texture {
         this.mHeight = i2;
         this.mTextureWidth = this.mWidth;
         this.mTextureHeight = this.mHeight;
-        if (this.mTextureWidth > 4096 || this.mTextureHeight > 4096) {
+        if (this.mTextureWidth > MAX_TEXTURE_SIZE || this.mTextureHeight > MAX_TEXTURE_SIZE) {
             Log.w(TAG, String.format(Locale.ENGLISH, "texture is too large: %d x %d", new Object[]{Integer.valueOf(this.mTextureWidth), Integer.valueOf(this.mTextureHeight)}), new Exception());
         }
     }

@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.security.MessageDigest;
 import java.util.Arrays;
+import java.util.zip.CRC32;
 
 public abstract class Verifier {
     private static final String TAG = "Verifier";
@@ -76,19 +77,19 @@ public abstract class Verifier {
         throw new IllegalArgumentException();
     }
 
-    private static byte[] hash(File file, String str) {
+    public static byte[] hash(File file, String str, int i) {
         try {
             MessageDigest instance = MessageDigest.getInstance(str);
             try {
                 InputStream fileInputStream = new FileInputStream(file);
                 try {
-                    byte[] bArr = new byte[8192];
+                    byte[] bArr = new byte[i];
                     while (true) {
-                        int read = fileInputStream.read(bArr);
-                        if (read <= 0) {
+                        i = fileInputStream.read(bArr);
+                        if (i <= 0) {
                             break;
                         }
-                        instance.update(bArr, 0, read);
+                        instance.update(bArr, 0, i);
                     }
                     bArr = instance.digest();
                     try {
@@ -120,6 +121,48 @@ public abstract class Verifier {
         } catch (Throwable e22222) {
             Log.w(TAG, e22222);
             return null;
+        }
+    }
+
+    public static long crc32(File file, int i) {
+        CRC32 crc32 = new CRC32();
+        try {
+            InputStream fileInputStream = new FileInputStream(file);
+            try {
+                byte[] bArr = new byte[i];
+                while (true) {
+                    i = fileInputStream.read(bArr);
+                    if (i <= 0) {
+                        break;
+                    }
+                    crc32.update(bArr, 0, i);
+                }
+                long value = crc32.getValue();
+                try {
+                    fileInputStream.close();
+                } catch (Throwable e) {
+                    Log.w(TAG, e);
+                }
+                return value;
+            } catch (Throwable e2) {
+                Log.w(TAG, e2);
+                try {
+                    fileInputStream.close();
+                } catch (Throwable e22) {
+                    Log.w(TAG, e22);
+                }
+                return 0;
+            } catch (Throwable e222) {
+                try {
+                    fileInputStream.close();
+                } catch (Throwable e3) {
+                    Log.w(TAG, e3);
+                }
+                throw e222;
+            }
+        } catch (Throwable e2222) {
+            Log.w(TAG, e2222);
+            return 0;
         }
     }
 }

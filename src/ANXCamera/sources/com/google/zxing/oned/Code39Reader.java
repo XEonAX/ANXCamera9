@@ -1,5 +1,6 @@
 package com.google.zxing.oned;
 
+import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.ChecksumException;
 import com.google.zxing.DecodeHintType;
@@ -15,7 +16,7 @@ public final class Code39Reader extends OneDReader {
     private static final char[] ALPHABET = ALPHABET_STRING.toCharArray();
     static final String ALPHABET_STRING = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ-. *$/+%";
     private static final int ASTERISK_ENCODING = CHARACTER_ENCODINGS[39];
-    static final int[] CHARACTER_ENCODINGS = new int[]{52, 289, 97, 352, 49, 304, 112, 37, 292, 100, 265, 73, 328, 25, 280, 88, 13, 268, 76, 28, 259, 67, 322, 19, 274, 82, 7, 262, 70, 22, 385, 193, 448, 145, 400, 208, 133, 388, 196, 148, 168, 162, 138, 42};
+    static final int[] CHARACTER_ENCODINGS = new int[]{52, 289, 97, 352, 49, 304, 112, 37, 292, 100, 265, 73, 328, 25, 280, 88, 13, 268, 76, 28, 259, 67, 322, 19, 274, 82, 7, 262, 70, 22, 385, 193, 448, 145, MonitorCommonConstants.MAX_COUNT_UPLOAD_SINGLE_TIME, 208, 133, 388, 196, 148, 168, 162, 138, 42};
     private final int[] counters;
     private final StringBuilder decodeRowResult;
     private final boolean extendedMode;

@@ -2,8 +2,8 @@ package com.android.camera.data.data.config;
 
 import android.annotation.TargetApi;
 import android.util.Range;
-import com.aeonax.camera.R;
 import com.android.camera.CameraSettings;
+import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;

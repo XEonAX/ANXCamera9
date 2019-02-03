@@ -26,7 +26,7 @@
 
 # direct methods
 .method constructor <init>(Lmiui/util/Pools$Manager;I)V
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -45,7 +45,7 @@
 
 # virtual methods
 .method final a(Lmiui/util/Pools$IInstanceHolder;I)V
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -64,7 +64,7 @@
 .end method
 
 .method public bridge synthetic acquire()Ljava/lang/Object;
-    .locals 1
+    .registers 2
 
     .line 496
     invoke-super {p0}, Lmiui/util/Pools$BasePool;->acquire()Ljava/lang/Object;
@@ -75,7 +75,7 @@
 .end method
 
 .method public bridge synthetic close()V
-    .locals 0
+    .registers 1
 
     .line 496
     invoke-super {p0}, Lmiui/util/Pools$BasePool;->close()V
@@ -84,7 +84,7 @@
 .end method
 
 .method final d(Ljava/lang/Class;I)Lmiui/util/Pools$IInstanceHolder;
-    .locals 0
+    .registers 3
     .annotation system Ldalvik/annotation/Signature;
         value = {
             "(",
@@ -104,7 +104,7 @@
 .end method
 
 .method public bridge synthetic getSize()I
-    .locals 1
+    .registers 2
 
     .line 496
     invoke-super {p0}, Lmiui/util/Pools$BasePool;->getSize()I
@@ -115,7 +115,7 @@
 .end method
 
 .method public bridge synthetic release(Ljava/lang/Object;)V
-    .locals 0
+    .registers 2
 
     .line 496
     invoke-super {p0, p1}, Lmiui/util/Pools$BasePool;->release(Ljava/lang/Object;)V

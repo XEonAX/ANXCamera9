@@ -7,7 +7,7 @@ import java.util.Map;
 
 /* compiled from: DataRewinderRegistry */
 public class f {
-    private static final com.bumptech.glide.load.a.e.a<?> dd = new com.bumptech.glide.load.a.e.a<Object>() {
+    private static final com.bumptech.glide.load.a.e.a<?> de = new com.bumptech.glide.load.a.e.a<Object>() {
         @NonNull
         public e<Object> j(@NonNull Object obj) {
             return new a(obj);
@@ -18,7 +18,7 @@ public class f {
             throw new UnsupportedOperationException("Not implemented");
         }
     };
-    private final Map<Class<?>, com.bumptech.glide.load.a.e.a<?>> dc = new HashMap();
+    private final Map<Class<?>, com.bumptech.glide.load.a.e.a<?>> dd = new HashMap();
 
     /* compiled from: DataRewinderRegistry */
     private static final class a implements e<Object> {
@@ -38,16 +38,16 @@ public class f {
     }
 
     public synchronized void b(@NonNull com.bumptech.glide.load.a.e.a<?> aVar) {
-        this.dc.put(aVar.ad(), aVar);
+        this.dd.put(aVar.ad(), aVar);
     }
 
     @NonNull
     public synchronized <T> e<T> j(@NonNull T t) {
         com.bumptech.glide.load.a.e.a aVar;
         i.checkNotNull(t);
-        aVar = (com.bumptech.glide.load.a.e.a) this.dc.get(t.getClass());
+        aVar = (com.bumptech.glide.load.a.e.a) this.dd.get(t.getClass());
         if (aVar == null) {
-            for (com.bumptech.glide.load.a.e.a aVar2 : this.dc.values()) {
+            for (com.bumptech.glide.load.a.e.a aVar2 : this.dd.values()) {
                 if (aVar2.ad().isAssignableFrom(t.getClass())) {
                     aVar = aVar2;
                     break;
@@ -55,7 +55,7 @@ public class f {
             }
         }
         if (aVar == null) {
-            aVar = dd;
+            aVar = de;
         }
         return aVar.j(t);
     }

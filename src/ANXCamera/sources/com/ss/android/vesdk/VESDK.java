@@ -11,6 +11,7 @@ import com.ss.android.ttve.oauth.TEOAuth;
 import com.ss.android.ttve.oauth.TEOAuthResult;
 import com.ss.android.vesdk.VEListener.VEMonitorListener;
 import com.ss.android.vesdk.runtime.VEEnv;
+import com.ss.android.vesdk.runtime.VEExternalMonitorListener;
 import com.ss.android.vesdk.runtime.VERuntime;
 
 public class VESDK {
@@ -91,5 +92,9 @@ public class VESDK {
 
     public static String getActivationCode() {
         return TEOAuth.getActivationCode();
+    }
+
+    public static void setExternalMonitorListener(@NonNull VEExternalMonitorListener vEExternalMonitorListener) {
+        VERuntime.getInstance().setExternalMonitorListener(vEExternalMonitorListener);
     }
 }

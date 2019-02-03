@@ -7,14 +7,14 @@
 
 
 # instance fields
-.field private final NT:F
+.field private final Oe:F
 
-.field private final NV:F
+.field private final Of:F
 
 
 # direct methods
 .method public constructor <init>()V
-    .locals 1
+    .registers 2
 
     .line 21
     const/4 v0, 0x0
@@ -26,16 +26,16 @@
 .end method
 
 .method public constructor <init>(FF)V
-    .locals 0
+    .registers 3
 
     .line 28
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
     .line 29
-    iput p1, p0, Lmiui/view/animation/ElasticEaseInInterpolator;->NT:F
+    iput p1, p0, Lmiui/view/animation/ElasticEaseInInterpolator;->Oe:F
 
     .line 30
-    iput p2, p0, Lmiui/view/animation/ElasticEaseInInterpolator;->NV:F
+    iput p2, p0, Lmiui/view/animation/ElasticEaseInInterpolator;->Of:F
 
     .line 31
     return-void
@@ -44,60 +44,60 @@
 
 # virtual methods
 .method public getInterpolation(F)F
-    .locals 12
+    .registers 14
 
     .line 35
-    iget v0, p0, Lmiui/view/animation/ElasticEaseInInterpolator;->NV:F
+    iget v0, p0, Lmiui/view/animation/ElasticEaseInInterpolator;->Of:F
 
     .line 36
-    iget v1, p0, Lmiui/view/animation/ElasticEaseInInterpolator;->NT:F
+    iget v1, p0, Lmiui/view/animation/ElasticEaseInInterpolator;->Oe:F
 
     .line 39
     const/4 v2, 0x0
 
     cmpl-float v3, p1, v2
 
-    if-nez v3, :cond_0
+    if-nez v3, :cond_a
 
     .line 40
     return v2
 
     .line 42
-    :cond_0
+    :cond_a
     const/high16 v3, 0x3f800000    # 1.0f
 
     cmpl-float v4, p1, v3
 
-    if-nez v4, :cond_1
+    if-nez v4, :cond_11
 
     .line 43
     return v3
 
     .line 45
-    :cond_1
+    :cond_11
     cmpl-float v4, v0, v2
 
-    if-nez v4, :cond_2
+    if-nez v4, :cond_18
 
     .line 46
     const v0, 0x3e99999a    # 0.3f
 
     .line 48
-    :cond_2
+    :cond_18
     cmpl-float v2, v1, v2
 
     const-wide v4, 0x401921fb54442d18L    # 6.283185307179586
 
-    if-eqz v2, :cond_4
+    if-eqz v2, :cond_32
 
     cmpg-float v2, v1, v3
 
-    if-gez v2, :cond_3
+    if-gez v2, :cond_26
 
-    goto :goto_0
+    goto :goto_32
 
     .line 52
-    :cond_3
+    :cond_26
     float-to-double v6, v0
 
     div-double/2addr v6, v4
@@ -114,11 +114,11 @@
 
     double-to-float v2, v6
 
-    goto :goto_1
+    goto :goto_38
 
     .line 49
-    :cond_4
-    :goto_0
+    :cond_32
+    :goto_32
     nop
 
     .line 50
@@ -129,7 +129,7 @@
     .line 54
     move v1, v3
 
-    :goto_1
+    :goto_38
     sub-float/2addr p1, v3
 
     .line 55

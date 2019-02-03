@@ -18,7 +18,7 @@
     .line 19
     const-string v0, "com.bumptech.glide.load.resource.bitmap.CircleCrop.1"
 
-    sget-object v1, Lcom/bumptech/glide/load/resource/bitmap/l;->cT:Ljava/nio/charset/Charset;
+    sget-object v1, Lcom/bumptech/glide/load/resource/bitmap/l;->cU:Ljava/nio/charset/Charset;
 
     invoke-virtual {v0, v1}, Ljava/lang/String;->getBytes(Ljava/nio/charset/Charset;)[B
 

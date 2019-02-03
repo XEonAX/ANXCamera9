@@ -19,7 +19,7 @@
 
 # direct methods
 .method constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 97
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -30,7 +30,7 @@
 
 # virtual methods
 .method public draw(Ljava/lang/Object;Landroid/graphics/Canvas;)Z
-    .locals 1
+    .registers 4
     .param p1, "edgeEffect"    # Ljava/lang/Object;
     .param p2, "canvas"    # Landroid/graphics/Canvas;
 
@@ -43,7 +43,7 @@
 .end method
 
 .method public finish(Ljava/lang/Object;)V
-    .locals 0
+    .registers 2
     .param p1, "edgeEffect"    # Ljava/lang/Object;
 
     .line 111
@@ -54,7 +54,7 @@
 .end method
 
 .method public isFinished(Ljava/lang/Object;)Z
-    .locals 1
+    .registers 3
     .param p1, "edgeEffect"    # Ljava/lang/Object;
 
     .line 107
@@ -66,7 +66,7 @@
 .end method
 
 .method public newEdgeEffect(Landroid/content/Context;)Ljava/lang/Object;
-    .locals 1
+    .registers 3
     .param p1, "context"    # Landroid/content/Context;
 
     .line 99
@@ -78,7 +78,7 @@
 .end method
 
 .method public onAbsorb(Ljava/lang/Object;I)Z
-    .locals 1
+    .registers 4
     .param p1, "edgeEffect"    # Ljava/lang/Object;
     .param p2, "velocity"    # I
 
@@ -91,7 +91,7 @@
 .end method
 
 .method public onPull(Ljava/lang/Object;F)Z
-    .locals 1
+    .registers 4
     .param p1, "edgeEffect"    # Ljava/lang/Object;
     .param p2, "deltaDistance"    # F
 
@@ -104,7 +104,7 @@
 .end method
 
 .method public onPull(Ljava/lang/Object;FF)Z
-    .locals 1
+    .registers 5
     .param p1, "edgeEffect"    # Ljava/lang/Object;
     .param p2, "deltaDistance"    # F
     .param p3, "displacement"    # F
@@ -118,7 +118,7 @@
 .end method
 
 .method public onRelease(Ljava/lang/Object;)Z
-    .locals 1
+    .registers 3
     .param p1, "edgeEffect"    # Ljava/lang/Object;
 
     .line 119
@@ -130,7 +130,7 @@
 .end method
 
 .method public setSize(Ljava/lang/Object;II)V
-    .locals 0
+    .registers 4
     .param p1, "edgeEffect"    # Ljava/lang/Object;
     .param p2, "width"    # I
     .param p3, "height"    # I

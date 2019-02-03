@@ -5,6 +5,8 @@ import android.graphics.RectF;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 public class WaterMarkData implements Parcelable {
     public static final Creator<WaterMarkData> CREATOR = new Creator<WaterMarkData>() {
@@ -24,9 +26,21 @@ public class WaterMarkData implements Parcelable {
     private String info;
     private boolean isFemale;
     private int orientation;
+    private int watermarkType = 0;
+
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface WatermarkType {
+        public static final int AGE_GENDER = 2;
+        public static final int MAGIC_MIRROR = 1;
+        public static final int NONE = 0;
+    }
 
     protected WaterMarkData(Parcel parcel) {
-        this.isFemale = parcel.readByte() != (byte) 0;
+        boolean z = false;
+        if (parcel.readByte() != (byte) 0) {
+            z = true;
+        }
+        this.isFemale = z;
         this.image = (Bitmap) parcel.readParcelable(Bitmap.class.getClassLoader());
         this.faceRectF = (RectF) parcel.readParcelable(RectF.class.getClassLoader());
         this.info = parcel.readString();
@@ -34,6 +48,7 @@ public class WaterMarkData implements Parcelable {
         this.faceViewWidth = parcel.readInt();
         this.faceViewHeight = parcel.readInt();
         this.orientation = parcel.readInt();
+        this.watermarkType = parcel.readInt();
     }
 
     public boolean isFemale() {
@@ -100,6 +115,14 @@ public class WaterMarkData implements Parcelable {
         this.orientation = i;
     }
 
+    public int getWatermarkType() {
+        return this.watermarkType;
+    }
+
+    public void setWatermarkType(int i) {
+        this.watermarkType = i;
+    }
+
     public int describeContents() {
         return 0;
     }
@@ -113,5 +136,6 @@ public class WaterMarkData implements Parcelable {
         parcel.writeInt(this.faceViewWidth);
         parcel.writeInt(this.faceViewHeight);
         parcel.writeInt(this.orientation);
+        parcel.writeInt(this.watermarkType);
     }
 }

@@ -25,7 +25,7 @@
 .method private constructor <init>(Lcom/android/camera/fragment/FragmentBeauty;)V
     .locals 0
 
-    .line 111
+    .line 112
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentBeauty$ViewPagerListener;->this$0:Lcom/android/camera/fragment/FragmentBeauty;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
@@ -36,7 +36,7 @@
 .method synthetic constructor <init>(Lcom/android/camera/fragment/FragmentBeauty;Lcom/android/camera/fragment/FragmentBeauty$1;)V
     .locals 0
 
-    .line 111
+    .line 112
     invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentBeauty$ViewPagerListener;-><init>(Lcom/android/camera/fragment/FragmentBeauty;)V
 
     return-void
@@ -47,47 +47,47 @@
 .method public onPageScrollStateChanged(I)V
     .locals 0
 
-    .line 140
+    .line 141
     return-void
 .end method
 
 .method public onPageScrolled(IFI)V
     .locals 0
 
-    .line 115
+    .line 116
     return-void
 .end method
 
 .method public onPageSelected(I)V
     .locals 3
 
-    .line 119
+    .line 120
     nop
 
-    .line 120
+    .line 121
     const/4 v0, 0x3
 
     packed-switch p1, :pswitch_data_0
 
     goto :goto_0
 
-    .line 125
+    .line 126
     :pswitch_0
     nop
 
-    .line 126
+    .line 127
     nop
 
-    .line 131
+    .line 132
     move p1, v0
 
     goto :goto_1
 
-    .line 122
+    .line 123
     :pswitch_1
     nop
 
-    .line 131
+    .line 132
     :goto_0
     const/4 p1, 0x5
 
@@ -98,17 +98,17 @@
 
     const/16 v2, 0xb9
 
-    .line 132
+    .line 133
     invoke-virtual {v1, v2}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object v1
 
     check-cast v1, Lcom/android/camera/protocol/ModeProtocol$FaceBeautyProtocol;
 
-    .line 133
+    .line 134
     if-eqz v1, :cond_1
 
-    .line 134
+    .line 135
     if-ne v0, p1, :cond_0
 
     const/4 p1, 0x1
@@ -121,7 +121,7 @@
     :goto_2
     invoke-interface {v1, p1}, Lcom/android/camera/protocol/ModeProtocol$FaceBeautyProtocol;->onFaceBeautySwitched(Z)V
 
-    .line 136
+    .line 137
     :cond_1
     return-void
 

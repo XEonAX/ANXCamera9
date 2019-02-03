@@ -135,7 +135,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 3
+    .registers 3
 
     .line 71
     const-class v0, Landroid/support/v4/widget/SwipeRefreshLayout;
@@ -163,7 +163,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/Context;)V
-    .locals 1
+    .registers 3
     .param p1, "context"    # Landroid/content/Context;
 
     .line 274
@@ -176,7 +176,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
-    .locals 5
+    .registers 8
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "attrs"    # Landroid/util/AttributeSet;
 
@@ -367,7 +367,7 @@
 .end method
 
 .method static synthetic access$000(Landroid/support/v4/widget/SwipeRefreshLayout;)Z
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/widget/SwipeRefreshLayout;
 
     .line 64
@@ -377,7 +377,7 @@
 .end method
 
 .method static synthetic access$100(Landroid/support/v4/widget/SwipeRefreshLayout;)Landroid/support/v4/widget/MaterialProgressDrawable;
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/widget/SwipeRefreshLayout;
 
     .line 64
@@ -387,7 +387,7 @@
 .end method
 
 .method static synthetic access$1000(Landroid/support/v4/widget/SwipeRefreshLayout;Landroid/view/animation/Animation$AnimationListener;)V
-    .locals 0
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/widget/SwipeRefreshLayout;
     .param p1, "x1"    # Landroid/view/animation/Animation$AnimationListener;
 
@@ -398,7 +398,7 @@
 .end method
 
 .method static synthetic access$1100(Landroid/support/v4/widget/SwipeRefreshLayout;)Z
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/widget/SwipeRefreshLayout;
 
     .line 64
@@ -408,7 +408,7 @@
 .end method
 
 .method static synthetic access$1200(Landroid/support/v4/widget/SwipeRefreshLayout;)F
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/widget/SwipeRefreshLayout;
 
     .line 64
@@ -418,7 +418,7 @@
 .end method
 
 .method static synthetic access$1300(Landroid/support/v4/widget/SwipeRefreshLayout;F)V
-    .locals 0
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/widget/SwipeRefreshLayout;
     .param p1, "x1"    # F
 
@@ -429,7 +429,7 @@
 .end method
 
 .method static synthetic access$1400(Landroid/support/v4/widget/SwipeRefreshLayout;)F
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/widget/SwipeRefreshLayout;
 
     .line 64
@@ -439,7 +439,7 @@
 .end method
 
 .method static synthetic access$200(Landroid/support/v4/widget/SwipeRefreshLayout;)Z
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/widget/SwipeRefreshLayout;
 
     .line 64
@@ -449,7 +449,7 @@
 .end method
 
 .method static synthetic access$300(Landroid/support/v4/widget/SwipeRefreshLayout;)Landroid/support/v4/widget/SwipeRefreshLayout$OnRefreshListener;
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/widget/SwipeRefreshLayout;
 
     .line 64
@@ -459,7 +459,7 @@
 .end method
 
 .method static synthetic access$400(Landroid/support/v4/widget/SwipeRefreshLayout;)Landroid/support/v4/widget/CircleImageView;
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/widget/SwipeRefreshLayout;
 
     .line 64
@@ -469,7 +469,7 @@
 .end method
 
 .method static synthetic access$500(Landroid/support/v4/widget/SwipeRefreshLayout;I)V
-    .locals 0
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/widget/SwipeRefreshLayout;
     .param p1, "x1"    # I
 
@@ -480,7 +480,7 @@
 .end method
 
 .method static synthetic access$600(Landroid/support/v4/widget/SwipeRefreshLayout;)Z
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/widget/SwipeRefreshLayout;
 
     .line 64
@@ -490,7 +490,7 @@
 .end method
 
 .method static synthetic access$700(Landroid/support/v4/widget/SwipeRefreshLayout;F)V
-    .locals 0
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/widget/SwipeRefreshLayout;
     .param p1, "x1"    # F
 
@@ -501,7 +501,7 @@
 .end method
 
 .method static synthetic access$800(Landroid/support/v4/widget/SwipeRefreshLayout;)I
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/widget/SwipeRefreshLayout;
 
     .line 64
@@ -511,7 +511,7 @@
 .end method
 
 .method static synthetic access$802(Landroid/support/v4/widget/SwipeRefreshLayout;I)I
-    .locals 0
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/widget/SwipeRefreshLayout;
     .param p1, "x1"    # I
 
@@ -522,7 +522,7 @@
 .end method
 
 .method static synthetic access$900(Landroid/support/v4/widget/SwipeRefreshLayout;IZ)V
-    .locals 0
+    .registers 3
     .param p0, "x0"    # Landroid/support/v4/widget/SwipeRefreshLayout;
     .param p1, "x1"    # I
     .param p2, "x2"    # Z
@@ -534,7 +534,7 @@
 .end method
 
 .method private animateOffsetToCorrectPosition(ILandroid/view/animation/Animation$AnimationListener;)V
-    .locals 3
+    .registers 6
     .param p1, "from"    # I
     .param p2, "listener"    # Landroid/view/animation/Animation$AnimationListener;
 
@@ -561,7 +561,7 @@
     invoke-virtual {v0, v1}, Landroid/view/animation/Animation;->setInterpolator(Landroid/view/animation/Interpolator;)V
 
     .line 1016
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_1c
 
     .line 1017
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleView:Landroid/support/v4/widget/CircleImageView;
@@ -569,7 +569,7 @@
     invoke-virtual {v0, p2}, Landroid/support/v4/widget/CircleImageView;->setAnimationListener(Landroid/view/animation/Animation$AnimationListener;)V
 
     .line 1019
-    :cond_0
+    :cond_1c
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleView:Landroid/support/v4/widget/CircleImageView;
 
     invoke-virtual {v0}, Landroid/support/v4/widget/CircleImageView;->clearAnimation()V
@@ -586,22 +586,22 @@
 .end method
 
 .method private animateOffsetToStartPosition(ILandroid/view/animation/Animation$AnimationListener;)V
-    .locals 3
+    .registers 6
     .param p1, "from"    # I
     .param p2, "listener"    # Landroid/view/animation/Animation$AnimationListener;
 
     .line 1036
     iget-boolean v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mScale:Z
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_8
 
     .line 1038
     invoke-direct {p0, p1, p2}, Landroid/support/v4/widget/SwipeRefreshLayout;->startScaleDownReturnToStartAnimation(ILandroid/view/animation/Animation$AnimationListener;)V
 
-    goto :goto_0
+    goto :goto_30
 
     .line 1040
-    :cond_0
+    :cond_8
     iput p1, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mFrom:I
 
     .line 1041
@@ -624,7 +624,7 @@
     invoke-virtual {v0, v1}, Landroid/view/animation/Animation;->setInterpolator(Landroid/view/animation/Interpolator;)V
 
     .line 1044
-    if-eqz p2, :cond_1
+    if-eqz p2, :cond_24
 
     .line 1045
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleView:Landroid/support/v4/widget/CircleImageView;
@@ -632,7 +632,7 @@
     invoke-virtual {v0, p2}, Landroid/support/v4/widget/CircleImageView;->setAnimationListener(Landroid/view/animation/Animation$AnimationListener;)V
 
     .line 1047
-    :cond_1
+    :cond_24
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleView:Landroid/support/v4/widget/CircleImageView;
 
     invoke-virtual {v0}, Landroid/support/v4/widget/CircleImageView;->clearAnimation()V
@@ -645,12 +645,12 @@
     invoke-virtual {v0, v1}, Landroid/support/v4/widget/CircleImageView;->startAnimation(Landroid/view/animation/Animation;)V
 
     .line 1050
-    :goto_0
+    :goto_30
     return-void
 .end method
 
 .method private createProgressView()V
-    .locals 4
+    .registers 5
 
     .line 329
     new-instance v0, Landroid/support/v4/widget/CircleImageView;
@@ -707,23 +707,23 @@
 .end method
 
 .method private ensureTarget()V
-    .locals 3
+    .registers 4
 
     .line 543
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTarget:Landroid/view/View;
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_1d
 
     .line 544
     const/4 v0, 0x0
 
     .local v0, "i":I
-    :goto_0
+    :goto_5
     invoke-virtual {p0}, Landroid/support/v4/widget/SwipeRefreshLayout;->getChildCount()I
 
     move-result v1
 
-    if-ge v0, v1, :cond_1
+    if-ge v0, v1, :cond_1d
 
     .line 545
     invoke-virtual {p0, v0}, Landroid/support/v4/widget/SwipeRefreshLayout;->getChildAt(I)Landroid/view/View;
@@ -738,30 +738,30 @@
 
     move-result v2
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_1a
 
     .line 547
     iput-object v1, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTarget:Landroid/view/View;
 
     .line 548
-    goto :goto_1
+    goto :goto_1d
 
     .line 544
     .end local v1    # "child":Landroid/view/View;
-    :cond_0
+    :cond_1a
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_0
+    goto :goto_5
 
     .line 552
     .end local v0    # "i":I
-    :cond_1
-    :goto_1
+    :cond_1d
+    :goto_1d
     return-void
 .end method
 
 .method private finishSpinner(F)V
-    .locals 3
+    .registers 5
     .param p1, "overscrollTop"    # F
 
     .line 911
@@ -769,17 +769,17 @@
 
     cmpl-float v0, p1, v0
 
-    if-lez v0, :cond_0
+    if-lez v0, :cond_b
 
     .line 912
     const/4 v0, 0x1
 
     invoke-direct {p0, v0, v0}, Landroid/support/v4/widget/SwipeRefreshLayout;->setRefreshing(ZZ)V
 
-    goto :goto_0
+    goto :goto_29
 
     .line 915
-    :cond_0
+    :cond_b
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mRefreshing:Z
@@ -798,7 +798,7 @@
     .local v1, "listener":Landroid/view/animation/Animation$AnimationListener;
     iget-boolean v2, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mScale:Z
 
-    if-nez v2, :cond_1
+    if-nez v2, :cond_1f
 
     .line 919
     new-instance v2, Landroid/support/v4/widget/SwipeRefreshLayout$5;
@@ -808,7 +808,7 @@
     move-object v1, v2
 
     .line 938
-    :cond_1
+    :cond_1f
     iget v2, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCurrentTargetOffsetTop:I
 
     invoke-direct {p0, v2, v1}, Landroid/support/v4/widget/SwipeRefreshLayout;->animateOffsetToStartPosition(ILandroid/view/animation/Animation$AnimationListener;)V
@@ -820,12 +820,12 @@
 
     .line 941
     .end local v1    # "listener":Landroid/view/animation/Animation$AnimationListener;
-    :goto_0
+    :goto_29
     return-void
 .end method
 
 .method private getMotionEventY(Landroid/view/MotionEvent;I)F
-    .locals 2
+    .registers 5
     .param p1, "ev"    # Landroid/view/MotionEvent;
     .param p2, "activePointerId"    # I
 
@@ -836,7 +836,7 @@
 
     .line 708
     .local v0, "index":I
-    if-gez v0, :cond_0
+    if-gez v0, :cond_9
 
     .line 709
     const/high16 v1, -0x40800000    # -1.0f
@@ -844,7 +844,7 @@
     return v1
 
     .line 711
-    :cond_0
+    :cond_9
     invoke-static {p1, v0}, Landroid/support/v4/view/MotionEventCompat;->getY(Landroid/view/MotionEvent;I)F
 
     move-result v1
@@ -853,58 +853,58 @@
 .end method
 
 .method private isAlphaUsedForScale()Z
-    .locals 2
+    .registers 3
 
     .line 349
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0xb
 
-    if-ge v0, v1, :cond_0
+    if-ge v0, v1, :cond_8
 
     const/4 v0, 0x1
 
-    goto :goto_0
+    goto :goto_9
 
-    :cond_0
+    :cond_8
     const/4 v0, 0x0
 
-    :goto_0
+    :goto_9
     return v0
 .end method
 
 .method private isAnimationRunning(Landroid/view/animation/Animation;)Z
-    .locals 1
+    .registers 3
     .param p1, "animation"    # Landroid/view/animation/Animation;
 
     .line 860
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_10
 
     invoke-virtual {p1}, Landroid/view/animation/Animation;->hasStarted()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_10
 
     invoke-virtual {p1}, Landroid/view/animation/Animation;->hasEnded()Z
 
     move-result v0
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_10
 
     const/4 v0, 0x1
 
-    goto :goto_0
+    goto :goto_11
 
-    :cond_0
+    :cond_10
     const/4 v0, 0x0
 
-    :goto_0
+    :goto_11
     return v0
 .end method
 
 .method private moveSpinner(F)V
-    .locals 16
+    .registers 18
     .param p1, "overscrollTop"    # F
 
     move-object/from16 v0, p0
@@ -971,7 +971,7 @@
     .local v6, "extraOS":F
     iget-boolean v7, v0, Landroid/support/v4/widget/SwipeRefreshLayout;->mUsingCustomStart:Z
 
-    if-eqz v7, :cond_0
+    if-eqz v7, :cond_3c
 
     iget v7, v0, Landroid/support/v4/widget/SwipeRefreshLayout;->mSpinnerFinalOffset:F
 
@@ -981,14 +981,14 @@
 
     sub-float/2addr v7, v8
 
-    goto :goto_0
+    goto :goto_3e
 
-    :cond_0
+    :cond_3c
     iget v7, v0, Landroid/support/v4/widget/SwipeRefreshLayout;->mSpinnerFinalOffset:F
 
     .line 872
     .local v7, "slingshotDist":F
-    :goto_0
+    :goto_3e
     const/high16 v8, 0x40000000    # 2.0f
 
     mul-float v9, v7, v8
@@ -1059,7 +1059,7 @@
 
     move-result v11
 
-    if-eqz v11, :cond_1
+    if-eqz v11, :cond_76
 
     .line 881
     iget-object v11, v0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleView:Landroid/support/v4/widget/CircleImageView;
@@ -1069,10 +1069,10 @@
     invoke-virtual {v11, v12}, Landroid/support/v4/widget/CircleImageView;->setVisibility(I)V
 
     .line 883
-    :cond_1
+    :cond_76
     iget-boolean v11, v0, Landroid/support/v4/widget/SwipeRefreshLayout;->mScale:Z
 
-    if-nez v11, :cond_2
+    if-nez v11, :cond_86
 
     .line 884
     iget-object v11, v0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleView:Landroid/support/v4/widget/CircleImageView;
@@ -1087,17 +1087,17 @@
     invoke-static {v11, v12}, Landroid/support/v4/view/ViewCompat;->setScaleY(Landroid/view/View;F)V
 
     .line 887
-    :cond_2
+    :cond_86
     iget v11, v0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTotalDragDistance:F
 
     cmpg-float v11, p1, v11
 
-    if-gez v11, :cond_5
+    if-gez v11, :cond_c8
 
     .line 888
     iget-boolean v11, v0, Landroid/support/v4/widget/SwipeRefreshLayout;->mScale:Z
 
-    if-eqz v11, :cond_3
+    if-eqz v11, :cond_97
 
     .line 889
     iget v11, v0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTotalDragDistance:F
@@ -1107,7 +1107,7 @@
     invoke-direct {v0, v11}, Landroid/support/v4/widget/SwipeRefreshLayout;->setAnimationProgress(F)V
 
     .line 891
-    :cond_3
+    :cond_97
     iget-object v11, v0, Landroid/support/v4/widget/SwipeRefreshLayout;->mProgress:Landroid/support/v4/widget/MaterialProgressDrawable;
 
     invoke-virtual {v11}, Landroid/support/v4/widget/MaterialProgressDrawable;->getAlpha()I
@@ -1116,7 +1116,7 @@
 
     const/16 v12, 0x4c
 
-    if-le v11, v12, :cond_4
+    if-le v11, v12, :cond_ac
 
     iget-object v11, v0, Landroid/support/v4/widget/SwipeRefreshLayout;->mAlphaStartAnimation:Landroid/view/animation/Animation;
 
@@ -1124,13 +1124,13 @@
 
     move-result v11
 
-    if-nez v11, :cond_4
+    if-nez v11, :cond_ac
 
     .line 894
     invoke-direct/range {p0 .. p0}, Landroid/support/v4/widget/SwipeRefreshLayout;->startProgressAlphaStartAnimation()V
 
     .line 896
-    :cond_4
+    :cond_ac
     const v11, 0x3f4ccccd    # 0.8f
 
     mul-float v12, v15, v11
@@ -1164,12 +1164,12 @@
 
     .line 899
     .end local v12    # "strokeStart":F
-    goto :goto_1
+    goto :goto_de
 
     .line 900
     .end local v13    # "adjustedPercent":F
     .restart local v15    # "adjustedPercent":F
-    :cond_5
+    :cond_c8
     move v13, v15
 
     .end local v15    # "adjustedPercent":F
@@ -1182,7 +1182,7 @@
 
     const/16 v12, 0xff
 
-    if-ge v11, v12, :cond_6
+    if-ge v11, v12, :cond_de
 
     iget-object v11, v0, Landroid/support/v4/widget/SwipeRefreshLayout;->mAlphaMaxAnimation:Landroid/view/animation/Animation;
 
@@ -1190,14 +1190,14 @@
 
     move-result v11
 
-    if-nez v11, :cond_6
+    if-nez v11, :cond_de
 
     .line 902
     invoke-direct/range {p0 .. p0}, Landroid/support/v4/widget/SwipeRefreshLayout;->startProgressAlphaMaxAnimation()V
 
     .line 905
-    :cond_6
-    :goto_1
+    :cond_de
+    :goto_de
     const/high16 v11, -0x41800000    # -0.25f
 
     const v12, 0x3ecccccd    # 0.4f
@@ -1232,7 +1232,7 @@
 .end method
 
 .method private moveToStart(F)V
-    .locals 4
+    .registers 6
     .param p1, "interpolatedTime"    # F
 
     .line 1087
@@ -1278,7 +1278,7 @@
 .end method
 
 .method private onSecondaryPointerUp(Landroid/view/MotionEvent;)V
-    .locals 4
+    .registers 6
     .param p1, "ev"    # Landroid/view/MotionEvent;
 
     .line 1134
@@ -1296,21 +1296,21 @@
     .local v1, "pointerId":I
     iget v2, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mActivePointerId:I
 
-    if-ne v1, v2, :cond_1
+    if-ne v1, v2, :cond_17
 
     .line 1139
-    if-nez v0, :cond_0
+    if-nez v0, :cond_10
 
     const/4 v2, 0x1
 
-    goto :goto_0
+    goto :goto_11
 
-    :cond_0
+    :cond_10
     const/4 v2, 0x0
 
     .line 1140
     .local v2, "newPointerIndex":I
-    :goto_0
+    :goto_11
     invoke-static {p1, v2}, Landroid/support/v4/view/MotionEventCompat;->getPointerId(Landroid/view/MotionEvent;I)I
 
     move-result v3
@@ -1319,12 +1319,12 @@
 
     .line 1142
     .end local v2    # "newPointerIndex":I
-    :cond_1
+    :cond_17
     return-void
 .end method
 
 .method private peek(ILandroid/view/animation/Animation$AnimationListener;)V
-    .locals 3
+    .registers 6
     .param p1, "from"    # I
     .param p2, "listener"    # Landroid/view/animation/Animation$AnimationListener;
 
@@ -1351,7 +1351,7 @@
     invoke-virtual {v0, v1}, Landroid/view/animation/Animation;->setInterpolator(Landroid/view/animation/Interpolator;)V
 
     .line 1028
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_1c
 
     .line 1029
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleView:Landroid/support/v4/widget/CircleImageView;
@@ -1359,7 +1359,7 @@
     invoke-virtual {v0, p2}, Landroid/support/v4/widget/CircleImageView;->setAnimationListener(Landroid/view/animation/Animation$AnimationListener;)V
 
     .line 1031
-    :cond_0
+    :cond_1c
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleView:Landroid/support/v4/widget/CircleImageView;
 
     invoke-virtual {v0}, Landroid/support/v4/widget/CircleImageView;->clearAnimation()V
@@ -1376,7 +1376,7 @@
 .end method
 
 .method private setAnimationProgress(F)V
-    .locals 1
+    .registers 3
     .param p1, "progress"    # F
 
     .line 404
@@ -1384,7 +1384,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_e
 
     .line 405
     const/high16 v0, 0x437f0000    # 255.0f
@@ -1395,10 +1395,10 @@
 
     invoke-direct {p0, v0}, Landroid/support/v4/widget/SwipeRefreshLayout;->setColorViewAlpha(I)V
 
-    goto :goto_0
+    goto :goto_18
 
     .line 407
-    :cond_0
+    :cond_e
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleView:Landroid/support/v4/widget/CircleImageView;
 
     invoke-static {v0, p1}, Landroid/support/v4/view/ViewCompat;->setScaleX(Landroid/view/View;F)V
@@ -1409,12 +1409,12 @@
     invoke-static {v0, p1}, Landroid/support/v4/view/ViewCompat;->setScaleY(Landroid/view/View;F)V
 
     .line 410
-    :goto_0
+    :goto_18
     return-void
 .end method
 
 .method private setColorViewAlpha(I)V
-    .locals 1
+    .registers 3
     .param p1, "targetAlpha"    # I
 
     .line 202
@@ -1436,14 +1436,14 @@
 .end method
 
 .method private setRefreshing(ZZ)V
-    .locals 2
+    .registers 5
     .param p1, "refreshing"    # Z
     .param p2, "notify"    # Z
 
     .line 413
     iget-boolean v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mRefreshing:Z
 
-    if-eq v0, p1, :cond_1
+    if-eq v0, p1, :cond_1c
 
     .line 414
     iput-boolean p2, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mNotify:Z
@@ -1457,7 +1457,7 @@
     .line 417
     iget-boolean v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mRefreshing:Z
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_17
 
     .line 418
     iget v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCurrentTargetOffsetTop:I
@@ -1466,22 +1466,22 @@
 
     invoke-direct {p0, v0, v1}, Landroid/support/v4/widget/SwipeRefreshLayout;->animateOffsetToCorrectPosition(ILandroid/view/animation/Animation$AnimationListener;)V
 
-    goto :goto_0
+    goto :goto_1c
 
     .line 420
-    :cond_0
+    :cond_17
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mRefreshListener:Landroid/view/animation/Animation$AnimationListener;
 
     invoke-direct {p0, v0}, Landroid/support/v4/widget/SwipeRefreshLayout;->startScaleDownAnimation(Landroid/view/animation/Animation$AnimationListener;)V
 
     .line 423
-    :cond_1
-    :goto_0
+    :cond_1c
+    :goto_1c
     return-void
 .end method
 
 .method private setTargetOffsetTopAndBottom(IZ)V
-    .locals 2
+    .registers 5
     .param p1, "offset"    # I
     .param p2, "requiresUpdate"    # Z
 
@@ -1505,24 +1505,24 @@
     iput v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCurrentTargetOffsetTop:I
 
     .line 1128
-    if-eqz p2, :cond_0
+    if-eqz p2, :cond_1d
 
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
 
     const/16 v1, 0xb
 
-    if-ge v0, v1, :cond_0
+    if-ge v0, v1, :cond_1d
 
     .line 1129
     invoke-virtual {p0}, Landroid/support/v4/widget/SwipeRefreshLayout;->invalidate()V
 
     .line 1131
-    :cond_0
+    :cond_1d
     return-void
 .end method
 
 .method private startAlphaAnimation(II)Landroid/view/animation/Animation;
-    .locals 4
+    .registers 7
     .param p1, "startingAlpha"    # I
     .param p2, "endingAlpha"    # I
 
@@ -1531,19 +1531,19 @@
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_c
 
     invoke-direct {p0}, Landroid/support/v4/widget/SwipeRefreshLayout;->isAlphaUsedForScale()Z
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_c
 
     .line 450
     return-object v1
 
     .line 452
-    :cond_0
+    :cond_c
     new-instance v0, Landroid/support/v4/widget/SwipeRefreshLayout$4;
 
     invoke-direct {v0, p0, p1, p2}, Landroid/support/v4/widget/SwipeRefreshLayout$4;-><init>(Landroid/support/v4/widget/SwipeRefreshLayout;II)V
@@ -1574,7 +1574,7 @@
 .end method
 
 .method private startProgressAlphaMaxAnimation()V
-    .locals 2
+    .registers 3
 
     .line 443
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mProgress:Landroid/support/v4/widget/MaterialProgressDrawable;
@@ -1596,7 +1596,7 @@
 .end method
 
 .method private startProgressAlphaStartAnimation()V
-    .locals 2
+    .registers 3
 
     .line 439
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mProgress:Landroid/support/v4/widget/MaterialProgressDrawable;
@@ -1618,7 +1618,7 @@
 .end method
 
 .method private startScaleDownAnimation(Landroid/view/animation/Animation$AnimationListener;)V
-    .locals 3
+    .registers 5
     .param p1, "listener"    # Landroid/view/animation/Animation$AnimationListener;
 
     .line 426
@@ -1657,7 +1657,7 @@
 .end method
 
 .method private startScaleDownReturnToStartAnimation(ILandroid/view/animation/Animation$AnimationListener;)V
-    .locals 3
+    .registers 6
     .param p1, "from"    # I
     .param p2, "listener"    # Landroid/view/animation/Animation$AnimationListener;
 
@@ -1669,7 +1669,7 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_12
 
     .line 1104
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mProgress:Landroid/support/v4/widget/MaterialProgressDrawable;
@@ -1682,10 +1682,10 @@
 
     iput v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mStartingScale:F
 
-    goto :goto_0
+    goto :goto_1a
 
     .line 1106
-    :cond_0
+    :cond_12
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleView:Landroid/support/v4/widget/CircleImageView;
 
     invoke-static {v0}, Landroid/support/v4/view/ViewCompat;->getScaleX(Landroid/view/View;)F
@@ -1695,7 +1695,7 @@
     iput v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mStartingScale:F
 
     .line 1108
-    :goto_0
+    :goto_1a
     new-instance v0, Landroid/support/v4/widget/SwipeRefreshLayout$9;
 
     invoke-direct {v0, p0}, Landroid/support/v4/widget/SwipeRefreshLayout$9;-><init>(Landroid/support/v4/widget/SwipeRefreshLayout;)V
@@ -1710,7 +1710,7 @@
     invoke-virtual {v0, v1, v2}, Landroid/view/animation/Animation;->setDuration(J)V
 
     .line 1117
-    if-eqz p2, :cond_1
+    if-eqz p2, :cond_2f
 
     .line 1118
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleView:Landroid/support/v4/widget/CircleImageView;
@@ -1718,7 +1718,7 @@
     invoke-virtual {v0, p2}, Landroid/support/v4/widget/CircleImageView;->setAnimationListener(Landroid/view/animation/Animation$AnimationListener;)V
 
     .line 1120
-    :cond_1
+    :cond_2f
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleView:Landroid/support/v4/widget/CircleImageView;
 
     invoke-virtual {v0}, Landroid/support/v4/widget/CircleImageView;->clearAnimation()V
@@ -1735,7 +1735,7 @@
 .end method
 
 .method private startScaleUpAnimation(Landroid/view/animation/Animation$AnimationListener;)V
-    .locals 3
+    .registers 5
     .param p1, "listener"    # Landroid/view/animation/Animation$AnimationListener;
 
     .line 378
@@ -1750,7 +1750,7 @@
 
     const/16 v1, 0xb
 
-    if-lt v0, v1, :cond_0
+    if-lt v0, v1, :cond_13
 
     .line 383
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mProgress:Landroid/support/v4/widget/MaterialProgressDrawable;
@@ -1760,7 +1760,7 @@
     invoke-virtual {v0, v1}, Landroid/support/v4/widget/MaterialProgressDrawable;->setAlpha(I)V
 
     .line 385
-    :cond_0
+    :cond_13
     new-instance v0, Landroid/support/v4/widget/SwipeRefreshLayout$2;
 
     invoke-direct {v0, p0}, Landroid/support/v4/widget/SwipeRefreshLayout$2;-><init>(Landroid/support/v4/widget/SwipeRefreshLayout;)V
@@ -1777,7 +1777,7 @@
     invoke-virtual {v0, v1, v2}, Landroid/view/animation/Animation;->setDuration(J)V
 
     .line 392
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_29
 
     .line 393
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleView:Landroid/support/v4/widget/CircleImageView;
@@ -1785,7 +1785,7 @@
     invoke-virtual {v0, p1}, Landroid/support/v4/widget/CircleImageView;->setAnimationListener(Landroid/view/animation/Animation$AnimationListener;)V
 
     .line 395
-    :cond_1
+    :cond_29
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleView:Landroid/support/v4/widget/CircleImageView;
 
     invoke-virtual {v0}, Landroid/support/v4/widget/CircleImageView;->clearAnimation()V
@@ -1804,7 +1804,7 @@
 
 # virtual methods
 .method public canChildScrollUp()Z
-    .locals 5
+    .registers 6
 
     .line 633
     sget v0, Landroid/os/Build$VERSION;->SDK_INT:I
@@ -1813,7 +1813,7 @@
 
     const/16 v2, 0xe
 
-    if-ge v0, v2, :cond_5
+    if-ge v0, v2, :cond_44
 
     .line 634
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTarget:Landroid/view/View;
@@ -1824,7 +1824,7 @@
 
     const/4 v3, 0x0
 
-    if-eqz v0, :cond_2
+    if-eqz v0, :cond_30
 
     .line 635
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTarget:Landroid/view/View;
@@ -1837,13 +1837,13 @@
 
     move-result v1
 
-    if-lez v1, :cond_1
+    if-lez v1, :cond_2e
 
     invoke-virtual {v0}, Landroid/widget/AbsListView;->getFirstVisiblePosition()I
 
     move-result v1
 
-    if-gtz v1, :cond_0
+    if-gtz v1, :cond_2d
 
     invoke-virtual {v0, v3}, Landroid/widget/AbsListView;->getChildAt(I)Landroid/view/View;
 
@@ -1857,27 +1857,27 @@
 
     move-result v4
 
-    if-ge v1, v4, :cond_1
+    if-ge v1, v4, :cond_2e
 
-    :cond_0
-    goto :goto_0
+    :cond_2d
+    goto :goto_2f
 
-    :cond_1
+    :cond_2e
     move v2, v3
 
-    :goto_0
+    :goto_2f
     return v2
 
     .line 640
     .end local v0    # "absListView":Landroid/widget/AbsListView;
-    :cond_2
+    :cond_30
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTarget:Landroid/view/View;
 
     invoke-static {v0, v1}, Landroid/support/v4/view/ViewCompat;->canScrollVertically(Landroid/view/View;I)Z
 
     move-result v0
 
-    if-nez v0, :cond_4
+    if-nez v0, :cond_43
 
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTarget:Landroid/view/View;
 
@@ -1885,21 +1885,21 @@
 
     move-result v0
 
-    if-lez v0, :cond_3
+    if-lez v0, :cond_41
 
-    goto :goto_1
+    goto :goto_43
 
-    :cond_3
+    :cond_41
     move v2, v3
 
     nop
 
-    :cond_4
-    :goto_1
+    :cond_43
+    :goto_43
     return v2
 
     .line 643
-    :cond_5
+    :cond_44
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTarget:Landroid/view/View;
 
     invoke-static {v0, v1}, Landroid/support/v4/view/ViewCompat;->canScrollVertically(Landroid/view/View;I)Z
@@ -1910,7 +1910,7 @@
 .end method
 
 .method public dispatchNestedFling(FFZ)Z
-    .locals 1
+    .registers 5
     .param p1, "velocityX"    # F
     .param p2, "velocityY"    # F
     .param p3, "consumed"    # Z
@@ -1926,7 +1926,7 @@
 .end method
 
 .method public dispatchNestedPreFling(FF)Z
-    .locals 1
+    .registers 4
     .param p1, "velocityX"    # F
     .param p2, "velocityY"    # F
 
@@ -1941,7 +1941,7 @@
 .end method
 
 .method public dispatchNestedPreScroll(II[I[I)Z
-    .locals 1
+    .registers 6
     .param p1, "dx"    # I
     .param p2, "dy"    # I
     .param p3, "consumed"    # [I
@@ -1958,7 +1958,7 @@
 .end method
 
 .method public dispatchNestedScroll(IIII[I)Z
-    .locals 6
+    .registers 12
     .param p1, "dxConsumed"    # I
     .param p2, "dyConsumed"    # I
     .param p3, "dxUnconsumed"    # I
@@ -1986,23 +1986,23 @@
 .end method
 
 .method protected getChildDrawingOrder(II)I
-    .locals 1
+    .registers 4
     .param p1, "childCount"    # I
     .param p2, "i"    # I
 
     .line 314
     iget v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleViewIndex:I
 
-    if-gez v0, :cond_0
+    if-gez v0, :cond_5
 
     .line 315
     return p2
 
     .line 316
-    :cond_0
+    :cond_5
     add-int/lit8 v0, p1, -0x1
 
-    if-ne p2, v0, :cond_1
+    if-ne p2, v0, :cond_c
 
     .line 318
     iget v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleViewIndex:I
@@ -2010,10 +2010,10 @@
     return v0
 
     .line 319
-    :cond_1
+    :cond_c
     iget v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleViewIndex:I
 
-    if-lt p2, v0, :cond_2
+    if-lt p2, v0, :cond_13
 
     .line 321
     add-int/lit8 v0, p2, 0x1
@@ -2021,12 +2021,12 @@
     return v0
 
     .line 324
-    :cond_2
+    :cond_13
     return p2
 .end method
 
 .method public getNestedScrollAxes()I
-    .locals 1
+    .registers 2
 
     .line 772
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mNestedScrollingParentHelper:Landroid/support/v4/view/NestedScrollingParentHelper;
@@ -2039,12 +2039,12 @@
 .end method
 
 .method public getProgressCircleDiameter()I
-    .locals 1
+    .registers 2
 
     .line 625
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleView:Landroid/support/v4/widget/CircleImageView;
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_b
 
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleView:Landroid/support/v4/widget/CircleImageView;
 
@@ -2052,17 +2052,17 @@
 
     move-result v0
 
-    goto :goto_0
+    goto :goto_c
 
-    :cond_0
+    :cond_b
     const/4 v0, 0x0
 
-    :goto_0
+    :goto_c
     return v0
 .end method
 
 .method public hasNestedScrollingParent()Z
-    .locals 1
+    .registers 2
 
     .line 834
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mNestedScrollingChildHelper:Landroid/support/v4/view/NestedScrollingChildHelper;
@@ -2075,7 +2075,7 @@
 .end method
 
 .method public isNestedScrollingEnabled()Z
-    .locals 1
+    .registers 2
 
     .line 819
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mNestedScrollingChildHelper:Landroid/support/v4/view/NestedScrollingChildHelper;
@@ -2088,7 +2088,7 @@
 .end method
 
 .method public isRefreshing()Z
-    .locals 1
+    .registers 2
 
     .line 537
     iget-boolean v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mRefreshing:Z
@@ -2097,7 +2097,7 @@
 .end method
 
 .method public onInterceptTouchEvent(Landroid/view/MotionEvent;)Z
-    .locals 6
+    .registers 8
     .param p1, "ev"    # Landroid/view/MotionEvent;
 
     .line 649
@@ -2114,42 +2114,42 @@
 
     const/4 v2, 0x0
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_10
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_10
 
     .line 654
     iput-boolean v2, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mReturningToStart:Z
 
     .line 657
-    :cond_0
+    :cond_10
     invoke-virtual {p0}, Landroid/support/v4/widget/SwipeRefreshLayout;->isEnabled()Z
 
     move-result v1
 
-    if-eqz v1, :cond_7
+    if-eqz v1, :cond_97
 
     iget-boolean v1, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mReturningToStart:Z
 
-    if-nez v1, :cond_7
+    if-nez v1, :cond_97
 
     invoke-virtual {p0}, Landroid/support/v4/widget/SwipeRefreshLayout;->canChildScrollUp()Z
 
     move-result v1
 
-    if-nez v1, :cond_7
+    if-nez v1, :cond_97
 
     iget-boolean v1, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mRefreshing:Z
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_26
 
-    goto/16 :goto_1
+    goto/16 :goto_97
 
     .line 662
-    :cond_1
+    :cond_26
     const/4 v1, 0x6
 
-    if-eq v0, v1, :cond_5
+    if-eq v0, v1, :cond_90
 
     const/4 v1, 0x1
 
@@ -2157,15 +2157,15 @@
 
     const/4 v4, -0x1
 
-    packed-switch v0, :pswitch_data_0
+    packed-switch v0, :pswitch_data_98
 
-    goto :goto_0
+    goto :goto_94
 
     .line 675
-    :pswitch_0
+    :pswitch_31
     iget v5, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mActivePointerId:I
 
-    if-ne v5, v4, :cond_2
+    if-ne v5, v4, :cond_3d
 
     .line 676
     sget-object v1, Landroid/support/v4/widget/SwipeRefreshLayout;->LOG_TAG:Ljava/lang/String;
@@ -2178,7 +2178,7 @@
     return v2
 
     .line 680
-    :cond_2
+    :cond_3d
     iget v4, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mActivePointerId:I
 
     invoke-direct {p0, p1, v4}, Landroid/support/v4/widget/SwipeRefreshLayout;->getMotionEventY(Landroid/view/MotionEvent;I)F
@@ -2189,13 +2189,13 @@
     .local v4, "y":F
     cmpl-float v3, v4, v3
 
-    if-nez v3, :cond_3
+    if-nez v3, :cond_48
 
     .line 682
     return v2
 
     .line 684
-    :cond_3
+    :cond_48
     iget v2, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mInitialDownY:F
 
     sub-float v2, v4, v2
@@ -2208,11 +2208,11 @@
 
     cmpl-float v3, v2, v3
 
-    if-lez v3, :cond_6
+    if-lez v3, :cond_94
 
     iget-boolean v3, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mIsBeingDragged:Z
 
-    if-nez v3, :cond_6
+    if-nez v3, :cond_94
 
     .line 686
     iget v3, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mInitialDownY:F
@@ -2235,21 +2235,21 @@
 
     invoke-virtual {v1, v3}, Landroid/support/v4/widget/MaterialProgressDrawable;->setAlpha(I)V
 
-    goto :goto_0
+    goto :goto_94
 
     .line 698
     .end local v2    # "yDiff":F
     .end local v4    # "y":F
-    :pswitch_1
+    :pswitch_69
     iput-boolean v2, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mIsBeingDragged:Z
 
     .line 699
     iput v4, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mActivePointerId:I
 
-    goto :goto_0
+    goto :goto_94
 
     .line 664
-    :pswitch_2
+    :pswitch_6e
     iget v4, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mOriginalOffsetTop:I
 
     iget-object v5, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleView:Landroid/support/v4/widget/CircleImageView;
@@ -2283,49 +2283,49 @@
     .local v1, "initialDownY":F
     cmpl-float v3, v1, v3
 
-    if-nez v3, :cond_4
+    if-nez v3, :cond_8d
 
     .line 669
     return v2
 
     .line 671
-    :cond_4
+    :cond_8d
     iput v1, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mInitialDownY:F
 
     .line 672
-    goto :goto_0
+    goto :goto_94
 
     .line 693
     .end local v1    # "initialDownY":F
-    :cond_5
+    :cond_90
     invoke-direct {p0, p1}, Landroid/support/v4/widget/SwipeRefreshLayout;->onSecondaryPointerUp(Landroid/view/MotionEvent;)V
 
     .line 694
     nop
 
     .line 703
-    :cond_6
-    :goto_0
+    :cond_94
+    :goto_94
     iget-boolean v1, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mIsBeingDragged:Z
 
     return v1
 
     .line 659
-    :cond_7
-    :goto_1
+    :cond_97
+    :goto_97
     return v2
 
-    :pswitch_data_0
+    :pswitch_data_98
     .packed-switch 0x0
-        :pswitch_2
-        :pswitch_1
-        :pswitch_0
-        :pswitch_1
+        :pswitch_6e
+        :pswitch_69
+        :pswitch_31
+        :pswitch_69
     .end packed-switch
 .end method
 
 .method protected onLayout(ZIIII)V
-    .locals 15
+    .registers 21
     .param p1, "changed"    # Z
     .param p2, "left"    # I
     .param p3, "top"    # I
@@ -2351,31 +2351,31 @@
 
     move-result v3
 
-    if-nez v3, :cond_0
+    if-nez v3, :cond_10
 
     .line 568
     return-void
 
     .line 570
-    :cond_0
+    :cond_10
     iget-object v3, v0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTarget:Landroid/view/View;
 
-    if-nez v3, :cond_1
+    if-nez v3, :cond_17
 
     .line 571
     invoke-direct {v0}, Landroid/support/v4/widget/SwipeRefreshLayout;->ensureTarget()V
 
     .line 573
-    :cond_1
+    :cond_17
     iget-object v3, v0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTarget:Landroid/view/View;
 
-    if-nez v3, :cond_2
+    if-nez v3, :cond_1c
 
     .line 574
     return-void
 
     .line 576
-    :cond_2
+    :cond_1c
     iget-object v3, v0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTarget:Landroid/view/View;
 
     .line 577
@@ -2470,7 +2470,7 @@
 .end method
 
 .method public onMeasure(II)V
-    .locals 5
+    .registers 8
     .param p1, "widthMeasureSpec"    # I
     .param p2, "heightMeasureSpec"    # I
 
@@ -2480,22 +2480,22 @@
     .line 591
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTarget:Landroid/view/View;
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_a
 
     .line 592
     invoke-direct {p0}, Landroid/support/v4/widget/SwipeRefreshLayout;->ensureTarget()V
 
     .line 594
-    :cond_0
+    :cond_a
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTarget:Landroid/view/View;
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_f
 
     .line 595
     return-void
 
     .line 597
-    :cond_1
+    :cond_f
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTarget:Landroid/view/View;
 
     invoke-virtual {p0}, Landroid/support/v4/widget/SwipeRefreshLayout;->getMeasuredWidth()I
@@ -2562,11 +2562,11 @@
     .line 603
     iget-boolean v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mUsingCustomStart:Z
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_61
 
     iget-boolean v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mOriginalOffsetCalculated:Z
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_61
 
     .line 604
     const/4 v0, 0x1
@@ -2587,7 +2587,7 @@
     iput v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCurrentTargetOffsetTop:I
 
     .line 607
-    :cond_2
+    :cond_61
     const/4 v0, -0x1
 
     iput v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleViewIndex:I
@@ -2596,12 +2596,12 @@
     const/4 v0, 0x0
 
     .local v0, "index":I
-    :goto_0
+    :goto_65
     invoke-virtual {p0}, Landroid/support/v4/widget/SwipeRefreshLayout;->getChildCount()I
 
     move-result v1
 
-    if-ge v0, v1, :cond_4
+    if-ge v0, v1, :cond_79
 
     .line 610
     invoke-virtual {p0, v0}, Landroid/support/v4/widget/SwipeRefreshLayout;->getChildAt(I)Landroid/view/View;
@@ -2610,29 +2610,29 @@
 
     iget-object v2, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleView:Landroid/support/v4/widget/CircleImageView;
 
-    if-ne v1, v2, :cond_3
+    if-ne v1, v2, :cond_76
 
     .line 611
     iput v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleViewIndex:I
 
     .line 612
-    goto :goto_1
+    goto :goto_79
 
     .line 609
-    :cond_3
+    :cond_76
     add-int/lit8 v0, v0, 0x1
 
-    goto :goto_0
+    goto :goto_65
 
     .line 615
     .end local v0    # "index":I
-    :cond_4
-    :goto_1
+    :cond_79
+    :goto_79
     return-void
 .end method
 
 .method public onNestedFling(Landroid/view/View;FFZ)Z
-    .locals 1
+    .registers 6
     .param p1, "target"    # Landroid/view/View;
     .param p2, "velocityX"    # F
     .param p3, "velocityY"    # F
@@ -2645,7 +2645,7 @@
 .end method
 
 .method public onNestedPreFling(Landroid/view/View;FF)Z
-    .locals 1
+    .registers 5
     .param p1, "target"    # Landroid/view/View;
     .param p2, "velocityX"    # F
     .param p3, "velocityY"    # F
@@ -2657,7 +2657,7 @@
 .end method
 
 .method public onNestedPreScroll(Landroid/view/View;II[I)V
-    .locals 6
+    .registers 11
     .param p1, "target"    # Landroid/view/View;
     .param p2, "dx"    # I
     .param p3, "dy"    # I
@@ -2666,7 +2666,7 @@
     .line 750
     const/4 v0, 0x1
 
-    if-lez p3, :cond_1
+    if-lez p3, :cond_28
 
     iget v1, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTotalUnconsumed:F
 
@@ -2674,7 +2674,7 @@
 
     cmpl-float v1, v1, v2
 
-    if-lez v1, :cond_1
+    if-lez v1, :cond_28
 
     .line 751
     int-to-float v1, p3
@@ -2683,7 +2683,7 @@
 
     cmpl-float v1, v1, v3
 
-    if-lez v1, :cond_0
+    if-lez v1, :cond_1b
 
     .line 752
     iget v1, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTotalUnconsumed:F
@@ -2697,10 +2697,10 @@
     .line 753
     iput v2, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTotalUnconsumed:F
 
-    goto :goto_0
+    goto :goto_23
 
     .line 755
-    :cond_0
+    :cond_1b
     iget v1, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTotalUnconsumed:F
 
     int-to-float v2, p3
@@ -2713,13 +2713,13 @@
     aput p3, p4, v0
 
     .line 759
-    :goto_0
+    :goto_23
     iget v1, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTotalUnconsumed:F
 
     invoke-direct {p0, v1}, Landroid/support/v4/widget/SwipeRefreshLayout;->moveSpinner(F)V
 
     .line 763
-    :cond_1
+    :cond_28
     iget-object v1, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mParentScrollConsumed:[I
 
     .line 764
@@ -2740,7 +2740,7 @@
 
     move-result v3
 
-    if-eqz v3, :cond_2
+    if-eqz v3, :cond_48
 
     .line 765
     aget v3, p4, v2
@@ -2761,12 +2761,12 @@
     aput v2, p4, v0
 
     .line 768
-    :cond_2
+    :cond_48
     return-void
 .end method
 
 .method public onNestedScroll(Landroid/view/View;IIII)V
-    .locals 6
+    .registers 12
     .param p1, "target"    # Landroid/view/View;
     .param p2, "dxConsumed"    # I
     .param p3, "dyConsumed"    # I
@@ -2774,7 +2774,7 @@
     .param p5, "dyUnconsumed"    # I
 
     .line 791
-    if-gez p5, :cond_0
+    if-gez p5, :cond_11
 
     .line 792
     invoke-static {p5}, Ljava/lang/Math;->abs(I)I
@@ -2796,7 +2796,7 @@
     invoke-direct {p0, v0}, Landroid/support/v4/widget/SwipeRefreshLayout;->moveSpinner(F)V
 
     .line 797
-    :cond_0
+    :cond_11
     const/4 v5, 0x0
 
     move-object v0, p0
@@ -2816,7 +2816,7 @@
 .end method
 
 .method public onNestedScrollAccepted(Landroid/view/View;Landroid/view/View;I)V
-    .locals 1
+    .registers 5
     .param p1, "child"    # Landroid/view/View;
     .param p2, "target"    # Landroid/view/View;
     .param p3, "axes"    # I
@@ -2836,7 +2836,7 @@
 .end method
 
 .method public onStartNestedScroll(Landroid/view/View;Landroid/view/View;I)Z
-    .locals 1
+    .registers 5
     .param p1, "child"    # Landroid/view/View;
     .param p2, "target"    # Landroid/view/View;
     .param p3, "nestedScrollAxes"    # I
@@ -2846,11 +2846,11 @@
 
     move-result v0
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_11
 
     and-int/lit8 v0, p3, 0x2
 
-    if-eqz v0, :cond_0
+    if-eqz v0, :cond_11
 
     .line 733
     and-int/lit8 v0, p3, 0x2
@@ -2863,14 +2863,14 @@
     return v0
 
     .line 736
-    :cond_0
+    :cond_11
     const/4 v0, 0x0
 
     return v0
 .end method
 
 .method public onStopNestedScroll(Landroid/view/View;)V
-    .locals 2
+    .registers 4
     .param p1, "target"    # Landroid/view/View;
 
     .line 777
@@ -2885,7 +2885,7 @@
 
     cmpl-float v0, v0, v1
 
-    if-lez v0, :cond_0
+    if-lez v0, :cond_13
 
     .line 781
     iget v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTotalUnconsumed:F
@@ -2896,7 +2896,7 @@
     iput v1, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTotalUnconsumed:F
 
     .line 785
-    :cond_0
+    :cond_13
     invoke-virtual {p0}, Landroid/support/v4/widget/SwipeRefreshLayout;->stopNestedScroll()V
 
     .line 786
@@ -2904,7 +2904,7 @@
 .end method
 
 .method public onTouchEvent(Landroid/view/MotionEvent;)Z
-    .locals 7
+    .registers 9
     .param p1, "ev"    # Landroid/view/MotionEvent;
 
     .line 945
@@ -2918,53 +2918,53 @@
 
     const/4 v2, 0x0
 
-    if-eqz v1, :cond_0
+    if-eqz v1, :cond_d
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_d
 
     .line 948
     iput-boolean v2, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mReturningToStart:Z
 
     .line 951
-    :cond_0
+    :cond_d
     invoke-virtual {p0}, Landroid/support/v4/widget/SwipeRefreshLayout;->isEnabled()Z
 
     move-result v1
 
-    if-eqz v1, :cond_7
+    if-eqz v1, :cond_8b
 
     iget-boolean v1, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mReturningToStart:Z
 
-    if-nez v1, :cond_7
+    if-nez v1, :cond_8b
 
     invoke-virtual {p0}, Landroid/support/v4/widget/SwipeRefreshLayout;->canChildScrollUp()Z
 
     move-result v1
 
-    if-eqz v1, :cond_1
+    if-eqz v1, :cond_1e
 
-    goto :goto_1
+    goto :goto_8b
 
     .line 956
-    :cond_1
+    :cond_1e
     const/4 v1, 0x1
 
     const/high16 v3, 0x3f000000    # 0.5f
 
-    packed-switch v0, :pswitch_data_0
+    packed-switch v0, :pswitch_data_8c
 
-    :pswitch_0
-    goto :goto_0
+    :pswitch_24
+    goto :goto_8a
 
     .line 987
-    :pswitch_1
+    :pswitch_25
     invoke-direct {p0, p1}, Landroid/support/v4/widget/SwipeRefreshLayout;->onSecondaryPointerUp(Landroid/view/MotionEvent;)V
 
     .line 988
-    goto :goto_0
+    goto :goto_8a
 
     .line 981
-    :pswitch_2
+    :pswitch_29
     invoke-static {p1}, Landroid/support/v4/view/MotionEventCompat;->getActionIndex(Landroid/view/MotionEvent;)I
 
     move-result v2
@@ -2978,11 +2978,11 @@
     iput v3, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mActivePointerId:I
 
     .line 983
-    goto :goto_0
+    goto :goto_8a
 
     .line 963
     .end local v2    # "index":I
-    :pswitch_3
+    :pswitch_34
     iget v4, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mActivePointerId:I
 
     invoke-static {p1, v4}, Landroid/support/v4/view/MotionEventCompat;->findPointerIndex(Landroid/view/MotionEvent;I)I
@@ -2991,7 +2991,7 @@
 
     .line 964
     .local v4, "pointerIndex":I
-    if-gez v4, :cond_2
+    if-gez v4, :cond_44
 
     .line 965
     sget-object v1, Landroid/support/v4/widget/SwipeRefreshLayout;->LOG_TAG:Ljava/lang/String;
@@ -3004,7 +3004,7 @@
     return v2
 
     .line 969
-    :cond_2
+    :cond_44
     invoke-static {p1, v4}, Landroid/support/v4/view/MotionEventCompat;->getY(Landroid/view/MotionEvent;I)F
 
     move-result v5
@@ -3021,37 +3021,37 @@
     .local v6, "overscrollTop":F
     iget-boolean v3, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mIsBeingDragged:Z
 
-    if-eqz v3, :cond_6
+    if-eqz v3, :cond_8a
 
     .line 972
     const/4 v3, 0x0
 
     cmpl-float v3, v6, v3
 
-    if-lez v3, :cond_3
+    if-lez v3, :cond_5a
 
     .line 973
     invoke-direct {p0, v6}, Landroid/support/v4/widget/SwipeRefreshLayout;->moveSpinner(F)V
 
-    goto :goto_0
+    goto :goto_8a
 
     .line 975
-    :cond_3
+    :cond_5a
     return v2
 
     .line 992
     .end local v4    # "pointerIndex":I
     .end local v5    # "y":F
     .end local v6    # "overscrollTop":F
-    :pswitch_4
+    :pswitch_5b
     iget v4, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mActivePointerId:I
 
     const/4 v5, -0x1
 
-    if-ne v4, v5, :cond_5
+    if-ne v4, v5, :cond_6a
 
     .line 993
-    if-ne v0, v1, :cond_4
+    if-ne v0, v1, :cond_69
 
     .line 994
     sget-object v1, Landroid/support/v4/widget/SwipeRefreshLayout;->LOG_TAG:Ljava/lang/String;
@@ -3061,11 +3061,11 @@
     invoke-static {v1, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 996
-    :cond_4
+    :cond_69
     return v2
 
     .line 998
-    :cond_5
+    :cond_6a
     iget v1, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mActivePointerId:I
 
     invoke-static {p1, v1}, Landroid/support/v4/view/MotionEventCompat;->findPointerIndex(Landroid/view/MotionEvent;I)I
@@ -3103,7 +3103,7 @@
     .end local v1    # "pointerIndex":I
     .end local v4    # "y":F
     .end local v6    # "overscrollTop":F
-    :pswitch_5
+    :pswitch_81
     invoke-static {p1, v2}, Landroid/support/v4/view/MotionEventCompat;->getPointerId(Landroid/view/MotionEvent;I)I
 
     move-result v3
@@ -3117,29 +3117,29 @@
     nop
 
     .line 1008
-    :cond_6
-    :goto_0
+    :cond_8a
+    :goto_8a
     return v1
 
     .line 953
-    :cond_7
-    :goto_1
+    :cond_8b
+    :goto_8b
     return v2
 
-    :pswitch_data_0
+    :pswitch_data_8c
     .packed-switch 0x0
-        :pswitch_5
-        :pswitch_4
-        :pswitch_3
-        :pswitch_4
-        :pswitch_0
-        :pswitch_2
-        :pswitch_1
+        :pswitch_81
+        :pswitch_5b
+        :pswitch_34
+        :pswitch_5b
+        :pswitch_24
+        :pswitch_29
+        :pswitch_25
     .end packed-switch
 .end method
 
 .method public requestDisallowInterceptTouchEvent(Z)V
-    .locals 2
+    .registers 4
     .param p1, "b"    # Z
 
     .line 719
@@ -3147,18 +3147,18 @@
 
     const/16 v1, 0x15
 
-    if-ge v0, v1, :cond_0
+    if-ge v0, v1, :cond_c
 
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTarget:Landroid/view/View;
 
     instance-of v0, v0, Landroid/widget/AbsListView;
 
-    if-nez v0, :cond_2
+    if-nez v0, :cond_1c
 
-    :cond_0
+    :cond_c
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTarget:Landroid/view/View;
 
-    if-eqz v0, :cond_1
+    if-eqz v0, :cond_19
 
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mTarget:Landroid/view/View;
 
@@ -3166,22 +3166,22 @@
 
     move-result v0
 
-    if-nez v0, :cond_1
+    if-nez v0, :cond_19
 
-    goto :goto_0
+    goto :goto_1c
 
     .line 723
-    :cond_1
+    :cond_19
     invoke-super {p0, p1}, Landroid/view/ViewGroup;->requestDisallowInterceptTouchEvent(Z)V
 
     .line 725
-    :cond_2
-    :goto_0
+    :cond_1c
+    :goto_1c
     return-void
 .end method
 
 .method public varargs setColorScheme([I)V
-    .locals 0
+    .registers 2
     .param p1, "colors"    # [I
         .annotation build Landroid/support/annotation/ColorInt;
         .end annotation
@@ -3197,7 +3197,7 @@
 .end method
 
 .method public varargs setColorSchemeColors([I)V
-    .locals 1
+    .registers 3
     .param p1, "colors"    # [I
     .annotation build Landroid/support/annotation/ColorInt;
     .end annotation
@@ -3215,7 +3215,7 @@
 .end method
 
 .method public varargs setColorSchemeResources([I)V
-    .locals 4
+    .registers 6
     .param p1, "colorResIds"    # [I
         .annotation build Landroid/support/annotation/ColorRes;
         .end annotation
@@ -3237,10 +3237,10 @@
     const/4 v2, 0x0
 
     .local v2, "i":I
-    :goto_0
+    :goto_8
     array-length v3, p1
 
-    if-ge v2, v3, :cond_0
+    if-ge v2, v3, :cond_16
 
     .line 514
     aget v3, p1, v2
@@ -3254,11 +3254,11 @@
     .line 513
     add-int/lit8 v2, v2, 0x1
 
-    goto :goto_0
+    goto :goto_8
 
     .line 516
     .end local v2    # "i":I
-    :cond_0
+    :cond_16
     invoke-virtual {p0, v1}, Landroid/support/v4/widget/SwipeRefreshLayout;->setColorSchemeColors([I)V
 
     .line 517
@@ -3266,7 +3266,7 @@
 .end method
 
 .method public setDistanceToTriggerSync(I)V
-    .locals 1
+    .registers 3
     .param p1, "distance"    # I
 
     .line 560
@@ -3279,7 +3279,7 @@
 .end method
 
 .method public setNestedScrollingEnabled(Z)V
-    .locals 1
+    .registers 3
     .param p1, "enabled"    # Z
 
     .line 814
@@ -3292,7 +3292,7 @@
 .end method
 
 .method public setOnRefreshListener(Landroid/support/v4/widget/SwipeRefreshLayout$OnRefreshListener;)V
-    .locals 0
+    .registers 2
     .param p1, "listener"    # Landroid/support/v4/widget/SwipeRefreshLayout$OnRefreshListener;
 
     .line 342
@@ -3303,7 +3303,7 @@
 .end method
 
 .method public setProgressBackgroundColor(I)V
-    .locals 0
+    .registers 2
     .param p1, "colorRes"    # I
     .annotation runtime Ljava/lang/Deprecated;
     .end annotation
@@ -3316,7 +3316,7 @@
 .end method
 
 .method public setProgressBackgroundColorSchemeColor(I)V
-    .locals 1
+    .registers 3
     .param p1, "color"    # I
         .annotation build Landroid/support/annotation/ColorInt;
         .end annotation
@@ -3337,7 +3337,7 @@
 .end method
 
 .method public setProgressBackgroundColorSchemeResource(I)V
-    .locals 1
+    .registers 3
     .param p1, "colorRes"    # I
         .annotation build Landroid/support/annotation/ColorRes;
         .end annotation
@@ -3359,7 +3359,7 @@
 .end method
 
 .method public setProgressViewEndTarget(ZI)V
-    .locals 1
+    .registers 4
     .param p1, "scale"    # Z
     .param p2, "end"    # I
 
@@ -3381,7 +3381,7 @@
 .end method
 
 .method public setProgressViewOffset(ZII)V
-    .locals 2
+    .registers 6
     .param p1, "scale"    # Z
     .param p2, "start"    # I
     .param p3, "end"    # I
@@ -3421,17 +3421,17 @@
 .end method
 
 .method public setRefreshing(Z)V
-    .locals 4
+    .registers 6
     .param p1, "refreshing"    # Z
 
     .line 359
     const/4 v0, 0x0
 
-    if-eqz p1, :cond_1
+    if-eqz p1, :cond_29
 
     iget-boolean v1, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mRefreshing:Z
 
-    if-eq v1, p1, :cond_1
+    if-eq v1, p1, :cond_29
 
     .line 361
     iput-boolean p1, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mRefreshing:Z
@@ -3443,7 +3443,7 @@
     .local v1, "endTarget":I
     iget-boolean v2, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mUsingCustomStart:Z
 
-    if-nez v2, :cond_0
+    if-nez v2, :cond_16
 
     .line 364
     iget v2, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mSpinnerFinalOffset:F
@@ -3456,16 +3456,16 @@
 
     float-to-int v1, v2
 
-    goto :goto_0
+    goto :goto_19
 
     .line 366
-    :cond_0
+    :cond_16
     iget v2, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mSpinnerFinalOffset:F
 
     float-to-int v1, v2
 
     .line 368
-    :goto_0
+    :goto_19
     iget v2, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCurrentTargetOffsetTop:I
 
     sub-int v2, v1, v2
@@ -3484,33 +3484,33 @@
 
     .line 372
     .end local v1    # "endTarget":I
-    goto :goto_1
+    goto :goto_2c
 
     .line 373
-    :cond_1
+    :cond_29
     invoke-direct {p0, p1, v0}, Landroid/support/v4/widget/SwipeRefreshLayout;->setRefreshing(ZZ)V
 
     .line 375
-    :goto_1
+    :goto_2c
     return-void
 .end method
 
 .method public setSize(I)V
-    .locals 3
+    .registers 5
     .param p1, "size"    # I
 
     .line 251
-    if-eqz p1, :cond_0
+    if-eqz p1, :cond_6
 
     const/4 v0, 0x1
 
-    if-eq p1, v0, :cond_0
+    if-eq p1, v0, :cond_6
 
     .line 252
     return-void
 
     .line 254
-    :cond_0
+    :cond_6
     invoke-virtual {p0}, Landroid/support/v4/widget/SwipeRefreshLayout;->getResources()Landroid/content/res/Resources;
 
     move-result-object v0
@@ -3521,7 +3521,7 @@
 
     .line 255
     .local v0, "metrics":Landroid/util/DisplayMetrics;
-    if-nez p1, :cond_1
+    if-nez p1, :cond_1b
 
     .line 256
     const/high16 v1, 0x42600000    # 56.0f
@@ -3536,10 +3536,10 @@
 
     iput v1, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleHeight:I
 
-    goto :goto_0
+    goto :goto_25
 
     .line 258
-    :cond_1
+    :cond_1b
     const/high16 v1, 0x42200000    # 40.0f
 
     iget v2, v0, Landroid/util/DisplayMetrics;->density:F
@@ -3553,7 +3553,7 @@
     iput v1, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleHeight:I
 
     .line 263
-    :goto_0
+    :goto_25
     iget-object v1, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mCircleView:Landroid/support/v4/widget/CircleImageView;
 
     const/4 v2, 0x0
@@ -3577,7 +3577,7 @@
 .end method
 
 .method public startNestedScroll(I)Z
-    .locals 1
+    .registers 3
     .param p1, "axes"    # I
 
     .line 824
@@ -3591,7 +3591,7 @@
 .end method
 
 .method public stopNestedScroll()V
-    .locals 1
+    .registers 2
 
     .line 829
     iget-object v0, p0, Landroid/support/v4/widget/SwipeRefreshLayout;->mNestedScrollingChildHelper:Landroid/support/v4/view/NestedScrollingChildHelper;

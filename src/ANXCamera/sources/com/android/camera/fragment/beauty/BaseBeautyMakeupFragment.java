@@ -17,19 +17,22 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
-import com.aeonax.camera.R;
+import com.android.camera.R;
 import com.android.camera.ToastUtils;
 import com.android.camera.Util;
 import com.android.camera.fragment.DefaultItemAnimator;
 import com.android.camera.fragment.beauty.MakeupSingleCheckAdapter.MakeupItem;
+import com.android.camera.log.Log;
 import java.util.List;
 
 public abstract class BaseBeautyMakeupFragment extends BaseBeautyFragment {
+    private static final String TAG = "BaseBeautyMakeup";
     protected OnItemClickListener mClickListener;
     private LinearLayout mHeaderRecyclerView;
     private View mHeaderView;
     protected List<MakeupItem> mItemList;
     private int mItemWidth;
+    private long mLastClickTime;
     int mLastSelectedParam = -1;
     protected MyLayoutManager mLayoutManager;
     protected MakeupSingleCheckAdapter mMakeupAdapter;
@@ -79,8 +82,6 @@ public abstract class BaseBeautyMakeupFragment extends BaseBeautyFragment {
     }
 
     protected void initView(View view) {
-        int i;
-        int i2;
         this.mHeaderRecyclerView = (LinearLayout) view.findViewById(R.id.header_recyclerView);
         this.mMakeupItemList = (RecyclerView) view.findViewById(R.id.makeup_item_list);
         initHeaderView();
@@ -92,20 +93,12 @@ public abstract class BaseBeautyMakeupFragment extends BaseBeautyFragment {
         this.mItemList = initItems();
         this.mItemWidth = getResources().getDimensionPixelSize(R.dimen.beautycamera_makeup_item_width);
         this.mTotalWidth = getResources().getDisplayMetrics().widthPixels;
-        int dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.beauty_model_recycler_padding_left);
-        if (isNeedScroll()) {
-            i = 0;
-            i2 = i;
-        } else {
-            dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.beauty_item_margin);
-            int dimensionPixelSize2 = getResources().getDimensionPixelSize(R.dimen.beauty_padding_left);
-            i = getResources().getDimensionPixelSize(R.dimen.beauty_padding_right);
+        setListPadding(this.mMakeupItemList);
+        int listItemMargin = getListItemMargin();
+        if (!isNeedScroll()) {
             this.mLayoutManager.setScrollEnabled(false);
-            i2 = dimensionPixelSize;
-            dimensionPixelSize = dimensionPixelSize2;
         }
-        this.mMakeupItemList.setPadding(dimensionPixelSize, 0, i, 0);
-        this.mMakeupAdapter = new MakeupSingleCheckAdapter(getActivity(), this.mItemList, i2, isCustomWidth(), customItemWidth());
+        this.mMakeupAdapter = new MakeupSingleCheckAdapter(getActivity(), this.mItemList, listItemMargin, isCustomWidth(), customItemWidth());
         this.mClickListener = initOnItemClickListener();
         this.mMakeupAdapter.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long j) {
@@ -128,6 +121,27 @@ public abstract class BaseBeautyMakeupFragment extends BaseBeautyFragment {
         setItemInCenter(this.mSelectedParam);
     }
 
+    protected void setListPadding(RecyclerView recyclerView) {
+        if (recyclerView != null) {
+            int i;
+            int dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.beauty_model_recycler_padding_left);
+            if (isNeedScroll()) {
+                i = 0;
+            } else {
+                dimensionPixelSize = getResources().getDimensionPixelSize(R.dimen.beauty_padding_left);
+                i = getResources().getDimensionPixelSize(R.dimen.beauty_padding_right);
+            }
+            recyclerView.setPadding(dimensionPixelSize, 0, i, 0);
+        }
+    }
+
+    protected int getListItemMargin() {
+        if (isNeedScroll()) {
+            return 0;
+        }
+        return getResources().getDimensionPixelSize(R.dimen.beauty_item_margin);
+    }
+
     protected boolean isNeedScroll() {
         return this.mItemList != null && this.mItemList.size() > 4;
     }
@@ -140,6 +154,11 @@ public abstract class BaseBeautyMakeupFragment extends BaseBeautyFragment {
             this.mHeaderView.setLayoutParams(layoutParams);
             this.mHeaderView.setOnClickListener(new OnClickListener() {
                 public void onClick(View view) {
+                    if (System.currentTimeMillis() - BaseBeautyMakeupFragment.this.mLastClickTime < 1000) {
+                        Log.d(BaseBeautyMakeupFragment.TAG, "onHeaderClick: too quick!");
+                        return;
+                    }
+                    BaseBeautyMakeupFragment.this.mLastClickTime = System.currentTimeMillis();
                     BaseBeautyMakeupFragment.this.onHeaderClick();
                 }
             });
@@ -149,6 +168,7 @@ public abstract class BaseBeautyMakeupFragment extends BaseBeautyFragment {
     protected OnItemClickListener initOnItemClickListener() {
         return new OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long j) {
+                BaseBeautyMakeupFragment.this.mLastClickTime = System.currentTimeMillis();
                 BaseBeautyMakeupFragment.this.mSelectedParam = i;
                 Object tag = view.getTag();
                 if (tag != null && (tag instanceof MakeupItem)) {

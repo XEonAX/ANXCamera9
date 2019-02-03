@@ -39,7 +39,7 @@ public class StickerResourceRequest extends BaseGalleryRequest {
                     JSONObject jSONObject2 = jSONArray.getJSONObject(i);
                     StickerInfo stickerInfo = new StickerInfo();
                     stickerInfo.id = jSONObject2.optLong("id");
-                    stickerInfo.icon = jSONObject2.optString(Info.JSON_KEY_ICON);
+                    stickerInfo.icon = jSONObject2.optString("icon");
                     stickerInfo.extra = jSONObject2.optString(Info.JSON_KEY_EXTRA);
                     arrayList.add(stickerInfo);
                 }

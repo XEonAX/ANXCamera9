@@ -6,7 +6,9 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
+import android.hardware.SensorEvent;
 import android.hardware.camera2.params.MeteringRectangle;
+import android.net.Uri;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -35,7 +37,10 @@ import com.android.camera.ui.FocusView.ExposureViewListener;
 import com.android.camera.ui.ObjectView.ObjectViewListener;
 import com.android.camera.watermark.WaterMarkData;
 import com.android.camera2.CameraHardwareFace;
+import com.android.camera2.autozoom.AutoZoomCaptureResult;
 import com.miui.filtersdk.beauty.BeautyParameterType;
+import com.ss.android.medialib.TTRecorder.SlamDetectListener;
+import com.ss.android.ttve.oauth.TEOAuthResult;
 import com.ss.android.vesdk.VECommonCallback;
 import io.reactivex.Completable;
 import io.reactivex.disposables.Disposable;
@@ -63,8 +68,11 @@ public interface ModeProtocol {
     public static final int PROTOCOL_ACTION = 161;
     public static final int PROTOCOL_ACTION_PROCESSING = 162;
     public static final int PROTOCOL_ACTION_TRACK = 186;
+    public static final int PROTOCOL_AUTO_ZOOM_MODULE = 215;
+    public static final int PROTOCOL_AUTO_ZOOM_VIEW = 214;
     public static final int PROTOCOL_BACK_STACK = 171;
     public static final int PROTOCOL_BEAUTY_RECORDING = 173;
+    public static final int PROTOCOL_BEAUTY_SHOW_STATUS = 213;
     public static final int PROTOCOL_BOKEH_F_NUMBER = 210;
     public static final int PROTOCOL_BOTTOM_MENU = 197;
     public static final int PROTOCOL_BOTTOM_POPUP_TIPS = 175;
@@ -89,6 +97,7 @@ public interface ModeProtocol {
     public static final int PROTOCOL_PANORAMA = 176;
     public static final int PROTOCOL_PLAY_VIDEO = 167;
     public static final int PROTOCOL_PREVIEW_CHANGED = 168;
+    public static final int PROTOCOL_RECORDING_STATE = 212;
     public static final int PROTOCOL_SCREEN_LIGHT = 196;
     public static final int PROTOCOL_SNAP_INDICATOR = 184;
     public static final int PROTOCOL_STICKER_CONTROL = 178;
@@ -175,6 +184,9 @@ public interface ModeProtocol {
         public static final int FILTER_CLOSE_TYPE = 1;
         public static final int LIGHT_CLOSE_TYPE = 2;
         public static final int NONE_CLOSE_TYPE = 0;
+        public static final int TIP_48M_NO_SUPPORT_ZOOM = 15;
+        public static final int TIP_DURATION_2S = 5;
+        public static final int TIP_DURATION_3S = 6;
         public static final int TIP_DURATION_LONG = 2;
         public static final int TIP_DURATION_PERSISTED = 4;
         public static final int TIP_DURATION_SHORT = 1;
@@ -183,10 +195,13 @@ public interface ModeProtocol {
         public static final int TIP_TYPE_DUAL_CAMERA = 6;
         public static final int TIP_TYPE_DUAL_CAMERA_SUCCESS = 7;
         public static final int TIP_TYPE_EYE_LIGHT = 10;
+        public static final int TIP_TYPE_HAND_GESTURE = 16;
         public static final int TIP_TYPE_HINT = 4;
         public static final int TIP_TYPE_LIGHTING = 12;
         public static final int TIP_TYPE_NEW_SLOW_MOTION = 9;
         public static final int TIP_TYPE_SUPER_NIGHT = 11;
+        public static final int TIP_TYPE_ULTRA_WIDE = 13;
+        public static final int TIP_TYPE_ULTRA_WIDE_RECOMMEND = 14;
         public static final int TIP_TYPE_WARNING = 5;
         public static final int TYPE_TAG = 175;
 
@@ -216,6 +231,8 @@ public interface ModeProtocol {
 
         void hideQrCodeTip();
 
+        void hideSpeedTipImage();
+
         void hideTipImage();
 
         boolean isLightingHintVisible();
@@ -226,43 +243,51 @@ public interface ModeProtocol {
 
         void selectBeautyTipImage(boolean z);
 
-        void selectFilterTipImage(boolean z);
-
         void setLightingPattern(String str);
 
         void setPortraitHintVisible(int i);
 
         void showCloseTip(int i, boolean z);
 
-        void showLeftTipImage();
+        void showOrHideCloseImage(boolean z);
 
         void showQrCodeTip();
 
         void showTips(int i, @StringRes int i2, int i3);
 
+        void showTips(int i, @StringRes int i2, int i3, int i4);
+
+        void updateLeftTipImage();
+
         void updateTipBottomMargin(int i, boolean z);
+
+        void updateTipImage();
     }
 
-    public interface FullScreenProtocol extends BaseProtocol {
-        public static final int TYPE_TAG = 196;
+    public interface AutoZoomViewProtocol extends BaseProtocol {
+        public static final int TYPE_TAG = 214;
 
-        void hideScreenLight();
+        void feedData(AutoZoomCaptureResult autoZoomCaptureResult);
 
-        boolean isLiveRecordPreviewShown();
+        boolean isAutoZoomActive();
 
-        void quitLiveRecordPreview(boolean z);
+        boolean isAutoZoomEnabled();
 
-        void setScreenLightColor(int i);
+        void onAutoZoomStarted();
 
-        void showScreenLight();
+        void onAutoZoomStopped();
 
-        void startLiveRecordPreview(ContentValues contentValues);
+        void onTrackingStarted(RectF rectF);
+
+        void onTrackingStopped(int i);
     }
 
     public interface EffectCropViewController {
         void destroyEffectCropView();
 
         void initEffectCropView();
+
+        boolean isAutoZoomViewEnabled();
 
         boolean isEffectViewMoved();
 
@@ -305,6 +330,8 @@ public interface ModeProtocol {
         boolean isFaceExists(int i);
 
         boolean isFaceStable(int i);
+
+        boolean isFocusViewVisible();
 
         boolean isIndicatorVisible(int i);
 
@@ -368,11 +395,15 @@ public interface ModeProtocol {
 
         void performHapticFeedback(int i);
 
+        void setCenterHint(int i, String str, String str2, int i2);
+
         void setPreviewAspectRatio(float f);
 
         void showDelayNumber(int i);
 
         void showReviewViews(Bitmap bitmap);
+
+        void updateContentDescription();
     }
 
     public interface SnapShotIndicator extends BaseProtocol {
@@ -416,6 +447,8 @@ public interface ModeProtocol {
 
         void alertLightingHint(int i);
 
+        boolean isAnyViewVisible();
+
         void setLightingPattern(String str);
     }
 
@@ -458,6 +491,8 @@ public interface ModeProtocol {
 
         void processingPostAction();
 
+        void processingPrepare();
+
         void processingResume();
 
         void processingStart();
@@ -465,8 +500,6 @@ public interface ModeProtocol {
         void processingWorkspace(boolean z);
 
         void setLightingViewStatus(boolean z);
-
-        void setRecordingTimeState(int i);
 
         void showOrHideBottomViewWithAnim(boolean z);
 
@@ -530,7 +563,7 @@ public interface ModeProtocol {
     public interface BokehFNumberController extends BaseProtocol {
         public static final int TYPE_TAG = 210;
 
-        void hideFNumberPanel(boolean z);
+        void hideFNumberPanel(boolean z, boolean z2);
 
         boolean isFNumberVisible();
 
@@ -539,6 +572,26 @@ public interface ModeProtocol {
         void updateFNumberValue();
 
         int visibleHeight();
+    }
+
+    public interface FullScreenProtocol extends BaseProtocol {
+        public static final int TYPE_TAG = 196;
+
+        ContentValues getSaveContentValues();
+
+        void hideScreenLight();
+
+        boolean isLiveRecordPreviewShown();
+
+        void onLiveSaveToLocalFinished(Uri uri);
+
+        void quitLiveRecordPreview(boolean z);
+
+        void setScreenLightColor(int i);
+
+        void showScreenLight();
+
+        void startLiveRecordPreview(ContentValues contentValues);
     }
 
     public interface ManuallyAdjust extends BaseProtocol {
@@ -583,13 +636,19 @@ public interface ModeProtocol {
 
         void alertMoonModeSelector(int i);
 
+        void alertMusicClose(boolean z);
+
         void alertSwitchHint(int i, @StringRes int i2);
+
+        void alertSwitchHint(int i, String str);
 
         void alertTopHint(int i, @StringRes int i2);
 
-        void alertTopMusicHint(int i, String str);
+        void alertTopHint(int i, String str);
 
         void alertUpdateValue(int i);
+
+        void clearAlertStatus();
 
         void disableMenuItem(int... iArr);
 
@@ -603,7 +662,7 @@ public interface ModeProtocol {
 
         void insertConfigItem(int i);
 
-        void reInitAlert();
+        void reInitAlert(boolean z);
 
         void refreshExtraMenu();
 
@@ -712,6 +771,24 @@ public interface ModeProtocol {
         void onStickerChanged(String str);
     }
 
+    public interface AutoZoomModuleProtocol extends BaseProtocol {
+        public static final int TYPE_TAG = 215;
+
+        void setAutoZoomMode(int i);
+
+        void setAutoZoomStartCapture(RectF rectF);
+
+        void setAutoZoomStopCapture(int i);
+
+        void startAutoZoom();
+
+        void startTracking(RectF rectF);
+
+        void stopAutoZoom();
+
+        void stopTracking(int i);
+    }
+
     public interface BackStack extends BaseProtocol {
         public static final int TYPE_TAG = 171;
 
@@ -719,7 +796,7 @@ public interface ModeProtocol {
 
         boolean handleBackStackFromKeyBack();
 
-        boolean handleBackStackFromShutter();
+        void handleBackStackFromShutter();
 
         boolean handleBackStackFromTapDown(int i, int i2);
 
@@ -799,9 +876,15 @@ public interface ModeProtocol {
 
         void onThermalNotification(int i);
 
+        void reCheckHandGesture();
+
         void reCheckLighting();
 
+        void reCheckLiveShot();
+
         void reCheckMutexConfigs(int i);
+
+        void reCheckUltraPixelPhotoGraphy();
 
         void restoreAllMutexElement(String str);
 
@@ -823,15 +906,25 @@ public interface ModeProtocol {
     public interface LiveConfigChanges extends BaseProtocol {
         public static final int TYPE_TAG = 201;
 
+        void closeBGM();
+
+        TEOAuthResult getAuthResult();
+
         Pair<String, String> getConcatResult();
 
         SurfaceTexture getInputSurfaceTexture();
 
         float getRecordSpeed();
 
-        long getStartRecordintTime();
+        int getSegments();
 
-        long getTotalRecordintTime();
+        long getStartRecordingTime();
+
+        String getTimeValue();
+
+        long getTotalRecordingTime();
+
+        boolean hasSegments();
 
         void initPreview(int i, int i2, boolean z, int i3);
 
@@ -843,7 +936,9 @@ public interface ModeProtocol {
 
         void onBGMChanged(String str);
 
-        void onRecordConcat();
+        void onDeviceRotationChange(float[] fArr);
+
+        boolean onRecordConcat();
 
         void onRecordPause();
 
@@ -855,11 +950,21 @@ public interface ModeProtocol {
 
         void onRecordStop();
 
+        void onSensorChanged(SensorEvent sensorEvent);
+
         void release();
+
+        void setBeautify(boolean z, float f);
+
+        void setBeautyFaceReshape(boolean z, float f, float f2);
+
+        void setEffectAudio(boolean z);
+
+        void setFilter(boolean z, String str);
 
         void setRecordSpeed(int i);
 
-        void startPreview(Surface surface);
+        void startPreview(Surface surface, SlamDetectListener slamDetectListener);
 
         void updateRecordingTime();
     }
@@ -869,13 +974,17 @@ public interface ModeProtocol {
 
         void combineVideoAudio(String str, VECommonCallback vECommonCallback, VECommonCallback vECommonCallback2);
 
-        void init(TextureView textureView, String str, String str2, VECommonCallback vECommonCallback, VECommonCallback vECommonCallback2);
+        boolean init(TextureView textureView, String str, String str2, VECommonCallback vECommonCallback, VECommonCallback vECommonCallback2);
 
         void onDestory();
 
-        void onResume();
-
         void pausePlay();
+
+        void resumePlay();
+
+        void setEncodeSize(int i, int i2);
+
+        void setRecordOrientation(int i);
 
         void startPlay();
     }
@@ -900,6 +1009,30 @@ public interface ModeProtocol {
         void onISOValueChanged(ComponentManuallyISO componentManuallyISO, String str);
 
         void onWBValueChanged(ComponentManuallyWB componentManuallyWB, String str, boolean z);
+    }
+
+    public interface RecordState extends BaseProtocol {
+        public static final int TYPE_TAG = 212;
+
+        void onFailed();
+
+        void onFinish();
+
+        void onPause();
+
+        void onPostPreview();
+
+        void onPostPreviewBack();
+
+        void onPostSavingFinish();
+
+        void onPostSavingStart();
+
+        void onPrepare();
+
+        void onResume();
+
+        void onStart();
     }
 
     public interface ModeCoordinator {

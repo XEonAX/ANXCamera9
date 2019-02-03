@@ -18,10 +18,6 @@
 .end annotation
 
 
-# static fields
-.field private static final TAG:Ljava/lang/String; = "FunctionParseAsdScene"
-
-
 # instance fields
 .field private mFaceCallbackReference:Ljava/lang/ref/WeakReference;
     .annotation system Ldalvik/annotation/Signature;

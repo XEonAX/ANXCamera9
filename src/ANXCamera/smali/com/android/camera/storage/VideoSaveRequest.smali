@@ -47,10 +47,10 @@
 .method private addVideoToMediaStore(Ljava/lang/String;Landroid/content/ContentValues;)Landroid/net/Uri;
     .locals 7
 
-    .line 109
+    .line 110
     nop
 
-    .line 111
+    .line 112
     invoke-static {}, Lcom/android/camera/storage/Storage;->isUseDocumentMode()Z
 
     move-result v0
@@ -61,17 +61,17 @@
 
     if-nez v0, :cond_0
 
-    .line 112
+    .line 113
     invoke-static {p1}, Lcom/android/camera/Util;->getDuration(Ljava/lang/String;)J
 
     move-result-wide v4
 
-    .line 113
+    .line 114
     cmp-long v0, v1, v4
 
     if-nez v0, :cond_4
 
-    .line 114
+    .line 115
     new-instance p2, Ljava/io/File;
 
     invoke-direct {p2, p1}, Ljava/io/File;-><init>(Ljava/lang/String;)V
@@ -80,7 +80,7 @@
 
     move-result p2
 
-    .line 115
+    .line 116
     const-string v0, "VideoSaveRequest"
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -105,10 +105,10 @@
 
     invoke-static {v0, p1}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 116
+    .line 117
     return-object v3
 
-    .line 120
+    .line 121
     :cond_0
     const/4 v0, 0x0
 
@@ -119,10 +119,10 @@
     :try_end_0
     .catch Ljava/lang/Exception; {:try_start_0 .. :try_end_0} :catch_3
 
-    .line 119
+    .line 120
     nop
 
-    .line 123
+    .line 124
     :try_start_1
     invoke-virtual {v0}, Landroid/os/ParcelFileDescriptor;->getFileDescriptor()Ljava/io/FileDescriptor;
 
@@ -135,7 +135,7 @@
     .catch Ljava/lang/Throwable; {:try_start_1 .. :try_end_1} :catch_1
     .catchall {:try_start_1 .. :try_end_1} :catchall_0
 
-    .line 124
+    .line 125
     if-eqz v0, :cond_1
 
     :try_start_2
@@ -150,12 +150,12 @@
 
     goto :goto_3
 
-    .line 126
+    .line 127
     :cond_1
     :goto_0
     goto :goto_3
 
-    .line 124
+    .line 125
     :catchall_0
     move-exception v4
 
@@ -163,7 +163,7 @@
 
     goto :goto_1
 
-    .line 119
+    .line 120
     :catch_1
     move-exception v4
 
@@ -172,7 +172,7 @@
     :try_end_3
     .catchall {:try_start_3 .. :try_end_3} :catchall_1
 
-    .line 124
+    .line 125
     :catchall_1
     move-exception v5
 
@@ -217,13 +217,13 @@
 
     move-wide v4, v1
 
-    .line 127
+    .line 128
     :goto_3
     cmp-long v0, v1, v4
 
     if-nez v0, :cond_4
 
-    .line 128
+    .line 129
     const-string p2, "VideoSaveRequest"
 
     new-instance v0, Ljava/lang/StringBuilder;
@@ -242,17 +242,17 @@
 
     invoke-static {p2, v0}, Lcom/android/camera/log/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 129
+    .line 130
     invoke-static {p1}, Lcom/android/camera/FileCompat;->deleteFile(Ljava/lang/String;)Z
 
-    .line 130
+    .line 131
     return-object v3
 
-    .line 134
+    .line 135
     :cond_4
     nop
 
-    .line 135
+    .line 136
     const-string v0, "_size"
 
     new-instance v1, Ljava/io/File;
@@ -269,7 +269,7 @@
 
     invoke-virtual {p2, v0, p1}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Long;)V
 
-    .line 136
+    .line 137
     const-string p1, "duration"
 
     invoke-static {v4, v5}, Ljava/lang/Long;->valueOf(J)Ljava/lang/Long;
@@ -278,13 +278,13 @@
 
     invoke-virtual {p2, p1, v0}, Landroid/content/ContentValues;->put(Ljava/lang/String;Ljava/lang/Long;)V
 
-    .line 138
+    .line 139
     :try_start_6
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v0
 
-    .line 139
+    .line 140
     iget-object p1, p0, Lcom/android/camera/storage/VideoSaveRequest;->context:Landroid/content/Context;
 
     invoke-virtual {p1}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
@@ -293,7 +293,7 @@
 
     sget-object v2, Landroid/provider/MediaStore$Video$Media;->EXTERNAL_CONTENT_URI:Landroid/net/Uri;
 
-    .line 140
+    .line 141
     invoke-virtual {p1, v2, p2}, Landroid/content/ContentResolver;->insert(Landroid/net/Uri;Landroid/content/ContentValues;)Landroid/net/Uri;
 
     move-result-object p1
@@ -301,7 +301,7 @@
     .catch Ljava/lang/Exception; {:try_start_6 .. :try_end_6} :catch_5
     .catchall {:try_start_6 .. :try_end_6} :catchall_3
 
-    .line 141
+    .line 142
     :try_start_7
     const-string p2, "VideoSaveRequest"
 
@@ -313,7 +313,7 @@
 
     invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
 
-    .line 142
+    .line 143
     invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
 
     move-result-wide v3
@@ -330,13 +330,13 @@
 
     move-result-object v0
 
-    .line 141
+    .line 142
     invoke-static {p2, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
     :try_end_7
     .catch Ljava/lang/Exception; {:try_start_7 .. :try_end_7} :catch_4
     .catchall {:try_start_7 .. :try_end_7} :catchall_2
 
-    .line 148
+    .line 149
     const-string p2, "VideoSaveRequest"
 
     new-instance v0, Ljava/lang/StringBuilder;
@@ -355,16 +355,16 @@
 
     invoke-static {p2, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 149
+    .line 150
     goto :goto_5
 
-    .line 148
+    .line 149
     :catchall_2
     move-exception p2
 
     goto :goto_6
 
-    .line 143
+    .line 144
     :catch_4
     move-exception p2
 
@@ -372,7 +372,7 @@
 
     goto :goto_4
 
-    .line 148
+    .line 149
     :catchall_3
     move-exception p2
 
@@ -380,11 +380,11 @@
 
     goto :goto_6
 
-    .line 143
+    .line 144
     :catch_5
     move-exception p2
 
-    .line 146
+    .line 147
     :goto_4
     :try_start_8
     const-string p1, "VideoSaveRequest"
@@ -395,7 +395,7 @@
     :try_end_8
     .catchall {:try_start_8 .. :try_end_8} :catchall_3
 
-    .line 148
+    .line 149
     const-string p1, "VideoSaveRequest"
 
     new-instance p2, Ljava/lang/StringBuilder;
@@ -414,16 +414,16 @@
 
     invoke-static {p1, p2}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 149
+    .line 150
     nop
 
-    .line 150
+    .line 151
     move-object p1, v3
 
     :goto_5
     return-object p1
 
-    .line 148
+    .line 149
     :goto_6
     new-instance v0, Ljava/lang/StringBuilder;
 
@@ -451,7 +451,7 @@
 .method public getSize()I
     .locals 1
 
-    .line 94
+    .line 95
     const/4 v0, 0x0
 
     return v0
@@ -460,7 +460,7 @@
 .method public isFinal()Z
     .locals 1
 
-    .line 99
+    .line 100
     iget-boolean v0, p0, Lcom/android/camera/storage/VideoSaveRequest;->mIsFinal:Z
 
     return v0
@@ -469,7 +469,7 @@
 .method public onFinish()V
     .locals 2
 
-    .line 104
+    .line 105
     const-string v0, "VideoSaveRequest"
 
     const-string v1, "onFinish: runnable process finished"
@@ -477,6 +477,15 @@
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
     .line 106
+    iget-object v0, p0, Lcom/android/camera/storage/VideoSaveRequest;->saverCallback:Lcom/android/camera/storage/SaverCallback;
+
+    invoke-virtual {p0}, Lcom/android/camera/storage/VideoSaveRequest;->getSize()I
+
+    move-result v1
+
+    invoke-interface {v0, v1}, Lcom/android/camera/storage/SaverCallback;->onSaveFinish(I)V
+
+    .line 107
     return-void
 .end method
 
@@ -690,13 +699,24 @@
     .line 82
     :cond_4
     :goto_1
-    iget-object v0, p0, Lcom/android/camera/storage/VideoSaveRequest;->saverCallback:Lcom/android/camera/storage/SaverCallback;
+    iget-object v0, p0, Lcom/android/camera/storage/VideoSaveRequest;->mContentValues:Landroid/content/ContentValues;
 
-    iget-object v3, p0, Lcom/android/camera/storage/VideoSaveRequest;->mUri:Landroid/net/Uri;
+    const-string v3, "title"
 
-    invoke-interface {v0, v3}, Lcom/android/camera/storage/SaverCallback;->notifyNewVideo(Landroid/net/Uri;)V
+    invoke-virtual {v0, v3}, Landroid/content/ContentValues;->getAsString(Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v0
 
     .line 83
+    iget-object v3, p0, Lcom/android/camera/storage/VideoSaveRequest;->saverCallback:Lcom/android/camera/storage/SaverCallback;
+
+    iget-object v4, p0, Lcom/android/camera/storage/VideoSaveRequest;->mUri:Landroid/net/Uri;
+
+    const/16 v5, 0x15
+
+    invoke-interface {v3, v4, v0, v5}, Lcom/android/camera/storage/SaverCallback;->notifyNewMediaData(Landroid/net/Uri;Ljava/lang/String;I)V
+
+    .line 84
     iget-object v0, p0, Lcom/android/camera/storage/VideoSaveRequest;->context:Landroid/content/Context;
 
     iget-object v3, p0, Lcom/android/camera/storage/VideoSaveRequest;->mVideoPath:Ljava/lang/String;
@@ -707,7 +727,7 @@
 
     const-string v7, "latitude"
 
-    .line 84
+    .line 85
     invoke-virtual {v6, v7}, Landroid/content/ContentValues;->get(Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object v6
@@ -718,7 +738,7 @@
 
     const-string v7, "longitude"
 
-    .line 85
+    .line 86
     invoke-virtual {v6, v7}, Landroid/content/ContentValues;->get(Ljava/lang/String;)Ljava/lang/Object;
 
     move-result-object v6
@@ -727,25 +747,25 @@
 
     goto :goto_2
 
-    .line 83
+    .line 84
     :cond_5
     move v1, v2
 
     :goto_2
     invoke-static {v0, v3, v4, v5, v1}, Lcom/android/camera/storage/Storage;->saveToCloudAlbum(Landroid/content/Context;Ljava/lang/String;JZ)V
 
+    .line 87
     goto :goto_3
 
-    .line 86
     :cond_6
     if-eqz v0, :cond_7
 
-    .line 87
+    .line 88
     iget-object v0, p0, Lcom/android/camera/storage/VideoSaveRequest;->saverCallback:Lcom/android/camera/storage/SaverCallback;
 
     invoke-interface {v0}, Lcom/android/camera/storage/SaverCallback;->postHideThumbnailProgressing()V
 
-    .line 89
+    .line 90
     :cond_7
     :goto_3
     const-string v0, "VideoSaveRequest"
@@ -754,19 +774,19 @@
 
     invoke-static {v0, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 90
+    .line 91
     return-void
 .end method
 
 .method public setContextAndCallback(Landroid/content/Context;Lcom/android/camera/storage/SaverCallback;)V
     .locals 0
 
-    .line 30
+    .line 31
     iput-object p1, p0, Lcom/android/camera/storage/VideoSaveRequest;->context:Landroid/content/Context;
 
-    .line 31
+    .line 32
     iput-object p2, p0, Lcom/android/camera/storage/VideoSaveRequest;->saverCallback:Lcom/android/camera/storage/SaverCallback;
 
-    .line 32
+    .line 33
     return-void
 .end method

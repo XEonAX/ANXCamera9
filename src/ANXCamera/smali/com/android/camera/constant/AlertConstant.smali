@@ -29,17 +29,15 @@
 
 .field public static final ALERT_NOT_CLEAR:I = 0x2
 
-.field public static final RECORD_STATE_GONE:I = 0x2
-
-.field public static final RECORD_STATE_HIDE:I = 0x5
-
 .field public static final RECORD_STATE_PAUSE:I = 0x3
 
 .field public static final RECORD_STATE_RESUME:I = 0x4
 
-.field public static final RECORD_STATE_UNKNOWN:I = 0x0
+.field public static final RECORD_STATE_START:I = 0x1
 
-.field public static final RECORD_STATE_VISIBLE:I = 0x1
+.field public static final RECORD_STATE_STOP:I = 0x2
+
+.field public static final RECORD_STATE_UNKNOWN:I = 0x0
 
 .field public static final VALUE_CHANGE_ALL:I = 0x4
 

@@ -29,12 +29,12 @@
 .method private constructor <init>(Lcom/android/camera/fragment/FragmentPanorama;)V
     .locals 1
 
-    .line 356
+    .line 357
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama$StillPreviewRender;->this$0:Lcom/android/camera/fragment/FragmentPanorama;
 
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 357
+    .line 358
     new-instance p1, Lcom/android/camera/effect/draw_mode/DrawExtTexAttribute;
 
     const/4 v0, 0x1
@@ -43,7 +43,7 @@
 
     iput-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama$StillPreviewRender;->mExtTexture:Lcom/android/camera/effect/draw_mode/DrawExtTexAttribute;
 
-    .line 358
+    .line 359
     const/16 p1, 0x10
 
     new-array p1, p1, [F
@@ -56,7 +56,7 @@
 .method synthetic constructor <init>(Lcom/android/camera/fragment/FragmentPanorama;Lcom/android/camera/fragment/FragmentPanorama$1;)V
     .locals 0
 
-    .line 356
+    .line 357
     invoke-direct {p0, p1}, Lcom/android/camera/fragment/FragmentPanorama$StillPreviewRender;-><init>(Lcom/android/camera/fragment/FragmentPanorama;)V
 
     return-void
@@ -67,7 +67,7 @@
 .method public onDrawFrame(Ljavax/microedition/khronos/opengles/GL10;)V
     .locals 12
 
-    .line 372
+    .line 373
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama$StillPreviewRender;->this$0:Lcom/android/camera/fragment/FragmentPanorama;
 
     invoke-virtual {p1}, Lcom/android/camera/fragment/FragmentPanorama;->getContext()Landroid/content/Context;
@@ -80,7 +80,7 @@
 
     move-result-object p1
 
-    .line 373
+    .line 374
     iget-object v0, p0, Lcom/android/camera/fragment/FragmentPanorama$StillPreviewRender;->this$0:Lcom/android/camera/fragment/FragmentPanorama;
 
     invoke-virtual {v0}, Lcom/android/camera/fragment/FragmentPanorama;->getContext()Landroid/content/Context;
@@ -97,36 +97,36 @@
 
     move-result-object v0
 
-    .line 374
+    .line 375
     if-eqz p1, :cond_0
 
     if-eqz v0, :cond_0
 
-    .line 375
+    .line 376
     monitor-enter v0
 
-    .line 376
+    .line 377
     :try_start_0
     invoke-interface {v0}, Lcom/android/gallery3d/ui/GLCanvas;->clearBuffer()V
 
-    .line 378
+    .line 379
     invoke-interface {v0}, Lcom/android/gallery3d/ui/GLCanvas;->getWidth()I
 
     move-result v1
 
-    .line 379
+    .line 380
     invoke-interface {v0}, Lcom/android/gallery3d/ui/GLCanvas;->getHeight()I
 
     move-result v2
 
-    .line 380
+    .line 381
     invoke-interface {v0}, Lcom/android/gallery3d/ui/GLCanvas;->getState()Lcom/android/camera/effect/GLCanvasState;
 
     move-result-object v3
 
     invoke-virtual {v3}, Lcom/android/camera/effect/GLCanvasState;->pushState()V
 
-    .line 381
+    .line 382
     iget-object v3, p0, Lcom/android/camera/fragment/FragmentPanorama$StillPreviewRender;->this$0:Lcom/android/camera/fragment/FragmentPanorama;
 
     invoke-static {v3}, Lcom/android/camera/fragment/FragmentPanorama;->access$100(Lcom/android/camera/fragment/FragmentPanorama;)Lcom/android/camera/ui/GLTextureView;
@@ -137,7 +137,7 @@
 
     move-result v3
 
-    .line 382
+    .line 383
     iget-object v4, p0, Lcom/android/camera/fragment/FragmentPanorama$StillPreviewRender;->this$0:Lcom/android/camera/fragment/FragmentPanorama;
 
     invoke-static {v4}, Lcom/android/camera/fragment/FragmentPanorama;->access$100(Lcom/android/camera/fragment/FragmentPanorama;)Lcom/android/camera/ui/GLTextureView;
@@ -148,10 +148,10 @@
 
     move-result v4
 
-    .line 383
+    .line 384
     invoke-interface {v0, v3, v4}, Lcom/android/gallery3d/ui/GLCanvas;->setSize(II)V
 
-    .line 384
+    .line 385
     invoke-virtual {p1}, Lcom/android/camera/CameraScreenNail;->getSurfaceTexture()Landroid/graphics/SurfaceTexture;
 
     move-result-object v3
@@ -160,7 +160,7 @@
 
     invoke-virtual {v3, v4}, Landroid/graphics/SurfaceTexture;->getTransformMatrix([F)V
 
-    .line 385
+    .line 386
     iget-object v5, p0, Lcom/android/camera/fragment/FragmentPanorama$StillPreviewRender;->mExtTexture:Lcom/android/camera/effect/draw_mode/DrawExtTexAttribute;
 
     invoke-virtual {p1}, Lcom/android/camera/CameraScreenNail;->getExtTexture()Lcom/android/gallery3d/ui/ExtTexture;
@@ -171,7 +171,7 @@
 
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama$StillPreviewRender;->this$0:Lcom/android/camera/fragment/FragmentPanorama;
 
-    .line 386
+    .line 387
     invoke-static {p1}, Lcom/android/camera/fragment/FragmentPanorama;->access$300(Lcom/android/camera/fragment/FragmentPanorama;)I
 
     move-result v8
@@ -184,7 +184,7 @@
 
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama$StillPreviewRender;->this$0:Lcom/android/camera/fragment/FragmentPanorama;
 
-    .line 387
+    .line 388
     invoke-static {p1}, Lcom/android/camera/fragment/FragmentPanorama;->access$500(Lcom/android/camera/fragment/FragmentPanorama;)I
 
     move-result v10
@@ -195,32 +195,33 @@
 
     move-result v11
 
-    .line 385
+    .line 386
     invoke-virtual/range {v5 .. v11}, Lcom/android/camera/effect/draw_mode/DrawExtTexAttribute;->init(Lcom/android/gallery3d/ui/ExtTexture;[FIIII)Lcom/android/camera/effect/draw_mode/DrawExtTexAttribute;
 
     move-result-object p1
 
+    .line 389
     invoke-interface {v0, p1}, Lcom/android/gallery3d/ui/GLCanvas;->draw(Lcom/android/camera/effect/draw_mode/DrawAttribute;)V
 
-    .line 388
+    .line 390
     invoke-interface {v0, v1, v2}, Lcom/android/gallery3d/ui/GLCanvas;->setSize(II)V
 
-    .line 389
+    .line 391
     invoke-interface {v0}, Lcom/android/gallery3d/ui/GLCanvas;->getState()Lcom/android/camera/effect/GLCanvasState;
 
     move-result-object p1
 
     invoke-virtual {p1}, Lcom/android/camera/effect/GLCanvasState;->popState()V
 
-    .line 391
+    .line 393
     invoke-interface {v0}, Lcom/android/gallery3d/ui/GLCanvas;->recycledResources()V
 
-    .line 392
+    .line 394
     monitor-exit v0
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_0
 
-    .line 393
+    .line 395
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama$StillPreviewRender;->this$0:Lcom/android/camera/fragment/FragmentPanorama;
 
     invoke-static {p1}, Lcom/android/camera/fragment/FragmentPanorama;->access$700(Lcom/android/camera/fragment/FragmentPanorama;)Z
@@ -229,14 +230,14 @@
 
     if-eqz p1, :cond_0
 
-    .line 394
+    .line 396
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama$StillPreviewRender;->this$0:Lcom/android/camera/fragment/FragmentPanorama;
 
     const/4 v0, 0x0
 
     invoke-static {p1, v0}, Lcom/android/camera/fragment/FragmentPanorama;->access$702(Lcom/android/camera/fragment/FragmentPanorama;Z)Z
 
-    .line 395
+    .line 397
     iget-object p1, p0, Lcom/android/camera/fragment/FragmentPanorama$StillPreviewRender;->this$0:Lcom/android/camera/fragment/FragmentPanorama;
 
     invoke-static {p1}, Lcom/android/camera/fragment/FragmentPanorama;->access$1000(Lcom/android/camera/fragment/FragmentPanorama;)Landroid/os/Handler;
@@ -251,7 +252,7 @@
 
     goto :goto_0
 
-    .line 392
+    .line 394
     :catchall_0
     move-exception p1
 
@@ -262,7 +263,7 @@
 
     throw p1
 
-    .line 405
+    .line 407
     :cond_0
     :goto_0
     return-void
@@ -271,13 +272,13 @@
 .method public onSurfaceChanged(Ljavax/microedition/khronos/opengles/GL10;II)V
     .locals 0
 
-    .line 368
+    .line 369
     return-void
 .end method
 
 .method public onSurfaceCreated(Ljavax/microedition/khronos/opengles/GL10;Ljavax/microedition/khronos/egl/EGLConfig;)V
     .locals 0
 
-    .line 363
+    .line 364
     return-void
 .end method

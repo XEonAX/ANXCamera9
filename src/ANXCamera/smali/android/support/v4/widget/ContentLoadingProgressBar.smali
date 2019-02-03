@@ -25,7 +25,7 @@
 
 # direct methods
 .method public constructor <init>(Landroid/content/Context;)V
-    .locals 1
+    .registers 3
     .param p1, "context"    # Landroid/content/Context;
 
     .line 65
@@ -38,7 +38,7 @@
 .end method
 
 .method public constructor <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
-    .locals 3
+    .registers 6
     .param p1, "context"    # Landroid/content/Context;
     .param p2, "attrs"    # Landroid/util/AttributeSet;
 
@@ -80,7 +80,7 @@
 .end method
 
 .method static synthetic access$002(Landroid/support/v4/widget/ContentLoadingProgressBar;Z)Z
-    .locals 0
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/widget/ContentLoadingProgressBar;
     .param p1, "x1"    # Z
 
@@ -91,7 +91,7 @@
 .end method
 
 .method static synthetic access$102(Landroid/support/v4/widget/ContentLoadingProgressBar;J)J
-    .locals 0
+    .registers 3
     .param p0, "x0"    # Landroid/support/v4/widget/ContentLoadingProgressBar;
     .param p1, "x1"    # J
 
@@ -102,7 +102,7 @@
 .end method
 
 .method static synthetic access$202(Landroid/support/v4/widget/ContentLoadingProgressBar;Z)Z
-    .locals 0
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/widget/ContentLoadingProgressBar;
     .param p1, "x1"    # Z
 
@@ -113,7 +113,7 @@
 .end method
 
 .method static synthetic access$300(Landroid/support/v4/widget/ContentLoadingProgressBar;)Z
-    .locals 1
+    .registers 2
     .param p0, "x0"    # Landroid/support/v4/widget/ContentLoadingProgressBar;
 
     .line 30
@@ -123,7 +123,7 @@
 .end method
 
 .method private removeCallbacks()V
-    .locals 1
+    .registers 2
 
     .line 85
     iget-object v0, p0, Landroid/support/v4/widget/ContentLoadingProgressBar;->mDelayedHide:Ljava/lang/Runnable;
@@ -142,7 +142,7 @@
 
 # virtual methods
 .method public hide()V
-    .locals 9
+    .registers 10
 
     .line 95
     const/4 v0, 0x1
@@ -169,7 +169,7 @@
 
     cmp-long v5, v1, v3
 
-    if-gez v5, :cond_1
+    if-gez v5, :cond_2b
 
     iget-wide v5, p0, Landroid/support/v4/widget/ContentLoadingProgressBar;->mStartTime:J
 
@@ -177,15 +177,15 @@
 
     cmp-long v5, v5, v7
 
-    if-nez v5, :cond_0
+    if-nez v5, :cond_1e
 
-    goto :goto_0
+    goto :goto_2b
 
     .line 107
-    :cond_0
+    :cond_1e
     iget-boolean v5, p0, Landroid/support/v4/widget/ContentLoadingProgressBar;->mPostedHide:Z
 
-    if-nez v5, :cond_2
+    if-nez v5, :cond_30
 
     .line 108
     iget-object v5, p0, Landroid/support/v4/widget/ContentLoadingProgressBar;->mDelayedHide:Ljava/lang/Runnable;
@@ -197,23 +197,23 @@
     .line 109
     iput-boolean v0, p0, Landroid/support/v4/widget/ContentLoadingProgressBar;->mPostedHide:Z
 
-    goto :goto_1
+    goto :goto_30
 
     .line 102
-    :cond_1
-    :goto_0
+    :cond_2b
+    :goto_2b
     const/16 v0, 0x8
 
     invoke-virtual {p0, v0}, Landroid/support/v4/widget/ContentLoadingProgressBar;->setVisibility(I)V
 
     .line 112
-    :cond_2
-    :goto_1
+    :cond_30
+    :goto_30
     return-void
 .end method
 
 .method public onAttachedToWindow()V
-    .locals 0
+    .registers 1
 
     .line 74
     invoke-super {p0}, Landroid/widget/ProgressBar;->onAttachedToWindow()V
@@ -226,7 +226,7 @@
 .end method
 
 .method public onDetachedFromWindow()V
-    .locals 0
+    .registers 1
 
     .line 80
     invoke-super {p0}, Landroid/widget/ProgressBar;->onDetachedFromWindow()V
@@ -239,7 +239,7 @@
 .end method
 
 .method public show()V
-    .locals 3
+    .registers 4
 
     .line 120
     const-wide/16 v0, -0x1
@@ -259,7 +259,7 @@
     .line 123
     iget-boolean v0, p0, Landroid/support/v4/widget/ContentLoadingProgressBar;->mPostedShow:Z
 
-    if-nez v0, :cond_0
+    if-nez v0, :cond_1a
 
     .line 124
     iget-object v0, p0, Landroid/support/v4/widget/ContentLoadingProgressBar;->mDelayedShow:Ljava/lang/Runnable;
@@ -274,6 +274,6 @@
     iput-boolean v0, p0, Landroid/support/v4/widget/ContentLoadingProgressBar;->mPostedShow:Z
 
     .line 127
-    :cond_0
+    :cond_1a
     return-void
 .end method

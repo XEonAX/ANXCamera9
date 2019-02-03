@@ -54,6 +54,9 @@
 .method public abstract isFaceStable(I)Z
 .end method
 
+.method public abstract isFocusViewVisible()Z
+.end method
+
 .method public abstract isIndicatorVisible(I)Z
 .end method
 

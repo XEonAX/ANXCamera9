@@ -3,8 +3,11 @@ package com.ss.android.vesdk;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;
+import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import com.ss.android.vesdk.runtime.cloudconfig.PerformanceConfig;
+import com.ss.android.vesdk.runtime.cloudconfig.VECloudConfig;
 
 public class VEVideoEncodeSettings implements Parcelable {
     public static final Creator<VEVideoEncodeSettings> CREATOR = new Creator<VEVideoEncodeSettings>() {
@@ -16,16 +19,18 @@ public class VEVideoEncodeSettings implements Parcelable {
             return new VEVideoEncodeSettings[i];
         }
     };
+    public static final int USAGE_COMPILE = 2;
+    public static final int USAGE_IMPORT = 3;
+    public static final int USAGE_RECORD = 1;
     private ENCODE_BITRATE_MODE bitrateMode;
     private int bps;
     public COMPILE_TYPE compileType;
-    private int encodeLevel;
     private int encodeProfile;
-    private int encodeStand;
+    private int encodeStandard;
     private int fps;
     private int gopSize;
     private boolean hasBFrame;
-    private boolean mIsUseCloudConfig;
+    private VEWatermarkParam mWatermarkParam;
     private VESize outputSize;
     private int resizeMode;
     private float resizeX;
@@ -33,125 +38,259 @@ public class VEVideoEncodeSettings implements Parcelable {
     private int rotate;
     private float speed;
     private int swCRF;
+    private int swMaxrate;
+    private int swPreset;
     private int swQP;
-    private int usage;
     private boolean useHWEncoder;
 
     public static class Builder {
-        private ENCODE_BITRATE_MODE bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_CRF;
-        private int bps = 0;
-        public COMPILE_TYPE compileType = COMPILE_TYPE.COMPILE_TYPE_MP4;
-        private int encodeLevel = ENCODE_LEVEL.ENCODE_LEVEL_ULTRAFAST.ordinal();
-        private int encodeProfile = ENCODE_PROFILE.ENCODE_PROFILE_BASELINE.ordinal();
-        private int encodeStand = ENCODE_STANDARD.ENCODE_STANDARD_H264.ordinal();
-        private int fps = 30;
-        private int gopSize = 60;
-        private boolean hasBFrame = false;
-        private boolean mIsUseCloudConfig = false;
-        private VESize outputSize = new VESize(576, 1024);
-        private int resizeMode = 0;
-        private float resizeX = 0.0f;
-        private float resizeY = 0.0f;
-        private int rotate = 0;
-        private float speed = 1.0f;
-        private int swCRF = 15;
-        private int swQP = 2;
-        private int usage = 1;
-        private boolean useHWEncoder = true;
+        private VEVideoEncodeSettings exportVideoEncodeSettings;
+        private boolean mIsEncodeModeDeclared;
+        private int mUsage;
+
+        public Builder() {
+            this.mIsEncodeModeDeclared = false;
+            this.mUsage = 1;
+            this.exportVideoEncodeSettings = new VEVideoEncodeSettings();
+        }
+
+        public Builder(@IntRange(from = 1, to = 3) int i) {
+            this.mIsEncodeModeDeclared = false;
+            this.mUsage = i;
+            this.exportVideoEncodeSettings = new VEVideoEncodeSettings();
+        }
+
+        public Builder(@IntRange(from = 1, to = 3) int i, @NonNull VEVideoEncodeSettings vEVideoEncodeSettings) {
+            this.mIsEncodeModeDeclared = false;
+            this.mUsage = i;
+            this.exportVideoEncodeSettings = vEVideoEncodeSettings;
+            this.mIsEncodeModeDeclared = true;
+        }
 
         public Builder setFps(int i) {
-            this.fps = i;
+            this.exportVideoEncodeSettings.fps = i;
             return this;
         }
 
         public Builder setVideoBitrate(ENCODE_BITRATE_MODE encode_bitrate_mode, int i) {
-            this.bitrateMode = encode_bitrate_mode;
-            if (this.bitrateMode == ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR) {
-                this.bps = i;
-            } else if (this.bitrateMode == ENCODE_BITRATE_MODE.ENCODE_BITRATE_CRF) {
-                this.swCRF = i;
-            } else if (this.bitrateMode == ENCODE_BITRATE_MODE.ENCODE_BITRATE_QP) {
-                this.swQP = i;
+            this.exportVideoEncodeSettings.bitrateMode = encode_bitrate_mode;
+            switch (encode_bitrate_mode) {
+                case ENCODE_BITRATE_ABR:
+                    this.exportVideoEncodeSettings.bps = i;
+                    break;
+                case ENCODE_BITRATE_CRF:
+                    this.exportVideoEncodeSettings.swCRF = i;
+                    break;
+                case ENCODE_BITRATE_QP:
+                    this.exportVideoEncodeSettings.swQP = i;
+                    break;
+                case ENCODE_BITRATE_VBR:
+                    this.exportVideoEncodeSettings.bps = i;
+                    break;
+                default:
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("CompileTime BUG. Unhandled enum value ");
+                    stringBuilder.append(encode_bitrate_mode.toString());
+                    throw new IllegalStateException(stringBuilder.toString());
             }
             return this;
         }
 
-        @Deprecated
         public Builder setBps(int i) {
-            this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
-            this.bps = i;
+            this.exportVideoEncodeSettings.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
+            this.exportVideoEncodeSettings.bps = i;
+            return this;
+        }
+
+        public Builder setSWCRF(int i) {
+            this.exportVideoEncodeSettings.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_CRF;
+            this.exportVideoEncodeSettings.swCRF = i;
+            return this;
+        }
+
+        public Builder setQP(int i) {
+            this.exportVideoEncodeSettings.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_QP;
+            this.exportVideoEncodeSettings.swQP = i;
             return this;
         }
 
         public Builder setVideoRes(int i, int i2) {
-            this.outputSize.width = i;
-            this.outputSize.height = i2;
+            this.exportVideoEncodeSettings.outputSize.width = i;
+            this.exportVideoEncodeSettings.outputSize.height = i2;
             return this;
         }
 
         public Builder setRotate(int i) {
-            this.rotate = i;
+            this.exportVideoEncodeSettings.rotate = i;
             return this;
         }
 
         public Builder setResizeMode(int i) {
-            this.resizeMode = i;
+            this.exportVideoEncodeSettings.resizeMode = i;
             return this;
         }
 
         public Builder setResizeX(float f) {
-            this.resizeX = f;
+            this.exportVideoEncodeSettings.resizeX = f;
             return this;
         }
 
         public Builder setResizeY(float f) {
-            this.resizeY = f;
+            this.exportVideoEncodeSettings.resizeY = f;
             return this;
         }
 
         public Builder setHwEnc(boolean z) {
-            this.useHWEncoder = z;
+            this.exportVideoEncodeSettings.useHWEncoder = z;
+            this.mIsEncodeModeDeclared = true;
             return this;
         }
 
         public Builder setGopSize(int i) {
-            this.gopSize = i;
+            this.exportVideoEncodeSettings.gopSize = i;
             return this;
         }
 
-        public Builder setEncodeLevel(@NonNull ENCODE_LEVEL encode_level) {
-            this.encodeLevel = encode_level.ordinal();
+        public Builder setEncodePreset(@NonNull ENCODE_PRESET encode_preset) {
+            this.exportVideoEncodeSettings.swPreset = encode_preset.ordinal();
             return this;
         }
 
         public Builder setEncodeProfile(@NonNull ENCODE_PROFILE encode_profile) {
-            this.encodeProfile = encode_profile.ordinal();
+            this.exportVideoEncodeSettings.encodeProfile = encode_profile.ordinal();
             return this;
         }
 
         public Builder setCompileType(@NonNull COMPILE_TYPE compile_type) {
-            this.compileType = compile_type;
+            this.exportVideoEncodeSettings.compileType = compile_type;
             return this;
         }
 
-        public Builder setUsage(int i) {
-            this.usage = i;
+        public Builder setSwMaxrate(int i) {
+            this.exportVideoEncodeSettings.swMaxrate = i;
             return this;
         }
 
-        public Builder isUseCloudConfig(boolean z) {
-            this.mIsUseCloudConfig = z;
+        public Builder setSpeed(float f) {
+            this.exportVideoEncodeSettings.speed = f;
+            return this;
+        }
+
+        public Builder setEncodeStandard(ENCODE_STANDARD encode_standard) {
+            this.exportVideoEncodeSettings.encodeStandard = encode_standard.ordinal();
+            return this;
+        }
+
+        public Builder setHasBFrame(boolean z) {
+            this.exportVideoEncodeSettings.hasBFrame = z;
+            return this;
+        }
+
+        public Builder setWatermarkParam(VEWatermarkParam vEWatermarkParam) {
+            this.exportVideoEncodeSettings.mWatermarkParam = vEWatermarkParam;
             return this;
         }
 
         public VEVideoEncodeSettings build() {
-            return new VEVideoEncodeSettings(this, null);
+            return this.exportVideoEncodeSettings;
+        }
+
+        public Builder overrideWithCloudConfig() {
+            if (PerformanceConfig.sVECloudConfig == null) {
+                Log.e(getClass().getSimpleName(), "Override with Cloud Configs failed. CloudConfig == null");
+                return this;
+            }
+            switch (this.mUsage) {
+                case 1:
+                    overrideWithCloudConfigForRecord();
+                    break;
+                case 2:
+                    overrideWithCloudConfigForCompile();
+                    break;
+                case 3:
+                    overrideWithCloudConfigForImport();
+                    break;
+                default:
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("CompileTime BUG, Unexpected usage = ");
+                    stringBuilder.append(this.mUsage);
+                    throw new IllegalStateException(stringBuilder.toString());
+            }
+            this.mIsEncodeModeDeclared = true;
+            return this;
+        }
+
+        private void overrideWithCloudConfigForRecord() {
+            VECloudConfig vECloudConfig = PerformanceConfig.sVECloudConfig;
+            boolean z = true;
+            if (vECloudConfig.mRecordEncodeMode != 1) {
+                z = false;
+            }
+            this.exportVideoEncodeSettings.useHWEncoder = z;
+            this.exportVideoEncodeSettings.outputSize = new VESize(vECloudConfig.mCameraPreviewResolutionWidth, vECloudConfig.mCameraPreviewResolutionHeight);
+            this.exportVideoEncodeSettings.swCRF = vECloudConfig.mRecordSWEncodeCRF;
+            this.exportVideoEncodeSettings.swPreset = vECloudConfig.mRecordVideoSWPreset;
+            this.exportVideoEncodeSettings.bitrateMode = z ? getRecordHardwareBitrateModeFromCloud() : ENCODE_BITRATE_MODE.fromInteger(vECloudConfig.mRecordSWBitrateMode);
+            this.exportVideoEncodeSettings.bps = z ? vECloudConfig.mRecordHWEncodeBPS : this.exportVideoEncodeSettings.bps;
+            this.exportVideoEncodeSettings.gopSize = z ? this.exportVideoEncodeSettings.gopSize : vECloudConfig.mRecordVideoSWGop;
+            this.exportVideoEncodeSettings.encodeProfile = z ? vECloudConfig.mRecordHwProfile : this.exportVideoEncodeSettings.encodeProfile;
+            this.exportVideoEncodeSettings.swMaxrate = z ? this.exportVideoEncodeSettings.swMaxrate : vECloudConfig.mRecordVideoSWMaxrate;
+            this.exportVideoEncodeSettings.swQP = z ? this.exportVideoEncodeSettings.swQP : vECloudConfig.mRecordVideoSWQP;
+        }
+
+        private void overrideWithCloudConfigForImport() {
+            VECloudConfig vECloudConfig = PerformanceConfig.sVECloudConfig;
+            boolean z = true;
+            if (vECloudConfig.mImportEncodeMode != 1) {
+                z = false;
+            }
+            this.exportVideoEncodeSettings.useHWEncoder = z;
+            this.exportVideoEncodeSettings.outputSize = new VESize(vECloudConfig.mCameraPreviewResolutionWidth, vECloudConfig.mCameraPreviewResolutionHeight);
+            this.exportVideoEncodeSettings.swCRF = vECloudConfig.mImportSWEncodeCRF;
+            this.exportVideoEncodeSettings.swPreset = vECloudConfig.mImportVideoSWPreset;
+            this.exportVideoEncodeSettings.bitrateMode = z ? getImportHardwareBitrateModeFromCloud() : ENCODE_BITRATE_MODE.fromInteger(vECloudConfig.mImportSWBitrateMode);
+            this.exportVideoEncodeSettings.bps = z ? vECloudConfig.mImportHWEncodeBPS : this.exportVideoEncodeSettings.bps;
+            this.exportVideoEncodeSettings.gopSize = z ? this.exportVideoEncodeSettings.gopSize : vECloudConfig.mImportVideoSWGop;
+            this.exportVideoEncodeSettings.encodeProfile = z ? vECloudConfig.mImportHwProfile : this.exportVideoEncodeSettings.encodeProfile;
+            this.exportVideoEncodeSettings.swMaxrate = z ? this.exportVideoEncodeSettings.swMaxrate : vECloudConfig.mImportVideoSWMaxrate;
+            this.exportVideoEncodeSettings.swQP = z ? this.exportVideoEncodeSettings.swQP : vECloudConfig.mImportVideoSWQP;
+        }
+
+        private void overrideWithCloudConfigForCompile() {
+            VECloudConfig vECloudConfig = PerformanceConfig.sVECloudConfig;
+            boolean z = true;
+            if (vECloudConfig.mCompileEncodeMode != 1) {
+                z = false;
+            }
+            this.exportVideoEncodeSettings.useHWEncoder = z;
+            this.exportVideoEncodeSettings.outputSize = new VESize(vECloudConfig.mCameraPreviewResolutionWidth, vECloudConfig.mCameraPreviewResolutionHeight);
+            this.exportVideoEncodeSettings.swCRF = vECloudConfig.mCompileEncodeSWCRF;
+            this.exportVideoEncodeSettings.swPreset = vECloudConfig.mCompileEncodeSWCRFPreset;
+            this.exportVideoEncodeSettings.bitrateMode = z ? getCompileHardwareBitrateModeFromCloud() : ENCODE_BITRATE_MODE.fromInteger(vECloudConfig.mCompileSWBitrateMode);
+            this.exportVideoEncodeSettings.bps = z ? vECloudConfig.mCompileEncodeHWBPS : this.exportVideoEncodeSettings.bps;
+            this.exportVideoEncodeSettings.gopSize = z ? this.exportVideoEncodeSettings.gopSize : vECloudConfig.mCompileEncodeSWGOP;
+            this.exportVideoEncodeSettings.encodeProfile = z ? vECloudConfig.mCompileHwProfile : this.exportVideoEncodeSettings.encodeProfile;
+            this.exportVideoEncodeSettings.swMaxrate = z ? this.exportVideoEncodeSettings.swMaxrate : vECloudConfig.mCompileEncodeSWMaxrate;
+            this.exportVideoEncodeSettings.swQP = z ? this.exportVideoEncodeSettings.swQP : vECloudConfig.mCompileVideoSWQP;
+        }
+
+        private ENCODE_BITRATE_MODE getRecordHardwareBitrateModeFromCloud() {
+            return ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
+        }
+
+        private ENCODE_BITRATE_MODE getImportHardwareBitrateModeFromCloud() {
+            return ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
+        }
+
+        private ENCODE_BITRATE_MODE getCompileHardwareBitrateModeFromCloud() {
+            return ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
         }
     }
 
     public enum COMPILE_TYPE implements Parcelable {
         COMPILE_TYPE_MP4,
-        COMPILE_TYPE_GIF;
+        COMPILE_TYPE_GIF,
+        COMPILE_TYPE_HIGH_GIF;
         
         public static final Creator<COMPILE_TYPE> CREATOR = null;
 
@@ -179,11 +318,14 @@ public class VEVideoEncodeSettings implements Parcelable {
     public enum ENCODE_BITRATE_MODE implements Parcelable {
         ENCODE_BITRATE_ABR,
         ENCODE_BITRATE_CRF,
-        ENCODE_BITRATE_QP;
+        ENCODE_BITRATE_QP,
+        ENCODE_BITRATE_VBR;
         
         public static final Creator<ENCODE_BITRATE_MODE> CREATOR = null;
+        private static final ENCODE_BITRATE_MODE[] values = null;
 
         static {
+            values = values();
             CREATOR = new Creator<ENCODE_BITRATE_MODE>() {
                 public ENCODE_BITRATE_MODE createFromParcel(Parcel parcel) {
                     return ENCODE_BITRATE_MODE.values()[parcel.readInt()];
@@ -195,6 +337,10 @@ public class VEVideoEncodeSettings implements Parcelable {
             };
         }
 
+        public static ENCODE_BITRATE_MODE fromInteger(int i) {
+            return values[i];
+        }
+
         public void writeToParcel(Parcel parcel, int i) {
             parcel.writeInt(ordinal());
         }
@@ -204,7 +350,7 @@ public class VEVideoEncodeSettings implements Parcelable {
         }
     }
 
-    public enum ENCODE_LEVEL implements Parcelable {
+    public enum ENCODE_PRESET implements Parcelable {
         ENCODE_LEVEL_ULTRAFAST,
         ENCODE_LEVEL_SUPERFAST,
         ENCODE_LEVEL_VERYFAST,
@@ -216,16 +362,16 @@ public class VEVideoEncodeSettings implements Parcelable {
         ENCODE_LEVEL_VERYSLOW,
         ENCODE_LEVEL_PLACEBO;
         
-        public static final Creator<ENCODE_LEVEL> CREATOR = null;
+        public static final Creator<ENCODE_PRESET> CREATOR = null;
 
         static {
-            CREATOR = new Creator<ENCODE_LEVEL>() {
-                public ENCODE_LEVEL createFromParcel(Parcel parcel) {
-                    return ENCODE_LEVEL.values()[parcel.readInt()];
+            CREATOR = new Creator<ENCODE_PRESET>() {
+                public ENCODE_PRESET createFromParcel(Parcel parcel) {
+                    return ENCODE_PRESET.values()[parcel.readInt()];
                 }
 
-                public ENCODE_LEVEL[] newArray(int i) {
-                    return new ENCODE_LEVEL[i];
+                public ENCODE_PRESET[] newArray(int i) {
+                    return new ENCODE_PRESET[i];
                 }
             };
         }
@@ -304,17 +450,16 @@ public class VEVideoEncodeSettings implements Parcelable {
         this.speed = 1.0f;
         this.outputSize = new VESize(576, 1024);
         this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
-        this.bps = 0;
+        this.bps = 4194304;
         this.swCRF = 15;
         this.swQP = 2;
-        this.fps = 25;
+        this.fps = 30;
         this.gopSize = 60;
-        this.encodeLevel = ENCODE_LEVEL.ENCODE_LEVEL_ULTRAFAST.ordinal();
-        this.encodeStand = ENCODE_STANDARD.ENCODE_STANDARD_H264.ordinal();
+        this.swPreset = ENCODE_PRESET.ENCODE_LEVEL_ULTRAFAST.ordinal();
+        this.encodeStandard = ENCODE_STANDARD.ENCODE_STANDARD_H264.ordinal();
         this.encodeProfile = ENCODE_PROFILE.ENCODE_PROFILE_BASELINE.ordinal();
+        this.swMaxrate = 5000000;
         this.hasBFrame = false;
-        this.usage = 1;
-        this.mIsUseCloudConfig = false;
         this.outputSize = vESize;
         this.useHWEncoder = z;
         this.compileType = COMPILE_TYPE.COMPILE_TYPE_MP4;
@@ -329,17 +474,16 @@ public class VEVideoEncodeSettings implements Parcelable {
         this.speed = 1.0f;
         this.outputSize = new VESize(576, 1024);
         this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
-        this.bps = 0;
+        this.bps = 4194304;
         this.swCRF = 15;
         this.swQP = 2;
-        this.fps = 25;
+        this.fps = 30;
         this.gopSize = 60;
-        this.encodeLevel = ENCODE_LEVEL.ENCODE_LEVEL_ULTRAFAST.ordinal();
-        this.encodeStand = ENCODE_STANDARD.ENCODE_STANDARD_H264.ordinal();
+        this.swPreset = ENCODE_PRESET.ENCODE_LEVEL_ULTRAFAST.ordinal();
+        this.encodeStandard = ENCODE_STANDARD.ENCODE_STANDARD_H264.ordinal();
         this.encodeProfile = ENCODE_PROFILE.ENCODE_PROFILE_BASELINE.ordinal();
+        this.swMaxrate = 5000000;
         this.hasBFrame = false;
-        this.usage = 1;
-        this.mIsUseCloudConfig = false;
         this.outputSize = vESize;
         this.useHWEncoder = z;
         this.fps = i;
@@ -356,29 +500,27 @@ public class VEVideoEncodeSettings implements Parcelable {
         this.speed = 1.0f;
         this.outputSize = new VESize(576, 1024);
         this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
-        this.bps = 0;
+        this.bps = 4194304;
         this.swCRF = 15;
         this.swQP = 2;
-        this.fps = 25;
+        this.fps = 30;
         this.gopSize = 60;
-        this.encodeLevel = ENCODE_LEVEL.ENCODE_LEVEL_ULTRAFAST.ordinal();
-        this.encodeStand = ENCODE_STANDARD.ENCODE_STANDARD_H264.ordinal();
+        this.swPreset = ENCODE_PRESET.ENCODE_LEVEL_ULTRAFAST.ordinal();
+        this.encodeStandard = ENCODE_STANDARD.ENCODE_STANDARD_H264.ordinal();
         this.encodeProfile = ENCODE_PROFILE.ENCODE_PROFILE_BASELINE.ordinal();
+        this.swMaxrate = 5000000;
         this.hasBFrame = false;
-        this.usage = 1;
-        this.mIsUseCloudConfig = false;
         this.outputSize = vESize;
         this.useHWEncoder = z;
         this.fps = i;
         this.gopSize = i2;
         this.bps = i3;
-        this.encodeLevel = i4;
+        this.swPreset = i4;
         this.hasBFrame = z2;
         this.compileType = COMPILE_TYPE.COMPILE_TYPE_MP4;
     }
 
-    @Deprecated
-    public VEVideoEncodeSettings() {
+    private VEVideoEncodeSettings() {
         this.rotate = 0;
         this.resizeMode = 2;
         this.resizeX = 0.0f;
@@ -386,64 +528,22 @@ public class VEVideoEncodeSettings implements Parcelable {
         this.speed = 1.0f;
         this.outputSize = new VESize(576, 1024);
         this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
-        this.bps = 0;
+        this.bps = 4194304;
         this.swCRF = 15;
         this.swQP = 2;
-        this.fps = 25;
+        this.fps = 30;
         this.gopSize = 60;
-        this.encodeLevel = ENCODE_LEVEL.ENCODE_LEVEL_ULTRAFAST.ordinal();
-        this.encodeStand = ENCODE_STANDARD.ENCODE_STANDARD_H264.ordinal();
+        this.swPreset = ENCODE_PRESET.ENCODE_LEVEL_ULTRAFAST.ordinal();
+        this.encodeStandard = ENCODE_STANDARD.ENCODE_STANDARD_H264.ordinal();
         this.encodeProfile = ENCODE_PROFILE.ENCODE_PROFILE_BASELINE.ordinal();
+        this.swMaxrate = 5000000;
         this.hasBFrame = false;
-        this.usage = 1;
-        this.mIsUseCloudConfig = false;
         this.outputSize.width = 576;
         this.outputSize.height = 1024;
         this.fps = 30;
         this.bps = 4194304;
         this.useHWEncoder = true;
         this.compileType = COMPILE_TYPE.COMPILE_TYPE_MP4;
-    }
-
-    private VEVideoEncodeSettings(Builder builder) {
-        this.rotate = 0;
-        this.resizeMode = 2;
-        this.resizeX = 0.0f;
-        this.resizeY = 0.0f;
-        this.speed = 1.0f;
-        this.outputSize = new VESize(576, 1024);
-        this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
-        this.bps = 0;
-        this.swCRF = 15;
-        this.swQP = 2;
-        this.fps = 25;
-        this.gopSize = 60;
-        this.encodeLevel = ENCODE_LEVEL.ENCODE_LEVEL_ULTRAFAST.ordinal();
-        this.encodeStand = ENCODE_STANDARD.ENCODE_STANDARD_H264.ordinal();
-        this.encodeProfile = ENCODE_PROFILE.ENCODE_PROFILE_BASELINE.ordinal();
-        this.hasBFrame = false;
-        this.usage = 1;
-        this.mIsUseCloudConfig = false;
-        this.outputSize = builder.outputSize;
-        this.useHWEncoder = builder.useHWEncoder;
-        this.bitrateMode = builder.bitrateMode;
-        this.fps = builder.fps;
-        this.swQP = builder.swQP;
-        this.swCRF = builder.swCRF;
-        this.gopSize = builder.gopSize;
-        this.bps = builder.bps;
-        this.encodeLevel = builder.encodeLevel;
-        this.hasBFrame = builder.hasBFrame;
-        this.compileType = builder.compileType;
-        this.rotate = builder.rotate;
-        this.encodeProfile = builder.encodeProfile;
-        this.encodeStand = builder.encodeStand;
-        this.resizeMode = builder.resizeMode;
-        this.resizeX = builder.resizeX;
-        this.resizeY = builder.resizeY;
-        this.speed = builder.speed;
-        this.usage = builder.usage;
-        this.mIsUseCloudConfig = builder.mIsUseCloudConfig;
     }
 
     protected VEVideoEncodeSettings(Parcel parcel) {
@@ -455,17 +555,16 @@ public class VEVideoEncodeSettings implements Parcelable {
         this.speed = 1.0f;
         this.outputSize = new VESize(576, 1024);
         this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
-        this.bps = 0;
+        this.bps = 4194304;
         this.swCRF = 15;
         this.swQP = 2;
-        this.fps = 25;
+        this.fps = 30;
         this.gopSize = 60;
-        this.encodeLevel = ENCODE_LEVEL.ENCODE_LEVEL_ULTRAFAST.ordinal();
-        this.encodeStand = ENCODE_STANDARD.ENCODE_STANDARD_H264.ordinal();
+        this.swPreset = ENCODE_PRESET.ENCODE_LEVEL_ULTRAFAST.ordinal();
+        this.encodeStandard = ENCODE_STANDARD.ENCODE_STANDARD_H264.ordinal();
         this.encodeProfile = ENCODE_PROFILE.ENCODE_PROFILE_BASELINE.ordinal();
+        this.swMaxrate = 5000000;
         this.hasBFrame = false;
-        this.usage = 1;
-        this.mIsUseCloudConfig = false;
         this.compileType = (COMPILE_TYPE) parcel.readParcelable(COMPILE_TYPE.class.getClassLoader());
         this.rotate = parcel.readInt();
         this.resizeMode = parcel.readInt();
@@ -479,16 +578,16 @@ public class VEVideoEncodeSettings implements Parcelable {
         this.swCRF = parcel.readInt();
         this.swQP = parcel.readInt();
         this.gopSize = parcel.readInt();
-        this.encodeLevel = parcel.readInt();
-        this.encodeStand = parcel.readInt();
+        this.swPreset = parcel.readInt();
+        this.encodeStandard = parcel.readInt();
         this.encodeProfile = parcel.readInt();
         this.useHWEncoder = parcel.readByte() != (byte) 0;
-        this.hasBFrame = parcel.readByte() != (byte) 0;
-        this.usage = parcel.readInt();
         if (parcel.readByte() != (byte) 0) {
             z = true;
         }
-        this.mIsUseCloudConfig = z;
+        this.hasBFrame = z;
+        this.swMaxrate = parcel.readInt();
+        this.mWatermarkParam = (VEWatermarkParam) parcel.readParcelable(VEWatermarkParam.class.getClassLoader());
     }
 
     public void writeToParcel(Parcel parcel, int i) {
@@ -505,13 +604,13 @@ public class VEVideoEncodeSettings implements Parcelable {
         parcel.writeInt(this.swCRF);
         parcel.writeInt(this.swQP);
         parcel.writeInt(this.gopSize);
-        parcel.writeInt(this.encodeLevel);
-        parcel.writeInt(this.encodeStand);
+        parcel.writeInt(this.swPreset);
+        parcel.writeInt(this.encodeStandard);
         parcel.writeInt(this.encodeProfile);
         parcel.writeByte((byte) this.useHWEncoder);
         parcel.writeByte((byte) this.hasBFrame);
-        parcel.writeInt(this.usage);
-        parcel.writeByte((byte) this.mIsUseCloudConfig);
+        parcel.writeInt(this.swMaxrate);
+        parcel.writeParcelable(this.mWatermarkParam, i);
     }
 
     public int describeContents() {
@@ -520,6 +619,10 @@ public class VEVideoEncodeSettings implements Parcelable {
 
     public COMPILE_TYPE getCompileType() {
         return this.compileType;
+    }
+
+    public float getSpeed() {
+        return this.speed;
     }
 
     public int getFps() {
@@ -538,43 +641,27 @@ public class VEVideoEncodeSettings implements Parcelable {
                 return getSwCRF();
             case ENCODE_BITRATE_QP:
                 return getSwQP();
+            case ENCODE_BITRATE_VBR:
+                return getBps();
             default:
-                return 0;
+                throw new IllegalStateException("CompileTime BUG by SDK. Unhandled ENCODE_BITRATE_MODE enum value.");
         }
     }
 
     public int getBps() {
-        if (this.mIsUseCloudConfig && PerformanceConfig.sVECloudConfig != null) {
-            if (this.usage == 1) {
-                this.bps = PerformanceConfig.sVECloudConfig.mRecordHWEncodeBPS;
-            }
-            if (this.usage == 2) {
-                this.bps = PerformanceConfig.sVECloudConfig.mCompileEncodeHWBPS;
-            }
-            if (this.usage == 3) {
-                this.bps = PerformanceConfig.sVECloudConfig.mImportHWEncodeBPS;
-            }
-        }
         return this.bps;
     }
 
     public int getSwCRF() {
-        if (this.mIsUseCloudConfig && PerformanceConfig.sVECloudConfig != null) {
-            if (this.usage == 1) {
-                this.swCRF = PerformanceConfig.sVECloudConfig.mRecordSWEncodeCRF;
-            }
-            if (this.usage == 2) {
-                this.swCRF = PerformanceConfig.sVECloudConfig.mCompileEncodeSWCRF;
-            }
-            if (this.usage == 3) {
-                this.swCRF = PerformanceConfig.sVECloudConfig.mImportSWEncodeCRF;
-            }
-        }
         return this.swCRF;
     }
 
     public int getSwQP() {
         return this.swQP;
+    }
+
+    public int getSwMaxRate() {
+        return this.swMaxrate;
     }
 
     public VESize getVideoRes() {
@@ -598,50 +685,36 @@ public class VEVideoEncodeSettings implements Parcelable {
     }
 
     public boolean isHwEnc() {
-        if (this.mIsUseCloudConfig && PerformanceConfig.sVECloudConfig != null) {
-            boolean z = false;
-            if (this.usage == 1) {
-                this.useHWEncoder = PerformanceConfig.sVECloudConfig.mRecordEncodeMode == 1;
-            }
-            if (this.usage == 2) {
-                this.useHWEncoder = PerformanceConfig.sVECloudConfig.mCompileEncodeMode == 1;
-            }
-            if (this.usage == 3) {
-                if (PerformanceConfig.sVECloudConfig.mImportEncodeMode == 1) {
-                    z = true;
-                }
-                this.useHWEncoder = z;
-            }
-        }
         return this.useHWEncoder;
     }
 
     public int getGopSize() {
-        if (this.mIsUseCloudConfig && PerformanceConfig.sVECloudConfig != null && this.usage == 2) {
-            this.gopSize = PerformanceConfig.sVECloudConfig.mCompileEncodeGOP;
-        }
         return this.gopSize;
     }
 
-    public int getEncodeLevel() {
-        return this.encodeLevel;
+    public int getSwPreset() {
+        return this.swPreset;
     }
 
     public int getEncodeProfile() {
         return this.encodeProfile;
     }
 
-    public int getUsage() {
-        return this.usage;
+    public VEWatermarkParam getWatermarkParam() {
+        return this.mWatermarkParam;
     }
 
     public void setFps(int i) {
         this.fps = i;
     }
 
+    public void setSpeed(float f) {
+        this.speed = f;
+    }
+
     @Deprecated
     public void setBps(int i) {
-        this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
+        this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_VBR;
         this.bps = i;
     }
 
@@ -674,8 +747,12 @@ public class VEVideoEncodeSettings implements Parcelable {
         this.gopSize = i;
     }
 
-    public void setEncodeLevel(ENCODE_LEVEL encode_level) {
-        this.encodeLevel = encode_level.ordinal();
+    public void setWatermark(VEWatermarkParam vEWatermarkParam) {
+        this.mWatermarkParam = vEWatermarkParam;
+    }
+
+    public void setSwPreset(ENCODE_PRESET encode_preset) {
+        this.swPreset = encode_preset.ordinal();
     }
 
     public void setEncodeProfile(ENCODE_PROFILE encode_profile) {
@@ -688,12 +765,21 @@ public class VEVideoEncodeSettings implements Parcelable {
 
     public void setVideoBitrate(ENCODE_BITRATE_MODE encode_bitrate_mode, int i) {
         this.bitrateMode = encode_bitrate_mode;
-        if (this.bitrateMode == ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR) {
-            this.bps = i;
-        } else if (this.bitrateMode == ENCODE_BITRATE_MODE.ENCODE_BITRATE_CRF) {
-            this.swCRF = i;
-        } else if (this.bitrateMode == ENCODE_BITRATE_MODE.ENCODE_BITRATE_QP) {
-            this.swQP = i;
+        switch (this.bitrateMode) {
+            case ENCODE_BITRATE_ABR:
+                this.bps = i;
+                return;
+            case ENCODE_BITRATE_CRF:
+                this.swCRF = i;
+                return;
+            case ENCODE_BITRATE_QP:
+                this.swQP = i;
+                return;
+            case ENCODE_BITRATE_VBR:
+                this.bps = i;
+                return;
+            default:
+                throw new IllegalStateException("CompileTime BUG by sdk. Unhandled bitrateMode");
         }
     }
 
@@ -705,9 +791,5 @@ public class VEVideoEncodeSettings implements Parcelable {
     public void setQP(int i) {
         this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_QP;
         this.swQP = i;
-    }
-
-    public void setIsUseCloudConfig(boolean z) {
-        this.mIsUseCloudConfig = z;
     }
 }

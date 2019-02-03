@@ -1,6 +1,6 @@
 .class public final Lmiui/R$attr;
 .super Ljava/lang/Object;
-.source "SourceFile"
+.source "R.java"
 
 
 # annotations
@@ -109,6 +109,8 @@
 
 .field public static children_sequence_state:I
 
+.field public static circleProgressBarColor:I
+
 .field public static colorAccent:I
 
 .field public static colorDividerLine:I
@@ -138,6 +140,8 @@
 .field public static dropdownListViewBackground:I
 
 .field public static editTextSearchStyle:I
+
+.field public static editTextSpinnerBackground:I
 
 .field public static extensionAction:I
 
@@ -182,6 +186,8 @@
 .field public static listPopupItemBackground:I
 
 .field public static listViewItemBackground:I
+
+.field public static listViewItemBackgroundDialog:I
 
 .field public static lunarCalendar:I
 
@@ -246,6 +252,8 @@
 .field public static showMonth:I
 
 .field public static showYear:I
+
+.field public static spinnerEditBackground:I
 
 .field public static startingWindowOverlay:I
 
@@ -324,7 +332,7 @@
 
 # direct methods
 .method static constructor <clinit>()V
-    .locals 1
+    .registers 1
 
     .line 26
     const v0, 0x1001008a
@@ -561,532 +569,552 @@
 
     sput v0, Lmiui/R$attr;->children_sequence_state:I
 
-    .line 283
+    .line 284
+    const v0, 0x1001009b
+
+    sput v0, Lmiui/R$attr;->circleProgressBarColor:I
+
+    .line 290
     const v0, 0x10010084
 
     sput v0, Lmiui/R$attr;->colorAccent:I
 
-    .line 290
+    .line 297
     const v0, 0x10010089
 
     sput v0, Lmiui/R$attr;->colorDividerLine:I
 
-    .line 296
+    .line 303
     const v0, 0x10010083
 
     sput v0, Lmiui/R$attr;->colorPrimary:I
 
-    .line 305
+    .line 312
     const v0, 0x10010047
 
     sput v0, Lmiui/R$attr;->contentAutoFitSystemWindow:I
 
-    .line 311
+    .line 318
     const v0, 0x10010049
 
     sput v0, Lmiui/R$attr;->contentHeaderBackground:I
 
-    .line 319
+    .line 326
     const v0, 0x10010075
 
     sput v0, Lmiui/R$attr;->contentView:I
 
-    .line 328
+    .line 335
     const v0, 0x10010048
 
     sput v0, Lmiui/R$attr;->customViewAutoFitSystemWindow:I
 
-    .line 341
+    .line 348
     const v0, 0x10010082
 
     sput v0, Lmiui/R$attr;->dependencyType:I
 
-    .line 349
+    .line 356
     const v0, 0x1001007e
 
     sput v0, Lmiui/R$attr;->descending:I
 
-    .line 357
+    .line 364
     const v0, 0x10010078
 
     sput v0, Lmiui/R$attr;->dragEnabled:I
 
-    .line 365
+    .line 372
     const v0, 0x10010088
 
     sput v0, Lmiui/R$attr;->drawOverlay:I
 
-    .line 378
+    .line 385
     const v0, 0x1001001a
 
     sput v0, Lmiui/R$attr;->drawerEnabledOrientation:I
 
-    .line 391
+    .line 398
     const v0, 0x10010067
 
     sput v0, Lmiui/R$attr;->drawerMode:I
 
-    .line 398
+    .line 405
     const v0, 0x1001006b
 
     sput v0, Lmiui/R$attr;->dropdownListViewBackground:I
 
-    .line 402
+    .line 409
     const v0, 0x10010054
 
     sput v0, Lmiui/R$attr;->editTextSearchStyle:I
 
-    .line 411
+    .line 414
+    const v0, 0x1001009d
+
+    sput v0, Lmiui/R$attr;->editTextSpinnerBackground:I
+
+    .line 423
     const v0, 0x10010091
 
     sput v0, Lmiui/R$attr;->extensionAction:I
 
-    .line 420
+    .line 432
     const v0, 0x10010092
 
     sput v0, Lmiui/R$attr;->extensionInvoker:I
 
-    .line 429
+    .line 441
     const v0, 0x10010090
 
     sput v0, Lmiui/R$attr;->extensionTarget:I
 
-    .line 435
+    .line 447
     const v0, 0x10010096
 
     sput v0, Lmiui/R$attr;->fabColor:I
 
-    .line 443
+    .line 455
     const v0, 0x10010097
 
     sput v0, Lmiui/R$attr;->fabShadowEnabled:I
 
-    .line 448
+    .line 460
     const v0, 0x10010098
 
     sput v0, Lmiui/R$attr;->floatingActionButtonStyle:I
 
-    .line 453
+    .line 465
     const v0, 0x1001005f
 
     sput v0, Lmiui/R$attr;->guidePopupViewStyle:I
 
-    .line 457
+    .line 469
     const v0, 0x10010099
 
     sput v0, Lmiui/R$attr;->headerView:I
 
-    .line 466
+    .line 478
     const v0, 0x10010072
 
     sput v0, Lmiui/R$attr;->hidePopupArrow:I
 
-    .line 475
+    .line 487
     const v0, 0x10010080
 
     sput v0, Lmiui/R$attr;->hybridErrorPage:I
 
-    .line 488
+    .line 500
     const v0, 0x1001007f
 
     sput v0, Lmiui/R$attr;->hybridProgressBar:I
 
-    .line 497
+    .line 509
     const v0, 0x10010081
 
     sput v0, Lmiui/R$attr;->hybridPullable:I
 
-    .line 506
+    .line 518
     const v0, 0x1001004a
 
     sput v0, Lmiui/R$attr;->immersionMenuEnabled:I
 
-    .line 519
+    .line 531
     const v0, 0x10010060
 
     sput v0, Lmiui/R$attr;->immersionStatusBarStyle:I
 
-    .line 526
+    .line 538
     const v0, 0x10010069
 
     sput v0, Lmiui/R$attr;->immersionWindowBackground:I
 
-    .line 532
+    .line 544
     const v0, 0x10010087
 
     sput v0, Lmiui/R$attr;->indexerTextHighlightColor:I
 
-    .line 547
+    .line 559
     const v0, 0x10010019
 
     sput v0, Lmiui/R$attr;->landscapeNavigationWidth:I
 
-    .line 556
+    .line 568
     const v0, 0x10010043
 
     sput v0, Lmiui/R$attr;->layout_zdistance:I
 
-    .line 565
+    .line 577
     const v0, 0x10010062
 
     sput v0, Lmiui/R$attr;->level:I
 
-    .line 570
+    .line 582
     const v0, 0x10010052
 
     sput v0, Lmiui/R$attr;->listMenuBackground:I
 
-    .line 575
+    .line 587
     const v0, 0x1001001c
 
     sput v0, Lmiui/R$attr;->listPopupItemBackground:I
 
-    .line 580
+    .line 592
     const v0, 0x10010046
 
     sput v0, Lmiui/R$attr;->listViewItemBackground:I
 
-    .line 589
+    .line 597
+    const v0, 0x1001009e
+
+    sput v0, Lmiui/R$attr;->listViewItemBackgroundDialog:I
+
+    .line 606
     const v0, 0x1001003a
 
     sput v0, Lmiui/R$attr;->lunarCalendar:I
 
-    .line 600
+    .line 617
     const v0, 0x10010065
 
     sput v0, Lmiui/R$attr;->maxLevel:I
 
-    .line 609
+    .line 626
     const v0, 0x10010044
 
     sput v0, Lmiui/R$attr;->maxRotationDegree:I
 
-    .line 619
+    .line 636
     const v0, 0x10010063
 
     sput v0, Lmiui/R$attr;->minLevel:I
 
-    .line 626
+    .line 643
     const v0, 0x1001007b
 
     sput v0, Lmiui/R$attr;->minTextSize:I
 
-    .line 635
+    .line 652
     const v0, 0x1001003e
 
     sput v0, Lmiui/R$attr;->miui_version:I
 
-    .line 649
+    .line 666
     const v0, 0x10010066
 
     sput v0, Lmiui/R$attr;->moduleContent:I
 
-    .line 658
+    .line 675
     const v0, 0x10010061
 
     sput v0, Lmiui/R$attr;->name:I
 
-    .line 665
+    .line 682
     const v0, 0x10010016
 
     sput v0, Lmiui/R$attr;->navigationDivider:I
 
-    .line 673
+    .line 690
     const v0, 0x10010017
 
     sput v0, Lmiui/R$attr;->navigationDividerWidth:I
 
-    .line 678
+    .line 695
     const v0, 0x1001001b
 
     sput v0, Lmiui/R$attr;->navigationLayoutStyle:I
 
-    .line 685
+    .line 702
     const v0, 0x1001001f
 
     sput v0, Lmiui/R$attr;->navigationScrimColor:I
 
-    .line 690
+    .line 707
     const v0, 0x1001001e
 
     sput v0, Lmiui/R$attr;->navigationShadow:I
 
-    .line 701
+    .line 718
     const v0, 0x10010040
 
     sput v0, Lmiui/R$attr;->overScrollRange:I
 
-    .line 716
+    .line 733
     const v0, 0x10010018
 
     sput v0, Lmiui/R$attr;->portraitNavigationWidth:I
 
-    .line 721
+    .line 738
     const v0, 0x10010071
 
     sput v0, Lmiui/R$attr;->preferenceBackground:I
 
-    .line 728
+    .line 745
     const v0, 0x1001006f
 
     sput v0, Lmiui/R$attr;->preferencePrimaryTextColor:I
 
-    .line 739
+    .line 756
     const v0, 0x1001006c
 
     sput v0, Lmiui/R$attr;->preferenceScreenPaddingBottom:I
 
-    .line 746
+    .line 763
     const v0, 0x10010070
 
     sput v0, Lmiui/R$attr;->preferenceSecondaryTextColor:I
 
-    .line 751
+    .line 768
     const v0, 0x10010085
 
     sput v0, Lmiui/R$attr;->preferenceWithIconBackground:I
 
-    .line 756
+    .line 773
     const v0, 0x10010034
 
     sput v0, Lmiui/R$attr;->progressMask:I
 
-    .line 761
+    .line 778
     const v0, 0x10010079
 
     sput v0, Lmiui/R$attr;->radioButtonPreferenceStyle:I
 
-    .line 771
+    .line 788
     const v0, 0x1001009a
 
     sput v0, Lmiui/R$attr;->rangeOffset:I
 
-    .line 775
+    .line 792
     const v0, 0x1001007d
 
     sput v0, Lmiui/R$attr;->scrollDivider:I
 
-    .line 786
+    .line 803
     const v0, 0x10010041
 
     sput v0, Lmiui/R$attr;->scrollRange:I
 
-    .line 797
+    .line 814
     const v0, 0x10010042
 
     sput v0, Lmiui/R$attr;->scrollStart:I
 
-    .line 805
+    .line 822
     const v0, 0x10010077
 
     sput v0, Lmiui/R$attr;->scrollableView:I
 
-    .line 812
+    .line 829
     const v0, 0x10010086
 
     sput v0, Lmiui/R$attr;->searchActionModeInputBackground:I
 
-    .line 820
+    .line 837
     const v0, 0x1001005e
 
     sput v0, Lmiui/R$attr;->serviceName:I
 
-    .line 829
+    .line 846
     const v0, 0x1001003d
 
     sput v0, Lmiui/R$attr;->showDay:I
 
-    .line 838
+    .line 855
     const v0, 0x1001003c
 
     sput v0, Lmiui/R$attr;->showMonth:I
 
-    .line 847
+    .line 864
     const v0, 0x1001003b
 
     sput v0, Lmiui/R$attr;->showYear:I
 
-    .line 852
+    .line 869
+    const v0, 0x1001009c
+
+    sput v0, Lmiui/R$attr;->spinnerEditBackground:I
+
+    .line 874
     const v0, 0x10010074
 
     sput v0, Lmiui/R$attr;->startingWindowOverlay:I
 
-    .line 862
+    .line 884
     const v0, 0x1001000d
 
     sput v0, Lmiui/R$attr;->state_first_h:I
 
-    .line 872
+    .line 894
     const v0, 0x10010011
 
     sput v0, Lmiui/R$attr;->state_first_v:I
 
-    .line 882
+    .line 904
     const v0, 0x1001000f
 
     sput v0, Lmiui/R$attr;->state_last_h:I
 
-    .line 892
+    .line 914
     const v0, 0x10010013
 
     sput v0, Lmiui/R$attr;->state_last_v:I
 
-    .line 902
+    .line 924
     const v0, 0x1001000e
 
     sput v0, Lmiui/R$attr;->state_middle_h:I
 
-    .line 912
+    .line 934
     const v0, 0x10010012
 
     sput v0, Lmiui/R$attr;->state_middle_v:I
 
-    .line 922
+    .line 944
     const v0, 0x10010010
 
     sput v0, Lmiui/R$attr;->state_single_h:I
 
-    .line 932
+    .line 954
     const v0, 0x10010014
 
     sput v0, Lmiui/R$attr;->state_single_v:I
 
-    .line 937
+    .line 959
     const v0, 0x10010006
 
     sput v0, Lmiui/R$attr;->tabIndicator:I
 
-    .line 947
+    .line 969
     const v0, 0x10010064
 
     sput v0, Lmiui/R$attr;->targetLevel:I
 
-    .line 955
+    .line 977
     const v0, 0x10010076
 
     sput v0, Lmiui/R$attr;->targetView:I
 
-    .line 962
+    .line 984
     const v0, 0x10010068
 
     sput v0, Lmiui/R$attr;->textColorChecked:I
 
-    .line 969
+    .line 991
     const v0, 0x1001006d
 
     sput v0, Lmiui/R$attr;->textColorList:I
 
-    .line 976
+    .line 998
     const/high16 v0, 0x10010000
 
     sput v0, Lmiui/R$attr;->textColorNormal:I
 
-    .line 983
+    .line 1005
     const v0, 0x10010002
 
     sput v0, Lmiui/R$attr;->textColorNormalDisableOnly:I
 
-    .line 990
+    .line 1012
     const v0, 0x10010001
 
     sput v0, Lmiui/R$attr;->textColorNormalInverse:I
 
-    .line 997
+    .line 1019
     const v0, 0x10010003
 
     sput v0, Lmiui/R$attr;->textColorNormalInverseDisableOnly:I
 
-    .line 1004
+    .line 1026
     const v0, 0x10010005
 
     sput v0, Lmiui/R$attr;->textColorNormalInverseNoDisable:I
 
-    .line 1011
+    .line 1033
     const v0, 0x10010004
 
     sput v0, Lmiui/R$attr;->textColorNormalNoDisable:I
 
-    .line 1018
+    .line 1040
     const v0, 0x1001005b
 
     sput v0, Lmiui/R$attr;->textColorSecondaryTab:I
 
-    .line 1027
+    .line 1049
     const v0, 0x10010007
 
     sput v0, Lmiui/R$attr;->translucentTabIndicator:I
 
-    .line 1037
+    .line 1059
     const v0, 0x1001008e
 
     sput v0, Lmiui/R$attr;->triggerDistance:I
 
-    .line 1045
+    .line 1067
     const v0, 0x1001008d
 
     sput v0, Lmiui/R$attr;->triggerView:I
 
-    .line 1050
+    .line 1072
     const v0, 0x1001008f
 
     sput v0, Lmiui/R$attr;->triggerViewDrawerStyle:I
 
-    .line 1055
+    .line 1077
     const v0, 0x1001007a
 
     sput v0, Lmiui/R$attr;->valuePreferenceStyle:I
 
-    .line 1064
+    .line 1086
     const v0, 0x1001000b
 
     sput v0, Lmiui/R$attr;->windowActionBar:I
 
-    .line 1074
+    .line 1096
     const v0, 0x1001000c
 
     sput v0, Lmiui/R$attr;->windowActionBarOverlay:I
 
-    .line 1081
+    .line 1103
     const v0, 0x10010095
 
     sput v0, Lmiui/R$attr;->windowContentMask:I
 
-    .line 1090
+    .line 1112
     const v0, 0x10010073
 
     sput v0, Lmiui/R$attr;->windowDisablePreview:I
 
-    .line 1106
+    .line 1128
     const v0, 0x1001004d
 
     sput v0, Lmiui/R$attr;->windowFixedHeightMajor:I
 
-    .line 1122
+    .line 1144
     const v0, 0x1001004e
 
     sput v0, Lmiui/R$attr;->windowFixedHeightMinor:I
 
-    .line 1138
+    .line 1160
     const v0, 0x1001004b
 
     sput v0, Lmiui/R$attr;->windowFixedWidthMajor:I
 
-    .line 1154
+    .line 1176
     const v0, 0x1001004c
 
     sput v0, Lmiui/R$attr;->windowFixedWidthMinor:I
 
-    .line 1166
+    .line 1188
     const v0, 0x10010059
 
     sput v0, Lmiui/R$attr;->windowLayoutMode:I
 
-    .line 1175
+    .line 1197
     const v0, 0x1001000a
 
     sput v0, Lmiui/R$attr;->windowSplitActionBar:I
 
-    .line 1188
+    .line 1210
     const v0, 0x1001004f
 
     sput v0, Lmiui/R$attr;->windowTranslucentStatus:I
@@ -1095,7 +1123,7 @@
 .end method
 
 .method public constructor <init>()V
-    .locals 0
+    .registers 1
 
     .line 21
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
