@@ -17,7 +17,7 @@ final class Jdk9Platform extends Platform {
         this.getProtocolMethod = method2;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:3:0x0022 A:{Splitter: B:0:0x0000, ExcHandler: java.lang.IllegalAccessException (r5_1 'e' java.lang.Exception)} */
+    /* JADX WARNING: Removed duplicated region for block: B:3:0x0022 A:{ExcHandler: java.lang.IllegalAccessException (r5_1 'e' java.lang.Exception), Splitter: B:0:0x0000} */
     /* JADX WARNING: Missing block: B:3:0x0022, code:
             r5 = move-exception;
      */
@@ -35,7 +35,7 @@ final class Jdk9Platform extends Platform {
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:8:0x0019 A:{Splitter: B:0:0x0000, ExcHandler: java.lang.IllegalAccessException (r3_4 'e' java.lang.Exception)} */
+    /* JADX WARNING: Removed duplicated region for block: B:8:0x0019 A:{ExcHandler: java.lang.IllegalAccessException (r3_4 'e' java.lang.Exception), Splitter: B:0:0x0000} */
     /* JADX WARNING: Missing block: B:8:0x0019, code:
             r3 = move-exception;
      */
