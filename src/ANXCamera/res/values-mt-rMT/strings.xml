@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Ma jistax jaqbad mal-kamera</string>
     <string name="cannot_connect_camera_twice">"Għadu ma jistax jaqbad mal-kamera. Ipprova erġa' ibda t-tagħmir tiegħek mill-ġdid."</string>
     <string name="camera_disabled">Il-kamera ġiet mitfija</string>
-    <string name="camera_label">Kamera</string>
+    <string name="camera_label">AnX Kamera</string>
     <string name="video_camera_label">Vidjo kamera</string>
     <string name="no_storage">Daħħal SD kard qabel tuża l-kamera</string>
     <string name="not_enough_space">L-SD kard mimlija</string>

@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">ไม่สามารถเชื่อมต่อกล้องได้</string>
     <string name="cannot_connect_camera_twice">ยังคงไม่สามารถเชื่อมต่อกับกล้อง ลองปิด-เปิดเครื่องของคุณใหม่</string>
     <string name="camera_disabled">ปิดการใช้งานกล้องแล้ว</string>
-    <string name="camera_label">กล้อง</string>
+    <string name="camera_label">AnX กล้อง</string>
     <string name="video_camera_label">อัดวิดีโอ</string>
     <string name="no_storage">ใส่ SD การ์ดก่อนใช้งานกล้อง</string>
     <string name="not_enough_space">SD การ์ดเต็ม</string>

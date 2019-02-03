@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">ვერ ვუკავშირდები კამერას</string>
     <string name="cannot_connect_camera_twice">ისევ ვერ ვუკავშირდები კამერას. გადატვირთეთ ტელეფონი.</string>
     <string name="camera_disabled">კამერა გათიშულია</string>
-    <string name="camera_label">კამერა</string>
+    <string name="camera_label">AnX კამერა</string>
     <string name="video_camera_label">კამკორდერი</string>
     <string name="no_storage">კამერის გამოყენებამდე ჩადეთ SD ბარათი</string>
     <string name="not_enough_space">SD ბარათი სავსეა</string>

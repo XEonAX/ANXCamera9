@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">카메라에 연결할 수 없습니다.</string>
     <string name="cannot_connect_camera_twice">여전히 카메라에 연결할 수 없습니다. 기기를 재시작해 보십시오.</string>
     <string name="camera_disabled">카메라가 비활성화되었습니다.</string>
-    <string name="camera_label">카메라</string>
+    <string name="camera_label">AnX 카메라</string>
     <string name="video_camera_label">캠코더</string>
     <string name="no_storage">카메라를 사용하기 전에 SD 카드를 삽입하십시오.</string>
     <string name="not_enough_space">SD 카드가 가득 찼습니다.</string>
