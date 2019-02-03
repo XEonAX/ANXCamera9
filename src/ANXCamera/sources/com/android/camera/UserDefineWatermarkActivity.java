@@ -1,5 +1,6 @@
 package com.android.camera;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,7 +20,6 @@ import android.widget.Toast;
 import com.android.camera.sensitive.SensitiveFilter;
 import miui.R;
 import miui.app.ActionBar;
-import miui.app.Activity;
 
 public class UserDefineWatermarkActivity extends Activity implements TextWatcher {
     private static final int MSG_BG_FILTER_WORDS = 1;

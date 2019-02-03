@@ -87,7 +87,7 @@ public class LensServiceBridge extends Stub implements ServiceConnection {
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:9:0x0029 A:{ExcHandler: android.os.RemoteException (r0_6 'e' java.lang.Throwable), Splitter: B:5:0x001d} */
+    /* JADX WARNING: Removed duplicated region for block: B:9:0x0029 A:{Splitter: B:5:0x001d, ExcHandler: android.os.RemoteException (r0_6 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:9:0x0029, code:
             r0 = move-exception;
      */
@@ -116,7 +116,7 @@ public class LensServiceBridge extends Stub implements ServiceConnection {
         return (this.lensService == null || this.lensServiceSession == null || this.serviceApiVersion <= 0) ? false : true;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:6:0x002e A:{ExcHandler: android.os.RemoteException (r0_5 'e' java.lang.Throwable), Splitter: B:4:0x001f} */
+    /* JADX WARNING: Removed duplicated region for block: B:6:0x002e A:{Splitter: B:4:0x001f, ExcHandler: android.os.RemoteException (r0_5 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:6:0x002e, code:
             r0 = move-exception;
      */
@@ -135,7 +135,7 @@ public class LensServiceBridge extends Stub implements ServiceConnection {
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:7:0x001e A:{ExcHandler: android.os.RemoteException (r0_5 'e' java.lang.Throwable), Splitter: B:5:0x0014} */
+    /* JADX WARNING: Removed duplicated region for block: B:7:0x001e A:{Splitter: B:5:0x0014, ExcHandler: android.os.RemoteException (r0_5 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:7:0x001e, code:
             r0 = move-exception;
      */
