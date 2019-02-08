@@ -2,3 +2,4 @@ src/ANXCamera/build/
 out/
 .idea
 src/ANXCameraMagisk/system/priv-app/ANXCamera/ANXCamera.apk
+src/ANXCameraUnity/system/priv-app/ANXCamera/ANXCamera.apk

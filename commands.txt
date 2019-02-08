@@ -67,3 +67,17 @@ adb push .\out\ANXCameraMagisk.zip  /sdcard/zips
 & "C:\Program Files\7-Zip\7z.exe" a -tzip .\out\4K60ANXCameraMagisk.zip .\src\4K60ANXCameraMagisk\*
 
 copy .\out\4K60ANXCameraMagisk.zip /B .\out\4K60ANXCameraMagisk_%anxversion%.zip
+
+
+
+
+
+
+stock replacement
+java  -jar ..\ANXMiuiPortTools\apktool.jar d -p ..\ANXMiuiPortTools\MiuiFrameworks -f -o .\src\ANXMiuiCamera .\orig\MiuiCamera.apk
+java  -jar ..\ANXMiuiPortTools\apktool.jar b -p ..\ANXMiuiPortTools\MiuiFrameworks -o .\out\ANXMiuiCamera-Unsigned.apk .\src\ANXMiuiCamera
+java  -jar ..\ANXMiuiPortTools\signapk.jar ..\ANXMiuiPortTools\testkey.x509.pem ..\ANXMiuiPortTools\testkey.pk8 .\out\ANXMiuiCamera-Unsigned.apk .\out\ANXMiuiCamera.apk
+..\ANXMiuiPortTools\zipalign.exe -f 4  .\out\ANXMiuiCamera.apk .\out\MiuiCamera.apk
+xcopy /s /y .\out\MiuiCamera.apk .\src\ANXMiuiCameraMagisk\system\priv-app\MiuiCamera
+"C:\Program Files\7-Zip\7z.exe" a -tzip .\out\ANXMiuiCameraMagisk.zip .\src\ANXMiuiCameraMagisk\*
+copy .\out\ANXMiuiCameraMagisk.zip /B .\out\ANXMiuiCameraMagisk_%anxversion%.zip
