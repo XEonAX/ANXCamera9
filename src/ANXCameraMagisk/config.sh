@@ -40,11 +40,14 @@ LATESTARTSERVICE=false
 # Set what you want to show when installing your mod
 
 print_modname() {
+  ui_print " "
   ui_print "************************************"
   ui_print "   MIUI Camera Port for Poco F1     "
   ui_print "                                    "
-  ui_print " Created by AEonAX and Abhishek987  "
+  ui_print "         Created by AEonAX,         "
+  ui_print "     CodeElixir and Abhishek987     "
   ui_print "************************************"
+  ui_print " "
 }
 
 ##########################################################################################

@@ -724,9 +724,9 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
         Log.d(TAG, "onStop end");
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable), Splitter: B:16:0x0035} */
-    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable), Splitter: B:16:0x0035} */
-    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable), Splitter: B:16:0x0035} */
+    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{Splitter: B:16:0x0035, ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{Splitter: B:16:0x0035, ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{Splitter: B:16:0x0035, ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:18:0x007a, code:
             r0 = move-exception;
      */
