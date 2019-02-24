@@ -2,13 +2,13 @@ package com.android.camera.network.net;
 
 import com.android.camera.log.Log;
 import com.android.camera.network.net.base.Cacheable;
-import com.android.volley.Cache.Entry;
-import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.Cache.C0002Entry;
+import com.android.volley.toolbox.C0041DiskBasedCache;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GalleryCache extends DiskBasedCache {
+public class GalleryCache extends C0041DiskBasedCache {
     private static final String TAG = "GalleryCache";
 
     public GalleryCache(File file, int i) {
@@ -22,15 +22,15 @@ public class GalleryCache extends DiskBasedCache {
     }
 
     @Deprecated
-    public synchronized void put(String str, Entry entry) {
+    public synchronized void put(String str, C0002Entry c0002Entry) {
     }
 
     public synchronized void put(String str, byte[] bArr, long j, long j2) {
-        Entry entry = new Entry();
-        entry.data = bArr;
-        entry.ttl = j;
-        entry.softTtl = j2;
-        super.put(str, entry);
+        C0002Entry c0002Entry = new C0002Entry();
+        c0002Entry.data = bArr;
+        c0002Entry.ttl = j;
+        c0002Entry.softTtl = j2;
+        super.put(str, c0002Entry);
         String str2 = TAG;
         String str3 = "put cache. key %s size %s expires %s";
         Object[] objArr = new Object[3];
@@ -44,24 +44,24 @@ public class GalleryCache extends DiskBasedCache {
         Log.d(str2, String.format(str3, objArr));
     }
 
-    public synchronized Entry get(String str) {
-        Entry entry;
-        entry = super.get(str);
-        if (entry != null) {
+    public synchronized C0002Entry get(String str) {
+        C0002Entry c0002Entry;
+        c0002Entry = super.get(str);
+        if (c0002Entry != null) {
             Map hashMap = new HashMap();
             hashMap.put(Cacheable.HEADER_FROM_CACHE, String.valueOf(true));
-            entry.responseHeaders = hashMap;
-            Log.d(TAG, String.format("get cache: key %s, isExpired: %s", new Object[]{Integer.valueOf(str.hashCode()), Boolean.valueOf(entry.isExpired())}));
-            if (!entry.isExpired()) {
+            c0002Entry.responseHeaders = hashMap;
+            Log.d(TAG, String.format("get cache: key %s, isExpired: %s", new Object[]{Integer.valueOf(str.hashCode()), Boolean.valueOf(c0002Entry.isExpired())}));
+            if (!c0002Entry.isExpired()) {
                 Log.d(TAG, "cache hit.");
             }
         }
-        return entry;
+        return c0002Entry;
     }
 
     public synchronized boolean isCacheValid(String str) {
-        Entry entry = super.get(str);
-        if (entry == null || entry.isExpired()) {
+        C0002Entry c0002Entry = super.get(str);
+        if (c0002Entry == null || c0002Entry.isExpired()) {
             return false;
         }
         return true;

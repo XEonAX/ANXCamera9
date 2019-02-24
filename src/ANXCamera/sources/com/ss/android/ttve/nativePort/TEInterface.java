@@ -4,7 +4,6 @@ import android.support.annotation.Keep;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.Surface;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.ss.android.vesdk.VEException;
 import com.ss.android.vesdk.VERect;
 import com.ss.android.vesdk.VEResult;
@@ -308,7 +307,7 @@ public final class TEInterface extends TENativeServiceBase {
             throw new VEException(VEResult.TER_INVALID_HANDLER, "");
         } else if (this.mHostTrackIndex >= 0) {
             Object nativeGetInfoStickerBoundingBox = nativeGetInfoStickerBoundingBox(this.mNative, i);
-            if (nativeGetInfoStickerBoundingBox[0] == PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+            if (nativeGetInfoStickerBoundingBox[0] == 0.0f) {
                 Object obj = new float[4];
                 System.arraycopy(nativeGetInfoStickerBoundingBox, 1, obj, 0, 4);
                 return obj;
@@ -659,7 +658,7 @@ public final class TEInterface extends TENativeServiceBase {
 
     public float getTrackVolume(int i, int i2, int i3) {
         if (this.mNative == 0) {
-            return PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+            return 0.0f;
         }
         return nativeGetTrackVolume(this.mNative, i, i2, i3);
     }

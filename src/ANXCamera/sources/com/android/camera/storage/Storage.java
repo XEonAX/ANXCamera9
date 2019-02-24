@@ -160,7 +160,7 @@ public class Storage {
             Class[] clsArr = new Class[]{StorageStatsManager.class};
             Method method = Util.getMethod(clsArr, "isQuotaSupported", "(Ljava/util/UUID;)Z");
             if (method != null) {
-                sQuotaSupported = method.invokeBoolean(clsArr[0], storageStatsManager, new Object[]{StorageManager.UUID_DEFAULT});
+                sQuotaSupported = method.invokeBoolean(clsArr[0], storageStatsManager, StorageManager.UUID_DEFAULT);
                 if (sQuotaSupported) {
                     long totalBytes = new StatFs(PRIMARY_STORAGE_PATH).getTotalBytes();
                     sQuotaBytes = (long) (0.9f * ((float) totalBytes));

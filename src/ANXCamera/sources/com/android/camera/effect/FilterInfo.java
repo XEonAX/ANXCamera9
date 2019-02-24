@@ -1,6 +1,7 @@
 package com.android.camera.effect;
 
 import android.support.annotation.NonNull;
+import android.support.v4.internal.view.SupportMenu;
 import com.xiaomi.engine.CameraCombinationMode;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -97,7 +98,7 @@ public class FilterInfo implements Comparable<FilterInfo> {
     }
 
     public static int getIndex(int i) {
-        return i & 65535;
+        return i & SupportMenu.USER_MASK;
     }
 
     public int compareTo(@NonNull FilterInfo filterInfo) {

@@ -8,16 +8,16 @@ Decompile
 java  -jar ..\ANXMiuiPortTools\apktool.jar d -p ..\ANXMiuiPortTools\MiuiFrameworks -f -o .\src\ANXCamera .\orig\MiuiCamera.apk
 
 Decompile Miui ROM
-java -jar baksmali-2.2.5.jar d -o android-support-v7-recyclerview G:\Downloads\Android\system109124\vdexExtractor_deodexed\android-support-v7-recyclerview\android-support-v7-recyclerview_classes.dex.dex
-java -jar baksmali-2.2.5.jar d -o android-support-v13 G:\Downloads\Android\system109124\vdexExtractor_deodexed\android-support-v13\android-support-v13_classes.dex.dex
-java -jar baksmali-2.2.5.jar d -o boot-framework G:\Downloads\Android\system109124\vdexExtractor_deodexed\boot-framework\boot-framework_classes.dex
-java -jar baksmali-2.2.5.jar d -o boot-framework2 G:\Downloads\Android\system109124\vdexExtractor_deodexed\boot-framework\boot-framework_classes2.dex
-java -jar baksmali-2.2.5.jar d -o boot-framework3 G:\Downloads\Android\system109124\vdexExtractor_deodexed\boot-framework\boot-framework_classes3.dex
-java -jar baksmali-2.2.5.jar d -o boot-miui G:\Downloads\Android\system109124\vdexExtractor_deodexed\boot-miui\boot-miui_classes.dex
-java -jar baksmali-2.2.5.jar d -o boot-miuisystem G:\Downloads\Android\system109124\vdexExtractor_deodexed\boot-miuisystem\boot-miuisystem_classes.dex
-java -jar baksmali-2.2.5.jar d -o gson G:\Downloads\Android\system109124\vdexExtractor_deodexed\gson\gson_classes.dex.dex
-java -jar baksmali-2.2.5.jar d -o volley G:\Downloads\Android\system109124\vdexExtractor_deodexed\volley\volley_classes.dex.dex
-java -jar baksmali-2.2.5.jar d -o zxing G:\Downloads\Android\system109124\vdexExtractor_deodexed\zxing\zxing_classes.dex.dex
+java -jar baksmali-2.2.6.jar d -o android-support-v7-recyclerview .\framework\vdexExtractor_deodexed\android-support-v7-recyclerview\android-support-v7-recyclerview_classes.dex.dex
+java -jar baksmali-2.2.6.jar d -o android-support-v13 .\framework\vdexExtractor_deodexed\android-support-v13\android-support-v13_classes.dex.dex
+java -jar baksmali-2.2.6.jar d -o boot-framework .\framework\vdexExtractor_deodexed\boot-framework\boot-framework_classes.dex
+java -jar baksmali-2.2.6.jar d -o boot-framework2 .\framework\vdexExtractor_deodexed\boot-framework\boot-framework_classes2.dex
+java -jar baksmali-2.2.6.jar d -o boot-framework3 .\framework\vdexExtractor_deodexed\boot-framework\boot-framework_classes3.dex
+java -jar baksmali-2.2.6.jar d -o boot-miui .\framework\vdexExtractor_deodexed\boot-miui\boot-miui_classes.dex
+java -jar baksmali-2.2.6.jar d -o boot-miuisystem .\framework\vdexExtractor_deodexed\boot-miuisystem\boot-miuisystem_classes.dex
+java -jar baksmali-2.2.6.jar d -o gson .\framework\vdexExtractor_deodexed\gson\gson_classes.dex.dex
+java -jar baksmali-2.2.6.jar d -o volley .\framework\vdexExtractor_deodexed\volley\volley_classes.dex.dex
+java -jar baksmali-2.2.6.jar d -o zxing .\framework\vdexExtractor_deodexed\zxing\zxing_classes.dex.dex
 
 
 Recompile
@@ -71,3 +71,9 @@ java  -jar ..\ANXMiuiPortTools\signapk.jar ..\ANXMiuiPortTools\testkey.x509.pem 
 xcopy /s /y .\out\MiuiCamera.apk .\src\ANXMiuiCameraMagisk\system\priv-app\MiuiCamera
 "C:\Program Files\7-Zip\7z.exe" a -tzip .\out\ANXMiuiCameraMagisk.zip .\src\ANXMiuiCameraMagisk\*
 copy .\out\ANXMiuiCameraMagisk.zip /B .\out\ANXMiuiCameraMagisk_%anxversion%.zip
+
+
+
+deodex system
+cd /mnt/g/downloads/android/vdex/vdexExtractor
+/mnt/g/Downloads/Android/vdex/vdexExtractor/tools/deodex/run.sh -i /mnt/g/Downloads/Android/systembery9221/framework -o /mnt/g/Downloads/Android/systembery9221deodex/framework

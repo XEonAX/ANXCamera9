@@ -1,14 +1,12 @@
 package com.ss.android.ttve.model;
 
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
-
 public class ReshapeFaceBean {
     private float mCheekIntensity;
     private float mEyeIntensity;
     private String mResPath;
 
     public ReshapeFaceBean() {
-        this("", PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        this("", 0.0f, 0.0f);
     }
 
     public ReshapeFaceBean(String str, float f, float f2) {

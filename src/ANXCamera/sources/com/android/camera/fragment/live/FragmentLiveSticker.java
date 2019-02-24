@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
+import android.support.v7.widget.RecyclerView.ItemAnimator;
 import android.support.v7.widget.RecyclerView.ItemDecoration;
 import android.support.v7.widget.RecyclerView.State;
 import android.view.LayoutInflater;
@@ -47,7 +48,6 @@ import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.sticker.LiveStickerInfo;
 import com.bumptech.glide.c;
 import com.bumptech.glide.request.f;
-import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
 import io.reactivex.Completable;
 import io.reactivex.CompletableObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -310,7 +310,7 @@ public class FragmentLiveSticker extends FragmentLiveBase implements OnCtaNotice
                 }
             }
         });
-        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+        ItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setChangeDuration(150);
         defaultItemAnimator.setMoveDuration(150);
         defaultItemAnimator.setAddDuration(150);
@@ -505,7 +505,7 @@ public class FragmentLiveSticker extends FragmentLiveBase implements OnCtaNotice
     }
 
     private void updateData() {
-        new TTLiveStickerResourceRequest(CameraSettings.isLiveStickerInternalChannel() ? "local_test" : MonitorCommonConstants.DEFAULT_AID, MonitorCommonConstants.DEFAULT_AID).execute(CameraSettings.isLiveStickerInternalChannel() ^ 1, new ResponseListener() {
+        new TTLiveStickerResourceRequest(CameraSettings.isLiveStickerInternalChannel() ? "local_test" : "default", "default").execute(CameraSettings.isLiveStickerInternalChannel() ^ 1, new ResponseListener() {
             public void onResponse(Object... objArr) {
                 final List list = (List) objArr[0];
                 Completable.fromAction(new Action() {

@@ -1,5 +1,6 @@
 package com.android.camera.effect.renders;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,6 +13,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
+import android.provider.MiuiSettings.ScreenEffect;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import com.android.camera.ActivityBase;
@@ -34,7 +36,6 @@ import com.android.camera.module.ModuleManager;
 import com.android.camera.sticker.glutils.OpenGLUtils;
 import com.android.camera.storage.ImageSaver;
 import com.android.camera.storage.Storage;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera.watermark.WaterMarkBitmap;
 import com.android.camera.watermark.WaterMarkData;
 import com.android.gallery3d.exif.ExifInterface;
@@ -198,7 +199,7 @@ public class SnapshotEffectRender {
             this.mGLCanvas.getState().pushState();
             if (i3 != 0) {
                 this.mGLCanvas.getState().translate((float) (waterMark.getCenterX() + i), (float) (waterMark.getCenterY() + i2));
-                this.mGLCanvas.getState().rotate((float) (-i3), PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f);
+                this.mGLCanvas.getState().rotate((float) (-i3), 0.0f, 0.0f, 1.0f);
                 this.mGLCanvas.getState().translate((float) ((-i) - waterMark.getCenterX()), (float) ((-i2) - waterMark.getCenterY()));
             }
             this.mGLCanvas.getBasicRender().draw(new DrawBasicTexAttribute(waterMark.getTexture(), i + waterMark.getLeft(), i2 + waterMark.getTop(), waterMark.getWidth(), waterMark.getHeight()));
@@ -253,7 +254,7 @@ public class SnapshotEffectRender {
                 WaterMarkBitmap waterMarkBitmap = new WaterMarkBitmap(list);
                 WaterMarkData waterMarkData = waterMarkBitmap.getWaterMarkData();
                 if (waterMarkData != null) {
-                    drawWaterMark(new AgeGenderAndMagicMirrorWaterMark(waterMarkData.getImage(), i, i2, i5, i3, i4, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO), 0, 0, i5 - waterMarkData.getOrientation());
+                    drawWaterMark(new AgeGenderAndMagicMirrorWaterMark(waterMarkData.getImage(), i, i2, i5, i3, i4, 0.0f, 0.0f), 0, 0, i5 - waterMarkData.getOrientation());
                 }
                 waterMarkBitmap.releaseBitmap();
                 Log.d(WaterMarkBitmap.class.getSimpleName(), "Draw age_gender_and_magic_mirror water mark");
@@ -273,7 +274,7 @@ public class SnapshotEffectRender {
             stringBuilder.append("jpeg decompress total time =");
             stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
             Log.d(access$700, stringBuilder.toString());
-            int[] watermarkRange = Util.getWatermarkRange(drawJPEGAttribute2.mWidth, drawJPEGAttribute2.mHeight, (drawJPEGAttribute2.mJpegOrientation + 270) % 360, drawJPEGAttribute2.mDualCameraWaterMarkEnabled, drawJPEGAttribute2.mTimeWaterMarkText != null, 0.1f);
+            int[] watermarkRange = Util.getWatermarkRange(drawJPEGAttribute2.mWidth, drawJPEGAttribute2.mHeight, (drawJPEGAttribute2.mJpegOrientation + 270) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT, drawJPEGAttribute2.mDualCameraWaterMarkEnabled, drawJPEGAttribute2.mTimeWaterMarkText != null, 0.1f);
             int i = watermarkRange[2];
             int i2 = watermarkRange[3];
             int i3 = drawJPEGAttribute2.mPreviewWidth;
@@ -599,7 +600,6 @@ public class SnapshotEffectRender {
                     SnapshotEffectRender.this.mTitleMap.remove(drawJPEGAttribute2.mTitle);
                 }
                 String str = null;
-                Object access$000;
                 if (SnapshotEffectRender.this.mImageSaver != null) {
                     String str2;
                     ImageSaver access$2300 = SnapshotEffectRender.this.mImageSaver;
@@ -627,7 +627,7 @@ public class SnapshotEffectRender {
                     access$2300.addImage(bArr, z4, str2, str3, j, uri, location, i2, i3, exifInterface, i4, false, false, z3, false, z2, drawJPEGAttribute2.mAlgorithmName, drawJPEGAttribute2.mInfo, drawJPEGAttribute2.mPreviewThumbnailHash);
                 } else if (drawJPEGAttribute2.mUri == null) {
                     Log.d(SnapshotEffectRender.TAG, "addImageForEffect");
-                    access$000 = SnapshotEffectRender.this.mActivity;
+                    Activity access$000 = SnapshotEffectRender.this.mActivity;
                     if (access$7002 == null) {
                         access$7002 = drawJPEGAttribute2.mTitle;
                     }
@@ -638,7 +638,7 @@ public class SnapshotEffectRender {
                     stringBuilder2.append("updateImage: uri=");
                     stringBuilder2.append(drawJPEGAttribute2.mUri);
                     Log.d(access$700, stringBuilder2.toString());
-                    access$000 = SnapshotEffectRender.this.mActivity;
+                    Context access$0002 = SnapshotEffectRender.this.mActivity;
                     byte[] bArr2 = drawJPEGAttribute2.mData;
                     ExifInterface exifInterface2 = drawJPEGAttribute2.mExif;
                     Uri uri2 = drawJPEGAttribute2.mUri;
@@ -650,7 +650,7 @@ public class SnapshotEffectRender {
                     if (access$7002 != null) {
                         str = drawJPEGAttribute2.mTitle;
                     }
-                    Storage.updateImage(access$000, bArr2, exifInterface2, uri2, str4, location2, i5, i6, i7, str);
+                    Storage.updateImage(access$0002, bArr2, exifInterface2, uri2, str4, location2, i5, i6, i7, str);
                 }
             } else if (drawJPEGAttribute2.mExif != null) {
                 OutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -739,9 +739,9 @@ public class SnapshotEffectRender {
         if (CameraSettings.isSupportedDualCameraWaterMark()) {
             this.mDualCameraWaterMarkBitmap = loadCameraWatermark(activityBase);
             this.mCurrentCustomWaterMarkText = CameraSettings.getCustomWatermark();
-            this.mDualCameraWaterMarkSizeRatio = getResourceFloat(R.dimen.dualcamera_watermark_size_ratio, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
-            this.mDualCameraWaterMarkPaddingXRatio = getResourceFloat(R.dimen.dualcamera_watermark_padding_x_ratio, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
-            this.mDualCameraWaterMarkPaddingYRatio = getResourceFloat(R.dimen.dualcamera_watermark_padding_y_ratio, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            this.mDualCameraWaterMarkSizeRatio = getResourceFloat(R.dimen.dualcamera_watermark_size_ratio, 0.0f);
+            this.mDualCameraWaterMarkPaddingXRatio = getResourceFloat(R.dimen.dualcamera_watermark_padding_x_ratio, 0.0f);
+            this.mDualCameraWaterMarkPaddingYRatio = getResourceFloat(R.dimen.dualcamera_watermark_padding_y_ratio, 0.0f);
         }
         this.mSquareModeExtraMargin = this.mActivity.getResources().getDimensionPixelSize(R.dimen.square_mode_bottom_cover_extra_margin);
     }

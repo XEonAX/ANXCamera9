@@ -51,10 +51,13 @@ import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.os.SystemProperties;
 import android.provider.MiuiSettings;
+import android.provider.MiuiSettings.ScreenEffect;
 import android.provider.Settings.Global;
 import android.provider.Settings.Secure;
 import android.provider.Settings.SettingNotFoundException;
 import android.provider.Settings.System;
+import android.support.v4.os.EnvironmentCompat;
+import android.support.v4.view.InputDeviceCompat;
 import android.support.v4.view.ViewCompat;
 import android.telephony.TelephonyManager;
 import android.text.SpannableStringBuilder;
@@ -91,7 +94,6 @@ import com.android.camera.module.loader.camera2.Camera2DataContainer;
 import com.android.camera.permission.PermissionManager;
 import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.storage.Storage;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera2.AECFrameControl;
 import com.android.camera2.AFFrameControl;
 import com.android.camera2.ArcsoftDepthMap;
@@ -146,8 +148,6 @@ import miui.hardware.display.DisplayFeatureManager;
 import miui.os.Build;
 import miui.reflect.Field;
 import miui.reflect.Method;
-import miui.reflect.NoSuchClassException;
-import miui.reflect.NoSuchFieldException;
 import miui.reflect.NoSuchMethodException;
 import miui.security.SecurityManager;
 import miui.util.IOUtils;
@@ -206,7 +206,7 @@ public final class Util {
     public static final String REVIEW_ACTIVITY_PACKAGE = "com.miui.gallery";
     public static final String REVIEW_SCAN_RESULT_PACKAGE = "com.xiaomi.scanner";
     public static final int SCREEN_EFFECT_CAMERA_STATE = 14;
-    public static final Uri SCREEN_SLIDE_STATUS_SETTING_URI = System.getUriFor("sc_status");
+    public static final Uri SCREEN_SLIDE_STATUS_SETTING_URI = System.getUriFor(MiuiSettings.System.MIUI_SLIDER_COVER_STATUS);
     private static final String SCREEN_VENDOR = SystemProperties.get("sys.panel.display");
     private static final String TAG = "CameraUtil";
     private static final String TEMP_SUFFIX = ".tmp";
@@ -233,7 +233,7 @@ public final class Util {
     private static float sPixelDensity = 1.0f;
     public static int sStatusBarHeight;
     private static HashMap<String, Typeface> sTypefaces = new HashMap();
-    public static int sWindowHeight = 1080;
+    public static int sWindowHeight = ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_END_DEAULT;
     private static IWindowManager sWindowManager;
     public static int sWindowWidth = LIMIT_SURFACE_WIDTH;
 
@@ -401,11 +401,11 @@ public final class Util {
         Matrix matrix = new Matrix();
         if (z) {
             matrix.postScale(-1.0f, 1.0f);
-            i = (i + 360) % 360;
+            i = (i + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
             if (i == 0 || i == 180) {
-                matrix.postTranslate((float) bitmap.getWidth(), PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                matrix.postTranslate((float) bitmap.getWidth(), 0.0f);
             } else if (i == 90 || i == 270) {
-                matrix.postTranslate((float) bitmap.getHeight(), PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                matrix.postTranslate((float) bitmap.getHeight(), 0.0f);
             } else {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("Invalid degrees=");
@@ -864,12 +864,12 @@ public final class Util {
     }
 
     public static int getShootOrientation(Activity activity, int i) {
-        return ((i - getDisplayRotation(activity)) + 360) % 360;
+        return ((i - getDisplayRotation(activity)) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
     }
 
     public static float getShootRotation(Activity activity, float f) {
         f -= (float) getDisplayRotation(activity);
-        while (f < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+        while (f < 0.0f) {
             f += 360.0f;
         }
         while (f > 360.0f) {
@@ -912,9 +912,9 @@ public final class Util {
         }
         int sensorOrientation = capabilities.getSensorOrientation();
         if (capabilities.getFacing() == 0) {
-            i = (360 - ((sensorOrientation + i) % 360)) % 360;
+            i = (360 - ((sensorOrientation + i) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT)) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         } else {
-            i = ((sensorOrientation - i) + 360) % 360;
+            i = ((sensorOrientation - i) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         }
         return i;
     }
@@ -945,7 +945,7 @@ public final class Util {
         if (obj == null) {
             return i2;
         }
-        i = (((i + 45) / 90) * 90) % 360;
+        i = (((i + 45) / 90) * 90) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("onOrientationChanged: orientation = ");
@@ -976,10 +976,10 @@ public final class Util {
         double d3;
         CameraSize cameraSize3;
         int integer = d.getInteger(d.tv, 0);
-        int i4 = 1080;
+        int i4 = ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_END_DEAULT;
         if (integer != 0) {
             int i5 = i2 == Camera2DataContainer.getInstance().getFrontCameraId() ? 1 : 0;
-            if (sWindowWidth < 1080) {
+            if (sWindowWidth < ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_END_DEAULT) {
                 integer &= -15;
             }
             i5 = i5 != 0 ? 2 : 1;
@@ -1350,7 +1350,7 @@ public final class Util {
     public static void fadeIn(View view, int i) {
         if (view != null && view.getVisibility() != 0) {
             view.setVisibility(0);
-            Animation alphaAnimation = new AlphaAnimation(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f);
+            Animation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
             alphaAnimation.setDuration((long) i);
             view.clearAnimation();
             view.startAnimation(alphaAnimation);
@@ -1363,7 +1363,7 @@ public final class Util {
 
     public static void fadeOut(View view, int i) {
         if (view != null && view.getVisibility() == 0) {
-            Animation alphaAnimation = new AlphaAnimation(1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            Animation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
             alphaAnimation.setDuration((long) i);
             view.clearAnimation();
             view.startAnimation(alphaAnimation);
@@ -1382,9 +1382,9 @@ public final class Util {
             Log.w(TAG, "getJpegRotation: orientation UNKNOWN!!! return sensorOrientation...");
             return sensorOrientation;
         } else if (capabilities.getFacing() == 0) {
-            return ((sensorOrientation - i2) + 360) % 360;
+            return ((sensorOrientation - i2) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         } else {
-            return (sensorOrientation + i2) % 360;
+            return (sensorOrientation + i2) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         }
     }
 
@@ -1837,14 +1837,14 @@ public final class Util {
     public static int getIntField(String str, Object obj, String str2, String str3) {
         try {
             return Field.of(str, str2, str3).getInt(obj);
-        } catch (NoSuchClassException e) {
+        } catch (Throwable e) {
             str2 = TAG;
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("no class ");
             stringBuilder.append(str);
             Log.e(str2, stringBuilder.toString(), e);
             return Integer.MIN_VALUE;
-        } catch (NoSuchFieldException e2) {
+        } catch (Throwable e2) {
             Log.e(TAG, "no field ", e2);
             return Integer.MIN_VALUE;
         }
@@ -2044,7 +2044,7 @@ public final class Util {
     }
 
     public static boolean isFullScreenNavBarHidden(Context context) {
-        return MiuiSettings.Global.getBoolean(context.getContentResolver(), "force_fsg_nav_bar");
+        return MiuiSettings.Global.getBoolean(context.getContentResolver(), MiuiSettings.Global.FORCE_FSG_NAV_BAR);
     }
 
     public static boolean isPackageAvailable(Context context, String str) {
@@ -2086,7 +2086,7 @@ public final class Util {
             Class cls = Class.forName("miui.content.pm.PreloadedAppPolicy");
             Method of = Method.of(cls, "installPreloadedDataApp", CompatibilityUtils.getInstallMethodDescription());
             int i = z ? 1 : z2 ? 2 : 0;
-            boolean invokeBoolean = of.invokeBoolean(cls, null, new Object[]{context, str, packageInstallObserver, Integer.valueOf(i)});
+            boolean invokeBoolean = of.invokeBoolean(cls, null, context, str, packageInstallObserver, Integer.valueOf(i));
             String str3 = TAG;
             StringBuilder stringBuilder2 = new StringBuilder();
             stringBuilder2.append("installPackage: result=");
@@ -2115,7 +2115,7 @@ public final class Util {
 
     public static final boolean isAppLocked(Context context, String str) {
         boolean z = false;
-        if (!(Secure.getInt(context.getContentResolver(), "access_control_lock_enabled", -1) == 1)) {
+        if (!(Secure.getInt(context.getContentResolver(), MiuiSettings.Secure.ACCESS_CONTROL_LOCK_ENABLED, -1) == 1)) {
             return false;
         }
         SecurityManager securityManager = (SecurityManager) context.getSystemService("security");
@@ -2359,7 +2359,7 @@ public final class Util {
                                     int attributeIntValue = getAttributeIntValue(newPullParser, "CCT", 0);
                                     int attributeIntValue2 = getAttributeIntValue(newPullParser, "R", 0);
                                     int attributeIntValue3 = getAttributeIntValue(newPullParser, "G", 0);
-                                    int attributeIntValue4 = getAttributeIntValue(newPullParser, "B", 0);
+                                    int attributeIntValue4 = getAttributeIntValue(newPullParser, Field.BYTE_SIGNATURE_PRIMITIVE, 0);
                                     COLOR_TEMPERATURE_LIST.add(Integer.valueOf(attributeIntValue));
                                     COLOR_TEMPERATURE_MAP.add(Integer.valueOf(Color.rgb(attributeIntValue2, attributeIntValue3, attributeIntValue4)));
                                 }
@@ -2615,7 +2615,7 @@ public final class Util {
             i = cameraSize.height;
             i2 = cameraSize.width;
         }
-        if (i == 1920 && i2 == 1080) {
+        if (i == 1920 && i2 == ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_END_DEAULT) {
             return 6;
         }
         if (i == 3840 && i2 == 2160) {
@@ -3076,7 +3076,7 @@ public final class Util {
     }
 
     public static void startScreenSlideAlphaInAnimation(View view) {
-        ViewCompat.setAlpha(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        ViewCompat.setAlpha(view, 0.0f);
         ViewCompat.animate(view).alpha(1.0f).setDuration(350).setStartDelay(400).setInterpolator(new SineEaseInOutInterpolator()).start();
     }
 
@@ -3470,7 +3470,7 @@ public final class Util {
     }
 
     public static boolean isScreenSlideOff(Context context) {
-        return System.getInt(context.getContentResolver(), "sc_status", -1) == 1;
+        return System.getInt(context.getContentResolver(), MiuiSettings.System.MIUI_SLIDER_COVER_STATUS, -1) == 1;
     }
 
     public static boolean isEqualsZero(double d) {
@@ -3493,7 +3493,7 @@ public final class Util {
     /* Code decompiled incorrectly, please refer to instructions dump. */
     private static byte[] getDualCameraWatermarkData(int i, int i2, int[] iArr) {
         String path;
-        AutoCloseable fileInputStream;
+        InputStream fileInputStream;
         byte[] toByteArray;
         Throwable th;
         Throwable e;
@@ -3631,7 +3631,7 @@ public final class Util {
             for (byte b : digest) {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append(str2);
-                stringBuilder.append(Integer.toHexString((255 & b) | -256).substring(6));
+                stringBuilder.append(Integer.toHexString((255 & b) | InputDeviceCompat.SOURCE_ANY).substring(6));
                 str2 = stringBuilder.toString();
             }
             return str2;
@@ -3846,7 +3846,7 @@ public final class Util {
             case 6:
                 return "passive_unfocused";
             default:
-                return "unknown";
+                return EnvironmentCompat.MEDIA_UNKNOWN;
         }
     }
 
@@ -3868,7 +3868,7 @@ public final class Util {
             case 5:
                 return "precapture";
             default:
-                return "unknown";
+                return EnvironmentCompat.MEDIA_UNKNOWN;
         }
     }
 
@@ -3886,7 +3886,7 @@ public final class Util {
             case 3:
                 return "locked";
             default:
-                return "unknown";
+                return EnvironmentCompat.MEDIA_UNKNOWN;
         }
     }
 

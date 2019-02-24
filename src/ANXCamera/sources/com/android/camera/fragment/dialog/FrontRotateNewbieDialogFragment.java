@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import com.android.camera.R;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.BackStack;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
 import miui.view.animation.CubicEaseInOutInterpolator;
 
@@ -29,7 +28,7 @@ public class FrontRotateNewbieDialogFragment extends BaseDialogFragment {
         if (this.mAnimationDrawable != null) {
             this.mAnimationDrawable.start();
         }
-        ViewCompat.setAlpha(inflate, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        ViewCompat.setAlpha(inflate, 0.0f);
         ViewCompat.animate(inflate).alpha(1.0f).setInterpolator(new CubicEaseInOutInterpolator()).start();
         return inflate;
     }

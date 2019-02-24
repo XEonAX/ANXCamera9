@@ -48,7 +48,6 @@ import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
 import com.android.camera.ui.HorizontalSlideView;
 import com.android.camera.ui.HorizontalSlideView.OnItemSelectListener;
 import com.android.camera.ui.HorizontalSlideView.OnTabListener;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import io.reactivex.Completable;
 import java.util.List;
 import miui.view.animation.BackEaseOutInterpolator;
@@ -186,7 +185,7 @@ public class FragmentDualCameraBokehAdjust extends BaseFragment implements OnCli
         this.mStringBuilder.clear();
         Util.appendInApi26(this.mStringBuilder, CameraSettings.readFNumber(), this.mDigitsTextStyle, 33);
         if (Util.isAccessible()) {
-            this.mDualBokehFButton.setContentDescription(getString(R.string.accessibility_bokeh_level, new Object[]{r0}));
+            this.mDualBokehFButton.setContentDescription(getString(R.string.accessibility_bokeh_level, r0));
             this.mDualBokehFButton.postDelayed(new Runnable() {
                 public void run() {
                     if (FragmentDualCameraBokehAdjust.this.isAdded()) {
@@ -302,7 +301,7 @@ public class FragmentDualCameraBokehAdjust extends BaseFragment implements OnCli
                 this.mHorizontalSlideLayout.setVisibility(4);
             }
             this.mDualBokehFButton.setVisibility(4);
-            this.mImageIndicator.setTranslationY(this.mHorizontalSlideLayout.getVisibility() != 8 ? (float) this.mSlideLayoutHeight : PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            this.mImageIndicator.setTranslationY(this.mHorizontalSlideLayout.getVisibility() != 8 ? (float) this.mSlideLayoutHeight : 0.0f);
             resetFNumber();
             if (!isVisible(this.mImageIndicator)) {
                 if (list == null) {
@@ -315,7 +314,7 @@ public class FragmentDualCameraBokehAdjust extends BaseFragment implements OnCli
     }
 
     private boolean isVisible(View view) {
-        return view.getVisibility() == 0 && view.getAlpha() != PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        return view.getVisibility() == 0 && view.getAlpha() != 0.0f;
     }
 
     public boolean onBackEvent(int i) {
@@ -337,7 +336,7 @@ public class FragmentDualCameraBokehAdjust extends BaseFragment implements OnCli
                 int id = view.getId();
                 if (id != R.id.dual_camera_bokeh_button) {
                     if (id == R.id.dual_camera_bokeh_indicator) {
-                        if (this.mImageIndicator.getAlpha() != PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+                        if (this.mImageIndicator.getAlpha() != 0.0f) {
                             initSlideFNumberView(new ComponentManuallyDualZoom(DataRepository.dataItemRunning()));
                             sendHideMessage();
                             ActionProcessing actionProcessing = (ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162);
@@ -350,7 +349,7 @@ public class FragmentDualCameraBokehAdjust extends BaseFragment implements OnCli
                             hideSlideView();
                         }
                     }
-                } else if (this.mDualBokehFButton.getAlpha() != PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+                } else if (this.mDualBokehFButton.getAlpha() != 0.0f) {
                     hideSlideView();
                 }
             }

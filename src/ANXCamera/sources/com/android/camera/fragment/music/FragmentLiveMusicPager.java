@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -109,7 +110,7 @@ public class FragmentLiveMusicPager extends Fragment implements OnClickListener,
 
     protected void initView(View view) {
         this.mRecyclerView = (RecyclerView) view.findViewById(R.id.music_recycler_view);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(1);
         this.mRecyclerView.setLayoutManager(linearLayoutManager);
         this.mRecyclerView.setItemAnimator(new DefaultItemAnimator());

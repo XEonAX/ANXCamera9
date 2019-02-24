@@ -1,5 +1,6 @@
 package okhttp3;
 
+import android.support.v4.internal.view.SupportMenu;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
@@ -130,7 +131,7 @@ public final class HttpUrl {
         }
 
         public Builder port(int i) {
-            if (i <= 0 || i > 65535) {
+            if (i <= 0 || i > SupportMenu.USER_MASK) {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("unexpected port: ");
                 stringBuilder.append(i);
@@ -674,7 +675,7 @@ public final class HttpUrl {
         private static int parsePort(String str, int i, int i2) {
             try {
                 int parseInt = Integer.parseInt(HttpUrl.canonicalize(str, i, i2, "", false, false, false, true, null));
-                if (parseInt <= 0 || parseInt > 65535) {
+                if (parseInt <= 0 || parseInt > SupportMenu.USER_MASK) {
                     return -1;
                 }
                 return parseInt;

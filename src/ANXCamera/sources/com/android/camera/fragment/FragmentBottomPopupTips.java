@@ -56,7 +56,6 @@ import com.android.camera.protocol.ModeProtocol.TopAlert;
 import com.android.camera.protocol.ModeProtocol.VerticalProtocol;
 import com.android.camera.statistic.CameraStat;
 import com.android.camera.statistic.CameraStatUtil;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera2.CameraCapabilities;
 import com.mi.config.b;
 import io.reactivex.Completable;
@@ -1478,7 +1477,7 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
         }
         if (obj != null) {
             if (i4 == 0 || i6 == 0) {
-                ViewCompat.setRotation(this.mSpeedTipImage, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                ViewCompat.setRotation(this.mSpeedTipImage, 0.0f);
             } else {
                 ViewCompat.setRotation(this.mSpeedTipImage, (float) this.mDegree);
             }
@@ -1689,7 +1688,7 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
             if (this.mLeftImageIntroAnimator == null) {
                 ValueAnimator ofInt = ValueAnimator.ofInt(new int[]{this.mLeftImageIntroWidth, this.mLeftImageIntroRadius * 2});
                 ofInt.setDuration(300);
-                ObjectAnimator.ofFloat(this.mLeftImageIntroContent, "alpha", new float[]{1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO}).setDuration(250);
+                ObjectAnimator.ofFloat(this.mLeftImageIntroContent, "alpha", new float[]{1.0f, 0.0f}).setDuration(250);
                 ofInt.addUpdateListener(new AnimatorUpdateListener() {
                     public void onAnimationUpdate(ValueAnimator valueAnimator) {
                         FragmentBottomPopupTips.this.setBeautyIntroButtonWidth(FragmentBottomPopupTips.this.mLeftImageIntro, ((Integer) valueAnimator.getAnimatedValue()).intValue());

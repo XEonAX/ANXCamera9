@@ -4,11 +4,11 @@ import android.content.Context;
 import com.android.camera.network.NetworkDependencies;
 import com.android.camera.network.threadpool.ThreadManager;
 import com.android.camera.sticker.FileUtils;
-import com.android.volley.ExecutorDelivery;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.BasicNetwork;
-import com.android.volley.toolbox.HurlStack;
+import com.android.volley.C0011ExecutorDelivery;
+import com.android.volley.C0021Request;
+import com.android.volley.C0024RequestQueue;
+import com.android.volley.toolbox.C0035BasicNetwork;
+import com.android.volley.toolbox.C0047HurlStack;
 
 public class HttpManager {
     private static final int CACHE_DISK_USAGE_BYTES = 5242880;
@@ -16,7 +16,7 @@ public class HttpManager {
     private static HttpManager instance;
     private Context mContext;
     private GalleryCache mRequestCache;
-    private RequestQueue mRequestQueue;
+    private C0024RequestQueue mRequestQueue;
 
     public static synchronized HttpManager getInstance() {
         HttpManager httpManager;
@@ -32,7 +32,7 @@ public class HttpManager {
     public void initRequestQueue(Context context) {
         this.mContext = context;
         this.mRequestCache = new GalleryCache(NetworkDependencies.getRequestCache(context), CACHE_DISK_USAGE_BYTES);
-        this.mRequestQueue = new RequestQueue(this.mRequestCache, new BasicNetwork(new HurlStack()), 2, new ExecutorDelivery(ThreadManager.getRequestThreadHandler()));
+        this.mRequestQueue = new C0024RequestQueue(this.mRequestCache, new C0035BasicNetwork(new C0047HurlStack()), 2, new C0011ExecutorDelivery(ThreadManager.getRequestThreadHandler()));
         this.mRequestQueue.start();
     }
 
@@ -47,8 +47,8 @@ public class HttpManager {
         }
     }
 
-    public <T> void addToRequestQueue(Request<T> request) {
-        this.mRequestQueue.add(request);
+    public <T> void addToRequestQueue(C0021Request<T> c0021Request) {
+        this.mRequestQueue.add(c0021Request);
     }
 
     public void cancelAll(String str) {

@@ -2,9 +2,9 @@ package com.android.camera.network.net.json;
 
 import com.android.camera.network.net.base.ErrorCode;
 import com.android.camera.network.net.base.VolleyRequest;
-import com.android.volley.Request;
-import com.android.volley.Response.ErrorListener;
-import com.android.volley.Response.Listener;
+import com.android.volley.C0021Request;
+import com.android.volley.Response.C0025ErrorListener;
+import com.android.volley.Response.C0026Listener;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,13 +44,13 @@ public abstract class BaseJsonRequest<T> extends VolleyRequest<JSONObject, T> {
         deliverError(errorCode, str, obj);
     }
 
-    protected final Request<JSONObject> createVolleyRequest(Listener<JSONObject> listener, ErrorListener errorListener) {
+    protected final C0021Request<JSONObject> createVolleyRequest(C0026Listener<JSONObject> c0026Listener, C0025ErrorListener c0025ErrorListener) {
         String str = this.mUrl;
         String appendUrlParams = appendUrlParams();
         if (this.mMethod == 0) {
             str = appendUrlParams;
         }
-        Request jsonObjectRequest = new JsonObjectRequest(this.mMethod, str, listener, errorListener);
+        C0021Request jsonObjectRequest = new JsonObjectRequest(this.mMethod, str, c0026Listener, c0025ErrorListener);
         if (this.mParams != null) {
             jsonObjectRequest.setParams(this.mParams);
         }

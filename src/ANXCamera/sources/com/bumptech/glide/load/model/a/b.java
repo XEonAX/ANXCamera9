@@ -2,7 +2,6 @@ package com.bumptech.glide.load.model.a;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import com.android.volley.DefaultRetryPolicy;
 import com.bumptech.glide.load.a.j;
 import com.bumptech.glide.load.c;
 import com.bumptech.glide.load.e;
@@ -16,7 +15,7 @@ import java.io.InputStream;
 
 /* compiled from: HttpGlideUrlLoader */
 public class b implements m<g, InputStream> {
-    public static final e<Integer> jO = e.a("com.bumptech.glide.load.model.stream.HttpGlideUrlLoader.Timeout", Integer.valueOf(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS));
+    public static final e<Integer> jO = e.a("com.bumptech.glide.load.model.stream.HttpGlideUrlLoader.Timeout", Integer.valueOf(2500));
     @Nullable
     private final ModelCache<g, g> jN;
 

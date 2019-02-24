@@ -15,7 +15,6 @@ import com.android.camera.lib.compatibility.util.CompatibilityUtils;
 import com.android.camera.log.Log;
 import com.android.camera.module.ModuleManager;
 import com.android.camera.ui.Rotatable;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.BitmapTexture;
 import com.android.gallery3d.ui.ExtTexture;
 import com.android.gallery3d.ui.GLCanvas;
@@ -460,10 +459,10 @@ public abstract class SurfaceTextureScreenNail implements OnFrameAvailableListen
             i2 = i;
         }
         if (i2 != 0) {
-            Matrix.translateM(fArr, 0, 0.5f, 0.5f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
-            Matrix.rotateM(fArr, 0, (float) this.mDisplayOrientation, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f);
+            Matrix.translateM(fArr, 0, 0.5f, 0.5f, 0.0f);
+            Matrix.rotateM(fArr, 0, (float) this.mDisplayOrientation, 0.0f, 0.0f, 1.0f);
             Matrix.scaleM(fArr, 0, f, f2, 1.0f);
-            Matrix.translateM(fArr, 0, -0.5f, -0.5f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            Matrix.translateM(fArr, 0, -0.5f, -0.5f, 0.0f);
         }
     }
 

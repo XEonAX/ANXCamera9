@@ -35,7 +35,6 @@ import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
 import com.android.camera.protocol.ModeProtocol.TopAlert;
 import com.android.camera.ui.ToggleSwitch;
 import com.android.camera.ui.ToggleSwitch.OnCheckedChangeListener;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.mi.config.b;
 import io.reactivex.Completable;
 import java.util.List;
@@ -82,7 +81,7 @@ public class FragmentTopAlert extends BaseFragment {
         public void run() {
             FragmentTopAlert.this.updateAiSceneSelectViewMargin();
             if (FragmentTopAlert.this.mAiSceneSelectView.getVisibility() == 8) {
-                ViewCompat.setAlpha(FragmentTopAlert.this.mAiSceneSelectView, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                ViewCompat.setAlpha(FragmentTopAlert.this.mAiSceneSelectView, 0.0f);
                 FragmentTopAlert.this.mAiSceneSelectView.setVisibility(0);
                 FragmentTopAlert.this.transViewAnim(FragmentTopAlert.this.mAlertStatusValue, FragmentTopAlert.this.getViewBottom(FragmentTopAlert.this.mAiSceneSelectView));
                 ViewCompat.animate(FragmentTopAlert.this.mAiSceneSelectView).setInterpolator(new CubicEaseOutInterpolator()).alpha(1.0f).setDuration(400).start();
@@ -137,7 +136,7 @@ public class FragmentTopAlert extends BaseFragment {
         }
         this.mLayoutTransition = customTransition();
         this.mAlertLiearLayout.setLayoutTransition(this.mLayoutTransition);
-        ViewCompat.setAlpha(this.mAlertRecordingText, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        ViewCompat.setAlpha(this.mAlertRecordingText, 0.0f);
         updateAlertStatusView(false);
         if (sPendingRecordingTimeState != 0) {
             setRecordingTimeState(sPendingRecordingTimeState);
@@ -241,7 +240,7 @@ public class FragmentTopAlert extends BaseFragment {
                 return;
             case 3:
                 if (this.mBlingAnimation == null) {
-                    this.mBlingAnimation = new AlphaAnimation(1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                    this.mBlingAnimation = new AlphaAnimation(1.0f, 0.0f);
                     this.mBlingAnimation.setDuration(400);
                     this.mBlingAnimation.setStartOffset(100);
                     this.mBlingAnimation.setInterpolator(new DecelerateInterpolator());
@@ -411,7 +410,7 @@ public class FragmentTopAlert extends BaseFragment {
             this.mAiSceneSelectView.removeCallbacks(this.mShowAction);
             if (this.mAiSceneSelectView.getVisibility() == 0) {
                 ViewCompat.setAlpha(this.mAiSceneSelectView, 1.0f);
-                ViewCompat.animate(this.mAiSceneSelectView).setInterpolator(new CubicEaseOutInterpolator()).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setDuration(400).start();
+                ViewCompat.animate(this.mAiSceneSelectView).setInterpolator(new CubicEaseOutInterpolator()).alpha(0.0f).setDuration(400).start();
                 this.mAiSceneSelectView.setVisibility(8);
                 transViewAnim(this.mAlertStatusValue, getStateTextTopMargin(i2, this.mStateValueTextFromLighting));
             }
@@ -658,7 +657,7 @@ public class FragmentTopAlert extends BaseFragment {
         MarginLayoutParams marginLayoutParams = (MarginLayoutParams) view.getLayoutParams();
         marginLayoutParams.topMargin = i;
         view.setLayoutParams(marginLayoutParams);
-        ViewCompat.setTranslationY(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        ViewCompat.setTranslationY(view, 0.0f);
     }
 
     private int getAlertImageBottom() {
@@ -711,7 +710,7 @@ public class FragmentTopAlert extends BaseFragment {
         if (Math.abs(readExposure) <= 0.05f || b.isSupportedPortrait()) {
             return null;
         }
-        String str = readExposure < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO ? "-" : "+";
+        String str = readExposure < 0.0f ? "-" : "+";
         return String.format(Locale.ENGLISH, "%s %.1f", new Object[]{str, Float.valueOf(Math.abs(readExposure))});
     }
 

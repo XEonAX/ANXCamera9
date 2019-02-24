@@ -16,7 +16,6 @@ import com.android.camera.protocol.ModeProtocol.BaseDelegate;
 import com.android.camera.protocol.ModeProtocol.MakeupProtocol;
 import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.ui.ColorImageView;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,11 +44,11 @@ public class LiveBeautyModeFragment extends BaseBeautyMakeupFragment {
     protected void onHeaderClick() {
         if (this.mHeaderImageView != null) {
             this.mHeaderImageView.clearAnimation();
-            this.mHeaderImageView.setRotation(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            this.mHeaderImageView.setRotation(0.0f);
             ViewCompat.animate(this.mHeaderImageView).rotation(360.0f).setDuration(500).setListener(new ViewPropertyAnimatorListenerAdapter() {
                 public void onAnimationEnd(View view) {
                     super.onAnimationEnd(view);
-                    LiveBeautyModeFragment.this.mHeaderImageView.setRotation(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                    LiveBeautyModeFragment.this.mHeaderImageView.setRotation(0.0f);
                 }
             }).start();
         }

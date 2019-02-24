@@ -2,7 +2,6 @@ package com.bytedance.frameworks.core.monitor;
 
 import android.text.TextUtils;
 import android.util.Log;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.bytedance.frameworks.core.monitor.model.CountInfo;
 import com.bytedance.frameworks.core.monitor.model.DebugRealLog;
 import com.bytedance.frameworks.core.monitor.model.InitialLogInfo;
@@ -50,7 +49,7 @@ public class MonitorLog {
             long currentTimeMillis = System.currentTimeMillis() / 1000;
             CountInfo countInfo = (CountInfo) this.mCountInfo.get(stringBuilder2);
             if (countInfo == null) {
-                countInfo = new CountInfo(initialLogInfo.key, initialLogInfo.type, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, currentTimeMillis).setType2(initialLogInfo.type2);
+                countInfo = new CountInfo(initialLogInfo.key, initialLogInfo.type, 0.0f, currentTimeMillis).setType2(initialLogInfo.type2);
                 this.mCountInfo.put(stringBuilder2, countInfo);
             }
             boolean z = countInfo.isSampled || initialLogInfo.isSampled;
@@ -69,7 +68,7 @@ public class MonitorLog {
             long currentTimeMillis = System.currentTimeMillis() / 1000;
             TimerInfo timerInfo = (TimerInfo) this.mTimerInfo.get(stringBuilder2);
             if (timerInfo == null) {
-                timerInfo = new TimerInfo(initialLogInfo.key, initialLogInfo.type, 0, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, currentTimeMillis).setType2(initialLogInfo.type2);
+                timerInfo = new TimerInfo(initialLogInfo.key, initialLogInfo.type, 0, 0.0f, currentTimeMillis).setType2(initialLogInfo.type2);
                 this.mTimerInfo.put(stringBuilder2, timerInfo);
             }
             boolean z = timerInfo.isSampled || initialLogInfo.isSampled;

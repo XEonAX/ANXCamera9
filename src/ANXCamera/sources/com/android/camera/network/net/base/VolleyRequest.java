@@ -4,25 +4,25 @@ import android.os.Looper;
 import com.android.camera.constant.DurationConstant;
 import com.android.camera.network.net.HttpManager;
 import com.android.camera.network.threadpool.ThreadManager;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.Response.ErrorListener;
-import com.android.volley.Response.Listener;
-import com.android.volley.VolleyError;
+import com.android.volley.C0000VolleyError;
+import com.android.volley.C0007DefaultRetryPolicy;
+import com.android.volley.C0021Request;
+import com.android.volley.Response.C0025ErrorListener;
+import com.android.volley.Response.C0026Listener;
 import java.util.concurrent.CountDownLatch;
 
-public abstract class VolleyRequest<T, E> extends BaseRequest<E> implements ErrorListener, Listener<T> {
-    private Request<T> mRequest;
+public abstract class VolleyRequest<T, E> extends BaseRequest<E> implements C0025ErrorListener, C0026Listener<T> {
+    private C0021Request<T> mRequest;
     private CountDownLatch mSyncExecuteLock = null;
 
-    protected abstract Request<T> createVolleyRequest(Listener<T> listener, ErrorListener errorListener);
+    protected abstract C0021Request<T> createVolleyRequest(C0026Listener<T> c0026Listener, C0025ErrorListener c0025ErrorListener);
 
     protected abstract void handleResponse(T t);
 
     public void execute() {
         this.mRequest = createVolleyRequest(this, this);
         if (this.mRequest != null) {
-            this.mRequest.setRetryPolicy(new DefaultRetryPolicy(DurationConstant.DURATION_VIDEO_RECORDING_CIRCLE, 1, 1.0f));
+            this.mRequest.setRetryPolicy(new C0007DefaultRetryPolicy(DurationConstant.DURATION_VIDEO_RECORDING_CIRCLE, 1, 1.0f));
             this.mRequest.setShouldCache(isUseCache());
             Object tag = getTag();
             if (this.mRequest.getTag() == null && tag != null) {
@@ -74,17 +74,17 @@ public abstract class VolleyRequest<T, E> extends BaseRequest<E> implements Erro
         }
     }
 
-    public final void onErrorResponse(VolleyError volleyError) {
-        Throwable volleyError2;
+    public final void onErrorResponse(C0000VolleyError c0000VolleyError) {
+        Throwable c0000VolleyError2;
         ErrorCode errorCode = ErrorCode.NET_ERROR;
-        if (volleyError2 instanceof RequestError) {
-            errorCode = ((RequestError) volleyError2).getErrorCode();
+        if (c0000VolleyError2 instanceof RequestError) {
+            errorCode = ((RequestError) c0000VolleyError2).getErrorCode();
         }
-        Throwable cause = volleyError2.getCause();
+        Throwable cause = c0000VolleyError2.getCause();
         if (cause != null) {
-            volleyError2 = cause;
+            c0000VolleyError2 = cause;
         }
-        handleError(errorCode, volleyError2.getMessage(), volleyError2);
+        handleError(errorCode, c0000VolleyError2.getMessage(), c0000VolleyError2);
         releaseSyncExecuteLock();
     }
 

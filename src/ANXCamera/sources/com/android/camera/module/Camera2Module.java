@@ -20,6 +20,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
+import android.provider.MiuiSettings.ScreenEffect;
 import android.text.TextUtils;
 import android.util.Range;
 import android.util.Size;
@@ -104,7 +105,6 @@ import com.android.camera.statistic.ScenarioTrackUtil;
 import com.android.camera.storage.Storage;
 import com.android.camera.ui.ObjectView.ObjectViewListener;
 import com.android.camera.ui.RotateTextToast;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera2.Camera2Proxy;
 import com.android.camera2.Camera2Proxy.BeautyBodySlimCountCallback;
 import com.android.camera2.Camera2Proxy.CameraMetaDataCallback;
@@ -268,7 +268,7 @@ public class Camera2Module extends BaseModule implements Listener, CameraAction,
             Camera2Module.this.mHandler.removeMessages(33);
             if (!Camera2Module.this.mPaused) {
                 int roundOrientation = Util.roundOrientation(Math.round(f), Camera2Module.this.mOrientation);
-                Camera2Module.this.mHandler.obtainMessage(33, roundOrientation, (Util.getDisplayRotation(Camera2Module.this.mActivity) + roundOrientation) % 360).sendToTarget();
+                Camera2Module.this.mHandler.obtainMessage(33, roundOrientation, (Util.getDisplayRotation(Camera2Module.this.mActivity) + roundOrientation) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT).sendToTarget();
             }
         }
 
@@ -490,7 +490,7 @@ public class Camera2Module extends BaseModule implements Listener, CameraAction,
                             toSizeObject = Camera2Module.this.mOutPutSize.toSizeObject();
                         }
                         jpegRotation = new Builder(Camera2Module.this.mPreviewSize.toSizeObject(), cameraSize.toSizeObject(), toSizeObject).setHasDualWaterMark(CameraSettings.isDualCameraWaterMarkOpen()).setMirror(Camera2Module.this.isFrontMirror()).setLightingPattern(CameraSettings.getPortraitLightingPattern()).setFilterId(EffectController.getInstance().getEffectForSaving(false)).setOrientation(-1 != Camera2Module.this.mOrientation ? 0 : Camera2Module.this.mOrientation).setJpegRotation(Camera2Module.this.mJpegRotation);
-                        access$2500 = (CameraSettings.isGradienterOn() || Camera2Module.this.mShootRotation != -1.0f) ? Camera2Module.this.mShootRotation : PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+                        access$2500 = (CameraSettings.isGradienterOn() || Camera2Module.this.mShootRotation != -1.0f) ? Camera2Module.this.mShootRotation : 0.0f;
                         this.mParallelParameter = jpegRotation.setShootRotation(access$2500).setShootOrientation(Camera2Module.this.mShootOrientation).setLocation(Camera2Module.this.mLocation == null ? new Location(Camera2Module.this.mLocation) : null).setTimeWaterMarkString(CameraSettings.isTimeWaterMarkOpen() ? Util.getTimeWatermark() : null).setFaceWaterMarkList(arrayList).setAgeGenderAndMagicMirrorWater(CameraSettings.isAgeGenderAndMagicMirrorWaterOpen()).setFrontCamera(Camera2Module.this.isFrontCamera()).setBokehFrontCamera(Camera2Module.this.isBokehFrontCamera()).setAlgorithmName(Camera2Module.this.mAlgorithmName).setPictureInfo(Camera2Module.this.getPictureInfo()).setSuffix(Camera2Module.this.getSuffix()).setGradienterOn(Camera2Module.this.mIsGradienterOn).setTiltShiftMode(Camera2Module.getTiltShiftMode()).setSaveGroupshotPrimitive(false).setDualWatermarkParam(Camera2Module.this.getDualWaterMarkParam()).setJpegQuality(BaseModule.getJpegQuality(true)).build();
                     }
                 }
@@ -1440,7 +1440,7 @@ public class Camera2Module extends BaseModule implements Listener, CameraAction,
     }
 
     private DualWatermarkParam getDualWaterMarkParam() {
-        return new DualWatermarkParam(CameraSettings.isDualCameraWaterMarkOpen(), CameraSettings.getDualCameraWaterMarkFilePathVendor(), CameraSettings.getResourceFloat(R.dimen.dualcamera_watermark_size_ratio, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO), CameraSettings.getResourceFloat(R.dimen.dualcamera_watermark_padding_x_ratio, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO), CameraSettings.getResourceFloat(R.dimen.dualcamera_watermark_padding_y_ratio, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO));
+        return new DualWatermarkParam(CameraSettings.isDualCameraWaterMarkOpen(), CameraSettings.getDualCameraWaterMarkFilePathVendor(), CameraSettings.getResourceFloat(R.dimen.dualcamera_watermark_size_ratio, 0.0f), CameraSettings.getResourceFloat(R.dimen.dualcamera_watermark_padding_x_ratio, 0.0f), CameraSettings.getResourceFloat(R.dimen.dualcamera_watermark_padding_y_ratio, 0.0f));
     }
 
     private static String getTiltShiftMode() {
@@ -2406,7 +2406,7 @@ public class Camera2Module extends BaseModule implements Listener, CameraAction,
                 }
                 z = false;
                 jpegRotation = new Builder(this.mPreviewSize.toSizeObject(), cameraSize.toSizeObject(), toSizeObject).setHasDualWaterMark(CameraSettings.isDualCameraWaterMarkOpen()).setMirror(isFrontMirror()).setLightingPattern(CameraSettings.getPortraitLightingPattern()).setFilterId(EffectController.getInstance().getEffectForSaving(false)).setOrientation(-1 != this.mOrientation ? 0 : this.mOrientation).setJpegRotation(this.mJpegRotation);
-                f = (CameraSettings.isGradienterOn() || this.mShootRotation != -1.0f) ? this.mShootRotation : PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+                f = (CameraSettings.isGradienterOn() || this.mShootRotation != -1.0f) ? this.mShootRotation : 0.0f;
                 jpegRotation = jpegRotation.setShootRotation(f).setShootOrientation(this.mShootOrientation).setLocation(this.mLocation);
                 if (CameraSettings.isTimeWaterMarkOpen()) {
                     str = Util.getTimeWatermark();
@@ -3347,7 +3347,7 @@ public class Camera2Module extends BaseModule implements Listener, CameraAction,
         if (focusMode.equals("manual")) {
             float minimumFocusDistance = (this.mCameraCapabilities.getMinimumFocusDistance() * ((float) CameraSettings.getFocusPosition())) / 1000.0f;
             if (this.mIsMoonMode) {
-                minimumFocusDistance = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+                minimumFocusDistance = 0.0f;
             }
             this.mCamera2Device.setFocusDistance(minimumFocusDistance);
         }

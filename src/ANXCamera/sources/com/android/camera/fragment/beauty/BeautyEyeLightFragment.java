@@ -8,6 +8,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.ItemAnimator;
 import android.support.v7.widget.RecyclerView.ItemDecoration;
 import android.support.v7.widget.RecyclerView.State;
 import android.view.LayoutInflater;
@@ -30,7 +31,6 @@ import com.android.camera.protocol.ModeProtocol.CameraAction;
 import com.android.camera.protocol.ModeProtocol.ConfigChanges;
 import com.android.camera.protocol.ModeProtocol.MiBeautyProtocol;
 import com.android.camera.protocol.ModeProtocol.TopAlert;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.util.Arrays;
 import java.util.List;
 import miui.view.animation.QuinticEaseInInterpolator;
@@ -80,7 +80,7 @@ public class BeautyEyeLightFragment extends BaseBeautyFragment implements OnClic
         final boolean isLayoutRTL = Util.isLayoutRTL(getContext());
         this.mRecyclerView.setLayoutManager(this.mLayoutManager);
         this.mRecyclerView.setAdapter(this.mAdapter);
-        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+        ItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setChangeDuration(150);
         defaultItemAnimator.setMoveDuration(150);
         defaultItemAnimator.setAddDuration(150);
@@ -208,14 +208,14 @@ public class BeautyEyeLightFragment extends BaseBeautyFragment implements OnClic
 
     public void enterAnim(View view, ViewPropertyAnimatorListener viewPropertyAnimatorListener) {
         view.setTranslationX(100.0f);
-        view.setAlpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
-        ViewCompat.animate(view).translationX(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).alpha(1.0f).setDuration(280).setInterpolator(new QuinticEaseOutInterpolator()).setListener(viewPropertyAnimatorListener).setStartDelay(120).start();
+        view.setAlpha(0.0f);
+        ViewCompat.animate(view).translationX(0.0f).alpha(1.0f).setDuration(280).setInterpolator(new QuinticEaseOutInterpolator()).setListener(viewPropertyAnimatorListener).setStartDelay(120).start();
     }
 
     public void exitAnim(View view, ViewPropertyAnimatorListener viewPropertyAnimatorListener) {
-        view.setTranslationX(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        view.setTranslationX(0.0f);
         view.setAlpha(1.0f);
-        ViewCompat.animate(view).translationX(100.0f).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setDuration(120).setStartDelay(0).setInterpolator(new QuinticEaseInInterpolator()).setListener(viewPropertyAnimatorListener).start();
+        ViewCompat.animate(view).translationX(100.0f).alpha(0.0f).setDuration(120).setStartDelay(0).setInterpolator(new QuinticEaseInInterpolator()).setListener(viewPropertyAnimatorListener).start();
     }
 
     public final String getFragmentTag() {

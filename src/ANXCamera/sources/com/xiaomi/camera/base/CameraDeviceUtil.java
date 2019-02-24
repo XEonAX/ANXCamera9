@@ -85,7 +85,7 @@ public final class CameraDeviceUtil {
             return com.xiaomi.engine.CameraCombinationMode.CAM_COMBINATION_MODE_REAR_BOKEH_WT;
      */
     /* JADX WARNING: Missing block: B:21:0x0025, code:
-            return com.xiaomi.engine.CameraCombinationMode.CAM_COMBINATION_MODE_REAR_SAT_WT;
+            return 513;
      */
     /* JADX WARNING: Missing block: B:23:0x0027, code:
             return 2;

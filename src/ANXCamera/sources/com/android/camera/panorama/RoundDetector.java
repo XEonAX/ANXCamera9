@@ -5,6 +5,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.provider.MiuiSettings.ScreenEffect;
 import android.util.Range;
 import com.android.camera.log.Log;
 import java.util.Locale;
@@ -89,7 +90,7 @@ public class RoundDetector implements SensorEventListener {
     }
 
     private LoopRange emptyRange() {
-        return new LoopRange(-1, -1, 360);
+        return new LoopRange(-1, -1, ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT);
     }
 
     public void setStartPosition(int i, int i2, float f, float f2, boolean z) {
@@ -124,14 +125,14 @@ public class RoundDetector implements SensorEventListener {
             i = correctionCircleDegree(i);
             if (i2 == 0) {
                 if (i3 < currentDegree) {
-                    i3 = 360;
+                    i3 = ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
                 }
-                this.mEndDegreeRange = new LoopRangeLeft(i3, i, 360);
+                this.mEndDegreeRange = new LoopRangeLeft(i3, i, ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT);
             } else {
                 if (currentDegree < i) {
                     i = 0;
                 }
-                this.mEndDegreeRange = new LoopRange(i3, i, 360);
+                this.mEndDegreeRange = new LoopRange(i3, i, ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT);
             }
             this.mDirection = i2;
             this.mStartDegree = currentDegree;
@@ -195,13 +196,13 @@ public class RoundDetector implements SensorEventListener {
             SensorManager.getOrientation(this.mOutR, fArr);
             int radianToDegree = radianToDegree(fArr[0]);
             if (radianToDegree < 0) {
-                radianToDegree += 360;
+                radianToDegree += ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
             }
             SensorManager.remapCoordinateSystem(this.mInR, 1, 3, this.mOutR);
             SensorManager.getOrientation(this.mOutR, fArr);
             int radianToDegree2 = radianToDegree(fArr[0]);
             if (radianToDegree2 < 0) {
-                radianToDegree2 += 360;
+                radianToDegree2 += ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
             }
             synchronized (SynchronizedObject) {
                 this.mCurrentDegreeLandscape = radianToDegree;
@@ -220,10 +221,10 @@ public class RoundDetector implements SensorEventListener {
 
     private static int correctionCircleDegree(int i) {
         if (i < 0) {
-            return i + 360;
+            return i + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         }
-        if (360 < i) {
-            return i - 360;
+        if (ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT < i) {
+            return i - ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         }
         return i;
     }

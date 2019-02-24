@@ -22,12 +22,12 @@ public class MonitorManager implements IInactiveMonitor {
     }
 
     public MonitorManager(Context context, IHandleOnTimerEvent iHandleOnTimerEvent) {
-        this(context, iHandleOnTimerEvent, MonitorCommonConstants.DEFAULT_AID);
+        this(context, iHandleOnTimerEvent, "default");
     }
 
     public MonitorManager(Context context, IHandleOnTimerEvent iHandleOnTimerEvent, String str) {
         if (str == null) {
-            str = MonitorCommonConstants.DEFAULT_AID;
+            str = "default";
         }
         this.mLogTaskManager = new LogTaskManager(context, str);
         this.sIHandleOnTimeEvent = iHandleOnTimerEvent;

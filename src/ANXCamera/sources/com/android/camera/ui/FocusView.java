@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
+import android.provider.MiuiSettings.ScreenEffect;
 import android.support.annotation.StringRes;
 import android.util.AttributeSet;
 import android.util.Range;
@@ -763,19 +764,19 @@ public class FocusView extends View implements FocusIndicator, Rotatable, V6Func
         int centerIndex;
         if (this.mCursorState == 2 && this.mCurrentViewState != 3 && this.mCurrentViewState != 4) {
             if (this.mCurrentItem >= this.mAdapter.getCenterIndex()) {
-                centerIndex = ((this.mCurrentItem - this.mAdapter.getCenterIndex()) * 360) / this.mAdapter.getCenterIndex();
+                centerIndex = ((this.mCurrentItem - this.mAdapter.getCenterIndex()) * ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) / this.mAdapter.getCenterIndex();
             } else {
                 centerIndex = 0;
             }
-            return 360 - Util.clamp(centerIndex, 0, 360);
+            return 360 - Util.clamp(centerIndex, 0, (int) ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT);
         } else if (this.mCurrentViewState == 1) {
             centerIndex = Util.clamp(this.mBottomRelative - this.mCurrentDistanceY, 0, MAX_SLIDE_DISTANCE);
             if (centerIndex >= MAX_SLIDE_DISTANCE / 2) {
-                centerIndex = ((centerIndex - (MAX_SLIDE_DISTANCE / 2)) * 360) / (MAX_SLIDE_DISTANCE / 2);
+                centerIndex = ((centerIndex - (MAX_SLIDE_DISTANCE / 2)) * ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) / (MAX_SLIDE_DISTANCE / 2);
             } else {
                 centerIndex = 0;
             }
-            return 360 - Util.clamp(centerIndex, 0, 360);
+            return 360 - Util.clamp(centerIndex, 0, (int) ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT);
         } else if (this.mCurrentViewState == 3) {
             return Util.clamp((int) (135.0f * (this.mEVAnimationRatio * 2.0f)), 0, 135);
         } else {

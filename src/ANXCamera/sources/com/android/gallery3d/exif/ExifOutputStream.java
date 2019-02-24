@@ -108,14 +108,14 @@ class ExifOutputStream extends FilterOutputStream {
                                 this.mBuffer.rewind();
                                 short s = this.mBuffer.getShort();
                                 if (s == (short) -31) {
-                                    this.mByteToSkip = (this.mBuffer.getShort() & MAX_EXIF_SIZE) - 2;
+                                    this.mByteToSkip = (this.mBuffer.getShort() & 65535) - 2;
                                     this.mState = 2;
                                 } else if (JpegHeader.isSofMarker(s)) {
                                     this.out.write(this.mBuffer.array(), 0, 4);
                                     this.mState = 2;
                                 } else {
                                     this.out.write(this.mBuffer.array(), 0, 4);
-                                    this.mByteToCopy = (this.mBuffer.getShort() & MAX_EXIF_SIZE) - 2;
+                                    this.mByteToCopy = (this.mBuffer.getShort() & 65535) - 2;
                                 }
                                 this.mBuffer.rewind();
                                 break;
@@ -147,7 +147,7 @@ class ExifOutputStream extends FilterOutputStream {
             ArrayList stripNullValueTags = stripNullValueTags(this.mExifData);
             createRequiredIfdAndTag();
             int calculateAllOffset = calculateAllOffset() + 8;
-            if (calculateAllOffset <= MAX_EXIF_SIZE) {
+            if (calculateAllOffset <= 65535) {
                 OrderedDataOutputStream orderedDataOutputStream = new OrderedDataOutputStream(this.out);
                 orderedDataOutputStream.setByteOrder(ByteOrder.BIG_ENDIAN);
                 orderedDataOutputStream.writeShort((short) -31);

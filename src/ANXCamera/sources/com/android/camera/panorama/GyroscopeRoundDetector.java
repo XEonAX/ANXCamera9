@@ -1,8 +1,8 @@
 package com.android.camera.panorama;
 
 import android.hardware.SensorEvent;
+import android.provider.MiuiSettings.ScreenEffect;
 import com.android.camera.Util;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class GyroscopeRoundDetector extends RoundDetector {
     private static final float NS2S = 1.0E-9f;
@@ -16,9 +16,9 @@ public class GyroscopeRoundDetector extends RoundDetector {
         boolean z2 = i == 0 || i == 180;
         this.isLandscape = z2;
         synchronized (SynchronizedObject) {
-            this.mLastTimestamp = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-            this.mRadianLandscape = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-            this.mRadianPortrait = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+            this.mLastTimestamp = 0.0f;
+            this.mRadianLandscape = 0.0f;
+            this.mRadianPortrait = 0.0f;
             this.mCurrentDegreeLandscape = 0;
             this.mCurrentDegreePortrait = 0;
             this.mDirection = i2;
@@ -82,10 +82,10 @@ public class GyroscopeRoundDetector extends RoundDetector {
                     int radianToDegree = RoundDetector.radianToDegree(this.mRadianLandscape);
                     int radianToDegree2 = RoundDetector.radianToDegree(this.mRadianPortrait);
                     if (radianToDegree <= 0 && this.mDirection == 1) {
-                        radianToDegree += 360;
+                        radianToDegree += ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
                     }
                     if (radianToDegree2 <= 0 && this.mDirection == 1) {
-                        radianToDegree2 += 360;
+                        radianToDegree2 += ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
                     }
                     int i = this.isLandscape ? radianToDegree : radianToDegree2;
                     int i2 = this.isLandscape ? this.mCurrentDegreeLandscape : this.mCurrentDegreePortrait;

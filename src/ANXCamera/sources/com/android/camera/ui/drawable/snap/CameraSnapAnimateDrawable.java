@@ -18,7 +18,6 @@ import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.BeautyRecording;
 import com.android.camera.protocol.ModeProtocol.LiveConfigChanges;
 import com.android.camera.ui.drawable.CameraPaintBase;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.facebook.rebound.SimpleSpringListener;
 import com.facebook.rebound.Spring;
 import com.facebook.rebound.SpringConfig;
@@ -149,7 +148,7 @@ public class CameraSnapAnimateDrawable extends Drawable implements Animatable {
     }
 
     public void startModeChangeAnimation() {
-        this.mModeChangeAnimator = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
+        this.mModeChangeAnimator = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
         this.mModeChangeAnimator.setDuration(300);
         this.mModeChangeAnimator.setInterpolator(new DecelerateInterpolator() {
             public float getInterpolation(float f) {
@@ -168,7 +167,7 @@ public class CameraSnapAnimateDrawable extends Drawable implements Animatable {
 
     public void startScaleDownAnimation() {
         this.mRoundPaintItem.setTargetValues(0.63296f, this.mRoundPaintItem.mCurrentColor, this.mRoundPaintItem.mCurrentAlpha, this.mRoundPaintItem.mCurrentStrokeWidth);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
         ofFloat.setDuration(200);
         ofFloat.setInterpolator(new CubicEaseOutInterpolator() {
             public float getInterpolation(float f) {
@@ -183,7 +182,7 @@ public class CameraSnapAnimateDrawable extends Drawable implements Animatable {
     }
 
     public void startScaleUpAnimation(long j, AnimatorListener animatorListener) {
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
         ofFloat.setStartDelay(j);
         ofFloat.setDuration(200);
         ofFloat.setInterpolator(new CubicEaseOutInterpolator() {
@@ -219,7 +218,7 @@ public class CameraSnapAnimateDrawable extends Drawable implements Animatable {
         cancelAnimation();
         this.mCirclePaintItem.setRingVisible(0);
         this.mRoundPaintItem.setVisible(8);
-        this.mRingAnimator = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
+        this.mRingAnimator = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
         this.mRingAnimator.setDuration(500);
         this.mRingAnimator.setRepeatCount(-1);
         this.mRingAnimator.setRepeatMode(1);
@@ -289,7 +288,7 @@ public class CameraSnapAnimateDrawable extends Drawable implements Animatable {
         this.mRoundPaintItem.prepareRecord();
         this.mRoundPaintItem.isRecording = true;
         this.mRoundPaintItem.setTargetAlpha(255);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
         ofFloat.setDuration(250);
         ofFloat.setInterpolator(new DecelerateInterpolator() {
             public float getInterpolation(float f) {
@@ -316,7 +315,7 @@ public class CameraSnapAnimateDrawable extends Drawable implements Animatable {
     public void startRecord(final BottomAnimationConfig bottomAnimationConfig) {
         if (this.mRecordingPaint != null) {
             cancelAnimation();
-            this.mTimeAnimator = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
+            this.mTimeAnimator = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
             if (bottomAnimationConfig.mCurrentMode == 174) {
                 updateLiveAnimationConfig();
             }
@@ -409,13 +408,13 @@ public class CameraSnapAnimateDrawable extends Drawable implements Animatable {
             r5.mRecordingPaint.setTargetValues(r5.mRecordingPaint.mCurrentWidthPercent, r5.mRecordingPaint.mCurrentColor, com.android.camera.ui.drawable.CameraPaintBase.ALPHA_OPAQUE, (float) com.android.camera.Util.dpToPixel(1.0f));
      */
     /* JADX WARNING: Missing block: B:12:0x005f, code:
-            r5.mTimeAnimator = android.animation.ValueAnimator.ofFloat(new float[]{com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
+            r5.mTimeAnimator = android.animation.ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
             r5.mTimeAnimator.setDuration(300);
             r5.mTimeAnimator.setInterpolator(new com.android.camera.ui.drawable.snap.CameraSnapAnimateDrawable.AnonymousClass9(r5));
             r5.mTimeAnimator.removeAllListeners();
             r5.mTimeAnimator.addListener(new com.android.camera.ui.drawable.snap.CameraSnapAnimateDrawable.AnonymousClass10(r5));
             r5.mTimeAnimator.start();
-            r6 = android.animation.ValueAnimator.ofFloat(new float[]{com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
+            r6 = android.animation.ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
             r6.setDuration(400);
             r6.setInterpolator(new com.android.camera.ui.drawable.snap.CameraSnapAnimateDrawable.AnonymousClass11(r5));
             r6.start();
@@ -459,7 +458,7 @@ public class CameraSnapAnimateDrawable extends Drawable implements Animatable {
             this.mRecordingPaint.resetRecordingState();
             this.mRecordingPaint.setTargetAlpha(255);
             this.mRoundPaintItem.setTargetAlpha(255);
-            this.mTimeAnimator = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
+            this.mTimeAnimator = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
             this.mTimeAnimator.setStartDelay(200);
             this.mTimeAnimator.setDuration(260);
             this.mTimeAnimator.setInterpolator(new CubicEaseInInterpolator() {
@@ -589,7 +588,7 @@ public class CameraSnapAnimateDrawable extends Drawable implements Animatable {
 
     public void startRebound() {
         initReboundSystem();
-        this.mReboundAnimator = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
+        this.mReboundAnimator = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
         this.mReboundAnimator.setStartDelay(300);
         this.mReboundAnimator.setDuration(8500);
         this.mReboundAnimator.setInterpolator(new LinearInterpolator() {

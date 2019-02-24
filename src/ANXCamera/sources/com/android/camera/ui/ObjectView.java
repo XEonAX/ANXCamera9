@@ -15,7 +15,6 @@ import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.log.Log;
 import com.android.camera.statistic.CameraStat;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera2.CameraHardwareFace;
 
 public class ObjectView extends FrameView {
@@ -255,11 +254,11 @@ public class ObjectView extends FrameView {
     }
 
     public boolean isAdjusting() {
-        return this.mMovingMode != 0 || (this.mObjectRect.width() > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO && this.mObjectRect.height() > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO && this.mZoomAnimState == 0);
+        return this.mMovingMode != 0 || (this.mObjectRect.width() > 0.0f && this.mObjectRect.height() > 0.0f && this.mZoomAnimState == 0);
     }
 
     public RectF getFocusRect() {
-        if (((ActivityBase) getContext()).getCameraScreenNail() == null || this.mPause || this.mObjectRect.width() <= PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO || this.mObjectRect.height() <= PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+        if (((ActivityBase) getContext()).getCameraScreenNail() == null || this.mPause || this.mObjectRect.width() <= 0.0f || this.mObjectRect.height() <= 0.0f) {
             return null;
         }
         return this.mObjectRect;
@@ -371,7 +370,7 @@ public class ObjectView extends FrameView {
     }
 
     private void detectMovingStyle(float f, float f2, float f3, float f4) {
-        if (f3 < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO || f4 < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+        if (f3 < 0.0f || f4 < 0.0f) {
             int i = 0;
             this.mMovingMode = 0;
             f4 = Math.abs(f - this.mObjectRect.left);
@@ -421,12 +420,12 @@ public class ObjectView extends FrameView {
             y = motionEvent.getX() - this.mLastX;
             y2 = motionEvent.getY() - this.mLastY;
             if (this.mMovingMode == 16) {
-                if (y > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+                if (y > 0.0f) {
                     y = Math.min(this.mDisplayBounds.right - this.mObjectRect.right, y);
                 } else {
                     y = Math.max(this.mDisplayBounds.left - this.mObjectRect.left, y);
                 }
-                if (y2 > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+                if (y2 > 0.0f) {
                     y2 = Math.min(this.mDisplayBounds.bottom - this.mObjectRect.bottom, y2);
                 } else {
                     y2 = Math.max(this.mDisplayBounds.top - this.mObjectRect.top, y2);
@@ -487,7 +486,7 @@ public class ObjectView extends FrameView {
     public void clear() {
         this.mFace = null;
         this.mOldObjectRect.set(this.mObjectRect);
-        this.mObjectRect.set(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        this.mObjectRect.set(0.0f, 0.0f, 0.0f, 0.0f);
         resetView();
         this.mZoomAnimState = 0;
         invalidate();
@@ -543,7 +542,7 @@ public class ObjectView extends FrameView {
     }
 
     public void setDisplaySize(int i, int i2) {
-        this.mDisplayBounds.set(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) i, (float) i2);
+        this.mDisplayBounds.set(0.0f, 0.0f, (float) i, (float) i2);
         setMatrix();
     }
 
@@ -554,7 +553,7 @@ public class ObjectView extends FrameView {
     }
 
     private void setMatrix() {
-        if (this.mPreviewWidth != 0 && this.mPreviewHeight != 0 && this.mDisplayBounds.width() != PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO && this.mDisplayBounds.height() != PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+        if (this.mPreviewWidth != 0 && this.mPreviewHeight != 0 && this.mDisplayBounds.width() != 0.0f && this.mDisplayBounds.height() != 0.0f) {
             this.mMatrix.reset();
             this.mMatrix.postScale(((float) this.mPreviewWidth) / this.mDisplayBounds.width(), ((float) this.mPreviewHeight) / this.mDisplayBounds.height());
             this.mFace2UIMatrix.reset();

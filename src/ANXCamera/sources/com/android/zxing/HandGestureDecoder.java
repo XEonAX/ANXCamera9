@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Rect;
 import android.graphics.YuvImage;
 import android.media.Image;
+import android.provider.MiuiSettings.ScreenEffect;
 import com.android.camera.CameraSettings;
 import com.android.camera.R;
 import com.android.camera.data.DataRepository;
@@ -145,7 +146,7 @@ public class HandGestureDecoder extends Decoder {
         if (this.mCameraId == 1) {
             orientation = 270 - orientation;
         } else {
-            orientation = (90 + orientation) % 360;
+            orientation = (90 + orientation) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         }
         return this.mHandGesture.detectGesture(previewImage.getData(), previewImage.getWidth(), previewImage.getHeight(), orientation);
     }

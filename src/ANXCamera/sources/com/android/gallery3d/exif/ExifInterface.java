@@ -4,9 +4,10 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.provider.MiuiSettings.ScreenEffect;
+import android.support.v4.internal.view.SupportMenu;
 import android.util.Log;
 import android.util.SparseIntArray;
-import com.sensetime.stmobile.STMobileHumanActionNative;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -419,7 +420,7 @@ public class ExifInterface {
     }
 
     public static int defineTag(int i, short s) {
-        return (i << 16) | (s & 65535);
+        return (i << 16) | (s & SupportMenu.USER_MASK);
     }
 
     public static short getTrueTagKey(int i) {
@@ -1258,9 +1259,9 @@ public class ExifInterface {
     }
 
     public static short getExifOrientationValue(int i) {
-        i %= 360;
+        i %= ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         if (i < 0) {
-            i += 360;
+            i += ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         }
         if (i < 90) {
             return (short) 1;
@@ -1293,7 +1294,7 @@ public class ExifInterface {
     public static double convertLatOrLongToDouble(Rational[] rationalArr, String str) {
         try {
             double toDouble = (rationalArr[0].toDouble() + (rationalArr[1].toDouble() / 60.0d)) + (rationalArr[2].toDouble() / 3600.0d);
-            if (str.equals(GpsLatitudeRef.SOUTH) || str.equals(GpsLongitudeRef.WEST)) {
+            if (str.equals("S") || str.equals(GpsLongitudeRef.WEST)) {
                 return -toDouble;
             }
             return toDouble;
@@ -1344,7 +1345,7 @@ public class ExifInterface {
         if (d >= 0.0d) {
             obj = "N";
         } else {
-            obj = GpsLatitudeRef.SOUTH;
+            obj = "S";
         }
         ExifTag buildTag3 = buildTag(i, obj);
         int i2 = TAG_GPS_LONGITUDE_REF;
@@ -1414,10 +1415,10 @@ public class ExifInterface {
 
     private void initTagInfo() {
         int flagsFromAllowedIfds = getFlagsFromAllowedIfds(new int[]{0, 1}) << 24;
-        int i = flagsFromAllowedIfds | STMobileHumanActionNative.ST_MOBILE_HAND_CONGRATULATE;
+        int i = flagsFromAllowedIfds | 131072;
         int i2 = i | 0;
         this.mTagInfo.put(TAG_MAKE, i2);
-        int i3 = flagsFromAllowedIfds | STMobileHumanActionNative.ST_MOBILE_HAND_FINGER_HEART;
+        int i3 = flagsFromAllowedIfds | 262144;
         int i4 = i3 | 1;
         this.mTagInfo.put(TAG_IMAGE_WIDTH, i4);
         this.mTagInfo.put(TAG_IMAGE_LENGTH, i4);
@@ -1455,7 +1456,7 @@ public class ExifInterface {
         this.mTagInfo.put(TAG_COPYRIGHT, i2);
         this.mTagInfo.put(TAG_EXIF_IFD, i4);
         this.mTagInfo.put(TAG_GPS_IFD, i4);
-        int flagsFromAllowedIfds2 = ((getFlagsFromAllowedIfds(new int[]{1}) << 24) | STMobileHumanActionNative.ST_MOBILE_HAND_FINGER_HEART) | 1;
+        int flagsFromAllowedIfds2 = ((getFlagsFromAllowedIfds(new int[]{1}) << 24) | 262144) | 1;
         this.mTagInfo.put(TAG_JPEG_INTERCHANGE_FORMAT, flagsFromAllowedIfds2);
         this.mTagInfo.put(TAG_JPEG_INTERCHANGE_FORMAT_LENGTH, flagsFromAllowedIfds2);
         flagsFromAllowedIfds2 = getFlagsFromAllowedIfds(new int[]{2}) << 24;
@@ -1469,13 +1470,13 @@ public class ExifInterface {
         this.mTagInfo.put(TAG_COMPONENTS_CONFIGURATION, i4);
         i4 = (flagsFromAllowedIfds2 | 327680) | 1;
         this.mTagInfo.put(TAG_COMPRESSED_BITS_PER_PIXEL, i4);
-        int i9 = (STMobileHumanActionNative.ST_MOBILE_HAND_FINGER_HEART | flagsFromAllowedIfds2) | 1;
+        int i9 = (262144 | flagsFromAllowedIfds2) | 1;
         this.mTagInfo.put(TAG_PIXEL_X_DIMENSION, i9);
         this.mTagInfo.put(TAG_PIXEL_Y_DIMENSION, i9);
         i2 = i3 | 0;
         this.mTagInfo.put(TAG_MAKER_NOTE, i2);
         this.mTagInfo.put(TAG_USER_COMMENT, i2);
-        int i10 = flagsFromAllowedIfds2 | STMobileHumanActionNative.ST_MOBILE_HAND_CONGRATULATE;
+        int i10 = flagsFromAllowedIfds2 | 131072;
         this.mTagInfo.put(TAG_RELATED_SOUND_FILE, i10 | 13);
         int i11 = i10 | 20;
         this.mTagInfo.put(TAG_DATE_TIME_ORIGINAL, i11);
@@ -1546,7 +1547,7 @@ public class ExifInterface {
         int flagsFromAllowedIfds3 = getFlagsFromAllowedIfds(new int[]{4}) << 24;
         i12 = 65536 | flagsFromAllowedIfds3;
         this.mTagInfo.put(TAG_GPS_VERSION_ID, i12 | 4);
-        i2 = flagsFromAllowedIfds3 | STMobileHumanActionNative.ST_MOBILE_HAND_CONGRATULATE;
+        i2 = flagsFromAllowedIfds3 | 131072;
         i = i2 | 2;
         this.mTagInfo.put(TAG_GPS_LATITUDE_REF, i);
         this.mTagInfo.put(TAG_GPS_LONGITUDE_REF, i);
@@ -1581,7 +1582,7 @@ public class ExifInterface {
         this.mTagInfo.put(TAG_GPS_AREA_INFORMATION, i12);
         this.mTagInfo.put(TAG_GPS_DATE_STAMP, i2 | 11);
         this.mTagInfo.put(TAG_GPS_DIFFERENTIAL, (flagsFromAllowedIfds3 | 196608) | 11);
-        this.mTagInfo.put(TAG_INTEROPERABILITY_INDEX, ((getFlagsFromAllowedIfds(new int[]{3}) << 24) | STMobileHumanActionNative.ST_MOBILE_HAND_CONGRATULATE) | 0);
+        this.mTagInfo.put(TAG_INTEROPERABILITY_INDEX, ((getFlagsFromAllowedIfds(new int[]{3}) << 24) | 131072) | 0);
     }
 
     protected static int getAllowedIfdFlagsFromInfo(int i) {
@@ -1649,7 +1650,7 @@ public class ExifInterface {
     }
 
     protected static int getComponentCountFromInfo(int i) {
-        return i & 65535;
+        return i & SupportMenu.USER_MASK;
     }
 
     public static byte[] addXiaomiComment(byte[] bArr, String str) {

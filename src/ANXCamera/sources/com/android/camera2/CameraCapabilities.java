@@ -22,7 +22,6 @@ import com.android.camera.constant.MiCameraCharacteristics;
 import com.android.camera.fragment.beauty.BeautyParameters.Type;
 import com.android.camera.log.Log;
 import com.android.camera.module.BaseModule;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera2.compat.MiCameraCompat;
 import com.android.camera2.compat.MiCameraCompatBaseImpl;
 import com.mi.config.b;
@@ -167,7 +166,7 @@ public class CameraCapabilities {
 
     public boolean isAFRegionSupported() {
         Float f = (Float) this.mCharacteristics.get(CameraCharacteristics.LENS_INFO_MINIMUM_FOCUS_DISTANCE);
-        return f != null && f.floatValue() > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        return f != null && f.floatValue() > 0.0f;
     }
 
     public boolean isSupportedQcfa() {
@@ -200,11 +199,11 @@ public class CameraCapabilities {
 
     public float getMinimumFocusDistance() {
         Float f = (Float) this.mCharacteristics.get(CameraCharacteristics.LENS_INFO_MINIMUM_FOCUS_DISTANCE);
-        return f != null ? f.floatValue() : PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        return f != null ? f.floatValue() : 0.0f;
     }
 
     public boolean isFixedFocus() {
-        return getMinimumFocusDistance() > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        return getMinimumFocusDistance() > 0.0f;
     }
 
     public boolean isFaceDetectionSupported() {
@@ -444,7 +443,7 @@ public class CameraCapabilities {
             SizeF sizeF = (SizeF) this.mCharacteristics.get(CameraCharacteristics.SENSOR_INFO_PHYSICAL_SIZE);
             if (sizeF != null) {
                 float height = z ? sizeF.getHeight() : sizeF.getWidth();
-                if (height > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+                if (height > 0.0f) {
                     height = (float) (2.0d * Math.toDegrees(Math.atan((0.5d * ((double) height)) / ((double) f))));
                     String str = TAG;
                     Locale locale = Locale.US;

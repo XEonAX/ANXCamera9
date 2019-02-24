@@ -16,6 +16,7 @@ import android.os.Message;
 import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.os.UserHandle;
+import android.provider.MiuiSettings.ScreenEffect;
 import android.support.annotation.MainThread;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
 import android.support.v4.app.DialogFragment;
@@ -257,7 +258,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
                     Camera.this.mDisplayRotation = i;
                     Camera.this.onDisplayRotationChanged();
                 }
-                Camera.this.mOrientationCompensation = (Camera.this.mOrientation + Camera.this.mDisplayRotation) % 360;
+                Camera.this.mOrientationCompensation = (Camera.this.mOrientation + Camera.this.mDisplayRotation) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
                 if (Camera.this.mCurrentModule != null) {
                     Camera.this.mCurrentModule.onOrientationChanged(Camera.this.mOrientation, Camera.this.mOrientationCompensation);
                 }
@@ -1138,24 +1139,25 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
     }
 
     public boolean showNewBie(int i) {
+        Fragment portraitNewbieDialogFragment;
         switch (i) {
             case 1:
-                PortraitNewbieDialogFragment portraitNewbieDialogFragment = new PortraitNewbieDialogFragment();
+                portraitNewbieDialogFragment = new PortraitNewbieDialogFragment();
                 portraitNewbieDialogFragment.setStyle(2, R.style.DialogFragmentFullScreen);
                 getSupportFragmentManager().beginTransaction().add(portraitNewbieDialogFragment, PortraitNewbieDialogFragment.TAG).commitAllowingStateLoss();
                 this.newbieDialogFragmentTag = PortraitNewbieDialogFragment.TAG;
                 return true;
             case 2:
-                FrontRotateNewbieDialogFragment frontRotateNewbieDialogFragment = new FrontRotateNewbieDialogFragment();
-                frontRotateNewbieDialogFragment.setStyle(2, R.style.DialogFragmentFullScreen);
-                getSupportFragmentManager().beginTransaction().add(frontRotateNewbieDialogFragment, FrontRotateNewbieDialogFragment.TAG).commitAllowingStateLoss();
+                portraitNewbieDialogFragment = new FrontRotateNewbieDialogFragment();
+                portraitNewbieDialogFragment.setStyle(2, R.style.DialogFragmentFullScreen);
+                getSupportFragmentManager().beginTransaction().add(portraitNewbieDialogFragment, FrontRotateNewbieDialogFragment.TAG).commitAllowingStateLoss();
                 this.newbieDialogFragmentTag = FrontRotateNewbieDialogFragment.TAG;
                 return true;
             case 3:
                 this.mHandler.postDelayed(new Runnable() {
                     public void run() {
                         if (!Camera.this.isActivityPaused()) {
-                            AiSceneNewbieDialogFragment aiSceneNewbieDialogFragment = new AiSceneNewbieDialogFragment();
+                            Fragment aiSceneNewbieDialogFragment = new AiSceneNewbieDialogFragment();
                             aiSceneNewbieDialogFragment.setStyle(2, R.style.DialogFragmentFullScreen);
                             Camera.this.getSupportFragmentManager().beginTransaction().add(aiSceneNewbieDialogFragment, AiSceneNewbieDialogFragment.TAG).commitAllowingStateLoss();
                             Camera.this.newbieDialogFragmentTag = AiSceneNewbieDialogFragment.TAG;
@@ -1168,7 +1170,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
                 this.mHandler.postDelayed(new Runnable() {
                     public void run() {
                         if (!Camera.this.isActivityPaused()) {
-                            UltraWideNewbieDialogFragment ultraWideNewbieDialogFragment = new UltraWideNewbieDialogFragment();
+                            Fragment ultraWideNewbieDialogFragment = new UltraWideNewbieDialogFragment();
                             ultraWideNewbieDialogFragment.setStyle(2, R.style.DialogFragmentFullScreen);
                             Camera.this.getSupportFragmentManager().beginTransaction().add(ultraWideNewbieDialogFragment, UltraWideNewbieDialogFragment.TAG).commitAllowingStateLoss();
                             Camera.this.newbieDialogFragmentTag = UltraWideNewbieDialogFragment.TAG;
@@ -1377,7 +1379,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
     }
 
     private void showHibernationFragment() {
-        HibernationFragment hibernationFragment = new HibernationFragment();
+        Fragment hibernationFragment = new HibernationFragment();
         hibernationFragment.setStyle(2, R.style.DialogFragmentFullScreen);
         getSupportFragmentManager().beginTransaction().add(hibernationFragment, HibernationFragment.TAG).commitAllowingStateLoss();
     }
@@ -1410,7 +1412,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
                 }
             });
         } else if (getSupportFragmentManager().findFragmentByTag(LensDirtyDetectDialogFragment.TAG) == null) {
-            LensDirtyDetectDialogFragment lensDirtyDetectDialogFragment = new LensDirtyDetectDialogFragment();
+            Fragment lensDirtyDetectDialogFragment = new LensDirtyDetectDialogFragment();
             lensDirtyDetectDialogFragment.setStyle(2, R.style.LensDirtyDetectDialogFragment);
             getSupportFragmentManager().beginTransaction().add(lensDirtyDetectDialogFragment, LensDirtyDetectDialogFragment.TAG).commitAllowingStateLoss();
         }

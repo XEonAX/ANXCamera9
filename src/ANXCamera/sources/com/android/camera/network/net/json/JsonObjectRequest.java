@@ -1,36 +1,36 @@
 package com.android.camera.network.net.json;
 
 import com.android.camera.network.net.base.Cacheable;
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
-import com.android.volley.ParseError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.Response.ErrorListener;
-import com.android.volley.Response.Listener;
-import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.C0001AuthFailureError;
+import com.android.volley.C0015NetworkResponse;
+import com.android.volley.C0017ParseError;
+import com.android.volley.C0021Request;
+import com.android.volley.C0027Response;
+import com.android.volley.Response.C0025ErrorListener;
+import com.android.volley.Response.C0026Listener;
+import com.android.volley.toolbox.C0045HttpHeaderParser;
 import com.ss.android.vesdk.runtime.cloudconfig.HttpRequest;
 import java.util.Map;
 import org.json.JSONObject;
 
-public class JsonObjectRequest extends Request<JSONObject> implements Cacheable {
+public class JsonObjectRequest extends C0021Request<JSONObject> implements Cacheable {
     private String mCacheKey = null;
     private volatile byte[] mData = null;
     private Map<String, String> mHeaders = null;
     private volatile boolean mIsFromCache = false;
-    private Listener<JSONObject> mListener;
+    private C0026Listener<JSONObject> mListener;
     private Map<String, String> mParams = null;
 
-    public JsonObjectRequest(int i, String str, Listener<JSONObject> listener, ErrorListener errorListener) {
-        super(i, str, errorListener);
-        this.mListener = listener;
+    public JsonObjectRequest(int i, String str, C0026Listener<JSONObject> c0026Listener, C0025ErrorListener c0025ErrorListener) {
+        super(i, str, c0025ErrorListener);
+        this.mListener = c0026Listener;
     }
 
     public void setParams(Map<String, String> map) {
         this.mParams = map;
     }
 
-    public Map<String, String> getParams() throws AuthFailureError {
+    public Map<String, String> getParams() throws C0001AuthFailureError {
         return this.mParams != null ? this.mParams : super.getParams();
     }
 
@@ -38,7 +38,7 @@ public class JsonObjectRequest extends Request<JSONObject> implements Cacheable 
         this.mHeaders = map;
     }
 
-    public Map<String, String> getHeaders() throws AuthFailureError {
+    public Map<String, String> getHeaders() throws C0001AuthFailureError {
         return this.mHeaders != null ? this.mHeaders : super.getHeaders();
     }
 
@@ -48,15 +48,15 @@ public class JsonObjectRequest extends Request<JSONObject> implements Cacheable 
         }
     }
 
-    protected Response<JSONObject> parseNetworkResponse(NetworkResponse networkResponse) {
+    protected C0027Response<JSONObject> parseNetworkResponse(C0015NetworkResponse c0015NetworkResponse) {
         try {
-            this.mIsFromCache = networkResponse.headers.containsKey(Cacheable.HEADER_FROM_CACHE);
-            this.mData = networkResponse.data;
-            return Response.success(new JSONObject(new String(networkResponse.data, parseCharset(networkResponse.headers, "utf-8"))), HttpHeaderParser.parseCacheHeaders(networkResponse));
+            this.mIsFromCache = c0015NetworkResponse.headers.containsKey(Cacheable.HEADER_FROM_CACHE);
+            this.mData = c0015NetworkResponse.data;
+            return C0027Response.success(new JSONObject(new String(c0015NetworkResponse.data, parseCharset(c0015NetworkResponse.headers, "utf-8"))), C0045HttpHeaderParser.parseCacheHeaders(c0015NetworkResponse));
         } catch (Throwable e) {
-            return Response.error(new ParseError(e));
+            return C0027Response.error(new C0017ParseError(e));
         } catch (Throwable e2) {
-            return Response.error(new ParseError(e2));
+            return C0027Response.error(new C0017ParseError(e2));
         }
     }
 

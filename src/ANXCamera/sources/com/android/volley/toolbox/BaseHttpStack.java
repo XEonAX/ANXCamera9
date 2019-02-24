@@ -1,8 +1,8 @@
 package com.android.volley.toolbox;
 
-import com.android.volley.AuthFailureError;
+import com.android.volley.C0001AuthFailureError;
+import com.android.volley.C0021Request;
 import com.android.volley.Header;
-import com.android.volley.Request;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -16,12 +16,12 @@ import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicHttpResponse;
 import org.apache.http.message.BasicStatusLine;
 
-public abstract class BaseHttpStack implements HttpStack {
-    public abstract HttpResponse executeRequest(Request<?> request, Map<String, String> map) throws IOException, AuthFailureError;
+public abstract class BaseHttpStack implements C0043HttpStack {
+    public abstract HttpResponse executeRequest(C0021Request<?> c0021Request, Map<String, String> map) throws IOException, C0001AuthFailureError;
 
     @Deprecated
-    public final HttpResponse performRequest(Request<?> request, Map<String, String> map) throws IOException, AuthFailureError {
-        HttpResponse executeRequest = executeRequest(request, map);
+    public final HttpResponse performRequest(C0021Request<?> c0021Request, Map<String, String> map) throws IOException, C0001AuthFailureError {
+        HttpResponse executeRequest = executeRequest(c0021Request, map);
         HttpResponse basicHttpResponse = new BasicHttpResponse(new BasicStatusLine(new ProtocolVersion("HTTP", 1, 1), executeRequest.getStatusCode(), ""));
         List arrayList = new ArrayList();
         for (Header header : executeRequest.getHeaders()) {

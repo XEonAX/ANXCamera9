@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.support.v4.media.session.PlaybackStateCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import com.bytedance.frameworks.core.monitor.config.MonitorConfigure;
@@ -55,7 +56,7 @@ public class LogStoreManager {
     public int getDBSizeInMB() {
         File file = new File(this.mDb.getPath());
         if (file.exists()) {
-            return (int) ((file.length() / 1024) / 1024);
+            return (int) ((file.length() / PlaybackStateCompat.ACTION_PLAY_FROM_MEDIA_ID) / PlaybackStateCompat.ACTION_PLAY_FROM_MEDIA_ID);
         }
         return -1;
     }

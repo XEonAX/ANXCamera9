@@ -17,6 +17,8 @@ import android.os.Message;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.Adapter;
+import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.util.Pair;
 import android.view.TextureView;
 import android.view.View;
@@ -57,7 +59,6 @@ import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
 import com.android.camera.statistic.CameraStat;
 import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.ui.CameraSnapView;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.ss.android.vesdk.VECommonCallback;
 import com.ss.android.vesdk.VECommonCallbackInfo;
 import io.reactivex.Completable;
@@ -605,9 +606,9 @@ public class FragmentFullScreen extends BaseFragment implements OnClickListener,
         if (this.mCombineProgress.getVisibility() != i) {
             ValueAnimator ofFloat;
             if (i == 0) {
-                this.mCombineProgress.setAlpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                this.mCombineProgress.setAlpha(0.0f);
                 this.mCombineProgress.setVisibility(0);
-                ofFloat = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
+                ofFloat = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
                 ofFloat.setDuration(300);
                 ofFloat.setStartDelay(160);
                 ofFloat.setInterpolator(new PathInterpolator(0.25f, 0.1f, 0.25f, 1.0f));
@@ -621,7 +622,7 @@ public class FragmentFullScreen extends BaseFragment implements OnClickListener,
                 });
                 ofFloat.start();
             } else {
-                ofFloat = ValueAnimator.ofFloat(new float[]{1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO});
+                ofFloat = ValueAnimator.ofFloat(new float[]{1.0f, 0.0f});
                 ofFloat.setDuration(300);
                 ofFloat.setInterpolator(new CubicEaseInInterpolator());
                 ofFloat.addUpdateListener(new AnimatorUpdateListener() {
@@ -738,10 +739,10 @@ public class FragmentFullScreen extends BaseFragment implements OnClickListener,
             length = Math.max((Util.sWindowWidth - (i * 2)) / arrayList.size(), (int) (((float) (Util.sWindowWidth - i)) / 5.5f));
             if (this.mShareAdapter == null || this.mShareAdapter.getItemCount() != arrayList.size()) {
                 this.mShareAdapter = new ShareAdapter(arrayList, this, length);
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                LayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
                 linearLayoutManager.setOrientation(0);
                 this.mShareRecyclerView.setLayoutManager(linearLayoutManager);
-                RecyclerAdapterWrapper recyclerAdapterWrapper = new RecyclerAdapterWrapper(this.mShareAdapter);
+                Adapter recyclerAdapterWrapper = new RecyclerAdapterWrapper(this.mShareAdapter);
                 View space = new Space(getContext());
                 space.setMinimumWidth(i);
                 recyclerAdapterWrapper.addHeader(space);

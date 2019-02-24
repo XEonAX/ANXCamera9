@@ -6,7 +6,6 @@ import android.os.Parcelable.Creator;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.ss.android.vesdk.runtime.cloudconfig.PerformanceConfig;
 import com.ss.android.vesdk.runtime.cloudconfig.VECloudConfig;
 
@@ -446,8 +445,8 @@ public class VEVideoEncodeSettings implements Parcelable {
     public VEVideoEncodeSettings(VESize vESize, boolean z) {
         this.rotate = 0;
         this.resizeMode = 2;
-        this.resizeX = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-        this.resizeY = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        this.resizeX = 0.0f;
+        this.resizeY = 0.0f;
         this.speed = 1.0f;
         this.outputSize = new VESize(576, 1024);
         this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
@@ -470,8 +469,8 @@ public class VEVideoEncodeSettings implements Parcelable {
     public VEVideoEncodeSettings(VESize vESize, boolean z, int i, int i2) {
         this.rotate = 0;
         this.resizeMode = 2;
-        this.resizeX = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-        this.resizeY = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        this.resizeX = 0.0f;
+        this.resizeY = 0.0f;
         this.speed = 1.0f;
         this.outputSize = new VESize(576, 1024);
         this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
@@ -496,8 +495,8 @@ public class VEVideoEncodeSettings implements Parcelable {
     public VEVideoEncodeSettings(VESize vESize, boolean z, int i, int i2, int i3, int i4, boolean z2) {
         this.rotate = 0;
         this.resizeMode = 2;
-        this.resizeX = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-        this.resizeY = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        this.resizeX = 0.0f;
+        this.resizeY = 0.0f;
         this.speed = 1.0f;
         this.outputSize = new VESize(576, 1024);
         this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
@@ -524,8 +523,8 @@ public class VEVideoEncodeSettings implements Parcelable {
     private VEVideoEncodeSettings() {
         this.rotate = 0;
         this.resizeMode = 2;
-        this.resizeX = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-        this.resizeY = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        this.resizeX = 0.0f;
+        this.resizeY = 0.0f;
         this.speed = 1.0f;
         this.outputSize = new VESize(576, 1024);
         this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;
@@ -551,8 +550,8 @@ public class VEVideoEncodeSettings implements Parcelable {
         boolean z = false;
         this.rotate = 0;
         this.resizeMode = 2;
-        this.resizeX = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
-        this.resizeY = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        this.resizeX = 0.0f;
+        this.resizeY = 0.0f;
         this.speed = 1.0f;
         this.outputSize = new VESize(576, 1024);
         this.bitrateMode = ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR;

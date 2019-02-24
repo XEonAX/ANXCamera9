@@ -3,7 +3,6 @@ package com.android.camera.constant;
 import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.CaptureResult.Key;
 import com.android.camera.data.DataRepository;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -39,7 +38,7 @@ public class AsdSceneConstant {
         if (captureResult.get(AEC_LUX) != null) {
             floatValue = ((Float) captureResult.get(AEC_LUX)).floatValue();
         } else {
-            floatValue = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+            floatValue = 0.0f;
         }
         if (!z) {
             mIsFlashRetain = false;

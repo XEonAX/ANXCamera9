@@ -14,9 +14,7 @@ import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.log.Log;
 import com.android.camera.panorama.MorphoPanoramaGP3;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera.ui.drawable.TriangleIndicatorDrawable;
-import com.android.volley.DefaultRetryPolicy;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -27,7 +25,7 @@ public class PanoMovingIndicatorView extends View {
     private static final int MOVING_LEFT_TO_RIGHT = 0;
     private static final int MOVING_RIGHT_TO_LEFT = 1;
     private static final float SHOW_ALIGN_THRESHOLD = 0.25f;
-    private static final int SPEED_DEVIATION = (DefaultRetryPolicy.DEFAULT_TIMEOUT_MS / MAX_GAP);
+    private static final int SPEED_DEVIATION = (2500 / MAX_GAP);
     private static final float SPEED_FILTER_THRESHOLD = 0.1f;
     private static final int STONE_WIDTH = Util.dpToPixel(10.67f);
     public static final String TAG = PanoMovingIndicatorView.class.getSimpleName();
@@ -139,7 +137,7 @@ public class PanoMovingIndicatorView extends View {
             i = -drawable.getIntrinsicWidth();
             drawable.setBounds(i, (-drawable.getIntrinsicHeight()) / 2, 0, drawable.getIntrinsicHeight() / 2);
             drawable.draw(canvas2);
-            canvas2.translate((float) drawable.getIntrinsicWidth(), PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            canvas2.translate((float) drawable.getIntrinsicWidth(), 0.0f);
             int i5 = (int) (((float) i) - (((float) STONE_WIDTH) + this.mPointGap));
             int i6 = (int) this.mPointGap;
             for (int i7 = 0; i7 < sGapWidth.length && i6 > 0; i7++) {
@@ -209,7 +207,7 @@ public class PanoMovingIndicatorView extends View {
 
     private int getPointGap(int i) {
         if (i > MorphoPanoramaGP3.FAST_SPEED_THRESHOLD) {
-            return (MAX_GAP * ((i - MorphoPanoramaGP3.FAST_SPEED_THRESHOLD) + SPEED_DEVIATION)) / DefaultRetryPolicy.DEFAULT_TIMEOUT_MS;
+            return (MAX_GAP * ((i - MorphoPanoramaGP3.FAST_SPEED_THRESHOLD) + SPEED_DEVIATION)) / 2500;
         }
         return -1;
     }
@@ -220,7 +218,7 @@ public class PanoMovingIndicatorView extends View {
     }
 
     public boolean isTooFast() {
-        return this.mPointGap > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        return this.mPointGap > 0.0f;
     }
 
     private void filterSpeed(int i) {

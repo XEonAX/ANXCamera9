@@ -11,7 +11,6 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RawRes;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.bumptech.glide.e.a;
 import com.bumptech.glide.load.engine.g;
 import com.bumptech.glide.request.RequestFutureTarget;
@@ -196,7 +195,7 @@ public class h<TranscodeType> implements g<h<TranscodeType>>, Cloneable {
     @CheckResult
     @NonNull
     public h<TranscodeType> a(float f) {
-        if (f < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO || f > 1.0f) {
+        if (f < 0.0f || f > 1.0f) {
             throw new IllegalArgumentException("sizeMultiplier must be between 0 and 1");
         }
         this.aP = Float.valueOf(f);

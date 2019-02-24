@@ -23,6 +23,7 @@ import android.os.CountDownTimer;
 import android.os.ParcelFileDescriptor;
 import android.os.SystemClock;
 import android.os.SystemProperties;
+import android.provider.MiuiSettings.ScreenEffect;
 import android.support.annotation.MainThread;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -67,7 +68,6 @@ import com.android.camera.storage.Storage;
 import com.android.camera.ui.ObjectView.ObjectViewListener;
 import com.android.camera.ui.PopupManager;
 import com.android.camera.ui.RotateTextToast;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera2.Camera2Proxy.PictureCallbackWrapper;
 import com.android.camera2.Camera2Proxy.VideoRecordStateCallback;
 import com.android.camera2.CameraCapabilities;
@@ -104,7 +104,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
     private static final HashMap<String, Integer> HEVC_VIDEO_ENCODER_BITRATE = new HashMap();
     private static final int MAX_DURATION_4K = 480000;
     private static final int RESET_VIDEO_AUTO_FOCUS_TIME = 3000;
-    public static final Size SIZE_1080 = new Size(1920, 1080);
+    public static final Size SIZE_1080 = new Size(1920, ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_END_DEAULT);
     public static final Size SIZE_720 = new Size(1280, Util.LIMIT_SURFACE_WIDTH);
     private static final long START_OFFSET_MS = 450;
     private static final int VIDEO_HFR_FRAME_RATE_120 = 120;
@@ -462,7 +462,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
                     Size size;
                     videoQuality = this.mQuality;
                     if (6 == videoQuality) {
-                        size = new Size(1920, 1080);
+                        size = new Size(1920, ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_END_DEAULT);
                     } else {
                         size = new Size(1280, Util.LIMIT_SURFACE_WIDTH);
                     }
@@ -672,7 +672,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
     }
 
     protected void resizeForPreviewAspectRatio() {
-        if (((this.mCameraCapabilities.getSensorOrientation() - Util.getDisplayRotation(this.mActivity)) + 360) % 180 == 0) {
+        if (((this.mCameraCapabilities.getSensorOrientation() - Util.getDisplayRotation(this.mActivity)) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % 180 == 0) {
             this.mMainProtocol.setPreviewAspectRatio(((float) this.mVideoSize.height) / ((float) this.mVideoSize.width));
         } else {
             this.mMainProtocol.setPreviewAspectRatio(((float) this.mVideoSize.width) / ((float) this.mVideoSize.height));
@@ -1091,7 +1091,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
         Class[] clsArr = new Class[]{MediaRecorder.class};
         Method method = Util.getMethod(clsArr, "setParameter", "(Ljava/lang/String;)V");
         if (method != null) {
-            method.invoke(clsArr[0], mediaRecorder, new Object[]{str});
+            method.invoke(clsArr[0], mediaRecorder, str);
         }
     }
 
@@ -1147,9 +1147,9 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
             return sensorOrientation;
         }
         if (isFrontCamera()) {
-            return ((sensorOrientation - this.mOrientation) + 360) % 360;
+            return ((sensorOrientation - this.mOrientation) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
         }
-        return (sensorOrientation + this.mOrientation) % 360;
+        return (sensorOrientation + this.mOrientation) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
     }
 
     private void releaseMediaRecorder() {
@@ -2130,7 +2130,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
         if (this.mCamera2Device != null && isAlive()) {
             this.mCamera2Device.setAutoZoomMode(isSwitchOn);
             if (isSwitchOn) {
-                this.mCamera2Device.setAutoZoomScaleOffset(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                this.mCamera2Device.setAutoZoomScaleOffset(0.0f);
             }
         }
     }
@@ -2294,7 +2294,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
             notifyAutoZoomStopUiHint();
             this.mCamera2Device.setAutoZoomStopCapture(-1);
             this.mCamera2Device.setAutoZoomStartCapture(new float[]{rectF.left, rectF.top, rectF.width(), rectF.height()});
-            this.mCamera2Device.setAutoZoomStartCapture(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO});
+            this.mCamera2Device.setAutoZoomStartCapture(new float[]{0.0f, 0.0f, 0.0f, 0.0f});
             this.isAutoZoomTracking.getAndSet(true);
             CameraStatUtil.trackSelectObject(this.mMediaRecorderRecording);
         }

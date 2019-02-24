@@ -1,8 +1,8 @@
 package com.android.camera.effect.renders;
 
+import android.provider.MiuiSettings.System;
 import com.android.camera.Util;
 import com.android.camera.log.Log;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.BasicTexture;
 import com.android.gallery3d.ui.StringTexture;
 import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
@@ -12,7 +12,7 @@ class TextWaterMark extends WaterMark {
     private static final String TAG = TextWaterMark.class.getSimpleName();
     private static final int TEXT_COLOR = -262152;
     private static final int TEXT_PIXEL_SIZE = 144;
-    private final int[][] PIC_WIDTHS = new int[][]{new int[]{0, 149}, new int[]{150, 239}, new int[]{240, 279}, new int[]{280, MonitorCommonConstants.MAX_COUNT_UPLOAD_SINGLE_TIME}, new int[]{401, 1439}, new int[]{1440, 1511}, new int[]{1512, 1799}, new int[]{1800, 1899}, new int[]{1900, 2299}, new int[]{2300, 3120}, new int[]{3121, 4000}};
+    private final int[][] PIC_WIDTHS = new int[][]{new int[]{0, 149}, new int[]{150, 239}, new int[]{240, 279}, new int[]{280, MonitorCommonConstants.MAX_COUNT_UPLOAD_SINGLE_TIME}, new int[]{401, 1439}, new int[]{1440, 1511}, new int[]{1512, 1799}, new int[]{1800, 1899}, new int[]{1900, 2299}, new int[]{2300, 3120}, new int[]{3121, System.STATUS_BAR_UPDATE_NETWORK_SPEED_INTERVAL_DEFAULT}};
     private final int[][] WATERMARK_FONT_SIZES = new int[][]{new int[]{5, 4, 2, 4, 3, 7}, new int[]{8, 6, 2, 6, 3, 7}, new int[]{11, 6, 5, 6, 5, 12}, new int[]{12, 7, 5, 7, 5, 12}, new int[]{50, 32, 11, 31, 20, 47}, new int[]{58, 36, 19, 38, 24, 55}, new int[]{65, 41, 24, 42, 27, 63}, new int[]{80, 50, 24, 50, 32, 75}, new int[]{83, 52, 25, 52, 33, 78}, new int[]{104, 65, 33, 65, 42, 98}, new int[]{128, 80, 40, 80, 48, 132}};
     private int mCenterX;
     private int mCenterY;
@@ -29,7 +29,7 @@ class TextWaterMark extends WaterMark {
         int i5 = i2;
         super(i4, i5, i3);
         this.mWaterText = str;
-        this.mWaterTexture = StringTexture.newInstance(this.mWaterText, 144.0f, TEXT_COLOR, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, false, 1);
+        this.mWaterTexture = StringTexture.newInstance(this.mWaterText, 144.0f, TEXT_COLOR, 0.0f, false, 1);
         this.mFontIndex = getFontIndex(i4, i5);
         this.mWaterWidth = getWaterMarkWidth(this.mWaterText, this.mFontIndex);
         this.mWaterHeight = (int) (((float) this.WATERMARK_FONT_SIZES[this.mFontIndex][0]) / RATIO);

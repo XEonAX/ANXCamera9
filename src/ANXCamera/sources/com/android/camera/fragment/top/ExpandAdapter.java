@@ -14,7 +14,6 @@ import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;
 import com.android.camera.data.data.global.DataItemGlobal;
 import com.android.camera.fragment.CommonRecyclerViewHolder;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class ExpandAdapter extends Adapter<CommonRecyclerViewHolder> implements OnClickListener {
     private ComponentData mComponentData;
@@ -45,7 +44,7 @@ public class ExpandAdapter extends Adapter<CommonRecyclerViewHolder> implements 
         final TextView textView = (TextView) commonRecyclerViewHolder.getView(R.id.text);
         textView.setText(commonRecyclerViewHolder.itemView.getResources().getString(componentDataItem.mDisplayNameRes));
         if (this.mCurrentValue.equals(componentDataItem.mValue)) {
-            textView.setShadowLayer(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 0);
+            textView.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
             textView.setBackgroundResource(R.drawable.bg_top_expanded_selected);
             if (Util.isAccessible()) {
                 final String string = commonRecyclerViewHolder.itemView.getResources().getString(R.string.accessibility_selected);
@@ -64,7 +63,7 @@ public class ExpandAdapter extends Adapter<CommonRecyclerViewHolder> implements 
             }
             return;
         }
-        textView.setShadowLayer(4.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, -1073741824);
+        textView.setShadowLayer(4.0f, 0.0f, 0.0f, -1073741824);
         textView.setBackground(null);
     }
 

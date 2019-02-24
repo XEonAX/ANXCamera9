@@ -14,7 +14,6 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import com.android.camera.R;
 import com.android.camera.log.Log;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -79,7 +78,7 @@ public class SeekBarCompat extends SeekBar implements OnTouchListener, OnSeekBar
             if (progress == getMax() / 2) {
                 this.mCenterProgressRectF.right = width;
             } else {
-                if (this.mX == PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+                if (this.mX == 0.0f) {
                     this.mX = (float) (getThumb().getBounds().left + (getThumb().getBounds().width() / 2));
                 }
                 this.mCenterProgressRectF.right = clamp(this.mX);
@@ -87,9 +86,9 @@ public class SeekBarCompat extends SeekBar implements OnTouchListener, OnSeekBar
             float f = (float) height;
             this.mCenterProgressRectF.top = f - (((float) this.mCenterProgressStrokeWidth) / 2.0f);
             this.mCenterProgressRectF.bottom = f + (((float) this.mCenterProgressStrokeWidth) / 2.0f);
-            canvas.drawRoundRect(this.mCenterProgressRectF, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, this.mCenterProgressPaint);
+            canvas.drawRoundRect(this.mCenterProgressRectF, 0.0f, 0.0f, this.mCenterProgressPaint);
             canvas.drawCircle((float) (getWidth() / 2), (float) (getHeight() / 2), (float) getResources().getDimensionPixelSize(R.dimen.beauty_seek_bar_point_radius), this.mCenterPointPain);
-            this.mX = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+            this.mX = 0.0f;
         }
         super.onDraw(canvas);
     }

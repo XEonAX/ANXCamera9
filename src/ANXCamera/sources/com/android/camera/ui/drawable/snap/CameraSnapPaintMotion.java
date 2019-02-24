@@ -4,11 +4,10 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint.Style;
 import com.android.camera.ui.drawable.CameraPaintBase;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class CameraSnapPaintMotion extends CameraPaintBase {
     private boolean mIsOutstandingRound = false;
-    private float mLastAngle = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+    private float mLastAngle = 0.0f;
 
     public CameraSnapPaintMotion(Context context) {
         super(context);
@@ -23,7 +22,7 @@ public class CameraSnapPaintMotion extends CameraPaintBase {
     protected void draw(Canvas canvas) {
         int i;
         float f = this.mBaseRadius * this.mCurrentWidthPercent;
-        if (this.timeAngle - this.mLastAngle < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+        if (this.timeAngle - this.mLastAngle < 0.0f) {
             this.mIsOutstandingRound ^= 1;
         }
         for (i = 0; i < 40; i++) {
@@ -33,19 +32,19 @@ public class CameraSnapPaintMotion extends CameraPaintBase {
             int i2 = this.mCurrentAlpha;
             int i3 = 19;
             if (this.isRecording) {
-                if (f2 == PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO && this.needZero) {
+                if (f2 == 0.0f && this.needZero) {
                     this.mPaint.setAlpha(ALPHA_OUTSTANDING);
                 } else if (f2 < this.timeAngle) {
                     this.mPaint.setAlpha(this.mIsOutstandingRound ? ALPHA_OUTSTANDING : ALPHA_HINT);
                 } else {
                     this.mPaint.setAlpha(this.mIsOutstandingRound ? ALPHA_HINT : ALPHA_OUTSTANDING);
                 }
-                if (f2 % 90.0f == PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+                if (f2 % 90.0f == 0.0f) {
                     canvas.drawLine(this.mMiddleX, this.mMiddleY - f, this.mMiddleX, (this.mMiddleY - f) + ((float) i3), this.mPaint);
                     this.mPaint.setAlpha(i2);
                     canvas.restore();
                 }
-            } else if (f2 % 90.0f == PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+            } else if (f2 % 90.0f == 0.0f) {
                 canvas.drawLine(this.mMiddleX, this.mMiddleY - f, this.mMiddleX, (this.mMiddleY - f) + ((float) i3), this.mPaint);
                 this.mPaint.setAlpha(i2);
                 canvas.restore();

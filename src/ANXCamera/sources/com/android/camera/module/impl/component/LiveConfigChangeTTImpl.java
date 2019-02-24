@@ -26,7 +26,6 @@ import com.android.camera.protocol.ModeProtocol.FilterProtocol;
 import com.android.camera.protocol.ModeProtocol.LiveConfigChanges;
 import com.android.camera.protocol.ModeProtocol.OnFaceBeautyChangedProtocol;
 import com.android.camera.protocol.ModeProtocol.StickerProtocol;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.ExtTexture;
 import com.ss.android.medialib.TTRecorder.SlamDetectListener;
 import com.ss.android.medialib.model.TimeSpeedModel;
@@ -125,7 +124,7 @@ public class LiveConfigChangeTTImpl implements LiveConfigChanges {
                 this.mRecorder.setBeautyFaceIntensity(f, WHITE_INTENSITY);
             } else {
                 this.mRecorder.setBeautyFace(0, "");
-                this.mRecorder.setBeautyFaceIntensity(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                this.mRecorder.setBeautyFaceIntensity(0.0f, 0.0f);
             }
         }
     }
@@ -134,7 +133,7 @@ public class LiveConfigChangeTTImpl implements LiveConfigChanges {
         if (z) {
             this.mRecorder.setFaceReshape(FileUtils.RESHAPE_DIR_NAME, f, f2);
         } else {
-            this.mRecorder.setFaceReshape("", PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            this.mRecorder.setFaceReshape("", 0.0f, 0.0f);
         }
     }
 
@@ -591,12 +590,12 @@ public class LiveConfigChangeTTImpl implements LiveConfigChanges {
         float faceBeautyRatio = ((float) CameraSettings.getFaceBeautyRatio(CameraSettings.KEY_LIVE_SHRINK_FACE_RATIO, 40)) / 100.0f;
         float faceBeautyRatio2 = ((float) CameraSettings.getFaceBeautyRatio(CameraSettings.KEY_LIVE_ENLARGE_EYE_RATIO, 40)) / 100.0f;
         float faceBeautyRatio3 = ((float) CameraSettings.getFaceBeautyRatio(CameraSettings.KEY_LIVE_SMOOTH_STRENGTH, 40)) / 100.0f;
-        if (faceBeautyRatio > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO || faceBeautyRatio2 > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO || faceBeautyRatio3 > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+        if (faceBeautyRatio > 0.0f || faceBeautyRatio2 > 0.0f || faceBeautyRatio3 > 0.0f) {
             setBeautyFaceReshape(true, faceBeautyRatio2, faceBeautyRatio);
             setBeautify(true, faceBeautyRatio3);
             return;
         }
-        setBeautyFaceReshape(false, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
-        setBeautify(false, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        setBeautyFaceReshape(false, 0.0f, 0.0f);
+        setBeautify(false, 0.0f);
     }
 }

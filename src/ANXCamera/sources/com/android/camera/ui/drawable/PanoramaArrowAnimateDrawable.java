@@ -36,12 +36,12 @@ public class PanoramaArrowAnimateDrawable extends Drawable {
         int height = bounds.height();
         Path path = new Path();
         float f = (float) height;
-        path.moveTo(LEFT_ARROW_RATIO, ((2.0f - this.mTransformationRatio) * f) / 4.0f);
-        path.lineTo(LEFT_ARROW_RATIO, ((this.mTransformationRatio + 2.0f) * f) / 4.0f);
+        path.moveTo(0.0f, ((2.0f - this.mTransformationRatio) * f) / 4.0f);
+        path.lineTo(0.0f, ((this.mTransformationRatio + 2.0f) * f) / 4.0f);
         float f2 = (float) width;
         path.lineTo(f2, (((2.0f - this.mTransformationRatio) + 2.0f) * f) / 4.0f);
         path.lineTo(f2, ((2.0f - (2.0f - this.mTransformationRatio)) * f) / 4.0f);
-        path.lineTo(LEFT_ARROW_RATIO, ((2.0f - this.mTransformationRatio) * f) / 4.0f);
+        path.lineTo(0.0f, ((2.0f - this.mTransformationRatio) * f) / 4.0f);
         path.close();
         canvas.drawPath(path, this.mPaint);
     }

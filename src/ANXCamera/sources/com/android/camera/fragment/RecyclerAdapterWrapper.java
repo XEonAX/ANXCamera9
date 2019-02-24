@@ -35,7 +35,7 @@ public class RecyclerAdapterWrapper<T extends Adapter> extends Adapter<ViewHolde
             this.mBaseHolderClass = ViewHolder.class;
         }
         Adapter adapter = this.mBase;
-        AnonymousClass1 anonymousClass1 = new AdapterDataObserver() {
+        AdapterDataObserver anonymousClass1 = new AdapterDataObserver() {
             public void onChanged() {
                 super.onChanged();
                 RecyclerAdapterWrapper.this.notifyDataSetChanged();

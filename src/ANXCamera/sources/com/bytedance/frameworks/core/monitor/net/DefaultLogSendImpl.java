@@ -1,6 +1,7 @@
 package com.bytedance.frameworks.core.monitor.net;
 
 import android.content.Context;
+import android.provider.MiuiSettings.System;
 import com.bytedance.frameworks.baselib.log.LogHandler;
 import com.bytedance.frameworks.baselib.log.LogHandler.BaseConfig;
 import com.bytedance.frameworks.baselib.log.LogHandler.IResponseConfig;
@@ -80,7 +81,7 @@ public class DefaultLogSendImpl implements ILogSendImpl {
                                 return true;
                             }
                         }
-                        if (500 <= sendLog.stateCode && sendLog.stateCode <= 600) {
+                        if (System.SCREEN_KEY_LONG_PRESS_TIMEOUT_DEFAULT <= sendLog.stateCode && sendLog.stateCode <= 600) {
                             DefaultLogSendImpl defaultLogSendImpl;
                             if (DefaultLogSendImpl.this.mNetFailCount == 0) {
                                 DefaultLogSendImpl.this.mStopInterval = MonitorCommonConstants.SECOND_STOP_INTERVAL;

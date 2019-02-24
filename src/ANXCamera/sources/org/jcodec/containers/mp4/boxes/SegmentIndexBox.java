@@ -1,5 +1,6 @@
 package org.jcodec.containers.mp4.boxes;
 
+import android.support.v4.internal.view.SupportMenu;
 import java.nio.ByteBuffer;
 import org.jcodec.platform.Platform;
 
@@ -63,7 +64,7 @@ public class SegmentIndexBox extends FullBox {
             this.first_offset = byteBuffer.getLong();
         }
         this.reserved = byteBuffer.getShort();
-        this.reference_count = byteBuffer.getShort() & 65535;
+        this.reference_count = byteBuffer.getShort() & SupportMenu.USER_MASK;
         this.references = new Reference[this.reference_count];
         for (int i = 0; i < this.reference_count; i++) {
             long unsignedInt = Platform.unsignedInt(byteBuffer.getInt());

@@ -35,7 +35,6 @@ import com.android.camera.fragment.beauty.BeautyParameters;
 import com.android.camera.fragment.beauty.LiveBeautyFilterFragment.LiveFilterItem;
 import com.android.camera.log.Log;
 import com.android.camera.module.ModuleManager;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.GLCanvas;
 import com.mi.config.b;
 import com.mi.config.d;
@@ -381,10 +380,10 @@ public class EffectController {
     }
 
     public void clearEffectAttribute() {
-        this.mEffectRectAttribute.mRectF.set(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
-        this.mEffectRectAttribute.mPoint1.set(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
-        this.mEffectRectAttribute.mPoint2.set(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
-        this.mEffectRectAttribute.mRangeWidth = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        this.mEffectRectAttribute.mRectF.set(0.0f, 0.0f, 0.0f, 0.0f);
+        this.mEffectRectAttribute.mPoint1.set(0.0f, 0.0f);
+        this.mEffectRectAttribute.mPoint2.set(0.0f, 0.0f);
+        this.mEffectRectAttribute.mRangeWidth = 0.0f;
     }
 
     public RectF getEffectRectF() {

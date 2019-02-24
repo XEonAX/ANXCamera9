@@ -1,7 +1,6 @@
 package com.android.camera.sticker.beautyprocessor;
 
 import android.graphics.Bitmap;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.miui.filtersdk.beauty.BeautyParameterType;
 import com.miui.filtersdk.beauty.IntelligentBeautyProcessor;
 import com.sensetime.stmobile.STBeautifyNative;
@@ -20,7 +19,7 @@ public class StickerBeautyProcessor extends IntelligentBeautyProcessor {
 
     public StickerBeautyProcessor(STBeautifyNative sTBeautifyNative) {
         this.mStBeautifyNative = sTBeautifyNative;
-        this.mLevelParameters = new float[][]{new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO}, new float[]{0.1f, 0.1f, 0.1f, 0.1f, 0.1f, 0.1f}, new float[]{0.2f, 0.2f, 0.2f, 0.2f, 0.2f, 0.2f}, new float[]{0.3f, 0.3f, 0.3f, 0.3f, 0.3f, 0.3f}, new float[]{0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f}, new float[]{0.6f, 0.6f, 0.6f, 0.6f, 0.6f, 0.6f}};
+        this.mLevelParameters = new float[][]{new float[]{0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}, new float[]{0.1f, 0.1f, 0.1f, 0.1f, 0.1f, 0.1f}, new float[]{0.2f, 0.2f, 0.2f, 0.2f, 0.2f, 0.2f}, new float[]{0.3f, 0.3f, 0.3f, 0.3f, 0.3f, 0.3f}, new float[]{0.5f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f}, new float[]{0.6f, 0.6f, 0.6f, 0.6f, 0.6f, 0.6f}};
     }
 
     public BeautyParameterType[] getSupportedBeautyParamTypes() {
@@ -35,7 +34,7 @@ public class StickerBeautyProcessor extends IntelligentBeautyProcessor {
             case SHRINK_JAW_RATIO:
             case WHITEN_STRENGTH:
             case SMOOTH_STRENGTH:
-                return new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f};
+                return new float[]{0.0f, 1.0f};
             default:
                 return new float[0];
         }

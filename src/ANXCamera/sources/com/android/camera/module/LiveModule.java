@@ -58,7 +58,6 @@ import com.android.camera.protocol.ModeProtocol.OnFaceBeautyChangedProtocol;
 import com.android.camera.protocol.ModeProtocol.RecordState;
 import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.storage.Storage;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera2.Camera2Proxy.CameraPreviewCallback;
 import com.android.camera2.Camera2Proxy.FaceDetectionCallback;
 import com.android.camera2.Camera2Proxy.FocusCallback;
@@ -391,7 +390,7 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
         float faceBeautyRatio = ((float) CameraSettings.getFaceBeautyRatio(CameraSettings.KEY_LIVE_SHRINK_FACE_RATIO, 40)) / 100.0f;
         float faceBeautyRatio2 = ((float) CameraSettings.getFaceBeautyRatio(CameraSettings.KEY_LIVE_ENLARGE_EYE_RATIO, 40)) / 100.0f;
         float faceBeautyRatio3 = ((float) CameraSettings.getFaceBeautyRatio(CameraSettings.KEY_LIVE_SMOOTH_STRENGTH, 40)) / 100.0f;
-        if (faceBeautyRatio > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO || faceBeautyRatio2 > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO || faceBeautyRatio3 > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+        if (faceBeautyRatio > 0.0f || faceBeautyRatio2 > 0.0f || faceBeautyRatio3 > 0.0f) {
             CameraSettings.setLiveBeautyStatus(true);
             if (this.mLiveConfigChanges != null) {
                 this.mLiveConfigChanges.setBeautyFaceReshape(true, faceBeautyRatio2, faceBeautyRatio);
@@ -933,7 +932,7 @@ public class LiveModule extends BaseModule implements Listener, CameraAction, On
             if (i > 225) {
                 i = 270;
             }
-            this.mLiveConfigChanges.updateRotation(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) i);
+            this.mLiveConfigChanges.updateRotation(0.0f, 0.0f, (float) i);
         }
     }
 

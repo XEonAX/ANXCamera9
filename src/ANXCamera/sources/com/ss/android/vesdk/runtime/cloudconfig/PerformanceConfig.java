@@ -9,7 +9,6 @@ import android.support.annotation.RestrictTo;
 import android.support.annotation.RestrictTo.Scope;
 import android.text.TextUtils;
 import android.util.Log;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.ss.android.vesdk.runtime.VERuntime;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -566,7 +565,7 @@ public class PerformanceConfig {
 
     private static float getFloatConfig(Map<String, String> map, String str, float f) {
         if (map == null) {
-            return PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+            return 0.0f;
         }
         String str2 = (String) map.get(str);
         try {

@@ -14,7 +14,6 @@ import android.os.Build.VERSION;
 import android.support.annotation.Keep;
 import android.util.Log;
 import android.view.Surface;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.ss.android.ttve.common.TEEglStateSaver;
 import com.ss.android.ttve.common.TESharedContext;
 import com.ss.android.ttve.common.TETextureDrawer;
@@ -73,7 +72,7 @@ public class TEMediaCodecDecoder implements OnFrameAvailableListener {
         private int mProgram;
         private float[] mSTMatrix = new float[16];
         private FloatBuffer mTriangleVertices = ByteBuffer.allocateDirect(this.mTriangleVerticesData.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
-        private final float[] mTriangleVerticesData = new float[]{-1.0f, -1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, -1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, -1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, 1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, 1.0f};
+        private final float[] mTriangleVerticesData = new float[]{-1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f, -1.0f, 0.0f, 1.0f, 0.0f, -1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f};
         private int maPositionHandle;
         private int maTextureHandle;
         private int[] muFrameBuffer = new int[1];
@@ -97,7 +96,7 @@ public class TEMediaCodecDecoder implements OnFrameAvailableListener {
             GLES20.glFramebufferTexture2D(36160, 36064, 3553, i4, 0);
             checkGlError("glFramebufferTexture2D");
             checkGlError("onDrawFrame start");
-            GLES20.glClearColor(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f);
+            GLES20.glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
             GLES20.glClear(16640);
             GLES20.glUseProgram(this.mProgram);
             checkGlError("glUseProgram");
@@ -446,7 +445,7 @@ public class TEMediaCodecDecoder implements OnFrameAvailableListener {
         if (this.m_textureDrawer == null) {
             return false;
         }
-        this.m_textureDrawer.setRotation(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        this.m_textureDrawer.setRotation(0.0f);
         this.m_textureDrawer.setFlipScale(1.0f, -1.0f);
         return true;
     }

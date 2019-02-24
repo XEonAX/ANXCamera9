@@ -20,7 +20,6 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TextView;
-import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.facebook.rebound.OrigamiValueConverter;
 import com.facebook.rebound.Spring;
 import com.facebook.rebound.SpringConfig;
@@ -92,7 +91,7 @@ public class SpringConfiguratorView extends FrameLayout {
 
         public void onProgressChanged(SeekBar seekBar, int i, boolean z) {
             if (seekBar == SpringConfiguratorView.this.mTensionSeekBar) {
-                float f = ((((float) i) * SpringConfiguratorView.MAX_TENSION) / 100000.0f) + PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+                float f = ((((float) i) * SpringConfiguratorView.MAX_TENSION) / 100000.0f) + 0.0f;
                 double d = (double) f;
                 SpringConfiguratorView.this.mSelectedSpringConfig.tension = OrigamiValueConverter.tensionFromOrigamiValue(d);
                 String format = SpringConfiguratorView.DECIMAL_FORMAT.format(d);
@@ -103,7 +102,7 @@ public class SpringConfiguratorView extends FrameLayout {
                 access$900.setText(stringBuilder.toString());
             }
             if (seekBar == SpringConfiguratorView.this.mFrictionSeekBar) {
-                float f2 = ((((float) i) * SpringConfiguratorView.MAX_FRICTION) / 100000.0f) + PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+                float f2 = ((((float) i) * SpringConfiguratorView.MAX_FRICTION) / 100000.0f) + 0.0f;
                 double d2 = (double) f2;
                 SpringConfiguratorView.this.mSelectedSpringConfig.friction = OrigamiValueConverter.frictionFromOrigamiValue(d2);
                 String format2 = SpringConfiguratorView.DECIMAL_FORMAT.format(d2);
@@ -312,8 +311,8 @@ public class SpringConfiguratorView extends FrameLayout {
     }
 
     private void updateSeekBarsForSpringConfig(SpringConfig springConfig) {
-        int round = Math.round(((((float) OrigamiValueConverter.origamiValueFromTension(springConfig.tension)) - PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) * 100000.0f) / MAX_TENSION);
-        int round2 = Math.round(((((float) OrigamiValueConverter.origamiValueFromFriction(springConfig.friction)) - PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) * 100000.0f) / MAX_FRICTION);
+        int round = Math.round(((((float) OrigamiValueConverter.origamiValueFromTension(springConfig.tension)) - 0.0f) * 100000.0f) / MAX_TENSION);
+        int round2 = Math.round(((((float) OrigamiValueConverter.origamiValueFromFriction(springConfig.friction)) - 0.0f) * 100000.0f) / MAX_FRICTION);
         this.mTensionSeekBar.setProgress(round);
         this.mFrictionSeekBar.setProgress(round2);
     }

@@ -7,7 +7,6 @@ import com.android.camera.CameraSettings;
 import com.android.camera.network.live.TTLiveStickerResourceRequest;
 import com.android.camera.network.net.base.ErrorCode;
 import com.android.camera.network.net.base.ResponseListener;
-import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
 
 public class NetworkUtils {
     private static boolean DBG = false;
@@ -47,7 +46,7 @@ public class NetworkUtils {
     }
 
     public static void tryRequestTTSticker() {
-        new TTLiveStickerResourceRequest(CameraSettings.isLiveStickerInternalChannel() ? "local_test" : MonitorCommonConstants.DEFAULT_AID, MonitorCommonConstants.DEFAULT_AID).execute(new ResponseListener() {
+        new TTLiveStickerResourceRequest(CameraSettings.isLiveStickerInternalChannel() ? "local_test" : "default", "default").execute(new ResponseListener() {
             public void onResponse(Object... objArr) {
             }
 
