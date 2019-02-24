@@ -3070,6 +3070,8 @@ public final class R {
         public static final int accessibility_setting_button = 2131297394;
         /* added by JADX */
         public static final int accessibility_mode_dismiss_button = 2131297395;
+        /* added by JADX */
+        public static final int pref_camera_exposuretime_entry_64s = 2131297396;
     }
 
     public static final class style {

@@ -312,6 +312,7 @@
     <string name="pref_manual_exposure_title">S</string>
     <string name="pref_camera_exposuretime_default">0</string>
     <string name="pref_camera_exposuretime_entry_auto">AUTO</string>
+    <string name="pref_camera_exposuretime_entry_64s">64s</string>
     <string name="pref_camera_exposuretime_entry_32s">32s</string>
     <string name="pref_camera_exposuretime_entry_16s">16s</string>
     <string name="pref_camera_exposuretime_entry_8s">8s</string>

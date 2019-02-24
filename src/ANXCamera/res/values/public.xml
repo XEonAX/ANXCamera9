@@ -1749,6 +1749,7 @@
     <public type="string" name="accessibility_mode" id="0x7f090471" />
     <public type="string" name="accessibility_setting_button" id="0x7f090472" />
     <public type="string" name="accessibility_mode_dismiss_button" id="0x7f090473" />
+    <public type="string" name="pref_camera_exposuretime_entry_64s" id="0x7F090474" />
     <public type="dimen" name="activity_horizontal_margin" id="0x7f0a0000" />
     <public type="dimen" name="activity_vertical_margin" id="0x7f0a0001" />
     <public type="dimen" name="item_touch_helper_max_drag_scroll_per_frame" id="0x7f0a0002" />
