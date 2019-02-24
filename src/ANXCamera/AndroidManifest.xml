@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
     android:compileSdkVersion="28" 
     android:compileSdkVersionCodename="9" 
-    android:versionCode="32" 
-    android:versionName="32.GrubbyHonoredCaimanlizard" 
+    android:versionCode="35" 
+    android:versionName="35.PrivateTremendousLacewing" 
     package="com.android.camera" 
     platformBuildVersionCode="28" 
     platformBuildVersionName="9">
@@ -39,7 +39,6 @@
     <uses-permission android:name="com.xiaomi.scanner.receiver.RECEIVER"/>
     <uses-permission android:name="com.miui.powerkeeper.permission.KILL_CAMERA"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application android:allowBackup="false" 
         android:backupAgent="miui.app.backup.FullBackupAgent" 
