@@ -43,5 +43,8 @@ Steps to Port MiuiCamera:
 1. Unpack System of Miui
 2. Setup Framework for APKTool
 3. Add decompiled required java libs
-4. Set required = false of these libs as their code is now included
-5. 
+4. Set required = false in AndroidManifest of these libs as their code is now included
+5. Add missing smali files from decompiled miui rom
+6. Add native libs
+7. Edit Smali
+   1. 

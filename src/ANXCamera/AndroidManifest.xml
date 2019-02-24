@@ -2,9 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
     android:compileSdkVersion="28" 
     android:compileSdkVersionCodename="9" 
+    android:versionCode="30" 
+    android:versionName="30.TreasuredPettySilverfox" 
     package="com.android.camera" 
     platformBuildVersionCode="28" 
     platformBuildVersionName="9">
+    <uses-sdk android:minSdkVersion="26" 
+        android:targetSdkVersion="28"/>
     <original-package android:name="com.android.camera"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-feature android:name="android.hardware.camera"/>
@@ -37,7 +41,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <application android:allowBackup="true" 
+    <application android:allowBackup="false" 
         android:backupAgent="miui.app.backup.FullBackupAgent" 
         android:hardwareAccelerated="true" 
         android:icon="@mipmap/ic_launcher_camera" 
@@ -153,7 +157,7 @@
         </activity>
         <activity android:label="@string/custom_watermark_words" 
             android:launchMode="singleTop" 
-            android:name="com.android.camera.UserDefineWatermarkActivity" 
+            android:name="com.android.camera.UserDefineWatermarkActivity"  
             android:theme="@style/ThemeCameraSettings"/>
         <service android:exported="true" 
             android:name="com.android.camera.backup.CameraSettingsBackupService" 

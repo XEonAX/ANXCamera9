@@ -9,7 +9,6 @@ import android.preference.ListPreference;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -177,10 +176,6 @@ public class PreviewListPreference extends ListPreference {
         } else {
             imageView.setVisibility(4);
         }
-    }
-
-    protected View onCreateView(ViewGroup viewGroup) {
-        return LayoutInflater.from(getContext()).inflate(R.layout.preference_value_list, viewGroup, false);
     }
 
     public CharSequence getLabel() {
