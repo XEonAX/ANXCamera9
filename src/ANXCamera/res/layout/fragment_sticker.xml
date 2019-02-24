@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@color/beautycamera_fragment_background" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RadioGroup android:gravity="center" android:orientation="horizontal" android:id="@id/radio_group_layout_sticker" android:layout_width="fill_parent" android:layout_height="@dimen/beautycamera_beauty_fragment_tab_height" android:layout_centerHorizontal="true">
+        <RadioButton android:id="@id/radio_button_sticker_one" android:text="@string/sticker_tab1" style="@style/BeautyCameraEffectRadioButton" />
+        <RadioButton android:id="@id/radio_button_sticker_two" android:text="@string/sticker_tab2" style="@style/BeautyCameraEffectRadioButton" />
+    </RadioGroup>
+    <com.android.camera.ui.NoScrollViewPager android:id="@id/viewPager" android:layout_width="fill_parent" android:layout_height="@dimen/beautycamera_beauty_fragment_middle_content_height" />
+    <ImageView android:id="@id/effect_back" android:background="@color/beautycamera_effect_back_background" android:layout_width="fill_parent" android:layout_height="@dimen/beautycamera_effect_close_btn_height" android:src="@drawable/ic_hide_bottom" android:scaleType="centerInside" android:contentDescription="@null" />
+</LinearLayout>

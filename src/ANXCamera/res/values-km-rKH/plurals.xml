@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">ផ្តោត។ បានរកឃើញទម្រង់មុខ%d</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">រួចរាល់ក្នុងការថតរូបថតច្រើនសន្លឹក,​ ថតបានចំនួន %1$sរូប</item>
+    </plurals>
+</resources>

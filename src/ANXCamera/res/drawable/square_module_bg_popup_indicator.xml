@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inset android:insetLeft="@dimen/manually_indicator_background_margin_left_right" android:insetRight="@dimen/manually_indicator_background_margin_left_right" android:insetTop="@dimen/manually_indicator_background_margin_top_bottom" android:insetBottom="@dimen/manually_indicator_background_margin_top_bottom"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <layer-list
+      xmlns:android="http://schemas.android.com/apk/res/android">
+        <item>
+            <shape android:shape="oval">
+                <solid android:color="@color/square_module_bg_popup_indicator" />
+            </shape>
+        </item>
+        <item>
+            <shape android:shape="oval">
+                <stroke android:width="@dimen/zoom_button_background_stroke_width" android:color="#b3ffffff" />
+            </shape>
+        </item>
+    </layer-list>
+</inset>

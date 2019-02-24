@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">Messo a fuoco. %d volti rilevati</item>
+        <item quantity="one">Messo a fuoco. %d volto rilevato</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">Scatto a raffica eseguito, %1$s foto scattate</item>
+        <item quantity="one">Scatto a raffica eseguito, %1$s foto scattata</item>
+    </plurals>
+</resources>

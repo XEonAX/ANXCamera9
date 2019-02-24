@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">Nofokusēts. %d sejas atrastas</item>
+        <item quantity="zero">Nofokusēts. %d sejas atrastas</item>
+        <item quantity="one">Nofokusēts. %d seja atrasta</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">Secīgu attēlu uzņemšana paveikta, uzņemti %1$s foto</item>
+        <item quantity="zero">Secīgu attēlu uzņemšana paveikta, uzņemti %1$s foto</item>
+        <item quantity="one">Secīgu attēlu uzņemšana paveikta, uzņemts %1$s foto</item>
+    </plurals>
+</resources>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="@dimen/expanded_text_item_width" android:layout_height="@dimen/top_control_panel_height" style="@style/SettingColumn"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:id="@id/text" style="@style/GridExpandedTextSettingItem" />
+</RelativeLayout>

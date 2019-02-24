@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inset android:insetTop="@dimen/manually_indicator_background_margin_top_bottom" android:insetBottom="@dimen/manually_indicator_background_margin_top_bottom"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <layer-list>
+        <item>
+            <shape android:shape="rectangle">
+                <solid android:color="#33000000" />
+                <corners android:radius="@dimen/popup_tip_beauty_intro_radius" />
+                <padding android:left="@dimen/popup_tip_beauty_intro_left_padding" android:right="@dimen/popup_tip_beauty_intro_right_padding" />
+            </shape>
+        </item>
+        <item android:gravity="center|left" android:drawable="@drawable/icon_config_ultra_wide_off" />
+    </layer-list>
+</inset>

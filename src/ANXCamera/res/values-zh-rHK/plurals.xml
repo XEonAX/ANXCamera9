@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">對焦完成，檢測到%d張人臉</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">連拍結束, 共計拍攝 %1$s 張圖片.</item>
+    </plurals>
+</resources>

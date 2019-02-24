@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="fill_parent" android:layout_height="@dimen/beautycamera_popup_fragment_height"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_gravity="start|bottom|center" android:id="@id/icon_sticker" android:background="@drawable/bg_popup_indicator" android:padding="@dimen/beautycamera_beauty_popup_icon_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="6.0dip" android:layout_marginBottom="6.0dip" android:src="@drawable/ic_beauty_sticker" android:contentDescription="@null" />
+    <ImageView android:layout_gravity="end|bottom|center" android:id="@id/icon_beauty" android:background="@drawable/bg_popup_indicator" android:padding="@dimen/beautycamera_beauty_popup_icon_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="6.0dip" android:layout_marginBottom="6.0dip" android:src="@drawable/ic_beauty_magic" android:contentDescription="@null" />
+</FrameLayout>

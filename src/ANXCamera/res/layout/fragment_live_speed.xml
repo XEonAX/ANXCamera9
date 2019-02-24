@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@color/fullscreen_background" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <View android:background="@color/effect_divider_color" android:layout_width="fill_parent" android:layout_height="1.0px" />
+    <android.support.v7.widget.RecyclerView android:layout_gravity="center_vertical" android:id="@id/live_speed_list" android:focusable="false" android:layout_width="fill_parent" android:layout_height="@dimen/live_sticker_list_height" />
+    <View android:background="@color/effect_divider_color" android:layout_width="fill_parent" android:layout_height="1.0px" />
+</LinearLayout>

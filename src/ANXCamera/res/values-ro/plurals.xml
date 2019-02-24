@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">Focalizat. %d fețe detectate</item>
+        <item quantity="one">Focalizat. %d față detectată</item>
+        <item quantity="few">Focalizat. %d fețe detectate</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">Captură în rafale gata, %1$s fotografii făcute</item>
+        <item quantity="one">Captură în rafale gata, %1$s fotografie făcută</item>
+        <item quantity="few">Captură în rafale gata, %1$s fotografii făcute</item>
+    </plurals>
+</resources>

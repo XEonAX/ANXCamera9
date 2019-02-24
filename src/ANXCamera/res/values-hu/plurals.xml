@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">Összpontosítva. %d arc felismerve</item>
+        <item quantity="one">Összpontosítva. %d arc felismerve</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">A sorozatfelvétel elkészítve, %1$s fénykép készült</item>
+        <item quantity="one">A sorozatfelvétel elkészítve, %1$s fénykép készült</item>
+    </plurals>
+</resources>

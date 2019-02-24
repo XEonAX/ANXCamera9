@@ -1,0 +1,22 @@
+{
+  data: [
+    {
+      title: "button_front_camera_title",
+      type: "activity",
+      image: "ic_3d_touch_button_selfie",
+      intent: "#Intent;action=android.media.action.STILL_IMAGE_CAMERA;category=android.intent.category.LAUNCHER;B.android.intent.extras.START_WITH_FRONT_CAMERA=true;launchFlags=0x10200000;component=com.android.camera/.Camera;end"
+    },
+    {
+      title: "button_normal_video_title",
+      type: "activity",
+      image: "ic_3d_touch_button_video",
+      intent: "#Intent;action=android.media.action.VIDEO_CAMERA;category=android.intent.category.LAUNCHER;B.android.intent.extras.START_WITH_BACK_CAMERA=true;launchFlags=0x10200000;component=com.android.camera/.Camera;end"
+    },
+    {
+      title: "button_fisheye_camera_title",
+      type: "activity",
+      image: "ic_3d_touch_button_fisheye_lens",
+      intent: "#Intent;action=android.media.action.STILL_IMAGE_CAMERA;category=android.intent.category.LAUNCHER;S.android.intent.extras.START_WITH_EFFECT_RENDER=pref_camera_coloreffect_entry_fisheye;B.android.intent.extras.START_WITH_BACK_CAMERA=true;launchFlags=0x10200000;component=com.android.camera/.Camera;end"
+    }
+  ]
+}

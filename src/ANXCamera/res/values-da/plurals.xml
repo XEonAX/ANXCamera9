@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">Fokuseret. %d ansigter detekteret</item>
+        <item quantity="one">Fokuseret. %d ansigt detekteret</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">Serieoptagelse færdig. Der blev taget %1$s fotos.</item>
+        <item quantity="one">Serieoptagelse færdig. Der blev taget %1$s foto.</item>
+    </plurals>
+</resources>

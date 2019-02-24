@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_gravity="center_horizontal" android:id="@id/manually_indicator" android:focusable="false" android:visibility="gone" android:layout_marginBottom="@dimen/popup_indicator_button_extra_margin_bottom" android:src="@drawable/ic_manually_indicator" android:scaleType="center" android:contentDescription="@null" style="@style/PopupButtonIndicator" />
+    <LinearLayout android:orientation="vertical" android:id="@id/manually_adjust_layout" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <FrameLayout android:id="@id/manually_popup" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        <LinearLayout android:orientation="vertical" android:id="@id/manually_recycler_view_layout" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <View android:background="@color/effect_divider_color" android:layout_width="fill_parent" android:layout_height="1.0px" />
+            <android.support.v7.widget.RecyclerView android:id="@id/manually_recycler_view" android:layout_width="fill_parent" android:layout_height="@dimen/settings_screen_height" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

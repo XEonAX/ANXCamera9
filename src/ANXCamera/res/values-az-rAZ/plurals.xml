@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">Fokuslandı. %d üz aşkarlandı</item>
+        <item quantity="one">Fokuslandı. %d üz aşkarlandı</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">Ardıcıl çəkiliş hazırdır,%1$s şəkil çəkildi</item>
+        <item quantity="one">Ardıcıl çəkiliş hazırdır,%1$s şəkil çəkildi</item>
+    </plurals>
+</resources>

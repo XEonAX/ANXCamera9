@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="accessibility_focus_face_detect">
+        <item quantity="other">فوکوس شد. %d چهره شناسایی شد</item>
+        <item quantity="one">فوکوس شد. %d چهره شناسایی شد</item>
+    </plurals>
+    <plurals name="toast_burst_snap_finished_summary">
+        <item quantity="other">عکس‌برداری پشت سر هم انجام شد. %1$s عکس گرفته شد</item>
+        <item quantity="one">عکس‌برداری پشت سر هم انجام شد. %1$s عکس گرفته شد</item>
+    </plurals>
+</resources>

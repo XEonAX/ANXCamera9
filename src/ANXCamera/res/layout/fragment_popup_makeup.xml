@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:focusable="false" android:layout_width="fill_parent" android:layout_height="@dimen/beautycamera_popup_fragment_height"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.android.camera.ui.SeekBarCompat android:id="@id/makeup_params_level" android:focusable="false" android:layout_width="@dimen/beautycamera_beauty_params_level_seekbar_width" android:layout_height="fill_parent" android:progress="@integer/beauty_params_level_seekbar_progress" android:progressDrawable="@drawable/center_seekbar_style" android:thumb="@drawable/makeup_seekbar_thumb_background" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:splitTrack="true" />
+</RelativeLayout>
