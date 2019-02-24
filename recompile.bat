@@ -1,1 +1,1 @@
-java  -jar .\tools\apktool.jar b -p .\tools\MiuiFrameworks -o .\out\ANXCamera.apkunsign .\src\ANXCamera
+java  -jar ..\ANXMiuiPortTools\apktool.jar b -p ..\ANXMiuiPortTools\MiuiFrameworks -o .\out\ANXCamera-Unsigned.apk .\src\ANXCamera

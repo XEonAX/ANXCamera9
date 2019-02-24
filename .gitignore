@@ -1,3 +1,6 @@
 src/ANXCamera/build/
-out/ANXCamera-Unsigned.apk
+out/
 .idea
+src/ANXCameraMagisk/system/priv-app/ANXCamera/ANXCamera.apk
+src/ANXCameraUnity/system/priv-app/ANXCamera/ANXCamera.apk
+src/ANXMiuiCameraMagisk/system/priv-app/MiuiCamera/MiuiCamera.apk

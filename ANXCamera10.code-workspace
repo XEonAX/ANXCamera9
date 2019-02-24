@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"terminal.integrated.scrollback": 999999,
+		"xmlTools.splitAttributesOnFormat": true
+	}
+}
