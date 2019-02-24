@@ -6,8 +6,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
 import android.preference.Preference;
-import android.provider.MiuiSettings;
-import android.provider.MiuiSettings.Key;
 import android.provider.Settings.Secure;
 import android.provider.Settings.System;
 import android.widget.Toast;
@@ -32,14 +30,14 @@ public class CameraPreferenceActivity extends BasePreferenceActivity {
         if (!preference.getKey().equals(CameraSettings.KEY_CAMERA_SNAP) || obj == null) {
             return super.onPreferenceChange(preference, obj);
         }
-        if (System.getInt(getContentResolver(), MiuiSettings.System.VOLUMEKEY_WAKE_SCREEN, 0) == 1) {
+        if (System.getInt(getContentResolver(), "volumekey_wake_screen", 0) == 1) {
             Toast.makeText(this, R.string.pref_camera_snap_toast_when_volume_can_wake_screen, 0).show();
             return false;
-        } else if ((obj.equals(getString(R.string.pref_camera_snap_value_take_picture)) || obj.equals(getString(R.string.pref_camera_snap_value_take_movie))) && Key.LONG_PRESS_VOLUME_DOWN_PAY.equals(Secure.getString(getContentResolver(), Key.LONG_PRESS_VOLUME_DOWN))) {
+        } else if ((obj.equals(getString(R.string.pref_camera_snap_value_take_picture)) || obj.equals(getString(R.string.pref_camera_snap_value_take_movie))) && "public_transportation_shortcuts".equals(Secure.getString(getContentResolver(), "key_long_press_volume_down"))) {
             bringUpDoubleConfirmDlg((PreviewListPreference) preference, (String) obj);
             return false;
         } else {
-            Secure.putString(getContentResolver(), Key.LONG_PRESS_VOLUME_DOWN, CameraSettings.getMiuiSettingsKeyForStreetSnap((String) obj));
+            Secure.putString(getContentResolver(), "key_long_press_volume_down", CameraSettings.getMiuiSettingsKeyForStreetSnap((String) obj));
             CameraStatUtil.trackPreferenceChange(CameraSettings.KEY_CAMERA_SNAP, obj);
             return true;
         }
@@ -47,11 +45,14 @@ public class CameraPreferenceActivity extends BasePreferenceActivity {
 
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+        if (getIntent().getCharSequenceExtra(":miui:starting_window_label") != null) {
+            getActionBar().setTitle(R.string.pref_camera_settings_category);
+        }
         changeRequestOrientation();
     }
 
     public void changeRequestOrientation() {
-        if (b.hC()) {
+        if (b.hL()) {
             if (CameraSettings.isFrontCamera()) {
                 setRequestedOrientation(7);
             } else {
@@ -68,7 +69,7 @@ public class CameraPreferenceActivity extends BasePreferenceActivity {
                         CameraPreferenceActivity.this.mDoubleConfirmActionChooseDialog = null;
                         CameraStatUtil.trackPreferenceChange(CameraSettings.KEY_CAMERA_SNAP, str);
                         previewListPreference.setValue(str);
-                        Secure.putString(CameraPreferenceActivity.this.getContentResolver(), Key.LONG_PRESS_VOLUME_DOWN, CameraSettings.getMiuiSettingsKeyForStreetSnap(str));
+                        Secure.putString(CameraPreferenceActivity.this.getContentResolver(), "key_long_press_volume_down", CameraSettings.getMiuiSettingsKeyForStreetSnap(str));
                     } else if (i == -2) {
                         CameraPreferenceActivity.this.mDoubleConfirmActionChooseDialog.dismiss();
                         CameraPreferenceActivity.this.mDoubleConfirmActionChooseDialog = null;

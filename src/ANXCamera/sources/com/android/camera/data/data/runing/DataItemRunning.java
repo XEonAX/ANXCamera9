@@ -7,6 +7,7 @@ import com.android.camera.log.Log;
 
 public class DataItemRunning extends DataItemBase {
     public static final String DATA_RUNING_HAND_GESTURE = "pref_hand_gesture";
+    public static final String DATA_RUNING_HAND_GESTURE_STATUS = "pref_hand_gesture_status";
     public static final String DATA_RUNING_MENU_ULTRA_PIXEL_PHOTOGRAPHY_FRONT = "pref_menu_ultra_pixel_photography_front";
     public static final String DATA_RUNING_MENU_ULTRA_PIXEL_PHOTOGRAPHY_REAR = "pref_menu_ultra_pixel_photography_rear";
     public static final String DATA_RUNNING_AUTO_ZOOM = "pref_camera_auto_zoom";
@@ -162,5 +163,13 @@ public class DataItemRunning extends DataItemBase {
 
     public long getLiveMusicFirstRequestTime() {
         return getLong("pref_key_live_music_first_request_time", -1);
+    }
+
+    public boolean getHandGestureRunning() {
+        return getBoolean("pref_hand_gesture_status", false);
+    }
+
+    public void setHandGestureRunning(boolean z) {
+        putBoolean("pref_hand_gesture_status", z);
     }
 }

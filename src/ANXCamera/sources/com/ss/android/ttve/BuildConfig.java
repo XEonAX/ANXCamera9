@@ -3,7 +3,7 @@ package com.ss.android.ttve;
 public final class BuildConfig {
     public static final String AAR_ABI = "arm64-v8a";
     public static final String AAR_POM_ARTIFACT_ID = "vesdk";
-    public static final String AAR_VERSION_NAME = "2.3.0.49_xiaomi_20190117213104_9b62a5014_v8a";
+    public static final String AAR_VERSION_NAME = "2.3.0.49_xiaomi_20190219120223_bff1ef0e3_v8a";
     public static final String APPLICATION_ID = "com.ss.android.ttve";
     public static final String BUILD_TYPE = "release";
     public static final boolean DEBUG = false;

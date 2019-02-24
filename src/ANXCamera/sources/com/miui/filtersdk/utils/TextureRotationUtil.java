@@ -1,13 +1,14 @@
 package com.miui.filtersdk.utils;
 
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.nio.FloatBuffer;
 
 public class TextureRotationUtil {
     public static final float[] CUBE = new float[]{-1.0f, -1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f};
-    public static final float[] TEXTURE_NO_ROTATION = new float[]{0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f};
-    public static final float[] TEXTURE_ROTATED_180 = new float[]{1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f};
-    public static final float[] TEXTURE_ROTATED_270 = new float[]{0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f};
-    public static final float[] TEXTURE_ROTATED_90 = new float[]{1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f};
+    public static final float[] TEXTURE_NO_ROTATION = new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, 1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO};
+    public static final float[] TEXTURE_ROTATED_180 = new float[]{1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f};
+    public static final float[] TEXTURE_ROTATED_270 = new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, 1.0f};
+    public static final float[] TEXTURE_ROTATED_90 = new float[]{1.0f, 1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO};
 
     private TextureRotationUtil() {
     }
@@ -38,10 +39,10 @@ public class TextureRotationUtil {
     }
 
     private static float flip(float f) {
-        if (f == 0.0f) {
+        if (f == PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
             return 1.0f;
         }
-        return 0.0f;
+        return PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
     }
 
     public static void adjustSize(int i, boolean z, boolean z2, FloatBuffer floatBuffer, FloatBuffer floatBuffer2) {

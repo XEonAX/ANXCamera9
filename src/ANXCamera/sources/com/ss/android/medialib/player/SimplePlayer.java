@@ -86,7 +86,7 @@ public class SimplePlayer implements b {
 
     public int start(Surface surface, int i, int i2) {
         if (this.mAudioPlayer != null) {
-            this.mAudioPlayer.ib();
+            this.mAudioPlayer.ik();
         }
         return nativeStart(this.mHandle, surface, i, i2);
     }
@@ -107,14 +107,14 @@ public class SimplePlayer implements b {
 
     public void stop() {
         if (this.mAudioPlayer != null) {
-            this.mAudioPlayer.ic();
+            this.mAudioPlayer.il();
         }
         nativeStop(this.mHandle);
     }
 
     public void release() {
         if (this.mAudioPlayer != null) {
-            this.mAudioPlayer.ia();
+            this.mAudioPlayer.ij();
         }
         nativeRelease(this.mHandle);
         this.mHandle = 0;

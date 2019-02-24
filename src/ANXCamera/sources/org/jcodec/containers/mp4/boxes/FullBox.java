@@ -1,6 +1,5 @@
 package org.jcodec.containers.mp4.boxes;
 
-import android.support.v4.view.ViewCompat;
 import java.nio.ByteBuffer;
 
 public abstract class FullBox extends Box {
@@ -14,11 +13,11 @@ public abstract class FullBox extends Box {
     public void parse(ByteBuffer byteBuffer) {
         int i = byteBuffer.getInt();
         this.version = (byte) ((i >> 24) & 255);
-        this.flags = i & ViewCompat.MEASURED_SIZE_MASK;
+        this.flags = i & 16777215;
     }
 
     protected void doWrite(ByteBuffer byteBuffer) {
-        byteBuffer.putInt((this.version << 24) | (this.flags & ViewCompat.MEASURED_SIZE_MASK));
+        byteBuffer.putInt((this.version << 24) | (this.flags & 16777215));
     }
 
     public byte getVersion() {

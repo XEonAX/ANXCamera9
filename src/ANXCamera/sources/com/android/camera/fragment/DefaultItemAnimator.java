@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.support.v7.widget.RecyclerView.ItemAnimator;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.View;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -197,7 +198,7 @@ public class DefaultItemAnimator extends ItemAnimator {
     private void animateRemoveImpl(final ViewHolder viewHolder) {
         final ViewPropertyAnimatorCompat animate = ViewCompat.animate(viewHolder.itemView);
         this.mRemoveAnimations.add(viewHolder);
-        animate.setDuration(getRemoveDuration()).alpha(0.0f).setListener(new VpaListenerAdapter() {
+        animate.setDuration(getRemoveDuration()).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setListener(new VpaListenerAdapter() {
             public void onAnimationStart(View view) {
                 DefaultItemAnimator.this.dispatchRemoveStarting(viewHolder);
             }
@@ -222,13 +223,13 @@ public class DefaultItemAnimator extends ItemAnimator {
     private void animateAddImpl(final ViewHolder viewHolder) {
         final ViewPropertyAnimatorCompat animate = ViewCompat.animate(viewHolder.itemView);
         this.mAddAnimations.add(viewHolder);
-        animate.translationX(0.0f).setDuration(getAddDuration()).setListener(new VpaListenerAdapter() {
+        animate.translationX(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setDuration(getAddDuration()).setListener(new VpaListenerAdapter() {
             public void onAnimationStart(View view) {
                 DefaultItemAnimator.this.dispatchAddStarting(viewHolder);
             }
 
             public void onAnimationCancel(View view) {
-                ViewCompat.setTranslationX(view, 0.0f);
+                ViewCompat.setTranslationX(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
             }
 
             public void onAnimationEnd(View view) {
@@ -271,10 +272,10 @@ public class DefaultItemAnimator extends ItemAnimator {
         final int i5 = i3 - i;
         final int i6 = i4 - i2;
         if (i5 != 0) {
-            ViewCompat.animate(view).translationX(0.0f);
+            ViewCompat.animate(view).translationX(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         }
         if (i6 != 0) {
-            ViewCompat.animate(view).translationY(0.0f);
+            ViewCompat.animate(view).translationY(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         }
         final ViewPropertyAnimatorCompat animate = ViewCompat.animate(view);
         this.mMoveAnimations.add(viewHolder);
@@ -286,10 +287,10 @@ public class DefaultItemAnimator extends ItemAnimator {
 
             public void onAnimationCancel(View view) {
                 if (i5 != 0) {
-                    ViewCompat.setTranslationX(view, 0.0f);
+                    ViewCompat.setTranslationX(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
                 }
                 if (i6 != 0) {
-                    ViewCompat.setTranslationY(view, 0.0f);
+                    ViewCompat.setTranslationY(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
                 }
             }
 
@@ -350,15 +351,15 @@ public class DefaultItemAnimator extends ItemAnimator {
 
                 public void onAnimationEnd(View view) {
                     duration2.setListener(null);
-                    ViewCompat.setTranslationX(view, 0.0f);
-                    ViewCompat.setTranslationY(view, 0.0f);
+                    ViewCompat.setTranslationX(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                    ViewCompat.setTranslationY(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
                     DefaultItemAnimator.this.dispatchChangeFinished(changeInfo.oldHolder, true);
                     DefaultItemAnimator.this.mChangeAnimations.remove(changeInfo.oldHolder);
                     DefaultItemAnimator.this.dispatchFinishedWhenDone();
                 }
             }).start();
             duration = ViewCompat.animate(view).setDuration(0);
-            duration.alpha(0.0f).setListener(new VpaListenerAdapter() {
+            duration.alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setListener(new VpaListenerAdapter() {
                 public void onAnimationStart(View view) {
                 }
 
@@ -373,7 +374,7 @@ public class DefaultItemAnimator extends ItemAnimator {
         if (view2 != null) {
             duration = ViewCompat.animate(view2);
             this.mChangeAnimations.add(changeInfo.newHolder);
-            duration.translationX(0.0f).translationY(0.0f).setDuration(getChangeDuration()).alpha(1.0f).setListener(new VpaListenerAdapter() {
+            duration.translationX(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).translationY(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setDuration(getChangeDuration()).alpha(1.0f).setListener(new VpaListenerAdapter() {
                 public void onAnimationStart(View view) {
                     DefaultItemAnimator.this.dispatchChangeStarting(changeInfo.newHolder, false);
                 }
@@ -381,8 +382,8 @@ public class DefaultItemAnimator extends ItemAnimator {
                 public void onAnimationEnd(View view) {
                     duration.setListener(null);
                     ViewCompat.setAlpha(view2, 1.0f);
-                    ViewCompat.setTranslationX(view2, 0.0f);
-                    ViewCompat.setTranslationY(view2, 0.0f);
+                    ViewCompat.setTranslationX(view2, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                    ViewCompat.setTranslationY(view2, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
                     DefaultItemAnimator.this.dispatchChangeFinished(changeInfo.newHolder, false);
                     DefaultItemAnimator.this.mChangeAnimations.remove(changeInfo.newHolder);
                     DefaultItemAnimator.this.dispatchFinishedWhenDone();
@@ -420,8 +421,8 @@ public class DefaultItemAnimator extends ItemAnimator {
             z = true;
         }
         ViewCompat.setAlpha(viewHolder.itemView, 1.0f);
-        ViewCompat.setTranslationX(viewHolder.itemView, 0.0f);
-        ViewCompat.setTranslationY(viewHolder.itemView, 0.0f);
+        ViewCompat.setTranslationX(viewHolder.itemView, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        ViewCompat.setTranslationY(viewHolder.itemView, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         dispatchChangeFinished(viewHolder, z);
         return true;
     }
@@ -436,8 +437,8 @@ public class DefaultItemAnimator extends ItemAnimator {
             if (size < 0) {
                 break;
             } else if (((MoveInfo) this.mPendingMoves.get(size)).holder == viewHolder) {
-                ViewCompat.setTranslationY(view, 0.0f);
-                ViewCompat.setTranslationX(view, 0.0f);
+                ViewCompat.setTranslationY(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                ViewCompat.setTranslationX(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
                 dispatchMoveFinished(viewHolder);
                 this.mPendingMoves.remove(size);
             }
@@ -463,8 +464,8 @@ public class DefaultItemAnimator extends ItemAnimator {
             int size2 = arrayList.size() - 1;
             while (size2 >= 0) {
                 if (((MoveInfo) arrayList.get(size2)).holder == viewHolder) {
-                    ViewCompat.setTranslationY(view, 0.0f);
-                    ViewCompat.setTranslationX(view, 0.0f);
+                    ViewCompat.setTranslationY(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                    ViewCompat.setTranslationX(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
                     dispatchMoveFinished(viewHolder);
                     arrayList.remove(size2);
                     if (arrayList.isEmpty()) {
@@ -516,8 +517,8 @@ public class DefaultItemAnimator extends ItemAnimator {
             }
             MoveInfo moveInfo = (MoveInfo) this.mPendingMoves.get(size);
             View view = moveInfo.holder.itemView;
-            ViewCompat.setTranslationY(view, 0.0f);
-            ViewCompat.setTranslationX(view, 0.0f);
+            ViewCompat.setTranslationY(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            ViewCompat.setTranslationX(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
             dispatchMoveFinished(moveInfo.holder);
             this.mPendingMoves.remove(size);
         }
@@ -547,8 +548,8 @@ public class DefaultItemAnimator extends ItemAnimator {
                 for (int size2 = arrayList2.size() - 1; size2 >= 0; size2--) {
                     MoveInfo moveInfo2 = (MoveInfo) arrayList2.get(size2);
                     View view2 = moveInfo2.holder.itemView;
-                    ViewCompat.setTranslationY(view2, 0.0f);
-                    ViewCompat.setTranslationX(view2, 0.0f);
+                    ViewCompat.setTranslationY(view2, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+                    ViewCompat.setTranslationX(view2, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
                     dispatchMoveFinished(moveInfo2.holder);
                     arrayList2.remove(size2);
                     if (arrayList2.isEmpty()) {

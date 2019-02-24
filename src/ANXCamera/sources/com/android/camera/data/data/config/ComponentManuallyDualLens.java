@@ -4,6 +4,7 @@ import com.android.camera.CameraSettings;
 import com.android.camera.R;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;
+import com.android.camera.data.provider.DataProvider.ProviderEditor;
 import com.mi.config.b;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +44,7 @@ public class ComponentManuallyDualLens extends ComponentData {
         List<ComponentDataItem> arrayList = new ArrayList();
         arrayList.add(new ComponentDataItem(-1, -1, R.string.pref_camera_zoom_mode_entry_wide, LENS_WIDE));
         arrayList.add(new ComponentDataItem(-1, -1, R.string.pref_camera_zoom_mode_entry_tele, LENS_TELE));
-        if (b.fx()) {
+        if (b.isSupportUltraWide()) {
             arrayList.add(new ComponentDataItem(-1, -1, R.string.pref_camera_zoom_mode_entry_ultra, LENS_ULTRA));
         }
         return arrayList;
@@ -53,9 +54,19 @@ public class ComponentManuallyDualLens extends ComponentData {
         if (LENS_WIDE.equals(str)) {
             return LENS_TELE;
         }
-        if (b.fx() && LENS_TELE.equals(str) && i == 167) {
+        if (b.isSupportUltraWide() && LENS_TELE.equals(str) && i == 167) {
             return LENS_ULTRA;
         }
         return LENS_WIDE;
+    }
+
+    public void resetLensType(ComponentConfigUltraWide componentConfigUltraWide, ProviderEditor providerEditor) {
+        String componentValue = getComponentValue(167);
+        if (!LENS_WIDE.equals(componentValue)) {
+            providerEditor.putString(getKey(167), LENS_WIDE);
+            if (LENS_ULTRA.equals(componentValue)) {
+                providerEditor.putString(componentConfigUltraWide.getKey(167), ComponentConfigUltraWide.ULTRA_WIDE_VALUE_OFF);
+            }
+        }
     }
 }

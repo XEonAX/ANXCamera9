@@ -12,6 +12,7 @@ import com.android.camera.CameraSettings;
 import com.android.camera.FocusManagerAbstract;
 import com.android.camera.Util;
 import com.android.camera.constant.AutoFocus;
+import com.android.camera.data.DataRepository;
 import com.android.camera.log.Log;
 import com.android.camera.module.loader.FunctionParseBeautyBodySlimCount;
 import com.android.camera.protocol.ModeCoordinatorImpl;
@@ -37,6 +38,7 @@ public class FocusManager2 extends FocusManagerAbstract {
     private static final String TAG = "FocusManager";
     private static final int TAP_ACTION_AE = 1;
     private static final int TAP_ACTION_AE_AND_AF = 2;
+    private boolean mAELockOnlySupported;
     private boolean mAeAwbLock;
     private long mCafStartTime;
     private Rect mCameraFocusArea;
@@ -178,10 +180,15 @@ public class FocusManager2 extends FocusManagerAbstract {
     public void setCharacteristics(CameraCapabilities cameraCapabilities) {
         this.mFocusAreaSupported = cameraCapabilities.isAFRegionSupported();
         this.mMeteringAreaSupported = cameraCapabilities.isAERegionSupported();
-        boolean z = cameraCapabilities.isAELockSupported() || cameraCapabilities.isAWBLockSupported();
-        this.mLockAeAwbNeeded = z;
+        boolean z = true;
+        boolean z2 = cameraCapabilities.isAELockSupported() || cameraCapabilities.isAWBLockSupported();
+        this.mLockAeAwbNeeded = z2;
         this.mSupportedFocusModes = AutoFocus.convertToLegacyFocusModes(cameraCapabilities.getSupportedFocusModes());
         this.mActiveArraySize = cameraCapabilities.getActiveArraySize();
+        if (!(DataRepository.dataItemFeature().gf() && !this.mFocusAreaSupported && this.mMeteringAreaSupported && cameraCapabilities.isAELockSupported())) {
+            z = false;
+        }
+        this.mAELockOnlySupported = z;
     }
 
     public void setPreviewSize(int i, int i2) {
@@ -240,7 +247,7 @@ public class FocusManager2 extends FocusManagerAbstract {
                     } else {
                         focusFaceArea();
                     }
-                } else if (!(!z || this.mCameraFocusArea == null || b.gu())) {
+                } else if (!(!z || this.mCameraFocusArea == null || b.gD())) {
                     this.mKeepFocusUIState = true;
                     startFocus(this.mLastFocusFrom);
                     this.mKeepFocusUIState = false;
@@ -248,7 +255,7 @@ public class FocusManager2 extends FocusManagerAbstract {
                 z2 = true;
             }
             if (!z2 && z && equals) {
-                if (!b.hj()) {
+                if (!b.hs()) {
                     requestAutoFocus();
                 } else if (this.mState == 1) {
                     cancelFocus();
@@ -430,8 +437,14 @@ public class FocusManager2 extends FocusManagerAbstract {
         }
     }
 
-    public void onSingleTapUp(int i, int i2) {
-        focusPoint(i, i2, 3, onlyAe());
+    public void onSingleTapUp(int i, int i2, boolean z) {
+        int i3;
+        if (z) {
+            i3 = 5;
+        } else {
+            i3 = 3;
+        }
+        focusPoint(i, i2, i3, onlyAe());
     }
 
     private boolean onlyAe() {
@@ -446,7 +459,8 @@ public class FocusManager2 extends FocusManagerAbstract {
             initializeParameters(i, i2, i3, z);
             initializeFocusIndicator(1, i, i2);
             this.mListener.notifyFocusAreaUpdate();
-            if (!this.mFocusAreaSupported || z) {
+            boolean z2 = i3 == 5 && this.mAELockOnlySupported;
+            if ((!this.mFocusAreaSupported || z) && !z2) {
                 if (this.mMeteringAreaSupported) {
                     if (3 == i3 && isFocusValid(i3)) {
                         this.mListener.playFocusSound(1);
@@ -584,7 +598,7 @@ public class FocusManager2 extends FocusManagerAbstract {
 
     private void capture() {
         if (this.mListener.onWaitingFocusFinished()) {
-            if (b.gu()) {
+            if (b.gD()) {
                 setFocusState(0);
                 this.mCancelAutoFocusIfMove = false;
             }
@@ -703,7 +717,7 @@ public class FocusManager2 extends FocusManagerAbstract {
     }
 
     public void resetAfterCapture(boolean z) {
-        if (b.gu()) {
+        if (b.gD()) {
             resetTouchFocus(7);
         } else if (!z) {
         } else {

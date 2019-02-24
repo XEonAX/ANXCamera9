@@ -9,6 +9,7 @@ public class LightingConstant {
     public static final int FACE_TOO_CLOSE = 3;
     public static final int FACE_TOO_FAR = 4;
     public static final String LIGHTING_DOT = "6";
+    public static final String LIGHTING_HOLI = "8";
     public static final String LIGHTING_LEAF = "7";
     public static final String LIGHTING_MOVIE = "3";
     public static final String LIGHTING_NATURE = "1";

@@ -41,6 +41,7 @@ import com.android.camera.protocol.ModeProtocol.MiBeautyProtocol;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
 import com.android.camera.protocol.ModeProtocol.TopAlert;
 import com.android.camera.ui.NoScrollViewPager;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.mi.config.b;
 import com.miui.filtersdk.beauty.BeautyParameterType;
 import io.reactivex.Completable;
@@ -56,6 +57,7 @@ public class FragmentBeauty extends BaseFragment implements OnClickListener, Han
     private int mCurrentBeautyType;
     private BeautyEyeLightFragment mEyeLightFragment;
     List<Fragment> mFragments;
+    private boolean mIsEyeLightShow;
     private int mLastSelectBeautyType;
     private MiBeauty mMiBeautyBusiness;
     private boolean mRemoveFragmentBeauty;
@@ -77,9 +79,9 @@ public class FragmentBeauty extends BaseFragment implements OnClickListener, Han
             Log.d(str, stringBuilder.toString());
             Fragment fragment = (Fragment) this.mFragmentList.get(i);
             if (fragment == null) {
-                if (b.hG()) {
+                if (b.hP()) {
                     fragment = new LegacyBeautyLevelFragment();
-                } else if (b.hR()) {
+                } else if (b.ia()) {
                     fragment = new FrontBeautyLevelFragment();
                 }
                 Log.e(BeautyParameters.TAG, "beauty pager get fragment item is null!");
@@ -111,7 +113,11 @@ public class FragmentBeauty extends BaseFragment implements OnClickListener, Han
             if (FragmentBeauty.this.mRemoveFragmentBeauty) {
                 CameraAction cameraAction = (CameraAction) ModeCoordinatorImpl.getInstance().getAttachProtocol(161);
                 if (!(BeautyParameters.isCurrentModeSupportVideoBeauty() && (cameraAction == null || cameraAction.isDoingAction()))) {
-                    ((BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175)).reInitTipImage();
+                    BottomPopupTips bottomPopupTips = (BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175);
+                    bottomPopupTips.reInitTipImage();
+                    if ((FragmentBeauty.this.mCurrentMode == 163 || FragmentBeauty.this.mCurrentMode == 162) && CameraSettings.isUltraWideConfigOpen(FragmentBeauty.this.mCurrentMode) && bottomPopupTips != null) {
+                        bottomPopupTips.directlyShowTips(13, R.string.ultra_wide_open_tip);
+                    }
                 }
                 FragmentBeauty.this.mRemoveFragmentBeauty = false;
             }
@@ -159,6 +165,7 @@ public class FragmentBeauty extends BaseFragment implements OnClickListener, Han
         modeCoordinator.attachProtocol(194, this);
         this.mBeautyPanelShow = true;
         this.mMiBeautyBusiness = new MiBeauty();
+        this.mIsEyeLightShow = false;
     }
 
     protected void unRegister(ModeCoordinator modeCoordinator) {
@@ -166,6 +173,7 @@ public class FragmentBeauty extends BaseFragment implements OnClickListener, Han
         unRegisterBackStack(modeCoordinator, this);
         modeCoordinator.detachProtocol(194, this);
         this.mBeautyPanelShow = false;
+        this.mIsEyeLightShow = false;
     }
 
     protected void initView(View view) {
@@ -224,7 +232,7 @@ public class FragmentBeauty extends BaseFragment implements OnClickListener, Han
                 case 165:
                     break;
                 case 166:
-                    if (!DataRepository.dataItemFeature().fK()) {
+                    if (!DataRepository.dataItemFeature().fM()) {
                         return;
                     }
                     break;
@@ -253,7 +261,7 @@ public class FragmentBeauty extends BaseFragment implements OnClickListener, Han
         if (removeFragmentBeauty && i != 4 && this.mCurrentMode == 171) {
             BokehFNumberController bokehFNumberController = (BokehFNumberController) ModeCoordinatorImpl.getInstance().getAttachProtocol(210);
             if (bokehFNumberController != null) {
-                bokehFNumberController.showFNumberPanel();
+                bokehFNumberController.showFNumberPanel(true);
             }
         }
         return removeFragmentBeauty;
@@ -311,7 +319,7 @@ public class FragmentBeauty extends BaseFragment implements OnClickListener, Han
     }
 
     private void showHideEyeLighting(boolean z) {
-        if (DataRepository.dataItemFeature().fn() && CameraSettings.isSupportBeautyMakeup()) {
+        if (DataRepository.dataItemFeature().fp() && CameraSettings.isSupportBeautyMakeup()) {
             if (this.mEyeLightFragment == null) {
                 this.mEyeLightFragment = new BeautyEyeLightFragment();
             }
@@ -348,6 +356,7 @@ public class FragmentBeauty extends BaseFragment implements OnClickListener, Han
                 });
                 extraExitAnim();
             }
+            this.mIsEyeLightShow = z;
             BaseDelegate baseDelegate = (BaseDelegate) ModeCoordinatorImpl.getInstance().getAttachProtocol(160);
             if (baseDelegate != null && baseDelegate.getActiveFragment(R.id.bottom_popup_beauty) == 252) {
                 baseDelegate.delegateEvent(3);
@@ -364,15 +373,15 @@ public class FragmentBeauty extends BaseFragment implements OnClickListener, Han
     }
 
     private void extraEnterAnim() {
-        this.mViewPager.setTranslationX(0.0f);
+        this.mViewPager.setTranslationX(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         this.mViewPager.setAlpha(1.0f);
-        ViewCompat.animate(this.mViewPager).translationX(-100.0f).alpha(0.0f).setDuration(120).setStartDelay(0).setInterpolator(new QuinticEaseInInterpolator()).start();
+        ViewCompat.animate(this.mViewPager).translationX(-100.0f).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setDuration(120).setStartDelay(0).setInterpolator(new QuinticEaseInInterpolator()).start();
     }
 
     private void extraExitAnim() {
         this.mViewPager.setTranslationX(-100.0f);
-        this.mViewPager.setAlpha(0.0f);
-        ViewCompat.animate(this.mViewPager).translationX(0.0f).alpha(1.0f).setDuration(280).setInterpolator(new QuinticEaseOutInterpolator()).setStartDelay(120).start();
+        this.mViewPager.setAlpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        ViewCompat.animate(this.mViewPager).translationX(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).alpha(1.0f).setDuration(280).setInterpolator(new QuinticEaseOutInterpolator()).setStartDelay(120).start();
     }
 
     public void setClickEnable(boolean z) {
@@ -432,5 +441,15 @@ public class FragmentBeauty extends BaseFragment implements OnClickListener, Han
             return true;
         }
         return super.needViewClear();
+    }
+
+    public boolean isEyeLightShow() {
+        return this.mIsEyeLightShow;
+    }
+
+    public void closeEyeLight() {
+        if (this.mEyeLightFragment != null) {
+            this.mEyeLightFragment.closeEyeLight();
+        }
     }
 }

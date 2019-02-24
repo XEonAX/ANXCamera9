@@ -37,15 +37,15 @@ public class CircularMediaRecorder {
     private static final String AUDIO_MIME_TYPE = "audio/mp4a-latm";
     private static final int AUDIO_SAMPLE_RATE = 44100;
     private static final int BYTES_COPY_BUFFER_LENGTH = 2048;
-    private static final long CAPTURE_DURATION_IN_MICROSECOND = 3000000;
+    private static final long CAPTURE_DURATION_IN_MICROSECOND = 2000000;
     private static final boolean DEBUG = true;
     private static final int MOVIE_FILE_FORMAT = 0;
-    private static final long PRE_CAPTURE_DURATION_IN_MICROSECOND = 1500000;
+    private static final long PRE_CAPTURE_DURATION_IN_MICROSECOND = 1000000;
     private static final boolean SAVE_MICRO_VIDEO_IN_SDCARD = Util.saveLiveShotMicroVideoInSdcard();
     private static final String TAG = CircularMediaRecorder.class.getSimpleName();
-    private static final int VIDEO_BIT_RATE = 20000000;
-    private static final int VIDEO_FRAME_RATE = 15;
-    private static final float VIDEO_I_FRAME_INTERVAL = 0.2f;
+    private static final int VIDEO_BIT_RATE = 35000000;
+    private static final int VIDEO_FRAME_RATE = 30;
+    private static final float VIDEO_I_FRAME_INTERVAL = 0.1f;
     private final CircularAudioEncoder mCircularAudioEncoder;
     private final CircularVideoEncoder mCircularVideoEncoder;
     private int mOrientationHint = 0;
@@ -510,7 +510,7 @@ public class CircularMediaRecorder {
         MediaFormat createVideoFormat = MediaFormat.createVideoFormat(isH265EncodingPreferred() ? "video/hevc" : "video/avc", i, i2);
         createVideoFormat.setInteger("color-format", 2130708361);
         createVideoFormat.setInteger("bitrate", VIDEO_BIT_RATE);
-        createVideoFormat.setInteger("frame-rate", 15);
+        createVideoFormat.setInteger("frame-rate", 30);
         createVideoFormat.setFloat("i-frame-interval", VIDEO_I_FRAME_INTERVAL);
         return createVideoFormat;
     }

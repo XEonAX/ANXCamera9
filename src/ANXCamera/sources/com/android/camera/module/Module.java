@@ -26,6 +26,8 @@ public interface Module extends BaseProtocol {
 
     String getUnInterruptableReason();
 
+    boolean isBlockSnap();
+
     boolean isCaptureIntent();
 
     boolean isCreated();
@@ -92,7 +94,7 @@ public interface Module extends BaseProtocol {
 
     void onScaleEnd();
 
-    void onSingleTapUp(int i, int i2);
+    void onSingleTapUp(int i, int i2, boolean z);
 
     void onStop();
 

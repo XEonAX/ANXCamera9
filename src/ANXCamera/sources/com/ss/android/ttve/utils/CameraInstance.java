@@ -13,7 +13,6 @@ import android.hardware.Camera.Parameters;
 import android.hardware.Camera.Size;
 import android.os.Build;
 import android.os.Build.VERSION;
-import android.provider.MiuiSettings.ScreenEffect;
 import android.support.annotation.Keep;
 import android.text.TextUtils;
 import com.android.camera.Util;
@@ -139,9 +138,9 @@ public class CameraInstance {
         CameraInfo cameraInfo = new CameraInfo();
         Camera.getCameraInfo(this.mDefaultCameraID, cameraInfo);
         if (cameraInfo.facing == 1) {
-            i = ((360 - ((cameraInfo.orientation + i) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT)) + 180) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+            i = ((360 - ((cameraInfo.orientation + i) % 360)) + 180) % 360;
         } else {
-            i = ((cameraInfo.orientation - i) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+            i = ((cameraInfo.orientation - i) + 360) % 360;
         }
         try {
             this.mCameraDevice.setDisplayOrientation(i);

@@ -1,6 +1,5 @@
 package com.android.camera;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +19,7 @@ import android.widget.Toast;
 import com.android.camera.sensitive.SensitiveFilter;
 import miui.R;
 import miui.app.ActionBar;
+import miui.app.Activity;
 
 public class UserDefineWatermarkActivity extends Activity implements TextWatcher {
     private static final int MSG_BG_FILTER_WORDS = 1;
@@ -81,14 +81,32 @@ public class UserDefineWatermarkActivity extends Activity implements TextWatcher
         this.mEtUserDefineWords.addTextChangedListener(this);
         this.mEtUserDefineWords.setTransformationMethod(new AllCapTransformationMethod(this, null));
         CharSequence customWatermark = CameraSettings.getCustomWatermark();
+        String string = getString(R.string.device_watermark_default_text);
+        this.mEtUserDefineWords.setHint(CameraSettings.getCustomWatermarkDefault());
         if (!TextUtils.isEmpty(customWatermark)) {
-            this.mEtUserDefineWords.setText(customWatermark);
+            if (string.equals(customWatermark)) {
+                this.mEtUserDefineWords.setText("");
+            } else {
+                this.mEtUserDefineWords.setText(customWatermark);
+            }
             this.mEtUserDefineWords.setSelection(this.mEtUserDefineWords.getText().length());
         }
         this.mThreadBg = new HandlerThread(TAG, 10);
         this.mThreadBg.start();
         this.mBackgroundHandler = new BackgroundHandler(this.mThreadBg.getLooper());
         this.mUiHandler = new UiHandler(Looper.getMainLooper());
+    }
+
+    protected void onResume() {
+        super.onResume();
+        showSoftInputFromWindow();
+    }
+
+    public void showSoftInputFromWindow() {
+        this.mEtUserDefineWords.setFocusable(true);
+        this.mEtUserDefineWords.setFocusableInTouchMode(true);
+        this.mEtUserDefineWords.requestFocus();
+        getWindow().setSoftInputMode(5);
     }
 
     protected void onStart() {

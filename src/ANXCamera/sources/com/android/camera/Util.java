@@ -51,12 +51,10 @@ import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.os.SystemProperties;
 import android.provider.MiuiSettings;
-import android.provider.MiuiSettings.ScreenEffect;
+import android.provider.Settings.Global;
 import android.provider.Settings.Secure;
 import android.provider.Settings.SettingNotFoundException;
 import android.provider.Settings.System;
-import android.support.v4.os.EnvironmentCompat;
-import android.support.v4.view.InputDeviceCompat;
 import android.support.v4.view.ViewCompat;
 import android.telephony.TelephonyManager;
 import android.text.SpannableStringBuilder;
@@ -82,6 +80,7 @@ import android.widget.Button;
 import com.adobe.xmp.XMPMeta;
 import com.android.camera.data.DataRepository;
 import com.android.camera.effect.FilterInfo;
+import com.android.camera.effect.MiYuvImage;
 import com.android.camera.effect.renders.CustomTextWaterMark;
 import com.android.camera.effect.renders.NewStyleTextWaterMark;
 import com.android.camera.fragment.top.FragmentTopAlert;
@@ -92,6 +91,7 @@ import com.android.camera.module.loader.camera2.Camera2DataContainer;
 import com.android.camera.permission.PermissionManager;
 import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.storage.Storage;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera2.AECFrameControl;
 import com.android.camera2.AFFrameControl;
 import com.android.camera2.ArcsoftDepthMap;
@@ -123,6 +123,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.math.BigDecimal;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.security.MessageDigest;
@@ -145,6 +146,8 @@ import miui.hardware.display.DisplayFeatureManager;
 import miui.os.Build;
 import miui.reflect.Field;
 import miui.reflect.Method;
+import miui.reflect.NoSuchClassException;
+import miui.reflect.NoSuchFieldException;
 import miui.reflect.NoSuchMethodException;
 import miui.security.SecurityManager;
 import miui.util.IOUtils;
@@ -196,13 +199,14 @@ public final class Util {
     public static final float RATIO_16_9 = 1.77f;
     public static final float RATIO_18_9 = 2.0f;
     public static final float RATIO_19P5_9 = 2.16f;
+    public static final float RATIO_19_9 = 2.11f;
     public static final float RATIO_1_1 = 1.0f;
     public static final float RATIO_4_3 = 1.33f;
     public static final String REVIEW_ACTION = "com.android.camera.action.REVIEW";
     public static final String REVIEW_ACTIVITY_PACKAGE = "com.miui.gallery";
     public static final String REVIEW_SCAN_RESULT_PACKAGE = "com.xiaomi.scanner";
     public static final int SCREEN_EFFECT_CAMERA_STATE = 14;
-    public static final Uri SCREEN_SLIDE_STATUS_SETTING_URI = System.getUriFor(MiuiSettings.System.MIUI_SLIDER_COVER_STATUS);
+    public static final Uri SCREEN_SLIDE_STATUS_SETTING_URI = System.getUriFor("sc_status");
     private static final String SCREEN_VENDOR = SystemProperties.get("sys.panel.display");
     private static final String TAG = "CameraUtil";
     private static final String TEMP_SUFFIX = ".tmp";
@@ -213,6 +217,7 @@ public final class Util {
     public static boolean isNotchDevice;
     private static String mCountryIso = null;
     private static int mLockedOrientation = -1;
+    public static String sAAID;
     private static boolean sClearMemoryLimit;
     public static int sFullScreenExtraMargin;
     private static boolean sHasNavigationBar;
@@ -228,7 +233,7 @@ public final class Util {
     private static float sPixelDensity = 1.0f;
     public static int sStatusBarHeight;
     private static HashMap<String, Typeface> sTypefaces = new HashMap();
-    public static int sWindowHeight = ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_END_DEAULT;
+    public static int sWindowHeight = 1080;
     private static IWindowManager sWindowManager;
     public static int sWindowWidth = LIMIT_SURFACE_WIDTH;
 
@@ -255,10 +260,6 @@ public final class Util {
             this.mSameSecondCount = 0;
             return format;
         }
-    }
-
-    public static boolean isFullScreenNavBarHidden(Context context) {
-        return false;
     }
 
     static {
@@ -352,7 +353,7 @@ public final class Util {
             sWindowWidth = point.y;
             sWindowHeight = point.x;
         }
-        isLongRatioScreen = isFind19_5_9LongRatioScreen(sWindowWidth, sWindowHeight);
+        isLongRatioScreen = isLongRatioScreen(sWindowWidth, sWindowHeight);
         sFullScreenExtraMargin = context.getResources().getDimensionPixelSize(R.dimen.fullscreen_extra_margin);
         sNavigationBarHeight = checkDeviceHasNavigationBar(context) ? getNavigationBarHeight(context) : calcNavigationBarHeight(context);
         if (isNotchDevice) {
@@ -367,6 +368,7 @@ public final class Util {
             }
         }
         CameraSettings.BOTTOM_CONTROL_HEIGHT = getBottomHeight(context.getResources());
+        sAAID = Global.getString(context.getContentResolver(), "ad_aaid");
         Log.i(TAG, String.format(Locale.ENGLISH, "windowSize=%dx%d density=%.2f", new Object[]{Integer.valueOf(sWindowWidth), Integer.valueOf(sWindowHeight), Float.valueOf(sPixelDensity)}));
     }
 
@@ -399,11 +401,11 @@ public final class Util {
         Matrix matrix = new Matrix();
         if (z) {
             matrix.postScale(-1.0f, 1.0f);
-            i = (i + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+            i = (i + 360) % 360;
             if (i == 0 || i == 180) {
-                matrix.postTranslate((float) bitmap.getWidth(), 0.0f);
+                matrix.postTranslate((float) bitmap.getWidth(), PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
             } else if (i == 90 || i == 270) {
-                matrix.postTranslate((float) bitmap.getHeight(), 0.0f);
+                matrix.postTranslate((float) bitmap.getHeight(), PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
             } else {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("Invalid degrees=");
@@ -642,9 +644,9 @@ public final class Util {
         return z;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:25:0x005b A:{ExcHandler: java.io.IOException (e java.io.IOException), Splitter: B:8:0x0014} */
+    /* JADX WARNING: Removed duplicated region for block: B:25:0x005b A:{Splitter: B:8:0x0014, ExcHandler: java.io.IOException (e java.io.IOException)} */
     /* JADX WARNING: Removed duplicated region for block: B:29:0x0067 A:{SYNTHETIC, Splitter: B:29:0x0067} */
-    /* JADX WARNING: Removed duplicated region for block: B:21:0x0055 A:{ExcHandler: java.io.IOException (e java.io.IOException), Splitter: B:10:0x001f} */
+    /* JADX WARNING: Removed duplicated region for block: B:21:0x0055 A:{Splitter: B:10:0x001f, ExcHandler: java.io.IOException (e java.io.IOException)} */
     /* JADX WARNING: Removed duplicated region for block: B:35:0x0079 A:{SYNTHETIC, Splitter: B:35:0x0079} */
     /* JADX WARNING: Missing block: B:21:0x0055, code:
             r6 = e;
@@ -743,52 +745,54 @@ public final class Util {
     }
 
     public static void showErrorAndFinish(final Activity activity, int i) {
-        boolean z;
-        AlertDialog show = new Builder(activity).setCancelable(false).setIconAttribute(16843605).setTitle(R.string.camera_error_title).setMessage(i).setNeutralButton(R.string.dialog_ok, new OnClickListener() {
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Camera2DataContainer.getInstance().reset();
-                activity.finish();
-            }
-        }).show();
-        if (i == R.string.cannot_connect_camera_twice || i == R.string.cannot_connect_camera_once) {
-            z = true;
-        } else {
-            z = false;
-        }
-        if (z) {
-            CameraStatUtil.trackCameraErrorDialogShow();
-        }
-        if (sIsKillCameraService && VERSION.SDK_INT >= 26 && b.gq() && z) {
-            if (SystemClock.elapsedRealtime() - CameraSettings.getBroadcastKillServiceTime() > 60000) {
-                broadcastKillService(activity);
-            }
-            final Button button = show.getButton(-3);
-            button.setTextAppearance(R.style.Widget_Button_Dialog);
-            button.setEnabled(false);
-            final Activity activity2 = activity;
-            final CountDownTimer start = new CountDownTimer(5000, 1000) {
-                public void onTick(long j) {
-                    if (!((ActivityBase) activity2).isActivityPaused()) {
-                        button.setText(activity2.getResources().getString(R.string.dialog_ok_time, new Object[]{Long.valueOf(j / 1000)}));
-                    }
+        if (!activity.isFinishing()) {
+            boolean z;
+            AlertDialog show = new Builder(activity).setCancelable(false).setIconAttribute(16843605).setTitle(R.string.camera_error_title).setMessage(i).setNeutralButton(R.string.dialog_ok, new OnClickListener() {
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Camera2DataContainer.getInstance().reset();
+                    activity.finish();
                 }
+            }).show();
+            if (i == R.string.cannot_connect_camera_twice || i == R.string.cannot_connect_camera_once) {
+                z = true;
+            } else {
+                z = false;
+            }
+            if (z) {
+                CameraStatUtil.trackCameraErrorDialogShow();
+            }
+            if (sIsKillCameraService && VERSION.SDK_INT >= 26 && b.gz() && z) {
+                if (SystemClock.elapsedRealtime() - CameraSettings.getBroadcastKillServiceTime() > 60000) {
+                    broadcastKillService(activity);
+                }
+                final Button button = show.getButton(-3);
+                button.setTextAppearance(R.style.Widget_Button_Dialog);
+                button.setEnabled(false);
+                final Activity activity2 = activity;
+                final CountDownTimer start = new CountDownTimer(5000, 1000) {
+                    public void onTick(long j) {
+                        if (!((ActivityBase) activity2).isActivityPaused()) {
+                            button.setText(activity2.getResources().getString(R.string.dialog_ok_time, new Object[]{Long.valueOf(j / 1000)}));
+                        }
+                    }
 
-                public void onFinish() {
-                    if (!((ActivityBase) activity2).isActivityPaused()) {
-                        button.setEnabled(true);
-                        button.setText(activity2.getResources().getString(R.string.dialog_ok));
+                    public void onFinish() {
+                        if (!((ActivityBase) activity2).isActivityPaused()) {
+                            button.setEnabled(true);
+                            button.setText(activity2.getResources().getString(R.string.dialog_ok));
+                        }
                     }
-                }
-            }.start();
-            show.setOnDismissListener(new OnDismissListener() {
-                public void onDismiss(DialogInterface dialogInterface) {
-                    if (start != null) {
-                        start.cancel();
+                }.start();
+                show.setOnDismissListener(new OnDismissListener() {
+                    public void onDismiss(DialogInterface dialogInterface) {
+                        if (start != null) {
+                            start.cancel();
+                        }
                     }
-                }
-            });
+                });
+            }
+            ((ActivityBase) activity).setErrorDialog(show);
         }
-        ((ActivityBase) activity).setErrorDialog(show);
     }
 
     public static <T> T checkNotNull(T t) {
@@ -860,12 +864,12 @@ public final class Util {
     }
 
     public static int getShootOrientation(Activity activity, int i) {
-        return ((i - getDisplayRotation(activity)) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+        return ((i - getDisplayRotation(activity)) + 360) % 360;
     }
 
     public static float getShootRotation(Activity activity, float f) {
         f -= (float) getDisplayRotation(activity);
-        while (f < 0.0f) {
+        while (f < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
             f += 360.0f;
         }
         while (f > 360.0f) {
@@ -876,7 +880,7 @@ public final class Util {
 
     public static int getDisplayRotation(Activity activity) {
         int rotation;
-        if (b.hC() && CameraSettings.isFrontCamera() && activity.getRequestedOrientation() == 7) {
+        if (b.hL() && CameraSettings.isFrontCamera() && activity.getRequestedOrientation() == 7) {
             rotation = activity.getWindowManager().getDefaultDisplay().getRotation();
         } else if (mLockedOrientation == 0 || mLockedOrientation == 2) {
             rotation = mLockedOrientation;
@@ -908,9 +912,9 @@ public final class Util {
         }
         int sensorOrientation = capabilities.getSensorOrientation();
         if (capabilities.getFacing() == 0) {
-            i = (360 - ((sensorOrientation + i) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT)) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+            i = (360 - ((sensorOrientation + i) % 360)) % 360;
         } else {
-            i = ((sensorOrientation - i) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+            i = ((sensorOrientation - i) + 360) % 360;
         }
         return i;
     }
@@ -941,7 +945,7 @@ public final class Util {
         if (obj == null) {
             return i2;
         }
-        i = (((i + 45) / 90) * 90) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+        i = (((i + 45) / 90) * 90) % 360;
         String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("onOrientationChanged: orientation = ");
@@ -971,11 +975,11 @@ public final class Util {
         double d2;
         double d3;
         CameraSize cameraSize3;
-        int integer = d.getInteger(d.tm, 0);
-        int i4 = ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_END_DEAULT;
+        int integer = d.getInteger(d.tv, 0);
+        int i4 = 1080;
         if (integer != 0) {
             int i5 = i2 == Camera2DataContainer.getInstance().getFrontCameraId() ? 1 : 0;
-            if (sWindowWidth < ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_END_DEAULT) {
+            if (sWindowWidth < 1080) {
                 integer &= -15;
             }
             i5 = i5 != 0 ? 2 : 1;
@@ -983,7 +987,7 @@ public final class Util {
             if ((((i5 << i3) | 0) & integer) != 0) {
                 i3 = 1;
                 point = new Point(sWindowWidth, i3 == 0 ? Math.min(sWindowHeight, 1920) : sWindowHeight);
-                if (!b.hc() && b.gW()) {
+                if (!b.hl() && b.hf()) {
                     i4 = LIMIT_SURFACE_WIDTH;
                 }
                 if (point.x > i4) {
@@ -1131,7 +1135,7 @@ public final class Util {
     }
 
     public static int replaceStartEffectRender(Activity activity) {
-        if (b.gb()) {
+        if (b.gl()) {
             String stringExtra = activity.getIntent().getStringExtra(EXTRAS_START_WITH_EFFECT_RENDER);
             if (stringExtra != null) {
                 int identifier = activity.getResources().getIdentifier(stringExtra, "integer", activity.getPackageName());
@@ -1346,7 +1350,7 @@ public final class Util {
     public static void fadeIn(View view, int i) {
         if (view != null && view.getVisibility() != 0) {
             view.setVisibility(0);
-            Animation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
+            Animation alphaAnimation = new AlphaAnimation(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f);
             alphaAnimation.setDuration((long) i);
             view.clearAnimation();
             view.startAnimation(alphaAnimation);
@@ -1359,7 +1363,7 @@ public final class Util {
 
     public static void fadeOut(View view, int i) {
         if (view != null && view.getVisibility() == 0) {
-            Animation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
+            Animation alphaAnimation = new AlphaAnimation(1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
             alphaAnimation.setDuration((long) i);
             view.clearAnimation();
             view.startAnimation(alphaAnimation);
@@ -1378,9 +1382,9 @@ public final class Util {
             Log.w(TAG, "getJpegRotation: orientation UNKNOWN!!! return sensorOrientation...");
             return sensorOrientation;
         } else if (capabilities.getFacing() == 0) {
-            return ((sensorOrientation - i2) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+            return ((sensorOrientation - i2) + 360) % 360;
         } else {
-            return (sensorOrientation + i2) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+            return (sensorOrientation + i2) % 360;
         }
     }
 
@@ -1484,16 +1488,12 @@ public final class Util {
         return getTypeface(context, "fonts/MIUI_Normal.ttf");
     }
 
-    public static Typeface getMiuiBoldTypeface(Context context) {
-        return getTypeface(context, "fonts/MIUI_Bold.ttf");
-    }
-
     public static Typeface getMFYueYuanTypeface(Context context) {
-        return getTypeface(context, "fonts/MFYueYuan-Regular.ttf");
+        return getTypeface(context, "MFYueYuan-Regular.ttf");
     }
 
     public static Typeface getLanTineGBTypeface(Context context) {
-        return getTypeface(context, "fonts/MI+LanTing_GB+Outside+YS_V2.3_20160322.ttf");
+        return getTypeface(context, "MI+LanTing_GB+Outside+YS_V2.3_20160322.ttf");
     }
 
     public static Typeface getMiuiTimeTypeface(Context context) {
@@ -1585,7 +1585,7 @@ public final class Util {
     }
 
     public static String getTimeWatermark() {
-        return getTimeWatermark(b.gl());
+        return getTimeWatermark(b.gu());
     }
 
     public static String getTimeWatermark(boolean z) {
@@ -1837,14 +1837,14 @@ public final class Util {
     public static int getIntField(String str, Object obj, String str2, String str3) {
         try {
             return Field.of(str, str2, str3).getInt(obj);
-        } catch (Throwable e) {
+        } catch (NoSuchClassException e) {
             str2 = TAG;
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("no class ");
             stringBuilder.append(str);
             Log.e(str2, stringBuilder.toString(), e);
             return Integer.MIN_VALUE;
-        } catch (Throwable e2) {
+        } catch (NoSuchFieldException e2) {
             Log.e(TAG, "no field ", e2);
             return Integer.MIN_VALUE;
         }
@@ -1964,7 +1964,7 @@ public final class Util {
     }
 
     public static boolean isFingerPrintKeyEvent(KeyEvent keyEvent) {
-        return keyEvent != null && 27 == keyEvent.getKeyCode() && keyEvent.getDevice() != null && b.hv().contains(keyEvent.getDevice().getName());
+        return keyEvent != null && 27 == keyEvent.getKeyCode() && keyEvent.getDevice() != null && b.hE().contains(keyEvent.getDevice().getName());
     }
 
     public static boolean isMemoryRich(Context context) {
@@ -2043,6 +2043,10 @@ public final class Util {
         return i;
     }
 
+    public static boolean isFullScreenNavBarHidden(Context context) {
+        return MiuiSettings.Global.getBoolean(context.getContentResolver(), "force_fsg_nav_bar");
+    }
+
     public static boolean isPackageAvailable(Context context, String str) {
         if (context == null || str == null || str.isEmpty()) {
             String str2 = TAG;
@@ -2082,7 +2086,7 @@ public final class Util {
             Class cls = Class.forName("miui.content.pm.PreloadedAppPolicy");
             Method of = Method.of(cls, "installPreloadedDataApp", CompatibilityUtils.getInstallMethodDescription());
             int i = z ? 1 : z2 ? 2 : 0;
-            boolean invokeBoolean = of.invokeBoolean(cls, null, context, str, packageInstallObserver, Integer.valueOf(i));
+            boolean invokeBoolean = of.invokeBoolean(cls, null, new Object[]{context, str, packageInstallObserver, Integer.valueOf(i)});
             String str3 = TAG;
             StringBuilder stringBuilder2 = new StringBuilder();
             stringBuilder2.append("installPackage: result=");
@@ -2111,7 +2115,7 @@ public final class Util {
 
     public static final boolean isAppLocked(Context context, String str) {
         boolean z = false;
-        if (!(Secure.getInt(context.getContentResolver(), MiuiSettings.Secure.ACCESS_CONTROL_LOCK_ENABLED, -1) == 1)) {
+        if (!(Secure.getInt(context.getContentResolver(), "access_control_lock_enabled", -1) == 1)) {
             return false;
         }
         SecurityManager securityManager = (SecurityManager) context.getSystemService("security");
@@ -2182,7 +2186,7 @@ public final class Util {
     }
 
     public static boolean isZoomAnimationEnabled() {
-        return SystemProperties.getBoolean(ZOOM_ANIMATION_PROPERTY, DataRepository.dataItemFeature().fq() ^ 1);
+        return SystemProperties.getBoolean(ZOOM_ANIMATION_PROPERTY, DataRepository.dataItemFeature().fs() ^ 1);
     }
 
     public static boolean isNonUI() {
@@ -2235,7 +2239,7 @@ public final class Util {
     }
 
     public static void setScreenEffect(boolean z) {
-        if (b.hL()) {
+        if (b.hU()) {
             try {
                 DisplayFeatureManager.getInstance().setScreenEffect(14, z);
             } catch (Throwable e) {
@@ -2262,12 +2266,12 @@ public final class Util {
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:20:0x0040  */
-    /* JADX WARNING: Removed duplicated region for block: B:28:0x007d A:{Catch:{ XmlPullParserException -> 0x0124, IOException -> 0x011b, all -> 0x010d }} */
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0035 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException), Splitter: B:6:0x001c} */
+    /* JADX WARNING: Removed duplicated region for block: B:28:0x007c A:{Catch:{ XmlPullParserException -> 0x0123, IOException -> 0x011a, all -> 0x010c }} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0035 A:{Splitter: B:6:0x001c, ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException)} */
     /* JADX WARNING: Removed duplicated region for block: B:20:0x0040  */
-    /* JADX WARNING: Removed duplicated region for block: B:28:0x007d A:{Catch:{ XmlPullParserException -> 0x0124, IOException -> 0x011b, all -> 0x010d }} */
-    /* JADX WARNING: Removed duplicated region for block: B:13:0x0032 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException), Splitter: B:8:0x0021} */
-    /* JADX WARNING: Removed duplicated region for block: B:12:0x0030 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException), Splitter: B:10:0x002c} */
+    /* JADX WARNING: Removed duplicated region for block: B:28:0x007c A:{Catch:{ XmlPullParserException -> 0x0123, IOException -> 0x011a, all -> 0x010c }} */
+    /* JADX WARNING: Removed duplicated region for block: B:13:0x0032 A:{Splitter: B:8:0x0021, ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:12:0x0030 A:{Splitter: B:10:0x002c, ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException)} */
     /* JADX WARNING: Missing block: B:12:0x0030, code:
             r4 = e;
      */
@@ -2287,19 +2291,19 @@ public final class Util {
     /* JADX WARNING: Missing block: B:17:0x0038, code:
             r4.printStackTrace();
      */
-    /* JADX WARNING: Missing block: B:47:0x010a, code:
-            if ((r0 instanceof android.content.res.XmlResourceParser) == false) goto L_0x0131;
+    /* JADX WARNING: Missing block: B:47:0x0109, code:
+            if ((r0 instanceof android.content.res.XmlResourceParser) == false) goto L_0x0130;
      */
-    /* JADX WARNING: Missing block: B:55:0x0121, code:
-            if ((r0 instanceof android.content.res.XmlResourceParser) == false) goto L_0x0131;
+    /* JADX WARNING: Missing block: B:55:0x0120, code:
+            if ((r0 instanceof android.content.res.XmlResourceParser) == false) goto L_0x0130;
      */
-    /* JADX WARNING: Missing block: B:58:0x012a, code:
-            if ((r0 instanceof android.content.res.XmlResourceParser) == false) goto L_0x0131;
+    /* JADX WARNING: Missing block: B:58:0x0129, code:
+            if ((r0 instanceof android.content.res.XmlResourceParser) == false) goto L_0x0130;
      */
-    /* JADX WARNING: Missing block: B:59:0x012c, code:
+    /* JADX WARNING: Missing block: B:59:0x012b, code:
             ((android.content.res.XmlResourceParser) r0).close();
      */
-    /* JADX WARNING: Missing block: B:60:0x0131, code:
+    /* JADX WARNING: Missing block: B:60:0x0130, code:
             return;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
@@ -2341,7 +2345,7 @@ public final class Util {
                     if (newPullParser.getEventType() == 2) {
                         if (!"screen".equals(newPullParser.getName())) {
                             continue;
-                        } else if (SCREEN_VENDOR.equals(newPullParser.getAttributeValue(null, d.sw))) {
+                        } else if (SCREEN_VENDOR.equals(newPullParser.getAttributeValue(null, d.sF))) {
                             String str = TAG;
                             StringBuilder stringBuilder = new StringBuilder();
                             stringBuilder.append("load screen light parameters for ");
@@ -2355,7 +2359,7 @@ public final class Util {
                                     int attributeIntValue = getAttributeIntValue(newPullParser, "CCT", 0);
                                     int attributeIntValue2 = getAttributeIntValue(newPullParser, "R", 0);
                                     int attributeIntValue3 = getAttributeIntValue(newPullParser, "G", 0);
-                                    int attributeIntValue4 = getAttributeIntValue(newPullParser, Field.BYTE_SIGNATURE_PRIMITIVE, 0);
+                                    int attributeIntValue4 = getAttributeIntValue(newPullParser, "B", 0);
                                     COLOR_TEMPERATURE_LIST.add(Integer.valueOf(attributeIntValue));
                                     COLOR_TEMPERATURE_MAP.add(Integer.valueOf(Color.rgb(attributeIntValue2, attributeIntValue3, attributeIntValue4)));
                                 }
@@ -2611,7 +2615,7 @@ public final class Util {
             i = cameraSize.height;
             i2 = cameraSize.width;
         }
-        if (i == 1920 && i2 == ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_END_DEAULT) {
+        if (i == 1920 && i2 == 1080) {
             return 6;
         }
         if (i == 3840 && i2 == 2160) {
@@ -2661,7 +2665,7 @@ public final class Util {
         return bitmap2;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:7:0x0028 A:{ExcHandler: java.lang.OutOfMemoryError (r1_2 'e' java.lang.Throwable), Splitter: B:4:0x001f} */
+    /* JADX WARNING: Removed duplicated region for block: B:7:0x0028 A:{Splitter: B:4:0x001f, ExcHandler: java.lang.OutOfMemoryError (r1_2 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:7:0x0028, code:
             r1 = move-exception;
      */
@@ -2701,14 +2705,14 @@ public final class Util {
         options.inScaled = false;
         options.inPurgeable = true;
         options.inPremultiplied = true;
-        if (!DataRepository.dataItemFeature().fe()) {
+        if (!DataRepository.dataItemFeature().fg()) {
             return null;
         }
         Bitmap loadAppCameraWatermark = loadAppCameraWatermark(CameraAppImpl.getAndroidContext(), options, android.os.Build.DEVICE);
         if (loadAppCameraWatermark == null) {
             loadAppCameraWatermark = loadAppCameraWatermark(CameraAppImpl.getAndroidContext(), options, BuildConfig.FLAVOR);
         }
-        if (DataRepository.dataItemFeature().fG()) {
+        if (DataRepository.dataItemFeature().fI()) {
             loadAppCameraWatermark = CustomTextWaterMark.newInstance(loadAppCameraWatermark, (float) CameraAppImpl.getAndroidContext().getResources().getInteger(R.integer.custom_watermark_startx), (float) CameraAppImpl.getAndroidContext().getResources().getInteger(R.integer.custom_watermark_starty), CameraSettings.getCustomWatermark()).drawToBitmap();
         }
         saveCustomWatermark2File(loadAppCameraWatermark, false);
@@ -2727,7 +2731,7 @@ public final class Util {
         options.inScaled = false;
         options.inPurgeable = true;
         options.inPremultiplied = true;
-        if (DataRepository.dataItemFeature().fG()) {
+        if (DataRepository.dataItemFeature().fI()) {
             Bitmap loadAppCameraWatermark = loadAppCameraWatermark(CameraAppImpl.getAndroidContext(), options, android.os.Build.DEVICE);
             if (loadAppCameraWatermark == null) {
                 loadAppCameraWatermark = loadAppCameraWatermark(CameraAppImpl.getAndroidContext(), options, BuildConfig.FLAVOR);
@@ -3072,7 +3076,7 @@ public final class Util {
     }
 
     public static void startScreenSlideAlphaInAnimation(View view) {
-        ViewCompat.setAlpha(view, 0.0f);
+        ViewCompat.setAlpha(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         ViewCompat.animate(view).alpha(1.0f).setDuration(350).setStartDelay(400).setInterpolator(new SineEaseInOutInterpolator()).start();
     }
 
@@ -3329,7 +3333,7 @@ public final class Util {
             timeWaterMarkData = null;
         }
         byte[] depthMapData = arcsoftDepthMap.getDepthMapData();
-        byte[] writePortraitExif = arcsoftDepthMap.writePortraitExif(DataRepository.dataItemFeature().fM(), bArr, dualCameraWatermarkData, iArr, timeWaterMarkData, iArr2, i, z2, z3, pictureInfo, bArr4.length, depthMapData.length);
+        byte[] writePortraitExif = arcsoftDepthMap.writePortraitExif(DataRepository.dataItemFeature().fO(), bArr, dualCameraWatermarkData, iArr, timeWaterMarkData, iArr2, i, z2, z3, pictureInfo, bArr4.length, depthMapData.length);
         byte[] bArr5 = new byte[((writePortraitExif.length + bArr4.length) + depthMapData.length)];
         System.arraycopy(writePortraitExif, 0, bArr5, 0, writePortraitExif.length);
         System.arraycopy(bArr4, 0, bArr5, writePortraitExif.length, bArr4.length);
@@ -3466,7 +3470,7 @@ public final class Util {
     }
 
     public static boolean isScreenSlideOff(Context context) {
-        return System.getInt(context.getContentResolver(), MiuiSettings.System.MIUI_SLIDER_COVER_STATUS, -1) == 1;
+        return System.getInt(context.getContentResolver(), "sc_status", -1) == 1;
     }
 
     public static boolean isEqualsZero(double d) {
@@ -3482,20 +3486,20 @@ public final class Util {
     }
 
     public static boolean UI_DEBUG() {
-        return DataRepository.dataItemFeature().fx() || b.qP;
+        return DataRepository.dataItemFeature().isSupportUltraWide() || b.qP;
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:33:0x006a  */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     private static byte[] getDualCameraWatermarkData(int i, int i2, int[] iArr) {
         String path;
-        InputStream fileInputStream;
+        AutoCloseable fileInputStream;
         byte[] toByteArray;
         Throwable th;
         Throwable e;
         Throwable th2;
         Bitmap decodeByteArray;
-        if (DataRepository.dataItemFeature().fe()) {
+        if (DataRepository.dataItemFeature().fg()) {
             path = new File(CameraAppImpl.getAndroidContext().getFilesDir(), WATERMARK_FILE_NAME).getPath();
             if (!new File(path).exists()) {
                 generateWatermark2File();
@@ -3546,24 +3550,25 @@ public final class Util {
     public static int[] calcDualCameraWatermarkLocation(int i, int i2, int i3, int i4, float f, float f2, float f3) {
         float resourceFloat;
         float min = ((float) Math.min(i, i2)) / 1080.0f;
-        boolean fG = DataRepository.dataItemFeature().fG();
+        boolean fI = DataRepository.dataItemFeature().fI();
         float f4 = 1.0f;
-        if (fG) {
+        if (fI) {
             resourceFloat = CameraSettings.getResourceFloat(R.dimen.custom_watermark_height_scale, 1.0f);
         } else {
             resourceFloat = 1.0f;
         }
         i3 = ((i3 * (Math.round((f * min) * resourceFloat) & -2)) / i4) & -2;
         i4 = Math.round(f2 * min) & -2;
-        if (fG) {
+        if (fI) {
             f4 = CameraSettings.getResourceFloat(R.dimen.custom_watermark_pandingY_scale, 1.0f);
         }
         i = Math.round((f3 * min) * f4) & -2;
         return new int[]{i3, r6, i4, i};
     }
 
-    private static boolean isFind19_5_9LongRatioScreen(int i, int i2) {
-        if (((double) Math.abs((((float) i2) / ((float) i)) - 2.16f)) < 0.02d) {
+    private static boolean isLongRatioScreen(int i, int i2) {
+        float f = ((float) i2) / ((float) i);
+        if (((double) Math.abs(f - 2.16f)) < 0.02d || ((double) Math.abs(f - 2.11f)) < 0.02d) {
             return true;
         }
         return false;
@@ -3626,7 +3631,7 @@ public final class Util {
             for (byte b : digest) {
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append(str2);
-                stringBuilder.append(Integer.toHexString((255 & b) | InputDeviceCompat.SOURCE_ANY).substring(6));
+                stringBuilder.append(Integer.toHexString((255 & b) | -256).substring(6));
                 str2 = stringBuilder.toString();
             }
             return str2;
@@ -3841,7 +3846,7 @@ public final class Util {
             case 6:
                 return "passive_unfocused";
             default:
-                return EnvironmentCompat.MEDIA_UNKNOWN;
+                return "unknown";
         }
     }
 
@@ -3863,7 +3868,7 @@ public final class Util {
             case 5:
                 return "precapture";
             default:
-                return EnvironmentCompat.MEDIA_UNKNOWN;
+                return "unknown";
         }
     }
 
@@ -3881,7 +3886,194 @@ public final class Util {
             case 3:
                 return "locked";
             default:
-                return EnvironmentCompat.MEDIA_UNKNOWN;
+                return "unknown";
         }
+    }
+
+    public static int[] getWatermarkRange(int i, int i2, int i3, boolean z, boolean z2, float f) {
+        int[] iArr = new int[4];
+        if (i3 != 0) {
+            if (i3 != 90) {
+                if (i3 != 180) {
+                    if (i3 == 270) {
+                        if (z && z2) {
+                            iArr[0] = 0;
+                            i3 = (int) (((float) i2) * f);
+                            iArr[1] = i2 - i3;
+                            iArr[2] = i;
+                            iArr[3] = i3;
+                        } else if (z) {
+                            iArr[0] = 0;
+                            i3 = (int) (((float) i2) * f);
+                            iArr[1] = i2 - i3;
+                            iArr[2] = i / 2;
+                            iArr[3] = i3;
+                        } else {
+                            i /= 2;
+                            iArr[0] = i;
+                            i3 = (int) (((float) i2) * f);
+                            iArr[1] = i2 - i3;
+                            iArr[2] = i;
+                            iArr[3] = i3;
+                        }
+                    }
+                } else if (z && z2) {
+                    iArr[0] = 0;
+                    iArr[1] = 0;
+                    iArr[2] = (int) (((float) i) * f);
+                    iArr[3] = i2;
+                } else if (z) {
+                    iArr[0] = 0;
+                    iArr[1] = 0;
+                    iArr[2] = (int) (((float) i) * f);
+                    iArr[3] = i2 / 2;
+                } else {
+                    iArr[0] = 0;
+                    i2 /= 2;
+                    iArr[1] = i2;
+                    iArr[2] = (int) (((float) i) * f);
+                    iArr[3] = i2;
+                }
+            } else if (z && z2) {
+                iArr[0] = 0;
+                iArr[1] = 0;
+                iArr[2] = i;
+                iArr[3] = (int) (((float) i2) * f);
+            } else if (z) {
+                i /= 2;
+                iArr[0] = i;
+                iArr[1] = 0;
+                iArr[2] = i;
+                iArr[3] = (int) (((float) i2) * f);
+            } else {
+                iArr[0] = 0;
+                iArr[1] = 0;
+                iArr[2] = i / 2;
+                iArr[3] = (int) (((float) i2) * f);
+            }
+        } else if (z && z2) {
+            i3 = (int) (((float) i) * f);
+            iArr[0] = i - i3;
+            iArr[1] = 0;
+            iArr[2] = i3;
+            iArr[3] = i2;
+        } else if (z) {
+            i3 = (int) (((float) i) * f);
+            iArr[0] = i - i3;
+            i2 /= 2;
+            iArr[1] = i2;
+            iArr[2] = i3;
+            iArr[3] = i2;
+        } else {
+            i3 = (int) (((float) i) * f);
+            iArr[0] = i - i3;
+            iArr[1] = 0;
+            iArr[2] = i3;
+            iArr[3] = i2 / 2;
+        }
+        iArr[0] = (iArr[0] / 2) * 2;
+        iArr[1] = (iArr[1] / 2) * 2;
+        iArr[2] = (iArr[2] / 4) * 4;
+        iArr[3] = (iArr[3] / 4) * 4;
+        return iArr;
+    }
+
+    public static byte[] RGBA2RGB(byte[] bArr, int i, int i2) {
+        if (bArr == null) {
+            return null;
+        }
+        i *= i2;
+        byte[] bArr2 = new byte[(i * 3)];
+        int i3 = 0;
+        int i4 = 0;
+        while (i3 < i) {
+            int i5 = i4 + 1;
+            int i6 = i3 * 4;
+            bArr2[i4] = bArr[i6];
+            i4 = i5 + 1;
+            bArr2[i5] = bArr[i6 + 1];
+            i5 = i4 + 1;
+            bArr2[i4] = bArr[i6 + 2];
+            i3++;
+            i4 = i5;
+        }
+        return bArr2;
+    }
+
+    public static byte[] getPixels(byte[] bArr, int i, int i2, int[] iArr) {
+        if (bArr == null) {
+            return null;
+        }
+        byte[] bArr2 = new byte[((iArr[2] * iArr[3]) * i2)];
+        int i3 = 0;
+        int i4 = ((iArr[1] * i) + iArr[0]) * i2;
+        int i5 = 0;
+        while (i3 < iArr[3]) {
+            System.arraycopy(bArr, i4, bArr2, i5, iArr[2] * i2);
+            i4 += i * i2;
+            i5 += iArr[2] * i2;
+            i3++;
+        }
+        return bArr2;
+    }
+
+    public static void setPixels(byte[] bArr, int i, int i2, byte[] bArr2, int[] iArr) {
+        if (bArr != null && bArr2 != null) {
+            int i3 = 0;
+            int i4 = ((iArr[1] * i) + iArr[0]) * i2;
+            int i5 = 0;
+            while (i3 < iArr[3]) {
+                System.arraycopy(bArr2, i5, bArr, i4, iArr[2] * i2);
+                i5 += iArr[2] * i2;
+                i4 += i * i2;
+                i3++;
+            }
+        }
+    }
+
+    public static MiYuvImage getSubYuvImage(byte[] bArr, int i, int i2, int i3, int i4, int[] iArr) {
+        byte[] bArr2 = new byte[(((iArr[2] * iArr[3]) * 3) / 2)];
+        int i5 = 0;
+        int i6 = (iArr[1] * i3) + iArr[0];
+        int i7 = 0;
+        int i8 = i7;
+        while (i7 < iArr[3]) {
+            System.arraycopy(bArr, i6, bArr2, i8, iArr[2]);
+            i6 += i3;
+            i8 += iArr[2];
+            i7++;
+        }
+        i3 = (((i3 * (i2 - 1)) + i) + ((iArr[1] / 2) * i4)) + iArr[0];
+        while (i5 < iArr[3] / 2) {
+            System.arraycopy(bArr, i3, bArr2, i8, iArr[2]);
+            i3 += i4;
+            i8 += iArr[2];
+            i5++;
+        }
+        return new MiYuvImage(bArr2, iArr[2], iArr[3], 35);
+    }
+
+    public static void coverSubYuvImage(byte[] bArr, int i, int i2, int i3, int i4, byte[] bArr2, int[] iArr) {
+        int i5 = 0;
+        int i6 = (iArr[1] * i3) + iArr[0];
+        int i7 = 0;
+        int i8 = i7;
+        while (i7 < iArr[3]) {
+            System.arraycopy(bArr2, i8, bArr, i6, iArr[2]);
+            i8 += iArr[2];
+            i6 += i3;
+            i7++;
+        }
+        i3 = (((i3 * (i2 - 1)) + i) + ((iArr[1] / 2) * i4)) + iArr[0];
+        while (i5 < iArr[3] / 2) {
+            System.arraycopy(bArr2, i8, bArr, i3, iArr[2]);
+            i3 += i4;
+            i8 += iArr[2];
+            i5++;
+        }
+    }
+
+    public static float retainDecimal(float f) {
+        return new BigDecimal((double) f).setScale(1, 4).floatValue();
     }
 }

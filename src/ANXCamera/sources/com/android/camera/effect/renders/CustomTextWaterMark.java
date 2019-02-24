@@ -12,6 +12,7 @@ import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.lib.compatibility.util.CompatibilityUtils;
 import com.android.camera.log.Log;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -53,7 +54,7 @@ public class CustomTextWaterMark {
             textPaint.setFakeBoldText(true);
             textPaint.setTypeface(Util.getMFYueYuanTypeface(CameraAppImpl.getAndroidContext()));
         }
-        textPaint.setShadowLayer(0.1f, 0.0f, 2.0f, 771751936);
+        textPaint.setShadowLayer(0.1f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 2.0f, 771751936);
         setLongshotMode(textPaint, 0.05f);
         return textPaint;
     }
@@ -90,11 +91,11 @@ public class CustomTextWaterMark {
             String group = matcher.group();
             if (group.matches("[\\sa-zA-Z0-9]+")) {
                 f = (float) i;
-                canvas.drawText(group, f, 0.0f, this.mENPaint);
+                canvas.drawText(group, f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, this.mENPaint);
                 measureText = this.mENPaint.measureText(group);
             } else {
                 f = (float) i;
-                canvas.drawText(group, f, 0.0f, this.mCNPaint);
+                canvas.drawText(group, f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, this.mCNPaint);
                 measureText = this.mCNPaint.measureText(group);
             }
             i = (int) (f + measureText);

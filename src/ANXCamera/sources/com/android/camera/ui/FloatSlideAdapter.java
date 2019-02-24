@@ -1,5 +1,7 @@
 package com.android.camera.ui;
 
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
+
 public class FloatSlideAdapter implements RollAdapter {
     public static final float DEFAULT_GAP_VALUE = 1.0f;
     public static final int DEFAULT_MAX_VALUE = 9;
@@ -46,7 +48,7 @@ public class FloatSlideAdapter implements RollAdapter {
     }
 
     private int round(float f) {
-        return (int) (((double) f) + (f < 0.0f ? -0.5d : 0.5d));
+        return (int) (((double) f) + (f < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO ? -0.5d : 0.5d));
     }
 
     public int getItemsCount() {

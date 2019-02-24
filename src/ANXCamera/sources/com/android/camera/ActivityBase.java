@@ -38,6 +38,7 @@ import com.android.camera.ui.PopupManager;
 import com.android.camera.ui.ScreenHint;
 import com.android.camera.ui.V6CameraGLSurfaceView;
 import com.android.camera.ui.V9EdgeShutterView;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera2.Camera2Proxy;
 import com.mi.config.b;
 import com.ss.android.ttve.common.TEDefine;
@@ -113,7 +114,7 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
                 int i = message.what;
                 if (i == 10) {
                     i = message.arg1;
-                    Log.d(ActivityBase.TAG, String.format(Locale.ENGLISH, "msg = %s , exception = 0x%x", new Object[]{message, Integer.valueOf(i)}));
+                    Log.d(ActivityBase.TAG, String.format(Locale.ENGLISH, "exception occurs, msg = %s , exception = 0x%x", new Object[]{message, Integer.valueOf(i)}));
                     switch (i) {
                         case 226:
                         case 228:
@@ -243,44 +244,54 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
     protected void showBlurCover() {
         if (!isShowBottomIntentDone()) {
             if ((!this.mDelayReleaseCamera || isPostProcessing()) && !getCameraIntentManager().isFromScreenSlide().booleanValue()) {
-                final long currentTimeMillis = System.currentTimeMillis();
-                this.mGLCoverDisposable = new Single<Bitmap>() {
-                    protected void subscribeActual(SingleObserver<? super Bitmap> singleObserver) {
-                        Object lastFrameGaussianBitmap;
-                        if (ActivityBase.this.mCameraScreenNail != null) {
-                            lastFrameGaussianBitmap = ActivityBase.this.mCameraScreenNail.getLastFrameGaussianBitmap();
-                        } else {
-                            lastFrameGaussianBitmap = null;
+                if (DataRepository.dataItemFeature().ge()) {
+                    Rect displayRect = Util.getDisplayRect(getApplicationContext());
+                    MarginLayoutParams marginLayoutParams = (MarginLayoutParams) this.mGLCoverView.getLayoutParams();
+                    marginLayoutParams.topMargin = displayRect.top;
+                    marginLayoutParams.height = displayRect.bottom - displayRect.top;
+                    this.mGLCoverView.setBackgroundColor(2130706432);
+                    this.mGLCoverView.setAlpha(1.0f);
+                    this.mGLCoverView.setVisibility(0);
+                } else {
+                    final long currentTimeMillis = System.currentTimeMillis();
+                    this.mGLCoverDisposable = new Single<Bitmap>() {
+                        protected void subscribeActual(SingleObserver<? super Bitmap> singleObserver) {
+                            Object lastFrameGaussianBitmap;
+                            if (ActivityBase.this.mCameraScreenNail != null) {
+                                lastFrameGaussianBitmap = ActivityBase.this.mCameraScreenNail.getLastFrameGaussianBitmap();
+                            } else {
+                                lastFrameGaussianBitmap = null;
+                            }
+                            if (lastFrameGaussianBitmap == null || lastFrameGaussianBitmap.isRecycled()) {
+                                lastFrameGaussianBitmap = BitmapFactory.decodeFile(new File(ActivityBase.this.getFilesDir(), Util.LAST_FRAME_GAUSSIAN_FILE_NAME).getAbsolutePath());
+                                Log.d(ActivityBase.TAG, "showBlurCover: blur bitmap from user blur file!");
+                            } else {
+                                Log.d(ActivityBase.TAG, "showBlurCover: blur bitmap from memory!");
+                            }
+                            singleObserver.onSuccess(lastFrameGaussianBitmap);
                         }
-                        if (lastFrameGaussianBitmap == null || lastFrameGaussianBitmap.isRecycled()) {
-                            lastFrameGaussianBitmap = BitmapFactory.decodeFile(new File(ActivityBase.this.getFilesDir(), Util.LAST_FRAME_GAUSSIAN_FILE_NAME).getAbsolutePath());
-                            Log.d(ActivityBase.TAG, "showBlurCover: blur bitmap from user blur file!");
-                        } else {
-                            Log.d(ActivityBase.TAG, "showBlurCover: blur bitmap from memory!");
+                    }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Bitmap>() {
+                        public void accept(Bitmap bitmap) {
+                            if (bitmap == null || bitmap.isRecycled()) {
+                                ActivityBase.this.mGLCoverView.setVisibility(8);
+                            } else {
+                                Rect displayRect = Util.getDisplayRect(ActivityBase.this.getApplicationContext());
+                                ((MarginLayoutParams) ActivityBase.this.mGLCoverView.getLayoutParams()).topMargin = displayRect.top;
+                                ActivityBase.this.mGLCoverView.setMaxWidth(displayRect.right - displayRect.left);
+                                ActivityBase.this.mGLCoverView.setMaxHeight(displayRect.bottom - displayRect.top);
+                                ActivityBase.this.mGLCoverView.setImageBitmap(bitmap);
+                                ActivityBase.this.mGLCoverView.setAlpha(1.0f);
+                                ActivityBase.this.mGLCoverView.setVisibility(0);
+                            }
+                            String str = ActivityBase.TAG;
+                            StringBuilder stringBuilder = new StringBuilder();
+                            stringBuilder.append("showBlurCover: show... cost time = ");
+                            stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
+                            stringBuilder.append("ms");
+                            Log.d(str, stringBuilder.toString());
                         }
-                        singleObserver.onSuccess(lastFrameGaussianBitmap);
-                    }
-                }.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Bitmap>() {
-                    public void accept(Bitmap bitmap) {
-                        if (bitmap == null || bitmap.isRecycled()) {
-                            ActivityBase.this.mGLCoverView.setVisibility(8);
-                        } else {
-                            Rect displayRect = Util.getDisplayRect(ActivityBase.this.getApplicationContext());
-                            ((MarginLayoutParams) ActivityBase.this.mGLCoverView.getLayoutParams()).topMargin = displayRect.top;
-                            ActivityBase.this.mGLCoverView.setMaxWidth(displayRect.right - displayRect.left);
-                            ActivityBase.this.mGLCoverView.setMaxHeight(displayRect.bottom - displayRect.top);
-                            ActivityBase.this.mGLCoverView.setImageBitmap(bitmap);
-                            ActivityBase.this.mGLCoverView.setAlpha(1.0f);
-                            ActivityBase.this.mGLCoverView.setVisibility(0);
-                        }
-                        String str = ActivityBase.TAG;
-                        StringBuilder stringBuilder = new StringBuilder();
-                        stringBuilder.append("showBlurCover: show... cost time = ");
-                        stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
-                        stringBuilder.append("ms");
-                        Log.d(str, stringBuilder.toString());
-                    }
-                });
+                    });
+                }
             }
         }
     }
@@ -289,7 +300,7 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
         if (this.mGLCoverView != null && this.mGLCoverView.getVisibility() != 8) {
             this.mGLCoverView.post(new Runnable() {
                 public void run() {
-                    ActivityBase.this.mGLCoverView.animate().alpha(0.0f).withEndAction(new Runnable() {
+                    ActivityBase.this.mGLCoverView.animate().alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setDuration(DataRepository.dataItemFeature().ge() ? 100 : 200).withEndAction(new Runnable() {
                         public void run() {
                             ActivityBase.this.mGLCoverView.setVisibility(8);
                         }
@@ -394,7 +405,7 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
 
     protected void onPause() {
         super.onPause();
-        if (!(this.mCameraScreenNail == null || isShowBottomIntentDone())) {
+        if (!(this.mCameraScreenNail == null || isShowBottomIntentDone() || DataRepository.dataItemFeature().ge())) {
             Log.d(TAG, "onPause: readLastFrameGaussian...");
             this.mCameraScreenNail.readLastFrameGaussian();
         }
@@ -482,7 +493,7 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
     }
 
     protected void onDestroy() {
-        if (this.mCameraScreenNail != null) {
+        if (!(DataRepository.dataItemFeature().ge() || this.mCameraScreenNail == null)) {
             final Bitmap lastFrameGaussianBitmap = this.mCameraScreenNail.getLastFrameGaussianBitmap();
             if (lastFrameGaussianBitmap != null) {
                 Schedulers.io().scheduleDirect(new Runnable() {
@@ -653,6 +664,10 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
         this.mCameraSound.playSound(i);
     }
 
+    public void playCameraSound(int i, float f) {
+        this.mCameraSound.playSound(i, f);
+    }
+
     public void loadCameraSound(int i) {
         if (this.mCameraSound != null) {
             this.mCameraSound.load(i);
@@ -681,8 +696,8 @@ public abstract class ActivityBase extends FragmentActivity implements AppContro
                         Intent intent = new Intent(Util.REVIEW_ACTION, uri);
                         intent.setPackage(Util.REVIEW_ACTIVITY_PACKAGE);
                         intent.putExtra(Util.KEY_REVIEW_FROM_MIUICAMERA, true);
-                        if (b.go()) {
-                            if (!b.hW()) {
+                        if (b.gx()) {
+                            if (!b.m0if()) {
                                 intent.putExtra(Util.KEY_CAMERA_BRIGHTNESS, this.mCameraBrightness.getCurrentBrightness());
                             } else if (this.mCameraBrightness.getCurrentBrightnessManual() != -1) {
                                 intent.putExtra(Util.KEY_CAMERA_BRIGHTNESS_MANUAL, this.mCameraBrightness.getCurrentBrightnessManual());

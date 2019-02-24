@@ -35,6 +35,11 @@ public class MiCamera2ShotLive extends MiCamera2Shot<ParallelTaskData> implement
 
     protected void startSessionCapture() {
         try {
+            this.mCurrentParallelTaskData = generateParallelTaskData(0);
+            if (this.mCurrentParallelTaskData == null) {
+                Log.w(TAG, "startSessionCapture: null task data");
+                return;
+            }
             CaptureCallback generateCaptureCallback = generateCaptureCallback();
             Builder generateRequestBuilder = generateRequestBuilder();
             PerformanceTracker.trackPictureCapture(0);
@@ -57,8 +62,8 @@ public class MiCamera2ShotLive extends MiCamera2Shot<ParallelTaskData> implement
                 stringBuilder.append(j2);
                 Log.d(access$000, stringBuilder.toString());
                 super.onCaptureStarted(cameraCaptureSession, captureRequest, j, j2);
-                if (MiCamera2ShotLive.this.mCurrentParallelTaskData == null) {
-                    MiCamera2ShotLive.this.mCurrentParallelTaskData = MiCamera2ShotLive.this.generateParallelTaskData(j);
+                if (0 == MiCamera2ShotLive.this.mCurrentParallelTaskData.getTimestamp()) {
+                    MiCamera2ShotLive.this.mCurrentParallelTaskData.setTimestamp(j);
                 }
                 PictureCallback pictureCallback = MiCamera2ShotLive.this.mMiCamera.getPictureCallback();
                 if (pictureCallback == null) {
@@ -117,8 +122,9 @@ public class MiCamera2ShotLive extends MiCamera2Shot<ParallelTaskData> implement
     }
 
     protected void onImageReceived(Image image, int i) {
-        if (this.mCurrentParallelTaskData == null) {
-            this.mCurrentParallelTaskData = generateParallelTaskData(image.getTimestamp());
+        if (0 == this.mCurrentParallelTaskData.getTimestamp()) {
+            Log.w(TAG, "onImageReceived: image arrived first");
+            this.mCurrentParallelTaskData.setTimestamp(image.getTimestamp());
         }
         PictureCallback pictureCallback = this.mMiCamera.getPictureCallback();
         String str;

@@ -44,13 +44,13 @@ public class ComponentModuleList extends ComponentData {
     private List<ComponentDataItem> initItems() {
         if (this.mIntentType != -1) {
             List<ComponentDataItem> arrayList = new ArrayList();
-            if (!DataRepository.dataItemFeature().fF() && this.mIntentType == 0) {
+            if (!DataRepository.dataItemFeature().fH() && this.mIntentType == 0) {
                 arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_fun, String.valueOf(161)));
             }
-            if (this.mIntentType == 0 && DataRepository.dataItemFeature().fs()) {
+            if (this.mIntentType == 0 && DataRepository.dataItemFeature().fv()) {
                 arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_new_slow_motion, String.valueOf(172)));
             }
-            if (DataRepository.dataItemFeature().fF() && this.mIntentType == 0) {
+            if (DataRepository.dataItemFeature().fH() && this.mIntentType == 0) {
                 arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_fun, String.valueOf(174)));
             }
             if (this.mIntentType == 2 || this.mIntentType == 0) {
@@ -63,11 +63,11 @@ public class ComponentModuleList extends ComponentData {
                 if (b.isSupportedPortrait()) {
                     arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_portrait, String.valueOf(171)));
                 }
-                if (DataRepository.dataItemFeature().fi() && this.mIntentType == 0) {
+                if (DataRepository.dataItemFeature().fk() && this.mIntentType == 0) {
                     arrayList.add(new ComponentDataItem(-1, -1, R.string.pref_camera_scenemode_entry_night, String.valueOf(173)));
                 }
                 arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_square, String.valueOf(165)));
-                if (DataRepository.dataItemFeature().fU() && this.mIntentType == 0) {
+                if (DataRepository.dataItemFeature().fW() && this.mIntentType == 0) {
                     arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_panorama, String.valueOf(166)));
                 }
                 arrayList.add(new ComponentDataItem(-1, -1, R.string.module_name_professional, String.valueOf(167)));

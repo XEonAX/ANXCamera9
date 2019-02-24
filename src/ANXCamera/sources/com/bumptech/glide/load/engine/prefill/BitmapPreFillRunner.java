@@ -108,7 +108,7 @@ final class BitmapPreFillRunner implements Runnable {
     }
 
     private boolean b(long j) {
-        return this.iu.now() - j >= 32;
+        return this.iu.now() - j >= MAX_DURATION_MS;
     }
 
     private long bN() {

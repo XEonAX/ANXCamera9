@@ -23,6 +23,7 @@ import com.android.camera.Util;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.CameraAction;
 import com.android.camera.ui.ColorImageView;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.util.List;
 
 public class SingleCheckAdapter extends Adapter<SingleCheckViewHolder> {
@@ -147,7 +148,7 @@ public class SingleCheckAdapter extends Adapter<SingleCheckViewHolder> {
         }
 
         private void animateOut(final ColorImageView colorImageView, final TextView textView) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
             ofFloat.setDuration(100);
             ofFloat.setInterpolator(new LinearInterpolator() {
                 public float getInterpolation(float f) {
@@ -161,7 +162,7 @@ public class SingleCheckAdapter extends Adapter<SingleCheckViewHolder> {
         }
 
         private void animateIn(final ColorImageView colorImageView, final TextView textView) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
             ofFloat.setDuration(100);
             ofFloat.setInterpolator(new LinearInterpolator() {
                 public float getInterpolation(float f) {

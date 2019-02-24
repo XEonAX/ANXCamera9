@@ -5,6 +5,7 @@ import com.android.camera.effect.ShaderUtil;
 import com.android.camera.effect.draw_mode.DrawAttribute;
 import com.android.camera.effect.draw_mode.DrawExtTexAttribute;
 import com.android.camera.log.Log;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.BasicTexture;
 import com.android.gallery3d.ui.ExtTexture;
 import com.android.gallery3d.ui.GLCanvas;
@@ -12,8 +13,8 @@ import com.android.gallery3d.ui.GLCanvas;
 public class SurfaceTextureRender extends ShaderRender {
     private static final String FRAG = "#extension GL_OES_EGL_image_external : require  \nprecision mediump float; \nuniform float uAlpha; \nuniform float uMixAlpha; \nuniform samplerExternalOES sTexture; \nvarying vec2 vTexCoord; \nvoid main() \n{ \n    gl_FragColor = texture2D(sTexture, vTexCoord)*uAlpha; \n    if (uMixAlpha >= 0.0) { \n       gl_FragColor.a = uMixAlpha; \n    } \n}";
     private static final String TAG = "SurfaceTextureRender";
-    private static final float[] TEXTURES = new float[]{0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f};
-    private static final float[] VERTICES = new float[]{0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f};
+    private static final float[] TEXTURES = new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, 1.0f, 1.0f};
+    private static final float[] VERTICES = new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, 1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO};
 
     public SurfaceTextureRender(GLCanvas gLCanvas) {
         super(gLCanvas);
@@ -72,10 +73,10 @@ public class SurfaceTextureRender extends ShaderRender {
             updateViewport();
             float alpha = this.mGLCanvas.getState().getAlpha();
             float blendAlpha = this.mGLCanvas.getState().getBlendAlpha();
-            boolean z = this.mBlendEnabled && (!extTexture.isOpaque() || alpha < 0.95f || blendAlpha >= 0.0f);
+            boolean z = this.mBlendEnabled && (!extTexture.isOpaque() || alpha < 0.95f || blendAlpha >= PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
             setBlendEnabled(z);
             this.mGLCanvas.getState().pushState();
-            this.mGLCanvas.getState().translate(f, f2, 0.0f);
+            this.mGLCanvas.getState().translate(f, f2, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
             this.mGLCanvas.getState().scale(f3, f4, 1.0f);
             GLES20.glUniformMatrix4fv(this.mUniformMVPMatrixH, 1, false, this.mGLCanvas.getState().getFinalMatrix(), 0);
             GLES20.glUniformMatrix4fv(this.mUniformSTMatrixH, 1, false, fArr, 0);

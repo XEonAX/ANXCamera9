@@ -120,6 +120,11 @@ public class FragmentVertical extends BaseFragment implements VerticalProtocol {
                     obj = 7;
                     break;
                 }
+            case 56:
+                if (str.equals("8")) {
+                    obj = 8;
+                    break;
+                }
             default:
                 obj = -1;
                 break;
@@ -148,6 +153,9 @@ public class FragmentVertical extends BaseFragment implements VerticalProtocol {
                 break;
             case 7:
                 this.stringLightingRes = R.string.lighting_pattern_leaf;
+                break;
+            case 8:
+                this.stringLightingRes = R.string.lighting_pattern_holi;
                 break;
         }
         if (this.stringLightingRes == -2) {

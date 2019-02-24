@@ -1,5 +1,7 @@
 package com.android.gallery3d.ui;
 
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
+
 public class GLPaint {
     private int mColor = 0;
     private float mLineWidth = 1.0f;
@@ -13,7 +15,7 @@ public class GLPaint {
     }
 
     public void setLineWidth(float f) {
-        Utils.assertTrue(f >= 0.0f);
+        Utils.assertTrue(f >= PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         this.mLineWidth = f;
     }
 

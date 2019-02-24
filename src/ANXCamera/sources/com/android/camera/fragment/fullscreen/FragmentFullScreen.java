@@ -17,8 +17,6 @@ import android.os.Message;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.Adapter;
-import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.util.Pair;
 import android.view.TextureView;
 import android.view.View;
@@ -59,6 +57,7 @@ import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
 import com.android.camera.statistic.CameraStat;
 import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.ui.CameraSnapView;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.ss.android.vesdk.VECommonCallback;
 import com.ss.android.vesdk.VECommonCallbackInfo;
 import io.reactivex.Completable;
@@ -105,10 +104,10 @@ public class FragmentFullScreen extends BaseFragment implements OnClickListener,
     private ImageView mPreviewShare;
     private ImageView mPreviewStart;
     private TextureView mPreviewTextureView;
-    private View mRootView;
     private ContentValues mSaveContentValues;
     private Uri mSavedUri;
     private View mScreenLightIndicator;
+    private View mScreenLightRootView;
     private ShareAdapter mShareAdapter;
     private View mShareCancel;
     private ViewGroup mShareLayout;
@@ -118,7 +117,7 @@ public class FragmentFullScreen extends BaseFragment implements OnClickListener,
     private ViewGroup mTopLayout;
 
     protected void initView(View view) {
-        this.mRootView = view;
+        this.mScreenLightRootView = view.findViewById(R.id.screen_light_root_view);
         this.mScreenLightIndicator = view.findViewById(R.id.screen_light_indicator);
         this.mLiveViewStub = (ViewStub) view.findViewById(R.id.live_record_preview);
     }
@@ -138,23 +137,23 @@ public class FragmentFullScreen extends BaseFragment implements OnClickListener,
     public void showScreenLight() {
         if (this.mScreenLightIndicator.getVisibility() != 0) {
             this.mScreenLightIndicator.setVisibility(0);
-            Completable.create(new AlphaInOnSubscribe(this.mRootView).setDurationTime(100)).subscribe();
+            Completable.create(new AlphaInOnSubscribe(this.mScreenLightRootView).setDurationTime(100)).subscribe();
         }
     }
 
     public void hideScreenLight() {
         if (this.mScreenLightIndicator.getVisibility() != 8) {
-            Completable.create(new AlphaOutOnSubscribe(this.mRootView).setDurationTime(200)).subscribe(new Action() {
+            Completable.create(new AlphaOutOnSubscribe(this.mScreenLightRootView).setDurationTime(200)).subscribe(new Action() {
                 public void run() throws Exception {
                     FragmentFullScreen.this.mScreenLightIndicator.setVisibility(8);
-                    FragmentFullScreen.this.mRootView.setVisibility(8);
+                    FragmentFullScreen.this.mScreenLightRootView.setVisibility(8);
                 }
             });
         }
     }
 
     public void setScreenLightColor(int i) {
-        this.mRootView.setBackgroundColor(i);
+        this.mScreenLightRootView.setBackgroundColor(i);
     }
 
     protected Animation provideEnterAnimation(int i) {
@@ -494,10 +493,10 @@ public class FragmentFullScreen extends BaseFragment implements OnClickListener,
     public void onClick(View view) {
         if (this.mConcatProgress.getVisibility() != 0 && this.mCombineProgress.getVisibility() != 0 && this.mShareProgress.getVisibility() != 0) {
             switch (view.getId()) {
-                case R.id.live_preview_layout /*2131558495*/:
+                case R.id.live_preview_layout /*2131558496*/:
                     pausePlay();
                     break;
-                case R.id.live_preview_play /*2131558496*/:
+                case R.id.live_preview_play /*2131558497*/:
                     if (!this.mConcatReady) {
                         Log.d(TAG, "concat not finished, show play progress");
                         this.mPreviewStart.setVisibility(8);
@@ -508,11 +507,11 @@ public class FragmentFullScreen extends BaseFragment implements OnClickListener,
                     hideShareSheet();
                     startPlay();
                     break;
-                case R.id.live_preview_back /*2131558501*/:
+                case R.id.live_preview_back /*2131558502*/:
                     showExitConfirm();
                     break;
-                case R.id.live_preview_save_circle /*2131558502*/:
-                case R.id.live_preview_save /*2131558503*/:
+                case R.id.live_preview_save_circle /*2131558503*/:
+                case R.id.live_preview_save /*2131558504*/:
                     CameraStatUtil.trackLiveClick(CameraStat.PARAM_LIVE_CLICK_PLAY_SAVE);
                     if (this.mSavedUri == null) {
                         if (!this.mConcatReady) {
@@ -533,7 +532,7 @@ public class FragmentFullScreen extends BaseFragment implements OnClickListener,
                     }
                     onCombineSuccess();
                     break;
-                case R.id.live_preview_share /*2131558505*/:
+                case R.id.live_preview_share /*2131558506*/:
                     CameraStatUtil.trackLiveClick(CameraStat.PARAM_LIVE_CLICK_PLAY_SHARE);
                     if (!checkAndShare()) {
                         this.mPendingShare = true;
@@ -549,10 +548,10 @@ public class FragmentFullScreen extends BaseFragment implements OnClickListener,
                         break;
                     }
                     break;
-                case R.id.live_share_cancel /*2131558509*/:
+                case R.id.live_share_cancel /*2131558510*/:
                     hideShareSheet();
                     break;
-                case R.id.live_share_item /*2131558510*/:
+                case R.id.live_share_item /*2131558511*/:
                     ShareInfo shareInfo = (ShareInfo) view.getTag();
                     hideShareSheet();
                     if (!shareInfo.className.equals("more")) {
@@ -606,9 +605,9 @@ public class FragmentFullScreen extends BaseFragment implements OnClickListener,
         if (this.mCombineProgress.getVisibility() != i) {
             ValueAnimator ofFloat;
             if (i == 0) {
-                this.mCombineProgress.setAlpha(0.0f);
+                this.mCombineProgress.setAlpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
                 this.mCombineProgress.setVisibility(0);
-                ofFloat = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
+                ofFloat = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
                 ofFloat.setDuration(300);
                 ofFloat.setStartDelay(160);
                 ofFloat.setInterpolator(new PathInterpolator(0.25f, 0.1f, 0.25f, 1.0f));
@@ -622,7 +621,7 @@ public class FragmentFullScreen extends BaseFragment implements OnClickListener,
                 });
                 ofFloat.start();
             } else {
-                ofFloat = ValueAnimator.ofFloat(new float[]{1.0f, 0.0f});
+                ofFloat = ValueAnimator.ofFloat(new float[]{1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO});
                 ofFloat.setDuration(300);
                 ofFloat.setInterpolator(new CubicEaseInInterpolator());
                 ofFloat.addUpdateListener(new AnimatorUpdateListener() {
@@ -663,6 +662,10 @@ public class FragmentFullScreen extends BaseFragment implements OnClickListener,
 
     public boolean isLiveRecordPreviewShown() {
         return this.mLiveViewLayout != null && this.mLiveViewLayout.getVisibility() == 0;
+    }
+
+    public void startLiveRecordSaving() {
+        this.mCameraSnapView.performClick();
     }
 
     public void onLiveSaveToLocalFinished(Uri uri) {
@@ -735,10 +738,10 @@ public class FragmentFullScreen extends BaseFragment implements OnClickListener,
             length = Math.max((Util.sWindowWidth - (i * 2)) / arrayList.size(), (int) (((float) (Util.sWindowWidth - i)) / 5.5f));
             if (this.mShareAdapter == null || this.mShareAdapter.getItemCount() != arrayList.size()) {
                 this.mShareAdapter = new ShareAdapter(arrayList, this, length);
-                LayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
                 linearLayoutManager.setOrientation(0);
                 this.mShareRecyclerView.setLayoutManager(linearLayoutManager);
-                Adapter recyclerAdapterWrapper = new RecyclerAdapterWrapper(this.mShareAdapter);
+                RecyclerAdapterWrapper recyclerAdapterWrapper = new RecyclerAdapterWrapper(this.mShareAdapter);
                 View space = new Space(getContext());
                 space.setMinimumWidth(i);
                 recyclerAdapterWrapper.addHeader(space);

@@ -20,7 +20,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import java.io.IOException;
 
-public class MiuiCameraSound implements Consumer<Integer> {
+public class MiuiCameraSound implements Consumer<PlayConfig> {
     public static final int AUDIO_CAPTURE = 7;
     public static final int FAST_BURST = 4;
     public static final int FOCUS_COMPLETE = 1;
@@ -36,7 +36,7 @@ public class MiuiCameraSound implements Consumer<Integer> {
     private final AssetManager mAssetManager;
     private final AudioManager mAudioManager;
     private Disposable mDisposable;
-    private FlowableEmitter<Integer> mFlowableEmitter;
+    private FlowableEmitter<PlayConfig> mFlowableEmitter;
     private long mLastPlayTime = 0;
     private OnLoadCompleteListener mLoadCompleteListener = new OnLoadCompleteListener() {
         public void onLoadComplete(SoundPool soundPool, int i, int i2) {
@@ -57,6 +57,11 @@ public class MiuiCameraSound implements Consumer<Integer> {
     private int[] mSoundIds;
     private SoundPool mSoundPool;
 
+    public static class PlayConfig {
+        public int soundId;
+        public float volume = 1.0f;
+    }
+
     public MiuiCameraSound(Context context) {
         this.mAudioManager = (AudioManager) context.getSystemService("audio");
         this.mAssetManager = context.getAssets();
@@ -64,7 +69,7 @@ public class MiuiCameraSound implements Consumer<Integer> {
         int i = 1;
         builder.setMaxStreams(1);
         AudioAttributes.Builder builder2 = new AudioAttributes.Builder();
-        if (!b.gd()) {
+        if (!b.gm()) {
             i = 7;
         }
         builder.setAudioAttributes(builder2.setInternalLegacyStreamType(i).build());
@@ -75,16 +80,16 @@ public class MiuiCameraSound implements Consumer<Integer> {
             this.mSoundIds[i2] = -1;
         }
         this.mSoundIdToPlay = -1;
-        this.mDisposable = Flowable.create(new FlowableOnSubscribe<Integer>() {
-            public void subscribe(FlowableEmitter<Integer> flowableEmitter) throws Exception {
+        this.mDisposable = Flowable.create(new FlowableOnSubscribe<PlayConfig>() {
+            public void subscribe(FlowableEmitter<PlayConfig> flowableEmitter) throws Exception {
                 MiuiCameraSound.this.mFlowableEmitter = flowableEmitter;
             }
-        }, BackpressureStrategy.DROP).observeOn(Schedulers.io()).onBackpressureDrop(new Consumer<Integer>() {
-            public void accept(@NonNull Integer num) throws Exception {
+        }, BackpressureStrategy.DROP).observeOn(Schedulers.io()).onBackpressureDrop(new Consumer<PlayConfig>() {
+            public void accept(@NonNull PlayConfig playConfig) throws Exception {
                 String str = MiuiCameraSound.TAG;
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("play sound too fast: ");
-                stringBuilder.append(num.toString());
+                stringBuilder.append(playConfig.soundId);
                 Log.e(str, stringBuilder.toString());
             }
         }).subscribe((Consumer) this);
@@ -174,7 +179,7 @@ public class MiuiCameraSound implements Consumer<Integer> {
         }
     }
 
-    private synchronized void play(int i, int i2) {
+    private synchronized void play(int i, float f, int i2) {
         if (i >= 0) {
             if (i < SOUND_FILES.length) {
                 if (this.mSoundIds[i] == -1) {
@@ -185,7 +190,7 @@ public class MiuiCameraSound implements Consumer<Integer> {
                     }
                     this.mSoundIds[i] = this.mSoundIdToPlay;
                 } else {
-                    this.mSoundPool.play(this.mSoundIds[i], 1.0f, 1.0f, 0, i2 - 1, 1.0f);
+                    this.mSoundPool.play(this.mSoundIds[i], f, f, 0, i2 - 1, 1.0f);
                     this.mLastPlayTime = System.currentTimeMillis();
                 }
             }
@@ -206,15 +211,22 @@ public class MiuiCameraSound implements Consumer<Integer> {
         }
     }
 
-    private void playSound(int i, int i2) {
-        if (!b.gd() || this.mAudioManager.getRingerMode() == 2) {
-            play(i, i2);
+    private void playSound(int i, float f, int i2) {
+        if (!b.gm() || this.mAudioManager.getRingerMode() == 2) {
+            play(i, f, i2);
         }
     }
 
     public void playSound(int i) {
+        playSound(i, 1.0f);
+    }
+
+    public void playSound(int i, float f) {
         if (!this.mFlowableEmitter.isCancelled()) {
-            this.mFlowableEmitter.onNext(Integer.valueOf(i));
+            PlayConfig playConfig = new PlayConfig();
+            playConfig.soundId = i;
+            playConfig.volume = f;
+            this.mFlowableEmitter.onNext(playConfig);
         }
     }
 
@@ -222,7 +234,7 @@ public class MiuiCameraSound implements Consumer<Integer> {
         return this.mLastPlayTime;
     }
 
-    public void accept(@NonNull Integer num) throws Exception {
-        playSound(num.intValue(), 1);
+    public void accept(@NonNull PlayConfig playConfig) throws Exception {
+        playSound(playConfig.soundId, playConfig.volume, 1);
     }
 }

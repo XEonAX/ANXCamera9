@@ -15,6 +15,7 @@ import com.android.camera.lib.compatibility.util.CompatibilityUtils;
 import com.android.camera.log.Log;
 import com.android.camera.module.ModuleManager;
 import com.android.camera.ui.Rotatable;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.BitmapTexture;
 import com.android.gallery3d.ui.ExtTexture;
 import com.android.gallery3d.ui.GLCanvas;
@@ -23,7 +24,7 @@ import com.android.gallery3d.ui.ScreenNail;
 import com.mi.config.b;
 
 public abstract class SurfaceTextureScreenNail implements OnFrameAvailableListener, Rotatable, ScreenNail {
-    private static final float MOVIE_SOLID_CROPPED_X = (b.gr() ? 0.9f : 0.8f);
+    private static final float MOVIE_SOLID_CROPPED_X = (b.gA() ? 0.9f : 0.8f);
     private static final float MOVIE_SOLID_CROPPED_Y;
     private static final String TAG = "STScreenNail";
     private static HandlerThread sFrameListener = new HandlerThread("FrameListener");
@@ -87,7 +88,7 @@ public abstract class SurfaceTextureScreenNail implements OnFrameAvailableListen
 
     static {
         float f = 0.8f;
-        if (b.gr()) {
+        if (b.gA()) {
             f = 0.9f;
         }
         MOVIE_SOLID_CROPPED_Y = f;
@@ -120,7 +121,7 @@ public abstract class SurfaceTextureScreenNail implements OnFrameAvailableListen
             this.mExtTexture = new ExtTexture();
         }
         this.mExtTexture.setSize(this.mWidth, this.mHeight);
-        if (b.hb() && !sFrameListener.isAlive()) {
+        if (b.hk() && !sFrameListener.isAlive()) {
             sFrameListener.start();
         }
         if (this.mSurfaceTexture == null) {
@@ -135,7 +136,7 @@ public abstract class SurfaceTextureScreenNail implements OnFrameAvailableListen
         stringBuilder.append(this.mHeight);
         Log.d(str, stringBuilder.toString());
         this.mSurfaceTexture.setDefaultBufferSize(this.mWidth, this.mHeight);
-        if (VERSION.SDK_INT < 21 || !b.hb()) {
+        if (VERSION.SDK_INT < 21 || !b.hk()) {
             this.mSurfaceTexture.setOnFrameAvailableListener(this);
         } else {
             CompatibilityUtils.setSurfaceTextureOnFrameAvailableListener(this.mSurfaceTexture, this, new Handler(sFrameListener.getLooper()));
@@ -396,7 +397,7 @@ public abstract class SurfaceTextureScreenNail implements OnFrameAvailableListen
             return;
         }
         gLCanvas.clearBuffer();
-        if (!this.mIsFullScreen || b.gj() || Util.isNotchDevice || Util.isLongRatioScreen) {
+        if (!this.mIsFullScreen || b.gs() || Util.isNotchDevice || Util.isLongRatioScreen) {
             draw(gLCanvas, this.mTx, this.mTy, this.mTwidth, this.mTheight);
         } else {
             draw(gLCanvas, 0, 0, this.mSurfaceWidth, this.mSurfaceHeight);
@@ -406,7 +407,7 @@ public abstract class SurfaceTextureScreenNail implements OnFrameAvailableListen
     public void draw(GLCanvas gLCanvas, int i, int i2, int i3, int i4) {
         synchronized (this) {
             if (this.mHasTexture) {
-                if (b.hb()) {
+                if (b.hk()) {
                     checkThreadPriority();
                 }
                 gLCanvas.setPreviewSize(this.mWidth, this.mHeight);
@@ -429,7 +430,7 @@ public abstract class SurfaceTextureScreenNail implements OnFrameAvailableListen
     }
 
     public void setVideoStabilizationCropped(boolean z) {
-        if (b.fY()) {
+        if (b.gi()) {
             this.mVideoStabilizationCropped = z;
         } else {
             this.mVideoStabilizationCropped = false;
@@ -459,10 +460,10 @@ public abstract class SurfaceTextureScreenNail implements OnFrameAvailableListen
             i2 = i;
         }
         if (i2 != 0) {
-            Matrix.translateM(fArr, 0, 0.5f, 0.5f, 0.0f);
-            Matrix.rotateM(fArr, 0, (float) this.mDisplayOrientation, 0.0f, 0.0f, 1.0f);
+            Matrix.translateM(fArr, 0, 0.5f, 0.5f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            Matrix.rotateM(fArr, 0, (float) this.mDisplayOrientation, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f);
             Matrix.scaleM(fArr, 0, f, f2, 1.0f);
-            Matrix.translateM(fArr, 0, -0.5f, -0.5f, 0.0f);
+            Matrix.translateM(fArr, 0, -0.5f, -0.5f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         }
     }
 

@@ -33,6 +33,7 @@ public class AiSceneModeConstant {
     public static final int AI_SCENE_MODE_NIGHT = 10;
     public static final int AI_SCENE_MODE_OVERCAST = 22;
     public static final int AI_SCENE_MODE_PPT = 4;
+    public static final int AI_SCENE_MODE_SCULPTURE = 37;
     public static final int AI_SCENE_MODE_SEA = 12;
     public static final int AI_SCENE_MODE_SIDEFACE = 36;
     public static final int AI_SCENE_MODE_SILHOUETTE = 24;

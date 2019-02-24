@@ -2,7 +2,6 @@ package com.bumptech.glide.b;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewCompat;
 import android.util.Log;
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
@@ -247,7 +246,7 @@ public class d {
                     int i5 = i4 + 1;
                     int i6 = i5 + 1;
                     int i7 = i2 + 1;
-                    iArr[i2] = ((((bArr[i3] & 255) << 16) | ViewCompat.MEASURED_STATE_MASK) | ((bArr[i4] & 255) << 8)) | (bArr[i5] & 255);
+                    iArr[i2] = ((((bArr[i3] & 255) << 16) | -16777216) | ((bArr[i4] & 255) << 8)) | (bArr[i5] & 255);
                     i3 = i6;
                     i2 = i7;
                 } catch (BufferUnderflowException e2) {

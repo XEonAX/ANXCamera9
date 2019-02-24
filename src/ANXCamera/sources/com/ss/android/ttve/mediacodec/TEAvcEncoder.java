@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.media.MediaCodec;
 import android.media.MediaCodec.BufferInfo;
+import android.media.MediaCodecInfo.CodecProfileLevel;
 import android.media.MediaFormat;
 import android.opengl.GLES20;
 import android.os.Build.VERSION;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.Surface;
 import com.android.camera.Util;
 import com.android.camera.module.loader.FunctionParseBeautyBodySlimCount;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.ss.android.ttve.common.TEEglStateSaver;
 import com.ss.android.ttve.common.TELogUtil;
 import com.ss.android.ttve.common.TESharedContext;
@@ -92,11 +94,29 @@ public class TEAvcEncoder {
                 this.m_mediaCodec.release();
             }
             this.m_mediaCodec = MediaCodec.createEncoderByType(VIDEO_MIME_TYPE);
-            this.m_mediaCodec.configure(this.m_codecFormat, null, null, 1);
-            if (VERSION.SDK_INT >= 18 && this.m_useInputSurface) {
-                TELogUtil.d(TAG, "m_mediaCodec.createInputSurface()");
-                this.m_surface = this.m_mediaCodec.createInputSurface();
+            for (CodecProfileLevel codecProfileLevel : this.m_mediaCodec.getCodecInfo().getCapabilitiesForType(VIDEO_MIME_TYPE).profileLevels) {
+                if (codecProfileLevel.profile == 1) {
+                    this.m_codecFormat.setInteger("profile", codecProfileLevel.profile);
+                    if (VERSION.SDK_INT >= 23) {
+                        MediaFormat mediaFormat = this.m_codecFormat;
+                        String str = "level";
+                        int i = 8192;
+                        if (codecProfileLevel.level <= 8192) {
+                            i = codecProfileLevel.level;
+                        }
+                        mediaFormat.setInteger(str, i);
+                    }
+                    this.m_mediaCodec.configure(this.m_codecFormat, null, null, 1);
+                    if (VERSION.SDK_INT >= 18 && this.m_useInputSurface) {
+                        TELogUtil.d(TAG, "m_mediaCodec.createInputSurface()");
+                        this.m_surface = this.m_mediaCodec.createInputSurface();
+                    }
+                    return 0;
+                }
             }
+            this.m_mediaCodec.configure(this.m_codecFormat, null, null, 1);
+            TELogUtil.d(TAG, "m_mediaCodec.createInputSurface()");
+            this.m_surface = this.m_mediaCodec.createInputSurface();
             return 0;
         } catch (Exception e) {
             e.printStackTrace();
@@ -198,7 +218,7 @@ public class TEAvcEncoder {
         if (this.m_textureDrawer == null) {
             return false;
         }
-        this.m_textureDrawer.setRotation(0.0f);
+        this.m_textureDrawer.setRotation(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         this.m_textureDrawer.setFlipScale(1.0f, -1.0f);
         return true;
     }

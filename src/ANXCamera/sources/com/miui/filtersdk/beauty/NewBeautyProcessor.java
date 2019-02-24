@@ -1,6 +1,7 @@
 package com.miui.filtersdk.beauty;
 
 import android.graphics.Bitmap;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.miui.filtersdk.BeautifyJni;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -21,7 +22,7 @@ class NewBeautyProcessor extends IntelligentBeautyProcessor {
             this.mBeautyParameters[i] = 0;
         }
         setExtraSpan(EXTRA_SPAN);
-        this.mLevelParameters = new float[][]{new float[]{0.0f, 0.0f, 0.0f, 0.0f, 0.0f}, new float[]{10.0f, 10.0f, 10.0f, 10.0f, 0.0f}, new float[]{20.0f, 20.0f, 20.0f, 20.0f, 0.0f}, new float[]{30.0f, 30.0f, 30.0f, 30.0f, 0.0f}, new float[]{EXTRA_SPAN, EXTRA_SPAN, EXTRA_SPAN, EXTRA_SPAN, 0.0f}, new float[]{60.0f, 60.0f, 60.0f, 60.0f, 0.0f}};
+        this.mLevelParameters = new float[][]{new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO}, new float[]{10.0f, 10.0f, 10.0f, 10.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO}, new float[]{20.0f, 20.0f, 20.0f, 20.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO}, new float[]{30.0f, 30.0f, 30.0f, 30.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO}, new float[]{EXTRA_SPAN, EXTRA_SPAN, EXTRA_SPAN, EXTRA_SPAN, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO}, new float[]{60.0f, 60.0f, 60.0f, 60.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO}};
     }
 
     public BeautyParameterType[] getSupportedBeautyParamTypes() {
@@ -34,7 +35,7 @@ class NewBeautyProcessor extends IntelligentBeautyProcessor {
             case SHRINK_FACE_RATIO:
             case WHITEN_STRENGTH:
             case SMOOTH_STRENGTH:
-                return new float[]{0.0f, 100.0f};
+                return new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 100.0f};
             default:
                 return new float[0];
         }

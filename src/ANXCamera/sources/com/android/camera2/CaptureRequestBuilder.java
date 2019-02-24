@@ -136,10 +136,10 @@ public class CaptureRequestBuilder {
     static void applyExposureTime(Builder builder, int i, CameraConfigs cameraConfigs) {
         if (builder != null) {
             long exposureTime = cameraConfigs.getExposureTime();
-            if (b.hU() && i == 1) {
+            if (b.id() && i == 1) {
                 exposureTime = Math.min(exposureTime, MAX_REALTIME_EXPOSURE_TIME);
             }
-            if (b.hU() || i == 3) {
+            if (b.id() || i == 3) {
                 String str = TAG;
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("applyExposureTime: ");
@@ -348,8 +348,10 @@ public class CaptureRequestBuilder {
     }
 
     static void applyPortraitLighting(Builder builder, int i, CameraCapabilities cameraCapabilities, CameraConfigs cameraConfigs) {
-        if (builder != null && i == 3 && cameraCapabilities.isSupportPortraitLighting()) {
-            MiCameraCompat.applyPortraitLighting(builder, cameraConfigs.getPortraitLightingPattern());
+        if (builder != null) {
+            if ((i == 3 || DataRepository.dataItemFeature().gh()) && cameraCapabilities.isSupportPortraitLighting()) {
+                MiCameraCompat.applyPortraitLighting(builder, cameraConfigs.getPortraitLightingPattern());
+            }
         }
     }
 
@@ -411,6 +413,11 @@ public class CaptureRequestBuilder {
 
     static void applyFrontMirror(Builder builder, int i, CameraCapabilities cameraCapabilities, CameraConfigs cameraConfigs) {
         if (builder != null && cameraCapabilities.isSupportFrontMirror() && i == 3) {
+            String str = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("applyFrontMirror: ");
+            stringBuilder.append(cameraConfigs.isFrontMirror());
+            Log.d(str, stringBuilder.toString());
             MiCameraCompat.applyFrontMirror(builder, cameraConfigs.isFrontMirror());
         }
     }
@@ -434,7 +441,7 @@ public class CaptureRequestBuilder {
     static void applyIso(Builder builder, int i, CameraCapabilities cameraCapabilities, CameraConfigs cameraConfigs) {
         if (builder != null) {
             int iso = cameraConfigs.getISO();
-            if (b.hU() && i == 1 && iso > 0 && cameraConfigs.getExposureTime() > MAX_REALTIME_EXPOSURE_TIME) {
+            if (b.id() && i == 1 && iso > 0 && cameraConfigs.getExposureTime() > MAX_REALTIME_EXPOSURE_TIME) {
                 iso = Math.min((int) (((float) iso) * ((float) (((double) cameraConfigs.getExposureTime()) / 1.25E8d))), cameraCapabilities.getMaxIso());
             }
             String str = TAG;
@@ -478,7 +485,7 @@ public class CaptureRequestBuilder {
     }
 
     static void applyEyeLight(Builder builder, CameraCapabilities cameraCapabilities, CameraConfigs cameraConfigs) {
-        if (builder != null && cameraCapabilities.isSupportEyeLight() && DataRepository.dataItemFeature().ft()) {
+        if (builder != null && cameraCapabilities.isSupportEyeLight() && DataRepository.dataItemFeature().fw()) {
             int eyeLightType = cameraConfigs.getEyeLightType();
             if (eyeLightType < 0) {
                 MiCameraCompat.applyEyeLight(builder, 0, 0);
@@ -508,7 +515,7 @@ public class CaptureRequestBuilder {
         if (builder != null) {
             String str;
             int exposureCompensationIndex = cameraConfigs.getExposureCompensationIndex();
-            if (b.hU() && ModuleManager.isManualModule() && i == 1 && cameraConfigs.getISO() == 0 && cameraConfigs.getExposureTime() > MAX_REALTIME_EXPOSURE_TIME) {
+            if (b.id() && ModuleManager.isManualModule() && i == 1 && cameraConfigs.getISO() == 0 && cameraConfigs.getExposureTime() > MAX_REALTIME_EXPOSURE_TIME) {
                 double log = Math.log((double) ((float) (((double) cameraConfigs.getExposureTime()) / 1.25E8d))) / Math.log(2.0d);
                 str = TAG;
                 StringBuilder stringBuilder = new StringBuilder();

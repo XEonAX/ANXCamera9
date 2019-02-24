@@ -8,6 +8,7 @@ import com.bumptech.glide.load.engine.bitmap_recycle.b;
 import com.bumptech.glide.load.engine.p;
 import com.bumptech.glide.load.f;
 import com.bumptech.glide.load.g;
+import com.sensetime.stmobile.STMobileHumanActionNative;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,9 +41,9 @@ public class h implements g<InputStream, b> {
     }
 
     private static byte[] f(InputStream inputStream) {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(16384);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(STMobileHumanActionNative.ST_MOBILE_HAND_LOVE);
         try {
-            byte[] bArr = new byte[16384];
+            byte[] bArr = new byte[STMobileHumanActionNative.ST_MOBILE_HAND_LOVE];
             while (true) {
                 int read = inputStream.read(bArr);
                 if (read != -1) {

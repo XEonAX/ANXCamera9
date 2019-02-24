@@ -58,8 +58,8 @@ public class ComponentConfigUltraWide extends ComponentData {
         } else {
             this.mItems.clear();
         }
-        boolean fx = DataRepository.dataItemFeature().fx();
-        if (i2 != 0 || !fx) {
+        boolean isSupportUltraWide = DataRepository.dataItemFeature().isSupportUltraWide();
+        if (i2 != 0 || !isSupportUltraWide) {
             return this.mItems;
         }
         if (i != 166) {
@@ -102,8 +102,12 @@ public class ComponentConfigUltraWide extends ComponentData {
         return new int[]{R.drawable.icon_config_ultra_wide_off, R.drawable.icon_config_ultra_wide_on};
     }
 
-    public boolean isOpenUltrWide(int i) {
-        return !isEmpty() && ULTRA_WIDE_VALUE_ON.equals(getComponentValue(i));
+    public boolean isSupportUltraWide() {
+        return isEmpty() ^ 1;
+    }
+
+    public boolean isUltraWideOnInMode(int i) {
+        return ULTRA_WIDE_VALUE_ON.equals(getComponentValue(i));
     }
 
     public void resetUltraWide(ProviderEditor providerEditor) {

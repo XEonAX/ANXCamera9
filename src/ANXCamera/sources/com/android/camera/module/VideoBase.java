@@ -16,7 +16,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.ParcelFileDescriptor;
 import android.os.SystemClock;
-import android.provider.MiuiSettings.ScreenEffect;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.view.KeyEvent;
@@ -809,7 +808,7 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
     }
 
     protected int getCameraRotation() {
-        return ((this.mOrientationCompensation - this.mDisplayRotation) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+        return ((this.mOrientationCompensation - this.mDisplayRotation) + 360) % 360;
     }
 
     protected ContentValues genContentValues(int i, int i2) {
@@ -853,13 +852,23 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
             stringBuilder4.append(format);
             stringBuilder2 = stringBuilder4.toString();
         } else {
-            stringBuilder2 = Storage.generatePrimaryFilepath(format);
+            stringBuilder2 = Storage.generatePrimaryDirectoryPath();
+            Util.mkdirs(new File(stringBuilder2), 511, -1, -1);
+            if (Util.isPathExist(stringBuilder2)) {
+                stringBuilder2 = Storage.generatePrimaryFilepath(format);
+            } else {
+                stringBuilder4 = new StringBuilder();
+                stringBuilder4.append(Storage.DIRECTORY);
+                stringBuilder4.append('/');
+                stringBuilder4.append(format);
+                stringBuilder2 = stringBuilder4.toString();
+            }
         }
         String str = TAG;
         stringBuilder = new StringBuilder();
         stringBuilder.append("genContentValues: path=");
         stringBuilder.append(stringBuilder2);
-        Log.v(str, stringBuilder.toString());
+        Log.d(str, stringBuilder.toString());
         ContentValues contentValues = new ContentValues(8);
         contentValues.put("title", createName);
         contentValues.put("_display_name", format);
@@ -1090,7 +1099,7 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
     }
 
     public boolean isMeteringAreaOnly() {
-        return !this.mFocusAreaSupported && this.mMeteringAreaSupported;
+        return (this.mFocusAreaSupported || !this.mMeteringAreaSupported || this.mFocusOrAELockSupported) ? false : true;
     }
 
     protected void startVideoRecording() {
@@ -1155,10 +1164,14 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
     protected void updateFocusCallback() {
         if (this.mCamera2Device == null) {
             Log.e(TAG, "updateFocusCallback: null camera device");
-            return;
-        }
-        if (this.mContinuousFocusSupported && AutoFocus.LEGACY_CONTINUOUS_VIDEO.equals(this.mVideoFocusMode)) {
-            this.mCamera2Device.setFocusCallback(this);
+        } else if (this.mContinuousFocusSupported) {
+            if (AutoFocus.LEGACY_CONTINUOUS_VIDEO.equals(this.mVideoFocusMode)) {
+                this.mCamera2Device.setFocusCallback(this);
+            }
+        } else {
+            if (this.mAELockOnlySupported) {
+                this.mCamera2Device.setFocusCallback(this);
+            }
         }
     }
 
@@ -1239,7 +1252,7 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
     public void startFocus() {
         if (isDeviceAlive() && isFrameAvailable()) {
             Log.v(TAG, "startFocus");
-            if (this.mFocusAreaSupported) {
+            if (this.mFocusOrAELockSupported) {
                 setVideoFocusMode("auto", true);
                 this.mCamera2Device.startFocus(FocusTask.create(1), this.mModuleIndex);
             } else {
@@ -1415,7 +1428,7 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
 
     public void onLongPress(int i, int i2) {
         if (isInTapableRect(i, i2)) {
-            onSingleTapUp(i, i2);
+            onSingleTapUp(i, i2, true);
             if (isAEAFLockSupported() && CameraSettings.isAEAFLockSupport()) {
                 lockAEAF();
             }
@@ -1466,7 +1479,7 @@ public abstract class VideoBase extends BaseModule implements Listener, CameraAc
             }
             this.mBeautyValues.mBeautyLevel = CameraSettings.getFaceBeautyCloseValue();
             if (!DataRepository.dataItemConfig().getComponentConfigBeauty().isClosed(this.mModuleIndex)) {
-                CameraSettings.initBeautyValues(this.mBeautyValues, b.hG());
+                CameraSettings.initBeautyValues(this.mBeautyValues, b.hP());
             }
             if (!BeautyConstant.LEVEL_CLOSE.equals(this.mBeautyValues.mBeautyLevel)) {
                 this.mCamera2Device.setBeautyValues(this.mBeautyValues);

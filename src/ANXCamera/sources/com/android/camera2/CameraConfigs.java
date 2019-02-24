@@ -8,6 +8,7 @@ import com.android.camera.Util;
 import com.android.camera.constant.EyeLightConstant;
 import com.android.camera.fragment.beauty.BeautyValues;
 import com.android.camera.log.Log;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -78,7 +79,8 @@ public class CameraConfigs {
     private int mSaturationLevel = -1;
     private int mSceneMode;
     private int mSharpnessLevel = -1;
-    private String mShotPath = null;
+    private ArrayDeque<String> mShotPath = null;
+    private ArrayDeque<String> mShotPathThumbnail = null;
     private int mShotType = 0;
     private CameraSize mSubPhotoSize;
     private boolean mSuperResolutionEnabled;
@@ -579,11 +581,45 @@ public class CameraConfigs {
     }
 
     public String getShotPath() {
-        return this.mShotPath;
+        String str = (String) this.mShotPath.poll();
+        String str2 = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("getShotPath: ");
+        stringBuilder.append(str);
+        stringBuilder.append(", size:");
+        stringBuilder.append(this.mShotPath.size());
+        Log.d(str2, stringBuilder.toString());
+        return str;
     }
 
-    public void setShotPath(String str) {
-        this.mShotPath = str;
+    public String getThumbnailShotPath() {
+        String str = (String) this.mShotPathThumbnail.poll();
+        String str2 = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("getThumbnailShotPath: ");
+        stringBuilder.append(str);
+        stringBuilder.append(", size:");
+        stringBuilder.append(this.mShotPathThumbnail.size());
+        Log.d(str2, stringBuilder.toString());
+        return str;
+    }
+
+    public void setShotPath(String str, boolean z) {
+        String str2 = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("setShotPath: ");
+        stringBuilder.append(str);
+        Log.d(str2, stringBuilder.toString());
+        if (this.mShotPath == null) {
+            this.mShotPath = new ArrayDeque(5);
+        }
+        this.mShotPath.offer(str);
+        if (z) {
+            if (this.mShotPathThumbnail == null) {
+                this.mShotPathThumbnail = new ArrayDeque(5);
+            }
+            this.mShotPathThumbnail.offer(str);
+        }
     }
 
     public boolean setMfnrEnabled(boolean z) {

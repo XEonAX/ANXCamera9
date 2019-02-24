@@ -77,7 +77,7 @@ public class ExtraCustomWBListAdapter extends BaseAdapter implements OnItemClick
         if (i < shotValueCount) {
             valueOf = String.valueOf(2000 + (i * 200));
         } else {
-            valueOf = String.valueOf(MIDDLE_K_VALUE + ((i - shotValueCount) * 500));
+            valueOf = String.valueOf(6000 + ((i - shotValueCount) * GAP_K_LONG_VALUE));
         }
         viewHolder.mText.setText(valueOf);
         return view;
@@ -104,7 +104,7 @@ public class ExtraCustomWBListAdapter extends BaseAdapter implements OnItemClick
         if (i < shotValueCount) {
             shotValueCount = 2000 + (i * 200);
         } else {
-            shotValueCount = MIDDLE_K_VALUE + ((i - shotValueCount) * 500);
+            shotValueCount = 6000 + ((i - shotValueCount) * GAP_K_LONG_VALUE);
         }
         i = this.mManuallyWB.getCustomWB();
         if (shotValueCount != i) {
@@ -117,9 +117,9 @@ public class ExtraCustomWBListAdapter extends BaseAdapter implements OnItemClick
 
     public int getValuePosition() {
         int customWB = this.mManuallyWB.getCustomWB();
-        if (customWB < MIDDLE_K_VALUE) {
+        if (customWB < 6000) {
             return (customWB + Error.SYN_UNINIT_FAILED) / 200;
         }
-        return ((customWB - MIDDLE_K_VALUE) / 500) + getShotValueCount();
+        return ((customWB - 6000) / GAP_K_LONG_VALUE) + getShotValueCount();
     }
 }

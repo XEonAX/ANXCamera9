@@ -35,6 +35,7 @@ import com.android.camera.protocol.ModeProtocol.FilterProtocol;
 import com.android.camera.protocol.ModeProtocol.StickerProtocol;
 import com.android.camera.sticker.StickerHelper;
 import com.android.camera.sticker.StickerInfo;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.util.List;
 
 public class FragmentStickerPager extends Fragment {
@@ -183,7 +184,7 @@ public class FragmentStickerPager extends Fragment {
     public void setUserVisibleHint(boolean z) {
         super.setUserVisibleHint(z);
         if (z && this.mRecyclerView != null) {
-            Animation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
+            Animation alphaAnimation = new AlphaAnimation(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f);
             alphaAnimation.setDuration(300);
             this.mRecyclerView.startAnimation(alphaAnimation);
         }

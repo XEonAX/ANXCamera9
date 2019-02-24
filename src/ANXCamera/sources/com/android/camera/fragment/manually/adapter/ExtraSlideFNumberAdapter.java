@@ -15,13 +15,14 @@ import com.android.camera.module.BaseModule;
 import com.android.camera.ui.HorizontalSlideView;
 import com.android.camera.ui.HorizontalSlideView.HorizontalDrawAdapter;
 import com.android.camera.ui.HorizontalSlideView.OnPositionSelectListener;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.util.Arrays;
 import java.util.List;
 
 public class ExtraSlideFNumberAdapter extends HorizontalDrawAdapter implements OnPositionSelectListener {
     public static final int DEFAULT_F = 13;
     private static final int ENTRY_COUNT_TOTAL = F_NUMBERS.length;
-    public static final String[] F_NUMBERS = new String[]{"1.0", "1.1", "1.2", "1.4", "1.6", "1.8", "2", "2.2", "2.5", "2.8", "3.2", "3.5", "4", "4.5", "5.0", "5.6", "6.3", "7.1", CameraScene.BEACH, CameraScene.SNOW, CameraScene.SUNSET, "11", CameraScene.SPORTS, "14", "16"};
+    public static final String[] F_NUMBERS = new String[]{"1.0", "1.1", "1.2", "1.4", "1.6", "1.8", "2", "2.2", "2.5", "2.8", "3.2", "3.5", "4", "4.5", "5.0", "5.6", "6.3", "7.1", "8", CameraScene.SNOW, CameraScene.SUNSET, "11", CameraScene.SPORTS, "14", "16"};
     private ComponentData mComponentData;
     private int mCurrentMode;
     private String mCurrentValue;
@@ -75,10 +76,10 @@ public class ExtraSlideFNumberAdapter extends HorizontalDrawAdapter implements O
         }
         if (i == 13 && !z) {
             this.mPaint.setColor(this.mLineColorDefaultCircle);
-            canvas.drawCircle(0.0f, (float) (-this.mLineDefaultCircleGap), (float) this.mLineCircleRadius, this.mPaint);
+            canvas.drawCircle(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) (-this.mLineDefaultCircleGap), (float) this.mLineCircleRadius, this.mPaint);
         }
         this.mPaint.setColor(i2);
-        canvas.drawLine(0.0f, -this.mLineHalfHeight, 0.0f, this.mLineHalfHeight, this.mPaint);
+        canvas.drawLine(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, -this.mLineHalfHeight, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, this.mLineHalfHeight, this.mPaint);
     }
 
     public float measureWidth(int i) {

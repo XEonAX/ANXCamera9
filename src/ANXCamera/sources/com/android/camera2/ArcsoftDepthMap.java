@@ -77,30 +77,33 @@ public class ArcsoftDepthMap {
         return getBytes(this.mDepthMapOriginalData, 152, getDepthMapLength());
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:124:0x02c8 A:{ExcHandler: java.io.IOException (e java.io.IOException), Splitter: B:69:0x025f} */
-    /* JADX WARNING: Removed duplicated region for block: B:129:0x02d7  */
-    /* JADX WARNING: Removed duplicated region for block: B:123:0x02c6 A:{ExcHandler: java.io.IOException (e java.io.IOException), Splitter: B:72:0x0263} */
-    /* JADX WARNING: Removed duplicated region for block: B:122:0x02c4 A:{ExcHandler: java.io.IOException (e java.io.IOException), PHI: r11 , Splitter: B:92:0x0298} */
-    /* JADX WARNING: Removed duplicated region for block: B:68:0x025d  */
-    /* JADX WARNING: Removed duplicated region for block: B:66:0x0252  */
-    /* JADX WARNING: Removed duplicated region for block: B:66:0x0252  */
-    /* JADX WARNING: Removed duplicated region for block: B:68:0x025d  */
-    /* JADX WARNING: Missing block: B:125:0x02c9, code:
+    /* JADX WARNING: Removed duplicated region for block: B:68:0x0255  */
+    /* JADX WARNING: Removed duplicated region for block: B:66:0x024b  */
+    /* JADX WARNING: Removed duplicated region for block: B:124:0x02c0 A:{Splitter: B:69:0x0257, ExcHandler: java.io.IOException (e java.io.IOException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:129:0x02ce  */
+    /* JADX WARNING: Removed duplicated region for block: B:123:0x02be A:{Splitter: B:72:0x025b, ExcHandler: java.io.IOException (e java.io.IOException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:122:0x02bc A:{Splitter: B:92:0x0290, ExcHandler: java.io.IOException (e java.io.IOException), PHI: r11 } */
+    /* JADX WARNING: Removed duplicated region for block: B:66:0x024b  */
+    /* JADX WARNING: Removed duplicated region for block: B:68:0x0255  */
+    /* JADX WARNING: Missing block: B:125:0x02c1, code:
             r15 = r16;
      */
-    /* JADX WARNING: Missing block: B:126:0x02cb, code:
+    /* JADX WARNING: Missing block: B:126:0x02c3, code:
             r11 = null;
      */
-    /* JADX WARNING: Missing block: B:127:0x02cd, code:
+    /* JADX WARNING: Missing block: B:127:0x02c5, code:
             com.android.camera.log.Log.d(TAG, "writePortraitExif(): Failed to insert depthmap associated xmp metadata");
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     public byte[] writePortraitExif(int i, byte[] bArr, byte[] bArr2, @NonNull int[] iArr, byte[] bArr3, @NonNull int[] iArr2, int i2, boolean z, boolean z2, PictureInfo pictureInfo, int i3, int i4) {
-        Object stringWriter;
+        OutputStream byteArrayOutputStream;
+        byte[] toByteArray;
         Throwable th;
         Throwable th2;
-        Throwable th3;
         byte[] bArr4;
+        Object stringWriter;
+        Throwable th3;
+        Throwable th4;
         int i5 = i;
         byte[] bArr5 = bArr;
         byte[] bArr6 = bArr2;
@@ -149,11 +152,8 @@ public class ArcsoftDepthMap {
         stringBuilder.append("writePortraitExif: lightingPattern: ");
         stringBuilder.append(i6);
         Log.d(str, stringBuilder.toString());
-        byte[] toByteArray;
-        byte[] bArr8;
         try {
-            Throwable th4;
-            OutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            byteArrayOutputStream = new ByteArrayOutputStream();
             try {
                 ExifInterface exifInterface = new ExifInterface();
                 exifInterface.readExif(bArr5);
@@ -169,154 +169,155 @@ public class ArcsoftDepthMap {
                     $closeResource(null, byteArrayOutputStream);
                 } catch (IOException e) {
                 }
-                if (toByteArray != null || toByteArray.length <= bArr5.length) {
-                    bArr8 = bArr5;
-                    Log.e(TAG, "writePortraitExif(): #1: return original jpeg");
-                    return bArr8;
-                }
-                byte[] bArr9;
-                try {
-                    XmlSerializer newSerializer = Xml.newSerializer();
-                    Writer stringWriter2 = new StringWriter();
-                    newSerializer.setOutput(stringWriter2);
-                    bArr9 = toByteArray;
-                    try {
-                        newSerializer.startDocument("UTF-8", Boolean.valueOf(true));
-                        newSerializer.startTag(null, "depthmap");
-                        newSerializer.attribute(null, "version", String.valueOf(i));
-                        StringBuilder stringBuilder2 = new StringBuilder();
-                        stringBuilder2.append(focusPoint.x);
-                        stringBuilder2.append(",");
-                        stringBuilder2.append(focusPoint.y);
-                        newSerializer.attribute(null, "focuspoint", stringBuilder2.toString());
-                        newSerializer.attribute(null, "blurlevel", String.valueOf(blurLevel));
-                        newSerializer.attribute(null, "shinethreshold", String.valueOf(i8));
-                        newSerializer.attribute(null, "shinelevel", String.valueOf(i7));
-                        newSerializer.attribute(null, "rawlength", String.valueOf(i3));
-                        newSerializer.attribute(null, "depthlength", String.valueOf(i4));
-                        newSerializer.endTag(null, "depthmap");
-                        if (bArr6 != null && bArr6.length > 0) {
-                            newSerializer.startTag(null, "lenswatermark");
-                            newSerializer.attribute(null, "offset", String.valueOf(((bArr6.length + (bArr7 != null ? bArr7.length : 0)) + i3) + i4));
-                            newSerializer.attribute(null, "length", String.valueOf(bArr6.length));
-                            newSerializer.attribute(null, "width", String.valueOf(iArr[0]));
-                            newSerializer.attribute(null, "height", String.valueOf(iArr[1]));
-                            newSerializer.attribute(null, "paddingx", String.valueOf(iArr[2]));
-                            newSerializer.attribute(null, "paddingy", String.valueOf(iArr[3]));
-                            newSerializer.endTag(null, "lenswatermark");
-                        }
-                        if (bArr7 != null && bArr7.length > 0) {
-                            newSerializer.startTag(null, "timewatermark");
-                            newSerializer.attribute(null, "offset", String.valueOf((bArr7.length + i3) + i4));
-                            newSerializer.attribute(null, "length", String.valueOf(bArr7.length));
-                            newSerializer.attribute(null, "width", String.valueOf(iArr2[0]));
-                            newSerializer.attribute(null, "height", String.valueOf(iArr2[1]));
-                            newSerializer.attribute(null, "paddingx", String.valueOf(iArr2[2]));
-                            newSerializer.attribute(null, "paddingy", String.valueOf(iArr2[3]));
-                            newSerializer.endTag(null, "timewatermark");
-                        }
-                        newSerializer.endDocument();
-                        stringWriter = stringWriter2.toString();
-                    } catch (IOException e2) {
-                        Log.e(TAG, "writePortraitExif(): Failed to generate depthmap associated xmp metadata");
-                        stringWriter = null;
-                        if (stringWriter == null) {
-                        }
-                    }
-                } catch (IOException e3) {
-                    bArr9 = toByteArray;
-                    Log.e(TAG, "writePortraitExif(): Failed to generate depthmap associated xmp metadata");
-                    stringWriter = null;
-                    if (stringWriter == null) {
-                    }
-                }
-                if (stringWriter == null) {
-                    Log.e(TAG, "writePortraitExif(): #2: return original jpeg");
-                    return bArr;
-                }
-                bArr8 = bArr;
-                try {
-                    toByteArray = bArr9;
-                    try {
-                        AutoCloseable byteArrayInputStream = new ByteArrayInputStream(toByteArray);
-                        try {
-                            AutoCloseable byteArrayOutputStream2 = new ByteArrayOutputStream();
-                            try {
-                                XMPMeta createXMPMeta = XmpHelper.createXMPMeta();
-                                createXMPMeta.setProperty(XmpHelper.XIAOMI_XMP_METADATA_NAMESPACE, XmpHelper.XIAOMI_XMP_METADATA_PROPERTY_NAME, stringWriter);
-                                XmpHelper.writeXMPMeta(byteArrayInputStream, byteArrayOutputStream2, createXMPMeta);
-                                if (bArr6 != null) {
-                                    try {
-                                        byteArrayOutputStream2.write(bArr6);
-                                    } catch (Throwable th5) {
-                                        th2 = th5;
-                                        th3 = null;
-                                        th = null;
-                                        try {
-                                            $closeResource(th, byteArrayOutputStream2);
-                                            throw th2;
-                                        } catch (Throwable th6) {
-                                            th2 = th6;
-                                            bArr4 = th3;
-                                            $closeResource(th3, byteArrayInputStream);
-                                            throw th2;
-                                        }
-                                    }
-                                }
-                                if (bArr7 != null) {
-                                    byteArrayOutputStream2.write(bArr7);
-                                }
-                                byteArrayOutputStream2.flush();
-                                bArr4 = byteArrayOutputStream2.toByteArray();
-                                th3 = null;
-                                try {
-                                    $closeResource(null, byteArrayOutputStream2);
-                                    try {
-                                        $closeResource(null, byteArrayInputStream);
-                                    } catch (IOException e4) {
-                                    }
-                                } catch (Throwable th7) {
-                                    th2 = th7;
-                                    $closeResource(th3, byteArrayInputStream);
-                                    throw th2;
-                                }
-                            } catch (Throwable th8) {
-                                th2 = th8;
-                                th3 = null;
-                                th = null;
-                                $closeResource(th, byteArrayOutputStream2);
-                                throw th2;
-                            }
-                        } catch (Throwable th9) {
-                            th2 = th9;
-                            th3 = null;
-                            bArr4 = th3;
-                            $closeResource(th3, byteArrayInputStream);
-                            throw th2;
-                        }
-                    } catch (IOException e5) {
-                    }
-                } catch (IOException e6) {
-                }
-                if (bArr4 == null && bArr4.length > r15.length) {
-                    return bArr4;
-                }
-                Log.e(TAG, "writePortraitExif(): #3: return original jpeg");
-                return bArr8;
-            } catch (Throwable th10) {
-                th2 = th10;
+            } catch (Throwable th5) {
+                th2 = th5;
             }
-            $closeResource(th4, byteArrayOutputStream);
-            throw th2;
-        } catch (IOException e7) {
+        } catch (IOException e2) {
             toByteArray = null;
             Log.e(TAG, "writePortraitExif(): Failed to write depthmap associated exif metadata");
             if (toByteArray != null) {
             }
-            bArr8 = bArr5;
+            bArr4 = bArr5;
             Log.e(TAG, "writePortraitExif(): #1: return original jpeg");
-            return bArr8;
+            return bArr4;
         }
+        if (toByteArray != null || toByteArray.length <= bArr5.length) {
+            bArr4 = bArr5;
+            Log.e(TAG, "writePortraitExif(): #1: return original jpeg");
+            return bArr4;
+        }
+        byte[] bArr8;
+        try {
+            XmlSerializer newSerializer = Xml.newSerializer();
+            Writer stringWriter2 = new StringWriter();
+            newSerializer.setOutput(stringWriter2);
+            bArr8 = toByteArray;
+            try {
+                newSerializer.startDocument("UTF-8", Boolean.valueOf(true));
+                newSerializer.startTag(null, "depthmap");
+                newSerializer.attribute(null, "version", String.valueOf(i));
+                StringBuilder stringBuilder2 = new StringBuilder();
+                stringBuilder2.append(focusPoint.x);
+                stringBuilder2.append(",");
+                stringBuilder2.append(focusPoint.y);
+                newSerializer.attribute(null, "focuspoint", stringBuilder2.toString());
+                newSerializer.attribute(null, "blurlevel", String.valueOf(blurLevel));
+                newSerializer.attribute(null, "shinethreshold", String.valueOf(i8));
+                newSerializer.attribute(null, "shinelevel", String.valueOf(i7));
+                newSerializer.attribute(null, "rawlength", String.valueOf(i3));
+                newSerializer.attribute(null, "depthlength", String.valueOf(i4));
+                newSerializer.endTag(null, "depthmap");
+                if (bArr6 != null && bArr6.length > 0) {
+                    newSerializer.startTag(null, "lenswatermark");
+                    newSerializer.attribute(null, "offset", String.valueOf(((bArr6.length + (bArr7 != null ? bArr7.length : 0)) + i3) + i4));
+                    newSerializer.attribute(null, "length", String.valueOf(bArr6.length));
+                    newSerializer.attribute(null, "width", String.valueOf(iArr[0]));
+                    newSerializer.attribute(null, "height", String.valueOf(iArr[1]));
+                    newSerializer.attribute(null, "paddingx", String.valueOf(iArr[2]));
+                    newSerializer.attribute(null, "paddingy", String.valueOf(iArr[3]));
+                    newSerializer.endTag(null, "lenswatermark");
+                }
+                if (bArr7 != null && bArr7.length > 0) {
+                    newSerializer.startTag(null, "timewatermark");
+                    newSerializer.attribute(null, "offset", String.valueOf((bArr7.length + i3) + i4));
+                    newSerializer.attribute(null, "length", String.valueOf(bArr7.length));
+                    newSerializer.attribute(null, "width", String.valueOf(iArr2[0]));
+                    newSerializer.attribute(null, "height", String.valueOf(iArr2[1]));
+                    newSerializer.attribute(null, "paddingx", String.valueOf(iArr2[2]));
+                    newSerializer.attribute(null, "paddingy", String.valueOf(iArr2[3]));
+                    newSerializer.endTag(null, "timewatermark");
+                }
+                newSerializer.endDocument();
+                stringWriter = stringWriter2.toString();
+            } catch (IOException e3) {
+                Log.e(TAG, "writePortraitExif(): Failed to generate depthmap associated xmp metadata");
+                stringWriter = null;
+                if (stringWriter == null) {
+                }
+            }
+        } catch (IOException e4) {
+            bArr8 = toByteArray;
+            Log.e(TAG, "writePortraitExif(): Failed to generate depthmap associated xmp metadata");
+            stringWriter = null;
+            if (stringWriter == null) {
+            }
+        }
+        if (stringWriter == null) {
+            Log.e(TAG, "writePortraitExif(): #2: return original jpeg");
+            return bArr;
+        }
+        bArr4 = bArr;
+        try {
+            toByteArray = bArr8;
+            try {
+                AutoCloseable byteArrayInputStream = new ByteArrayInputStream(toByteArray);
+                byte[] bArr9;
+                try {
+                    AutoCloseable byteArrayOutputStream2 = new ByteArrayOutputStream();
+                    try {
+                        XMPMeta createXMPMeta = XmpHelper.createXMPMeta();
+                        createXMPMeta.setProperty(XmpHelper.XIAOMI_XMP_METADATA_NAMESPACE, XmpHelper.XIAOMI_XMP_METADATA_PROPERTY_NAME, stringWriter);
+                        XmpHelper.writeXMPMeta(byteArrayInputStream, byteArrayOutputStream2, createXMPMeta);
+                        if (bArr6 != null) {
+                            try {
+                                byteArrayOutputStream2.write(bArr6);
+                            } catch (Throwable th6) {
+                                th2 = th6;
+                                th4 = null;
+                                th3 = null;
+                                try {
+                                    $closeResource(th3, byteArrayOutputStream2);
+                                    throw th2;
+                                } catch (Throwable th7) {
+                                    th2 = th7;
+                                    bArr9 = th4;
+                                    $closeResource(th4, byteArrayInputStream);
+                                    throw th2;
+                                }
+                            }
+                        }
+                        if (bArr7 != null) {
+                            byteArrayOutputStream2.write(bArr7);
+                        }
+                        byteArrayOutputStream2.flush();
+                        bArr9 = byteArrayOutputStream2.toByteArray();
+                        th4 = null;
+                        try {
+                            $closeResource(null, byteArrayOutputStream2);
+                            try {
+                                $closeResource(null, byteArrayInputStream);
+                            } catch (IOException e5) {
+                            }
+                            if (bArr9 == null && bArr9.length > r15.length) {
+                                return bArr9;
+                            }
+                            Log.e(TAG, "writePortraitExif(): #3: return original jpeg");
+                            return bArr4;
+                        } catch (Throwable th8) {
+                            th2 = th8;
+                            $closeResource(th4, byteArrayInputStream);
+                            throw th2;
+                        }
+                    } catch (Throwable th9) {
+                        th2 = th9;
+                        th4 = null;
+                        th3 = null;
+                        $closeResource(th3, byteArrayOutputStream2);
+                        throw th2;
+                    }
+                } catch (Throwable th10) {
+                    th2 = th10;
+                    th4 = null;
+                    bArr9 = th4;
+                    $closeResource(th4, byteArrayInputStream);
+                    throw th2;
+                }
+            } catch (IOException e6) {
+            }
+        } catch (IOException e7) {
+        }
+        $closeResource(th, byteArrayOutputStream);
+        throw th2;
     }
 
     private static /* synthetic */ void $closeResource(Throwable th, AutoCloseable autoCloseable) {

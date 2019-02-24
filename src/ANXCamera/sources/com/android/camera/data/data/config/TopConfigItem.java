@@ -2,9 +2,11 @@ package com.android.camera.data.data.config;
 
 public class TopConfigItem {
     public int bindViewPosition;
-    public int configItem = 198;
+    public int configItem = 176;
     public boolean enable = true;
     public int gravity = 0;
+    public int index;
+    public int margin;
 
     public TopConfigItem(int i) {
         this.configItem = i;

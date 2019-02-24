@@ -1,7 +1,6 @@
 package com.android.camera.module.impl.component;
 
 import android.content.Intent;
-import android.provider.MiuiSettings.System;
 import android.support.annotation.StringRes;
 import android.text.TextUtils;
 import com.android.camera.ActivityBase;
@@ -15,6 +14,7 @@ import com.android.camera.ThermalDetector;
 import com.android.camera.ToastUtils;
 import com.android.camera.Util;
 import com.android.camera.constant.BeautyConstant;
+import com.android.camera.constant.EyeLightConstant;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.config.ComponentConfigBeauty;
@@ -95,41 +95,31 @@ public class ConfigChangeImpl implements ConfigChanges {
         if (isAlive()) {
             if (SupportedConfigFactory.isMutexConfig(i)) {
                 DataItemRunning dataItemRunning = DataRepository.dataItemRunning();
-                int[] iArr = SupportedConfigFactory.MUTEX_MENU_CONFIGS;
-                int length = iArr.length;
-                int i2 = 0;
-                boolean z = i2;
-                while (i2 < length) {
-                    int i3 = iArr[i2];
-                    if (i3 != i) {
-                        if (i3 != 203) {
-                            switch (i3) {
+                for (int i2 : SupportedConfigFactory.MUTEX_MENU_CONFIGS) {
+                    if (i2 != i) {
+                        if (i2 != 203) {
+                            switch (i2) {
                                 case 250:
-                                    break;
                                 case 251:
-                                    z = closeComponentUltraPixelFront();
                                     break;
                                 default:
-                                    if (!dataItemRunning.isSwitchOn(SupportedConfigFactory.getConfigKey(i3))) {
+                                    if (!dataItemRunning.isSwitchOn(SupportedConfigFactory.getConfigKey(i2))) {
                                         break;
                                     }
-                                    applyConfig(i3, 3);
+                                    applyConfig(i2, 3);
                                     break;
                             }
                         } else if (((ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162)).isShowLightingView()) {
                             showOrHideLighting(false);
                         }
                     }
-                    i2++;
                 }
                 getBaseModule().onSharedPreferenceChanged();
                 applyConfig(i, 1);
                 if (CameraSettings.isRearMenuUltraPixelPhotographyOn() && i != 250) {
                     applyConfig(250, 3);
-                }
-                if (z && getBaseModule() != null) {
-                    Log.d(TAG, "onConfigChanged: need restart module.");
-                    getBaseModule().restartModule();
+                } else if (CameraSettings.isFrontMenuUltraPixelPhotographyOn() && i != 251) {
+                    applyConfig(251, 3);
                 }
             } else {
                 applyConfig(i, 1);
@@ -228,7 +218,7 @@ public class ConfigChangeImpl implements ConfigChanges {
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     public void reCheckLiveShot() {
-        if (DataRepository.dataItemFeature().fC()) {
+        if (DataRepository.dataItemFeature().fE()) {
             TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
             if (topAlert != null) {
                 BaseModule baseModule = getBaseModule();
@@ -240,7 +230,7 @@ public class ConfigChangeImpl implements ConfigChanges {
     }
 
     public void reCheckHandGesture() {
-        if (CameraSettings.isHangGestureOpen()) {
+        if (CameraSettings.isHandGestureOpen()) {
             TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
             if (topAlert != null) {
                 topAlert.alertTopHint(0, (int) R.string.hand_gesture_tip);
@@ -355,7 +345,7 @@ public class ConfigChangeImpl implements ConfigChanges {
                                                     configSwitchMenuUltraPixelPhotography(i2);
                                                     return;
                                                 case 251:
-                                                    configSwitchMenuUltraPixelPhotographyFront();
+                                                    configSwitchMenuUltraPixelPhotographyFront(i2);
                                                     return;
                                                 case 252:
                                                     configSwitchHandGesture();
@@ -376,43 +366,51 @@ public class ConfigChangeImpl implements ConfigChanges {
     }
 
     private void configSwitchHandGesture() {
-        if (DataRepository.dataItemFeature().fR() && ((TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172)) != null) {
+        if (DataRepository.dataItemFeature().fT()) {
             BaseModule baseModule = getBaseModule();
             if (baseModule != null && (baseModule.getModuleIndex() == 163 || baseModule.getModuleIndex() == 171)) {
-                boolean isHangGestureOpen = CameraSettings.isHangGestureOpen() ^ 1;
-                CameraSettings.setHandGestureStatus(isHangGestureOpen);
+                boolean isHandGestureOpen = CameraSettings.isHandGestureOpen() ^ 1;
+                CameraSettings.setHandGestureStatus(isHandGestureOpen);
                 BottomPopupTips bottomPopupTips = (BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175);
-                if (isHangGestureOpen) {
+                if (isHandGestureOpen) {
                     bottomPopupTips.showTips(16, R.string.hand_gesture_open_tip, 2);
                 }
-                ((Camera2Module) getBaseModule()).onHanGestureSwitched(isHangGestureOpen);
+                ((Camera2Module) getBaseModule()).onHanGestureSwitched(isHandGestureOpen);
             }
         }
     }
 
     private void configAutoZoom() {
+        boolean isSwitchOn = DataRepository.dataItemRunning().isSwitchOn("pref_camera_auto_zoom");
         TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
-        if (DataRepository.dataItemRunning().isSwitchOn("pref_camera_auto_zoom")) {
+        if (isSwitchOn) {
             DataRepository.dataItemRunning().switchOff("pref_camera_auto_zoom");
+            topAlert.updateConfigItem(253);
+            updateComponentBeauty(false);
         } else {
             DataRepository.dataItemRunning().switchOn("pref_camera_auto_zoom");
+            topAlert.updateConfigItem(253);
+            closeVideoFast();
+            closeMutexElement(SupportedConfigFactory.CLOSE_BY_VIDEO, 239);
         }
-        topAlert.updateConfigItem(253);
-        closeVideoFast();
-        closeMutexElement(SupportedConfigFactory.CLOSE_BY_VIDEO, 239);
+        BaseModule baseModule = getBaseModule();
+        if (baseModule != null) {
+            int moduleIndex = baseModule.getModuleIndex();
+            if (isSwitchOn) {
+                CameraSettings.setUltraWideConfig(moduleIndex, DataRepository.dataItemGlobal().getBoolean("pref_origin_ultra_wide_status", false));
+            } else {
+                DataRepository.dataItemGlobal().putBoolean("pref_origin_ultra_wide_status", CameraSettings.isUltraWideConfigOpen(moduleIndex));
+                CameraSettings.setUltraWideConfig(moduleIndex, true);
+            }
+        }
         this.mActivity.onModeSelected(StartControl.create(162).setViewConfigType(2).setNeedBlurAnimation(true).setNeedReConfigureData(false).setNeedReConfigureCamera(true));
         BottomPopupTips bottomPopupTips = (BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175);
-        boolean isSwitchOn = DataRepository.dataItemRunning().isSwitchOn("pref_camera_auto_zoom");
-        int i = DataRepository.dataItemGlobal().getInt("pref_auto_zoom_ultra_count", 0);
-        if (isSwitchOn) {
-            topAlert.alertSwitchHint(1, (int) R.string.autozoom_hint);
-            if (i < 3) {
-                bottomPopupTips.showTips(14, R.string.ultra_wide_recommend_tip_hint, 6);
-                DataRepository.dataItemGlobal().putInt("pref_auto_zoom_ultra_count", i + 1);
-            }
+        if (DataRepository.dataItemRunning().isSwitchOn("pref_camera_auto_zoom")) {
+            topAlert.alertSwitchHint(2, (int) R.string.autozoom_hint);
         } else {
-            topAlert.alertSwitchHint(1, (int) R.string.autozoom_disabled_hint);
+            topAlert.alertSwitchHint(2, (int) R.string.autozoom_disabled_hint);
         }
+        bottomPopupTips.updateLeftTipImage();
         bottomPopupTips.updateTipImage();
     }
 
@@ -423,7 +421,7 @@ public class ConfigChangeImpl implements ConfigChanges {
             if (baseModule != null) {
                 int moduleIndex = baseModule.getModuleIndex();
                 if (moduleIndex == 163) {
-                    if (CameraSettings.isSupportedUltraPixelPhotography(baseModule.getCameraCapabilities()) || DataRepository.dataItemFeature().fP() > 0) {
+                    if (CameraSettings.isSupportedUltraPixelPhotography(baseModule.getCameraCapabilities()) || DataRepository.dataItemFeature().fR() > 0) {
                         boolean isRearMenuUltraPixelPhotographyOn = CameraSettings.isRearMenuUltraPixelPhotographyOn();
                         boolean z = isRearMenuUltraPixelPhotographyOn ^ 1;
                         ComponentConfigUltraPixel rearComponentConfigUltraPixel = DataRepository.dataItemConfig().getRearComponentConfigUltraPixel();
@@ -496,20 +494,35 @@ public class ConfigChangeImpl implements ConfigChanges {
         }
     }
 
-    private void configSwitchMenuUltraPixelPhotographyFront() {
-        if (((TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172)) != null && this.mActivity != null) {
+    private void configSwitchMenuUltraPixelPhotographyFront(int i) {
+        TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
+        if (topAlert != null && this.mActivity != null) {
             BaseModule baseModule = getBaseModule();
-            if (baseModule != null && CameraSettings.isFrontSupportedUltraPixelPhotography(baseModule.getCameraCapabilities()) && DataRepository.dataItemFeature().fQ() > 0) {
-                boolean isFrontMenuUltraPixelPhotographyOn = CameraSettings.isFrontMenuUltraPixelPhotographyOn() ^ true;
-                if (isFrontMenuUltraPixelPhotographyOn) {
-                    closeMutexElement(SupportedConfigFactory.CLOSE_BY_ULTRA_PIXEL, 196);
-                    SupportedConfigFactory.gRecordingMutexElements = this.mRecordingMutexElements;
-                } else {
-                    this.mRecordingMutexElements = SupportedConfigFactory.gRecordingMutexElements;
-                    restoreAllMutexElement(SupportedConfigFactory.CLOSE_BY_ULTRA_PIXEL);
+            if (baseModule != null) {
+                String str = null;
+                if (i != 1) {
+                    if (i == 3) {
+                        CameraSettings.setFrontMenuUltraPixelPhotographyConfig(false);
+                        str = DataRepository.dataItemConfig().getFrontComponentConfigUltraPixel().getUltraPixelCloseTip();
+                        baseModule.restartModule();
+                    }
+                } else if (CameraSettings.isFrontSupportedUltraPixelPhotography(baseModule.getCameraCapabilities()) && DataRepository.dataItemFeature().fS() > 0) {
+                    boolean isFrontMenuUltraPixelPhotographyOn = CameraSettings.isFrontMenuUltraPixelPhotographyOn() ^ true;
+                    if (isFrontMenuUltraPixelPhotographyOn) {
+                        closeMutexElement(SupportedConfigFactory.CLOSE_BY_ULTRA_PIXEL, 196);
+                        SupportedConfigFactory.gRecordingMutexElements = this.mRecordingMutexElements;
+                    } else {
+                        this.mRecordingMutexElements = SupportedConfigFactory.gRecordingMutexElements;
+                        restoreAllMutexElement(SupportedConfigFactory.CLOSE_BY_ULTRA_PIXEL);
+                        str = DataRepository.dataItemConfig().getFrontComponentConfigUltraPixel().getUltraPixelCloseTip();
+                    }
+                    CameraSettings.setFrontMenuUltraPixelPhotographyConfig(isFrontMenuUltraPixelPhotographyOn);
+                    baseModule.restartModule();
                 }
-                CameraSettings.setFrontMenuUltraPixelPhotographyConfig(isFrontMenuUltraPixelPhotographyOn);
-                baseModule.restartModule();
+                if (!TextUtils.isEmpty(str)) {
+                    topAlert.alertTopHint(8, str);
+                    topAlert.alertSwitchHint(1, str);
+                }
             }
         }
     }
@@ -547,7 +560,7 @@ public class ConfigChangeImpl implements ConfigChanges {
     private void configSwitchUltraWide() {
         int moduleIndex = getBaseModule().getModuleIndex();
         int i = 169 == moduleIndex ? 1 : false;
-        boolean isUltraWideConfigOpen = true ^ CameraSettings.isUltraWideConfigOpen(moduleIndex);
+        boolean isUltraWideConfigOpen = CameraSettings.isUltraWideConfigOpen(moduleIndex) ^ true;
         if (isUltraWideConfigOpen && i != 0) {
             DataRepository.dataItemGlobal().setCurrentMode(162);
             TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
@@ -558,6 +571,9 @@ public class ConfigChangeImpl implements ConfigChanges {
         if (CameraSettings.isRearMenuUltraPixelPhotographyOn()) {
             CameraSettings.setRearMenuUltraPixelPhotographyConfig(false);
         }
+        if (isUltraWideConfigOpen) {
+            closeMutexElement(SupportedConfigFactory.CLOSE_BY_ULTRA_WIDE, 193);
+        }
         CameraSettings.setUltraWideConfig(moduleIndex, isUltraWideConfigOpen);
         UltraWideProtocol ultraWideProtocol = (UltraWideProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(200);
         if (ultraWideProtocol != null) {
@@ -565,10 +581,17 @@ public class ConfigChangeImpl implements ConfigChanges {
         }
         BottomPopupTips bottomPopupTips = (BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175);
         if (isUltraWideConfigOpen) {
-            bottomPopupTips.showTips(13, R.string.ultra_wide_open_tip, 6, System.SCREEN_KEY_LONG_PRESS_TIMEOUT_DEFAULT);
-        } else {
-            bottomPopupTips.showTips(13, R.string.ultra_wide_close_tip, 6);
+            switch (moduleIndex) {
+                case 162:
+                case 163:
+                    bottomPopupTips.showTips(13, R.string.ultra_wide_open_tip, 4, 500);
+                    return;
+                default:
+                    bottomPopupTips.showTips(13, R.string.ultra_wide_open_tip, 7, 500);
+                    return;
+            }
         }
+        bottomPopupTips.showTips(13, R.string.ultra_wide_close_tip, 6);
     }
 
     private void configSwitchUltraPixelPhotography() {
@@ -649,26 +672,26 @@ public class ConfigChangeImpl implements ConfigChanges {
             boolean isShowLightingView = actionProcessing.isShowLightingView();
             boolean showOrHideFilterView = actionProcessing.showOrHideFilterView();
             BokehFNumberController bokehFNumberController = (BokehFNumberController) ModeCoordinatorImpl.getInstance().getAttachProtocol(210);
+            BottomPopupTips bottomPopupTips = (BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175);
             if (showOrHideFilterView && isShowLightingView) {
                 String componentValue = DataRepository.dataItemRunning().getComponentRunningLighting().getComponentValue(171);
                 DataRepository.dataItemRunning().getComponentRunningLighting().setComponentValue(171, "0");
                 setLighting(true, componentValue, "0", false);
-                if (bokehFNumberController != null) {
-                    bokehFNumberController.showFNumberPanel();
+                if (bottomPopupTips != null) {
+                    bottomPopupTips.reInitTipImage();
                 }
             }
-            if (bokehFNumberController != null && bokehFNumberController.isFNumberVisible()) {
-                bokehFNumberController.hideFNumberPanel(false, false);
-                bokehFNumberController.showFNumberPanel();
+            if (showOrHideFilterView && bokehFNumberController != null && DataRepository.dataItemGlobal().getCurrentMode() == 171) {
+                bokehFNumberController.showFNumberPanel(true);
             }
             if (Util.UI_DEBUG()) {
-                BottomPopupTips bottomPopupTips = (BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175);
+                BottomPopupTips bottomPopupTips2 = (BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175);
                 MiBeautyProtocol miBeautyProtocol = (MiBeautyProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(194);
-                if (bottomPopupTips != null) {
+                if (bottomPopupTips2 != null) {
                     if (showOrHideFilterView) {
-                        bottomPopupTips.updateLeftTipImage();
+                        bottomPopupTips2.updateLeftTipImage();
                     } else if (miBeautyProtocol == null || !miBeautyProtocol.isBeautyPanelShow()) {
-                        bottomPopupTips.updateLeftTipImage();
+                        bottomPopupTips2.updateLeftTipImage();
                     }
                 }
             } else if (showOrHideFilterView) {
@@ -707,6 +730,7 @@ public class ConfigChangeImpl implements ConfigChanges {
                     bokehFNumberController.hideFNumberPanel(true, true);
                 }
                 bottomPopupTips.directHideTipImage();
+                topAlert.refreshExtraMenu();
             } else {
                 String componentValue = DataRepository.dataItemRunning().getComponentRunningLighting().getComponentValue(171);
                 DataRepository.dataItemRunning().getComponentRunningLighting().setComponentValue(171, "0");
@@ -714,7 +738,7 @@ public class ConfigChangeImpl implements ConfigChanges {
                 bottomPopupTips.reInitTipImage();
                 topAlert.alertLightingTitle(false);
                 if (bokehFNumberController != null) {
-                    bokehFNumberController.showFNumberPanel();
+                    bokehFNumberController.showFNumberPanel(true);
                 }
             }
             if (baseDelegate.getActiveFragment(R.id.bottom_action) == 251) {
@@ -905,14 +929,21 @@ public class ConfigChangeImpl implements ConfigChanges {
             trackGroupChanged(state);
         }
         Camera2Module camera2Module = (Camera2Module) getBaseModule();
+        boolean isBeautyPanelShow = isBeautyPanelShow();
         if (state) {
-            if (!isBeautyPanelShow()) {
-                updateTipMessage(4, R.string.hint_groupshot, 2);
+            if (!isBeautyPanelShow) {
+                updateTipMessage(17, R.string.hint_groupshot, 2);
             }
-            closeMutexElement(SupportedConfigFactory.CLOSE_BY_GROUP, 193, 194, 196, 201);
+            if (CameraSettings.isCheckShowUltraWideTip(camera2Module.getModuleIndex()) && !isBeautyPanelShow) {
+                ((BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175)).showTips(13, R.string.ultra_wide_open_tip, 4, 5000);
+            }
+            closeMutexElement(SupportedConfigFactory.CLOSE_BY_GROUP, 193, 194, 196, 201, 254);
         } else {
             restoreAllMutexElement(SupportedConfigFactory.CLOSE_BY_GROUP);
             hideTipMessage(R.string.hint_groupshot);
+            if (CameraSettings.isCheckShowUltraWideTip(camera2Module.getModuleIndex()) && !isBeautyPanelShow) {
+                ((BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175)).directlyShowTips(13, R.string.ultra_wide_open_tip);
+            }
         }
         camera2Module.onSharedPreferenceChanged();
         getBaseModule().updatePreferenceInWorkThread(42, 34, 30);
@@ -1137,7 +1168,7 @@ public class ConfigChangeImpl implements ConfigChanges {
     }
 
     public void configLiveShotSwitch(int i) {
-        if (DataRepository.dataItemFeature().fC()) {
+        if (DataRepository.dataItemFeature().fE()) {
             TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
             if (topAlert != null) {
                 BaseModule baseModule = getBaseModule();
@@ -1289,7 +1320,10 @@ public class ConfigChangeImpl implements ConfigChanges {
             } else if (i2 == 239) {
                 updateComponentBeauty(true);
                 iArr2[i] = 13;
-            } else if (i2 != 251) {
+            } else if (i2 == 251) {
+                z = CameraSettings.isFrontMenuUltraPixelPhotographyOn();
+                iArr2[i] = 50;
+            } else if (i2 != 254) {
                 switch (i2) {
                     case 193:
                         updateComponentFlash(str, true);
@@ -1303,8 +1337,8 @@ public class ConfigChangeImpl implements ConfigChanges {
                         throw new RuntimeException("unknown mutex element");
                 }
             } else {
-                z = closeComponentUltraPixelFront();
-                iArr2[i] = 50;
+                updateEyeLight(true);
+                iArr2[i] = 45;
             }
             i++;
         }
@@ -1313,7 +1347,22 @@ public class ConfigChangeImpl implements ConfigChanges {
             baseModule.updatePreferenceTrampoline(iArr2);
             baseModule.getCameraDevice().resumePreview();
             if (z) {
-                baseModule.restartModule();
+                applyConfig(251, 3);
+            }
+        }
+    }
+
+    private void updateEyeLight(boolean z) {
+        if (z) {
+            CameraSettings.setEyeLight(EyeLightConstant.OFF);
+            setEyeLight(EyeLightConstant.OFF);
+            MiBeautyProtocol miBeautyProtocol = (MiBeautyProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(194);
+            boolean z2 = false;
+            if (miBeautyProtocol != null) {
+                z2 = miBeautyProtocol.isEyeLightShow();
+            }
+            if (z2) {
+                miBeautyProtocol.closeEyeLight();
             }
         }
     }
@@ -1332,7 +1381,10 @@ public class ConfigChangeImpl implements ConfigChanges {
                 } else if (i2 == 206) {
                     updateLiveShot(false);
                     iArr[i] = 49;
-                } else if (i2 != 239) {
+                } else if (i2 == 239) {
+                    updateComponentBeauty(false);
+                    iArr[i] = 13;
+                } else if (i2 != 254) {
                     switch (i2) {
                         case 193:
                             updateComponentFlash(null, false);
@@ -1346,8 +1398,8 @@ public class ConfigChangeImpl implements ConfigChanges {
                             throw new RuntimeException("unknown mutex element");
                     }
                 } else {
-                    updateComponentBeauty(false);
-                    iArr[i] = 13;
+                    updateEyeLight(false);
+                    iArr[i] = 45;
                 }
             }
             this.mRecordingMutexElements = null;
@@ -1424,7 +1476,7 @@ public class ConfigChangeImpl implements ConfigChanges {
     }
 
     private void updateLiveShot(boolean z) {
-        if (DataRepository.dataItemFeature().fC()) {
+        if (DataRepository.dataItemFeature().fE()) {
             int currentMode = DataRepository.dataItemGlobal().getCurrentMode();
             if (currentMode == 163) {
                 ComponentRunningLiveShot componentRunningLiveShot = DataRepository.dataItemRunning().getComponentRunningLiveShot();
@@ -1437,7 +1489,7 @@ public class ConfigChangeImpl implements ConfigChanges {
     }
 
     private boolean closeComponentUltraPixelFront() {
-        if (DataRepository.dataItemFeature().fQ() <= 0 || !CameraSettings.isFrontMenuUltraPixelPhotographyOn()) {
+        if (DataRepository.dataItemFeature().fS() <= 0 || !CameraSettings.isFrontMenuUltraPixelPhotographyOn()) {
             return false;
         }
         CameraSettings.setFrontMenuUltraPixelPhotographyConfig(false);
@@ -1449,7 +1501,15 @@ public class ConfigChangeImpl implements ConfigChanges {
         dataItemRunning.switchOff("pref_camera_hand_night_key");
         dataItemRunning.switchOff("pref_camera_groupshot_mode_key");
         dataItemRunning.switchOff("pref_camera_super_resolution_key");
-        ((BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175)).directlyHideTips();
+        BottomPopupTips bottomPopupTips = (BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175);
+        int activeModuleIndex = ModuleManager.getActiveModuleIndex();
+        if (!CameraSettings.isCheckShowUltraWideTip(activeModuleIndex) || bottomPopupTips.getCurrentBottomTipMsg() != 13) {
+            if (CameraSettings.isCheckShowUltraWideTip(activeModuleIndex) && bottomPopupTips.getCurrentBottomTipMsg() == 17) {
+                bottomPopupTips.showTips(13, R.string.ultra_wide_open_tip, 4);
+            } else {
+                bottomPopupTips.directlyHideTips();
+            }
+        }
     }
 
     private void updateTipMessage(int i, @StringRes int i2, int i3) {

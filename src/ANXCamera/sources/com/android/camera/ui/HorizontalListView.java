@@ -217,6 +217,7 @@ public class HorizontalListView extends AdapterView<ListAdapter> {
             this.mRemovedViewQueue.clear();
         }
         this.mAdapter = listAdapter;
+        measureChildWidth();
         this.mAdapter.registerDataSetObserver(this.mDataObserver);
         reset();
     }
@@ -375,6 +376,22 @@ public class HorizontalListView extends AdapterView<ListAdapter> {
                 this.mMaxX = 0;
             }
             this.mRightViewIndex++;
+        }
+    }
+
+    private void measureChildWidth() {
+        if (this.mAdapter != null) {
+            this.mItemWidth = 180;
+            int count = this.mAdapter.getCount();
+            int i = 180;
+            for (int i2 = 0; i2 < count; i2++) {
+                View view = this.mAdapter.getView(i2, null, this);
+                view.measure(MeasureSpec.makeMeasureSpec(0, 0), MeasureSpec.makeMeasureSpec(0, 0));
+                if (view.getMeasuredWidth() > i) {
+                    i = view.getMeasuredWidth();
+                }
+            }
+            this.mItemWidth = i;
         }
     }
 

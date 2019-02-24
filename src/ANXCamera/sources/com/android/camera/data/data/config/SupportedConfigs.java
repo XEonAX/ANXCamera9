@@ -6,26 +6,20 @@ import java.util.List;
 public class SupportedConfigs {
     private List<TopConfigItem> mConfigs;
     private List<Integer> mSupportedConfigs;
-    private List<Integer> mSupportedConfigsFilterInvalid;
 
     public SupportedConfigs() {
         this.mSupportedConfigs = new ArrayList();
         this.mConfigs = new ArrayList();
-        this.mSupportedConfigsFilterInvalid = new ArrayList();
     }
 
     public SupportedConfigs(int i) {
         this.mConfigs = new ArrayList(i);
         this.mSupportedConfigs = new ArrayList(i);
-        this.mSupportedConfigsFilterInvalid = new ArrayList(i);
     }
 
     public void add(int... iArr) {
-        for (int i : iArr) {
-            this.mSupportedConfigs.add(Integer.valueOf(i));
-            if (i != 198) {
-                this.mSupportedConfigsFilterInvalid.add(Integer.valueOf(i));
-            }
+        for (int valueOf : iArr) {
+            this.mSupportedConfigs.add(Integer.valueOf(valueOf));
         }
     }
 
@@ -38,80 +32,28 @@ public class SupportedConfigs {
         return this.mSupportedConfigs.size();
     }
 
-    public Integer[] getItemsArray() {
-        Integer[] numArr = new Integer[getLength()];
-        this.mSupportedConfigs.toArray(numArr);
-        return numArr;
-    }
-
     public int getConfig(int i) {
         return ((Integer) this.mSupportedConfigs.get(i)).intValue();
     }
 
-    public int getConfigTypeForViewPosition(int i) {
-        for (TopConfigItem topConfigItem : this.mConfigs) {
-            if (topConfigItem.bindViewPosition == i) {
-                return topConfigItem.configItem;
-            }
-        }
-        return 198;
-    }
-
-    public int findConfigPosition(int i) {
-        for (int i2 = 0; i2 < this.mSupportedConfigs.size(); i2++) {
-            if (i == ((Integer) this.mSupportedConfigs.get(i2)).intValue()) {
-                return i2;
-            }
-        }
-        return -1;
-    }
-
     public int getConfigsSize() {
-        return this.mConfigs.size();
-    }
-
-    public int findConfigPositionFromType(int i) {
-        for (int i2 = 0; i2 < this.mConfigs.size(); i2++) {
-            if (i == ((TopConfigItem) this.mConfigs.get(i2)).configItem) {
-                return i2;
-            }
+        if (this.mConfigs.isEmpty()) {
+            return 0;
         }
-        return -1;
+        return ((TopConfigItem) this.mConfigs.get(this.mConfigs.size() - 1)).index + 1;
     }
 
-    public TopConfigItem findConfigItem(int i) {
-        for (TopConfigItem topConfigItem : this.mConfigs) {
-            if (i == topConfigItem.configItem) {
-                return topConfigItem;
-            }
-        }
-        return null;
+    public void add(TopConfigItem topConfigItem) {
+        this.mSupportedConfigs.add(Integer.valueOf(topConfigItem.configItem));
+        this.mConfigs.add(topConfigItem);
     }
 
-    public boolean hasConfig(int i) {
-        for (Integer intValue : this.mSupportedConfigs) {
-            if (intValue.intValue() == i) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void add(List<TopConfigItem> list) {
-        this.mConfigs.clear();
-        this.mConfigs.addAll(list);
+    public void set(int i, TopConfigItem topConfigItem) {
+        this.mSupportedConfigs.set(i, Integer.valueOf(topConfigItem.configItem));
+        this.mConfigs.set(i, topConfigItem);
     }
 
     public TopConfigItem getConfigItem(int i) {
         return (TopConfigItem) this.mConfigs.get(i);
-    }
-
-    public boolean isHasConfigItem(int i) {
-        for (TopConfigItem topConfigItem : this.mConfigs) {
-            if (topConfigItem.configItem == i) {
-                return true;
-            }
-        }
-        return false;
     }
 }

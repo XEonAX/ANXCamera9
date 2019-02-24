@@ -220,7 +220,7 @@ public class MiCameraCompatBaseImpl {
 
     public void applyBeautyParameter(Builder builder, BeautyValues beautyValues) {
         builder.set(BEAUTY_LEVEL, beautyValues.mBeautyLevel);
-        if (b.hR()) {
+        if (b.ia()) {
             for (Type type : BeautyParameters.getInstance().getAdjustableTypes()) {
                 if (BEAUTY_TYPE_MAP.containsKey(type)) {
                     builder.set((Key) BEAUTY_TYPE_MAP.get(type), Integer.valueOf(beautyValues.get(type)));

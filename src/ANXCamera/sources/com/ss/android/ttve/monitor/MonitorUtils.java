@@ -184,7 +184,7 @@ public class MonitorUtils {
         JSONObject jSONObject = new JSONObject();
         try {
             jSONObject.put("device_id", str);
-            jSONObject.put("app_version", "medialib_oem:2.9.0.14_20190117213025_xiaomi_4d1563c8f_v8a");
+            jSONObject.put("app_version", "medialib_oem:2.9.0.14_20190219120136_xiaomi_992bd016d_v8a");
             jSONObject.put("channel", "release");
             jSONObject.put("package_name", context.getPackageName());
             jSONObject.put(KEY_USER_ID, str2);

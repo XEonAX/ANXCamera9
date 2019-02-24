@@ -7,6 +7,7 @@ import com.xiaomi.protocol.ICustomCaptureResult;
 public class ParallelTaskData {
     private static final String GROUPSHOT_ORIGINAL_SUFFIX = "_ORG";
     private static final String TAG = ParallelTaskData.class.getSimpleName();
+    private int currentModuleIndex = -1;
     private boolean isNeedThumbnail;
     private int mAlgoType;
     private int mBurstNum;
@@ -21,6 +22,7 @@ public class ParallelTaskData {
     private String mSavePath;
     private long mTimestamp;
     private byte[] mVideoRawData = null;
+    private int previewThumbnailHash;
 
     public ParallelTaskData(long j, int i, String str) {
         this.mTimestamp = j;
@@ -293,5 +295,21 @@ public class ParallelTaskData {
 
     public void setBurstNum(int i) {
         this.mBurstNum = i;
+    }
+
+    public int getPreviewThumbnailHash() {
+        return this.previewThumbnailHash;
+    }
+
+    public void setPreviewThumbnailHash(int i) {
+        this.previewThumbnailHash = i;
+    }
+
+    public void setCurrentModuleIndex(int i) {
+        this.currentModuleIndex = i;
+    }
+
+    public int getCurrentModuleIndex() {
+        return this.currentModuleIndex;
     }
 }

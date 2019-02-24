@@ -16,6 +16,7 @@ import com.android.camera.CameraSize;
 import com.android.camera.log.Log;
 import com.android.camera.parallel.AlgoConnector;
 import com.android.camera2.Camera2Proxy.PictureCallback;
+import com.android.camera2.compat.MiCameraCompat;
 import com.xiaomi.camera.base.CameraDeviceUtil;
 import com.xiaomi.camera.base.PerformanceTracker;
 import com.xiaomi.camera.core.ParallelTaskData;
@@ -36,16 +37,20 @@ public class MiCamera2ShotParallelStill extends MiCamera2ShotParallel<ParallelTa
     protected void prepare() {
         boolean z = false;
         this.mAlgoType = 0;
-        Integer num = (Integer) this.mPreviewCaptureResult.get(CaptureResult.SENSOR_SENSITIVITY);
-        String str = TAG;
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("[QCFA] prepare: iso=");
-        stringBuilder.append(num);
-        Log.d(str, stringBuilder.toString());
-        if (!(!this.mMiCamera.isQcfaEnable() || num == null || num.intValue() > 300 || this.mMiCamera.getCameraConfigs().isHDREnabled() || this.mMiCamera.isFrontBeautyOn())) {
-            z = true;
+        if (!(!this.mMiCamera.isQcfaEnable() || this.mMiCamera.getCameraConfigs().isHDREnabled() || this.mMiCamera.isFrontBeautyOn())) {
+            Integer num = (Integer) this.mPreviewCaptureResult.get(CaptureResult.SENSOR_SENSITIVITY);
+            if (num != null && num.intValue() <= 300) {
+                z = true;
+            }
+            this.mShouldDoQcfaCapture = z;
+            String str = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("prepare: qcfa = ");
+            stringBuilder.append(this.mShouldDoQcfaCapture);
+            stringBuilder.append(" iso = ");
+            stringBuilder.append(num);
+            Log.d(str, stringBuilder.toString());
         }
-        this.mShouldDoQcfaCapture = z;
         if (this.mShouldDoQcfaCapture) {
             this.mAlgoType = 6;
         }
@@ -169,6 +174,9 @@ public class MiCamera2ShotParallelStill extends MiCamera2ShotParallel<ParallelTa
         }
         createCaptureRequest.set(CaptureRequest.CONTROL_AF_MODE, (Integer) this.mMiCamera.getPreviewRequestBuilder().get(CaptureRequest.CONTROL_AF_MODE));
         this.mMiCamera.applySettingsForCapture(createCaptureRequest, 3);
+        if (this.mShouldDoQcfaCapture) {
+            MiCameraCompat.applyMfnrEnable(createCaptureRequest, false);
+        }
         return createCaptureRequest;
     }
 }

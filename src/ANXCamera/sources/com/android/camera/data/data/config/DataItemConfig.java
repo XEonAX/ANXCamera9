@@ -153,7 +153,7 @@ public class DataItemConfig extends DataItemBase {
                                             str = ComponentConfigFlash.FLASH_VALUE_SCREEN_LIGHT_AUTO;
                                             break;
                                         }
-                                    } else if (!b.gB()) {
+                                    } else if (!b.gK()) {
                                         str = "0";
                                         break;
                                     } else {
@@ -265,7 +265,7 @@ public class DataItemConfig extends DataItemBase {
         String persistValue = getComponentHdr().getPersistValue(i);
         if ("3".equals(str) || ComponentConfigFlash.FLASH_VALUE_SCREEN_LIGHT_AUTO.equals(str)) {
             if ("normal".equals(persistValue) || ComponentConfigHdr.HDR_VALUE_LIVE.equals(persistValue)) {
-                str = b.gD() ? "auto" : "off";
+                str = b.gM() ? "auto" : "off";
                 if (str != null || persistValue.equals(str)) {
                     return false;
                 }

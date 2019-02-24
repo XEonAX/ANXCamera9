@@ -2,10 +2,12 @@ package com.android.camera.fragment.music;
 
 import com.android.camera.fragment.music.FragmentLiveMusic.Mp3DownloadCallback;
 import com.android.camera.log.Log;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.TimeUnit;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -47,7 +49,7 @@ public class OkHttpUtils {
     }
 
     public static void downloadMp3Async(String str, final String str2, final Mp3DownloadCallback mp3DownloadCallback) {
-        new OkHttpClient().newCall(new Builder().url(str).build()).enqueue(new Callback() {
+        new OkHttpClient.Builder().connectTimeout(5, TimeUnit.SECONDS).writeTimeout(5, TimeUnit.SECONDS).readTimeout(5, TimeUnit.SECONDS).build().newCall(new Builder().url(str).build()).enqueue(new Callback() {
             public void onFailure(Call call, IOException iOException) {
                 String access$000 = OkHttpUtils.TAG;
                 StringBuilder stringBuilder = new StringBuilder();
@@ -57,12 +59,26 @@ public class OkHttpUtils {
                 mp3DownloadCallback.onFailed();
             }
 
-            public void onResponse(Call call, Response response) throws IOException {
-                PrintStream printStream = new PrintStream(str2);
-                byte[] bytes = response.body().bytes();
-                printStream.write(bytes, 0, bytes.length);
-                printStream.close();
-                mp3DownloadCallback.onCompleted();
+            public void onResponse(Call call, Response response) {
+                Log.d(OkHttpUtils.TAG, "onResponse");
+                try {
+                    byte[] bytes = response.body().bytes();
+                    PrintStream printStream = new PrintStream(str2);
+                    printStream.write(bytes, 0, bytes.length);
+                    printStream.close();
+                    mp3DownloadCallback.onCompleted();
+                } catch (IOException e) {
+                    String access$000 = OkHttpUtils.TAG;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("download mp3 async failed with exception ");
+                    stringBuilder.append(e.getMessage());
+                    Log.e(access$000, stringBuilder.toString());
+                    File file = new File(str2);
+                    if (file.exists()) {
+                        file.delete();
+                    }
+                    mp3DownloadCallback.onFailed();
+                }
             }
         });
     }

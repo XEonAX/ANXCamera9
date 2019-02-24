@@ -11,6 +11,7 @@ import android.support.annotation.FloatRange;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.e.b;
 import com.bumptech.glide.load.DecodeFormat;
@@ -211,7 +212,7 @@ public class f implements Cloneable {
     @CheckResult
     @NonNull
     /* renamed from: do */
-    public static f m0do() {
+    public static f m1do() {
         if (nD == null) {
             nD = new f().dC().dG();
         }
@@ -300,7 +301,7 @@ public class f implements Cloneable {
         if (this.nS) {
             return clone().h(f);
         }
-        if (f < 0.0f || f > 1.0f) {
+        if (f < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO || f > 1.0f) {
             throw new IllegalArgumentException("sizeMultiplier must be between 0 and 1");
         }
         this.nH = f;
@@ -326,7 +327,7 @@ public class f implements Cloneable {
             return clone().i(z);
         }
         this.fQ = z;
-        this.nG |= 1048576;
+        this.nG |= nx;
         return dH();
     }
 
@@ -337,7 +338,7 @@ public class f implements Cloneable {
             return clone().j(z);
         }
         this.eD = z;
-        this.nG |= 524288;
+        this.nG |= nw;
         return dH();
     }
 
@@ -392,7 +393,7 @@ public class f implements Cloneable {
             return clone().j(drawable);
         }
         this.nP = drawable;
-        this.nG |= 8192;
+        this.nG |= nq;
         return dH();
     }
 
@@ -755,7 +756,7 @@ public class f implements Cloneable {
         if (k(fVar.nG, 262144)) {
             this.nT = fVar.nT;
         }
-        if (k(fVar.nG, 1048576)) {
+        if (k(fVar.nG, nx)) {
             this.fQ = fVar.fQ;
         }
         if (k(fVar.nG, 4)) {
@@ -789,7 +790,7 @@ public class f implements Cloneable {
         if (k(fVar.nG, 4096)) {
             this.ej = fVar.ej;
         }
-        if (k(fVar.nG, 8192)) {
+        if (k(fVar.nG, nq)) {
             this.nP = fVar.nP;
         }
         if (k(fVar.nG, 16384)) {
@@ -808,7 +809,7 @@ public class f implements Cloneable {
             this.el.putAll(fVar.el);
             this.er = fVar.er;
         }
-        if (k(fVar.nG, 524288)) {
+        if (k(fVar.nG, nw)) {
             this.eD = fVar.eD;
         }
         if (!this.nO) {

@@ -14,20 +14,20 @@ public class PictureSizeManager {
     static {
         sEntryValues.add("4x3");
         sEntryValues.add("16x9");
-        if (b.gj()) {
+        if (b.gs()) {
             sEntryValues.add("18x9");
         }
-        if (DataRepository.dataItemFeature().ff()) {
+        if (DataRepository.dataItemFeature().fh()) {
             sEntryValues.add("19.5x9");
         }
     }
 
     public static String[] getEntries() {
-        if (ModuleManager.isPortraitModule() && CameraSettings.isBackCamera() && DataRepository.dataItemFeature().fz()) {
+        if (ModuleManager.isPortraitModule() && CameraSettings.isBackCamera() && DataRepository.dataItemFeature().fB()) {
             return new String[]{CameraSettings.getString(R.string.pref_camera_picturesize_entry_4_3)};
-        } else if (b.gj()) {
+        } else if (b.gs()) {
             return new String[]{CameraSettings.getString(R.string.pref_camera_picturesize_entry_4_3), CameraSettings.getString(R.string.pref_camera_picturesize_entry_16_9), CameraSettings.getString(R.string.pref_camera_picturesize_entry_18_9)};
-        } else if (DataRepository.dataItemFeature().ff()) {
+        } else if (DataRepository.dataItemFeature().fh()) {
             return new String[]{CameraSettings.getString(R.string.pref_camera_picturesize_entry_4_3), CameraSettings.getString(R.string.pref_camera_picturesize_entry_16_9), CameraSettings.getString(R.string.pref_camera_picturesize_entry_195_9)};
         } else {
             return new String[]{CameraSettings.getString(R.string.pref_camera_picturesize_entry_4_3), CameraSettings.getString(R.string.pref_camera_picturesize_entry_16_9)};
@@ -35,7 +35,7 @@ public class PictureSizeManager {
     }
 
     public static String[] getEntryValues() {
-        if (ModuleManager.isPortraitModule() && CameraSettings.isBackCamera() && DataRepository.dataItemFeature().fz()) {
+        if (ModuleManager.isPortraitModule() && CameraSettings.isBackCamera() && DataRepository.dataItemFeature().fB()) {
             return new String[]{"4x3"};
         }
         String[] strArr = new String[sEntryValues.size()];
@@ -48,6 +48,13 @@ public class PictureSizeManager {
     }
 
     public static String getPictureSizeRatioString() {
+        if (CameraSettings.isUnsolicited4X3Ratio()) {
+            return "4x3";
+        }
+        return CameraSettings.getPictureSizeRatioString(getDefaultValue());
+    }
+
+    public static String getUserPictureSizeRatioString() {
         return CameraSettings.getPictureSizeRatioString(getDefaultValue());
     }
 

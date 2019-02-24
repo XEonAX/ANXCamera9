@@ -76,9 +76,12 @@ public class MiCamera2ShotGroup extends MiCamera2Shot<byte[]> {
             this.mGroupShot = new GroupShot();
         }
         int deviceOrientation = this.mMiCamera.getCameraConfigs().getDeviceOrientation();
+        if (deviceOrientation == -1) {
+            deviceOrientation = 0;
+        }
         CameraSize pictureSize = this.mMiCamera.getPictureSize();
         CameraSize previewSize = this.mMiCamera.getPreviewSize();
-        if (deviceOrientation % 180 == 0 && b.hz()) {
+        if (deviceOrientation % 180 == 0 && b.hI()) {
             this.mGroupShot.initialize(i, 10, pictureSize.getHeight(), pictureSize.getWidth(), previewSize.getHeight(), previewSize.getWidth());
             return;
         }
@@ -92,6 +95,13 @@ public class MiCamera2ShotGroup extends MiCamera2Shot<byte[]> {
 
     protected void startSessionCapture() {
         try {
+            if (this.mCurrentParallelTaskData == null) {
+                this.mCurrentParallelTaskData = generateParallelTaskData(0);
+                if (this.mCurrentParallelTaskData == null) {
+                    Log.w(TAG, "startSessionCapture: null task data");
+                    return;
+                }
+            }
             CaptureCallback generateCaptureCallback = generateCaptureCallback();
             Builder generateRequestBuilder = generateRequestBuilder();
             PerformanceTracker.trackPictureCapture(0);
@@ -110,8 +120,8 @@ public class MiCamera2ShotGroup extends MiCamera2Shot<byte[]> {
         return new CaptureCallback() {
             public void onCaptureStarted(@NonNull CameraCaptureSession cameraCaptureSession, @NonNull CaptureRequest captureRequest, long j, long j2) {
                 super.onCaptureStarted(cameraCaptureSession, captureRequest, j, j2);
-                if (MiCamera2ShotGroup.this.mCurrentParallelTaskData == null) {
-                    MiCamera2ShotGroup.this.mCurrentParallelTaskData = MiCamera2ShotGroup.this.generateParallelTaskData(j);
+                if (0 == MiCamera2ShotGroup.this.mCurrentParallelTaskData.getTimestamp()) {
+                    MiCamera2ShotGroup.this.mCurrentParallelTaskData.setTimestamp(j);
                 }
             }
 
@@ -121,7 +131,7 @@ public class MiCamera2ShotGroup extends MiCamera2Shot<byte[]> {
                 stringBuilder.append("onCaptureCompleted: ");
                 stringBuilder.append(totalCaptureResult.getFrameNumber());
                 Log.d(access$100, stringBuilder.toString());
-                MiCamera2ShotGroup.this.mMiCamera.onCapturePictureFinished(true);
+                MiCamera2ShotGroup.this.mMiCamera.onCapturePictureFinished(MiCamera2ShotGroup.this.mReceivedJpegCallbackNum >= MiCamera2ShotGroup.this.mTotalJpegCallbackNum);
             }
 
             public void onCaptureFailed(@NonNull CameraCaptureSession cameraCaptureSession, @NonNull CaptureRequest captureRequest, @NonNull CaptureFailure captureFailure) {
@@ -163,8 +173,10 @@ public class MiCamera2ShotGroup extends MiCamera2Shot<byte[]> {
         stringBuilder.append("/");
         stringBuilder.append(this.mTotalJpegCallbackNum);
         Log.d(str, stringBuilder.toString());
-        if (this.mCurrentParallelTaskData == null) {
-            this.mCurrentParallelTaskData = generateParallelTaskData(image.getTimestamp());
+        long timestamp = image.getTimestamp();
+        if (0 == this.mCurrentParallelTaskData.getTimestamp()) {
+            Log.w(TAG, "onImageReceived: image arrived first");
+            this.mCurrentParallelTaskData.setTimestamp(timestamp);
         }
         byte[] firstPlane = Util.getFirstPlane(image);
         image.close();

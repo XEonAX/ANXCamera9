@@ -44,7 +44,9 @@ public class TTRecorder implements Listener, AVCEncoderInterface, c {
                     if (TTRecorder.this.handle != 0) {
                         TTRecorder.this.nativeOnFrameAvailable(TTRecorder.this.handle, TTRecorder.this.textureHolder.getSurfaceTextureID(), TTRecorder.this.textureHolder.getMPV());
                     }
-                    TTRecorder.this.onDrawFrameTime(TTRecorder.this.handle, TTRecorder.this.getDrawFrameTime(surfaceTexture.getTimestamp()));
+                    if (surfaceTexture != null) {
+                        TTRecorder.this.onDrawFrameTime(TTRecorder.this.handle, TTRecorder.this.getDrawFrameTime(surfaceTexture.getTimestamp()));
+                    }
                 }
             });
             if (TTRecorder.this.mGLCallback != null) {
@@ -200,6 +202,10 @@ public class TTRecorder implements Listener, AVCEncoderInterface, c {
     public native int nativeSlamProcessTouchEvent(long j, float f, float f2);
 
     public native int nativeSlamProcessTouchEventByType(long j, int i, float f, float f2, int i2);
+
+    public native int nativeUpdateRotation(long j, float f, float f2, float f3);
+
+    public native int nativeUseLargeMattingModel(long j, boolean z);
 
     static {
         NativeLibsLoader.loadLibrary();
@@ -475,6 +481,20 @@ public class TTRecorder implements Listener, AVCEncoderInterface, c {
             return -100;
         }
         return nativeSetFaceReshape(this.handle, str, f, f2);
+    }
+
+    public int setUseLargeMattingModel(boolean z) {
+        if (this.handle == 0) {
+            return -100;
+        }
+        return nativeUseLargeMattingModel(this.handle, z);
+    }
+
+    public int updateRotation(float f, float f2, float f3) {
+        if (this.handle == 0) {
+            return -100;
+        }
+        return nativeUpdateRotation(this.handle, f, f2, f3);
     }
 
     public void onNativeCallback_Init(int i) {

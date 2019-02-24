@@ -1,7 +1,5 @@
 package com.miui.filtersdk.utils;
 
-import android.provider.MiuiSettings.ScreenEffect;
-
 public enum Rotation {
     NORMAL,
     ROTATION_90,
@@ -36,7 +34,7 @@ public enum Rotation {
         if (i == 270) {
             return ROTATION_270;
         }
-        if (i == ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) {
+        if (i == 360) {
             return NORMAL;
         }
         StringBuilder stringBuilder = new StringBuilder();

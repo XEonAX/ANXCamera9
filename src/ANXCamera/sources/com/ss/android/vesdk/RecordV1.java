@@ -260,4 +260,12 @@ public class RecordV1 implements IRecorder {
     public void chooseSlamFace(int i) {
         this.mRecorder.chooseSlamFace(i);
     }
+
+    public int setUseLargeMattingModel(boolean z) {
+        return this.mRecorder.setUseLargeMattingModel(z);
+    }
+
+    public int updateRotation(float f, float f2, float f3) {
+        return this.mRecorder.updateRotation(f, f2, f3);
+    }
 }

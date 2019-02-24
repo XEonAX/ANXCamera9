@@ -16,10 +16,10 @@ public class FrontFragmentBusiness extends AbBeautyFragmentBusiness {
         } else {
             this.mFragments.clear();
         }
-        if (b.hG()) {
+        if (b.hP()) {
             this.mFragments.add(new LegacyBeautyLevelFragment());
             this.mFragments.add(new LegacyMakeupParamsFragment());
-        } else if (b.hR()) {
+        } else if (b.ia()) {
             this.mFragments.add(new FrontBeautyLevelFragment());
             if (BeautyParameters.getInstance().getAdjustableTypes() != null && BeautyParameters.getInstance().getAdjustableTypes().size() > 0) {
                 this.mFragments.add(new RemodelingParamsFragment());
@@ -28,7 +28,7 @@ public class FrontFragmentBusiness extends AbBeautyFragmentBusiness {
             this.mFragments.add(new FrontBeautyLevelFragment());
             this.mFragments.add(new MakeupParamsFragment());
         }
-        if (DataRepository.dataItemFeature().fn() && CameraSettings.isSupportBeautyMakeup()) {
+        if (DataRepository.dataItemFeature().fp() && CameraSettings.isSupportBeautyMakeup()) {
             this.mFragments.add(new MakeupBeautyFragment());
         }
         return this.mFragments;

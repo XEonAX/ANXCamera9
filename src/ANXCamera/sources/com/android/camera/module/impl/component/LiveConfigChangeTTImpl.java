@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.SurfaceTexture;
 import android.hardware.SensorEvent;
 import android.hardware.SensorManager;
+import android.media.AudioManager;
+import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.text.TextUtils;
@@ -24,6 +26,7 @@ import com.android.camera.protocol.ModeProtocol.FilterProtocol;
 import com.android.camera.protocol.ModeProtocol.LiveConfigChanges;
 import com.android.camera.protocol.ModeProtocol.OnFaceBeautyChangedProtocol;
 import com.android.camera.protocol.ModeProtocol.StickerProtocol;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.ExtTexture;
 import com.ss.android.medialib.TTRecorder.SlamDetectListener;
 import com.ss.android.medialib.model.TimeSpeedModel;
@@ -48,7 +51,7 @@ import java.util.List;
 public class LiveConfigChangeTTImpl implements LiveConfigChanges {
     private static final String APPID = "100024";
     private static final String LICENSE = "1449eb247881d7452b662746d329a48755efdda8eab980d11c86626450eca036c9195afca03e8af8c096583bcce73bca1ab2308603ef6fc31f8b9441b95cd9ba";
-    private static final long MIN_RECORD_TIME = 100000;
+    private static final long MIN_RECORD_TIME = 500000;
     private static final long START_OFFSET_MS = 450;
     private static final String TAG = LiveConfigChangeTTImpl.class.getSimpleName();
     private static final float WHITE_INTENSITY = 0.2f;
@@ -122,7 +125,7 @@ public class LiveConfigChangeTTImpl implements LiveConfigChanges {
                 this.mRecorder.setBeautyFaceIntensity(f, WHITE_INTENSITY);
             } else {
                 this.mRecorder.setBeautyFace(0, "");
-                this.mRecorder.setBeautyFaceIntensity(0.0f, 0.0f);
+                this.mRecorder.setBeautyFaceIntensity(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
             }
         }
     }
@@ -131,13 +134,19 @@ public class LiveConfigChangeTTImpl implements LiveConfigChanges {
         if (z) {
             this.mRecorder.setFaceReshape(FileUtils.RESHAPE_DIR_NAME, f, f2);
         } else {
-            this.mRecorder.setFaceReshape("", 0.0f, 0.0f);
+            this.mRecorder.setFaceReshape("", PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         }
     }
 
     private void deleteLastSegment() {
         if (this.mRecorder != null) {
             this.mRecorder.deleteLastFrag();
+        }
+    }
+
+    public void updateRotation(float f, float f2, float f3) {
+        if (this.mRecorder != null) {
+            this.mRecorder.updateRotation(f, f2, f3);
         }
     }
 
@@ -232,6 +241,7 @@ public class LiveConfigChangeTTImpl implements LiveConfigChanges {
                 stringBuilder2.append("slam config result = ");
                 stringBuilder2.append(i);
                 Log.e(access$100, stringBuilder2.toString());
+                LiveConfigChangeTTImpl.this.mRecorder.setUseLargeMattingModel(true);
                 if (LiveConfigChangeTTImpl.this.mStickerPath != null) {
                     LiveConfigChangeTTImpl.this.mRecorder.switchEffect(LiveConfigChangeTTImpl.this.mStickerPath);
                 }
@@ -345,6 +355,10 @@ public class LiveConfigChangeTTImpl implements LiveConfigChanges {
 
     public void onRecordStart() {
         if (this.mRecorder != null) {
+            ((AudioManager) this.mActivity.getSystemService("audio")).requestAudioFocus(new OnAudioFocusChangeListener() {
+                public void onAudioFocusChange(int i) {
+                }
+            }, 3, 1);
             DataRepository.dataItemRunning().setLiveConfigIsNeedRestore(true);
             this.mRecorder.startRecord(this.mSpeed);
             if (this.mBGMPath != null) {
@@ -391,6 +405,10 @@ public class LiveConfigChangeTTImpl implements LiveConfigChanges {
 
     public void onRecordResume() {
         if (this.mRecorder != null && this.mMediaRecorderRecordingPaused) {
+            ((AudioManager) this.mActivity.getSystemService("audio")).requestAudioFocus(new OnAudioFocusChangeListener() {
+                public void onAudioFocusChange(int i) {
+                }
+            }, 3, 1);
             this.mMediaRecorderRecordingPaused = false;
             this.mMediaRecorderRecording = true;
             this.mRecorder.startRecord(this.mSpeed);
@@ -573,12 +591,12 @@ public class LiveConfigChangeTTImpl implements LiveConfigChanges {
         float faceBeautyRatio = ((float) CameraSettings.getFaceBeautyRatio(CameraSettings.KEY_LIVE_SHRINK_FACE_RATIO, 40)) / 100.0f;
         float faceBeautyRatio2 = ((float) CameraSettings.getFaceBeautyRatio(CameraSettings.KEY_LIVE_ENLARGE_EYE_RATIO, 40)) / 100.0f;
         float faceBeautyRatio3 = ((float) CameraSettings.getFaceBeautyRatio(CameraSettings.KEY_LIVE_SMOOTH_STRENGTH, 40)) / 100.0f;
-        if (faceBeautyRatio > 0.0f || faceBeautyRatio2 > 0.0f || faceBeautyRatio3 > 0.0f) {
+        if (faceBeautyRatio > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO || faceBeautyRatio2 > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO || faceBeautyRatio3 > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
             setBeautyFaceReshape(true, faceBeautyRatio2, faceBeautyRatio);
             setBeautify(true, faceBeautyRatio3);
             return;
         }
-        setBeautyFaceReshape(false, 0.0f, 0.0f);
-        setBeautify(false, 0.0f);
+        setBeautyFaceReshape(false, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        setBeautify(false, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
     }
 }

@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import com.android.camera.Camera;
 import com.android.camera.CameraAppImpl;
 import com.android.camera.CameraSettings;
+import com.android.camera.PictureSizeManager;
 import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.constant.GlobalConstant;
@@ -14,6 +15,7 @@ import com.android.camera.data.data.config.ComponentConfigBeautyBody;
 import com.android.camera.data.data.config.ComponentConfigFlash;
 import com.android.camera.data.data.config.ComponentConfigHdr;
 import com.android.camera.data.data.config.ComponentConfigUltraWide;
+import com.android.camera.data.data.config.ComponentManuallyDualLens;
 import com.android.camera.data.data.config.ComponentManuallyET;
 import com.android.camera.data.data.config.DataItemConfig;
 import com.android.camera.data.data.global.DataItemGlobal;
@@ -21,6 +23,7 @@ import com.android.camera.data.data.runing.DataItemRunning;
 import com.android.camera.data.provider.DataProvider.ProviderEditor;
 import com.android.camera.log.Log;
 import com.android.camera.module.BaseModule;
+import com.android.camera.module.ModuleManager;
 import com.android.camera.permission.PermissionManager;
 import com.mi.config.b;
 import io.reactivex.Scheduler;
@@ -81,12 +84,28 @@ public class FunctionCameraPrepare extends Func1Base<Camera, BaseModule> {
             } else if (persistValue.equals("2")) {
                 editor.putString(componentFlash.getKey(this.mTargetMode), componentFlash.getDefaultValue(this.mTargetMode));
             }
+            if (ModuleManager.isCapture()) {
+                boolean z;
+                String[] entryValues = PictureSizeManager.getEntryValues();
+                CharSequence pictureSizeRatioString = CameraSettings.getPictureSizeRatioString(PictureSizeManager.getDefaultValue());
+                for (CharSequence equals : entryValues) {
+                    if (TextUtils.equals(equals, pictureSizeRatioString)) {
+                        z = true;
+                        break;
+                    }
+                }
+                z = false;
+                if (!z) {
+                    Log.d(TAG, "reconfigureData: clear DATA_CONFIG_RATIO");
+                    editor.remove("pref_camera_picturesize_key");
+                }
+            }
             if (this.mTargetMode == 167) {
                 if (!Util.isStringValueContained(dataItemConfig.getString(CameraSettings.KEY_QC_ISO, CameraAppImpl.getAndroidContext().getString(R.string.pref_camera_iso_default)), (int) R.array.pref_camera_iso_entryvalues)) {
                     editor.remove(CameraSettings.KEY_QC_ISO);
                 }
             }
-            if (!b.gJ()) {
+            if (!b.gS()) {
                 editor.remove(CameraSettings.KEY_QC_FOCUS_POSITION);
                 editor.remove(CameraSettings.KEY_QC_EXPOSURETIME);
             } else if (this.mTargetMode == 167) {
@@ -115,6 +134,7 @@ public class FunctionCameraPrepare extends Func1Base<Camera, BaseModule> {
                     resetHdr(dataItemConfig.getComponentHdr(), editor);
                     resetVideoBeauty(dataItemConfig.getComponentConfigBeauty(), editor);
                     resetUltraWide(dataItemConfig.getComponentConfigUltraWide(), editor);
+                    resetLensType(dataItemConfig.getComponentConfigUltraWide(), dataItemConfig.getManuallyDualLens(), editor);
                     editor.remove("pref_eye_light_type_key");
                     editor.remove(dataItemConfig.getComponentConfigSlowMotion().getKey(this.mTargetMode));
                     if (dataItemGlobal.getCurrentCameraId() == 0) {
@@ -132,7 +152,7 @@ public class FunctionCameraPrepare extends Func1Base<Camera, BaseModule> {
                     editor2.apply();
                     dataItemRunning.clearArrayMap();
                     backUp.clearBackUp();
-                    if (DataRepository.dataItemFeature().fF()) {
+                    if (DataRepository.dataItemFeature().fH()) {
                         DataRepository.dataItemLive().editor().remove(CameraSettings.KEY_LIVE_MUSIC_PATH).remove(CameraSettings.KEY_LIVE_MUSIC_HINT).remove(CameraSettings.KEY_LIVE_STICKER).remove(CameraSettings.KEY_LIVE_STICKER_NAME).remove(CameraSettings.KEY_LIVE_STICKER_HINT).remove(CameraSettings.KEY_LIVE_SPEED).remove(CameraSettings.KEY_LIVE_FILTER).remove(CameraSettings.KEY_LIVE_SHRINK_FACE_RATIO).remove(CameraSettings.KEY_LIVE_ENLARGE_EYE_RATIO).remove(CameraSettings.KEY_LIVE_SMOOTH_STRENGTH).remove(CameraSettings.KEY_LIVE_BEAUTY_STATUS).apply();
                         break;
                     }
@@ -163,7 +183,7 @@ public class FunctionCameraPrepare extends Func1Base<Camera, BaseModule> {
                                         i = dataItemGlobal.getCurrentCameraId();
                                         break;
                                     case 171:
-                                        if (b.ht()) {
+                                        if (b.hC()) {
                                             i = dataItemGlobal.getCurrentCameraId();
                                             break;
                                         }
@@ -178,11 +198,11 @@ public class FunctionCameraPrepare extends Func1Base<Camera, BaseModule> {
                     backUp.revertRunning(dataItemRunning, dataItemGlobal.getDataBackUpKey(this.mTargetMode), i);
                     break;
             }
-            boolean fH = DataRepository.dataItemFeature().fH();
+            boolean fJ = DataRepository.dataItemFeature().fJ();
             if (this.mResetType == 4 && lastCameraId == dataItemGlobal.getCurrentCameraId()) {
-                fH = false;
+                fJ = false;
             }
-            if (fH) {
+            if (fJ) {
                 editor.putBoolean(CameraSettings.KEY_LENS_DIRTY_DETECT_ENABLED, true);
             }
             editor.apply();
@@ -227,6 +247,12 @@ public class FunctionCameraPrepare extends Func1Base<Camera, BaseModule> {
     private void resetUltraWide(ComponentConfigUltraWide componentConfigUltraWide, ProviderEditor providerEditor) {
         if (componentConfigUltraWide != null) {
             componentConfigUltraWide.resetUltraWide(providerEditor);
+        }
+    }
+
+    private void resetLensType(ComponentConfigUltraWide componentConfigUltraWide, ComponentManuallyDualLens componentManuallyDualLens, ProviderEditor providerEditor) {
+        if (componentConfigUltraWide != null && componentManuallyDualLens != null) {
+            componentManuallyDualLens.resetLensType(componentConfigUltraWide, providerEditor);
         }
     }
 }

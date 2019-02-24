@@ -4,12 +4,14 @@ import android.annotation.SuppressLint;
 import android.graphics.Rect;
 import android.graphics.YuvImage;
 import android.media.Image;
-import android.provider.MiuiSettings.ScreenEffect;
 import com.android.camera.CameraSettings;
+import com.android.camera.R;
+import com.android.camera.data.DataRepository;
 import com.android.camera.handgesture.HandGesture;
 import com.android.camera.log.Log;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.CameraAction;
+import com.android.camera.protocol.ModeProtocol.TopAlert;
 import com.android.camera.storage.Storage;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
@@ -22,26 +24,32 @@ import io.reactivex.schedulers.Schedulers;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.concurrent.atomic.AtomicInteger;
 import miui.os.Environment;
 
 public class HandGestureDecoder extends Decoder {
     private static boolean DEBUG = false;
+    private static int DETECTION_FRAMES_PER_SECOND = 16;
     public static final String TAG = "HandGestureDecoder";
-    int mCameraId;
-    HandGesture mHandGesture = new HandGesture();
-    boolean mTriggeringPhoto = false;
+    private int mCameraId;
+    private AtomicInteger mContinuousInterval = new AtomicInteger(0);
+    private HandGesture mHandGesture = new HandGesture();
+    private boolean mTargetDetected = false;
+    int mTipShowInterval = DETECTION_FRAMES_PER_SECOND;
+    private boolean mTipVisible = true;
+    private boolean mTriggeringPhoto = false;
 
     @SuppressLint({"CheckResult"})
     HandGestureDecoder() {
-        DECODE_MAX_COUNT = 600;
-        DECODE_AUTO_INTERVAL = 500;
+        DECODE_MAX_COUNT = 5000;
+        DECODE_AUTO_INTERVAL = (long) (1000 / DETECTION_FRAMES_PER_SECOND);
         this.mEnable = true;
         Flowable.create(new FlowableOnSubscribe<PreviewImage>() {
             public void subscribe(FlowableEmitter<PreviewImage> flowableEmitter) throws Exception {
                 HandGestureDecoder.this.mDecodeFlowableEmitter = flowableEmitter;
             }
-        }, BackpressureStrategy.LATEST).observeOn(Schedulers.single()).map(new Function<PreviewImage, Boolean>() {
-            public Boolean apply(PreviewImage previewImage) {
+        }, BackpressureStrategy.LATEST).observeOn(Schedulers.single()).map(new Function<PreviewImage, Integer>() {
+            public Integer apply(PreviewImage previewImage) {
                 switch (previewImage.getPreviewStatus()) {
                     case 1:
                         HandGestureDecoder.this.mHandGesture.init(previewImage.getCameraId());
@@ -50,26 +58,60 @@ public class HandGestureDecoder extends Decoder {
                         if (HandGestureDecoder.DEBUG) {
                             HandGestureDecoder.this.dumpPreviewImage(previewImage);
                         }
-                        return HandGestureDecoder.this.decode(previewImage);
+                        return Integer.valueOf(HandGestureDecoder.this.decode(previewImage));
                     case 3:
                         HandGestureDecoder.this.mHandGesture.unInit();
                         break;
                 }
-                return Boolean.valueOf(false);
+                return Integer.valueOf(-1);
             }
-        }).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Boolean>() {
-            public void accept(Boolean bool) throws Exception {
+        }).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Integer>() {
+            public void accept(Integer num) throws Exception {
                 String str = HandGestureDecoder.TAG;
                 StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("onSuccess: result = ");
-                stringBuilder.append(bool);
+                stringBuilder.append("Detected rect left = ");
+                stringBuilder.append(num);
+                stringBuilder.append(" ");
+                stringBuilder.append(HandGestureDecoder.this.mTipShowInterval);
                 Log.d(str, stringBuilder.toString());
-                if (bool.booleanValue() && !HandGestureDecoder.this.mTriggeringPhoto) {
-                    CameraAction cameraAction = (CameraAction) ModeCoordinatorImpl.getInstance().getAttachProtocol(161);
-                    if (!(cameraAction == null || cameraAction.isDoingAction())) {
-                        cameraAction.onShutterButtonClick(100);
+                if (num.intValue() >= 0) {
+                    HandGestureDecoder.this.mTargetDetected = true;
+                } else {
+                    HandGestureDecoder.this.mTargetDetected = false;
+                    HandGestureDecoder.this.mContinuousInterval.set(0);
+                }
+                if (!HandGestureDecoder.this.mTriggeringPhoto) {
+                    String str2 = HandGestureDecoder.TAG;
+                    StringBuilder stringBuilder2 = new StringBuilder();
+                    stringBuilder2.append("Continuous interval: ");
+                    stringBuilder2.append(HandGestureDecoder.this.mContinuousInterval.get());
+                    Log.d(str2, stringBuilder2.toString());
+                    if (HandGestureDecoder.this.mContinuousInterval.get() > 0) {
+                        HandGestureDecoder.this.mContinuousInterval.getAndDecrement();
+                    } else if (HandGestureDecoder.this.mTargetDetected) {
+                        Log.d(HandGestureDecoder.TAG, "Triggering countdown...");
+                        CameraAction cameraAction = (CameraAction) ModeCoordinatorImpl.getInstance().getAttachProtocol(161);
+                        if (!(cameraAction == null || cameraAction.isDoingAction())) {
+                            cameraAction.onShutterButtonClick(100);
+                            HandGestureDecoder.this.mTriggeringPhoto = true;
+                            HandGestureDecoder.this.mContinuousInterval.set(3 * HandGestureDecoder.DETECTION_FRAMES_PER_SECOND);
+                            DataRepository.dataItemRunning().setHandGestureRunning(HandGestureDecoder.this.mTriggeringPhoto ^ true);
+                            HandGestureDecoder.this.mTipVisible = false;
+                            HandGestureDecoder.this.mTipShowInterval = HandGestureDecoder.DETECTION_FRAMES_PER_SECOND;
+                        }
                     }
-                    HandGestureDecoder.this.mTriggeringPhoto = true;
+                    if (!HandGestureDecoder.this.mTipVisible && HandGestureDecoder.this.mTipShowInterval <= 0) {
+                        DataRepository.dataItemRunning().setHandGestureRunning(true);
+                        TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
+                        if (topAlert != null) {
+                            topAlert.alertTopHint(0, (int) R.string.hand_gesture_tip);
+                        }
+                        HandGestureDecoder.this.mTipVisible = true;
+                    }
+                    if (HandGestureDecoder.this.mTipShowInterval > 0) {
+                        HandGestureDecoder handGestureDecoder = HandGestureDecoder.this;
+                        handGestureDecoder.mTipShowInterval--;
+                    }
                 }
             }
         }, new Consumer<Throwable>() {
@@ -80,13 +122,14 @@ public class HandGestureDecoder extends Decoder {
     }
 
     public boolean needPreviewFrame() {
-        return super.needPreviewFrame() && CameraSettings.isHangGestureOpen();
+        return super.needPreviewFrame() && CameraSettings.isHandGestureOpen();
     }
 
     public void init(int i) {
         reset();
         this.mCameraId = i;
         this.mDecodeFlowableEmitter.onNext(new PreviewImage(1, i));
+        DataRepository.dataItemRunning().setHandGestureRunning(true);
     }
 
     public void startDecode() {
@@ -94,23 +137,23 @@ public class HandGestureDecoder extends Decoder {
         this.mDecodingCount.set(0);
     }
 
-    protected Boolean decode(PreviewImage previewImage) {
+    protected int decode(PreviewImage previewImage) {
         int orientation = previewImage.getOrientation();
-        boolean z = true;
+        if (orientation == -1) {
+            orientation = 0;
+        }
         if (this.mCameraId == 1) {
             orientation = 270 - orientation;
         } else {
-            orientation = (90 + orientation) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+            orientation = (90 + orientation) % 360;
         }
-        if (this.mHandGesture.detectGesture(previewImage.getData(), previewImage.getWidth(), previewImage.getHeight(), orientation) <= 0) {
-            z = false;
-        }
-        return Boolean.valueOf(z);
+        return this.mHandGesture.detectGesture(previewImage.getData(), previewImage.getWidth(), previewImage.getHeight(), orientation);
     }
 
     public void reset() {
-        this.mTriggeringPhoto = false;
+        Log.d(TAG, "Reset");
         this.mDecodingCount.set(0);
+        this.mTriggeringPhoto = false;
     }
 
     public void quit() {

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.support.v7.widget.RecyclerView.Recycler;
 import android.support.v7.widget.RecyclerView.State;
 import android.view.LayoutInflater;
@@ -50,7 +49,7 @@ public abstract class BeautyLevelFragment extends BaseBeautyFragment {
 
     private void initView(View view) {
         this.mLevelItemList = (RecyclerView) view.findViewById(R.id.beauty_level_item_list);
-        LayoutManager myLayoutManager = new MyLayoutManager(getActivity());
+        MyLayoutManager myLayoutManager = new MyLayoutManager(getActivity());
         myLayoutManager.setOrientation(0);
         this.mLevelItemList.setLayoutManager(myLayoutManager);
         this.mLevelItemList.setFocusable(false);

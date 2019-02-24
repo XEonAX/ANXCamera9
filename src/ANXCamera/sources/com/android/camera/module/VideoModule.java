@@ -23,7 +23,6 @@ import android.os.CountDownTimer;
 import android.os.ParcelFileDescriptor;
 import android.os.SystemClock;
 import android.os.SystemProperties;
-import android.provider.MiuiSettings.ScreenEffect;
 import android.support.annotation.MainThread;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -68,6 +67,7 @@ import com.android.camera.storage.Storage;
 import com.android.camera.ui.ObjectView.ObjectViewListener;
 import com.android.camera.ui.PopupManager;
 import com.android.camera.ui.RotateTextToast;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera2.Camera2Proxy.PictureCallbackWrapper;
 import com.android.camera2.Camera2Proxy.VideoRecordStateCallback;
 import com.android.camera2.CameraCapabilities;
@@ -104,7 +104,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
     private static final HashMap<String, Integer> HEVC_VIDEO_ENCODER_BITRATE = new HashMap();
     private static final int MAX_DURATION_4K = 480000;
     private static final int RESET_VIDEO_AUTO_FOCUS_TIME = 3000;
-    public static final Size SIZE_1080 = new Size(1920, ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_END_DEAULT);
+    public static final Size SIZE_1080 = new Size(1920, 1080);
     public static final Size SIZE_720 = new Size(1280, Util.LIMIT_SURFACE_WIDTH);
     private static final long START_OFFSET_MS = 450;
     private static final int VIDEO_HFR_FRAME_RATE_120 = 120;
@@ -113,6 +113,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
     public static final long VIDEO_MIN_SINGLE_FILE_SIZE = Math.min(8388608, Storage.LOW_STORAGE_THRESHOLD);
     private static final int VIDEO_NORMAL_FRAME_RATE = 30;
     private AtomicBoolean isAutoZoomTracking = new AtomicBoolean(false);
+    private AtomicBoolean isShowOrHideUltraWideHint = new AtomicBoolean(false);
     private Disposable mAutoZoomDataDisposable;
     private FlowableEmitter<CaptureResult> mAutoZoomEmitter;
     private Disposable mAutoZoomUiDisposable;
@@ -168,7 +169,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
             long currentTimeMillis = System.currentTimeMillis();
             byte[] bArr2 = bArr;
             Location location2 = location;
-            VideoModule.this.mActivity.getImageSaver().addImage(bArr2, VideoModule.this.needImageThumbnail(12), Util.createJpegName(currentTimeMillis), null, System.currentTimeMillis(), null, location2, VideoModule.this.mPictureSize.width, VideoModule.this.mPictureSize.height, null, Exif.getOrientation(bArr), false, false, true, false, false, null, null);
+            VideoModule.this.mActivity.getImageSaver().addImage(bArr2, VideoModule.this.needImageThumbnail(12), Util.createJpegName(currentTimeMillis), null, System.currentTimeMillis(), null, location2, VideoModule.this.mPictureSize.width, VideoModule.this.mPictureSize.height, null, Exif.getOrientation(bArr), false, false, true, false, false, null, null, -1);
         }
     }
 
@@ -221,7 +222,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
         List<String> arrayList = new ArrayList();
         if (isBackCamera()) {
             arrayList.add("pref_video_speed_fast_key");
-            if (b.gw()) {
+            if (b.gF()) {
                 arrayList.add("pref_video_speed_slow_key");
             }
         }
@@ -262,7 +263,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
     }
 
     private void initAutoZoom() {
-        if (DataRepository.dataItemFeature().fA()) {
+        if (DataRepository.dataItemFeature().fC()) {
             if (DataRepository.dataItemRunning().isSwitchOn("pref_camera_auto_zoom")) {
                 startAutoZoom();
             } else {
@@ -284,8 +285,12 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
         }
     }
 
+    /* JADX WARNING: Missing block: B:8:0x001d, code:
+            return;
+     */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
     private void consumeAutoZoomData(AutoZoomCaptureResult autoZoomCaptureResult) {
-        if (isAlive() && !this.mActivity.isActivityPaused()) {
+        if (isAlive() && !this.mActivity.isActivityPaused() && this.isAutoZoomTracking.get()) {
             this.mAutoZoomViewProtocol.feedData(autoZoomCaptureResult);
         }
     }
@@ -457,7 +462,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
                     Size size;
                     videoQuality = this.mQuality;
                     if (6 == videoQuality) {
-                        size = new Size(1920, ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_END_DEAULT);
+                        size = new Size(1920, 1080);
                     } else {
                         size = new Size(1280, Util.LIMIT_SURFACE_WIDTH);
                     }
@@ -595,13 +600,16 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
         return "normal".equals(this.mSpeed);
     }
 
-    /* JADX WARNING: Missing block: B:19:0x003e, code:
+    /* JADX WARNING: Missing block: B:21:0x004a, code:
+            return 0;
+     */
+    /* JADX WARNING: Missing block: B:22:0x004b, code:
             return 0;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     private int getHSRValue() {
         String string = DataRepository.dataItemConfig().getString(CameraSettings.KEY_CAMERA_HSR_VALUE, null);
-        if (string == null || string.isEmpty() || string.equals("off") || isBeautyOn() || CameraSettings.isVideoBokehOn() || ModuleManager.isFastMotionModule() || ModuleManager.isSlowMotionModule()) {
+        if (string == null || string.isEmpty() || string.equals("off") || isBeautyOn() || CameraSettings.isVideoBokehOn() || ModuleManager.isFastMotionModule() || ModuleManager.isSlowMotionModule() || DataRepository.dataItemRunning().isSwitchOn("pref_camera_auto_zoom")) {
             return 0;
         }
         return Integer.parseInt(string);
@@ -664,7 +672,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
     }
 
     protected void resizeForPreviewAspectRatio() {
-        if (((this.mCameraCapabilities.getSensorOrientation() - Util.getDisplayRotation(this.mActivity)) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % 180 == 0) {
+        if (((this.mCameraCapabilities.getSensorOrientation() - Util.getDisplayRotation(this.mActivity)) + 360) % 180 == 0) {
             this.mMainProtocol.setPreviewAspectRatio(((float) this.mVideoSize.height) / ((float) this.mVideoSize.width));
         } else {
             this.mMainProtocol.setPreviewAspectRatio(((float) this.mVideoSize.width) / ((float) this.mVideoSize.height));
@@ -713,6 +721,9 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
             this.mCamera2Device.setErrorCallback(this.mErrorCallback);
             this.mCamera2Device.setPictureSize(this.mPreviewSize);
             this.mCamera2Device.setVideoSnapshotSize(this.mPictureSize);
+            if (this.mAELockOnlySupported) {
+                this.mCamera2Device.setFocusCallback(this);
+            }
             int operatingMode = getOperatingMode();
             Log.d(TAG, String.format("startRecordSession: operatingMode = 0x%x", new Object[]{Integer.valueOf(operatingMode)}));
             this.mSurfaceCreatedTimestamp = this.mActivity.getCameraScreenNail().getSurfaceCreatedTimestamp();
@@ -1060,7 +1071,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
                 setParameterExtra(mediaRecorder, "param-use-64bit-offset=1");
             }
         }
-        if (!DataRepository.dataItemFeature().fk() || (normalVideoFrameRate <= 0 && recorderMaxFileSize != VIDEO_MAX_SINGLE_FILE_SIZE)) {
+        if (!DataRepository.dataItemFeature().fm() || (normalVideoFrameRate <= 0 && recorderMaxFileSize != VIDEO_MAX_SINGLE_FILE_SIZE)) {
             setSplitWhenReachMaxSize(false);
         } else {
             setSplitWhenReachMaxSize(true);
@@ -1080,7 +1091,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
         Class[] clsArr = new Class[]{MediaRecorder.class};
         Method method = Util.getMethod(clsArr, "setParameter", "(Ljava/lang/String;)V");
         if (method != null) {
-            method.invoke(clsArr[0], mediaRecorder, str);
+            method.invoke(clsArr[0], mediaRecorder, new Object[]{str});
         }
     }
 
@@ -1111,7 +1122,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
                 leftSpace = j;
             }
         }
-        if (leftSpace > VIDEO_MAX_SINGLE_FILE_SIZE && DataRepository.dataItemFeature().fk()) {
+        if (leftSpace > VIDEO_MAX_SINGLE_FILE_SIZE && DataRepository.dataItemFeature().fm()) {
             leftSpace = VIDEO_MAX_SINGLE_FILE_SIZE;
         } else if (leftSpace < VIDEO_MIN_SINGLE_FILE_SIZE) {
             leftSpace = VIDEO_MIN_SINGLE_FILE_SIZE;
@@ -1136,9 +1147,9 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
             return sensorOrientation;
         }
         if (isFrontCamera()) {
-            return ((sensorOrientation - this.mOrientation) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+            return ((sensorOrientation - this.mOrientation) + 360) % 360;
         }
-        return (sensorOrientation + this.mOrientation) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+        return (sensorOrientation + this.mOrientation) % 360;
     }
 
     private void releaseMediaRecorder() {
@@ -1438,10 +1449,12 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
                 this.mCountDownTimer.cancel();
             }
             RecordState recordState = (RecordState) ModeCoordinatorImpl.getInstance().getAttachProtocol(212);
-            if (this.mMediaRecorderPostProcessing) {
-                recordState.onPostSavingStart();
-            } else {
-                recordState.onFinish();
+            if (recordState != null) {
+                if (this.mMediaRecorderPostProcessing) {
+                    recordState.onPostSavingStart();
+                } else {
+                    recordState.onFinish();
+                }
             }
             if (this.mCamera2Device == null || ModuleManager.isVideoNewSlowMotion()) {
                 j = currentTimeMillis;
@@ -1666,7 +1679,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
         File file3 = new File(Storage.generatePrimaryFilepath(file.getName()));
         Object obj = null;
         try {
-            if (VideoInterpolator.doDecodeAndEncodeSync(file.getAbsolutePath(), file2.getAbsolutePath(), DataRepository.dataItemFeature().fB()) && file2.renameTo(file3)) {
+            if (VideoInterpolator.doDecodeAndEncodeSync(file.getAbsolutePath(), file2.getAbsolutePath(), DataRepository.dataItemFeature().fD()) && file2.renameTo(file3)) {
                 obj = 1;
             }
             if (isDump960Orig()) {
@@ -1777,8 +1790,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
         if (!isDeviceAlive()) {
             return;
         }
-        if (CameraSettings.isVideoBokehOn() && isFrontCamera()) {
-            Log.d(TAG, "videoStabilization: disabled EIS and OIS when VIDEO_BOKEH is opened");
+        if (needDisableEISAndOIS()) {
             this.mCamera2Device.setEnableEIS(false);
             this.mCamera2Device.setEnableOIS(false);
             this.mActivity.getCameraScreenNail().setVideoStabilizationCropped(false);
@@ -1796,6 +1808,18 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
             this.mCamera2Device.setEnableEIS(false);
             this.mCamera2Device.setEnableOIS(true);
             this.mActivity.getCameraScreenNail().setVideoStabilizationCropped(false);
+        }
+    }
+
+    private boolean needDisableEISAndOIS() {
+        if (CameraSettings.isVideoBokehOn() && isFrontCamera()) {
+            Log.d(TAG, "videoStabilization: disabled EIS and OIS when VIDEO_BOKEH is opened");
+            return true;
+        } else if (!DataRepository.dataItemRunning().isSwitchOn("pref_camera_auto_zoom")) {
+            return false;
+        } else {
+            Log.d(TAG, "videoStabilization: disabled EIS and OIS when AutoZoom is opened");
+            return true;
         }
     }
 
@@ -1836,11 +1860,11 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
         }
     }
 
-    public void onSingleTapUp(int i, int i2) {
-        if (!this.mPaused && this.mCamera2Device != null && this.mCamera2Device.isSessionReady() && !this.mSnapshotInProgress && isInTapableRect(i, i2) && !this.isAutoZoomTracking.get()) {
+    public void onSingleTapUp(int i, int i2, boolean z) {
+        if (!this.mPaused && this.mCamera2Device != null && this.mCamera2Device.isSessionReady() && !this.mSnapshotInProgress && isInTapableRect(i, i2)) {
             if (!isFrameAvailable()) {
                 Log.w(TAG, "onSingleTapUp: frame not available");
-            } else if ((!isFrontCamera() || !this.mActivity.isScreenSlideOff()) && !((BackStack) ModeCoordinatorImpl.getInstance().getAttachProtocol(171)).handleBackStackFromTapDown(i, i2)) {
+            } else if ((!isFrontCamera() || !this.mActivity.isScreenSlideOff()) && !((BackStack) ModeCoordinatorImpl.getInstance().getAttachProtocol(171)).handleBackStackFromTapDown(i, i2) && !this.isAutoZoomTracking.get()) {
                 if (this.mObjectTrackingStarted) {
                     stopObjectTracking(false);
                 }
@@ -1849,7 +1873,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
                 this.mTouchFocusStartingTime = System.currentTimeMillis();
                 Point point = new Point(i, i2);
                 mapTapCoordinate(point);
-                this.mFocusManager.onSingleTapUp(point.x, point.y);
+                this.mFocusManager.onSingleTapUp(point.x, point.y, z);
             }
         }
     }
@@ -1863,7 +1887,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
     }
 
     public boolean onGestureTrack(RectF rectF, boolean z) {
-        if (this.mInStartingFocusRecording || !isBackCamera() || !b.gy() || CameraSettings.is4KHigherVideoQuality(this.mQuality) || isCaptureIntent()) {
+        if (this.mInStartingFocusRecording || !isBackCamera() || !b.gH() || CameraSettings.is4KHigherVideoQuality(this.mQuality) || isCaptureIntent()) {
             return false;
         }
         return initializeObjectTrack(rectF, z);
@@ -1904,7 +1928,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
             this.mCamera2Device.setGpsLocation(currentLocation);
             setJpegQuality();
             updateFrontMirror();
-            if (!b.hc()) {
+            if (!b.hl()) {
                 this.mActivity.getCameraScreenNail().animateCapture(getCameraRotation());
             }
             Log.v(TAG, "capture: start");
@@ -2025,7 +2049,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
                     break;
                 case 9:
                     String str;
-                    if (b.gw() && (isHFRMode() || isSlowMode())) {
+                    if (b.gF() && (isHFRMode() || isSlowMode())) {
                         str = "0";
                     } else {
                         str = CameraSettings.getAntiBanding();
@@ -2103,14 +2127,16 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
 
     private void updateAutoZoomMode() {
         boolean isSwitchOn = DataRepository.dataItemRunning().isSwitchOn("pref_camera_auto_zoom");
-        this.mCamera2Device.setAutoZoomMode(isSwitchOn);
-        if (isSwitchOn) {
-            this.mCamera2Device.setAutoZoomScaleOffset(0.0f);
+        if (this.mCamera2Device != null && isAlive()) {
+            this.mCamera2Device.setAutoZoomMode(isSwitchOn);
+            if (isSwitchOn) {
+                this.mCamera2Device.setAutoZoomScaleOffset(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            }
         }
     }
 
     private void updateFrontMirror() {
-        boolean z = isFrontCamera() && CameraSettings.isFrontMirror();
+        boolean z = isFrontCamera() && DataRepository.dataItemFeature().ft() && CameraSettings.isFrontMirror();
         this.mCamera2Device.setFrontMirror(z);
     }
 
@@ -2126,7 +2152,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
         stringBuilder.append(optimalVideoSnapshotPictureSize.toString());
         Log.d(str, stringBuilder.toString());
         int i3 = Integer.MAX_VALUE;
-        if (b.gV()) {
+        if (b.he()) {
             i3 = optimalVideoSnapshotPictureSize.width;
             i = optimalVideoSnapshotPictureSize.height;
         } else {
@@ -2237,51 +2263,57 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
     }
 
     public void startAutoZoom() {
+        this.isShowOrHideUltraWideHint.getAndSet(true);
         this.isAutoZoomTracking.getAndSet(false);
         this.mHandler.post(new Runnable() {
             public void run() {
                 if (VideoModule.this.mAutoZoomViewProtocol != null) {
                     VideoModule.this.mAutoZoomViewProtocol.onAutoZoomStarted();
                 }
-                VideoModule.this.notifyAutoZoomStartUiHint();
             }
         });
+        notifyAutoZoomStartUiHint();
     }
 
     public void stopAutoZoom() {
+        this.isShowOrHideUltraWideHint.getAndSet(false);
         this.isAutoZoomTracking.getAndSet(false);
         this.mHandler.post(new Runnable() {
             public void run() {
                 if (VideoModule.this.mAutoZoomViewProtocol != null) {
                     VideoModule.this.mAutoZoomViewProtocol.onAutoZoomStopped();
                 }
-                VideoModule.this.notifyAutoZoomStopUiHint();
             }
         });
+        notifyAutoZoomStopUiHint();
     }
 
     public void startTracking(RectF rectF) {
-        this.mTopAlert.alertAiDetectTipHint(4, 0, 0);
-        if (!(this.mAutoZoomUiDisposable == null || this.mAutoZoomUiDisposable.isDisposed())) {
-            this.mAutoZoomUiDisposable.dispose();
-            this.mAutoZoomUiDisposable = null;
+        if (this.mCamera2Device != null && isAlive()) {
+            this.mTopAlert.alertAiDetectTipHint(4, 0, 0);
+            notifyAutoZoomStopUiHint();
+            this.mCamera2Device.setAutoZoomStopCapture(-1);
+            this.mCamera2Device.setAutoZoomStartCapture(new float[]{rectF.left, rectF.top, rectF.width(), rectF.height()});
+            this.mCamera2Device.setAutoZoomStartCapture(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO});
+            this.isAutoZoomTracking.getAndSet(true);
+            CameraStatUtil.trackSelectObject(this.mMediaRecorderRecording);
         }
-        this.mCamera2Device.setAutoZoomStopCapture(-1);
-        this.mCamera2Device.setAutoZoomStartCapture(new float[]{rectF.left, rectF.top, rectF.width(), rectF.height()});
-        this.mCamera2Device.setAutoZoomStartCapture(new float[]{0.0f, 0.0f, 0.0f, 0.0f});
-        this.isAutoZoomTracking.getAndSet(true);
-        CameraStatUtil.trackSelectObject(this.mMediaRecorderRecording);
     }
 
     public void stopTracking(int i) {
         if (this.isAutoZoomTracking.get()) {
             this.isAutoZoomTracking.getAndSet(false);
-            if (this.mCamera2Device != null) {
+            if (this.mCamera2Device != null && isAlive()) {
                 this.mCamera2Device.setAutoZoomStopCapture(0);
                 this.mCamera2Device.setAutoZoomStopCapture(-1);
             }
             this.mAutoZoomViewProtocol.onTrackingStopped(i);
         }
+        notifyAutoZoomStartUiHint();
+    }
+
+    public void onTrackLost() {
+        notifyAutoZoomStartUiHint();
     }
 
     public void setAutoZoomMode(int i) {
@@ -2289,19 +2321,22 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
     }
 
     public void setAutoZoomStartCapture(RectF rectF) {
-        this.mCamera2Device.setAutoZoomStartCapture(new float[]{rectF.left, rectF.top, rectF.right, rectF.bottom});
+        if (this.mCamera2Device != null && isAlive()) {
+            this.mCamera2Device.setAutoZoomStartCapture(new float[]{rectF.left, rectF.top, rectF.width(), rectF.height()});
+        }
     }
 
     public void setAutoZoomStopCapture(int i) {
-        this.mCamera2Device.setAutoZoomStopCapture(i);
+        if (this.mCamera2Device != null && isAlive()) {
+            this.mCamera2Device.setAutoZoomStopCapture(i);
+        }
     }
 
     private void notifyAutoZoomStartUiHint() {
-        this.mAutoZoomUiDisposable = Observable.timer(1000, TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Long>() {
+        notifyAutoZoomStopUiHint();
+        this.mAutoZoomUiDisposable = Observable.timer(FragmentTopAlert.HINT_DELAY_TIME, TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Long>() {
             public void accept(Long l) throws Exception {
-                if (!VideoModule.this.isAutoZoomTracking.get()) {
-                    VideoModule.this.mTopAlert.alertAiDetectTipHint(0, R.string.autozoom_click_hint, -1);
-                }
+                VideoModule.this.mTopAlert.alertAiDetectTipHint(0, R.string.autozoom_click_hint, -1);
             }
         });
     }
@@ -2350,7 +2385,7 @@ public class VideoModule extends VideoBase implements OnErrorListener, OnInfoLis
             if (!(this.mCameraCapabilities.isSupportVideoBeauty() && isBeautyOn())) {
                 i = this.mQuality == 0 ? 0 : isEisOn() ? 32772 : 61456;
             }
-            if (CameraSettings.isFovcEnabled()) {
+            if (this.mCameraCapabilities.isFovcSupported()) {
                 if (i != 0) {
                     z = true;
                 }

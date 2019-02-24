@@ -8,7 +8,6 @@ import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraCaptureSession;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
-import android.provider.MiuiSettings.ScreenEffect;
 import android.support.annotation.MainThread;
 import android.telephony.TelephonyManager;
 import android.util.Range;
@@ -225,7 +224,7 @@ public class FunModule extends VideoBase implements FilterProtocol, StickerProto
     }
 
     protected void resizeForPreviewAspectRatio() {
-        if (((this.mCameraCapabilities.getSensorOrientation() - Util.getDisplayRotation(this.mActivity)) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % 180 == 0) {
+        if (((this.mCameraCapabilities.getSensorOrientation() - Util.getDisplayRotation(this.mActivity)) + 360) % 180 == 0) {
             this.mMainProtocol.setPreviewAspectRatio(((float) this.mPreviewSize.height) / ((float) this.mPreviewSize.width));
         } else {
             this.mMainProtocol.setPreviewAspectRatio(((float) this.mPreviewSize.width) / ((float) this.mPreviewSize.height));
@@ -280,6 +279,9 @@ public class FunModule extends VideoBase implements FilterProtocol, StickerProto
             this.mSurfaceCreatedTimestamp = this.mActivity.getCameraScreenNail().getSurfaceCreatedTimestamp();
             this.mCamera2Device.startPreviewSession(new Surface(this.mActivity.getCameraScreenNail().getSurfaceTexture()), false, false, getOperatingMode(), false, this);
             this.mFocusManager.resetFocused();
+            if (this.mAELockOnlySupported) {
+                this.mCamera2Device.setFocusCallback(this);
+            }
             this.mPreviewing = true;
         }
     }
@@ -552,7 +554,7 @@ public class FunModule extends VideoBase implements FilterProtocol, StickerProto
         return false;
     }
 
-    public void onSingleTapUp(int i, int i2) {
+    public void onSingleTapUp(int i, int i2, boolean z) {
         if (!this.mPaused && this.mCamera2Device != null && this.mCamera2Device.isSessionReady() && !this.mSnapshotInProgress && isInTapableRect(i, i2)) {
             if (!isFrameAvailable()) {
                 Log.w(TAG, "onSingleTapUp: frame not available");
@@ -562,7 +564,7 @@ public class FunModule extends VideoBase implements FilterProtocol, StickerProto
                 Point point = new Point(i, i2);
                 mapTapCoordinate(point);
                 unlockAEAF();
-                this.mFocusManager.onSingleTapUp(point.x, point.y);
+                this.mFocusManager.onSingleTapUp(point.x, point.y, z);
             }
         }
     }
@@ -689,7 +691,7 @@ public class FunModule extends VideoBase implements FilterProtocol, StickerProto
         if (this.mCameraCapabilities.isSupportVideoBeauty() && isBeautyOn()) {
             return CameraCapabilities.SESSION_OPERATION_MODE_VIDEO_BEAUTY;
         }
-        if (DataRepository.dataItemFeature().fg()) {
+        if (DataRepository.dataItemFeature().fi()) {
             return CameraCapabilities.SESSION_OPERATION_MODE_MCTF;
         }
         return 0;

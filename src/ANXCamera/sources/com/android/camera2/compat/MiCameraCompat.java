@@ -10,7 +10,7 @@ public class MiCameraCompat {
     static final MiCameraCompatBaseImpl IMPL;
 
     static {
-        if (b.gq()) {
+        if (b.gz()) {
             IMPL = new MiCameraCompatQcomImpl();
         } else if (b.isMTKPlatform()) {
             IMPL = new MiCameraCompatMtkImpl();

@@ -16,7 +16,6 @@ import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
-import android.support.v7.widget.RecyclerView.ItemAnimator;
 import android.support.v7.widget.RecyclerView.ItemDecoration;
 import android.support.v7.widget.RecyclerView.OnScrollListener;
 import android.support.v7.widget.RecyclerView.State;
@@ -41,6 +40,7 @@ import com.android.camera.protocol.ModeProtocol.CameraAction;
 import com.android.camera.protocol.ModeProtocol.ConfigChanges;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
 import com.android.camera.statistic.CameraStatUtil;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import io.reactivex.Completable;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +74,7 @@ public class FragmentFilter extends BaseFragment implements OnClickListener {
 
         public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View inflate = this.mLayoutInflater.inflate(R.layout.effect_still_item, viewGroup, false);
-            ViewHolder effectStillItemHolder = new EffectStillItemHolder(inflate);
+            EffectStillItemHolder effectStillItemHolder = new EffectStillItemHolder(inflate);
             inflate.setOnClickListener(FragmentFilter.this);
             return effectStillItemHolder;
         }
@@ -162,7 +162,7 @@ public class FragmentFilter extends BaseFragment implements OnClickListener {
                     }, 100);
                 }
                 if (FragmentFilter.this.isAnimation) {
-                    ViewCompat.setAlpha(this.mSelectedIndicator, 0.0f);
+                    ViewCompat.setAlpha(this.mSelectedIndicator, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
                     ViewCompat.animate(this.mSelectedIndicator).setDuration(500).alpha(1.0f).setInterpolator(FragmentFilter.this.mCubicEaseOut).setListener(new ViewPropertyAnimatorListener() {
                         public void onAnimationStart(View view) {
                             EffectStillItemHolder.this.mSelectedIndicator.setVisibility(0);
@@ -183,7 +183,7 @@ public class FragmentFilter extends BaseFragment implements OnClickListener {
             this.itemView.setActivated(false);
             if (FragmentFilter.this.isAnimation && i == FragmentFilter.this.mLastIndex) {
                 ViewCompat.setAlpha(this.mSelectedIndicator, 1.0f);
-                ViewCompat.animate(this.mSelectedIndicator).setDuration(500).alpha(0.0f).setInterpolator(FragmentFilter.this.mCubicEaseOut).setListener(new ViewPropertyAnimatorListener() {
+                ViewCompat.animate(this.mSelectedIndicator).setDuration(500).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setInterpolator(FragmentFilter.this.mCubicEaseOut).setListener(new ViewPropertyAnimatorListener() {
                     public void onAnimationStart(View view) {
                     }
 
@@ -197,7 +197,7 @@ public class FragmentFilter extends BaseFragment implements OnClickListener {
                 return;
             }
             this.mSelectedIndicator.setVisibility(8);
-            this.mSelectedIndicator.setAlpha(0.0f);
+            this.mSelectedIndicator.setAlpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         }
     }
 
@@ -225,7 +225,7 @@ public class FragmentFilter extends BaseFragment implements OnClickListener {
                 FragmentFilter.this.isAnimation = false;
             }
         });
-        ItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setChangeDuration(150);
         defaultItemAnimator.setMoveDuration(150);
         defaultItemAnimator.setAddDuration(150);
@@ -421,9 +421,9 @@ public class FragmentFilter extends BaseFragment implements OnClickListener {
         canvas.setBitmap(createBitmap);
         Paint paint = new Paint();
         paint.setFilterBitmap(false);
-        canvas.drawBitmap(decodeResource, 0.0f, 0.0f, paint);
+        canvas.drawBitmap(decodeResource, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, paint);
         paint.setXfermode(new PorterDuffXfermode(Mode.SRC_IN));
-        canvas.drawBitmap(decodeResource2, 0.0f, 0.0f, paint);
+        canvas.drawBitmap(decodeResource2, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, paint);
         paint.setXfermode(null);
         imageView.setImageBitmap(createBitmap);
     }

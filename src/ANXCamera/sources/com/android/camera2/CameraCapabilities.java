@@ -17,10 +17,12 @@ import android.util.SizeF;
 import android.util.SparseArray;
 import com.android.camera.CameraSize;
 import com.android.camera.Util;
+import com.android.camera.constant.DurationConstant;
 import com.android.camera.constant.MiCameraCharacteristics;
 import com.android.camera.fragment.beauty.BeautyParameters.Type;
 import com.android.camera.log.Log;
 import com.android.camera.module.BaseModule;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera2.compat.MiCameraCompat;
 import com.android.camera2.compat.MiCameraCompatBaseImpl;
 import com.mi.config.b;
@@ -70,7 +72,7 @@ public class CameraCapabilities {
     public static final Map<Integer, Size> ULTRA_PIXEL_SIZE_LIST = new HashMap<Integer, Size>() {
         {
             put(Integer.valueOf(CameraCapabilities.ULTRA_PIXEL_32M), new Size(6560, 4920));
-            put(Integer.valueOf(CameraCapabilities.ULTRA_PIXEL_48M), new Size(BaseModule.LENS_DIRTY_DETECT_HINT_DURATION, 6000));
+            put(Integer.valueOf(CameraCapabilities.ULTRA_PIXEL_48M), new Size(BaseModule.LENS_DIRTY_DETECT_HINT_DURATION, DurationConstant.DURATION_LANDSCAPE_HINT));
         }
     };
     private static final List<Key<StreamConfiguration[]>> ULTRA_PIXEL_STREAM_CONFIGURATIONS_VENDOR_KEYS = new ArrayList<Key<StreamConfiguration[]>>(3) {
@@ -165,7 +167,7 @@ public class CameraCapabilities {
 
     public boolean isAFRegionSupported() {
         Float f = (Float) this.mCharacteristics.get(CameraCharacteristics.LENS_INFO_MINIMUM_FOCUS_DISTANCE);
-        return f != null && f.floatValue() > 0.0f;
+        return f != null && f.floatValue() > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
     }
 
     public boolean isSupportedQcfa() {
@@ -198,11 +200,11 @@ public class CameraCapabilities {
 
     public float getMinimumFocusDistance() {
         Float f = (Float) this.mCharacteristics.get(CameraCharacteristics.LENS_INFO_MINIMUM_FOCUS_DISTANCE);
-        return f != null ? f.floatValue() : 0.0f;
+        return f != null ? f.floatValue() : PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
     }
 
     public boolean isFixedFocus() {
-        return getMinimumFocusDistance() > 0.0f;
+        return getMinimumFocusDistance() > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
     }
 
     public boolean isFaceDetectionSupported() {
@@ -442,7 +444,7 @@ public class CameraCapabilities {
             SizeF sizeF = (SizeF) this.mCharacteristics.get(CameraCharacteristics.SENSOR_INFO_PHYSICAL_SIZE);
             if (sizeF != null) {
                 float height = z ? sizeF.getHeight() : sizeF.getWidth();
-                if (height > 0.0f) {
+                if (height > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
                     height = (float) (2.0d * Math.toDegrees(Math.atan((0.5d * ((double) height)) / ((double) f))));
                     String str = TAG;
                     Locale locale = Locale.US;
@@ -705,5 +707,52 @@ public class CameraCapabilities {
 
     public boolean isBackwardCaptureSupported() {
         return this.mCaptureRequestVendorKeys != null && this.mCaptureRequestVendorKeys.contains(MiCameraCompatBaseImpl.XIAOMI_BACKWARD_CAPTURE_HINT.getName());
+    }
+
+    public int getScreenLightBrightness() {
+        if (this.mCaptureRequestVendorKeys == null || !this.mCaptureRequestVendorKeys.contains(MiCameraCharacteristics.SCREEN_LIGHT_BRIGHTNESS.getName())) {
+            return -1;
+        }
+        int intValue = ((Integer) this.mCharacteristics.get(MiCameraCharacteristics.SCREEN_LIGHT_BRIGHTNESS)).intValue();
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Screen light brightness: ");
+        stringBuilder.append(intValue);
+        Log.d(str, stringBuilder.toString());
+        return intValue;
+    }
+
+    public boolean isMFNRBokehSupported() {
+        boolean z = false;
+        if (this.mCaptureRequestVendorKeys == null || !this.mCaptureRequestVendorKeys.contains(MiCameraCharacteristics.MFNR_BOKEH_SUPPORTED.getName())) {
+            return false;
+        }
+        Byte b = (Byte) this.mCharacteristics.get(MiCameraCharacteristics.MFNR_BOKEH_SUPPORTED);
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("isMFNRBokehSupported: ");
+        stringBuilder.append(b);
+        Log.d(str, stringBuilder.toString());
+        if (b != null && b.byteValue() == (byte) 1) {
+            z = true;
+        }
+        return z;
+    }
+
+    public boolean isFovcSupported() {
+        boolean z = false;
+        if (this.mCaptureRequestVendorKeys == null || !this.mCaptureRequestVendorKeys.contains(MiCameraCharacteristics.FOVC_SUPPORTED.getName())) {
+            return false;
+        }
+        Byte b = (Byte) this.mCharacteristics.get(MiCameraCharacteristics.FOVC_SUPPORTED);
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("isFovcSupported: ");
+        stringBuilder.append(b);
+        Log.d(str, stringBuilder.toString());
+        if (b != null && b.byteValue() == (byte) 1) {
+            z = true;
+        }
+        return z;
     }
 }

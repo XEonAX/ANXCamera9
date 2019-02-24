@@ -35,6 +35,7 @@ import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
 import com.android.camera.protocol.ModeProtocol.TopAlert;
 import com.android.camera.ui.ToggleSwitch;
 import com.android.camera.ui.ToggleSwitch.OnCheckedChangeListener;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.mi.config.b;
 import io.reactivex.Completable;
 import java.util.List;
@@ -81,7 +82,7 @@ public class FragmentTopAlert extends BaseFragment {
         public void run() {
             FragmentTopAlert.this.updateAiSceneSelectViewMargin();
             if (FragmentTopAlert.this.mAiSceneSelectView.getVisibility() == 8) {
-                ViewCompat.setAlpha(FragmentTopAlert.this.mAiSceneSelectView, 0.0f);
+                ViewCompat.setAlpha(FragmentTopAlert.this.mAiSceneSelectView, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
                 FragmentTopAlert.this.mAiSceneSelectView.setVisibility(0);
                 FragmentTopAlert.this.transViewAnim(FragmentTopAlert.this.mAlertStatusValue, FragmentTopAlert.this.getViewBottom(FragmentTopAlert.this.mAiSceneSelectView));
                 ViewCompat.animate(FragmentTopAlert.this.mAiSceneSelectView).setInterpolator(new CubicEaseOutInterpolator()).alpha(1.0f).setDuration(400).start();
@@ -136,7 +137,7 @@ public class FragmentTopAlert extends BaseFragment {
         }
         this.mLayoutTransition = customTransition();
         this.mAlertLiearLayout.setLayoutTransition(this.mLayoutTransition);
-        ViewCompat.setAlpha(this.mAlertRecordingText, 0.0f);
+        ViewCompat.setAlpha(this.mAlertRecordingText, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         updateAlertStatusView(false);
         if (sPendingRecordingTimeState != 0) {
             setRecordingTimeState(sPendingRecordingTimeState);
@@ -240,7 +241,7 @@ public class FragmentTopAlert extends BaseFragment {
                 return;
             case 3:
                 if (this.mBlingAnimation == null) {
-                    this.mBlingAnimation = new AlphaAnimation(1.0f, 0.0f);
+                    this.mBlingAnimation = new AlphaAnimation(1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
                     this.mBlingAnimation.setDuration(400);
                     this.mBlingAnimation.setStartOffset(100);
                     this.mBlingAnimation.setInterpolator(new DecelerateInterpolator());
@@ -310,7 +311,7 @@ public class FragmentTopAlert extends BaseFragment {
             }
             if (this.mAlertImageType != i3) {
                 this.mAlertImageType = i3;
-                if (CameraSettings.isFrontCamera() && b.hF()) {
+                if (CameraSettings.isFrontCamera() && b.hO()) {
                     z = false;
                 }
                 this.mAlertImageView.setImageResource(z ? R.drawable.ic_alert_flash_torch : R.drawable.ic_alert_flash);
@@ -373,10 +374,10 @@ public class FragmentTopAlert extends BaseFragment {
                     configChanges.onConfigChanged(249);
                 }
             }
-        } : null);
+        } : null, true, false);
     }
 
-    public void alertMoonSelector(String str, String str2, int i, int i2) {
+    public void alertMoonSelector(String str, String str2, int i, int i2, boolean z) {
         alertAiSceneSelector(str, str2, i, i2, i == 0 ? new OnCheckedChangeListener() {
             public void onCheckedChanged(ToggleSwitch toggleSwitch, boolean z) {
                 ConfigChanges configChanges = (ConfigChanges) ModeCoordinatorImpl.getInstance().getAttachProtocol(164);
@@ -388,17 +389,17 @@ public class FragmentTopAlert extends BaseFragment {
                     configChanges.onConfigChanged(247);
                 }
             }
-        } : null);
+        } : null, false, z);
     }
 
-    private void alertAiSceneSelector(String str, String str2, int i, int i2, OnCheckedChangeListener onCheckedChangeListener) {
+    private void alertAiSceneSelector(String str, String str2, int i, int i2, OnCheckedChangeListener onCheckedChangeListener, boolean z, boolean z2) {
         if (!(TextUtils.isEmpty(str) || TextUtils.isEmpty(str2))) {
             this.mAiSceneSelectView.setTextOnAndOff(str, str2);
         }
         if (i == 0) {
             this.mSelectorTopMargin = i2;
             long currentTimeMillis = HINT_DELAY_TIME - (System.currentTimeMillis() - this.mAlertAiSceneSwitchHintTime);
-            if (CameraSettings.getShaderEffect() == FilterInfo.FILTER_ID_NONE) {
+            if (CameraSettings.getShaderEffect() == FilterInfo.FILTER_ID_NONE || !z) {
                 ToggleSwitch toggleSwitch = this.mAiSceneSelectView;
                 Runnable runnable = this.mShowAction;
                 if (currentTimeMillis < 0) {
@@ -410,13 +411,13 @@ public class FragmentTopAlert extends BaseFragment {
             this.mAiSceneSelectView.removeCallbacks(this.mShowAction);
             if (this.mAiSceneSelectView.getVisibility() == 0) {
                 ViewCompat.setAlpha(this.mAiSceneSelectView, 1.0f);
-                ViewCompat.animate(this.mAiSceneSelectView).setInterpolator(new CubicEaseOutInterpolator()).alpha(0.0f).setDuration(400).start();
+                ViewCompat.animate(this.mAiSceneSelectView).setInterpolator(new CubicEaseOutInterpolator()).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setDuration(400).start();
                 this.mAiSceneSelectView.setVisibility(8);
                 transViewAnim(this.mAlertStatusValue, getStateTextTopMargin(i2, this.mStateValueTextFromLighting));
             }
         }
         this.mAiSceneSelectView.setOnCheckedChangeListener(onCheckedChangeListener);
-        this.mAiSceneSelectView.setChecked(false);
+        this.mAiSceneSelectView.setChecked(z2);
     }
 
     public void alertSwitchHint(int i, String str, int i2) {
@@ -458,12 +459,17 @@ public class FragmentTopAlert extends BaseFragment {
                 this.mStateValueText = stringBuilder.toString();
             }
             updateStateText(i2, false);
+            updateMusicHint();
         }
     }
 
     public void alertTopMusicHint(int i, String str, int i2) {
         this.mLiveMusicHintLayout.setVisibility(i);
-        setViewMargin(this.mLiveMusicHintLayout, getStateTextTopMargin(i2, false));
+        i2 = getStateTextTopMargin(i2, false);
+        if (getUpdateZoom() != null) {
+            i2 = getViewBottom(this.mAlertStatusValue);
+        }
+        setViewMargin(this.mLiveMusicHintLayout, i2);
         if (i == 0) {
             this.mLiveMusiHintText.setText(str);
         }
@@ -652,7 +658,7 @@ public class FragmentTopAlert extends BaseFragment {
         MarginLayoutParams marginLayoutParams = (MarginLayoutParams) view.getLayoutParams();
         marginLayoutParams.topMargin = i;
         view.setLayoutParams(marginLayoutParams);
-        ViewCompat.setTranslationY(view, 0.0f);
+        ViewCompat.setTranslationY(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
     }
 
     private int getAlertImageBottom() {
@@ -705,7 +711,7 @@ public class FragmentTopAlert extends BaseFragment {
         if (Math.abs(readExposure) <= 0.05f || b.isSupportedPortrait()) {
             return null;
         }
-        String str = readExposure < 0.0f ? "-" : "+";
+        String str = readExposure < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO ? "-" : "+";
         return String.format(Locale.ENGLISH, "%s %.1f", new Object[]{str, Float.valueOf(Math.abs(readExposure))});
     }
 
@@ -714,13 +720,9 @@ public class FragmentTopAlert extends BaseFragment {
         if (readZoom == 1.0f) {
             return null;
         }
-        int i = (int) readZoom;
-        int i2 = (int) ((readZoom - ((float) i)) * 10.0f);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("x ");
-        stringBuilder.append(i);
-        stringBuilder.append(".");
-        stringBuilder.append(i2);
+        stringBuilder.append(Util.retainDecimal(readZoom));
         return stringBuilder.toString();
     }
 

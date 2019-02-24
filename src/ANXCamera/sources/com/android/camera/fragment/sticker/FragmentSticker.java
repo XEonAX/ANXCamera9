@@ -84,10 +84,10 @@ public class FragmentSticker extends BaseFragment implements HandleBackTrace {
         this.mRadioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
                 switch (i) {
-                    case R.id.radio_button_sticker_one /*2131558551*/:
+                    case R.id.radio_button_sticker_one /*2131558552*/:
                         FragmentSticker.this.mViewPager.setCurrentItem(0, false);
                         break;
-                    case R.id.radio_button_sticker_two /*2131558552*/:
+                    case R.id.radio_button_sticker_two /*2131558553*/:
                         FragmentSticker.this.mViewPager.setCurrentItem(1, false);
                         break;
                 }

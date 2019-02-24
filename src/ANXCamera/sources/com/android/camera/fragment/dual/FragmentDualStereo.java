@@ -53,4 +53,7 @@ public class FragmentDualStereo extends BaseFragment implements OnClickListener,
 
     public void showZoomButton() {
     }
+
+    public void hideSlideView() {
+    }
 }

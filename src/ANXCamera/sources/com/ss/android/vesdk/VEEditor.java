@@ -7,8 +7,6 @@ import android.graphics.SurfaceTexture.OnFrameAvailableListener;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.internal.view.SupportMenu;
-import android.support.v4.view.ViewCompat;
 import android.text.TextUtils;
 import android.view.Surface;
 import android.view.SurfaceHolder;
@@ -17,6 +15,7 @@ import android.view.SurfaceView;
 import android.view.TextureView;
 import android.view.TextureView.SurfaceTextureListener;
 import com.android.camera.CameraSettings;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.ss.android.medialib.FFMpegInvoker;
 import com.ss.android.ttve.common.TECommonCallback;
 import com.ss.android.ttve.common.TELogUtil;
@@ -35,6 +34,8 @@ import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class VEEditor implements OnFrameAvailableListener {
     private static final String AUDIO_VOLUME = "audio volume";
@@ -74,7 +75,7 @@ public class VEEditor implements OnFrameAvailableListener {
     private boolean mBCompileHighQualityGif = false;
     private boolean mBReversePlay = false;
     @ColorInt
-    private int mBackGroundColor = ViewCompat.MEASURED_STATE_MASK;
+    private int mBackGroundColor = -16777216;
     private boolean mCancelReverse = false;
     private int mColorFilterIndex = -1;
     private String mCompileType = "mp4";
@@ -137,6 +138,7 @@ public class VEEditor implements OnFrameAvailableListener {
     };
     private int mOutPoint;
     private String mOutputFile = null;
+    private ExecutorService mPool = Executors.newCachedThreadPool();
     private VEEditorResManager mResManager;
     private boolean mReverseDone = false;
     private Surface mSurface;
@@ -291,7 +293,7 @@ public class VEEditor implements OnFrameAvailableListener {
         public void run() {
             if (TextUtils.isEmpty(this.mInputFile) || TextUtils.isEmpty(this.mOutputFile) || this.mIsRunning) {
                 if (this.mCallback != null) {
-                    this.mCallback.onCallback(4103, VEResult.TER_BAD_FILE, 0.0f, "");
+                    this.mCallback.onCallback(4103, VEResult.TER_BAD_FILE, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, "");
                 }
                 return;
             }
@@ -300,7 +302,7 @@ public class VEEditor implements OnFrameAvailableListener {
             if (executeFFmpegCommand != 0) {
                 this.mIsRunning = false;
                 if (this.mCallback != null) {
-                    this.mCallback.onCallback(4103, executeFFmpegCommand, 0.0f, "");
+                    this.mCallback.onCallback(4103, executeFFmpegCommand, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, "");
                 }
                 return;
             }
@@ -312,7 +314,7 @@ public class VEEditor implements OnFrameAvailableListener {
             }
             int executeFFmpegCommand2 = TEVideoUtils.executeFFmpegCommand(format, null);
             if (this.mCallback != null) {
-                this.mCallback.onCallback(4103, executeFFmpegCommand2, 0.0f, "");
+                this.mCallback.onCallback(4103, executeFFmpegCommand2, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, "");
             }
             this.mIsRunning = false;
         }
@@ -329,7 +331,7 @@ public class VEEditor implements OnFrameAvailableListener {
     }
 
     public enum VEState {
-        ANY(SupportMenu.USER_MASK),
+        ANY(65535),
         ERROR(0),
         NOTHING(1048576),
         IDLE(1),
@@ -366,7 +368,7 @@ public class VEEditor implements OnFrameAvailableListener {
             if (i == 128) {
                 return COMPLETED;
             }
-            if (i == SupportMenu.USER_MASK) {
+            if (i == 65535) {
                 return ANY;
             }
             if (i == 1048576) {
@@ -449,7 +451,7 @@ public class VEEditor implements OnFrameAvailableListener {
         MonitorUtils.monitorStatistics("iesve_veeditor_composition_finish", 1, vEKeyValue);
     }
 
-    public VEEditor(String str) throws VEException {
+    public VEEditor(@NonNull String str) throws VEException {
         if (TextUtils.isEmpty(str)) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("workspace is: ");
@@ -461,7 +463,7 @@ public class VEEditor implements OnFrameAvailableListener {
         MonitorUtils.monitorStatistics("iesve_veeditor_offscreen", 1, null);
     }
 
-    public VEEditor(String str, SurfaceView surfaceView) {
+    public VEEditor(@NonNull String str, @NonNull SurfaceView surfaceView) {
         if (TextUtils.isEmpty(str)) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("workspace is: ");
@@ -475,7 +477,7 @@ public class VEEditor implements OnFrameAvailableListener {
         this.mVideoEditor.setOpenGLListeners(this.mOpenGLCallback);
     }
 
-    public VEEditor(String str, TextureView textureView) throws VEException {
+    public VEEditor(@NonNull String str, @NonNull TextureView textureView) throws VEException {
         if (TextUtils.isEmpty(str)) {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("workspace is: ");
@@ -542,7 +544,7 @@ public class VEEditor implements OnFrameAvailableListener {
         stringBuilder.append(" ");
         stringBuilder.append(i4);
         TELogUtil.i(str, stringBuilder.toString());
-        setDisplayState(((float) i3) / ((float) this.mInitDisplayWidth), ((float) i4) / ((float) this.mInitDisplayHeight), 0.0f, -(((this.mSurfaceWidth / 2) - (i3 / 2)) - i), ((this.mSurfaceHeight / 2) - (i4 / 2)) - i2);
+        setDisplayState(((float) i3) / ((float) this.mInitDisplayWidth), ((float) i4) / ((float) this.mInitDisplayHeight), PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, -(((this.mSurfaceWidth / 2) - (i3 / 2)) - i), ((this.mSurfaceHeight / 2) - (i4 / 2)) - i2);
     }
 
     public VESize getInitSize() {
@@ -566,7 +568,7 @@ public class VEEditor implements OnFrameAvailableListener {
         stringBuilder.append(" ");
         stringBuilder.append(i2);
         TELogUtil.i(str, stringBuilder.toString());
-        this.mVideoEditor.setDisplayState(f, f2, f3, 0.0f, i, i2, false);
+        this.mVideoEditor.setDisplayState(f, f2, f3, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, i, i2, false);
     }
 
     public Bitmap getCurrDisplayImage() {
@@ -904,6 +906,7 @@ public class VEEditor implements OnFrameAvailableListener {
     }
 
     public int genReverseVideo() throws VEException {
+        TELogUtil.d(TAG, "reverse...");
         if (this.mResManager.mVideoPaths == null || this.mResManager.mVideoPaths.length <= 0) {
             return -100;
         }
@@ -928,6 +931,46 @@ public class VEEditor implements OnFrameAvailableListener {
         }
         this.mReverseDone = true;
         return 0;
+    }
+
+    public void genReverseVideoAsync(@NonNull final VEReverseCallback vEReverseCallback) {
+        TELogUtil.d(TAG, "reverse async...");
+        this.mPool.execute(new Runnable() {
+            public void run() {
+                if (VEEditor.this.mResManager.mVideoPaths == null || VEEditor.this.mResManager.mVideoPaths.length <= 0) {
+                    TELogUtil.e(VEEditor.TAG, "reverse failed, invalid params!");
+                    vEReverseCallback.onReverseFinish(-100);
+                }
+                FFMpegInvoker fFMpegInvoker = new FFMpegInvoker();
+                VEEditor.this.mResManager.mReverseVideoPath = new String[VEEditor.this.mResManager.mVideoPaths.length];
+                for (int i = 0; i < VEEditor.this.mResManager.mVideoPaths.length; i++) {
+                    String genReverseVideoPath = VEEditor.this.mResManager.genReverseVideoPath(i);
+                    int addFastReverseVideo = fFMpegInvoker.addFastReverseVideo(VEEditor.this.mResManager.mVideoPaths[i], genReverseVideoPath);
+                    if (VEEditor.this.mCancelReverse) {
+                        TELogUtil.e(VEEditor.TAG, "reverse failed, reverse has been canceled");
+                        VEEditor.this.mCancelReverse = false;
+                        vEReverseCallback.onReverseFinish(-1);
+                    }
+                    if (addFastReverseVideo != 0) {
+                        try {
+                            StringBuilder stringBuilder = new StringBuilder();
+                            stringBuilder.append("reverse mResManager.mVideoPaths[i] failed: ");
+                            stringBuilder.append(addFastReverseVideo);
+                            throw new VEException(-1, stringBuilder.toString());
+                        } catch (VEException e) {
+                            String str = VEEditor.TAG;
+                            StringBuilder stringBuilder2 = new StringBuilder();
+                            stringBuilder2.append("reverse failed, result code: ");
+                            stringBuilder2.append(addFastReverseVideo);
+                            TELogUtil.e(str, stringBuilder2.toString());
+                        }
+                    }
+                    VEEditor.this.mResManager.mReverseVideoPath[i] = genReverseVideoPath;
+                }
+                VEEditor.this.mReverseDone = true;
+                vEReverseCallback.onReverseFinish(0);
+            }
+        });
     }
 
     public int cancelReverseVideo() {
@@ -1172,8 +1215,8 @@ public class VEEditor implements OnFrameAvailableListener {
         if (i < 0) {
             return -100;
         }
-        if (f < 0.0f) {
-            f = 0.0f;
+        if (f < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
+            f = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
         }
         if (f > 1.0f) {
             f = 1.0f;
@@ -1403,7 +1446,7 @@ public class VEEditor implements OnFrameAvailableListener {
         synchronized (this) {
             if (this.mColorFilterIndex < 0) {
                 return VEResult.TER_INVALID_STAT;
-            } else if (f < 0.0f || str == null) {
+            } else if (f < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO || str == null) {
                 return -100;
             } else {
                 if (f > 1.0f) {
@@ -1448,7 +1491,7 @@ public class VEEditor implements OnFrameAvailableListener {
         if (this.mColorFilterIndex < 0) {
             return VEResult.TER_INVALID_STAT;
         }
-        if (f2 < 0.0f || f < 0.0f || TextUtils.isEmpty(str) || TextUtils.isEmpty(str2)) {
+        if (f2 < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO || f < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO || TextUtils.isEmpty(str) || TextUtils.isEmpty(str2)) {
             return -100;
         }
         if (f2 > 1.0f) {
@@ -1996,7 +2039,7 @@ public class VEEditor implements OnFrameAvailableListener {
         return this.mVideoEditor.testSerialization();
     }
 
-    public static boolean checkFileExists(String str) {
+    private static boolean checkFileExists(String str) {
         if (TextUtils.isEmpty(str)) {
             return false;
         }

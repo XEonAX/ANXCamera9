@@ -316,7 +316,7 @@ public class ParseRDF implements XMPConst, XMPError {
         throw new XMPException("ParseTypeOther property element not allowed", 203);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:57:0x0101  */
+    /* JADX WARNING: Removed duplicated region for block: B:57:0x00fe  */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     private static void rdf_EmptyPropertyElement(XMPMetaImpl xMPMetaImpl, XMPNode xMPNode, Node node, boolean z) throws XMPException {
         XMPMetaImpl xMPMetaImpl2 = xMPMetaImpl;

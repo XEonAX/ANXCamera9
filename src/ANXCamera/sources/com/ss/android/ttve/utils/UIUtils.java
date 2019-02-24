@@ -9,7 +9,6 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build.VERSION;
 import android.os.Looper;
-import android.support.v4.view.ViewCompat;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -22,6 +21,7 @@ import android.view.ViewGroup.MarginLayoutParams;
 import android.view.ViewParent;
 import android.widget.TextView;
 import com.android.camera.constant.DurationConstant;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class UIUtils {
     public static final boolean API_ET_20 = (VERSION.SDK_INT > 19);
@@ -389,7 +389,7 @@ public class UIUtils {
         }
         int i;
         r2 = new int[2];
-        float[] fArr = new float[]{0.0f, 0.0f};
+        float[] fArr = new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO};
         fArr[0] = fArr[0] + ((float) view.getLeft());
         fArr[1] = fArr[1] + ((float) view.getTop());
         Object parent = view.getParent();
@@ -420,7 +420,7 @@ public class UIUtils {
         } else if (i2 < 0) {
             i2 = 0;
         }
-        return (i & ViewCompat.MEASURED_SIZE_MASK) | (i2 * ViewCompat.MEASURED_STATE_TOO_SMALL);
+        return (i & 16777215) | (i2 * 16777216);
     }
 
     public static void ellipseSingleLineStr(String str, int i, Paint paint, int i2, EllipsisMeasureResult ellipsisMeasureResult) {

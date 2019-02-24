@@ -2,6 +2,7 @@ package com.android.camera.effect;
 
 import android.graphics.Bitmap;
 import com.android.camera.log.Log;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.miui.filtersdk.beauty.BeautyParameterType;
 import com.miui.filtersdk.beauty.IntelligentBeautyProcessor;
 import java.util.Locale;
@@ -19,7 +20,7 @@ public class ArcsoftBeautyProcessor extends IntelligentBeautyProcessor {
 
     public ArcsoftBeautyProcessor() {
         setExtraSpan(2.0f);
-        this.mLevelParameters = new float[][]{new float[]{0.0f, 0.0f, 0.0f, 0.0f}, new float[]{1.0f, 1.0f, 1.0f, 1.0f}, new float[]{3.0f, 3.0f, 3.0f, 3.0f}, new float[]{5.0f, 5.0f, 5.0f, 5.0f}, new float[]{7.0f, 7.0f, 7.0f, 7.0f}, new float[]{8.0f, 8.0f, 8.0f, 8.0f}};
+        this.mLevelParameters = new float[][]{new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO}, new float[]{1.0f, 1.0f, 1.0f, 1.0f}, new float[]{3.0f, 3.0f, 3.0f, 3.0f}, new float[]{5.0f, 5.0f, 5.0f, 5.0f}, new float[]{7.0f, 7.0f, 7.0f, 7.0f}, new float[]{8.0f, 8.0f, 8.0f, 8.0f}};
     }
 
     public void clearBeautyParameters() {
@@ -39,7 +40,7 @@ public class ArcsoftBeautyProcessor extends IntelligentBeautyProcessor {
             case SHRINK_FACE_RATIO:
             case WHITEN_STRENGTH:
             case SMOOTH_STRENGTH:
-                return new float[]{0.0f, CAMERA_BEAUTY_PARAM_MAX};
+                return new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 10.0f};
             default:
                 return new float[0];
         }
@@ -58,7 +59,7 @@ public class ArcsoftBeautyProcessor extends IntelligentBeautyProcessor {
     }
 
     private void updateBeautyParameter(BeautyParameterType beautyParameterType, Float f) {
-        int degreeByValue = getDegreeByValue(beautyParameterType, f != null ? f.floatValue() : 0.0f);
+        int degreeByValue = getDegreeByValue(beautyParameterType, f != null ? f.floatValue() : PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         switch (beautyParameterType) {
             case ENLARGE_EYE_RATIO:
                 this.mEnlargeEyeRatio = degreeByValue;
@@ -86,7 +87,7 @@ public class ArcsoftBeautyProcessor extends IntelligentBeautyProcessor {
         if (supportedParamRange.length < 2) {
             return Math.round(f);
         }
-        return Math.round(((f - supportedParamRange[0]) / supportedParamRange[1]) * CAMERA_BEAUTY_PARAM_MAX);
+        return Math.round(((f - supportedParamRange[0]) / supportedParamRange[1]) * 10.0f);
     }
 
     public void beautify(int i, int i2, int i3, int i4) {

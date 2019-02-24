@@ -23,6 +23,7 @@ import com.android.camera.module.loader.camera2.Camera2DataContainer;
 import com.android.camera.ui.HorizontalSlideView;
 import com.android.camera.ui.HorizontalSlideView.HorizontalDrawAdapter;
 import com.android.camera.ui.HorizontalSlideView.OnPositionSelectListener;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class ExtraSlideZoomAdapter extends HorizontalDrawAdapter implements OnPositionSelectListener {
     private static final int ENTRY_COUNT_1X_TO_2X = 11;
@@ -33,7 +34,7 @@ public class ExtraSlideZoomAdapter extends HorizontalDrawAdapter implements OnPo
     private static final int ENTRY_INDEX_MAX = 47;
     private static final int[] sTextActivatedColorState = new int[]{16843518};
     private static final int[] sTextDefaultColorState = new int[]{0};
-    private static float[] sX = new float[]{0.0f, 10.0f, 12.0f, 20.0f, 25.0f, 27.0f, 29.0f, 30.0f, 32.0f, 35.0f};
+    private static float[] sX = new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 10.0f, 12.0f, 20.0f, 25.0f, 27.0f, 29.0f, 30.0f, 32.0f, 35.0f};
     private static float[] sY = new float[]{1.0f, 2.0f, 2.2f, 3.7f, 5.1f, 5.8f, 6.6f, 7.0f, 8.0f, 10.0f};
     private int ENTRY_INDEX_TELE_REAL = 10;
     private ComponentData mComponentData;
@@ -85,7 +86,7 @@ public class ExtraSlideZoomAdapter extends HorizontalDrawAdapter implements OnPo
         this.mEntries = r11;
         this.mEntryLayouts = new StaticLayout[this.mEntries.length];
         while (i2 < this.mEntries.length) {
-            this.mEntryLayouts[i2] = new StaticLayout(this.mEntries[i2], this.mTextPaint, Util.sWindowWidth, Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.mEntryLayouts[i2] = new StaticLayout(this.mEntries[i2], this.mTextPaint, Util.sWindowWidth, Alignment.ALIGN_NORMAL, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, false);
             i2++;
         }
         int zoomRatioTeleReal = Camera2DataContainer.getInstance().getCurrentCameraCapabilities().getZoomRatioTeleReal();
@@ -167,7 +168,7 @@ public class ExtraSlideZoomAdapter extends HorizontalDrawAdapter implements OnPo
     private void drawText(int i, Canvas canvas) {
         float lineAscent = (float) (this.mEntryLayouts[i].getLineAscent(0) - this.mEntryLayouts[i].getLineDescent(0));
         canvas.save();
-        canvas.translate(0.0f, lineAscent / 2.0f);
+        canvas.translate(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, lineAscent / 2.0f);
         this.mEntryLayouts[i].draw(canvas);
         canvas.restore();
     }
@@ -193,10 +194,10 @@ public class ExtraSlideZoomAdapter extends HorizontalDrawAdapter implements OnPo
             colorForState = this.mLineColorDefault;
         }
         paint.setColor(colorForState);
-        canvas.drawLine(0.0f, -this.mLineHalfHeight, 0.0f, this.mLineHalfHeight, this.mPaint);
+        canvas.drawLine(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, -this.mLineHalfHeight, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, this.mLineHalfHeight, this.mPaint);
         if (i == this.ENTRY_INDEX_TELE_REAL) {
             this.mPaint.setColor(z ? this.mDotColorActivated : this.mLineColorDefault);
-            canvas.drawCircle(0.0f, ((-this.mLineHalfHeight) - ((float) this.mLineDotYGap)) - ((float) this.mDotRadius), (float) this.mDotRadius, this.mPaint);
+            canvas.drawCircle(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, ((-this.mLineHalfHeight) - ((float) this.mLineDotYGap)) - ((float) this.mDotRadius), (float) this.mDotRadius, this.mPaint);
         }
     }
 

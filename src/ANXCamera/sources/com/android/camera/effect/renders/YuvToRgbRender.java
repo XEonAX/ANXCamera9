@@ -6,6 +6,7 @@ import com.android.camera.effect.ShaderUtil;
 import com.android.camera.effect.draw_mode.DrawAttribute;
 import com.android.camera.effect.draw_mode.DrawYuvAttribute;
 import com.android.camera.log.Log;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.GLCanvas;
 import com.xiaomi.camera.base.ImageUtil;
 import java.nio.Buffer;
@@ -14,8 +15,8 @@ import java.util.Locale;
 public class YuvToRgbRender extends ShaderRender {
     private static final String FRAG = "precision highp float; \nvarying vec2 vTexCoord; \nuniform sampler2D uYTexture; \nuniform sampler2D uUVTexture; \nvoid main (void){ \n   float r, g, b, y, u, v; \n   y = texture2D(uYTexture, vTexCoord).r; \n   v = texture2D(uUVTexture, vTexCoord).a - 0.5; \n   u = texture2D(uUVTexture, vTexCoord).r - 0.5; \n   r = y + 1.402 * v;\n   g = y - 0.34414 * u - 0.71414 * v;\n   b = y + 1.772 * u;\n   gl_FragColor = vec4(r, g, b, 1); \n} \n";
     private static final String TAG = YuvToRgbRender.class.getSimpleName();
-    private static final float[] TEXTURES = new float[]{0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f};
-    private static final float[] VERTICES = new float[]{0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f};
+    private static final float[] TEXTURES = new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, 1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO};
+    private static final float[] VERTICES = new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, 1.0f, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO};
     private int mUniformUVTexture;
     private int mUniformYTexture;
     private int[] mYuvTextureIds;
@@ -79,8 +80,12 @@ public class YuvToRgbRender extends ShaderRender {
             } else {
                 long currentTimeMillis = System.currentTimeMillis();
                 DrawYuvAttribute drawYuvAttribute = (DrawYuvAttribute) drawAttribute;
-                genYUVTextures(drawYuvAttribute);
-                drawTexture(this.mYuvTextureIds, 0.0f, 0.0f, (float) drawYuvAttribute.mPictureSize.getWidth(), (float) drawYuvAttribute.mPictureSize.getHeight());
+                if (drawYuvAttribute.mYuvImage != null) {
+                    genMiYuvTextures(drawYuvAttribute);
+                } else {
+                    genYUVTextures(drawYuvAttribute);
+                }
+                drawTexture(this.mYuvTextureIds, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) drawYuvAttribute.mPictureSize.getWidth(), (float) drawYuvAttribute.mPictureSize.getHeight());
                 Log.d(TAG, String.format(Locale.ENGLISH, "draw: size=%s time=%d", new Object[]{drawYuvAttribute.mPictureSize, Long.valueOf(System.currentTimeMillis() - currentTimeMillis)}));
             }
             return true;
@@ -98,7 +103,7 @@ public class YuvToRgbRender extends ShaderRender {
         updateViewport();
         setBlendEnabled(false);
         this.mGLCanvas.getState().pushState();
-        this.mGLCanvas.getState().translate(f, f2, 0.0f);
+        this.mGLCanvas.getState().translate(f, f2, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         this.mGLCanvas.getState().scale(f3, f4, 1.0f);
         if (iArr[0] != -1) {
             GLES20.glActiveTexture(33984);
@@ -113,6 +118,16 @@ public class YuvToRgbRender extends ShaderRender {
         initShaderValue();
         GLES20.glDrawArrays(5, 0, 4);
         this.mGLCanvas.getState().popState();
+    }
+
+    public void genMiYuvTextures(DrawYuvAttribute drawYuvAttribute) {
+        int i = drawYuvAttribute.mYuvImage.mWidth;
+        int i2 = drawYuvAttribute.mYuvImage.mHeight;
+        Buffer yBuffer = drawYuvAttribute.mYuvImage.getYBuffer();
+        Buffer vUBuffer = drawYuvAttribute.mYuvImage.getVUBuffer();
+        if (yBuffer != null && vUBuffer != null) {
+            ShaderUtil.loadYuvToTextures(yBuffer, vUBuffer, i, i2, this.mYuvTextureIds);
+        }
     }
 
     public void genYUVTextures(DrawYuvAttribute drawYuvAttribute) {

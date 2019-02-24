@@ -6,6 +6,8 @@ import com.android.camera.effect.FrameBuffer;
 import com.android.camera.effect.GLCanvasState;
 import com.android.camera.effect.draw_mode.DrawAttribute;
 import com.android.camera.effect.renders.RenderGroup;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
+import com.sensetime.stmobile.STMobileHumanActionNative;
 import com.xiaomi.engine.CameraCombinationMode;
 import java.util.ArrayList;
 
@@ -28,7 +30,7 @@ public class BaseGLCanvas implements GLCanvas {
     }
 
     protected void initialize() {
-        GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+        GLES20.glClearColor(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         GLES20.glClearStencil(0);
         GLES20.glEnable(3042);
         GLES20.glBlendFunc(CameraCombinationMode.CAM_COMBINATION_MODE_REAR_BOKEH_WU, CameraCombinationMode.CAM_COMBINATION_MODE_FRONT_BOKEH);
@@ -53,7 +55,7 @@ public class BaseGLCanvas implements GLCanvas {
         this.mRenderGroup.setPreviewSize(i, i2);
         this.mState.identityAllM();
         this.mState.setAlpha(1.0f);
-        this.mState.translate(0.0f, (float) i2, 0.0f);
+        this.mState.translate(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) i2, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         this.mState.scale(1.0f, -1.0f, 1.0f);
     }
 
@@ -62,8 +64,8 @@ public class BaseGLCanvas implements GLCanvas {
     }
 
     public void clearBuffer() {
-        GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-        GLES20.glClear(16384);
+        GLES20.glClearColor(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        GLES20.glClear(STMobileHumanActionNative.ST_MOBILE_HAND_LOVE);
     }
 
     public GLCanvasState getState() {

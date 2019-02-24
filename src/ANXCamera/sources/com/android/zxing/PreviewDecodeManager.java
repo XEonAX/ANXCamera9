@@ -6,14 +6,14 @@ import android.os.HandlerThread;
 import com.android.camera.log.Log;
 import com.android.camera2.Camera2Proxy;
 import com.android.camera2.Camera2Proxy.PreviewCallback;
-import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class PreviewDecodeManager {
     public static final int DECODE_TYPE_HAND_GESTURE = 1;
     public static final int DECODE_TYPE_QR = 0;
     private static final String TAG = "PreviewDecodeManager";
-    private HashMap<Integer, Decoder> mDecoders;
+    private ConcurrentHashMap<Integer, Decoder> mDecoders;
     private Handler mHandler;
     private PreviewCallback mPreviewCallback;
     private int mPreviewHeight;
@@ -38,7 +38,7 @@ public class PreviewDecodeManager {
                 }
             }
         };
-        this.mDecoders = new HashMap();
+        this.mDecoders = new ConcurrentHashMap();
     }
 
     public static PreviewDecodeManager getInstance() {

@@ -4,6 +4,7 @@ import android.opengl.GLES20;
 import com.android.camera.effect.EffectController.EffectRectAttribute;
 import com.android.camera.effect.draw_mode.DrawAttribute;
 import com.android.camera.log.Log;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.GLCanvas;
 import java.nio.ByteBuffer;
 
@@ -83,7 +84,7 @@ public abstract class Render {
 
     protected void updateViewport() {
         GLES20.glViewport(0, 0, this.mViewportWidth, this.mViewportHeight);
-        this.mGLCanvas.getState().ortho(0.0f, (float) this.mViewportWidth, 0.0f, (float) this.mViewportHeight);
+        this.mGLCanvas.getState().ortho(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) this.mViewportWidth, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) this.mViewportHeight);
     }
 
     protected void setParentFrameBufferId(int i) {

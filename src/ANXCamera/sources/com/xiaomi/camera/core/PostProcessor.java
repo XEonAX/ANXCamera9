@@ -280,35 +280,76 @@ public class PostProcessor {
             String[] split = str.split(File.separator);
             long parseLong = Long.parseLong(split[0]);
             int parseInt = Integer.parseInt(split[1]);
-            PerformanceTracker.trackJpegReprocess(parseInt, 1);
-            ParallelTaskData parallelTaskData = (ParallelTaskData) PostProcessor.this.mParallelTaskHashMap.get(Long.valueOf(parseLong));
-            parallelTaskData.fillJpegData(bArr, parseInt);
             String access$000 = PostProcessor.TAG;
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("[3] onJpegAvailable: ");
             stringBuilder.append(parseLong);
             stringBuilder.append(" | ");
             stringBuilder.append(parseInt);
-            stringBuilder.append(" | ");
-            stringBuilder.append(bArr.length);
             Log.d(access$000, stringBuilder.toString());
-            if (parallelTaskData.isJpegDataReady()) {
-                Log.d(PostProcessor.TAG, "[3] onJpegAvailable: save image start");
-                PostProcessor.this.mImageSaver.onParallelProcessFinish(parallelTaskData);
-                parallelTaskData.setDeparted();
-                PostProcessor.this.mParallelTaskHashMap.remove(Long.valueOf(parseLong));
-                String access$0002 = PostProcessor.TAG;
-                StringBuilder stringBuilder2 = new StringBuilder();
-                stringBuilder2.append("[3] onJpegAvailable: parallelTaskHashMap remove ");
-                stringBuilder2.append(parseLong);
-                Log.d(access$0002, stringBuilder2.toString());
-            } else {
-                Log.d(PostProcessor.TAG, "[3] onJpegAvailable: jpeg data isn't ready, save action has been ignored.");
+            PerformanceTracker.trackJpegReprocess(parseInt, 1);
+            ParallelTaskData parallelTaskData = (ParallelTaskData) PostProcessor.this.mParallelTaskHashMap.get(Long.valueOf(parseLong));
+            if (parallelTaskData != null) {
+                parallelTaskData.fillJpegData(bArr, parseInt);
+                if (parallelTaskData.isJpegDataReady()) {
+                    str = PostProcessor.TAG;
+                    StringBuilder stringBuilder2 = new StringBuilder();
+                    stringBuilder2.append("[3] onJpegAvailable: save image start. dataLen=");
+                    stringBuilder2.append(bArr.length);
+                    Log.d(str, stringBuilder2.toString());
+                    PostProcessor.this.mImageSaver.onParallelProcessFinish(parallelTaskData);
+                    parallelTaskData.setDeparted();
+                    PostProcessor.this.mParallelTaskHashMap.remove(Long.valueOf(parseLong));
+                    String access$0002 = PostProcessor.TAG;
+                    StringBuilder stringBuilder3 = new StringBuilder();
+                    stringBuilder3.append("[3] onJpegAvailable: parallelTaskHashMap remove ");
+                    stringBuilder3.append(parseLong);
+                    Log.d(access$0002, stringBuilder3.toString());
+                } else {
+                    Log.d(PostProcessor.TAG, "[3] onJpegAvailable: jpeg data isn't ready, save action has been ignored.");
+                }
             }
             PostProcessor.this.tryToCloseSession();
         }
 
         public void onYuvAvailable(Image image, String str) {
+        }
+
+        public void onError(String str, String str2) {
+            String[] split = str2.split(File.separator);
+            long parseLong = Long.parseLong(split[0]);
+            int parseInt = Integer.parseInt(split[1]);
+            String access$000 = PostProcessor.TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("[3] onError: ");
+            stringBuilder.append(parseLong);
+            stringBuilder.append(" | ");
+            stringBuilder.append(parseInt);
+            stringBuilder.append(" | ");
+            stringBuilder.append(str);
+            Log.e(access$000, stringBuilder.toString());
+            PerformanceTracker.trackJpegReprocess(parseInt, 1);
+            if (Build.IS_DEBUGGABLE) {
+                StringBuilder stringBuilder2 = new StringBuilder();
+                stringBuilder2.append("reprocessImage failed image = ");
+                stringBuilder2.append(str2);
+                stringBuilder2.append(" reason = ");
+                stringBuilder2.append(str);
+                throw new RuntimeException(stringBuilder2.toString());
+            }
+            ParallelTaskData parallelTaskData = (ParallelTaskData) PostProcessor.this.mParallelTaskHashMap.get(Long.valueOf(parseLong));
+            if (parallelTaskData != null) {
+                parallelTaskData.setDeparted();
+                PostProcessor.this.mParallelTaskHashMap.remove(Long.valueOf(parseLong));
+                str = PostProcessor.TAG;
+                StringBuilder stringBuilder3 = new StringBuilder();
+                stringBuilder3.append("[3] onError: remove task ");
+                stringBuilder3.append(parseLong);
+                stringBuilder3.append(" | ");
+                stringBuilder3.append(parseInt);
+                Log.e(str, stringBuilder3.toString());
+            }
+            PostProcessor.this.tryToCloseSession();
         }
     };
     private ConcurrentHashMap<Long, ParallelTaskData> mParallelTaskHashMap = new ConcurrentHashMap();

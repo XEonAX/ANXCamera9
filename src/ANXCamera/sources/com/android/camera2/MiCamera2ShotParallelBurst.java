@@ -53,17 +53,12 @@ public class MiCamera2ShotParallelBurst extends MiCamera2ShotParallel<ParallelTa
         Integer num = (Integer) this.mPreviewCaptureResult.get(CaptureResult.SENSOR_SENSITIVITY);
         String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("prepare: preview iso = ");
+        stringBuilder.append("prepare: iso = ");
         stringBuilder.append(num);
         Log.d(str, stringBuilder.toString());
         if (!this.mShouldDoSR) {
             boolean z = num != null && num.intValue() >= 800;
             this.mShouldDoMFNR = z;
-            str = TAG;
-            stringBuilder = new StringBuilder();
-            stringBuilder.append("prepare: ISO=");
-            stringBuilder.append(num);
-            Log.d(str, stringBuilder.toString());
         }
         if (this.mMiCamera.getCameraConfigs().isHDREnabled()) {
             this.mAlgoType = 1;
@@ -147,9 +142,11 @@ public class MiCamera2ShotParallelBurst extends MiCamera2ShotParallel<ParallelTa
                 return;
             case 2:
                 MiCameraCompat.applySwMfnrEnable(builder, this.mShouldDoMFNR);
+                MiCameraCompat.applyMfnrEnable(builder, false);
                 return;
             case 3:
                 MiCameraCompat.applyMultiFrameInputNum(builder, this.mSequenceNum);
+                MiCameraCompat.applyMfnrEnable(builder, false);
                 return;
             default:
                 return;
@@ -161,6 +158,7 @@ public class MiCamera2ShotParallelBurst extends MiCamera2ShotParallel<ParallelTa
             MiCameraCompat.applyHdrBracketMode(builder, (byte) 1);
             MiCameraCompat.applyMultiFrameInputNum(builder, this.mSequenceNum);
             builder.set(CaptureRequest.CONTROL_AE_EXPOSURE_COMPENSATION, Integer.valueOf(this.mHdrCheckerEvValue[i]));
+            MiCameraCompat.applyMfnrEnable(builder, false);
             return;
         }
         StringBuilder stringBuilder = new StringBuilder();

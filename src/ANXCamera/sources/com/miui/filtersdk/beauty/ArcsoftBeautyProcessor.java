@@ -1,6 +1,7 @@
 package com.miui.filtersdk.beauty;
 
 import android.graphics.Bitmap;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.miui.filtersdk.BeautyArcsoftJni;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -27,7 +28,7 @@ public class ArcsoftBeautyProcessor extends IntelligentBeautyProcessor {
             this.mBeautyParameters[i] = 0;
         }
         setExtraSpan(EXTRA_SPAN);
-        this.mLevelParameters = new float[][]{new float[]{0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}, new float[]{10.0f, 20.0f, 10.0f, 30.0f, 15.0f, 10.0f, 1.0f, 70.0f, 0.0f, 25.0f, 10.0f, 0.0f}, new float[]{10.0f, 28.0f, 10.0f, 30.0f, 15.0f, 10.0f, 1.0f, 70.0f, 0.0f, 25.0f, 10.0f, 0.0f}, new float[]{10.0f, 35.0f, 10.0f, 30.0f, 15.0f, 10.0f, 1.0f, 70.0f, 0.0f, 25.0f, 10.0f, 0.0f}, new float[]{10.0f, 42.0f, 10.0f, 30.0f, 15.0f, 15.0f, 1.0f, 70.0f, 0.0f, 25.0f, 10.0f, 0.0f}, new float[]{10.0f, EXTRA_SPAN, 10.0f, 30.0f, 15.0f, 15.0f, 1.0f, 70.0f, 0.0f, 25.0f, 10.0f, 0.0f}};
+        this.mLevelParameters = new float[][]{new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO}, new float[]{10.0f, 20.0f, 10.0f, 30.0f, 15.0f, 10.0f, 1.0f, 70.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 25.0f, 10.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO}, new float[]{10.0f, 28.0f, 10.0f, 30.0f, 15.0f, 10.0f, 1.0f, 70.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 25.0f, 10.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO}, new float[]{10.0f, 35.0f, 10.0f, 30.0f, 15.0f, 10.0f, 1.0f, 70.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 25.0f, 10.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO}, new float[]{10.0f, 42.0f, 10.0f, 30.0f, 15.0f, 15.0f, 1.0f, 70.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 25.0f, 10.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO}, new float[]{10.0f, EXTRA_SPAN, 10.0f, 30.0f, 15.0f, 15.0f, 1.0f, 70.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 25.0f, 10.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO}};
     }
 
     public BeautyParameterType[] getSupportedBeautyParamTypes() {
@@ -37,29 +38,29 @@ public class ArcsoftBeautyProcessor extends IntelligentBeautyProcessor {
     public float[] getSupportedParamRange(BeautyParameterType beautyParameterType) {
         switch (beautyParameterType) {
             case ENLARGE_EYE_RATIO:
-                return new float[]{0.0f, 40.0f};
+                return new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 40.0f};
             case SHRINK_FACE_RATIO:
-                return new float[]{0.0f, 100.0f};
+                return new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 100.0f};
             case WHITEN_STRENGTH:
-                return new float[]{0.0f, 70.0f};
+                return new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 70.0f};
             case SMOOTH_STRENGTH:
-                return new float[]{0.0f, 70.0f};
+                return new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 70.0f};
             case BRIGHT_EYE_RATIO:
-                return new float[]{0.0f, 40.0f};
+                return new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 40.0f};
             case RUDDY_STRENGTH:
-                return new float[]{0.0f, 80.0f};
+                return new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 80.0f};
             case RELIGHTING_RATIO:
-                return new float[]{0.0f, 60.0f};
+                return new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 60.0f};
             case LIP_BEAUTY_RATIO:
-                return new float[]{0.0f, 100.0f};
+                return new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 100.0f};
             case DEPOUCH_RATIO:
-                return new float[]{0.0f, 100.0f};
+                return new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 100.0f};
             case IRIS_SHINE_RATIO:
-                return new float[]{0.0f, 40.0f};
+                return new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 40.0f};
             case SHRINK_NOSE_RATIO:
-                return new float[]{0.0f, 100.0f};
+                return new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 100.0f};
             case DEBLEMISH:
-                return new float[]{0.0f, 1.0f};
+                return new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f};
             default:
                 return new float[0];
         }

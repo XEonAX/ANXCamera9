@@ -75,6 +75,7 @@ public class FilterFactory {
     private static final String LOOKUP_TABLE_PATH_BEAUTY_WHITEANDBLACK = "filter/beauty/B-WHITEANDBLACK.png";
     private static final String LOOKUP_TABLE_PATH_COMMON_WHITEANDBLACK = "filter/common/WHITEANDBLACK.png";
     private static final String LOOKUP_TABLE_PATH_LIGHTING_DOT = "filter/lighting/L-DOT.png";
+    private static final String LOOKUP_TABLE_PATH_LIGHTING_HOLI = "filter/lighting/L-HOLI.png";
     private static final String LOOKUP_TABLE_PATH_LIGHTING_LEAF = "filter/lighting/L-LEAF.png";
     private static final String LOOKUP_TABLE_PATH_LIGHTING_MOVIE = "filter/lighting/L-MOVIE.png";
     private static final String LOOKUP_TABLE_PATH_LIGHTING_NATURE = "filter/lighting/L-NATURE.png";
@@ -200,6 +201,8 @@ public class FilterFactory {
                 return new ColorLookupFilter4x4(LOOKUP_TABLE_PATH_LIGHTING_DOT);
             case L_LEAF:
                 return new ColorLookupFilter4x4(LOOKUP_TABLE_PATH_LIGHTING_LEAF);
+            case L_HOLI:
+                return new ColorLookupFilter4x4(LOOKUP_TABLE_PATH_LIGHTING_HOLI);
             case N_BERRY:
                 return new ColorLookupFilter(LOOKUP_TABLE_PATH_NORMAL_BERRY);
             case N_COOKIE:

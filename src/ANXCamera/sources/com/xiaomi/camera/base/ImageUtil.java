@@ -121,8 +121,8 @@ public final class ImageUtil {
         Memory.memmove(byteBuffer2, i2, byteBuffer, i, (long) i3);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:23:0x00e7 A:{SYNTHETIC, Splitter: B:23:0x00e7} */
-    /* JADX WARNING: Removed duplicated region for block: B:27:0x00f2 A:{SYNTHETIC, Splitter: B:27:0x00f2} */
+    /* JADX WARNING: Removed duplicated region for block: B:23:0x00e5 A:{SYNTHETIC, Splitter: B:23:0x00e5} */
+    /* JADX WARNING: Removed duplicated region for block: B:27:0x00f0 A:{SYNTHETIC, Splitter: B:27:0x00f0} */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     public static boolean dumpYuvImage(Image image, String str) {
         Throwable e;
@@ -283,63 +283,69 @@ public final class ImageUtil {
         return allocateDirect;
     }
 
-    private static void updateImagePlane(Plane plane, int i, int i2, byte[] bArr, int i3) {
+    private static void updateImagePlane(Plane plane, int i, int i2, byte[] bArr, boolean z, int i3) {
+        int i4 = i2;
+        byte[] bArr2 = bArr;
+        int i5 = i3;
         ByteBuffer buffer = plane.getBuffer();
         buffer.rewind();
         int rowStride = plane.getRowStride();
         int pixelStride = plane.getPixelStride();
-        int i4 = i * pixelStride;
+        int i6 = i * pixelStride;
         String str = TAG;
-        r6 = new Object[6];
-        int i5 = 0;
-        r6[0] = Integer.valueOf(i);
-        r6[1] = Integer.valueOf(i2);
-        r6[2] = Integer.valueOf(i3);
-        r6[3] = Integer.valueOf(bArr.length);
-        r6[4] = Integer.valueOf(rowStride);
-        r6[5] = Integer.valueOf(pixelStride);
-        Log.d(str, String.format(Locale.ENGLISH, "updateImagePlane: size=%dx%d offset=%d length=%d rowStride=%d pixelStride=%d", r6));
-        pixelStride = i4 * i2;
-        if (bArr.length - i3 >= pixelStride) {
-            if (rowStride == i4) {
-                pixelStride = Math.min(buffer.remaining(), pixelStride);
+        r11 = new Object[6];
+        int i7 = 0;
+        r11[0] = Integer.valueOf(i);
+        r11[1] = Integer.valueOf(i2);
+        r11[2] = Integer.valueOf(i3);
+        r11[3] = Integer.valueOf(bArr2.length);
+        r11[4] = Integer.valueOf(rowStride);
+        r11[5] = Integer.valueOf(pixelStride);
+        Log.d(str, String.format(Locale.ENGLISH, "updateImagePlane: size=%dx%d offset=%d length=%d rowStride=%d pixelStride=%d", r11));
+        pixelStride = i6 * i4;
+        if (bArr2.length - i5 >= pixelStride) {
+            int min;
+            if (rowStride == i6) {
+                min = Math.min(buffer.remaining(), pixelStride);
                 String str2 = TAG;
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("updateImagePlane: ");
-                stringBuilder.append(pixelStride);
+                stringBuilder.append(min);
                 Log.d(str2, stringBuilder.toString());
-                buffer.put(bArr, i3, pixelStride);
+                buffer.put(bArr2, i5, min);
+            } else if (z) {
+                buffer.put(bArr2, i5, Math.min(buffer.remaining(), (rowStride * (i4 - 1)) + i));
             } else {
-                pixelStride = buffer.position();
-                i = i4;
-                while (i5 < i2) {
-                    buffer.position(pixelStride);
-                    if (i5 == i2 - 1) {
-                        i = Math.min(buffer.remaining(), i4);
-                        if (i < i4) {
+                min = buffer.position();
+                pixelStride = i6;
+                while (i7 < i4) {
+                    buffer.position(min);
+                    if (i7 == i4 - 1) {
+                        pixelStride = Math.min(buffer.remaining(), i6);
+                        if (pixelStride < i6) {
                             str = TAG;
                             StringBuilder stringBuilder2 = new StringBuilder();
                             stringBuilder2.append("updateImagePlane: ");
-                            stringBuilder2.append(i);
+                            stringBuilder2.append(pixelStride);
                             stringBuilder2.append("/");
-                            stringBuilder2.append(i4);
+                            stringBuilder2.append(i6);
                             Log.d(str, stringBuilder2.toString());
-                            i = buffer.remaining();
+                            pixelStride = buffer.remaining();
                         }
                     }
-                    buffer.put(bArr, i3, i);
-                    i3 += i4;
-                    pixelStride += rowStride;
-                    i5++;
+                    buffer.put(bArr2, i5, pixelStride);
+                    i5 += i6;
+                    min += rowStride;
+                    i7++;
                 }
             }
             buffer.rewind();
             return;
         }
-        throw new RuntimeException(String.format(Locale.ENGLISH, "buffer size should be at least %d but actual size is %d", new Object[]{Integer.valueOf(pixelStride), Integer.valueOf(i)}));
+        throw new RuntimeException(String.format(Locale.ENGLISH, "buffer size should be at least %d but actual size is %d", new Object[]{Integer.valueOf(pixelStride), Integer.valueOf(r8)}));
     }
 
-    public static void updateYuvImage(Image image, byte[] bArr) {
+    public static void updateYuvImage(Image image, byte[] bArr, boolean z) {
         if (image == null || 35 != image.getFormat()) {
             String str = TAG;
             StringBuilder stringBuilder = new StringBuilder();
@@ -349,7 +355,31 @@ public final class ImageUtil {
             return;
         }
         Plane[] planes = image.getPlanes();
-        updateImagePlane(planes[0], image.getWidth(), image.getHeight(), bArr, 0);
-        updateImagePlane(planes[1], image.getWidth() / 2, image.getHeight() / 2, bArr, image.getWidth() * image.getHeight());
+        updateImagePlane(planes[0], image.getWidth(), image.getHeight(), bArr, z, 0);
+        int width = image.getWidth() * image.getHeight();
+        if (z) {
+            width = (planes[1].getRowStride() * (image.getHeight() - 1)) + image.getWidth();
+        }
+        updateImagePlane(planes[1], image.getWidth() / 2, image.getHeight() / 2, bArr, z, width);
+    }
+
+    public static byte[] getYuvData(Image image) {
+        if (image == null || 35 != image.getFormat()) {
+            String str = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("getYuvData: ");
+            stringBuilder.append(image);
+            Log.e(str, stringBuilder.toString());
+            return null;
+        }
+        ByteBuffer buffer = image.getPlanes()[0].getBuffer();
+        ByteBuffer buffer2 = image.getPlanes()[1].getBuffer();
+        int limit = buffer.limit();
+        int limit2 = buffer2.limit();
+        byte[] bArr = new byte[((limit + limit2) + 1)];
+        buffer.get(bArr, 0, limit);
+        buffer2.get(bArr, limit, limit2);
+        bArr[bArr.length - 1] = bArr[bArr.length - 3];
+        return bArr;
     }
 }

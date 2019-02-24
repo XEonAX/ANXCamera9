@@ -53,6 +53,11 @@ public class MiCamera2ShotStill extends MiCamera2Shot<ParallelTaskData> {
 
     protected void startSessionCapture() {
         try {
+            this.mCurrentParallelTaskData = generateParallelTaskData(0);
+            if (this.mCurrentParallelTaskData == null) {
+                Log.w(TAG, "startSessionCapture: null task data");
+                return;
+            }
             CaptureCallback generateCaptureCallback = generateCaptureCallback();
             Builder generateRequestBuilder = generateRequestBuilder();
             PerformanceTracker.trackPictureCapture(0);
@@ -71,8 +76,8 @@ public class MiCamera2ShotStill extends MiCamera2Shot<ParallelTaskData> {
         return new CaptureCallback() {
             public void onCaptureStarted(@NonNull CameraCaptureSession cameraCaptureSession, @NonNull CaptureRequest captureRequest, long j, long j2) {
                 super.onCaptureStarted(cameraCaptureSession, captureRequest, j, j2);
-                if (MiCamera2ShotStill.this.mCurrentParallelTaskData == null) {
-                    MiCamera2ShotStill.this.mCurrentParallelTaskData = MiCamera2ShotStill.this.generateParallelTaskData(j);
+                if (0 == MiCamera2ShotStill.this.mCurrentParallelTaskData.getTimestamp()) {
+                    MiCamera2ShotStill.this.mCurrentParallelTaskData.setTimestamp(j);
                 }
             }
 
@@ -127,15 +132,15 @@ public class MiCamera2ShotStill extends MiCamera2Shot<ParallelTaskData> {
     }
 
     protected void onImageReceived(Image image, int i) {
-        if (this.mCurrentParallelTaskData == null) {
+        if (0 == this.mCurrentParallelTaskData.getTimestamp()) {
             Log.w(TAG, "onImageReceived: image arrived first");
-            this.mCurrentParallelTaskData = generateParallelTaskData(image.getTimestamp());
+            this.mCurrentParallelTaskData.setTimestamp(image.getTimestamp());
         }
         PictureCallback pictureCallback = this.mMiCamera.getPictureCallback();
         if (pictureCallback == null || this.mCurrentParallelTaskData == null) {
             String str = TAG;
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("onImageReceived: some wrong happened when image received: callback = ");
+            stringBuilder.append("onImageReceived: something wrong happened when image received: callback = ");
             stringBuilder.append(pictureCallback);
             stringBuilder.append(" mCurrentParallelTaskData = ");
             stringBuilder.append(this.mCurrentParallelTaskData);
@@ -170,6 +175,7 @@ public class MiCamera2ShotStill extends MiCamera2Shot<ParallelTaskData> {
         ParallelCallback parallelCallback = this.mMiCamera.getParallelCallback();
         if (parallelCallback != null) {
             long currentTimeMillis = System.currentTimeMillis();
+            this.mCurrentParallelTaskData.setPreviewThumbnailHash(this.mPreviewThumbnailHash);
             parallelCallback.onParallelProcessFinish(this.mCurrentParallelTaskData);
             long currentTimeMillis2 = System.currentTimeMillis() - currentTimeMillis;
             String str = TAG;

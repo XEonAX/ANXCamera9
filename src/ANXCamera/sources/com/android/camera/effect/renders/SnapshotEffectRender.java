@@ -1,6 +1,5 @@
 package com.android.camera.effect.renders;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -32,8 +31,10 @@ import com.android.camera.effect.draw_mode.DrawIntTexAttribute;
 import com.android.camera.effect.draw_mode.DrawJPEGAttribute;
 import com.android.camera.log.Log;
 import com.android.camera.module.ModuleManager;
+import com.android.camera.sticker.glutils.OpenGLUtils;
 import com.android.camera.storage.ImageSaver;
 import com.android.camera.storage.Storage;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera.watermark.WaterMarkBitmap;
 import com.android.camera.watermark.WaterMarkData;
 import com.android.gallery3d.exif.ExifInterface;
@@ -45,6 +46,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -195,7 +198,7 @@ public class SnapshotEffectRender {
             this.mGLCanvas.getState().pushState();
             if (i3 != 0) {
                 this.mGLCanvas.getState().translate((float) (waterMark.getCenterX() + i), (float) (waterMark.getCenterY() + i2));
-                this.mGLCanvas.getState().rotate((float) (-i3), 0.0f, 0.0f, 1.0f);
+                this.mGLCanvas.getState().rotate((float) (-i3), PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f);
                 this.mGLCanvas.getState().translate((float) ((-i) - waterMark.getCenterX()), (float) ((-i2) - waterMark.getCenterY()));
             }
             this.mGLCanvas.getBasicRender().draw(new DrawBasicTexAttribute(waterMark.getTexture(), i + waterMark.getLeft(), i2 + waterMark.getTop(), waterMark.getWidth(), waterMark.getHeight()));
@@ -209,11 +212,11 @@ public class SnapshotEffectRender {
             int i10 = i3;
             int i11 = i4;
             int i12 = i7;
-            if (b.hd()) {
+            if (b.hm()) {
                 if (drawJPEGAttribute2.mTimeWaterMarkText != null) {
                     WaterMark newStyleTextWaterMark;
                     String str = drawJPEGAttribute2.mTimeWaterMarkText;
-                    if (b.gl()) {
+                    if (b.gu()) {
                         newStyleTextWaterMark = new NewStyleTextWaterMark(str, i10, i11, i12);
                     } else {
                         newStyleTextWaterMark = new TextWaterMark(str, i10, i11, i12);
@@ -228,7 +231,7 @@ public class SnapshotEffectRender {
                     Bitmap access$1200 = SnapshotEffectRender.this.mDualCameraWaterMarkBitmap;
                     boolean equals = CameraSettings.getCustomWatermark().equals(CameraSettings.getDefaultWatermarkStr());
                     Object obj = (CameraSettings.isUltraPixelPhotographyOn() || CameraSettings.isRearMenuUltraPixelPhotographyOn()) ? 1 : null;
-                    if (!(obj == null || DataRepository.dataItemFeature().fO() || !equals)) {
+                    if (!(obj == null || DataRepository.dataItemFeature().fQ() || !equals)) {
                         if (SnapshotEffectRender.this.m48MCameraWaterMarkBitmap == null) {
                             SnapshotEffectRender.this.m48MCameraWaterMarkBitmap = SnapshotEffectRender.this.load48MWatermark(SnapshotEffectRender.this.mActivity);
                         }
@@ -246,23 +249,122 @@ public class SnapshotEffectRender {
      */
         /* Code decompiled incorrectly, please refer to instructions dump. */
         private void drawAgeGenderAndMagicMirrorWater(List<WaterMarkData> list, int i, int i2, int i3, int i4, int i5, boolean z) {
-            if (b.hd() && !z && CameraSettings.isAgeGenderAndMagicMirrorWaterOpen()) {
+            if (b.hm() && !z && CameraSettings.isAgeGenderAndMagicMirrorWaterOpen()) {
                 WaterMarkBitmap waterMarkBitmap = new WaterMarkBitmap(list);
                 WaterMarkData waterMarkData = waterMarkBitmap.getWaterMarkData();
                 if (waterMarkData != null) {
-                    drawWaterMark(new AgeGenderAndMagicMirrorWaterMark(waterMarkData.getImage(), i, i2, i5, i3, i4, 0.0f, 0.0f), 0, 0, i5 - waterMarkData.getOrientation());
+                    drawWaterMark(new AgeGenderAndMagicMirrorWaterMark(waterMarkData.getImage(), i, i2, i5, i3, i4, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO), 0, 0, i5 - waterMarkData.getOrientation());
                 }
                 waterMarkBitmap.releaseBitmap();
                 Log.d(WaterMarkBitmap.class.getSimpleName(), "Draw age_gender_and_magic_mirror water mark");
             }
         }
 
-        /* JADX WARNING: Removed duplicated region for block: B:49:0x0194  */
-        /* JADX WARNING: Removed duplicated region for block: B:47:0x0169  */
-        /* JADX WARNING: Removed duplicated region for block: B:53:0x01b2  */
-        /* JADX WARNING: Removed duplicated region for block: B:52:0x019c  */
-        /* JADX WARNING: Removed duplicated region for block: B:56:0x01e5  */
-        /* JADX WARNING: Removed duplicated region for block: B:59:0x0223  */
+        private byte[] applyEffectOnlyWatermarkRange(DrawJPEGAttribute drawJPEGAttribute, Size size, Size size2) {
+            DrawJPEGAttribute drawJPEGAttribute2 = drawJPEGAttribute;
+            Size size3 = size2;
+            if (!drawJPEGAttribute2.mApplyWaterMark) {
+                return drawJPEGAttribute2.mData;
+            }
+            long currentTimeMillis = System.currentTimeMillis();
+            byte[] decompressPicture = ShaderNativeUtil.decompressPicture(drawJPEGAttribute2.mData, 1);
+            String access$700 = SnapshotEffectRender.TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("jpeg decompress total time =");
+            stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
+            Log.d(access$700, stringBuilder.toString());
+            int[] watermarkRange = Util.getWatermarkRange(drawJPEGAttribute2.mWidth, drawJPEGAttribute2.mHeight, (drawJPEGAttribute2.mJpegOrientation + 270) % 360, drawJPEGAttribute2.mDualCameraWaterMarkEnabled, drawJPEGAttribute2.mTimeWaterMarkText != null, 0.1f);
+            int i = watermarkRange[2];
+            int i2 = watermarkRange[3];
+            int i3 = drawJPEGAttribute2.mPreviewWidth;
+            int i4 = drawJPEGAttribute2.mPreviewHeight;
+            int i5 = drawJPEGAttribute2.mWidth;
+            int i6 = drawJPEGAttribute2.mHeight;
+            int[] iArr = new int[1];
+            long currentTimeMillis2 = System.currentTimeMillis();
+            iArr[0] = OpenGLUtils.loadRGBTexture(ByteBuffer.wrap(Util.getPixels(decompressPicture, drawJPEGAttribute2.mWidth, 3, watermarkRange)), i, i2);
+            String access$7002 = SnapshotEffectRender.TAG;
+            StringBuilder stringBuilder2 = new StringBuilder();
+            stringBuilder2.append("get pixel and upload total time =");
+            stringBuilder2.append(System.currentTimeMillis() - currentTimeMillis2);
+            Log.d(access$7002, stringBuilder2.toString());
+            Render effectRender = getEffectRender(drawJPEGAttribute2.mEffectIndex);
+            if (effectRender == null) {
+                Log.w(SnapshotEffectRender.TAG, "init render failed");
+                return drawJPEGAttribute2.mData;
+            }
+            if (effectRender instanceof PipeRender) {
+                ((PipeRender) effectRender).setFrameBufferSize(i, i2);
+            }
+            effectRender.setPreviewSize(i3, i4);
+            effectRender.setEffectRangeAttribute(drawJPEGAttribute2.mAttribute);
+            effectRender.setMirror(drawJPEGAttribute2.mMirror);
+            effectRender.setSnapshotSize(size3.width, size3.height);
+            effectRender.setOrientation(drawJPEGAttribute2.mOrientation);
+            effectRender.setShootRotation(drawJPEGAttribute2.mShootRotation);
+            effectRender.setJpegOrientation(drawJPEGAttribute2.mJpegOrientation);
+            checkFrameBuffer(i, i2);
+            this.mGLCanvas.beginBindFrameBuffer(this.mFrameBuffer);
+            long currentTimeMillis3 = System.currentTimeMillis();
+            effectRender.setParentFrameBufferId(this.mFrameBuffer.getId());
+            int[] iArr2 = iArr;
+            int i7 = i6;
+            effectRender.draw(new DrawIntTexAttribute(iArr[0], 0, 0, i, i2, true));
+            effectRender.deleteBuffer();
+            i6 = i5;
+            int i8 = i2;
+            i2 = i7;
+            int i9 = i7;
+            i7 = i;
+            int i10 = 0;
+            drawWaterMark(drawJPEGAttribute2, -watermarkRange[0], -watermarkRange[1], i6, i2, i3, i4, drawJPEGAttribute2.mJpegOrientation);
+            String access$7003 = SnapshotEffectRender.TAG;
+            StringBuilder stringBuilder3 = new StringBuilder();
+            stringBuilder3.append("drawTime=");
+            stringBuilder3.append(System.currentTimeMillis() - currentTimeMillis3);
+            Log.d(access$7003, stringBuilder3.toString());
+            long currentTimeMillis4 = System.currentTimeMillis();
+            GLES20.glPixelStorei(3333, 1);
+            Buffer allocate = ByteBuffer.allocate((i7 * i8) * 4);
+            i3 = i8;
+            i4 = i6;
+            GLES20.glReadPixels(0, 0, i7, i3, 6408, 5121, allocate);
+            byte[] bArr = new byte[allocate.remaining()];
+            allocate.get(bArr, i10, bArr.length);
+            String access$7004 = SnapshotEffectRender.TAG;
+            stringBuilder2 = new StringBuilder();
+            stringBuilder2.append("glReadPixels=");
+            stringBuilder2.append(System.currentTimeMillis() - currentTimeMillis4);
+            Log.d(access$7004, stringBuilder2.toString());
+            currentTimeMillis4 = System.currentTimeMillis();
+            Util.setPixels(decompressPicture, i4, 3, Util.RGBA2RGB(bArr, i7, i3), watermarkRange);
+            access$7004 = SnapshotEffectRender.TAG;
+            StringBuilder stringBuilder4 = new StringBuilder();
+            stringBuilder4.append("RGBA2RGB=");
+            stringBuilder4.append(System.currentTimeMillis() - currentTimeMillis4);
+            Log.d(access$7004, stringBuilder4.toString());
+            currentTimeMillis4 = System.currentTimeMillis();
+            i3 = i10;
+            byte[] compressPicture = ShaderNativeUtil.compressPicture(decompressPicture, i4, i9, SnapshotEffectRender.this.mQuality);
+            String access$7005 = SnapshotEffectRender.TAG;
+            stringBuilder2 = new StringBuilder();
+            stringBuilder2.append("compress=");
+            stringBuilder2.append(System.currentTimeMillis() - currentTimeMillis4);
+            Log.d(access$7005, stringBuilder2.toString());
+            int[] iArr3 = iArr2;
+            if (GLES20.glIsTexture(iArr3[i3])) {
+                GLES20.glDeleteTextures(1, iArr3, i3);
+            }
+            this.mGLCanvas.endBindFrameBuffer();
+            return compressPicture;
+        }
+
+        /* JADX WARNING: Removed duplicated region for block: B:62:0x01b9  */
+        /* JADX WARNING: Removed duplicated region for block: B:60:0x018e  */
+        /* JADX WARNING: Removed duplicated region for block: B:66:0x01d7  */
+        /* JADX WARNING: Removed duplicated region for block: B:65:0x01c1  */
+        /* JADX WARNING: Removed duplicated region for block: B:69:0x020a  */
+        /* JADX WARNING: Removed duplicated region for block: B:72:0x0248  */
         /* Code decompiled incorrectly, please refer to instructions dump. */
         private byte[] applyEffect(DrawJPEGAttribute drawJPEGAttribute, int i, boolean z, Size size, Size size2) {
             DrawJPEGAttribute drawJPEGAttribute2 = drawJPEGAttribute;
@@ -284,85 +386,118 @@ public class SnapshotEffectRender {
                 stringBuilder2.append(z2 ? "thumb!" : "jpeg!");
                 Log.w(access$7002, stringBuilder2.toString());
                 return null;
-            }
-            long currentTimeMillis = System.currentTimeMillis();
-            int[] iArr = new int[1];
-            GLES20.glGenTextures(1, iArr, 0);
-            int[] initTexture = ShaderNativeUtil.initTexture(thumbnailBytes, iArr[0], i);
-            GLES20.glFlush();
-            String access$7003 = SnapshotEffectRender.TAG;
-            StringBuilder stringBuilder3 = new StringBuilder();
-            stringBuilder3.append("initTime=");
-            stringBuilder3.append(System.currentTimeMillis() - currentTimeMillis);
-            Log.d(access$7003, stringBuilder3.toString());
-            int i2 = z2 ? initTexture[0] : drawJPEGAttribute2.mWidth;
-            int i3 = z2 ? initTexture[1] : drawJPEGAttribute2.mHeight;
-            int i4 = z2 ? initTexture[0] : drawJPEGAttribute2.mPreviewWidth;
-            int i5 = z2 ? initTexture[1] : drawJPEGAttribute2.mPreviewHeight;
-            Render effectRender = getEffectRender(drawJPEGAttribute2.mEffectIndex);
-            if (effectRender == null) {
-                Log.w(SnapshotEffectRender.TAG, "init render failed");
-                return thumbnailBytes;
-            }
-            int i6;
-            int i7;
-            long currentTimeMillis2;
-            int access$2100;
-            byte[] picture;
-            String access$7004;
-            StringBuilder stringBuilder4;
-            if (effectRender instanceof PipeRender) {
-                ((PipeRender) effectRender).setFrameBufferSize(i2, i3);
-            }
-            effectRender.setPreviewSize(i4, i5);
-            effectRender.setEffectRangeAttribute(drawJPEGAttribute2.mAttribute);
-            effectRender.setMirror(drawJPEGAttribute2.mMirror);
-            if (z2) {
-                effectRender.setSnapshotSize(i2, i3);
+            } else if (!z2 && drawJPEGAttribute2.mEffectIndex == FilterInfo.FILTER_ID_NONE && !CameraSettings.isAgeGenderAndMagicMirrorWaterOpen() && !ModuleManager.isSquareModule() && !CameraSettings.isGradienterOn() && !CameraSettings.isTiltShiftOn()) {
+                return applyEffectOnlyWatermarkRange(drawJPEGAttribute2, size3, size4);
             } else {
-                effectRender.setSnapshotSize(size4.width, size4.height);
-            }
-            effectRender.setOrientation(drawJPEGAttribute2.mOrientation);
-            effectRender.setShootRotation(drawJPEGAttribute2.mShootRotation);
-            effectRender.setJpegOrientation(drawJPEGAttribute2.mJpegOrientation);
-            checkFrameBuffer(i2, i3);
-            this.mGLCanvas.beginBindFrameBuffer(this.mFrameBuffer);
-            long currentTimeMillis3 = System.currentTimeMillis();
-            effectRender.setParentFrameBufferId(this.mFrameBuffer.getId());
-            effectRender.draw(new DrawIntTexAttribute(iArr[0], 0, 0, i2, i3, true));
-            effectRender.deleteBuffer();
-            int i8 = i5;
-            int i9 = i4;
-            int i10 = i3;
-            int i11 = i2;
-            drawAgeGenderAndMagicMirrorWater(drawJPEGAttribute2.mWaterInfos, i2, i3, i4, i8, drawJPEGAttribute2.mJpegOrientation, drawJPEGAttribute2.mIsPortraitRawData);
-            if (!ModuleManager.isSquareModule()) {
-                i3 = 0;
-            } else if (i11 > i10) {
-                i2 = ((i11 - i10) / 2) - ((SnapshotEffectRender.this.mSquareModeExtraMargin * i10) / Util.sWindowWidth);
-                i11 = i10;
-                i3 = 0;
+                long currentTimeMillis = System.currentTimeMillis();
+                int[] iArr = new int[1];
+                GLES20.glGenTextures(1, iArr, 0);
+                int[] initTexture = ShaderNativeUtil.initTexture(thumbnailBytes, iArr[0], i);
+                GLES20.glFlush();
+                String access$7003 = SnapshotEffectRender.TAG;
+                StringBuilder stringBuilder3 = new StringBuilder();
+                stringBuilder3.append("initTime=");
+                stringBuilder3.append(System.currentTimeMillis() - currentTimeMillis);
+                Log.d(access$7003, stringBuilder3.toString());
+                int i2 = z2 ? initTexture[0] : drawJPEGAttribute2.mWidth;
+                int i3 = z2 ? initTexture[1] : drawJPEGAttribute2.mHeight;
+                int i4 = z2 ? initTexture[0] : drawJPEGAttribute2.mPreviewWidth;
+                int i5 = z2 ? initTexture[1] : drawJPEGAttribute2.mPreviewHeight;
+                Render effectRender = getEffectRender(drawJPEGAttribute2.mEffectIndex);
+                if (effectRender == null) {
+                    Log.w(SnapshotEffectRender.TAG, "init render failed");
+                    return thumbnailBytes;
+                }
+                int i6;
+                int i7;
+                long currentTimeMillis2;
+                int access$2000;
+                byte[] picture;
+                String access$7004;
+                StringBuilder stringBuilder4;
+                if (effectRender instanceof PipeRender) {
+                    ((PipeRender) effectRender).setFrameBufferSize(i2, i3);
+                }
+                effectRender.setPreviewSize(i4, i5);
+                effectRender.setEffectRangeAttribute(drawJPEGAttribute2.mAttribute);
+                effectRender.setMirror(drawJPEGAttribute2.mMirror);
                 if (z2) {
-                    drawJPEGAttribute2.mWidth = i11;
-                    drawJPEGAttribute2.mHeight = i10;
-                } else if (size3 != null) {
-                    size3.width = i11;
-                    size3.height = i10;
+                    effectRender.setSnapshotSize(i2, i3);
+                } else {
+                    effectRender.setSnapshotSize(size4.width, size4.height);
+                }
+                effectRender.setOrientation(drawJPEGAttribute2.mOrientation);
+                effectRender.setShootRotation(drawJPEGAttribute2.mShootRotation);
+                effectRender.setJpegOrientation(drawJPEGAttribute2.mJpegOrientation);
+                checkFrameBuffer(i2, i3);
+                this.mGLCanvas.beginBindFrameBuffer(this.mFrameBuffer);
+                long currentTimeMillis3 = System.currentTimeMillis();
+                effectRender.setParentFrameBufferId(this.mFrameBuffer.getId());
+                effectRender.draw(new DrawIntTexAttribute(iArr[0], 0, 0, i2, i3, true));
+                effectRender.deleteBuffer();
+                int i8 = i5;
+                int i9 = i4;
+                int i10 = i3;
+                int i11 = i2;
+                drawAgeGenderAndMagicMirrorWater(drawJPEGAttribute2.mWaterInfos, i2, i3, i4, i8, drawJPEGAttribute2.mJpegOrientation, drawJPEGAttribute2.mIsPortraitRawData);
+                if (drawJPEGAttribute2.mRequestModuleIdx != 165) {
+                    i3 = 0;
+                } else if (i11 > i10) {
+                    i2 = ((i11 - i10) / 2) - ((SnapshotEffectRender.this.mSquareModeExtraMargin * i10) / Util.sWindowWidth);
+                    i11 = i10;
+                    i3 = 0;
+                    if (z2) {
+                        drawJPEGAttribute2.mWidth = i11;
+                        drawJPEGAttribute2.mHeight = i10;
+                    } else if (size3 != null) {
+                        size3.width = i11;
+                        size3.height = i10;
+                        access$7002 = SnapshotEffectRender.TAG;
+                        stringBuilder2 = new StringBuilder();
+                        stringBuilder2.append("thumbSize=");
+                        stringBuilder2.append(size3.width);
+                        stringBuilder2.append("*");
+                        stringBuilder2.append(size3.height);
+                        Log.d(access$7002, stringBuilder2.toString());
+                    }
+                    if (drawJPEGAttribute2.mApplyWaterMark) {
+                        i6 = i3;
+                        i7 = i2;
+                    } else {
+                        i7 = i2;
+                        i6 = i3;
+                        drawWaterMark(drawJPEGAttribute2, i2, i3, i11, i10, i9, i8, drawJPEGAttribute2.mJpegOrientation);
+                    }
                     access$7002 = SnapshotEffectRender.TAG;
                     stringBuilder2 = new StringBuilder();
-                    stringBuilder2.append("thumbSize=");
-                    stringBuilder2.append(size3.width);
-                    stringBuilder2.append("*");
-                    stringBuilder2.append(size3.height);
+                    stringBuilder2.append("drawTime=");
+                    stringBuilder2.append(System.currentTimeMillis() - currentTimeMillis3);
                     Log.d(access$7002, stringBuilder2.toString());
+                    GLES20.glPixelStorei(3333, 1);
+                    currentTimeMillis2 = System.currentTimeMillis();
+                    access$2000 = SnapshotEffectRender.this.mQuality;
+                    if (z2) {
+                        access$2000 = Math.min(SnapshotEffectRender.this.mQuality, JpegEncodingQualityMappings.getQualityNumber("normal"));
+                    }
+                    picture = ShaderNativeUtil.getPicture(i7, i6, i11, i10, access$2000);
+                    access$7004 = SnapshotEffectRender.TAG;
+                    stringBuilder4 = new StringBuilder();
+                    stringBuilder4.append("readTime=");
+                    stringBuilder4.append(System.currentTimeMillis() - currentTimeMillis2);
+                    Log.d(access$7004, stringBuilder4.toString());
+                    if (GLES20.glIsTexture(iArr[0])) {
+                        GLES20.glDeleteTextures(1, iArr, 0);
+                    }
+                    this.mGLCanvas.endBindFrameBuffer();
+                    return picture;
+                } else {
+                    i3 = ((i10 - i11) / 2) - ((SnapshotEffectRender.this.mSquareModeExtraMargin * i11) / Util.sWindowWidth);
+                    i10 = i11;
+                }
+                i2 = 0;
+                if (z2) {
                 }
                 if (drawJPEGAttribute2.mApplyWaterMark) {
-                    i6 = i3;
-                    i7 = i2;
-                } else {
-                    i7 = i2;
-                    i6 = i3;
-                    drawWaterMark(drawJPEGAttribute2, i2, i3, i11, i10, i9, i8, drawJPEGAttribute2.mJpegOrientation);
                 }
                 access$7002 = SnapshotEffectRender.TAG;
                 stringBuilder2 = new StringBuilder();
@@ -371,50 +506,20 @@ public class SnapshotEffectRender {
                 Log.d(access$7002, stringBuilder2.toString());
                 GLES20.glPixelStorei(3333, 1);
                 currentTimeMillis2 = System.currentTimeMillis();
-                access$2100 = SnapshotEffectRender.this.mQuality;
+                access$2000 = SnapshotEffectRender.this.mQuality;
                 if (z2) {
-                    access$2100 = Math.min(SnapshotEffectRender.this.mQuality, JpegEncodingQualityMappings.getQualityNumber("normal"));
                 }
-                picture = ShaderNativeUtil.getPicture(i7, i6, i11, i10, access$2100);
+                picture = ShaderNativeUtil.getPicture(i7, i6, i11, i10, access$2000);
                 access$7004 = SnapshotEffectRender.TAG;
                 stringBuilder4 = new StringBuilder();
                 stringBuilder4.append("readTime=");
                 stringBuilder4.append(System.currentTimeMillis() - currentTimeMillis2);
                 Log.d(access$7004, stringBuilder4.toString());
                 if (GLES20.glIsTexture(iArr[0])) {
-                    GLES20.glDeleteTextures(1, iArr, 0);
                 }
                 this.mGLCanvas.endBindFrameBuffer();
                 return picture;
-            } else {
-                i3 = ((i10 - i11) / 2) - ((SnapshotEffectRender.this.mSquareModeExtraMargin * i11) / Util.sWindowWidth);
-                i10 = i11;
             }
-            i2 = 0;
-            if (z2) {
-            }
-            if (drawJPEGAttribute2.mApplyWaterMark) {
-            }
-            access$7002 = SnapshotEffectRender.TAG;
-            stringBuilder2 = new StringBuilder();
-            stringBuilder2.append("drawTime=");
-            stringBuilder2.append(System.currentTimeMillis() - currentTimeMillis3);
-            Log.d(access$7002, stringBuilder2.toString());
-            GLES20.glPixelStorei(3333, 1);
-            currentTimeMillis2 = System.currentTimeMillis();
-            access$2100 = SnapshotEffectRender.this.mQuality;
-            if (z2) {
-            }
-            picture = ShaderNativeUtil.getPicture(i7, i6, i11, i10, access$2100);
-            access$7004 = SnapshotEffectRender.TAG;
-            stringBuilder4 = new StringBuilder();
-            stringBuilder4.append("readTime=");
-            stringBuilder4.append(System.currentTimeMillis() - currentTimeMillis2);
-            Log.d(access$7004, stringBuilder4.toString());
-            if (GLES20.glIsTexture(iArr[0])) {
-            }
-            this.mGLCanvas.endBindFrameBuffer();
-            return picture;
         }
 
         private Render fetchRender(int i) {
@@ -494,6 +599,7 @@ public class SnapshotEffectRender {
                     SnapshotEffectRender.this.mTitleMap.remove(drawJPEGAttribute2.mTitle);
                 }
                 String str = null;
+                Object access$000;
                 if (SnapshotEffectRender.this.mImageSaver != null) {
                     String str2;
                     ImageSaver access$2300 = SnapshotEffectRender.this.mImageSaver;
@@ -518,10 +624,10 @@ public class SnapshotEffectRender {
                     if (access$7002 == null) {
                         z3 = drawJPEGAttribute2.mFinalImage;
                     }
-                    access$2300.addImage(bArr, z4, str2, str3, j, uri, location, i2, i3, exifInterface, i4, false, false, z3, false, z2, drawJPEGAttribute2.mAlgorithmName, drawJPEGAttribute2.mInfo);
+                    access$2300.addImage(bArr, z4, str2, str3, j, uri, location, i2, i3, exifInterface, i4, false, false, z3, false, z2, drawJPEGAttribute2.mAlgorithmName, drawJPEGAttribute2.mInfo, drawJPEGAttribute2.mPreviewThumbnailHash);
                 } else if (drawJPEGAttribute2.mUri == null) {
                     Log.d(SnapshotEffectRender.TAG, "addImageForEffect");
-                    Activity access$000 = SnapshotEffectRender.this.mActivity;
+                    access$000 = SnapshotEffectRender.this.mActivity;
                     if (access$7002 == null) {
                         access$7002 = drawJPEGAttribute2.mTitle;
                     }
@@ -532,7 +638,7 @@ public class SnapshotEffectRender {
                     stringBuilder2.append("updateImage: uri=");
                     stringBuilder2.append(drawJPEGAttribute2.mUri);
                     Log.d(access$700, stringBuilder2.toString());
-                    Context access$0002 = SnapshotEffectRender.this.mActivity;
+                    access$000 = SnapshotEffectRender.this.mActivity;
                     byte[] bArr2 = drawJPEGAttribute2.mData;
                     ExifInterface exifInterface2 = drawJPEGAttribute2.mExif;
                     Uri uri2 = drawJPEGAttribute2.mUri;
@@ -544,7 +650,7 @@ public class SnapshotEffectRender {
                     if (access$7002 != null) {
                         str = drawJPEGAttribute2.mTitle;
                     }
-                    Storage.updateImage(access$0002, bArr2, exifInterface2, uri2, str4, location2, i5, i6, i7, str);
+                    Storage.updateImage(access$000, bArr2, exifInterface2, uri2, str4, location2, i5, i6, i7, str);
                 }
             } else if (drawJPEGAttribute2.mExif != null) {
                 OutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -633,9 +739,9 @@ public class SnapshotEffectRender {
         if (CameraSettings.isSupportedDualCameraWaterMark()) {
             this.mDualCameraWaterMarkBitmap = loadCameraWatermark(activityBase);
             this.mCurrentCustomWaterMarkText = CameraSettings.getCustomWatermark();
-            this.mDualCameraWaterMarkSizeRatio = getResourceFloat(R.dimen.dualcamera_watermark_size_ratio, 0.0f);
-            this.mDualCameraWaterMarkPaddingXRatio = getResourceFloat(R.dimen.dualcamera_watermark_padding_x_ratio, 0.0f);
-            this.mDualCameraWaterMarkPaddingYRatio = getResourceFloat(R.dimen.dualcamera_watermark_padding_y_ratio, 0.0f);
+            this.mDualCameraWaterMarkSizeRatio = getResourceFloat(R.dimen.dualcamera_watermark_size_ratio, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            this.mDualCameraWaterMarkPaddingXRatio = getResourceFloat(R.dimen.dualcamera_watermark_padding_x_ratio, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            this.mDualCameraWaterMarkPaddingYRatio = getResourceFloat(R.dimen.dualcamera_watermark_padding_y_ratio, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         }
         this.mSquareModeExtraMargin = this.mActivity.getResources().getDimensionPixelSize(R.dimen.square_mode_bottom_cover_extra_margin);
     }
@@ -648,7 +754,7 @@ public class SnapshotEffectRender {
         options.inScaled = false;
         options.inPurgeable = true;
         options.inPremultiplied = false;
-        if (DataRepository.dataItemFeature().fe()) {
+        if (DataRepository.dataItemFeature().fg()) {
             File file = new File(context.getFilesDir(), Util.WATERMARK_48M_FILE_NAME);
             if (!file.exists()) {
                 return Util.generate48MWatermark2File();
@@ -694,7 +800,7 @@ public class SnapshotEffectRender {
         options.inScaled = false;
         options.inPurgeable = true;
         options.inPremultiplied = false;
-        if (!DataRepository.dataItemFeature().fe()) {
+        if (!DataRepository.dataItemFeature().fg()) {
             return BitmapFactory.decodeFile(CameraSettings.getDualCameraWaterMarkFilePathVendor(), options);
         }
         File file = new File(context.getFilesDir(), Util.WATERMARK_FILE_NAME);

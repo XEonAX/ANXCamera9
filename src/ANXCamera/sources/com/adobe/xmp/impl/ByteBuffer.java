@@ -1,5 +1,6 @@
 package com.adobe.xmp.impl;
 
+import com.sensetime.stmobile.STMobileHumanActionNative;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -35,13 +36,13 @@ public class ByteBuffer {
     public ByteBuffer(InputStream inputStream) throws IOException {
         this.encoding = null;
         this.length = 0;
-        this.buffer = new byte[16384];
+        this.buffer = new byte[STMobileHumanActionNative.ST_MOBILE_HAND_LOVE];
         while (true) {
-            int read = inputStream.read(this.buffer, this.length, 16384);
+            int read = inputStream.read(this.buffer, this.length, STMobileHumanActionNative.ST_MOBILE_HAND_LOVE);
             if (read > 0) {
                 this.length += read;
-                if (read == 16384) {
-                    ensureCapacity(this.length + 16384);
+                if (read == STMobileHumanActionNative.ST_MOBILE_HAND_LOVE) {
+                    ensureCapacity(this.length + STMobileHumanActionNative.ST_MOBILE_HAND_LOVE);
                 } else {
                     return;
                 }

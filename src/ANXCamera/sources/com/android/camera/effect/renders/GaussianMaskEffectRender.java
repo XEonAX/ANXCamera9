@@ -2,6 +2,7 @@ package com.android.camera.effect.renders;
 
 import android.opengl.GLES20;
 import com.android.camera.effect.EffectController;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.GLCanvas;
 
 public class GaussianMaskEffectRender extends RegionEffectRender {
@@ -23,7 +24,7 @@ public class GaussianMaskEffectRender extends RegionEffectRender {
 
     protected void initShaderValue(boolean z) {
         super.initShaderValue(z);
-        GLES20.glUniform1f(this.mUniformMaskAlphaH, z ? 0.0f : EffectController.getInstance().getTiltShiftMaskAlpha());
+        GLES20.glUniform1f(this.mUniformMaskAlphaH, z ? PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO : EffectController.getInstance().getTiltShiftMaskAlpha());
     }
 
     public String getFragShaderString() {

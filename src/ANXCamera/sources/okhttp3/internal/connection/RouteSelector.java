@@ -1,6 +1,5 @@
 package okhttp3.internal.connection;
 
-import android.support.v4.internal.view.SupportMenu;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -159,7 +158,7 @@ public final class RouteSelector {
                 throw new IllegalArgumentException(stringBuilder.toString());
             }
         }
-        if (port < 1 || port > SupportMenu.USER_MASK) {
+        if (port < 1 || port > 65535) {
             StringBuilder stringBuilder2 = new StringBuilder();
             stringBuilder2.append("No route to ");
             stringBuilder2.append(host);

@@ -14,6 +14,7 @@ import android.view.animation.PathInterpolator;
 import com.android.camera.Util;
 import com.android.camera.constant.ColorConstant;
 import com.android.camera.data.DataRepository;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import miui.view.animation.CubicEaseInOutInterpolator;
 import miui.view.animation.SineEaseInOutInterpolator;
 
@@ -45,7 +46,7 @@ public class LightingAnimateDrawable extends Drawable {
 
     public void draw(@NonNull Canvas canvas) {
         if (this.isShown && canvas != null) {
-            int saveLayer = canvas.saveLayer(0.0f, 0.0f, (float) this.mWidth, (float) this.mHeight, null, 31);
+            int saveLayer = canvas.saveLayer(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) this.mWidth, (float) this.mHeight, null, 31);
             canvas.save();
             this.mPaintMask.drawCanvas(canvas);
             canvas.restore();
@@ -103,7 +104,7 @@ public class LightingAnimateDrawable extends Drawable {
             this.mPaintMask.setTargetMiddle(this.mMiddleX, this.mMiddleVerticalY, (((float) Math.min(this.mWidth, this.mHeight)) * 1.33f) / 2.0f);
             this.mPaintCircle.setTargetMiddle(this.mMiddleX, this.mMiddleVerticalY, (((float) Math.min(this.mWidth, this.mHeight)) * 1.33f) / 2.0f);
         }
-        this.mUpdateDegreeAnimator = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
+        this.mUpdateDegreeAnimator = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
         this.mUpdateDegreeAnimator.setDuration(300);
         this.mUpdateDegreeAnimator.setInterpolator(new PathInterpolator(0.25f, 0.1f, 0.25f, 1.0f));
         this.mUpdateDegreeAnimator.addUpdateListener(new AnimatorUpdateListener() {
@@ -139,7 +140,7 @@ public class LightingAnimateDrawable extends Drawable {
         this.mPaintCircle.setVisible(8);
         this.mPaintMask.setCurrentWidthPercent(1.0f).setTargetWidthPercent(0.548f);
         this.mPaintMask.setTargetAlpha(114);
-        this.mStartAnimator = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
+        this.mStartAnimator = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
         this.mStartAnimator.setDuration(380);
         this.mStartAnimator.setInterpolator(new PathInterpolator(0.25f, 0.1f, 0.25f, 1.0f));
         this.mStartAnimator.addUpdateListener(new AnimatorUpdateListener() {
@@ -170,7 +171,7 @@ public class LightingAnimateDrawable extends Drawable {
         this.mPaintCircle.setCurrentWidthPercent(0.548f).setTargetWidthPercent(0.548f);
         this.mPaintCircle.setCurrentColor(-1).setTargetColor(-1);
         this.mPaintCircle.setCurrentAlpha(0).setTargetAlpha(255);
-        this.mAlphaAnimator = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
+        this.mAlphaAnimator = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
         this.mAlphaAnimator.setDuration(200);
         this.mAlphaAnimator.setInterpolator(new CubicEaseInOutInterpolator());
         this.mAlphaAnimator.addUpdateListener(new AnimatorUpdateListener() {
@@ -249,7 +250,7 @@ public class LightingAnimateDrawable extends Drawable {
         this.mPaintCircle.setCurrentColor(-1).setTargetColor(ColorConstant.COLOR_COMMON_SELECTED);
         this.mPaintCircle.setCurrentWidthPercent(0.576f).setTargetWidthPercent(0.548f);
         this.mPaintMask.setCurrentWidthPercent(0.576f).setTargetWidthPercent(0.548f);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
         ofFloat.setInterpolator(new CubicEaseInOutInterpolator());
         ofFloat.setDuration(250);
         ofFloat.addUpdateListener(new AnimatorUpdateListener() {
@@ -268,7 +269,7 @@ public class LightingAnimateDrawable extends Drawable {
         this.mPaintCircle.setVisible(8);
         this.mPaintMask.setTargetWidthPercent(1.5f);
         this.mPaintMask.setTargetAlpha(114);
-        this.mExitAnimator = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
+        this.mExitAnimator = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
         this.mExitAnimator.setDuration(200);
         this.mExitAnimator.setInterpolator(new PathInterpolator(0.25f, 0.1f, 0.25f, 1.0f));
         this.mExitAnimator.addUpdateListener(new AnimatorUpdateListener() {

@@ -10,6 +10,7 @@ public abstract class FocusManagerAbstract {
     public static final int FOCUS_FROM_AUTO = 0;
     public static final int FOCUS_FROM_FACE = 1;
     public static final int FOCUS_FROM_FORCE = 4;
+    public static final int FOCUS_FROM_LONG_PRESS = 5;
     public static final int FOCUS_FROM_NONE = -1;
     public static final int FOCUS_FROM_OBJECT_TRACK = 2;
     public static final int FOCUS_FROM_TOUCH = 3;

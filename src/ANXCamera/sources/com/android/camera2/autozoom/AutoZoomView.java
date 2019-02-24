@@ -18,17 +18,24 @@ import com.android.camera.module.ModuleManager;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.AutoZoomModuleProtocol;
 import com.android.camera.protocol.ModeProtocol.AutoZoomViewProtocol;
+import com.android.camera.protocol.ModeProtocol.TopAlert;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class AutoZoomView extends View implements OnTouchListener, IObjectView {
+    public static final float TOLERATE_Y = 10.0f;
+    private int[] mAutoZoomActiveObjects;
     private RectF mAutoZoomBound;
+    private int[] mAutoZoomPausedObjects;
     private int mAutoZoomStatus;
+    private AtomicBoolean mBeginLost;
     private float mBoundWidth;
+    private AtomicBoolean mEndLost;
     private Paint mPathPaint;
     private Size mPreviewSize;
     private Paint mRectPaint;
+    private int mTolerateY;
     List<AutoZoomTracker> mTrackers;
     private AtomicBoolean mViewActive;
     private AtomicBoolean mViewEnabled;
@@ -55,6 +62,8 @@ public class AutoZoomView extends View implements OnTouchListener, IObjectView {
     private void init() {
         this.mViewEnabled = new AtomicBoolean(false);
         this.mViewActive = new AtomicBoolean(false);
+        this.mBeginLost = new AtomicBoolean(false);
+        this.mEndLost = new AtomicBoolean(false);
         this.mRectPaint = new Paint();
         this.mRectPaint.setAntiAlias(true);
         this.mRectPaint.setXfermode(new PorterDuffXfermode(Mode.CLEAR));
@@ -63,8 +72,9 @@ public class AutoZoomView extends View implements OnTouchListener, IObjectView {
         this.mPathPaint.setStrokeWidth(this.mBoundWidth);
         this.mPathPaint.setStyle(Style.STROKE);
         this.mPathPaint.setColor(getContext().getColor(R.color.white_80));
-        setOnTouchListener(this);
+        this.mTolerateY = AutoZoomUtils.dp2px(getContext(), 10.0f);
         setWillNotDraw(false);
+        setOnTouchListener(this);
         setLayerType(2, null);
     }
 
@@ -89,6 +99,8 @@ public class AutoZoomView extends View implements OnTouchListener, IObjectView {
     }
 
     public void setViewActive(boolean z) {
+        this.mBeginLost.getAndSet(false);
+        this.mEndLost.getAndSet(false);
         this.mViewActive.getAndSet(z);
     }
 
@@ -103,6 +115,8 @@ public class AutoZoomView extends View implements OnTouchListener, IObjectView {
                     AutoZoomView.this.mTrackers.clear();
                     AutoZoomView.this.mAutoZoomStatus = 0;
                     AutoZoomView.this.mAutoZoomBound = null;
+                    AutoZoomView.this.mAutoZoomPausedObjects = null;
+                    AutoZoomView.this.mAutoZoomActiveObjects = null;
                     if (AutoZoomView.this.getVisibility() != i) {
                         AutoZoomView.this.setVisibility(i);
                     }
@@ -129,6 +143,18 @@ public class AutoZoomView extends View implements OnTouchListener, IObjectView {
                     }
                 }
                 this.mTrackers = arrayList;
+                this.mAutoZoomPausedObjects = autoZoomCaptureResult.getAutoZoomPausedObjects();
+                this.mAutoZoomActiveObjects = autoZoomCaptureResult.getAutoZoomActiveObjects();
+                if (isLosting() && !this.mBeginLost.get()) {
+                    this.mBeginLost.getAndSet(true);
+                }
+                if (isLost() && this.mBeginLost.get() && !this.mEndLost.get()) {
+                    this.mEndLost.getAndSet(true);
+                    AutoZoomModuleProtocol autoZoomModuleProtocol = (AutoZoomModuleProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(215);
+                    if (autoZoomModuleProtocol != null) {
+                        autoZoomModuleProtocol.onTrackLost();
+                    }
+                }
                 this.mAutoZoomBound = fillBoundsInOverlay(0, autoZoomBounds);
                 if (this.mAutoZoomBound != null) {
                     postInvalidate();
@@ -145,8 +171,18 @@ public class AutoZoomView extends View implements OnTouchListener, IObjectView {
         return this.mPreviewSize;
     }
 
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
+            if (topAlert != null && topAlert.isExtraMenuShowing()) {
+                return false;
+            }
+        }
+        return onViewTouchEvent(motionEvent);
+    }
+
     public boolean onViewTouchEvent(MotionEvent motionEvent) {
-        if (!this.mViewEnabled.get() || !ModuleManager.isVideoModule()) {
+        if (!this.mViewEnabled.get() || !ModuleManager.isVideoModule() || motionEvent.getY() < ((float) this.mTolerateY)) {
             return false;
         }
         switch (motionEvent.getAction()) {
@@ -157,13 +193,9 @@ public class AutoZoomView extends View implements OnTouchListener, IObjectView {
                 break;
             case 1:
                 tapAt(motionEvent.getX(), motionEvent.getY());
-                break;
+                return true;
         }
-        return true;
-    }
-
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        return onViewTouchEvent(motionEvent);
+        return false;
     }
 
     protected void onDraw(Canvas canvas) {
@@ -171,7 +203,9 @@ public class AutoZoomView extends View implements OnTouchListener, IObjectView {
         if (this.mViewEnabled.get() && this.mViewActive.get() && this.mAutoZoomBound != null) {
             canvas.drawColor(getContext().getColor(R.color.semi_transparent_dark));
             canvas.drawRect(this.mAutoZoomBound, this.mRectPaint);
-            canvas.drawRect(this.mAutoZoomBound, this.mPathPaint);
+            if (!isLost()) {
+                canvas.drawRect(this.mAutoZoomBound, this.mPathPaint);
+            }
         }
     }
 
@@ -202,15 +236,7 @@ public class AutoZoomView extends View implements OnTouchListener, IObjectView {
     private void tapAt(float f, float f2) {
         if (this.mViewEnabled.get() && this.mPreviewSize != null) {
             AutoZoomModuleProtocol autoZoomModuleProtocol = (AutoZoomModuleProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(215);
-            for (AutoZoomTracker autoZoomTracker : this.mTrackers) {
-                RectF bounds = autoZoomTracker.getBounds();
-                if (bounds != null && bounds.contains(f, f2) && autoZoomModuleProtocol != null) {
-                    autoZoomModuleProtocol.setAutoZoomStopCapture(autoZoomTracker.getId());
-                    autoZoomModuleProtocol.setAutoZoomStopCapture(-1);
-                    return;
-                }
-            }
-            if (this.mTrackers.size() >= 1) {
+            if (this.mTrackers.size() >= 1 && autoZoomModuleProtocol != null) {
                 autoZoomModuleProtocol.setAutoZoomStopCapture(0);
             }
             RectF tapedRect = getTapedRect(f, f2);
@@ -226,5 +252,33 @@ public class AutoZoomView extends View implements OnTouchListener, IObjectView {
                 autoZoomViewProtocol.onTrackingStarted(tapedRect);
             }
         }
+    }
+
+    private boolean isTrackingNotLost() {
+        if (this.mAutoZoomActiveObjects == null || this.mAutoZoomPausedObjects != null) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isLosting() {
+        if (isMoving()) {
+            if (this.mAutoZoomActiveObjects == null || this.mAutoZoomPausedObjects == null) {
+                if (this.mAutoZoomActiveObjects == null && this.mAutoZoomPausedObjects == null) {
+                    return true;
+                }
+                return false;
+            } else if (this.mAutoZoomActiveObjects[0] == this.mAutoZoomPausedObjects[0]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isLost() {
+        if (this.mAutoZoomActiveObjects == null && this.mAutoZoomPausedObjects == null && !isMoving()) {
+            return true;
+        }
+        return false;
     }
 }

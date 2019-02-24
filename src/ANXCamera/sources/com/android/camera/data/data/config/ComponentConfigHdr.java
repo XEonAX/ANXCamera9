@@ -65,19 +65,19 @@ public class ComponentConfigHdr extends ComponentData {
         if (CameraSettings.isFrontCamera()) {
             return "off";
         }
-        String fu = DataRepository.dataItemFeature().fu();
-        if (!TextUtils.isEmpty(fu)) {
+        String fx = DataRepository.dataItemFeature().fx();
+        if (!TextUtils.isEmpty(fx)) {
             Object obj = -1;
-            int hashCode = fu.hashCode();
+            int hashCode = fx.hashCode();
             if (hashCode != 3551) {
                 if (hashCode != 109935) {
-                    if (hashCode == 3005871 && fu.equals("auto")) {
+                    if (hashCode == 3005871 && fx.equals("auto")) {
                         obj = null;
                     }
-                } else if (fu.equals("off")) {
+                } else if (fx.equals("off")) {
                     obj = 2;
                 }
-            } else if (fu.equals("on")) {
+            } else if (fx.equals("on")) {
                 obj = 1;
             }
             switch (obj) {
@@ -134,7 +134,7 @@ public class ComponentConfigHdr extends ComponentData {
                 this.mAutoSupported = true;
                 this.mItems.add(new ComponentDataItem(getConfigHDRAutoRes(), getConfigHDRAutoRes(), R.string.pref_camera_hdr_entry_auto, "auto"));
             }
-            if (b.pM || !b.gv()) {
+            if (b.pM || !b.gE()) {
                 this.mItems.add(new ComponentDataItem(getConfigHDRNormalRes(), getConfigHDRNormalRes(), R.string.pref_simple_hdr_entry_on, "normal"));
             } else {
                 if (!b.IS_MI2A) {

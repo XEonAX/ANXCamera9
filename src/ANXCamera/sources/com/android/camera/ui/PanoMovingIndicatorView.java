@@ -14,6 +14,7 @@ import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.log.Log;
 import com.android.camera.panorama.MorphoPanoramaGP3;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera.ui.drawable.TriangleIndicatorDrawable;
 import com.android.volley.DefaultRetryPolicy;
 import java.util.HashMap;
@@ -138,7 +139,7 @@ public class PanoMovingIndicatorView extends View {
             i = -drawable.getIntrinsicWidth();
             drawable.setBounds(i, (-drawable.getIntrinsicHeight()) / 2, 0, drawable.getIntrinsicHeight() / 2);
             drawable.draw(canvas2);
-            canvas2.translate((float) drawable.getIntrinsicWidth(), 0.0f);
+            canvas2.translate((float) drawable.getIntrinsicWidth(), PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
             int i5 = (int) (((float) i) - (((float) STONE_WIDTH) + this.mPointGap));
             int i6 = (int) this.mPointGap;
             for (int i7 = 0; i7 < sGapWidth.length && i6 > 0; i7++) {
@@ -219,7 +220,7 @@ public class PanoMovingIndicatorView extends View {
     }
 
     public boolean isTooFast() {
-        return this.mPointGap > 0.0f;
+        return this.mPointGap > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
     }
 
     private void filterSpeed(int i) {

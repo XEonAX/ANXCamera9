@@ -3,6 +3,7 @@ package com.android.camera.effect.draw_mode;
 import android.media.Image;
 import android.util.Size;
 import com.android.camera.effect.EffectController.EffectRectAttribute;
+import com.android.camera.effect.MiYuvImage;
 import com.android.camera.watermark.WaterMarkData;
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class DrawYuvAttribute extends DrawAttribute {
     public String mTiltShiftMode;
     public String mTimeWatermark;
     public List<WaterMarkData> mWaterInfos;
+    public MiYuvImage mYuvImage;
 
     public DrawYuvAttribute(Image image, Size size, Size size2, int i, int i2, int i3, float f, long j, boolean z, boolean z2, boolean z3, String str, String str2, EffectRectAttribute effectRectAttribute, List<WaterMarkData> list) {
         this.mImage = image;

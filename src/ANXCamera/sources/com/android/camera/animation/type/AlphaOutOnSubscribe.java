@@ -3,6 +3,7 @@ package com.android.camera.animation.type;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorCompat;
 import android.view.View;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class AlphaOutOnSubscribe extends BaseOnSubScribe {
     public AlphaOutOnSubscribe(View view) {
@@ -12,7 +13,7 @@ public class AlphaOutOnSubscribe extends BaseOnSubScribe {
     protected ViewPropertyAnimatorCompat getAnimation() {
         BaseOnSubScribe.setAnimateViewVisible(this.mAniView, 0);
         ViewCompat.setAlpha(this.mAniView, 1.0f);
-        return ViewCompat.animate(this.mAniView).alpha(0.0f);
+        return ViewCompat.animate(this.mAniView).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
     }
 
     protected void onAnimationEnd() {

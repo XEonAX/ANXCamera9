@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.RectF;
 import android.util.Size;
 import android.view.WindowManager;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -57,7 +58,7 @@ public class AutoZoomUtils {
 
     public static float median(ArrayList<Float> arrayList) {
         if (arrayList.isEmpty()) {
-            return 0.0f;
+            return PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
         }
         Collections.sort(arrayList);
         if (arrayList.size() % 2 == 0) {
@@ -85,5 +86,9 @@ public class AutoZoomUtils {
 
     public static void normalizedRectToSize(RectF rectF, Size size) {
         rectF.set(rectF.left * ((float) size.getWidth()), rectF.top * ((float) size.getHeight()), rectF.right * ((float) size.getWidth()), rectF.bottom * ((float) size.getHeight()));
+    }
+
+    public static int dp2px(Context context, float f) {
+        return (int) ((f * context.getResources().getDisplayMetrics().density) + 0.5f);
     }
 }

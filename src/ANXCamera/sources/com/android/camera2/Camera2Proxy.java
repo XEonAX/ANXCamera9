@@ -17,6 +17,7 @@ import android.support.annotation.Nullable;
 import android.util.Range;
 import android.view.Surface;
 import com.android.camera.CameraSize;
+import com.android.camera.Thumbnail;
 import com.android.camera.effect.FaceAnalyzeInfo;
 import com.android.camera.fragment.beauty.BeautyValues;
 import com.android.camera.module.loader.camera2.FocusTask;
@@ -44,6 +45,8 @@ public abstract class Camera2Proxy {
     }
 
     public interface PictureCallback {
+        void onCaptureShutter();
+
         ParallelTaskData onCaptureStart(ParallelTaskData parallelTaskData, CameraSize cameraSize);
 
         void onPictureTaken(byte[] bArr);
@@ -66,6 +69,9 @@ public abstract class Camera2Proxy {
         }
 
         public void onPictureTakenFinished(boolean z) {
+        }
+
+        public void onCaptureShutter() {
         }
     }
 
@@ -110,7 +116,7 @@ public abstract class Camera2Proxy {
     public interface UltraWideCheckCallback {
         boolean isUltraWideDetectStarted();
 
-        void onUltraWideChanged(boolean z);
+        void onUltraWideChanged(boolean z, int i);
     }
 
     public interface VideoRecordStateCallback {
@@ -124,6 +130,8 @@ public abstract class Camera2Proxy {
     public abstract void cancelContinuousShot();
 
     public abstract void cancelFocus(int i);
+
+    public abstract void cancelSession();
 
     public abstract void captureAbortBurst();
 
@@ -155,6 +163,8 @@ public abstract class Camera2Proxy {
 
     public abstract int getFocusMode();
 
+    public abstract String getParallelShotSavePath();
+
     protected abstract ImageReader getPhotoImageReader();
 
     public abstract int getPictureFormat();
@@ -179,13 +189,13 @@ public abstract class Camera2Proxy {
 
     public abstract int getSceneMode();
 
-    public abstract String getShotSavePath();
-
     protected abstract ImageReader getVideoSnapshotImageReader();
 
     public abstract float getZoomRatio();
 
     public abstract boolean isBokehEnabled();
+
+    public abstract boolean isCaptureBusy(boolean z);
 
     public abstract boolean isFacingFront();
 
@@ -203,9 +213,17 @@ public abstract class Camera2Proxy {
 
     public abstract void notifyVideoStreamEnd();
 
+    public abstract void onParallelImagePostProcStart();
+
+    public abstract void onPreviewComing();
+
+    public abstract void onPreviewThumbnailReceived(Thumbnail thumbnail);
+
     public abstract void pausePreview();
 
     public abstract void releaseCameraPreviewCallback(@Nullable CameraPreviewCallback cameraPreviewCallback);
+
+    public abstract void releaseFakeSurfaceIfNeed();
 
     public abstract void releasePictureCallback();
 
@@ -345,7 +363,7 @@ public abstract class Camera2Proxy {
 
     public abstract void setSharpness(int i);
 
-    public abstract void setShotSavePath(String str);
+    public abstract void setShotSavePath(String str, boolean z);
 
     public abstract void setShotType(int i);
 

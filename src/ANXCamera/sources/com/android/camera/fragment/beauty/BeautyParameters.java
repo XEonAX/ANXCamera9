@@ -6,6 +6,7 @@ import com.android.camera.data.data.global.DataItemGlobal;
 import com.android.camera.effect.EffectController;
 import com.android.camera.log.Log;
 import com.android.camera.module.loader.camera2.Camera2DataContainer;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera2.CameraCapabilities;
 import com.mi.config.b;
 import com.miui.filtersdk.beauty.BeautyParameterType;
@@ -39,7 +40,7 @@ public class BeautyParameters {
     private static BeautyParameters sInstance;
     public static List<Integer> sSupportSeekBarAdjustBeautyType = new ArrayList();
     private static final Type[] sSupportTwoWayAdjustableTypes = new Type[]{Type.CHIN_RATIO, Type.LIPS_RATIO};
-    private float[][] mCameraLevelParameters = new float[][]{new float[]{0.0f, 0.0f, 0.0f, 0.0f}, new float[]{1.0f, 1.0f, 1.0f, 1.0f}, new float[]{3.0f, 3.0f, 3.0f, 3.0f}, new float[]{5.0f, 5.0f, 5.0f, 5.0f}, new float[]{7.0f, 7.0f, 7.0f, 7.0f}, new float[]{8.0f, 8.0f, 8.0f, 8.0f}};
+    private float[][] mCameraLevelParameters = new float[][]{new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO}, new float[]{1.0f, 1.0f, 1.0f, 1.0f}, new float[]{3.0f, 3.0f, 3.0f, 3.0f}, new float[]{5.0f, 5.0f, 5.0f, 5.0f}, new float[]{7.0f, 7.0f, 7.0f, 7.0f}, new float[]{8.0f, 8.0f, 8.0f, 8.0f}};
     private IntelligentBeautyProcessor mMakeupProcessor;
     private IntelligentBeautyProcessor mStickerMakeupProcessor;
 
@@ -200,7 +201,7 @@ public class BeautyParameters {
     }
 
     public List<Type> getSupportBeautyTypes() {
-        if (!b.hR()) {
+        if (!b.ia()) {
             return BeautySettingManager.getLegacySupportedBeautyTypes();
         }
         if (CameraSettings.isFrontCamera()) {
@@ -260,7 +261,7 @@ public class BeautyParameters {
     }
 
     private Map<BeautyParameterType, Float> getProcessorBeautyParams(IntelligentBeautyProcessor intelligentBeautyProcessor, int i) {
-        if (!b.hG()) {
+        if (!b.hP()) {
             i--;
         }
         return intelligentBeautyProcessor.getIntelligentLevelParams(i);

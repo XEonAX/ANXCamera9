@@ -1,8 +1,5 @@
 package okio;
 
-import android.support.v4.internal.view.SupportMenu;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v4.view.ViewCompat;
 import java.nio.charset.Charset;
 
 final class Util {
@@ -18,12 +15,12 @@ final class Util {
     }
 
     public static short reverseBytesShort(short s) {
-        int i = s & SupportMenu.USER_MASK;
-        return (short) (((i & 255) << 8) | ((MotionEventCompat.ACTION_POINTER_INDEX_MASK & i) >>> 8));
+        int i = s & 65535;
+        return (short) (((i & 255) << 8) | ((65280 & i) >>> 8));
     }
 
     public static int reverseBytesInt(int i) {
-        return ((i & 255) << 24) | ((((ViewCompat.MEASURED_STATE_MASK & i) >>> 24) | ((16711680 & i) >>> 8)) | ((MotionEventCompat.ACTION_POINTER_INDEX_MASK & i) << 8));
+        return ((i & 255) << 24) | ((((-16777216 & i) >>> 24) | ((16711680 & i) >>> 8)) | ((65280 & i) << 8));
     }
 
     public static long reverseBytesLong(long j) {

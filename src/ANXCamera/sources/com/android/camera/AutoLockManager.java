@@ -33,7 +33,7 @@ public class AutoLockManager {
         if (i > 0) {
             this.mHibernationTimeOut = 1000 * ((long) i);
         } else {
-            this.mHibernationTimeOut = MILLIS_IN_MINUTE * ((long) b.gZ());
+            this.mHibernationTimeOut = MILLIS_IN_MINUTE * ((long) b.hi());
         }
         String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();

@@ -5,13 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.Paint.FontMetricsInt;
 import android.graphics.Typeface;
 import android.os.Build.VERSION;
-import android.support.v4.view.ViewCompat;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
 import com.android.camera.CameraAppImpl;
 import com.android.camera.Util;
 import com.android.camera.lib.compatibility.util.CompatibilityUtils;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class StringTexture extends CanvasTexture {
     public static final int TYPE_NORMAL = 0;
@@ -38,14 +38,14 @@ public class StringTexture extends CanvasTexture {
         textPaint.setColor(i);
         if (i2 == 1) {
             textPaint.setTypeface(Util.getMiuiTypeface(CameraAppImpl.getAndroidContext()));
-            textPaint.setShadowLayer(0.1f, 5.0f, 5.0f, ViewCompat.MEASURED_STATE_MASK);
+            textPaint.setShadowLayer(0.1f, 5.0f, 5.0f, -16777216);
             setLongshotMode(textPaint, 0.1f);
         } else if (i2 == 2) {
             textPaint.setTypeface(Util.getMiuiTimeTypeface(CameraAppImpl.getAndroidContext()));
-            textPaint.setShadowLayer(0.1f, 0.0f, 3.0f, 771751936);
+            textPaint.setShadowLayer(0.1f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 3.0f, 771751936);
             setLongshotMode(textPaint, 0.1f);
         } else {
-            textPaint.setShadowLayer(2.0f, 0.0f, 0.0f, ViewCompat.MEASURED_STATE_MASK);
+            textPaint.setShadowLayer(2.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, -16777216);
         }
         return textPaint;
     }
@@ -69,7 +69,7 @@ public class StringTexture extends CanvasTexture {
         if (z) {
             defaultPaint.setTypeface(Typeface.defaultFromStyle(1));
         }
-        if (f2 > 0.0f) {
+        if (f2 > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
             str = TextUtils.ellipsize(str, defaultPaint, f2, TruncateAt.END).toString();
         }
         return newInstance(str, defaultPaint, i2);
@@ -83,7 +83,7 @@ public class StringTexture extends CanvasTexture {
     }
 
     protected void onDraw(Canvas canvas, Bitmap bitmap) {
-        canvas.translate(0.0f, (float) (-this.mMetrics.ascent));
-        canvas.drawText(this.mText, 0.0f, 0.0f, this.mPaint);
+        canvas.translate(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) (-this.mMetrics.ascent));
+        canvas.drawText(this.mText, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, this.mPaint);
     }
 }

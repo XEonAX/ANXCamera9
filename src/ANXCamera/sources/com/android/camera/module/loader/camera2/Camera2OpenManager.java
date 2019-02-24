@@ -11,9 +11,11 @@ import android.os.Looper;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import com.android.camera.CameraAppImpl;
+import com.android.camera.CameraSettings;
 import com.android.camera.constant.ExceptionConstant;
 import com.android.camera.constant.GlobalConstant;
 import com.android.camera.log.Log;
+import com.android.camera.module.ModuleManager;
 import com.android.camera2.Camera2Proxy;
 import com.android.camera2.CameraCapabilities;
 import com.android.camera2.MiCamera2;
@@ -176,7 +178,7 @@ public class Camera2OpenManager {
                     public void subscribe(ObservableEmitter<Camera2Result> observableEmitter) {
                         Camera2OpenManager.this.mCameraResultEmitter = observableEmitter;
                     }
-                }).timeout((long) CAMERA_OPEN_OR_CLOSE_TIMEOUT, TimeUnit.MILLISECONDS).onErrorResumeNext(new Function<Throwable, ObservableSource<Camera2Result>>() {
+                }).timeout(getCameraOpTimeout(), TimeUnit.MILLISECONDS).onErrorResumeNext(new Function<Throwable, ObservableSource<Camera2Result>>() {
                     public ObservableSource<Camera2Result> apply(Throwable th) {
                         String access$200 = Camera2OpenManager.TAG;
                         StringBuilder stringBuilder = new StringBuilder();
@@ -198,6 +200,13 @@ public class Camera2OpenManager {
             }
         }
         return z;
+    }
+
+    private long getCameraOpTimeout() {
+        if (this.mCamera2Device == null || !ModuleManager.isManualModule()) {
+            return CAMERA_OPEN_OR_CLOSE_TIMEOUT;
+        }
+        return CAMERA_OPEN_OR_CLOSE_TIMEOUT + (CameraSettings.getExposureTime() / 1000000);
     }
 
     public void openCamera(int i, int i2, Observer<Camera2Result> observer, boolean z) {
@@ -238,8 +247,8 @@ public class Camera2OpenManager {
         this.mCameraHandler.sendEmptyMessage(2);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:31:0x010e A:{ExcHandler: android.hardware.camera2.CameraAccessException (r5_32 'e' java.lang.Throwable), Splitter: B:29:0x00f4} */
-    /* JADX WARNING: Removed duplicated region for block: B:31:0x010e A:{ExcHandler: android.hardware.camera2.CameraAccessException (r5_32 'e' java.lang.Throwable), Splitter: B:29:0x00f4} */
+    /* JADX WARNING: Removed duplicated region for block: B:31:0x010e A:{Splitter: B:29:0x00f4, ExcHandler: android.hardware.camera2.CameraAccessException (r5_32 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:31:0x010e A:{Splitter: B:29:0x00f4, ExcHandler: android.hardware.camera2.CameraAccessException (r5_32 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:31:0x010e, code:
             r5 = move-exception;
      */

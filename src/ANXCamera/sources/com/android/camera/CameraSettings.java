@@ -8,9 +8,6 @@ import android.hardware.input.InputManager;
 import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
 import android.os.SystemProperties;
-import android.provider.MiuiSettings;
-import android.provider.MiuiSettings.Key;
-import android.provider.MiuiSettings.ScreenEffect;
 import android.provider.Settings.Global;
 import android.provider.Settings.System;
 import android.text.TextUtils;
@@ -38,6 +35,7 @@ import com.android.camera.module.ModuleManager;
 import com.android.camera.module.loader.camera2.Camera2DataContainer;
 import com.android.camera.preferences.CameraSettingPreferences;
 import com.android.camera.preferences.ListPreference;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera2.CameraCapabilities;
 import com.android.camera2.MiCustomFpsRange;
 import com.mi.config.b;
@@ -65,6 +63,7 @@ public class CameraSettings {
     public static int BOTTOM_CONTROL_HEIGHT = 0;
     public static final String CLOUD_APPMARKET_SERVER = "http://file.market.xiaomi.com/download/";
     public static final int CURRENT_VERSION = 4;
+    private static final boolean DEBUG_FAST_SHOT = SystemProperties.getBoolean("debug.vendor.camera.app.quickshot.enable", false);
     public static final int DEFAULT_VIDEO_DURATION = 0;
     private static final int DUAL_CAMERA_USE_HINT_SHOWN_MAX_TIMES = 5;
     private static final String DUAL_CAMERA_WATER_MARK_FILE = "/vendor/etc/camera/dualcamera.png";
@@ -84,7 +83,6 @@ public class CameraSettings {
     public static final String KEY_AUTOEXPOSURE = "pref_camera_autoexposure_key";
     public static final String KEY_AUTO_CHROMA_FLASH = "pref_auto_chroma_flash_key";
     public static final String KEY_AUTO_ZOOM = "pref_camera_auto_zoom";
-    public static final String KEY_AUTO_ZOOM_ULTRA_COUNT = "pref_auto_zoom_ultra_count";
     public static final String KEY_BEAUTIFY_BLUSHER_RATIO = "pref_beautify_blusher_ratio_key";
     public static final String KEY_BEAUTIFY_CHIN_RATIO = "pref_beautify_chin_ratio_key";
     public static final String KEY_BEAUTIFY_ENLARGE_EYE = "pref_skin_beautify_enlarge_eye_key";
@@ -144,6 +142,8 @@ public class CameraSettings {
     public static final String KEY_CAMERA_PORTRAIT_MODE = "pref_camera_portrait_mode_key";
     public static final String KEY_CAMERA_PORTRAIT_WITH_FACEBEAUTY = "pref_camera_portrait_with_facebeauty_key";
     public static final String KEY_CAMERA_PROXIMITY_LOCK = "pref_camera_proximity_lock_key";
+    public static final String KEY_CAMERA_QUICK_SHOT_ANIM_ENABLE = "pref_camera_quick_shot_anim_enable_key";
+    public static final String KEY_CAMERA_QUICK_SHOT_ENABLE = "pref_camera_quick_shot_enable_key";
     public static final String KEY_CAMERA_SNAP = "pref_camera_snap_key";
     public static final String KEY_CAMERA_SOUND = "pref_camerasound_key";
     public static final String KEY_CAMERA_SQUARE_MODE = "pref_camera_square_mode_key";
@@ -181,6 +181,7 @@ public class CameraSettings {
     public static final String KEY_FRONT_MIRROR = "pref_front_mirror_key";
     public static final String KEY_F_NUMBER = "pref_f_number";
     public static final String KEY_HAND_GESTURE = "pref_hand_gesture";
+    public static final String KEY_HAND_GESTURE_STATUS = "pref_hand_gesture_status";
     public static final String KEY_JPEG_QUALITY = "pref_camera_jpegquality_key";
     public static final String KEY_LENS_DIRTY_DETECT_DATE = "pref_lens_dirty_detect_date_key";
     public static final String KEY_LENS_DIRTY_DETECT_ENABLED = "pref_lens_dirty_detect_enabled_key";
@@ -204,6 +205,8 @@ public class CameraSettings {
     public static final String KEY_LIVE_STICKER_INTERNAL = "pref_camera_live_sticker_internal";
     public static final String KEY_LIVE_STICKER_LAST_CACHE_TIME = "pref_live_sticker_last_cache_time";
     public static final String KEY_LIVE_STICKER_NAME = "pref_live_sticker_name_key";
+    public static final String KEY_LIVE_STICKER_NEED_RED_DOT = "pref_live_sticker_need_red_dot";
+    public static final String KEY_LIVE_STICKER_RED_DOT_TIME = "pref_live_sticker_red_dot_time";
     public static final String KEY_LOCALWORDS_VERSION = "pref_localwords_version";
     public static final String KEY_LONG_PRESS_SHUTTER = "pref_camera_long_press_shutter_key";
     public static final String KEY_LONG_PRESS_SHUTTER_FEATURE = "pref_camera_long_press_shutter_feature_key";
@@ -212,6 +215,7 @@ public class CameraSettings {
     public static final String KEY_MOVIE_SOLID = "pref_camera_movie_solid_key";
     public static final String KEY_NORMAL_WIDE_LDC = "pref_camera_normal_wide_ldc_key";
     public static final String KEY_OPEN_CAMERA_FAIL = "open_camera_fail_key";
+    public static final String KEY_ORIGIN_ULTR_WIDE_STATUS = "pref_origin_ultra_wide_status";
     public static final String KEY_PANORAMA_MODE = "pref_camera_panoramamode_key";
     public static final String KEY_PANORAMA_MOVE_DIRECTION = "pref_panorana_move_direction_key";
     public static final String KEY_PICTURE_SIZE = "pref_camera_picturesize_key";
@@ -320,7 +324,7 @@ public class CameraSettings {
         sSceneToFlash.put(CameraScene.SPORTS, null);
         sSceneToFlash.put("5", "0");
         sSceneToFlash.put("6", "1");
-        sSceneToFlash.put(CameraScene.BEACH, "0");
+        sSceneToFlash.put("8", "0");
         sSceneToFlash.put(CameraScene.SNOW, "0");
         sSceneToFlash.put(CameraScene.SUNSET, "0");
         sSceneToFlash.put(CameraScene.FIREWORKS, "0");
@@ -328,10 +332,10 @@ public class CameraSettings {
         sSceneToFlash.put(CameraScene.FLOWERS, "0");
         sRemindMode.add(KEY_CAMERA_MODE_SETTINGS);
         sRemindMode.add("pref_camera_magic_mirror_key");
-        if (b.hy()) {
+        if (b.hH()) {
             sRemindMode.add("pref_camera_groupshot_mode_key");
         }
-        if (b.hG()) {
+        if (b.hP()) {
             sFaceBeautyLevelToValue.put(0, BeautyConstant.LEVEL_CLOSE);
             sFaceBeautyLevelToValue.put(1, BeautyConstant.LEVEL_LOW);
             sFaceBeautyLevelToValue.put(2, BeautyConstant.LEVEL_MEDIUM);
@@ -358,18 +362,16 @@ public class CameraSettings {
         if (ModuleManager.isSquareModule()) {
             Log.d("size", "#1: getPictureSize ratio return 4x3");
             return "4x3";
-        } else if (ModuleManager.isPortraitModule() && isBackCamera() && DataRepository.dataItemFeature().fz()) {
-            Log.d("size", "#2: getPictureSize ratio return 4x3");
-            return "4x3";
-        } else if (isSupportedUltraPixelPhotography(Camera2DataContainer.getInstance().getCurrentCameraCapabilities()) && ((ModuleManager.isManualModule() && isUltraPixelPhotographyOn()) || (ModuleManager.isCameraModule() && isRearMenuUltraPixelPhotographyOn()))) {
-            Log.d("size", "#3: getPictureSize ratio return 4x3");
-            return "4x3";
-        } else if (!ModuleManager.isCameraModule() || !isFrontMenuUltraPixelPhotographyOn() || !isFrontSupportedUltraPixelPhotography(Camera2DataContainer.getInstance().getCurrentCameraCapabilities())) {
+        } else if (!ModuleManager.isPortraitModule() || !isBackCamera() || !DataRepository.dataItemFeature().fB()) {
             return DataRepository.dataItemConfig().getString("pref_camera_picturesize_key", str);
         } else {
-            Log.d("size", "#4: getPictureSize ratio return 4x3");
+            Log.d("size", "#2: getPictureSize ratio return 4x3");
             return "4x3";
         }
+    }
+
+    public static boolean isUnsolicited4X3Ratio() {
+        return (isSupportedUltraPixelPhotography(Camera2DataContainer.getInstance().getCurrentCameraCapabilities()) && ((ModuleManager.isManualModule() && isUltraPixelPhotographyOn()) || (ModuleManager.isCameraModule() && isRearMenuUltraPixelPhotographyOn()))) || (ModuleManager.isCameraModule() && isFrontSupportedUltraPixelPhotography(Camera2DataContainer.getInstance().getCurrentCameraCapabilities()) && isFrontMenuUltraPixelPhotographyOn());
     }
 
     public static boolean isSupportedUltraPixelPhotography(CameraCapabilities cameraCapabilities) {
@@ -384,22 +386,22 @@ public class CameraSettings {
         if (!z2 && !z) {
             return false;
         }
-        int fP = DataRepository.dataItemFeature().fP();
-        if (fP <= 0) {
+        int fR = DataRepository.dataItemFeature().fR();
+        if (fR <= 0) {
             return false;
         }
-        return cameraCapabilities.isUltraPixelPhotographySupported(fP);
+        return cameraCapabilities.isUltraPixelPhotographySupported(fR);
     }
 
     public static boolean isFrontSupportedUltraPixelPhotography(CameraCapabilities cameraCapabilities) {
         if (cameraCapabilities == null || !ModuleManager.isCameraModule() || isBackCamera()) {
             return false;
         }
-        int fQ = DataRepository.dataItemFeature().fQ();
-        if (fQ <= 0) {
+        int fS = DataRepository.dataItemFeature().fS();
+        if (fS <= 0) {
             return false;
         }
-        return cameraCapabilities.isUltraPixelPhotographySupported(fQ);
+        return cameraCapabilities.isUltraPixelPhotographySupported(fS);
     }
 
     public static float getPreviewAspectRatio(int i, int i2) {
@@ -551,7 +553,7 @@ public class CameraSettings {
     }
 
     public static int getSkipFrameNumber() {
-        if (isFrontCamera()) {
+        if (isFrontCamera() || getCameraId() == Camera2DataContainer.getInstance().getUltraWideCameraId()) {
             return CameraAppImpl.getAndroidContext().getResources().getInteger(R.integer.camera_skip_frame_num);
         }
         return 0;
@@ -569,7 +571,7 @@ public class CameraSettings {
             if (indexOf > 0) {
                 substring = string2.substring(0, indexOf);
                 string2 = string2.substring(indexOf + 1);
-                if (isSupportFpsRange(3840, 2160, i) || isSupportFpsRange(1920, ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_END_DEAULT, i)) {
+                if (isSupportFpsRange(3840, 2160, i) || isSupportFpsRange(1920, 1080, i)) {
                     str = string2;
                 } else {
                     Log.d(TAG, "getPreferVideoQuality: do not support 60fps");
@@ -771,7 +773,7 @@ public class CameraSettings {
             stringBuilder.append("Invalid zoom: ");
             stringBuilder.append(string);
             Log.e(str, stringBuilder.toString());
-            return 0.0f;
+            return PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
         }
     }
 
@@ -806,7 +808,7 @@ public class CameraSettings {
     }
 
     public static int get4kProfile() {
-        if (b.gz()) {
+        if (b.gI()) {
             return Integer.parseInt(getString(R.string.pref_video_quality_entry_value_4kuhd));
         }
         return -1;
@@ -814,7 +816,7 @@ public class CameraSettings {
 
     public static boolean is4KHigherVideoQuality(int i) {
         boolean z = false;
-        if (!b.gz()) {
+        if (!b.gI()) {
             return false;
         }
         if (get4kProfile() <= i || i == 1) {
@@ -832,15 +834,15 @@ public class CameraSettings {
         }
         List supportedOutputSize = capabilities.getSupportedOutputSize(MediaRecorder.class);
         int i2 = get4kProfile();
-        if (b.gz() && supportedOutputSize.contains(new CameraSize(3840, 2160)) && CamcorderProfile.hasProfile(bogusCameraId, i2)) {
+        if (b.gI() && supportedOutputSize.contains(new CameraSize(3840, 2160)) && CamcorderProfile.hasProfile(bogusCameraId, i2)) {
             arrayList.add(Integer.toString(i2));
             if (isSupportFpsRange(3840, 2160, i)) {
                 arrayList.add(getString(R.string.pref_video_quality_entry_value_4kuhd_60fps));
             }
         }
-        if (supportedOutputSize.contains(new CameraSize(1920, ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_END_DEAULT)) && CamcorderProfile.hasProfile(bogusCameraId, 6)) {
+        if (supportedOutputSize.contains(new CameraSize(1920, 1080)) && CamcorderProfile.hasProfile(bogusCameraId, 6)) {
             arrayList.add(Integer.toString(6));
-            if (isSupportFpsRange(1920, ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_END_DEAULT, i)) {
+            if (isSupportFpsRange(1920, 1080, i)) {
                 arrayList.add(getString(R.string.pref_video_quality_entry_value_1080p_60fps));
             }
         }
@@ -906,6 +908,14 @@ public class CameraSettings {
         return arrayList;
     }
 
+    public static int getScreenLightBrightness() {
+        int screenLightBrightness = Camera2DataContainer.getInstance().getCapabilities(getCameraId()).getScreenLightBrightness();
+        if (screenLightBrightness <= 0) {
+            return SystemProperties.getInt("camera_screen_light_brightness", DataRepository.dataItemFeature().fq());
+        }
+        return screenLightBrightness;
+    }
+
     public static long updateOpenCameraFailTimes() {
         ProviderEditor editor = DataRepository.dataItemGlobal().editor();
         long j = DataRepository.dataItemGlobal().getLong(KEY_OPEN_CAMERA_FAIL, 0) + 1;
@@ -921,7 +931,7 @@ public class CameraSettings {
     }
 
     public static boolean isVideoCaptureVisible() {
-        return ((b.isMTKPlatform() && isStereoModeOn()) || isVideoBokehOn() || ((!b.hq() && (VIDEO_SPEED_SLOW.equals(DataRepository.dataItemRunning().getVideoSpeed()) || VIDEO_SPEED_HFR.equals(DataRepository.dataItemRunning().getVideoSpeed()))) || (b.gz() && ((b.qf || b.qh) && getVideoQuality() > 6)))) ? false : true;
+        return ((b.isMTKPlatform() && isStereoModeOn()) || isVideoBokehOn() || ((!b.hz() && (VIDEO_SPEED_SLOW.equals(DataRepository.dataItemRunning().getVideoSpeed()) || VIDEO_SPEED_HFR.equals(DataRepository.dataItemRunning().getVideoSpeed()))) || (b.gI() && ((b.qf || b.qh) && getVideoQuality() > 6)))) ? false : true;
     }
 
     public static int getDefaultPreferenceId(int i) {
@@ -933,28 +943,31 @@ public class CameraSettings {
             } else if (Util.isAntibanding60()) {
                 return R.string.pref_camera_antibanding_entryvalue_60hz;
             }
-        } else if (b.gL() && isFrontCamera()) {
+        } else if (b.gU() && isFrontCamera()) {
             return R.string.pref_mi_front_video_quality_default;
         }
         return i;
     }
 
     public static boolean isRecordLocation() {
-        if (b.gi() && DataRepository.dataItemGlobal().getBoolean(KEY_RECORD_LOCATION, false)) {
+        if (b.gr() && DataRepository.dataItemGlobal().getBoolean(KEY_RECORD_LOCATION, false)) {
             return true;
         }
         return false;
     }
 
     public static boolean isCameraSoundOpen() {
-        if (!b.gd() || DataRepository.dataItemGlobal().getBoolean(KEY_CAMERA_SOUND, true)) {
+        if (!b.gm() || DataRepository.dataItemGlobal().getBoolean(KEY_CAMERA_SOUND, true)) {
             return true;
         }
         return false;
     }
 
     public static boolean isTimeWaterMarkOpen() {
-        return DataRepository.dataItemGlobal().getBoolean("pref_watermark_key", false);
+        if (!DataRepository.dataItemGlobal().getBoolean("pref_watermark_key", false) || isFrontMenuUltraPixelPhotographyOn()) {
+            return false;
+        }
+        return true;
     }
 
     public static void setDualCameraWaterMarkOpen(boolean z) {
@@ -968,7 +981,7 @@ public class CameraSettings {
     }
 
     public static boolean getAiSceneOpen() {
-        return (!isFrontCamera() || DataRepository.dataItemFeature().fb()) && ((ModuleManager.isCameraModule() || ModuleManager.isSquareModule() || (DataRepository.dataItemFeature().fc() && ModuleManager.isPortraitModule())) && DataRepository.dataItemConfig().getBoolean("pref_camera_ai_scene_mode_key", DataRepository.dataItemFeature().eW()));
+        return (!isFrontCamera() || DataRepository.dataItemFeature().fd()) && ((ModuleManager.isCameraModule() || ModuleManager.isSquareModule() || (DataRepository.dataItemFeature().fe() && ModuleManager.isPortraitModule())) && DataRepository.dataItemConfig().getBoolean("pref_camera_ai_scene_mode_key", DataRepository.dataItemFeature().eX()));
     }
 
     public static boolean isDualCameraWaterMarkOpen() {
@@ -1000,7 +1013,7 @@ public class CameraSettings {
     }
 
     public static boolean isMovieSolidOn() {
-        return b.fY() && DataRepository.dataItemGlobal().getBoolean(KEY_MOVIE_SOLID, Boolean.valueOf(getString(R.string.pref_camera_movie_solid_default)).booleanValue());
+        return b.gi() && DataRepository.dataItemGlobal().getBoolean(KEY_MOVIE_SOLID, Boolean.valueOf(getString(R.string.pref_camera_movie_solid_default)).booleanValue());
     }
 
     public static boolean showGenderAge() {
@@ -1012,7 +1025,7 @@ public class CameraSettings {
     }
 
     public static boolean isScanQRCode(Context context) {
-        return !isFrontCamera() && isQRCodeReceiverAvailable(context) && b.ha() && DataRepository.dataItemGlobal().getBoolean(KEY_SCAN_QRCODE, Boolean.valueOf(getString(R.string.pref_scan_qrcode_default)).booleanValue());
+        return !isFrontCamera() && isQRCodeReceiverAvailable(context) && b.hj() && DataRepository.dataItemGlobal().getBoolean(KEY_SCAN_QRCODE, Boolean.valueOf(getString(R.string.pref_scan_qrcode_default)).booleanValue());
     }
 
     public static boolean isQRCodeReceiverAvailable(Context context) {
@@ -1027,7 +1040,7 @@ public class CameraSettings {
             }
             return z;
         }
-        if (DataRepository.dataItemFeature().fj() && Util.isPackageAvailable(context, AI_LENS_PACKAGE)) {
+        if (DataRepository.dataItemFeature().fl() && Util.isPackageAvailable(context, AI_LENS_PACKAGE)) {
             z = true;
         }
         return z;
@@ -1038,15 +1051,18 @@ public class CameraSettings {
     }
 
     public static boolean isBurstShootingEnable() {
-        return b.gf() && "burst".equals(DataRepository.dataItemGlobal().getString(KEY_LONG_PRESS_SHUTTER_FEATURE, getString(R.string.pref_camera_long_press_shutter_feature_default)));
+        return b.go() && "burst".equals(DataRepository.dataItemGlobal().getString(KEY_LONG_PRESS_SHUTTER_FEATURE, getString(R.string.pref_camera_long_press_shutter_feature_default)));
     }
 
     public static boolean isAEAFLockSupport() {
+        if (ModuleManager.isSuperNightScene()) {
+            return false;
+        }
         return DataRepository.dataItemGlobal().getBoolean(KEY_AE_AF_LOCK_SUPPORT, CameraAppImpl.getAndroidContext().getResources().getBoolean(R.bool.pref_camera_AEAF_lock_support));
     }
 
     public static int addExtraHeight(Context context, int i) {
-        if (!b.qR && Util.checkDeviceHasNavigationBar(context) && Global.getInt(context.getContentResolver(), MiuiSettings.Global.CAN_NAV_BAR_HIDE, 0) == 1) {
+        if (!b.qR && Util.checkDeviceHasNavigationBar(context) && Global.getInt(context.getContentResolver(), "can_nav_bar_hide", 0) == 1) {
             return i + Util.getNavigationBarHeight(context);
         }
         return i;
@@ -1061,7 +1077,7 @@ public class CameraSettings {
             return 1;
         }
         double d = ((double) i) / ((double) i2);
-        if (!b.hc() || Math.abs(d - 1.5d) >= 0.02d) {
+        if (!b.hl() || Math.abs(d - 1.5d) >= 0.02d) {
             if (Math.abs((((double) Util.sWindowHeight) / ((double) Util.sWindowWidth)) - d) >= 0.02d) {
                 double d2 = d - 1.7777777777777777d;
                 if (Math.abs(d - 1.3333333333333333d) > Math.abs(d2) || Math.abs(d - 1.5d) < 0.02d) {
@@ -1117,14 +1133,14 @@ public class CameraSettings {
     }
 
     public static boolean isLiveShotOn() {
-        if (DataRepository.dataItemFeature().fC() && ModuleManager.isCameraModule()) {
+        if (DataRepository.dataItemFeature().fE() && ModuleManager.isCameraModule()) {
             return DataRepository.dataItemRunning().getComponentRunningLiveShot().isLiveShotOn(163);
         }
         return false;
     }
 
     public static void setLiveShotOn(boolean z) {
-        if (DataRepository.dataItemFeature().fC() && ModuleManager.isCameraModule()) {
+        if (DataRepository.dataItemFeature().fE() && ModuleManager.isCameraModule()) {
             DataRepository.dataItemRunning().getComponentRunningLiveShot().setLiveShotOn(163, z);
         }
     }
@@ -1346,7 +1362,7 @@ public class CameraSettings {
     public static String getFaceBeautySwitch() {
         DataItemConfig dataItemConfig = DataRepository.dataItemConfig();
         String string = dataItemConfig.getString(KEY_FACE_BEAUTY_SWITCH, "pref_camera_face_beauty_key");
-        if (b.hG() || !KEY_FACE_BEAUTY_ADVANCED.equals(string)) {
+        if (b.hP() || !KEY_FACE_BEAUTY_ADVANCED.equals(string)) {
             return string;
         }
         Log.w(TAG, "reset beauty switch");
@@ -1398,10 +1414,10 @@ public class CameraSettings {
     }
 
     public static String getFaceBeautifyValue() {
-        if (!b.gg()) {
+        if (!b.gp()) {
             return BeautyConstant.LEVEL_CLOSE;
         }
-        if (b.hG() && KEY_FACE_BEAUTY_ADVANCED.equals(getFaceBeautySwitch())) {
+        if (b.hP() && KEY_FACE_BEAUTY_ADVANCED.equals(getFaceBeautySwitch())) {
             return BeautyConstant.LEVEL_ADVANCED;
         }
         String defaultValue = DataRepository.dataItemConfig().getComponentConfigBeauty().getDefaultValue(ModuleManager.getActiveModuleIndex());
@@ -1477,7 +1493,7 @@ public class CameraSettings {
     }
 
     public static int getBeautifyDetailValue(String str, int i, int i2) {
-        if (!b.gg()) {
+        if (!b.gp()) {
             return 0;
         }
         int faceBeautyRatio = getFaceBeautyRatio(str, -1);
@@ -1491,7 +1507,7 @@ public class CameraSettings {
         if (b.isMTKPlatform()) {
             return new int[]{-12, 12};
         }
-        if (b.gr()) {
+        if (b.gA()) {
             return new int[]{0, 7};
         }
         return new int[]{0, 10};
@@ -1550,7 +1566,7 @@ public class CameraSettings {
 
     public static boolean isPressDownCapture() {
         boolean z = false;
-        if (!b.gM()) {
+        if (!b.gV()) {
             return false;
         }
         if (isFrontCamera() || !"focus".equals(DataRepository.dataItemGlobal().getString(KEY_LONG_PRESS_SHUTTER_FEATURE, getString(R.string.pref_camera_long_press_shutter_feature_default)))) {
@@ -1560,15 +1576,15 @@ public class CameraSettings {
     }
 
     public static boolean isAsdPopupEnable() {
-        return b.gB();
+        return b.gK();
     }
 
     public static boolean isAsdNightEnable() {
-        return b.gI() && DataRepository.dataItemGlobal().getBoolean(KEY_CAMERA_ASD_NIGHT, Boolean.valueOf(getString(R.bool.pref_camera_asd_night_default)).booleanValue());
+        return b.gR() && DataRepository.dataItemGlobal().getBoolean(KEY_CAMERA_ASD_NIGHT, Boolean.valueOf(getString(R.bool.pref_camera_asd_night_default)).booleanValue());
     }
 
     public static boolean isAsdMotionEnable() {
-        return b.gG() && DataRepository.dataItemGlobal().getBoolean(KEY_CAMERA_ASD_NIGHT, Boolean.valueOf(getString(R.bool.pref_camera_asd_night_default)).booleanValue());
+        return b.gP() && DataRepository.dataItemGlobal().getBoolean(KEY_CAMERA_ASD_NIGHT, Boolean.valueOf(getString(R.bool.pref_camera_asd_night_default)).booleanValue());
     }
 
     public static boolean isNoCameraModeSelected(Context context) {
@@ -1585,23 +1601,23 @@ public class CameraSettings {
     }
 
     public static boolean isEdgePhotoEnable() {
-        return b.he() && sEdgePhotoEnable;
+        return b.hn() && sEdgePhotoEnable;
     }
 
     public static int getSystemEdgeMode(Context context) {
-        if (!b.he()) {
+        if (!b.hn()) {
             return 0;
         }
-        if ((System.getInt(context.getContentResolver(), "edge_handgrip_screenshot", 0) | ((System.getInt(context.getContentResolver(), "edge_handgrip", 0) | System.getInt(context.getContentResolver(), "edge_handgrip_clean", 0)) | System.getInt(context.getContentResolver(), "edge_handgrip_back", 0))) == 1) {
+        if ((System.getInt(context.getContentResolver(), EDGE_HANDGRIP_MODE_SCREENSHOT, 0) | ((System.getInt(context.getContentResolver(), EDGE_HANDGRIP_MODE, 0) | System.getInt(context.getContentResolver(), EDGE_HANDGRIP_MODE_CLEAN, 0)) | System.getInt(context.getContentResolver(), EDGE_HANDGRIP_MODE_BACK, 0))) == 1) {
             return 2;
         }
         return 0;
     }
 
     public static void readEdgePhotoSetting(Context context) {
-        if (b.he()) {
+        if (b.hn()) {
             boolean z = true;
-            if (System.getInt(context.getContentResolver(), "edge_handgrip_photo", 0) != 1) {
+            if (System.getInt(context.getContentResolver(), EDGE_HANDGRIP_MODE_PHOTO, 0) != 1) {
                 z = false;
             }
             sEdgePhotoEnable = z;
@@ -1633,7 +1649,7 @@ public class CameraSettings {
 
     public static String getJpegQuality(boolean z) {
         String string = DataRepository.dataItemConfig().getString(KEY_JPEG_QUALITY, getString(R.string.pref_camera_jpegquality_default));
-        String str = "high";
+        String str = JpegEncodingQualityMappings.HIGH;
         if (z) {
             str = "normal";
         }
@@ -1683,10 +1699,10 @@ public class CameraSettings {
 
     public static String getMiuiSettingsKeyForStreetSnap(String str) {
         if (str.equals(getString(R.string.pref_camera_snap_value_take_picture))) {
-            return Key.LONG_PRESS_VOLUME_DOWN_STREET_SNAP_PICTURE;
+            return "Street-snap-picture";
         }
         if (str.equals(getString(R.string.pref_camera_snap_value_take_movie))) {
-            return Key.LONG_PRESS_VOLUME_DOWN_STREET_SNAP_MOVIE;
+            return "Street-snap-movie";
         }
         return "none";
     }
@@ -1739,6 +1755,20 @@ public class CameraSettings {
         return isSupportParallelProcess() && DataRepository.dataItemGlobal().getBoolean(KEY_CAMERA_PARALLEL_PROCESS_ENABLE, CameraAppImpl.getAndroidContext().getResources().getBoolean(R.bool.pref_camera_parallel_process_enable_default));
     }
 
+    public static boolean isCameraQuickShotAnimateEnable() {
+        if (isSupportQuickShot()) {
+            return DataRepository.dataItemGlobal().getBoolean(KEY_CAMERA_QUICK_SHOT_ANIM_ENABLE, CameraAppImpl.getAndroidContext().getResources().getBoolean(R.bool.pref_camera_quick_shot_anim_enable_default));
+        }
+        return false;
+    }
+
+    public static boolean isCameraQuickShotEnable() {
+        if (isSupportQuickShot()) {
+            return DataRepository.dataItemGlobal().getBoolean(KEY_CAMERA_QUICK_SHOT_ENABLE, CameraAppImpl.getAndroidContext().getResources().getBoolean(R.bool.pref_camera_quick_shot_enable_default));
+        }
+        return false;
+    }
+
     public static boolean isSupportedOpticalZoom() {
         return b.isSupportedOpticalZoom() && Camera2DataContainer.getInstance().hasMuxCamera();
     }
@@ -1748,15 +1778,19 @@ public class CameraSettings {
     }
 
     public static boolean isSupportParallelProcess() {
-        return DataRepository.dataItemFeature().fp();
+        return DataRepository.dataItemFeature().fr();
+    }
+
+    public static boolean isSupportQuickShot() {
+        return DataRepository.dataItemFeature().fo() || (DEBUG_FAST_SHOT && !b.qY);
     }
 
     public static boolean isSupportedDualCameraWaterMark() {
-        return b.hV();
+        return b.ie();
     }
 
     public static boolean isSupportedMetadata() {
-        return b.gC() || isSupportedPortrait();
+        return b.gL() || isSupportedPortrait();
     }
 
     public static boolean isEnableDNG() {
@@ -1765,10 +1799,6 @@ public class CameraSettings {
 
     public static boolean isFingerprintCaptureEnable() {
         return DataRepository.dataItemGlobal().getBoolean(KEY_FINGERPRINT_CAPTURE, false);
-    }
-
-    public static boolean isFovcEnabled() {
-        return false;
     }
 
     public static String getSaturation() {
@@ -1847,7 +1877,7 @@ public class CameraSettings {
         CameraSettingPreferences instance = CameraSettingPreferences.instance();
         String string = instance.getString(KEY_QC_EXPOSURETIME, getString(R.string.pref_camera_exposuretime_default));
         String string2 = instance.getString(KEY_QC_ISO, getString(R.string.pref_camera_iso_default));
-        if (b.hU()) {
+        if (b.id()) {
             return string.equals(getString(R.string.pref_camera_exposuretime_default));
         }
         if (string.equals(getString(R.string.pref_camera_exposuretime_default)) || string2.equals(getString(R.string.pref_camera_iso_default))) {
@@ -1857,7 +1887,7 @@ public class CameraSettings {
     }
 
     public static boolean isPopupTipBeautyIntroEnable() {
-        if (!b.hP() || DataRepository.dataItemGlobal().getBoolean(KEY_POPUP_TIP_BEAUTY_INTRO_CLICKED, false) || DataRepository.dataItemGlobal().getInt(KEY_POPUP_TIP_BEAUTY_INTRO_SHOW_TIMES, 0) >= 3) {
+        if (!b.hY() || DataRepository.dataItemGlobal().getBoolean(KEY_POPUP_TIP_BEAUTY_INTRO_CLICKED, false) || DataRepository.dataItemGlobal().getInt(KEY_POPUP_TIP_BEAUTY_INTRO_SHOW_TIMES, 0) >= 3) {
             return false;
         }
         return true;
@@ -1943,7 +1973,7 @@ public class CameraSettings {
 
     public static void initBeautyValues(BeautyValues beautyValues, boolean z) {
         if (beautyValues != null) {
-            if (b.hR()) {
+            if (b.ia()) {
                 initNewBeautyValues(beautyValues);
                 return;
             }
@@ -2028,6 +2058,13 @@ public class CameraSettings {
         return EyeLightConstant.OFF;
     }
 
+    public static boolean isEyeLightOpen() {
+        if (EyeLightConstant.OFF.equals(getEyeLightType())) {
+            return false;
+        }
+        return true;
+    }
+
     public static void setEyeLight(String str) {
         DataRepository.dataItemConfig().putString("pref_eye_light_type_key", str);
     }
@@ -2066,7 +2103,7 @@ public class CameraSettings {
     }
 
     public static boolean isAgeGenderAndMagicMirrorWaterOpen() {
-        return DataRepository.dataItemFeature().fe() && isFrontCamera() && (isAgeGenderWaterMarkOpen() || isMagicMirrorWaterMarkOpen());
+        return DataRepository.dataItemFeature().fg() && isFrontCamera() && (isAgeGenderWaterMarkOpen() || isMagicMirrorWaterMarkOpen());
     }
 
     public static boolean isFrontPortrait() {
@@ -2102,7 +2139,8 @@ public class CameraSettings {
     }
 
     public static boolean isUltraWideConfigOpen(int i) {
-        return DataRepository.dataItemConfig().getComponentConfigUltraWide().isOpenUltrWide(i);
+        ComponentConfigUltraWide componentConfigUltraWide = DataRepository.dataItemConfig().getComponentConfigUltraWide();
+        return componentConfigUltraWide.isSupportUltraWide() && componentConfigUltraWide.isUltraWideOnInMode(i);
     }
 
     public static int getBeautyShowLevel() {
@@ -2119,6 +2157,14 @@ public class CameraSettings {
 
     public static boolean isNormalWideLDCEnabled() {
         return DataRepository.dataItemGlobal().getBoolean(KEY_NORMAL_WIDE_LDC, getBool(R.bool.pref_camera_normal_wide_ldc_default));
+    }
+
+    public static String getCustomWatermarkDefault() {
+        Object obj = (isUltraPixelPhotographyOn() || isRearMenuUltraPixelPhotographyOn()) ? 1 : null;
+        if (obj != null) {
+            return getString(R.string.device_48m_watermark_default_text);
+        }
+        return getString(R.string.device_watermark_default_text);
     }
 
     public static String getCustomWatermark() {
@@ -2262,6 +2308,26 @@ public class CameraSettings {
         editor.apply();
     }
 
+    public static void setTTLiveStickerNeedRedDot(boolean z) {
+        ProviderEditor editor = DataRepository.dataItemLive().editor();
+        editor.putBoolean(KEY_LIVE_STICKER_NEED_RED_DOT, z);
+        editor.apply();
+    }
+
+    public static boolean getTTLiveStickerNeedRedDot() {
+        return DataRepository.dataItemLive().getBoolean(KEY_LIVE_STICKER_NEED_RED_DOT, false);
+    }
+
+    public static long getLiveStickerRedDotTime() {
+        return DataRepository.dataItemGlobal().getLong(KEY_LIVE_STICKER_RED_DOT_TIME, 0);
+    }
+
+    public static void setLiveStickerRedDotTime(long j) {
+        ProviderEditor editor = DataRepository.dataItemGlobal().editor();
+        editor.putLong(KEY_LIVE_STICKER_RED_DOT_TIME, j);
+        editor.apply();
+    }
+
     public static long getLiveStickerLastCacheTime() {
         return DataRepository.dataItemGlobal().getLong(KEY_LIVE_STICKER_LAST_CACHE_TIME, 0);
     }
@@ -2292,8 +2358,8 @@ public class CameraSettings {
         return DataRepository.dataItemGlobal().getBoolean(KEY_LIVE_MODULE_CLICKED, false);
     }
 
-    public static void setLiveModuleClicked() {
-        DataRepository.dataItemGlobal().editor().putBoolean(KEY_LIVE_MODULE_CLICKED, true).apply();
+    public static void setLiveModuleClicked(boolean z) {
+        DataRepository.dataItemGlobal().editor().putBoolean(KEY_LIVE_MODULE_CLICKED, z).apply();
     }
 
     public static boolean isRearMenuUltraPixelPhotographyOn() {
@@ -2344,7 +2410,7 @@ public class CameraSettings {
         }
     }
 
-    public static boolean isHangGestureOpen() {
+    public static boolean isHandGestureOpen() {
         return DataRepository.dataItemRunning().getBoolean("pref_hand_gesture", false);
     }
 
@@ -2417,6 +2483,22 @@ public class CameraSettings {
                 default:
                     break;
             }
+        }
+        return false;
+    }
+
+    public static long getExposureTime() {
+        CameraSettingPreferences instance = CameraSettingPreferences.instance();
+        String string = getString(R.string.pref_camera_exposuretime_default);
+        if (ModuleManager.isManualModule()) {
+            string = instance.getString(KEY_QC_EXPOSURETIME, string);
+        }
+        return Long.parseLong(string);
+    }
+
+    public static boolean isCheckShowUltraWideTip(int i) {
+        if ((163 == i || 162 == i) && isUltraWideConfigOpen(i)) {
+            return true;
         }
         return false;
     }

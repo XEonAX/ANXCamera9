@@ -137,6 +137,7 @@ public class MiCamera2ShotParallelRepeating extends MiCamera2Shot<byte[]> {
         createCaptureRequest.set(CaptureRequest.CONTROL_AF_MODE, (Integer) this.mMiCamera.getPreviewRequestBuilder().get(CaptureRequest.CONTROL_AF_MODE));
         this.mMiCamera.applySettingsForCapture(createCaptureRequest, 3);
         MiCameraCompat.applyMfnrEnable(createCaptureRequest, false);
+        MiCameraCompat.applySuperResolution(createCaptureRequest, false);
         return createCaptureRequest;
     }
 

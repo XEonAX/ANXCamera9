@@ -43,6 +43,7 @@ public enum FilterType {
     L_SHUTTER(FilterScene.LIGHTING),
     L_DOT(FilterScene.LIGHTING),
     L_LEAF(FilterScene.LIGHTING),
+    L_HOLI(FilterScene.LIGHTING),
     N_BERRY(FilterScene.NORMAL),
     N_COOKIE(FilterScene.NORMAL),
     N_DELICACY(FilterScene.NORMAL),

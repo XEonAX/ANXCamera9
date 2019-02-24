@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.Adapter;
-import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.view.View;
 import android.widget.ListAdapter;
 import com.android.camera.R;
@@ -114,7 +112,7 @@ public class FragmentManuallyExtra extends BaseFragment {
             i = getResources().getDisplayMetrics().widthPixels / componentData.getItems().size();
         }
         ComponentData componentData2 = componentData;
-        Adapter anonymousClass3 = new ExtraRecyclerViewAdapter(componentData2, this.mCurrentMode, this.mManuallyListener, i) {
+        ExtraRecyclerViewAdapter anonymousClass3 = new ExtraRecyclerViewAdapter(componentData2, this.mCurrentMode, this.mManuallyListener, i) {
             protected boolean couldNewValueTakeEffect(String str) {
                 if (str == null || !str.equals("manual")) {
                     return super.couldNewValueTakeEffect(str);
@@ -122,7 +120,7 @@ public class FragmentManuallyExtra extends BaseFragment {
                 return true;
             }
         };
-        LayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(0);
         this.mExtraList.setLayoutManager(linearLayoutManager);
         this.mExtraList.setAdapter(anonymousClass3);

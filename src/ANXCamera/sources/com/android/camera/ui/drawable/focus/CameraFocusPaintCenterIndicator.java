@@ -11,6 +11,7 @@ import android.graphics.PorterDuffXfermode;
 import android.support.annotation.FloatRange;
 import android.support.annotation.NonNull;
 import com.android.camera.ui.drawable.CameraPaintBase;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class CameraFocusPaintCenterIndicator extends CameraPaintBase {
     public CameraIndicatorState indicatorState;
@@ -75,7 +76,7 @@ public class CameraFocusPaintCenterIndicator extends CameraPaintBase {
             default:
                 this.mPaint.setStrokeWidth(this.mCurrentStrokeWidth);
                 this.mPaint.setAlpha(this.mCurrentAlpha);
-                drawCenterCircle(canvas, 0.0f, 0.0f, this.mBaseRadius * this.mCurrentWidthPercent, this.mPaint);
+                drawCenterCircle(canvas, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, this.mBaseRadius * this.mCurrentWidthPercent, this.mPaint);
                 return;
         }
     }
@@ -111,12 +112,12 @@ public class CameraFocusPaintCenterIndicator extends CameraPaintBase {
             canvas.drawRect((float) ((-this.indicatorState.mCurrentRayBottom) - this.indicatorState.mCurrentRayHeight), (float) ((-this.indicatorState.mCurrentRayWidth) / 2), (float) (-this.indicatorState.mCurrentRayBottom), (float) (this.indicatorState.mCurrentRayWidth / 2), this.mSunPaint);
             canvas.drawRect((float) this.indicatorState.mCurrentRayBottom, (float) ((-this.indicatorState.mCurrentRayWidth) / 2), (float) (this.indicatorState.mCurrentRayBottom + this.indicatorState.mCurrentRayHeight), (float) (this.indicatorState.mCurrentRayWidth / 2), this.mSunPaint);
         }
-        canvas.drawCircle(0.0f, 0.0f, (float) this.indicatorState.mCurrentRadius, this.mSunPaint);
+        canvas.drawCircle(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) this.indicatorState.mCurrentRadius, this.mSunPaint);
     }
 
     private void drawCenterMoon(Canvas canvas) {
         Canvas canvas2 = canvas;
-        drawCenterCircle(canvas2, 0.0f, 0.0f, (float) this.indicatorState.mCurrentRadius, this.mSunPaint);
+        drawCenterCircle(canvas2, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) this.indicatorState.mCurrentRadius, this.mSunPaint);
         drawCenterCircle(canvas2, (float) (-this.indicatorState.mCurrentMinusCircleCenter), (float) (-this.indicatorState.mCurrentMinusCircleCenter), this.indicatorState.mCurrentMinusCircleRadius, this.mMinusMoonPaint);
     }
 

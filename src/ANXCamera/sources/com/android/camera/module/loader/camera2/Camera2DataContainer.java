@@ -8,6 +8,7 @@ import android.util.SparseArray;
 import com.android.camera.CameraAppImpl;
 import com.android.camera.CameraSettings;
 import com.android.camera.data.DataRepository;
+import com.android.camera.data.data.config.ComponentConfigUltraWide;
 import com.android.camera.data.data.config.ComponentManuallyDualLens;
 import com.android.camera.log.Log;
 import com.android.camera2.CameraCapabilities;
@@ -77,7 +78,7 @@ public class Camera2DataContainer {
                     int parseInt = Integer.parseInt(str);
                     CameraCharacteristics cameraCharacteristics = cameraManager.getCameraCharacteristics(str);
                     this.mCapabilities.put(parseInt, new CameraCapabilities(cameraCharacteristics, parseInt));
-                    if (!(DataRepository.dataItemFeature().fx() && (21 == parseInt || 63 == parseInt))) {
+                    if (!(DataRepository.dataItemFeature().isSupportUltraWide() && (21 == parseInt || 63 == parseInt))) {
                         Integer num = (Integer) cameraCharacteristics.get(CameraCharacteristics.LENS_FACING);
                         int i3;
                         if (num == null) {
@@ -293,12 +294,13 @@ public class Camera2DataContainer {
             if (i == 0) {
                 int i3 = (CameraSettings.isDualCameraEnable() && (CameraSettings.isSupportedOpticalZoom() || CameraSettings.isSupportedPortrait())) ? 1 : 0;
                 if (i3 != 0) {
+                    ComponentConfigUltraWide componentConfigUltraWide = DataRepository.dataItemConfig().getComponentConfigUltraWide();
                     switch (i2) {
                         case 161:
                         case 162:
                         case 173:
                         case 174:
-                            if (CameraSettings.isUltraWideConfigOpen(i2)) {
+                            if (componentConfigUltraWide.isUltraWideOnInMode(i2)) {
                                 ultraWideCameraId = getUltraWideCameraId();
                                 break;
                             }
@@ -309,11 +311,11 @@ public class Camera2DataContainer {
                             }
                         case 165:
                             if (!CameraSettings.isDualCameraSatEnable() || !b.isSupportedOpticalZoom()) {
-                                if (CameraSettings.isUltraWideConfigOpen(i2)) {
+                                if (componentConfigUltraWide.isUltraWideOnInMode(i2)) {
                                     ultraWideCameraId = getUltraWideCameraId();
                                     break;
                                 }
-                            } else if (!CameraSettings.isUltraWideConfigOpen(i2)) {
+                            } else if (!componentConfigUltraWide.isUltraWideOnInMode(i2)) {
                                 ultraWideCameraId = getMuxCameraId();
                                 break;
                             } else {
@@ -350,6 +352,7 @@ public class Camera2DataContainer {
                                 break;
                             }
                             ultraWideCameraId = getUltraWideBokehCameraId();
+                            break;
                             break;
                         default:
                             ultraWideCameraId = i;

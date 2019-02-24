@@ -6,6 +6,7 @@ import android.hardware.camera2.CameraCaptureSession.CaptureCallback;
 import android.hardware.camera2.CaptureFailure;
 import android.hardware.camera2.CaptureRequest;
 import android.hardware.camera2.CaptureRequest.Builder;
+import android.hardware.camera2.TotalCaptureResult;
 import android.media.Image;
 import android.support.annotation.NonNull;
 import com.android.camera.Util;
@@ -79,6 +80,10 @@ public class MiCamera2ShotBurst extends MiCamera2Shot<byte[]> {
                 if (pictureCallback != null) {
                     pictureCallback.onPictureTakenFinished(false);
                 }
+            }
+
+            public void onCaptureCompleted(@NonNull CameraCaptureSession cameraCaptureSession, @NonNull CaptureRequest captureRequest, @NonNull TotalCaptureResult totalCaptureResult) {
+                MiCamera2ShotBurst.this.mMiCamera.updateFrameNumber(totalCaptureResult.getFrameNumber());
             }
         };
     }

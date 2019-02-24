@@ -70,7 +70,7 @@ public class MutexModeManager {
     }
 
     public boolean isSupportedTorch() {
-        return b.gN() && (this.mCurrentMutexMode == 0 || this.mCurrentMutexMode == 2 || this.mCurrentMutexMode == 7 || this.mCurrentMutexMode == 9 || this.mCurrentMutexMode == 10);
+        return b.gW() && (this.mCurrentMutexMode == 0 || this.mCurrentMutexMode == 2 || this.mCurrentMutexMode == 7 || this.mCurrentMutexMode == 9 || this.mCurrentMutexMode == 10);
     }
 
     public boolean isNormal() {
@@ -142,7 +142,7 @@ public class MutexModeManager {
         if (this.mCurrentMutexMode == 4) {
             return "_RAW";
         }
-        if (!b.hT() && !Util.isForceNameSuffix()) {
+        if (!b.ic() && !Util.isForceNameSuffix()) {
             return "";
         }
         int i = this.mCurrentMutexMode;

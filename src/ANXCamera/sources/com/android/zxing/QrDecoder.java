@@ -9,8 +9,8 @@ import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.BottomPopupTips;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.DecodeHintType;
-import com.google.zxing.LuminanceSource;
 import com.google.zxing.MultiFormatReader;
+import com.google.zxing.ReaderException;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
 import io.reactivex.BackpressureStrategy;
@@ -71,7 +71,7 @@ public class QrDecoder extends Decoder {
             bArr = bArr2;
         }
         String str = "";
-        LuminanceSource buildLuminanceSource = buildLuminanceSource(bArr, i, i2);
+        YUVLuminanceSource buildLuminanceSource = buildLuminanceSource(bArr, i, i2);
         if (buildLuminanceSource == null) {
             return str;
         }
@@ -80,7 +80,7 @@ public class QrDecoder extends Decoder {
             if (decodeWithState != null) {
                 str = decodeWithState.getText();
             }
-        } catch (Throwable e) {
+        } catch (ReaderException e) {
             Log.e(TAG, "decode: ReaderException: ", e);
         } catch (Throwable th) {
             this.mMultiFormatReader.reset();

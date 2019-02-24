@@ -55,10 +55,10 @@ public class FragmentBottomIntentDone extends BaseFragment implements OnClickLis
         CameraAction cameraAction = (CameraAction) ModeCoordinatorImpl.getInstance().getAttachProtocol(161);
         if (cameraAction != null) {
             switch (view.getId()) {
-                case R.id.intent_done_retry /*2131558447*/:
+                case R.id.intent_done_retry /*2131558445*/:
                     cameraAction.onReviewCancelClicked();
                     break;
-                case R.id.intent_done_apply /*2131558448*/:
+                case R.id.intent_done_apply /*2131558446*/:
                     cameraAction.onReviewDoneClicked();
                     break;
             }

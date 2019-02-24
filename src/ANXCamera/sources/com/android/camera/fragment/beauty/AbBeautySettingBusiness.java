@@ -43,7 +43,7 @@ public abstract class AbBeautySettingBusiness implements IBeautySettingBusiness 
                 int faceBeautyRatio = CameraSettings.getFaceBeautyRatio(beautyRatioSettingKey, getProgressDefValue());
                 if (faceBeautyRatio == getProgressDefValue()) {
                     faceBeautyRatio = this.mBeautyValueRange[1] - this.mBeautyValueRange[0];
-                    if (!b.hG() || faceBeautyRatio == 0) {
+                    if (!b.hP() || faceBeautyRatio == 0) {
                         i = getProgressDefValue();
                     } else {
                         int beautifyDefaultValue = CameraSettings.getBeautifyDefaultValue(beautyRatioSettingKey);

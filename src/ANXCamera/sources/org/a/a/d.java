@@ -18,7 +18,7 @@ public class d {
     int channelConfig = -1;
     boolean isRecording = false;
     int sampleRateInHz = -1;
-    c uw;
+    c uF;
 
     public int W(int i) {
         if (16 == i) {
@@ -28,7 +28,7 @@ public class d {
     }
 
     public d(c cVar) {
-        this.uw = cVar;
+        this.uF = cVar;
         if ("SM919".equals(Build.MODEL)) {
             channelConfigSuggested = new int[]{16, 12, 1};
         }
@@ -167,7 +167,7 @@ public class d {
     }
 
     /* JADX WARNING: Missing block: B:10:0x0027, code:
-            if (r4.uw.initWavFile(r4.sampleRateInHz, W(channelConfigSuggested[channelConfigOffset]), r5) == 0) goto L_0x0031;
+            if (r4.uF.initWavFile(r4.sampleRateInHz, W(channelConfigSuggested[channelConfigOffset]), r5) == 0) goto L_0x0031;
      */
     /* JADX WARNING: Missing block: B:11:0x0029, code:
             android.util.Log.d(TAG, "init wav file failed");
@@ -199,12 +199,12 @@ public class d {
             r3.audio.stop();
      */
     /* JADX WARNING: Missing block: B:11:0x001b, code:
-            r3.uw.closeWavFile();
+            r3.uF.closeWavFile();
      */
     /* JADX WARNING: Missing block: B:12:0x0021, code:
             return true;
      */
-    /* JADX WARNING: Missing block: B:18:0x0034, code:
+    /* JADX WARNING: Missing block: B:18:0x0033, code:
             return false;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */

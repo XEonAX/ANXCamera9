@@ -115,6 +115,7 @@ public class MiBeauty implements IBeautySettingBusiness {
                 BottomPopupTips bottomPopupTips = (BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175);
                 if (bottomPopupTips != null) {
                     bottomPopupTips.directlyHideTips();
+                    bottomPopupTips.setPortraitHintVisible(8);
                 }
             }
         }

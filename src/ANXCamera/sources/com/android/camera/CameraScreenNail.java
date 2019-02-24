@@ -14,6 +14,7 @@ import com.android.camera.effect.draw_mode.DrawExtTexAttribute;
 import com.android.camera.log.Log;
 import com.android.camera.module.ModuleManager;
 import com.android.camera.statistic.ScenarioTrackUtil;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.BitmapTexture;
 import com.android.gallery3d.ui.GLCanvas;
 import com.android.gallery3d.ui.RawTexture;
@@ -58,6 +59,7 @@ public class CameraScreenNail extends SurfaceTextureScreenNail {
     private final Object mLock = new Object();
     private SwitchAnimManager mModuleAnimManager = new SwitchAnimManager();
     private NailListener mNailListener;
+    private int mReadPixelsNum = 0;
     private List<RequestRenderListener> mRequestRenderListeners;
     private SwitchAnimManager mSwitchAnimManager = new SwitchAnimManager();
     private final float[] mTextureTransformMatrix = new float[16];
@@ -113,6 +115,7 @@ public class CameraScreenNail extends SurfaceTextureScreenNail {
         synchronized (this.mLock) {
             this.mFirstFrameArrived = false;
             this.mFrameNumber = 0;
+            this.mReadPixelsNum = 0;
             this.mDisableSwitchAnimationOnce = false;
             super.acquireSurfaceTexture();
         }
@@ -125,6 +128,7 @@ public class CameraScreenNail extends SurfaceTextureScreenNail {
             Log.v(TAG, "release: state=NONE");
             this.mFirstFrameArrived = false;
             this.mFrameNumber = 0;
+            this.mReadPixelsNum = 0;
             this.mModuleSwitching = false;
         }
     }
@@ -243,14 +247,21 @@ public class CameraScreenNail extends SurfaceTextureScreenNail {
                 this.mAnimState = 0;
                 this.mFirstFrameArrived = false;
                 this.mFrameNumber = 0;
+                this.mReadPixelsNum = 0;
             }
         }
     }
 
     public void requestReadPixels() {
         synchronized (this.mLock) {
-            if (this.mAnimState == 0) {
+            String str = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("requestReadPixels state=");
+            stringBuilder.append(this.mAnimState);
+            Log.d(str, stringBuilder.toString());
+            if (this.mAnimState == 0 || this.mAnimState == 13 || 12 == this.mAnimState || 11 == this.mAnimState) {
                 this.mAnimState = 13;
+                this.mReadPixelsNum++;
                 postRequestListener();
             }
         }
@@ -301,87 +312,87 @@ public class CameraScreenNail extends SurfaceTextureScreenNail {
             r15 = 0;
             r0.mSwitchAnimManager.drawPreview(r9, r10, r11, r12, r13, r0.mAnimTexture);
      */
-    /* JADX WARNING: Missing block: B:43:0x0126, code:
-            if (r0.mAnimState == 23) goto L_0x0184;
+    /* JADX WARNING: Missing block: B:46:0x0148, code:
+            if (r0.mAnimState == 23) goto L_0x01a6;
      */
-    /* JADX WARNING: Missing block: B:45:0x012c, code:
-            if (r0.mAnimState == 24) goto L_0x0184;
+    /* JADX WARNING: Missing block: B:48:0x014e, code:
+            if (r0.mAnimState == 24) goto L_0x01a6;
      */
-    /* JADX WARNING: Missing block: B:47:0x0130, code:
-            if (r0.mAnimState != 25) goto L_0x0133;
+    /* JADX WARNING: Missing block: B:50:0x0152, code:
+            if (r0.mAnimState != 25) goto L_0x0155;
      */
-    /* JADX WARNING: Missing block: B:49:0x0137, code:
-            if (r0.mAnimState != 12) goto L_0x014e;
+    /* JADX WARNING: Missing block: B:52:0x0159, code:
+            if (r0.mAnimState != 12) goto L_0x0170;
      */
-    /* JADX WARNING: Missing block: B:51:0x0141, code:
-            if (r0.mCaptureAnimManager.drawAnimation(r9, r0.mCaptureAnimTexture) == false) goto L_0x0147;
+    /* JADX WARNING: Missing block: B:54:0x0163, code:
+            if (r0.mCaptureAnimManager.drawAnimation(r9, r0.mCaptureAnimTexture) == false) goto L_0x0169;
      */
-    /* JADX WARNING: Missing block: B:52:0x0143, code:
+    /* JADX WARNING: Missing block: B:55:0x0165, code:
             postRequestListener();
      */
-    /* JADX WARNING: Missing block: B:53:0x0147, code:
+    /* JADX WARNING: Missing block: B:56:0x0169, code:
             r0.mAnimState = r15;
             super.draw(r19, r20, r21, r22, r23);
      */
-    /* JADX WARNING: Missing block: B:55:0x0154, code:
-            if (r0.mAnimState == 33) goto L_0x0160;
+    /* JADX WARNING: Missing block: B:58:0x0176, code:
+            if (r0.mAnimState == 33) goto L_0x0182;
      */
-    /* JADX WARNING: Missing block: B:57:0x015a, code:
-            if (r0.mAnimState == 34) goto L_0x0160;
+    /* JADX WARNING: Missing block: B:60:0x017c, code:
+            if (r0.mAnimState == 34) goto L_0x0182;
      */
-    /* JADX WARNING: Missing block: B:59:0x015e, code:
-            if (r0.mAnimState != 35) goto L_0x01bf;
+    /* JADX WARNING: Missing block: B:62:0x0180, code:
+            if (r0.mAnimState != 35) goto L_0x01e1;
      */
-    /* JADX WARNING: Missing block: B:60:0x0160, code:
+    /* JADX WARNING: Missing block: B:63:0x0182, code:
             r8.updateTexImage();
             r15 = 35;
      */
-    /* JADX WARNING: Missing block: B:61:0x0172, code:
-            if (r0.mModuleAnimManager.drawAnimation(r9, r10, r11, r12, r13, r0, r0.mAnimTexture) != false) goto L_0x0180;
+    /* JADX WARNING: Missing block: B:64:0x0194, code:
+            if (r0.mModuleAnimManager.drawAnimation(r9, r10, r11, r12, r13, r0, r0.mAnimTexture) != false) goto L_0x01a2;
      */
-    /* JADX WARNING: Missing block: B:63:0x0176, code:
-            if (r0.mAnimState == r15) goto L_0x0179;
+    /* JADX WARNING: Missing block: B:66:0x0198, code:
+            if (r0.mAnimState == r15) goto L_0x019b;
      */
-    /* JADX WARNING: Missing block: B:64:0x0179, code:
+    /* JADX WARNING: Missing block: B:67:0x019b, code:
             r0.mAnimState = 0;
             super.draw(r19, r20, r21, r22, r23);
      */
-    /* JADX WARNING: Missing block: B:65:0x0180, code:
+    /* JADX WARNING: Missing block: B:68:0x01a2, code:
             postRequestListener();
      */
-    /* JADX WARNING: Missing block: B:66:0x0184, code:
+    /* JADX WARNING: Missing block: B:69:0x01a6, code:
             r8.updateTexImage();
      */
-    /* JADX WARNING: Missing block: B:67:0x018a, code:
-            if (r0.mDisableSwitchAnimationOnce == false) goto L_0x019c;
+    /* JADX WARNING: Missing block: B:70:0x01ac, code:
+            if (r0.mDisableSwitchAnimationOnce == false) goto L_0x01be;
      */
-    /* JADX WARNING: Missing block: B:68:0x018c, code:
+    /* JADX WARNING: Missing block: B:71:0x01ae, code:
             r15 = 25;
             r0.mSwitchAnimManager.drawPreview(r9, r10, r11, r12, r13, r0.mAnimTexture);
             r6 = false;
      */
-    /* JADX WARNING: Missing block: B:69:0x019c, code:
+    /* JADX WARNING: Missing block: B:72:0x01be, code:
             r15 = 25;
             r6 = r0.mSwitchAnimManager.drawAnimation(r9, r10, r11, r12, r13, r0, r0.mAnimTexture);
      */
-    /* JADX WARNING: Missing block: B:70:0x01ab, code:
-            if (r6 != false) goto L_0x01bb;
+    /* JADX WARNING: Missing block: B:73:0x01cd, code:
+            if (r6 != false) goto L_0x01dd;
      */
-    /* JADX WARNING: Missing block: B:72:0x01af, code:
-            if (r0.mAnimState == r15) goto L_0x01b2;
+    /* JADX WARNING: Missing block: B:75:0x01d1, code:
+            if (r0.mAnimState == r15) goto L_0x01d4;
      */
-    /* JADX WARNING: Missing block: B:73:0x01b2, code:
+    /* JADX WARNING: Missing block: B:76:0x01d4, code:
             r0.mAnimState = 0;
             r0.mDisableSwitchAnimationOnce = false;
             super.draw(r19, r20, r21, r22, r23);
      */
-    /* JADX WARNING: Missing block: B:74:0x01bb, code:
+    /* JADX WARNING: Missing block: B:77:0x01dd, code:
             postRequestListener();
      */
-    /* JADX WARNING: Missing block: B:76:0x01c0, code:
+    /* JADX WARNING: Missing block: B:79:0x01e2, code:
             return;
      */
-    /* JADX WARNING: Missing block: B:81:0x01e7, code:
+    /* JADX WARNING: Missing block: B:84:0x0209, code:
             return;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
@@ -429,7 +440,15 @@ public class CameraScreenNail extends SurfaceTextureScreenNail {
                                 width = i9 / i8;
                             }
                             byte[] readPreviewPixels = readPreviewPixels(gLCanvas2, width, height);
-                            this.mAnimState = i11;
+                            this.mReadPixelsNum--;
+                            String str = TAG;
+                            StringBuilder stringBuilder = new StringBuilder();
+                            stringBuilder.append("draw: state=STATE_READ_PIXELS mReadPixelsNum=");
+                            stringBuilder.append(this.mReadPixelsNum);
+                            Log.d(str, stringBuilder.toString());
+                            if (this.mReadPixelsNum < 1) {
+                                this.mAnimState = i11;
+                            }
                             this.mNailListener.onPreviewPixelsRead(readPreviewPixels, width, height);
                             break;
                         case 14:
@@ -467,13 +486,13 @@ public class CameraScreenNail extends SurfaceTextureScreenNail {
                             break;
                     }
                 }
-                String str = TAG;
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("draw: firstFrame=");
-                stringBuilder.append(this.mFirstFrameArrived);
-                stringBuilder.append(" surface=");
-                stringBuilder.append(surfaceTexture);
-                Log.w(str, stringBuilder.toString());
+                String str2 = TAG;
+                StringBuilder stringBuilder2 = new StringBuilder();
+                stringBuilder2.append("draw: firstFrame=");
+                stringBuilder2.append(this.mFirstFrameArrived);
+                stringBuilder2.append(" surface=");
+                stringBuilder2.append(surfaceTexture);
+                Log.w(str2, stringBuilder2.toString());
                 if (surfaceTexture != null) {
                     surfaceTexture.updateTexImage();
                 }
@@ -481,22 +500,22 @@ public class CameraScreenNail extends SurfaceTextureScreenNail {
                 int i12;
                 if (ModuleManager.isSquareModule()) {
                     if (i7 > i8) {
-                        height = ((i7 - i8) / 2) + i5;
-                        i9 = i6;
-                        i10 = i8;
+                        i12 = ((i7 - i8) / 2) + i5;
+                        height = i6;
+                        i9 = i8;
                     } else {
-                        i9 = ((i8 - i7) / 2) + i6;
-                        height = i5;
-                        i10 = i7;
+                        height = ((i8 - i7) / 2) + i6;
+                        i12 = i5;
+                        i9 = i7;
                     }
-                    i12 = i10;
+                    i10 = i9;
                 } else {
-                    height = i5;
-                    i9 = i6;
-                    i10 = i7;
-                    i12 = i8;
+                    i12 = i5;
+                    height = i6;
+                    i9 = i7;
+                    i10 = i8;
                 }
-                this.mBitmapTexture.draw(gLCanvas2, height, i9, i10, i12);
+                this.mBitmapTexture.draw(gLCanvas2, i12, height, i9, i10);
             }
         }
     }
@@ -645,8 +664,8 @@ public class CameraScreenNail extends SurfaceTextureScreenNail {
     public void setPreviewFrameLayoutSize(int i, int i2) {
         synchronized (this.mLock) {
             Log.d(TAG, String.format(Locale.ENGLISH, "setPreviewFrameLayoutSize: %dx%d", new Object[]{Integer.valueOf(i), Integer.valueOf(i2)}));
-            this.mSurfaceWidth = !b.gW() ? i : Util.LIMIT_SURFACE_WIDTH;
-            if (b.gW()) {
+            this.mSurfaceWidth = !b.hf() ? i : Util.LIMIT_SURFACE_WIDTH;
+            if (b.hf()) {
                 i2 = (Util.LIMIT_SURFACE_WIDTH * i2) / i;
             }
             this.mSurfaceHeight = i2;
@@ -666,9 +685,9 @@ public class CameraScreenNail extends SurfaceTextureScreenNail {
             extScaleY = extScaleX;
         }
         if (extScaleX != 1.0f || extScaleY != 1.0f) {
-            Matrix.translateM(fArr, 0, 0.5f, 0.5f, 0.0f);
+            Matrix.translateM(fArr, 0, 0.5f, 0.5f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
             Matrix.scaleM(fArr, 0, extScaleX, extScaleY, 1.0f);
-            Matrix.translateM(fArr, 0, -0.5f, -0.5f, 0.0f);
+            Matrix.translateM(fArr, 0, -0.5f, -0.5f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         }
     }
 
@@ -681,6 +700,7 @@ public class CameraScreenNail extends SurfaceTextureScreenNail {
         synchronized (this.mLock) {
             this.mFirstFrameArrived = false;
             this.mFrameNumber = 0;
+            this.mReadPixelsNum = 0;
         }
     }
 

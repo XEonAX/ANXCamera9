@@ -155,6 +155,8 @@ public interface ModeProtocol {
     public interface MiBeautyProtocol extends BaseProtocol {
         public static final int TYPE_TAG = 194;
 
+        void closeEyeLight();
+
         List<Type> getBeautyItems();
 
         int getBeautyType();
@@ -166,6 +168,8 @@ public interface ModeProtocol {
         int getProgress();
 
         boolean isBeautyPanelShow();
+
+        boolean isEyeLightShow();
 
         void resetBeauty();
 
@@ -187,14 +191,19 @@ public interface ModeProtocol {
         public static final int TIP_48M_NO_SUPPORT_ZOOM = 15;
         public static final int TIP_DURATION_2S = 5;
         public static final int TIP_DURATION_3S = 6;
+        public static final int TIP_DURATION_6S = 7;
         public static final int TIP_DURATION_LONG = 2;
         public static final int TIP_DURATION_PERSISTED = 4;
         public static final int TIP_DURATION_SHORT = 1;
         public static final int TIP_DURATION_STABLE = 3;
+        public static final int TIP_SHOW_ALL = 0;
+        public static final int TIP_SHOW_LANDSCAPE = 1;
+        public static final int TIP_SHOW_PORTRAIT = 2;
         public static final int TIP_TYPE_3A_LOCK = 8;
         public static final int TIP_TYPE_DUAL_CAMERA = 6;
         public static final int TIP_TYPE_DUAL_CAMERA_SUCCESS = 7;
         public static final int TIP_TYPE_EYE_LIGHT = 10;
+        public static final int TIP_TYPE_GROUP_SWITCH = 17;
         public static final int TIP_TYPE_HAND_GESTURE = 16;
         public static final int TIP_TYPE_HINT = 4;
         public static final int TIP_TYPE_LIGHTING = 12;
@@ -214,6 +223,10 @@ public interface ModeProtocol {
         }
 
         @Retention(RetentionPolicy.SOURCE)
+        public @interface TipShowOrientation {
+        }
+
+        @Retention(RetentionPolicy.SOURCE)
         public @interface TipType {
         }
 
@@ -221,9 +234,15 @@ public interface ModeProtocol {
 
         void directHideTipImage();
 
+        void directShowLeftImageIntro();
+
         void directShowOrHideLeftTipImage(boolean z);
 
         void directlyHideTips();
+
+        void directlyShowTips(int i, @StringRes int i2);
+
+        int getCurrentBottomTipMsg();
 
         void hideCenterTipImage();
 
@@ -238,6 +257,8 @@ public interface ModeProtocol {
         boolean isLightingHintVisible();
 
         boolean isPortraitHintVisible();
+
+        void reConfigBottomTipOfUltraWide();
 
         void reInitTipImage();
 
@@ -256,6 +277,8 @@ public interface ModeProtocol {
         void showTips(int i, @StringRes int i2, int i3);
 
         void showTips(int i, @StringRes int i2, int i3, int i4);
+
+        void showTipsWithOrientation(int i, @StringRes int i2, int i3, int i4, int i5);
 
         void updateLeftTipImage();
 
@@ -549,6 +572,8 @@ public interface ModeProtocol {
     public interface DualController extends BaseProtocol {
         public static final int TYPE_TAG = 182;
 
+        void hideSlideView();
+
         void hideZoomButton();
 
         boolean isZoomVisible();
@@ -567,7 +592,7 @@ public interface ModeProtocol {
 
         boolean isFNumberVisible();
 
-        void showFNumberPanel();
+        void showFNumberPanel(boolean z);
 
         void updateFNumberValue();
 
@@ -592,6 +617,8 @@ public interface ModeProtocol {
         void showScreenLight();
 
         void startLiveRecordPreview(ContentValues contentValues);
+
+        void startLiveRecordSaving();
     }
 
     public interface ManuallyAdjust extends BaseProtocol {
@@ -634,7 +661,7 @@ public interface ModeProtocol {
 
         void alertLightingTitle(boolean z);
 
-        void alertMoonModeSelector(int i);
+        void alertMoonModeSelector(int i, boolean z);
 
         void alertMusicClose(boolean z);
 
@@ -661,6 +688,8 @@ public interface ModeProtocol {
         void hideExtraMenu();
 
         void insertConfigItem(int i);
+
+        boolean isExtraMenuShowing();
 
         void reInitAlert(boolean z);
 
@@ -712,6 +741,8 @@ public interface ModeProtocol {
     public interface CameraAction extends BaseProtocol {
         public static final int TYPE_TAG = 161;
 
+        boolean isBlockSnap();
+
         boolean isDoingAction();
 
         void onReviewCancelClicked();
@@ -756,6 +787,8 @@ public interface ModeProtocol {
     public interface TopConfigProtocol extends BaseProtocol {
         public static final int TYPE_TAG = 193;
 
+        void reShowMoon();
+
         void startAiLens();
     }
 
@@ -773,6 +806,8 @@ public interface ModeProtocol {
 
     public interface AutoZoomModuleProtocol extends BaseProtocol {
         public static final int TYPE_TAG = 215;
+
+        void onTrackLost();
 
         void setAutoZoomMode(int i);
 
@@ -967,6 +1002,8 @@ public interface ModeProtocol {
         void startPreview(Surface surface, SlamDetectListener slamDetectListener);
 
         void updateRecordingTime();
+
+        void updateRotation(float f, float f2, float f3);
     }
 
     public interface LiveVideoEditor extends BaseProtocol {
@@ -982,9 +1019,7 @@ public interface ModeProtocol {
 
         void resumePlay();
 
-        void setEncodeSize(int i, int i2);
-
-        void setRecordOrientation(int i);
+        void setRecordParameter(int i, int i2, int i3);
 
         void startPlay();
     }

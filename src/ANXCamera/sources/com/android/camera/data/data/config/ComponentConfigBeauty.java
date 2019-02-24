@@ -17,7 +17,7 @@ import java.util.Locale;
 public class ComponentConfigBeauty extends ComponentData implements BeautyConstant {
     private static final String[] SWITCHABLE_BEAUTY_LEVELS;
     private static final String TAG = ComponentConfigBeauty.class.getSimpleName();
-    private static final boolean sIsLegacyFaceBeauty = b.hG();
+    private static final boolean sIsLegacyFaceBeauty = b.hP();
     private SparseBooleanArray mIsClosed;
 
     static {
@@ -66,11 +66,11 @@ public class ComponentConfigBeauty extends ComponentData implements BeautyConsta
         if (DataRepository.dataItemGlobal().getCurrentCameraId() == 0) {
             return BeautyConstant.LEVEL_CLOSE;
         }
-        if (b.hG()) {
+        if (b.hP()) {
             return BeautyConstant.LEVEL_MEDIUM;
         }
         if (i == 162 || i == 161) {
-            return DataRepository.dataItemFeature().fS();
+            return DataRepository.dataItemFeature().fU();
         }
         return BeautyConstant.LEVEL_XHIGH;
     }

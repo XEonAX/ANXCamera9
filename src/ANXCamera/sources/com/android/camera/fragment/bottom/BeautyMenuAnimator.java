@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.android.camera.Util;
 import com.android.camera.animation.AnimationMonitor;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.util.ArrayList;
 import java.util.List;
 import miui.view.animation.CubicEaseOutInterpolator;
@@ -31,11 +32,11 @@ public class BeautyMenuAnimator {
                 return null;
             }
             ArrayList<ViewPropertyAnimatorCompat> arrayList = new ArrayList();
-            arrayList.add(ViewCompat.animate(viewGroup.getChildAt(0)).translationX(0.0f).setDuration(300));
+            arrayList.add(ViewCompat.animate(viewGroup.getChildAt(0)).translationX(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setDuration(300));
             for (int i = 1; i < childCount; i++) {
                 final View childAt = viewGroup.getChildAt(i);
                 arrayList.add(ViewCompat.animate(childAt).alpha(1.0f).setDuration(200));
-                arrayList.add(ViewCompat.animate(childAt).translationX(0.0f).setDuration(300).setInterpolator(this.mCubicEaseOut).setListener(new ViewPropertyAnimatorListener() {
+                arrayList.add(ViewCompat.animate(childAt).translationX(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setDuration(300).setInterpolator(this.mCubicEaseOut).setListener(new ViewPropertyAnimatorListener() {
                     public void onAnimationStart(View view) {
                         AnimationMonitor.get().animationStart(view, 300);
                         childAt.setVisibility(0);
@@ -65,7 +66,7 @@ public class BeautyMenuAnimator {
             for (int i = 1; i < childCount; i++) {
                 final View childAt2 = viewGroup.getChildAt(i);
                 float width = (float) (((viewGroup.getWidth() - childAt2.getWidth()) / 2) - childAt2.getLeft());
-                arrayList.add(ViewCompat.animate(childAt2).alpha(0.0f).setDuration(200));
+                arrayList.add(ViewCompat.animate(childAt2).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setDuration(200));
                 arrayList.add(ViewCompat.animate(childAt2).translationX(width).setDuration(300).setInterpolator(this.mCubicEaseOut).setListener(new ViewPropertyAnimatorListener() {
                     public void onAnimationStart(View view) {
                         AnimationMonitor.get().animationStart(view, 300);
@@ -97,8 +98,8 @@ public class BeautyMenuAnimator {
             View childAt = viewGroup.getChildAt(0);
             View childAt2 = viewGroup.getChildAt(1);
             View childAt3 = viewGroup.getChildAt(2);
-            arrayList.add(ViewCompat.animate(childAt).translationX(0.0f).setDuration(300).setInterpolator(this.mCubicEaseOut));
-            ViewPropertyAnimatorListener anonymousClass1 = new ViewPropertyAnimatorListener() {
+            arrayList.add(ViewCompat.animate(childAt).translationX(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setDuration(300).setInterpolator(this.mCubicEaseOut));
+            AnonymousClass1 anonymousClass1 = new ViewPropertyAnimatorListener() {
                 public void onAnimationStart(View view) {
                     AnimationMonitor.get().animationStart(view, 300);
                     view.setVisibility(0);
@@ -113,9 +114,9 @@ public class BeautyMenuAnimator {
                 }
             };
             arrayList.add(ViewCompat.animate(childAt2).setStartDelay(80).alpha(1.0f).setDuration(300).setInterpolator(this.mCubicEaseOut));
-            arrayList.add(ViewCompat.animate(childAt2).translationX(0.0f).setDuration(300).setInterpolator(this.mCubicEaseOut).setListener(anonymousClass1));
+            arrayList.add(ViewCompat.animate(childAt2).translationX(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setDuration(300).setInterpolator(this.mCubicEaseOut).setListener(anonymousClass1));
             arrayList.add(ViewCompat.animate(childAt3).alpha(1.0f).setDuration(300).setInterpolator(this.mCubicEaseOut));
-            arrayList.add(ViewCompat.animate(childAt3).translationX(0.0f).setDuration(300).setInterpolator(this.mCubicEaseOut).setListener(anonymousClass1));
+            arrayList.add(ViewCompat.animate(childAt3).translationX(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setDuration(300).setInterpolator(this.mCubicEaseOut).setListener(anonymousClass1));
             childAt.setEnabled(true);
             childAt2.setEnabled(true);
             childAt3.setEnabled(true);
@@ -131,7 +132,7 @@ public class BeautyMenuAnimator {
             View childAt2 = viewGroup.getChildAt(1);
             View childAt3 = viewGroup.getChildAt(2);
             arrayList.add(ViewCompat.animate(childAt).translationX((float) (((viewGroup.getWidth() - childAt.getWidth()) / 2) - childAt.getLeft())).setDuration(300).setInterpolator(this.mCubicEaseOut));
-            ViewPropertyAnimatorListener anonymousClass2 = new ViewPropertyAnimatorListener() {
+            AnonymousClass2 anonymousClass2 = new ViewPropertyAnimatorListener() {
                 public void onAnimationStart(View view) {
                     AnimationMonitor.get().animationStart(view, 300);
                 }
@@ -145,9 +146,9 @@ public class BeautyMenuAnimator {
                     AnimationMonitor.get().animationStop(view);
                 }
             };
-            arrayList.add(ViewCompat.animate(childAt2).setStartDelay(0).alpha(0.0f).setDuration(150).setInterpolator(this.mCubicEaseOut));
+            arrayList.add(ViewCompat.animate(childAt2).setStartDelay(0).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setDuration(150).setInterpolator(this.mCubicEaseOut));
             arrayList.add(ViewCompat.animate(childAt2).translationX((float) (((viewGroup.getWidth() - childAt2.getWidth()) / 2) - childAt2.getLeft())).setDuration(300).setInterpolator(this.mCubicEaseOut).setListener(anonymousClass2));
-            arrayList.add(ViewCompat.animate(childAt3).alpha(0.0f).setDuration(300).setInterpolator(this.mCubicEaseOut));
+            arrayList.add(ViewCompat.animate(childAt3).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setDuration(300).setInterpolator(this.mCubicEaseOut));
             arrayList.add(ViewCompat.animate(childAt3).translationX((float) (((viewGroup.getWidth() - childAt3.getWidth()) / 2) - childAt3.getLeft())).setDuration(300).setInterpolator(this.mCubicEaseOut).setListener(anonymousClass2));
             childAt.setEnabled(true);
             childAt2.setEnabled(true);
@@ -224,7 +225,7 @@ public class BeautyMenuAnimator {
                 while (i < childCount) {
                     childAt = this.mViewGroup.getChildAt(i);
                     ViewCompat.setTranslationX(childAt, (float) (((this.mViewGroup.getMeasuredWidth() - Util.getChildMeasureWidth(childAt)) / 2) - childAt.getLeft()));
-                    childAt.setAlpha(0.0f);
+                    childAt.setAlpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
                     childAt.setVisibility(4);
                     i++;
                 }

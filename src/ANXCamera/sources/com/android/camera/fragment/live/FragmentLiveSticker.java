@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
-import android.support.v7.widget.RecyclerView.ItemAnimator;
 import android.support.v7.widget.RecyclerView.ItemDecoration;
 import android.support.v7.widget.RecyclerView.State;
 import android.view.LayoutInflater;
@@ -48,6 +47,7 @@ import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.sticker.LiveStickerInfo;
 import com.bumptech.glide.c;
 import com.bumptech.glide.request.f;
+import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
 import io.reactivex.Completable;
 import io.reactivex.CompletableObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -70,7 +70,7 @@ public class FragmentLiveSticker extends FragmentLiveBase implements OnCtaNotice
     private static final String PACKAGE_NAME = "com.ss.android.ugc.aweme";
     private static final int STICKER_ITEM_SIZE = 10;
     private static final String TAG = "FragmentLiveSticker";
-    private static final LiveStickerInfo[] sLocalStickerList = new LiveStickerInfo[]{new LiveStickerInfo("", "", (int) R.drawable.ic_config_front_beauty_off), new LiveStickerInfo(CameraStat.PARAM_BEAUTY_BODY_SLIM, "0eb0e0214f7bc7f7bbfb4e9f4dba7f99", "f2e24fea41e33a1c0fc9a79b8d3b91e2.png", "保持全身在画面中哦"), new LiveStickerInfo("星空喵", "a75682e81788cc12f68682b9c9067f70", "8ca064318882fa610f4623b852accd36.png"), new LiveStickerInfo("浮生若梦", "24991e783f23920397ac8aeed15994c2", "e42237f75eeff4e5162f9b0130492e36.png")};
+    private static final LiveStickerInfo[] sLocalStickerList = new LiveStickerInfo[]{new LiveStickerInfo("", "", "off.png"), new LiveStickerInfo(CameraStat.PARAM_BEAUTY_BODY_SLIM, "0eb0e0214f7bc7f7bbfb4e9f4dba7f99", "f2e24fea41e33a1c0fc9a79b8d3b91e2.png", "保持全身在画面中哦"), new LiveStickerInfo("星空喵", "a75682e81788cc12f68682b9c9067f70", "8ca064318882fa610f4623b852accd36.png"), new LiveStickerInfo("浮生若梦", "24991e783f23920397ac8aeed15994c2", "e42237f75eeff4e5162f9b0130492e36.png")};
     private static final LiveStickerInfo sMoreSticker = new LiveStickerInfo("", "", (int) R.drawable.ic_live_sticker_more);
     private static List<LiveStickerInfo> sPersistStickerList = new ArrayList(Arrays.asList(sLocalStickerList));
     private StickerItemAdapter mAdapter;
@@ -310,7 +310,7 @@ public class FragmentLiveSticker extends FragmentLiveBase implements OnCtaNotice
                 }
             }
         });
-        ItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setChangeDuration(150);
         defaultItemAnimator.setMoveDuration(150);
         defaultItemAnimator.setAddDuration(150);
@@ -454,6 +454,7 @@ public class FragmentLiveSticker extends FragmentLiveBase implements OnCtaNotice
             });
         } else if (downloadState != 2 && CtaNoticeFragment.checkCta(getActivity().getFragmentManager(), false, this)) {
             liveStickerInfo.downloadState = 2;
+            scrollIfNeed(i);
             this.mAdapter.notifyItemChanged(i);
             LiveResourceDownloadManager.getInstance().download(liveStickerInfo, this.mDownloadHelper);
         }
@@ -504,7 +505,7 @@ public class FragmentLiveSticker extends FragmentLiveBase implements OnCtaNotice
     }
 
     private void updateData() {
-        new TTLiveStickerResourceRequest(CameraSettings.isLiveStickerInternalChannel() ? "local_test" : "default", "default").execute(CameraSettings.isLiveStickerInternalChannel() ^ 1, new ResponseListener() {
+        new TTLiveStickerResourceRequest(CameraSettings.isLiveStickerInternalChannel() ? "local_test" : MonitorCommonConstants.DEFAULT_AID, MonitorCommonConstants.DEFAULT_AID).execute(CameraSettings.isLiveStickerInternalChannel() ^ 1, new ResponseListener() {
             public void onResponse(Object... objArr) {
                 final List list = (List) objArr[0];
                 Completable.fromAction(new Action() {

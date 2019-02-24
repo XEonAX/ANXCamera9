@@ -3,6 +3,7 @@ package com.android.camera.data.data.runing;
 import com.android.camera.CameraSettings;
 import com.android.camera.R;
 import com.android.camera.constant.LightingConstant;
+import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;
 import com.android.camera.module.loader.camera2.Camera2DataContainer;
@@ -49,6 +50,9 @@ public class ComponentRunningLighting extends ComponentData {
         this.mItems.add(new ComponentDataItem(R.drawable.ic_lighting_shutter, R.drawable.ic_lighting_shutter, R.string.lighting_pattern_shutter, "5"));
         this.mItems.add(new ComponentDataItem(R.drawable.ic_lighting_dot, R.drawable.ic_lighting_dot, R.string.lighting_pattern_dot, "6"));
         this.mItems.add(new ComponentDataItem(R.drawable.ic_lighting_leaf, R.drawable.ic_lighting_leaf, R.string.lighting_pattern_leaf, LightingConstant.LIGHTING_LEAF));
+        if (DataRepository.dataItemFeature().fc()) {
+            this.mItems.add(new ComponentDataItem(R.drawable.ic_lighting_holi, R.drawable.ic_lighting_holi, R.string.lighting_pattern_holi, "8"));
+        }
     }
 
     public boolean isSwitchOn(int i) {

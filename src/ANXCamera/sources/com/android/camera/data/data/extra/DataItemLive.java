@@ -5,6 +5,7 @@ import com.android.camera.data.data.DataItemBase;
 
 public class DataItemLive extends DataItemBase {
     public static final String DATA_LIVE_ACTIVATION = "live_activation";
+    public static final String DATA_LIVE_START_ORIENTATION = "live_start_orientation";
     private static final String KEY = "camera_settings_live";
 
     public void setActivation(String str) {
@@ -29,5 +30,13 @@ public class DataItemLive extends DataItemBase {
 
     public int getLiveFilter() {
         return getInt(CameraSettings.KEY_LIVE_FILTER, 0);
+    }
+
+    public void setLiveStartOrientation(int i) {
+        putInt(DATA_LIVE_START_ORIENTATION, i);
+    }
+
+    public int getLiveStartOrientation() {
+        return getInt(DATA_LIVE_START_ORIENTATION, 0);
     }
 }

@@ -10,7 +10,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
-import android.provider.MiuiSettings.ScreenEffect;
 import android.support.annotation.StringRes;
 import android.util.AttributeSet;
 import android.util.Range;
@@ -53,7 +52,7 @@ public class FocusView extends View implements FocusIndicator, Rotatable, V6Func
     public static final int CURSOR_SLIDE_BACK = 2;
     private static final int DISAPPEAR_TIME = 1500;
     private static final int END_DISAPPEAR_TIMEOUT = 800;
-    private static final float GAP_NUM = d.getFloat(d.to, 0.0f).floatValue();
+    private static final float GAP_NUM = d.getFloat(d.tx, 0.0f).floatValue();
     public static final int MAX_SLIDE_DISTANCE = Util.dpToPixel(110.3f);
     private static final int MSG_ANIMATE_EV_CENTER = 7;
     private static final int MSG_FINISH_DISAPPEAR = 5;
@@ -246,6 +245,8 @@ public class FocusView extends View implements FocusIndicator, Rotatable, V6Func
 
         boolean isShowCaptureButton();
 
+        boolean isSupportAELockOnly();
+
         boolean isSupportFocusShoot();
     }
 
@@ -432,7 +433,11 @@ public class FocusView extends View implements FocusIndicator, Rotatable, V6Func
             return;
         }
         if (this.mExposureViewListener.isShowAeAfLockIndicator() && CameraSettings.isAEAFLockSupport()) {
-            showTipMessage(8, R.string.hint_ae_af_lock);
+            int i = R.string.hint_ae_af_lock;
+            if (this.mExposureViewListener.isSupportAELockOnly()) {
+                i = R.string.hint_ae_lock;
+            }
+            showTipMessage(8, i);
             this.mCenterFlag = 5;
         } else if (this.mExposureViewListener.isShowCaptureButton() && this.mExposureViewListener.isSupportFocusShoot()) {
             this.mCenterFlag = 2;
@@ -758,19 +763,19 @@ public class FocusView extends View implements FocusIndicator, Rotatable, V6Func
         int centerIndex;
         if (this.mCursorState == 2 && this.mCurrentViewState != 3 && this.mCurrentViewState != 4) {
             if (this.mCurrentItem >= this.mAdapter.getCenterIndex()) {
-                centerIndex = ((this.mCurrentItem - this.mAdapter.getCenterIndex()) * ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) / this.mAdapter.getCenterIndex();
+                centerIndex = ((this.mCurrentItem - this.mAdapter.getCenterIndex()) * 360) / this.mAdapter.getCenterIndex();
             } else {
                 centerIndex = 0;
             }
-            return 360 - Util.clamp(centerIndex, 0, (int) ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT);
+            return 360 - Util.clamp(centerIndex, 0, 360);
         } else if (this.mCurrentViewState == 1) {
             centerIndex = Util.clamp(this.mBottomRelative - this.mCurrentDistanceY, 0, MAX_SLIDE_DISTANCE);
             if (centerIndex >= MAX_SLIDE_DISTANCE / 2) {
-                centerIndex = ((centerIndex - (MAX_SLIDE_DISTANCE / 2)) * ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) / (MAX_SLIDE_DISTANCE / 2);
+                centerIndex = ((centerIndex - (MAX_SLIDE_DISTANCE / 2)) * 360) / (MAX_SLIDE_DISTANCE / 2);
             } else {
                 centerIndex = 0;
             }
-            return 360 - Util.clamp(centerIndex, 0, (int) ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT);
+            return 360 - Util.clamp(centerIndex, 0, 360);
         } else if (this.mCurrentViewState == 3) {
             return Util.clamp((int) (135.0f * (this.mEVAnimationRatio * 2.0f)), 0, 135);
         } else {

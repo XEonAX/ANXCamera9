@@ -82,21 +82,27 @@ public class LiveVideoEditorTTImpl implements LiveVideoEditor {
         stringBuilder.append("orientation = ");
         stringBuilder.append(this.mOrientation);
         Log.d(str2, stringBuilder.toString());
-        this.mEditor.compile(str, null, new Builder().setCompileType(COMPILE_TYPE.COMPILE_TYPE_MP4).setVideoRes(this.mEncodeHeight, this.mEncodeWidth).setRotate(this.mOrientation).setHwEnc(true).setGopSize(30).setVideoBitrate(ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR, 4194304).setFps(25).build());
+        this.mEditor.compile(str, null, new Builder().setCompileType(COMPILE_TYPE.COMPILE_TYPE_MP4).setVideoRes(this.mEncodeHeight, this.mEncodeWidth).setRotate(this.mOrientation).setHwEnc(true).setGopSize(30).setVideoBitrate(ENCODE_BITRATE_MODE.ENCODE_BITRATE_ABR, 4194304).setFps(30).build());
     }
 
-    public void setEncodeSize(int i, int i2) {
+    public void setRecordParameter(int i, int i2, int i3) {
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("setRecordParameter:  ");
+        stringBuilder.append(i);
+        stringBuilder.append(" | ");
+        stringBuilder.append(i2);
+        stringBuilder.append(" | ");
+        stringBuilder.append(i3);
+        Log.d(str, stringBuilder.toString());
+        this.mOrientation = Math.max(0, i3);
+        if (this.mOrientation == 90 || this.mOrientation == 270) {
+            this.mEncodeWidth = i2;
+            this.mEncodeHeight = i;
+            return;
+        }
         this.mEncodeWidth = i;
         this.mEncodeHeight = i2;
-    }
-
-    public void setRecordOrientation(int i) {
-        this.mOrientation = i;
-        if (this.mOrientation == 90 || this.mOrientation == 270) {
-            i = this.mEncodeWidth;
-            this.mEncodeWidth = this.mEncodeHeight;
-            this.mEncodeHeight = i;
-        }
     }
 
     public void startPlay() {

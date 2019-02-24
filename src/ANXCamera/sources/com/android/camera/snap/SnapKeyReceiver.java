@@ -22,7 +22,7 @@ public class SnapKeyReceiver extends BroadcastReceiver {
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     public void onReceive(Context context, Intent intent) {
-        if (VERSION.SDK_INT < 21 || !b.hg() || !"miui.intent.action.CAMERA_KEY_BUTTON".equals(intent.getAction()) || !SnapCamera.isSnapEnabled(context) || !PermissionManager.checkCameraLaunchPermissions()) {
+        if (VERSION.SDK_INT < 21 || !b.hp() || !"miui.intent.action.CAMERA_KEY_BUTTON".equals(intent.getAction()) || !SnapCamera.isSnapEnabled(context) || !PermissionManager.checkCameraLaunchPermissions()) {
             return;
         }
         if ((((PowerManager) context.getSystemService("power")).isScreenOn() || 26 == intent.getIntExtra(KEY_CODE, 0)) && !SnapTrigger.getInstance().isRunning()) {

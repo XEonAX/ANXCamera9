@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
+import android.media.Image.Plane;
 import android.opengl.GLES20;
 import android.os.ConditionVariable;
 import android.os.Handler;
@@ -19,12 +20,14 @@ import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.runing.ComponentRunningTiltValue;
 import com.android.camera.effect.FilterInfo;
 import com.android.camera.effect.FrameBuffer;
+import com.android.camera.effect.MiYuvImage;
 import com.android.camera.effect.SnapshotCanvas;
 import com.android.camera.effect.draw_mode.DrawAttribute;
 import com.android.camera.effect.draw_mode.DrawBasicTexAttribute;
 import com.android.camera.effect.draw_mode.DrawYuvAttribute;
 import com.android.camera.log.Log;
 import com.android.camera.module.ModuleManager;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera.watermark.WaterMarkBitmap;
 import com.android.camera.watermark.WaterMarkData;
 import com.ss.android.ttve.common.TEDefine;
@@ -151,7 +154,7 @@ public class SnapshotRender {
             this.mGLCanvas.getState().pushState();
             if (i3 != 0) {
                 this.mGLCanvas.getState().translate((float) (waterMark.getCenterX() + i), (float) (waterMark.getCenterY() + i2));
-                this.mGLCanvas.getState().rotate((float) (-i3), 0.0f, 0.0f, 1.0f);
+                this.mGLCanvas.getState().rotate((float) (-i3), PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f);
                 this.mGLCanvas.getState().translate((float) ((-i) - waterMark.getCenterX()), (float) ((-i2) - waterMark.getCenterY()));
             }
             this.mGLCanvas.getBasicRender().draw(new DrawBasicTexAttribute(waterMark.getTexture(), i + waterMark.getLeft(), i2 + waterMark.getTop(), waterMark.getWidth(), waterMark.getHeight()));
@@ -192,7 +195,7 @@ public class SnapshotRender {
                 WaterMarkBitmap waterMarkBitmap = new WaterMarkBitmap(list);
                 WaterMarkData waterMarkData = waterMarkBitmap.getWaterMarkData();
                 if (waterMarkData != null) {
-                    drawWaterMark(new AgeGenderAndMagicMirrorWaterMark(waterMarkData.getImage(), size.getWidth(), size.getHeight(), i, size2.getWidth(), size2.getHeight(), 0.0f, 0.0f), 0, 0, i - waterMarkData.getOrientation());
+                    drawWaterMark(new AgeGenderAndMagicMirrorWaterMark(waterMarkData.getImage(), size.getWidth(), size.getHeight(), i, size2.getWidth(), size2.getHeight(), PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO), 0, 0, i - waterMarkData.getOrientation());
                 }
                 waterMarkBitmap.releaseBitmap();
                 Log.d(WaterMarkBitmap.class.getSimpleName(), "Draw age_gender_and_magic_mirror water mark");
@@ -213,6 +216,11 @@ public class SnapshotRender {
             render.setJpegOrientation(drawYuvAttribute.mJpegRotation);
         }
 
+        /* JADX WARNING: Removed duplicated region for block: B:43:0x01f1  */
+        /* JADX WARNING: Removed duplicated region for block: B:54:0x02b6  */
+        /* JADX WARNING: Removed duplicated region for block: B:56:0x02bf  */
+        /* JADX WARNING: Removed duplicated region for block: B:59:0x0345  */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
         private byte[] applyEffect(DrawYuvAttribute drawYuvAttribute) {
             DrawAttribute drawAttribute = drawYuvAttribute;
             Render effectRender = getEffectRender(drawYuvAttribute);
@@ -220,101 +228,217 @@ public class SnapshotRender {
                 Log.w(SnapshotRender.TAG, "init render failed");
                 return null;
             }
+            Render render;
             int i;
             int i2;
-            String access$600;
+            int i3;
+            DrawAttribute drawAttribute2;
+            byte[] bArr;
+            int[] iArr;
+            boolean z;
+            int i4;
+            int i5;
+            int i6;
             StringBuilder stringBuilder;
             long currentTimeMillis;
-            String access$6002;
-            StringBuilder stringBuilder2;
-            updateRenderParameters(effectRender, drawAttribute);
+            Buffer allocate;
+            String access$600;
+            byte[] array;
             int width = drawAttribute.mPictureSize.getWidth();
             int height = drawAttribute.mPictureSize.getHeight();
-            checkFrameBuffer(width, height);
-            this.mGLCanvas.beginBindFrameBuffer(this.mFrameBuffer);
             long currentTimeMillis2 = System.currentTimeMillis();
-            GLES20.glFlush();
-            effectRender.setParentFrameBufferId(this.mFrameBuffer.getId());
-            effectRender.draw(drawAttribute);
-            String access$6003 = SnapshotRender.TAG;
-            StringBuilder stringBuilder3 = new StringBuilder();
-            stringBuilder3.append("drawTime=");
-            stringBuilder3.append(System.currentTimeMillis() - currentTimeMillis2);
-            Log.d(access$6003, stringBuilder3.toString());
-            effectRender.deleteBuffer();
-            drawAttribute.mOriginalSize = new Size(width, height);
-            if (!ModuleManager.isSquareModule()) {
+            Plane plane = drawAttribute.mImage.getPlanes()[0];
+            Plane plane2 = drawAttribute.mImage.getPlanes()[1];
+            int rowStride = plane.getRowStride();
+            int rowStride2 = plane2.getRowStride();
+            String access$6002 = SnapshotRender.TAG;
+            StringBuilder stringBuilder2 = new StringBuilder();
+            stringBuilder2.append("plane0 stride =  ");
+            stringBuilder2.append(plane.getRowStride());
+            stringBuilder2.append(", plane1 stride = ");
+            stringBuilder2.append(plane2.getRowStride());
+            Log.d(access$6002, stringBuilder2.toString());
+            if (drawAttribute.mEffectIndex != FilterInfo.FILTER_ID_NONE || CameraSettings.isAgeGenderAndMagicMirrorWaterOpen() || ModuleManager.isSquareModule() || CameraSettings.isGradienterOn() || CameraSettings.isTiltShiftOn() || (!drawAttribute.mApplyWaterMark && drawAttribute.mTimeWatermark == null)) {
+                render = effectRender;
                 i = width;
                 i2 = height;
-                width = 0;
-                height = width;
-            } else if (width > height) {
-                width = (width - height) / 2;
-                i = height;
-                i2 = i;
-                height = 0;
+                i3 = rowStride;
+                drawAttribute2 = drawAttribute;
+                bArr = null;
+                iArr = bArr;
+                z = false;
             } else {
-                height = (height - width) / 2;
+                int[] watermarkRange = Util.getWatermarkRange(drawAttribute.mPictureSize.getWidth(), drawAttribute.mPictureSize.getHeight(), (drawAttribute.mJpegRotation + 270) % 360, drawAttribute.mApplyWaterMark, drawAttribute.mTimeWatermark != null, 0.1f);
+                byte[] yuvData = ImageUtil.getYuvData(drawAttribute.mImage);
+                if (rowStride != drawAttribute.mPictureSize.getWidth()) {
+                    watermarkRange[2] = watermarkRange[2] - 4;
+                }
+                i3 = rowStride;
+                MiYuvImage subYuvImage = Util.getSubYuvImage(yuvData, width, height, rowStride, rowStride2, watermarkRange);
+                String access$6003 = SnapshotRender.TAG;
+                StringBuilder stringBuilder3 = new StringBuilder();
+                stringBuilder3.append("get sub range data spend total tome =");
+                stringBuilder3.append(System.currentTimeMillis() - currentTimeMillis2);
+                Log.d(access$6003, stringBuilder3.toString());
+                int[] iArr2 = watermarkRange;
                 i = width;
-                i2 = i;
-                width = 0;
+                i2 = height;
+                render = effectRender;
+                MiYuvImage miYuvImage = subYuvImage;
+                DrawAttribute drawYuvAttribute2 = new DrawYuvAttribute(drawAttribute.mImage, drawAttribute.mPreviewSize, new Size(watermarkRange[2], watermarkRange[3]), drawAttribute.mEffectIndex, drawAttribute.mOrientation, drawAttribute.mJpegRotation, drawAttribute.mShootRotation, drawAttribute.mDate, drawAttribute.mMirror, drawAttribute.mApplyWaterMark, drawAttribute.mIsGradienterOn, drawAttribute.mTiltShiftMode, drawAttribute.mTimeWatermark, drawAttribute.mAttribute, drawAttribute.mWaterInfos);
+                drawYuvAttribute2.mYuvImage = miYuvImage;
+                drawAttribute2 = drawYuvAttribute2;
+                bArr = yuvData;
+                iArr = iArr2;
+                z = true;
             }
-            if (drawAttribute.mApplyWaterMark) {
-                long currentTimeMillis3 = System.currentTimeMillis();
-                drawWaterMark(width, height, i, i2, drawAttribute.mJpegRotation, drawAttribute.mTimeWatermark);
-                drawFaceWaterMarkInfos(drawAttribute.mOriginalSize, drawAttribute.mPreviewSize, drawAttribute.mJpegRotation, drawAttribute.mWaterInfos);
+            Render render2 = render;
+            updateRenderParameters(render2, drawAttribute2);
+            if (z) {
+                i4 = iArr[2];
+            } else {
+                i4 = i;
+            }
+            if (z) {
+                i5 = iArr[3];
+            } else {
+                i5 = i2;
+            }
+            checkFrameBuffer(i4, i5);
+            this.mGLCanvas.beginBindFrameBuffer(this.mFrameBuffer);
+            long currentTimeMillis3 = System.currentTimeMillis();
+            GLES20.glFlush();
+            render2.setParentFrameBufferId(this.mFrameBuffer.getId());
+            render2.draw(drawAttribute2);
+            String access$6004 = SnapshotRender.TAG;
+            StringBuilder stringBuilder4 = new StringBuilder();
+            stringBuilder4.append("drawTime=");
+            stringBuilder4.append(System.currentTimeMillis() - currentTimeMillis3);
+            Log.d(access$6004, stringBuilder4.toString());
+            render2.deleteBuffer();
+            int i7 = i;
+            int i8 = i2;
+            drawAttribute2.mOriginalSize = new Size(i7, i8);
+            int i9;
+            int i10;
+            if (!ModuleManager.isSquareModule()) {
+                rowStride = i7;
+                i9 = i8;
+                i10 = 0;
+            } else if (i7 > i8) {
+                i6 = (i7 - i8) / 2;
+                rowStride = i8;
+                i9 = rowStride;
+                i10 = 0;
+                if (drawAttribute2.mApplyWaterMark) {
+                    long currentTimeMillis4 = System.currentTimeMillis();
+                    if (z) {
+                        i8 = -iArr[1];
+                        i7 = -iArr[0];
+                    } else {
+                        i8 = i10;
+                        i7 = i6;
+                    }
+                    drawWaterMark(i7, i8, rowStride, i9, drawAttribute2.mJpegRotation, drawAttribute2.mTimeWatermark);
+                    drawFaceWaterMarkInfos(drawAttribute2.mOriginalSize, drawAttribute2.mPreviewSize, drawAttribute2.mJpegRotation, drawAttribute2.mWaterInfos);
+                    String access$6005 = SnapshotRender.TAG;
+                    StringBuilder stringBuilder5 = new StringBuilder();
+                    stringBuilder5.append("watermarkTime=");
+                    stringBuilder5.append(System.currentTimeMillis() - currentTimeMillis4);
+                    Log.d(access$6005, stringBuilder5.toString());
+                    this.mGLCanvas.endBindFrameBuffer();
+                    Size size = z ? new Size(i4, i5) : drawAttribute2.mOriginalSize;
+                    checkWatermarkFrameBuffer(size);
+                    this.mGLCanvas.beginBindFrameBuffer(this.mWatermarkFrameBuffer);
+                    currentTimeMillis3 = System.currentTimeMillis();
+                    RgbToYuvRender rgbToYuvRender = (RgbToYuvRender) fetchRender(FilterInfo.FILTER_ID_RGB2YUV);
+                    updateRenderParameters(rgbToYuvRender, drawAttribute2);
+                    rgbToYuvRender.setParentFrameBufferId(this.mFrameBuffer.getId());
+                    rgbToYuvRender.drawTexture(this.mFrameBuffer.getTexture().getId(), (float) PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) size.getWidth(), (float) size.getHeight(), true);
+                    access$6005 = SnapshotRender.TAG;
+                    stringBuilder = new StringBuilder();
+                    stringBuilder.append("rgb2YuvTime=");
+                    stringBuilder.append(System.currentTimeMillis() - currentTimeMillis3);
+                    Log.d(access$6005, stringBuilder.toString());
+                }
+                GLES20.glPixelStorei(3333, 1);
+                currentTimeMillis = System.currentTimeMillis();
+                if (!z) {
+                    i4 = drawAttribute2.mOriginalSize.getWidth();
+                }
+                if (!z) {
+                    i5 = drawAttribute2.mOriginalSize.getHeight();
+                }
+                i8 = (int) Math.ceil(((double) i4) / 2.0d);
+                width = (int) Math.ceil((((double) i5) * 3.0d) / 4.0d);
+                allocate = ByteBuffer.allocate((i8 * width) * 4);
+                GLES20.glReadPixels(0, 0, i8, width, 6408, 5121, allocate);
+                allocate.rewind();
+                Log.d(SnapshotRender.TAG, String.format(Locale.ENGLISH, "readSize=%dx%d imageSize=%dx%d", new Object[]{Integer.valueOf(i8), Integer.valueOf(width), Integer.valueOf(i4), Integer.valueOf(i5)}));
                 access$600 = SnapshotRender.TAG;
                 stringBuilder = new StringBuilder();
-                stringBuilder.append("watermarkTime=");
-                stringBuilder.append(System.currentTimeMillis() - currentTimeMillis3);
+                stringBuilder.append("readTime=");
+                stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
                 Log.d(access$600, stringBuilder.toString());
+                array = allocate.array();
+                if (z) {
+                    currentTimeMillis = System.currentTimeMillis();
+                    Util.coverSubYuvImage(bArr, rowStride, i9, i3, rowStride2, allocate.array(), iArr);
+                    access$600 = SnapshotRender.TAG;
+                    stringBuilder = new StringBuilder();
+                    stringBuilder.append("cover sub range data spend total time =");
+                    stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
+                    Log.d(access$600, stringBuilder.toString());
+                    array = bArr;
+                }
+                currentTimeMillis3 = System.currentTimeMillis();
+                ImageUtil.updateYuvImage(drawAttribute2.mImage, array, z);
+                access$6004 = SnapshotRender.TAG;
+                stringBuilder4 = new StringBuilder();
+                stringBuilder4.append("updateImageTime=");
+                stringBuilder4.append(System.currentTimeMillis() - currentTimeMillis3);
+                Log.d(access$6004, stringBuilder4.toString());
                 this.mGLCanvas.endBindFrameBuffer();
-                checkWatermarkFrameBuffer(drawAttribute.mOriginalSize);
-                this.mGLCanvas.beginBindFrameBuffer(this.mWatermarkFrameBuffer);
-                currentTimeMillis = System.currentTimeMillis();
-                RgbToYuvRender rgbToYuvRender = (RgbToYuvRender) fetchRender(FilterInfo.FILTER_ID_RGB2YUV);
-                updateRenderParameters(rgbToYuvRender, drawAttribute);
-                rgbToYuvRender.setParentFrameBufferId(this.mFrameBuffer.getId());
-                rgbToYuvRender.drawTexture(this.mFrameBuffer.getTexture().getId(), 0.0f, 0.0f, (float) drawAttribute.mOriginalSize.getWidth(), (float) drawAttribute.mOriginalSize.getHeight(), true);
-                access$6002 = SnapshotRender.TAG;
-                stringBuilder2 = new StringBuilder();
-                stringBuilder2.append("rgb2YuvTime=");
-                stringBuilder2.append(System.currentTimeMillis() - currentTimeMillis);
-                Log.d(access$6002, stringBuilder2.toString());
+                this.mGLCanvas.recycledResources();
+                return array;
+            } else {
+                rowStride = i7;
+                i9 = rowStride;
+                i10 = (i8 - i7) / 2;
+            }
+            i6 = 0;
+            if (drawAttribute2.mApplyWaterMark) {
             }
             GLES20.glPixelStorei(3333, 1);
-            long currentTimeMillis4 = System.currentTimeMillis();
-            int width2 = drawAttribute.mOriginalSize.getWidth();
-            i2 = drawAttribute.mOriginalSize.getHeight();
-            int ceil = (int) Math.ceil(((double) width2) / 2.0d);
-            int ceil2 = (int) Math.ceil((((double) i2) * 3.0d) / 4.0d);
-            Buffer allocate = ByteBuffer.allocate((ceil * ceil2) * 4);
-            int i3 = 4;
-            GLES20.glReadPixels(0, 0, ceil, ceil2, 6408, 5121, allocate);
-            Buffer buffer = allocate;
-            buffer.rewind();
-            String access$6004 = SnapshotRender.TAG;
-            Object[] objArr = new Object[i3];
-            objArr[0] = Integer.valueOf(ceil);
-            objArr[1] = Integer.valueOf(ceil2);
-            objArr[2] = Integer.valueOf(width2);
-            objArr[3] = Integer.valueOf(i2);
-            Log.d(access$6004, String.format(Locale.ENGLISH, "readSize=%dx%d imageSize=%dx%d", objArr));
+            currentTimeMillis = System.currentTimeMillis();
+            if (z) {
+            }
+            if (z) {
+            }
+            i8 = (int) Math.ceil(((double) i4) / 2.0d);
+            width = (int) Math.ceil((((double) i5) * 3.0d) / 4.0d);
+            allocate = ByteBuffer.allocate((i8 * width) * 4);
+            GLES20.glReadPixels(0, 0, i8, width, 6408, 5121, allocate);
+            allocate.rewind();
+            Log.d(SnapshotRender.TAG, String.format(Locale.ENGLISH, "readSize=%dx%d imageSize=%dx%d", new Object[]{Integer.valueOf(i8), Integer.valueOf(width), Integer.valueOf(i4), Integer.valueOf(i5)}));
             access$600 = SnapshotRender.TAG;
             stringBuilder = new StringBuilder();
             stringBuilder.append("readTime=");
-            stringBuilder.append(System.currentTimeMillis() - currentTimeMillis4);
+            stringBuilder.append(System.currentTimeMillis() - currentTimeMillis);
             Log.d(access$600, stringBuilder.toString());
-            currentTimeMillis = System.currentTimeMillis();
-            ImageUtil.updateYuvImage(drawAttribute.mImage, buffer.array());
-            access$6002 = SnapshotRender.TAG;
-            stringBuilder2 = new StringBuilder();
-            stringBuilder2.append("updateImageTime=");
-            stringBuilder2.append(System.currentTimeMillis() - currentTimeMillis);
-            Log.d(access$6002, stringBuilder2.toString());
+            array = allocate.array();
+            if (z) {
+            }
+            currentTimeMillis3 = System.currentTimeMillis();
+            ImageUtil.updateYuvImage(drawAttribute2.mImage, array, z);
+            access$6004 = SnapshotRender.TAG;
+            stringBuilder4 = new StringBuilder();
+            stringBuilder4.append("updateImageTime=");
+            stringBuilder4.append(System.currentTimeMillis() - currentTimeMillis3);
+            Log.d(access$6004, stringBuilder4.toString());
             this.mGLCanvas.endBindFrameBuffer();
             this.mGLCanvas.recycledResources();
-            return buffer.array();
+            return array;
         }
 
         private Render fetchRender(int i) {
@@ -370,7 +494,7 @@ public class SnapshotRender {
         }
 
         private void checkFrameBuffer(int i, int i2) {
-            if (this.mFrameBuffer == null || this.mFrameBuffer.getWidth() < i || this.mFrameBuffer.getHeight() < i2) {
+            if (this.mFrameBuffer == null || this.mFrameBuffer.getWidth() != i || this.mFrameBuffer.getHeight() != i2) {
                 this.mFrameBuffer = new FrameBuffer(this.mGLCanvas, i, i2, 0);
             }
         }
@@ -419,7 +543,7 @@ public class SnapshotRender {
         options.inScaled = false;
         options.inPurgeable = true;
         options.inPremultiplied = false;
-        if (!DataRepository.dataItemFeature().fe()) {
+        if (!DataRepository.dataItemFeature().fg()) {
             return BitmapFactory.decodeFile(CameraSettings.getDualCameraWaterMarkFilePathVendor(), options);
         }
         File file = new File(context.getFilesDir(), Util.WATERMARK_FILE_NAME);
@@ -466,7 +590,7 @@ public class SnapshotRender {
         options.inScaled = false;
         options.inPurgeable = true;
         options.inPremultiplied = false;
-        if (DataRepository.dataItemFeature().fe()) {
+        if (DataRepository.dataItemFeature().fg()) {
             File file = new File(context.getFilesDir(), Util.WATERMARK_48M_FILE_NAME);
             if (!file.exists()) {
                 return Util.generate48MWatermark2File();

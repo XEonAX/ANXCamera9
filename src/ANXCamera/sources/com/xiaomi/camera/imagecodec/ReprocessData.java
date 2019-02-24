@@ -18,6 +18,8 @@ public class ReprocessData {
     private Image mYuvImage;
 
     public interface OnDataAvailableListener {
+        void onError(String str, String str2);
+
         void onJpegAvailable(byte[] bArr, String str);
 
         void onYuvAvailable(Image image, String str);

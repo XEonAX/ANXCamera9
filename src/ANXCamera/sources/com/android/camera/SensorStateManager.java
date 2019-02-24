@@ -11,6 +11,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.SystemProperties;
 import com.android.camera.log.Log;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.mi.config.b;
 
 public class SensorStateManager {
@@ -106,8 +107,8 @@ public class SensorStateManager {
 
         private void clearFilter() {
             for (int i = 0; i < this.firstFilter.length; i++) {
-                this.firstFilter[i] = 0.0f;
-                this.finalFilter[i] = 0.0f;
+                this.firstFilter[i] = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+                this.finalFilter[i] = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
             }
         }
 
@@ -292,14 +293,14 @@ public class SensorStateManager {
                 boolean z = (abs <= f4 || abs >= ((float) i)) && (abs2 <= f4 || abs2 >= ((float) i));
                 if (z && Math.abs(abs - abs2) > 1.0f) {
                     if (abs > abs2) {
-                        f = f2 < 0.0f ? 0.0f : 180.0f;
+                        f = f2 < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO ? PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO : 180.0f;
                     } else if (abs < abs2) {
-                        f = f3 < 0.0f ? 90.0f : 270.0f;
+                        f = f3 < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO ? 90.0f : 270.0f;
                     }
                 }
                 if (Math.abs(abs2 - 90.0f) < ((float) SensorStateManager.CAPTURE_POSTURE_DEGREE)) {
                     SensorStateManager sensorStateManager = SensorStateManager.this;
-                    if (f3 >= 0.0f) {
+                    if (f3 >= PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
                         i2 = 2;
                     }
                     sensorStateManager.changeCapturePosture(i2);
@@ -414,7 +415,7 @@ public class SensorStateManager {
     }
 
     public void setRotationIndicatorEnabled(boolean z) {
-        if (b.hu() && canDetectOrientation() && this.mRotationFlagEnabled != z) {
+        if (b.hD() && canDetectOrientation() && this.mRotationFlagEnabled != z) {
             this.mRotationFlagEnabled = z;
             int i = 4;
             if (!this.mRotationFlagEnabled) {
@@ -639,7 +640,7 @@ public class SensorStateManager {
         while (f >= 360.0f) {
             f -= 360.0f;
         }
-        while (f < 0.0f) {
+        while (f < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
             f += 360.0f;
         }
         return f;

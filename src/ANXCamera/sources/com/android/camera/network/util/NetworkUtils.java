@@ -3,6 +3,11 @@ package com.android.camera.network.util;
 import android.app.Application;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import com.android.camera.CameraSettings;
+import com.android.camera.network.live.TTLiveStickerResourceRequest;
+import com.android.camera.network.net.base.ErrorCode;
+import com.android.camera.network.net.base.ResponseListener;
+import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
 
 public class NetworkUtils {
     private static boolean DBG = false;
@@ -39,5 +44,15 @@ public class NetworkUtils {
     public static NetworkInfo getActiveNetworkInfo() {
         ConnectivityManager connectivityManager = (ConnectivityManager) sApp.getSystemService("connectivity");
         return connectivityManager == null ? null : connectivityManager.getActiveNetworkInfo();
+    }
+
+    public static void tryRequestTTSticker() {
+        new TTLiveStickerResourceRequest(CameraSettings.isLiveStickerInternalChannel() ? "local_test" : MonitorCommonConstants.DEFAULT_AID, MonitorCommonConstants.DEFAULT_AID).execute(new ResponseListener() {
+            public void onResponse(Object... objArr) {
+            }
+
+            public void onResponseError(ErrorCode errorCode, String str, Object obj) {
+            }
+        });
     }
 }

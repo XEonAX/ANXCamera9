@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.ItemAnimator;
 import android.support.v7.widget.RecyclerView.Recycler;
 import android.support.v7.widget.RecyclerView.State;
 import android.view.LayoutInflater;
@@ -112,7 +111,7 @@ public abstract class BaseBeautyMakeupFragment extends BaseBeautyFragment {
         this.mSelectedParam = beautyTypetoPosition();
         this.mMakeupAdapter.setSelectedPosition(this.mSelectedParam);
         this.mMakeupItemList.setAdapter(this.mMakeupAdapter);
-        ItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setChangeDuration(150);
         defaultItemAnimator.setMoveDuration(150);
         defaultItemAnimator.setAddDuration(150);

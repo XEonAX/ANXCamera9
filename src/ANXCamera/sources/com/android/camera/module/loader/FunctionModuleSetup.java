@@ -48,7 +48,7 @@ public class FunctionModuleSetup extends Func1Base<BaseModule, BaseModule> {
                 dataItemRunning.switchOff("pref_video_speed_hfr_key");
                 break;
             case 163:
-                if (DataRepository.dataItemFeature().fx()) {
+                if (DataRepository.dataItemFeature().isSupportUltraWide()) {
                     if (baseModule.getActivity().isNewBieAlive(4)) {
                         return nullHolder;
                     }
@@ -59,7 +59,7 @@ public class FunctionModuleSetup extends Func1Base<BaseModule, BaseModule> {
                 } else if (baseModule.getActivity().isNewBieAlive(3)) {
                     return nullHolder;
                 } else {
-                    if (dataItemGlobal.getBoolean("pref_camera_first_ai_scene_use_hint_shown_key", true) && b.gF()) {
+                    if (dataItemGlobal.getBoolean("pref_camera_first_ai_scene_use_hint_shown_key", true) && b.gO()) {
                         baseModule.getActivity().showNewBie(3);
                         return nullHolder;
                     }

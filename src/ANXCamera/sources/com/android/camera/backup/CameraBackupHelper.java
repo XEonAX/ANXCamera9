@@ -121,7 +121,7 @@ public class CameraBackupHelper {
         edit.commit();
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0039 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (r2_7 'e' java.lang.Throwable), Splitter: B:1:0x0013} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0039 A:{Splitter: B:1:0x0013, ExcHandler: org.xmlpull.v1.XmlPullParserException (r2_7 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:15:0x0039, code:
             r2 = move-exception;
      */
@@ -214,7 +214,7 @@ public class CameraBackupHelper {
                 }
                 break;
             case 56:
-                if (str.equals(CameraScene.BEACH)) {
+                if (str.equals("8")) {
                     obj = 6;
                     break;
                 }
@@ -256,7 +256,7 @@ public class CameraBackupHelper {
                 return "6";
             case 6:
             case 7:
-                return CameraScene.BEACH;
+                return "8";
             default:
                 String str2 = TAG;
                 StringBuilder stringBuilder = new StringBuilder();

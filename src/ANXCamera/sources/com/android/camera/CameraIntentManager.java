@@ -307,7 +307,7 @@ public class CameraIntentManager {
             case 6:
                 return 165;
             case 7:
-                if (DataRepository.dataItemFeature().fF()) {
+                if (DataRepository.dataItemFeature().fH()) {
                     return 174;
                 }
                 return 161;
@@ -316,7 +316,7 @@ public class CameraIntentManager {
             case 9:
                 return 169;
             case 10:
-                if (DataRepository.dataItemFeature().fs()) {
+                if (DataRepository.dataItemFeature().fv()) {
                     return 172;
                 }
                 return 168;

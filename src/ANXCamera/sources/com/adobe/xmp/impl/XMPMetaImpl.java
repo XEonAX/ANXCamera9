@@ -226,11 +226,11 @@ public class XMPMetaImpl implements XMPConst, XMPMeta {
         return null;
     }
 
-    /* JADX WARNING: Missing block: B:38:0x00d6, code:
-            if (r3 != false) goto L_0x0165;
+    /* JADX WARNING: Missing block: B:38:0x00d3, code:
+            if (r3 != false) goto L_0x0161;
      */
-    /* JADX WARNING: Missing block: B:45:0x00ed, code:
-            if (r3 != false) goto L_0x0165;
+    /* JADX WARNING: Missing block: B:45:0x00ea, code:
+            if (r3 != false) goto L_0x0161;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     public void setLocalizedText(String str, String str2, String str3, String str4, String str5, PropertyOptions propertyOptions) throws XMPException {

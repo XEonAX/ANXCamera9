@@ -211,7 +211,7 @@ public class ExifTag {
             return false;
         }
         if (obj instanceof Short) {
-            return setValue(((Short) obj).shortValue() & 65535);
+            return setValue(((Short) obj).shortValue() & UNSIGNED_SHORT_MAX);
         }
         if (obj instanceof String) {
             return setValue((String) obj);
@@ -246,7 +246,7 @@ public class ExifTag {
             Short[] shArr = (Short[]) obj;
             iArr = new int[shArr.length];
             for (int i3 = 0; i3 < shArr.length; i3++) {
-                iArr[i3] = shArr[i3] == null ? 0 : shArr[i3].shortValue() & 65535;
+                iArr[i3] = shArr[i3] == null ? 0 : shArr[i3].shortValue() & UNSIGNED_SHORT_MAX;
             }
             return setValue(iArr);
         } else if (obj instanceof Integer[]) {
@@ -526,7 +526,7 @@ public class ExifTag {
 
     private boolean checkOverflowForUnsignedShort(int[] iArr) {
         for (int i : iArr) {
-            if (i > 65535 || i < 0) {
+            if (i > UNSIGNED_SHORT_MAX || i < 0) {
                 return true;
             }
         }

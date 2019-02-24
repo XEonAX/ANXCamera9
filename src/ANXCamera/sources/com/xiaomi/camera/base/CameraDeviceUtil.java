@@ -17,10 +17,10 @@ public final class CameraDeviceUtil {
     private CameraDeviceUtil() {
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0056 A:{ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable), Splitter: B:10:0x0024} */
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0056 A:{ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable), Splitter: B:10:0x0024} */
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0056 A:{ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable), Splitter: B:10:0x0024} */
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0056 A:{ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable), Splitter: B:10:0x0024} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0056 A:{Splitter: B:10:0x0024, ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0056 A:{Splitter: B:10:0x0024, ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0056 A:{Splitter: B:10:0x0024, ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0056 A:{Splitter: B:10:0x0024, ExcHandler: java.lang.ClassNotFoundException (r7_1 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:15:0x0056, code:
             r7 = move-exception;
      */
@@ -85,7 +85,7 @@ public final class CameraDeviceUtil {
             return com.xiaomi.engine.CameraCombinationMode.CAM_COMBINATION_MODE_REAR_BOKEH_WT;
      */
     /* JADX WARNING: Missing block: B:21:0x0025, code:
-            return 513;
+            return com.xiaomi.engine.CameraCombinationMode.CAM_COMBINATION_MODE_REAR_SAT_WT;
      */
     /* JADX WARNING: Missing block: B:23:0x0027, code:
             return 2;

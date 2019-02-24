@@ -10,8 +10,6 @@ import android.hardware.camera2.params.MeteringRectangle;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.provider.MiuiSettings.ScreenEffect;
-import android.provider.MiuiSettings.System;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewCompat;
@@ -268,6 +266,10 @@ public class FragmentMainContent extends BaseFragment implements AutoZoomViewPro
             }
             if (this.mDisplayRectTopMargin == 0 || this.mCurrentMode == 165) {
                 dimensionPixelSize += getResources().getDimensionPixelSize(R.dimen.top_control_panel_height);
+                int dimensionPixelSize2 = getResources().getDimensionPixelSize(R.dimen.square_delay_number_offset_extra);
+                if (dimensionPixelSize2 > 0) {
+                    dimensionPixelSize += dimensionPixelSize2;
+                }
             }
             ((MarginLayoutParams) this.mCaptureDelayNumber.getLayoutParams()).topMargin = dimensionPixelSize;
             if (this.mDegree > 0) {
@@ -304,7 +306,7 @@ public class FragmentMainContent extends BaseFragment implements AutoZoomViewPro
                 this.mZoomInAnimator.start();
             } else {
                 this.mZoomOutAnimator.start();
-                Completable.create(new AlphaOutOnSubscribe(this.mMultiSnapNum).setStartDelayTime(System.SCREEN_KEY_LONG_PRESS_TIMEOUT_DEFAULT)).subscribe();
+                Completable.create(new AlphaOutOnSubscribe(this.mMultiSnapNum).setStartDelayTime(500)).subscribe();
             }
         }
     }
@@ -792,7 +794,7 @@ public class FragmentMainContent extends BaseFragment implements AutoZoomViewPro
 
     public void provideRotateItem(List<View> list, int i) {
         super.provideRotateItem(list, i);
-        this.mFaceView.setOrientation((360 - i) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT, false);
+        this.mFaceView.setOrientation((360 - i) % 360, false);
         this.mAfRegionsView.setOrientation(i, false);
         this.mLightingView.setOrientation(i, false);
         this.mFocusView.setOrientation(i, false);
@@ -841,15 +843,19 @@ public class FragmentMainContent extends BaseFragment implements AutoZoomViewPro
     }
 
     public void onAutoZoomStarted() {
-        this.mAutoZoomOverlay.setViewEnable(true);
-        this.mAutoZoomOverlay.setViewActive(false);
-        this.mAutoZoomOverlay.clear(0);
+        if (!this.mAutoZoomOverlay.isViewEnabled()) {
+            this.mAutoZoomOverlay.setViewEnable(true);
+            this.mAutoZoomOverlay.setViewActive(false);
+            this.mAutoZoomOverlay.clear(0);
+        }
     }
 
     public void onAutoZoomStopped() {
-        this.mAutoZoomOverlay.setViewEnable(false);
-        this.mAutoZoomOverlay.setViewActive(false);
-        this.mAutoZoomOverlay.clear(4);
+        if (this.mAutoZoomOverlay.isViewEnabled()) {
+            this.mAutoZoomOverlay.setViewEnable(false);
+            this.mAutoZoomOverlay.setViewActive(false);
+            this.mAutoZoomOverlay.clear(4);
+        }
     }
 
     public void feedData(AutoZoomCaptureResult autoZoomCaptureResult) {
@@ -864,8 +870,10 @@ public class FragmentMainContent extends BaseFragment implements AutoZoomViewPro
     }
 
     public void onTrackingStopped(int i) {
-        this.mAutoZoomOverlay.setViewActive(false);
-        this.mAutoZoomOverlay.clear(0);
+        if (this.mAutoZoomOverlay.isViewActive()) {
+            this.mAutoZoomOverlay.setViewActive(false);
+            this.mAutoZoomOverlay.clear(0);
+        }
     }
 
     public boolean isAutoZoomActive() {

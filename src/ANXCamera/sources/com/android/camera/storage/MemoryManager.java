@@ -1,6 +1,5 @@
 package com.android.camera.storage;
 
-import android.provider.MiuiSettings.ScreenEffect;
 import com.android.camera.Util;
 import com.android.camera.log.Log;
 import com.android.camera.storage.Storage.StorageListener;
@@ -59,7 +58,7 @@ public class MemoryManager implements StorageListener {
         if (i == Util.LIMIT_SURFACE_WIDTH) {
             return 20971520;
         }
-        if (i == ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_END_DEAULT) {
+        if (i == 1080) {
             return 41943040;
         }
         if (i != 1440) {

@@ -35,6 +35,7 @@ import com.android.camera.fragment.beauty.BeautyParameters;
 import com.android.camera.fragment.beauty.LiveBeautyFilterFragment.LiveFilterItem;
 import com.android.camera.log.Log;
 import com.android.camera.module.ModuleManager;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.GLCanvas;
 import com.mi.config.b;
 import com.mi.config.d;
@@ -340,16 +341,16 @@ public class EffectController {
     public boolean hasEffect() {
         boolean z;
         synchronized (this) {
-            boolean gb = b.gb();
+            boolean gl = b.gl();
             z = false;
             boolean z2 = (this.mEffectId == FilterInfo.FILTER_ID_NONE || FilterInfo.getCategory(this.mEffectId) == 6) ? false : true;
             boolean isSquareModule = ModuleManager.isSquareModule();
             boolean isGradienterOn = CameraSettings.isGradienterOn();
             boolean isTiltShiftOn = CameraSettings.isTiltShiftOn();
-            boolean fe = DataRepository.dataItemFeature().fe();
+            boolean fg = DataRepository.dataItemFeature().fg();
             boolean z3 = CameraSettings.isDualCameraWaterMarkOpen() || CameraSettings.isTimeWaterMarkOpen() || CameraSettings.isAgeGenderWaterMarkOpen() || CameraSettings.isMagicMirrorWaterMarkOpen();
-            fe = fe && z3;
-            if (gb && (z2 || isSquareModule || isGradienterOn || isTiltShiftOn || fe)) {
+            fg = fg && z3;
+            if (gl && (z2 || isSquareModule || isGradienterOn || isTiltShiftOn || fg)) {
                 z = true;
             }
         }
@@ -380,10 +381,10 @@ public class EffectController {
     }
 
     public void clearEffectAttribute() {
-        this.mEffectRectAttribute.mRectF.set(0.0f, 0.0f, 0.0f, 0.0f);
-        this.mEffectRectAttribute.mPoint1.set(0.0f, 0.0f);
-        this.mEffectRectAttribute.mPoint2.set(0.0f, 0.0f);
-        this.mEffectRectAttribute.mRangeWidth = 0.0f;
+        this.mEffectRectAttribute.mRectF.set(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        this.mEffectRectAttribute.mPoint1.set(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        this.mEffectRectAttribute.mPoint2.set(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        this.mEffectRectAttribute.mRangeWidth = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
     }
 
     public RectF getEffectRectF() {
@@ -457,7 +458,7 @@ public class EffectController {
         this.mFilterInfoMap.put(0, initPrivateFilterInfo());
         this.mFilterInfoMap.put(1, initNormalFilterInfoNew());
         this.mFilterInfoMap.put(6, initLightingFilterInfo());
-        if (DataRepository.dataItemFeature().eU()) {
+        if (DataRepository.dataItemFeature().eV()) {
             this.mFilterInfoMap.put(2, BeautyInfoFactory.initIndiaBeautyFilterInfo());
         } else {
             this.mFilterInfoMap.put(2, BeautyInfoFactory.initBeautyFilterInfo());
@@ -682,7 +683,7 @@ public class EffectController {
     }
 
     public RenderGroup getEffectGroup(GLCanvas gLCanvas, RenderGroup renderGroup, boolean z, boolean z2, int i) {
-        if (!b.gb()) {
+        if (!b.gl()) {
             return null;
         }
         if (!z && !renderGroup.isNeedInit(i)) {
@@ -770,7 +771,7 @@ public class EffectController {
             renderGroup2.addRender(pipeRenderPair);
             i2 = 1;
         }
-        if (renderGroup2.getRender(FilterInfo.FILTER_ID_TILTSHIFT) == null && b.hf() && (z || i3 == FilterInfo.FILTER_ID_TILTSHIFT || (i3 < 0 && r0 == 0))) {
+        if (renderGroup2.getRender(FilterInfo.FILTER_ID_TILTSHIFT) == null && b.ho() && (z || i3 == FilterInfo.FILTER_ID_TILTSHIFT || (i3 < 0 && r0 == 0))) {
             if (z || i3 == FilterInfo.FILTER_ID_TILTSHIFT || renderGroup2.isPartComplete(3)) {
                 renderGroup2.addRender(new PipeRenderPair(gLCanvas2, FilterInfo.FILTER_ID_TILTSHIFT, new PipeRenderPair(gLCanvas2, renderGroup2.getPartRender(0) != null ? renderGroup2.getPartRender(0) : new XTiltShiftEffectRender(gLCanvas2), renderGroup2.getPartRender(1) != null ? renderGroup2.getPartRender(1) : new YTiltShiftEffectRender(gLCanvas2), false), renderGroup2.getPartRender(2) != null ? renderGroup2.getPartRender(2) : new TiltShiftMaskEffectRender(gLCanvas2), false));
                 renderGroup.clearPartRenders();
@@ -783,7 +784,7 @@ public class EffectController {
             }
             i2 = 1;
         }
-        if (d.getBoolean(d.tb, false) || renderGroup2.getRender(FilterInfo.FILTER_ID_GAUSSIAN) != null || (!z && i3 != FilterInfo.FILTER_ID_GAUSSIAN && (i3 >= 0 || i2 != 0))) {
+        if (d.getBoolean(d.tk, false) || renderGroup2.getRender(FilterInfo.FILTER_ID_GAUSSIAN) != null || (!z && i3 != FilterInfo.FILTER_ID_GAUSSIAN && (i3 >= 0 || i2 != 0))) {
             i4 = i2;
         } else if (z || i3 == FilterInfo.FILTER_ID_GAUSSIAN || renderGroup2.isPartComplete(3)) {
             renderGroup2.addRender(new PipeRenderPair(gLCanvas2, FilterInfo.FILTER_ID_GAUSSIAN, new PipeRenderPair(gLCanvas2, renderGroup2.getPartRender(0) != null ? renderGroup2.getPartRender(0) : new XGaussianEffectRender(gLCanvas2), renderGroup2.getPartRender(1) != null ? renderGroup2.getPartRender(1) : new YGaussianEffectRender(gLCanvas2), false), renderGroup2.getPartRender(2) != null ? renderGroup2.getPartRender(2) : new GaussianMaskEffectRender(gLCanvas2), false));
@@ -795,7 +796,7 @@ public class EffectController {
         } else if (renderGroup2.getPartRender(2) == null) {
             renderGroup2.addPartRender(new GaussianMaskEffectRender(gLCanvas2));
         }
-        if (renderGroup2.getRender(FilterInfo.FILTER_ID_PEAKINGMF) == null && b.gU() && !z2 && (z || i3 == FilterInfo.FILTER_ID_PEAKINGMF || (i3 < 0 && i4 == 0))) {
+        if (renderGroup2.getRender(FilterInfo.FILTER_ID_PEAKINGMF) == null && b.hd() && !z2 && (z || i3 == FilterInfo.FILTER_ID_PEAKINGMF || (i3 < 0 && i4 == 0))) {
             renderGroup2.addRender(new FocusPeakingRender(gLCanvas2, FilterInfo.FILTER_ID_PEAKINGMF));
         }
         if (renderGroup2.getRender(FilterInfo.FILTER_ID_STICKER) == null && (z || i3 == FilterInfo.FILTER_ID_STICKER || (i3 < 0 && i4 == 0))) {

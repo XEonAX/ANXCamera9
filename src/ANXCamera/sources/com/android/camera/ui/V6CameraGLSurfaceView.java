@@ -13,6 +13,7 @@ import com.android.camera.Camera;
 import com.android.camera.Util;
 import com.android.camera.log.Log;
 import com.android.camera.module.BaseModule;
+import com.android.gallery3d.exif.ExifInterface.GpsLatitudeRef;
 import com.android.gallery3d.exif.ExifInterface.GpsStatus;
 import com.android.gallery3d.ui.BasicTexture;
 import com.android.gallery3d.ui.GLCanvasImpl;
@@ -26,7 +27,6 @@ import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.opengles.GL10;
 import javax.microedition.khronos.opengles.GL11;
-import miui.reflect.Field;
 
 public class V6CameraGLSurfaceView extends GLSurfaceView implements Renderer {
     private static final boolean DEBUG_FPS = false;
@@ -54,11 +54,11 @@ public class V6CameraGLSurfaceView extends GLSurfaceView implements Renderer {
         private MyEGLConfigChooser() {
             int[] iArr = new int[11];
             iArr[0] = 12324;
-            iArr[1] = b.hE() ? 8 : 5;
+            iArr[1] = b.hN() ? 8 : 5;
             iArr[2] = 12323;
-            iArr[3] = b.hE() ? 8 : 6;
+            iArr[3] = b.hN() ? 8 : 6;
             iArr[4] = 12322;
-            iArr[5] = b.hE() ? 8 : 5;
+            iArr[5] = b.hN() ? 8 : 5;
             iArr[6] = 12321;
             iArr[7] = 0;
             iArr[8] = 12352;
@@ -66,7 +66,7 @@ public class V6CameraGLSurfaceView extends GLSurfaceView implements Renderer {
             iArr[10] = 12344;
             this.mConfigSpec = iArr;
             this.ATTR_ID = new int[]{12324, 12323, 12322, 12321, 12325, 12326, 12328, 12327};
-            this.ATTR_NAME = new String[]{"R", "G", Field.BYTE_SIGNATURE_PRIMITIVE, GpsStatus.IN_PROGRESS, Field.DOUBLE_SIGNATURE_PRIMITIVE, "S", "ID", "CAVEAT"};
+            this.ATTR_NAME = new String[]{"R", "G", "B", GpsStatus.IN_PROGRESS, "D", GpsLatitudeRef.SOUTH, "ID", "CAVEAT"};
         }
 
         public EGLConfig chooseConfig(EGL10 egl10, EGLDisplay eGLDisplay) {
@@ -145,7 +145,7 @@ public class V6CameraGLSurfaceView extends GLSurfaceView implements Renderer {
         setRenderMode(0);
         setPreserveEGLContextOnPause(true);
         getHolder().setFormat(4);
-        if (b.gW()) {
+        if (b.hf()) {
             getHolder().setFixedSize(Util.LIMIT_SURFACE_WIDTH, (Util.sWindowHeight * Util.LIMIT_SURFACE_WIDTH) / Util.sWindowWidth);
         }
         this.mActivity = (Camera) context;

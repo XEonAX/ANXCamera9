@@ -76,7 +76,7 @@ final class Relay {
                     }
                     if (obj == 2) {
                         j2 = Math.min(j2, j4 - this.sourcePos);
-                        this.fileOperator.read(32 + this.sourcePos, buffer, j2);
+                        this.fileOperator.read(Relay.FILE_HEADER_SIZE + this.sourcePos, buffer, j2);
                         this.sourcePos += j2;
                         return j2;
                     }
@@ -93,7 +93,7 @@ final class Relay {
                         j2 = Math.min(j3, j2);
                         Relay.this.upstreamBuffer.copyTo(buffer, 0, j2);
                         this.sourcePos += j2;
-                        this.fileOperator.write(32 + j4, Relay.this.upstreamBuffer.clone(), j3);
+                        this.fileOperator.write(Relay.FILE_HEADER_SIZE + j4, Relay.this.upstreamBuffer.clone(), j3);
                         synchronized (Relay.this) {
                             Relay.this.buffer.write(Relay.this.upstreamBuffer, j3);
                             if (Relay.this.buffer.size() > Relay.this.bufferMaxSize) {
@@ -164,12 +164,12 @@ final class Relay {
         RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
         FileOperator fileOperator = new FileOperator(randomAccessFile.getChannel());
         Buffer buffer = new Buffer();
-        fileOperator.read(0, buffer, 32);
+        fileOperator.read(0, buffer, FILE_HEADER_SIZE);
         if (buffer.readByteString((long) PREFIX_CLEAN.size()).equals(PREFIX_CLEAN)) {
             long readLong = buffer.readLong();
             long readLong2 = buffer.readLong();
             buffer = new Buffer();
-            fileOperator.read(32 + readLong, buffer, readLong2);
+            fileOperator.read(FILE_HEADER_SIZE + readLong, buffer, readLong2);
             return new Relay(randomAccessFile, null, readLong, buffer.readByteString(), 0);
         }
         throw new IOException("unreadable cache file");
@@ -180,8 +180,8 @@ final class Relay {
         buffer.write(byteString);
         buffer.writeLong(j);
         buffer.writeLong(j2);
-        if (buffer.size() == 32) {
-            new FileOperator(this.file.getChannel()).write(0, buffer, 32);
+        if (buffer.size() == FILE_HEADER_SIZE) {
+            new FileOperator(this.file.getChannel()).write(0, buffer, FILE_HEADER_SIZE);
             return;
         }
         throw new IllegalArgumentException();
@@ -190,7 +190,7 @@ final class Relay {
     private void writeMetadata(long j) throws IOException {
         Buffer buffer = new Buffer();
         buffer.write(this.metadata);
-        new FileOperator(this.file.getChannel()).write(32 + j, buffer, (long) this.metadata.size());
+        new FileOperator(this.file.getChannel()).write(FILE_HEADER_SIZE + j, buffer, (long) this.metadata.size());
     }
 
     void commit(long j) throws IOException {

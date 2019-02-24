@@ -9,7 +9,6 @@ import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader.TileMode;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,6 +17,7 @@ import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.ModeChangeController;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class EdgeHorizonScrollView extends HorizontalScrollView {
     private float mDownX = -1.0f;
@@ -48,7 +48,7 @@ public class EdgeHorizonScrollView extends HorizontalScrollView {
         this.mEdgePaint.setAntiAlias(true);
         this.mEdgePaint.setStyle(Style.FILL);
         this.mEdgePaint.setXfermode(new PorterDuffXfermode(Mode.DST_OUT));
-        this.mEdgePaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, (float) this.mEdgeWidth, new int[]{ViewCompat.MEASURED_STATE_MASK, -939524096, 0}, new float[]{0.0f, 0.2f, 1.0f}, TileMode.CLAMP));
+        this.mEdgePaint.setShader(new LinearGradient(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) this.mEdgeWidth, new int[]{-16777216, -939524096, 0}, new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 0.2f, 1.0f}, TileMode.CLAMP));
         setFocusable(false);
     }
 
@@ -57,24 +57,24 @@ public class EdgeHorizonScrollView extends HorizontalScrollView {
         int width = getWidth();
         int height = getHeight();
         float f = (float) height;
-        int saveLayer = canvas2.saveLayer(0.0f, 0.0f, (float) Math.max(width, view.getWidth()), f, null, 31);
+        int saveLayer = canvas2.saveLayer(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) Math.max(width, view.getWidth()), f, null, 31);
         boolean drawChild = super.drawChild(canvas, view, j);
-        canvas2.translate(this.mIsRTL ? (float) Math.max(0, view.getWidth() - width) : 0.0f, 0.0f);
+        canvas2.translate(this.mIsRTL ? (float) Math.max(0, view.getWidth() - width) : PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         float f2 = (float) width;
         float f3 = f2 / 2.0f;
         f /= 2.0f;
         float f4 = ((float) (height - width)) / 2.0f;
         height = canvas.save();
         canvas2.rotate(90.0f, f3, f);
-        canvas2.translate(0.0f, f4);
-        float f5 = 0.0f - f4;
+        canvas2.translate(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, f4);
+        float f5 = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO - f4;
         float f6 = f2 + f4;
-        canvas2.drawRect(f5, 0.0f, f6, (float) this.mEdgeWidth, this.mEdgePaint);
+        canvas2.drawRect(f5, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, f6, (float) this.mEdgeWidth, this.mEdgePaint);
         canvas2.restoreToCount(height);
         int save = canvas.save();
         canvas2.rotate(-90.0f, f3, f);
-        canvas2.translate(0.0f, f4);
-        canvas2.drawRect(f5, 0.0f, f6, (float) this.mEdgeWidth, this.mEdgePaint);
+        canvas2.translate(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, f4);
+        canvas2.drawRect(f5, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, f6, (float) this.mEdgeWidth, this.mEdgePaint);
         canvas2.restoreToCount(save);
         canvas2.restoreToCount(saveLayer);
         return drawChild;

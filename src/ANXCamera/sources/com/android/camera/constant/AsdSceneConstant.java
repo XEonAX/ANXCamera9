@@ -3,13 +3,14 @@ package com.android.camera.constant;
 import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.CaptureResult.Key;
 import com.android.camera.data.DataRepository;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 public class AsdSceneConstant {
     private static final Key<Float> AEC_LUX = new Key("com.qti.chi.statsaec.AecLux", Float.class);
-    private static final float AEC_LUX_HEIGHT_LIGHT = ((float) DataRepository.dataItemFeature().fw());
-    private static final float AEC_LUX_LAST_LIGHT = ((float) DataRepository.dataItemFeature().fv());
+    private static final float AEC_LUX_HEIGHT_LIGHT = ((float) DataRepository.dataItemFeature().fz());
+    private static final float AEC_LUX_LAST_LIGHT = ((float) DataRepository.dataItemFeature().fy());
     private static final float AEC_LUX_LOW_LIGHT = 450.0f;
     private static final int FRAME_BYPASS_NUMBER = 2;
     private static final float LENS_FOCUS_DISTANCE_TOO_CLOSE = 2.5f;
@@ -38,7 +39,7 @@ public class AsdSceneConstant {
         if (captureResult.get(AEC_LUX) != null) {
             floatValue = ((Float) captureResult.get(AEC_LUX)).floatValue();
         } else {
-            floatValue = 0.0f;
+            floatValue = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
         }
         if (!z) {
             mIsFlashRetain = false;
@@ -59,7 +60,7 @@ public class AsdSceneConstant {
         } else if (z2) {
             mFrameNumber = 0;
             return -1;
-        } else if (DataRepository.dataItemFeature().fl() && mFrameNumber < 2) {
+        } else if (DataRepository.dataItemFeature().fn() && mFrameNumber < 2) {
             mFrameNumber++;
             return -1;
         } else if (mIsFlashRetain && floatValue > AEC_LUX_HEIGHT_LIGHT) {

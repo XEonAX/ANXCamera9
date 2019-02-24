@@ -13,7 +13,10 @@ public class HandGesture {
 
     static {
         try {
-            System.loadLibrary("arcsoft_handgesture");
+            System.loadLibrary("camera_handgesture_mpbase");
+            System.loadLibrary("arc_layer_sgl");
+            System.loadLibrary("handengine.arcsoft");
+            System.loadLibrary("camera_arcsoft_handgesture");
         } catch (UnsatisfiedLinkError e) {
             String str = TAG;
             StringBuilder stringBuilder = new StringBuilder();

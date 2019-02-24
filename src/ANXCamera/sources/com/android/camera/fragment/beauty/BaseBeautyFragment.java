@@ -6,6 +6,7 @@ import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import miui.view.animation.QuinticEaseInInterpolator;
 import miui.view.animation.QuinticEaseOutInterpolator;
 
@@ -14,13 +15,13 @@ public abstract class BaseBeautyFragment extends Fragment {
 
     protected void enterAnim(@NonNull View view) {
         view.clearAnimation();
-        view.setAlpha(0.0f);
+        view.setAlpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         ViewCompat.animate(view).setDuration(240).alpha(1.0f).setStartDelay(120).setInterpolator(new QuinticEaseOutInterpolator()).start();
     }
 
     protected void exitAnim(@NonNull View view) {
         view.clearAnimation();
-        ViewCompat.animate(view).setDuration(120).alpha(0.0f).setInterpolator(new QuinticEaseInInterpolator()).start();
+        ViewCompat.animate(view).setDuration(120).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setInterpolator(new QuinticEaseInInterpolator()).start();
     }
 
     public void setUserVisibleHint(boolean z) {
@@ -38,7 +39,7 @@ public abstract class BaseBeautyFragment extends Fragment {
         if (z) {
             return super.onCreateAnimation(i, z, i2);
         }
-        Animation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
+        Animation alphaAnimation = new AlphaAnimation(1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         alphaAnimation.setInterpolator(new QuinticEaseInInterpolator());
         alphaAnimation.setDuration(140);
         return alphaAnimation;

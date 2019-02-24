@@ -1,6 +1,6 @@
 package okhttp3.internal.http2;
 
-import android.support.v4.internal.view.SupportMenu;
+import com.sensetime.stmobile.STMobileHumanActionNative;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InterruptedIOException;
@@ -370,12 +370,12 @@ public final class Http2Connection implements Closeable {
         }
         this.nextPingId = i;
         if (builder.client) {
-            this.okHttpSettings.set(7, 16777216);
+            this.okHttpSettings.set(7, OKHTTP_CLIENT_WINDOW_SIZE);
         }
         this.hostname = builder.hostname;
         this.pushExecutor = new ThreadPoolExecutor(0, 1, 60, TimeUnit.SECONDS, new LinkedBlockingQueue(), Util.threadFactory(Util.format("OkHttp %s Push Observer", this.hostname), true));
-        this.peerSettings.set(7, SupportMenu.USER_MASK);
-        this.peerSettings.set(5, 16384);
+        this.peerSettings.set(7, 65535);
+        this.peerSettings.set(5, STMobileHumanActionNative.ST_MOBILE_HAND_LOVE);
         this.bytesLeftInWriteWindow = (long) this.peerSettings.getInitialWindowSize();
         this.socket = builder.socket;
         this.writer = new Http2Writer(builder.sink, this.client);
@@ -661,8 +661,8 @@ public final class Http2Connection implements Closeable {
             this.writer.connectionPreface();
             this.writer.settings(this.okHttpSettings);
             int initialWindowSize = this.okHttpSettings.getInitialWindowSize();
-            if (initialWindowSize != SupportMenu.USER_MASK) {
-                this.writer.windowUpdate(0, (long) (initialWindowSize - SupportMenu.USER_MASK));
+            if (initialWindowSize != 65535) {
+                this.writer.windowUpdate(0, (long) (initialWindowSize - 65535));
             }
         }
         new Thread(this.readerRunnable).start();

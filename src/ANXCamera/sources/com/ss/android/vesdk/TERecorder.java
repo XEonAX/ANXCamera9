@@ -29,7 +29,7 @@ public class TERecorder {
     private VERuntime mVERuntime;
     private VEVideoEncodeSettings mVideoEncodeSettings = null;
 
-    public TERecorder(String str, Context context) {
+    public TERecorder(@NonNull String str, @NonNull Context context) {
         if (TextUtils.isEmpty(str)) {
             throw new VEException(-100, "workSpace is null");
         } else if (context != null) {
@@ -50,6 +50,7 @@ public class TERecorder {
         this.mRecorder.setRecordStateCallback(vERecorderStateListener);
     }
 
+    @Deprecated
     public void setNativeInitListener(NativeInitListener nativeInitListener) {
         this.mRecorder.setNativeInitListener(nativeInitListener);
     }
@@ -252,6 +253,14 @@ public class TERecorder {
 
     public void chooseSlamFace(int i) {
         this.mRecorder.chooseSlamFace(i);
+    }
+
+    public int setUseLargeMattingModel(boolean z) {
+        return this.mRecorder.setUseLargeMattingModel(z);
+    }
+
+    public int updateRotation(float f, float f2, float f3) {
+        return this.mRecorder.updateRotation(f, f2, f3);
     }
 
     public static synchronized void addSlamDetectListener(SlamDetectListener slamDetectListener) {

@@ -204,12 +204,12 @@ public class FragmentPanorama extends BaseFragment implements OnClickListener, R
             transformationRatio = 2.0f;
         } else if (this.mMoveDirection == 4) {
             translationX = (float) (((Util.sWindowWidth - this.mStillPreviewTextureWidth) - this.mArrowMargin) - this.mIndicator.getWidth());
-            transformationRatio = 0.0f;
+            transformationRatio = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
         }
         ObjectAnimator.ofFloat(this.mIndicator, "translationX", new float[]{this.mIndicator.getTranslationX(), translationX}).setDuration(500);
         ObjectAnimator.ofFloat(this.mPanoramaArrowAnimateDrawable, "transformationRatio", new float[]{this.mPanoramaArrowAnimateDrawable.getTransformationRatio(), transformationRatio}).setDuration(500);
-        ObjectAnimator.ofFloat(this.mStillPreview, "alpha", new float[]{this.mStillPreview.getAlpha(), 0.0f}).setDuration(250);
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this.mStillPreview, "alpha", new float[]{0.0f, 1.0f});
+        ObjectAnimator.ofFloat(this.mStillPreview, "alpha", new float[]{this.mStillPreview.getAlpha(), PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO}).setDuration(250);
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this.mStillPreview, "alpha", new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
         ofFloat.setDuration(250);
         ofFloat.addListener(new AnimatorListenerAdapter() {
             public void onAnimationStart(Animator animator) {
@@ -264,7 +264,7 @@ public class FragmentPanorama extends BaseFragment implements OnClickListener, R
             layoutParams.removeRule(9);
             layoutParams.addRule(11);
             this.mIndicator.setTranslationX((float) (((Util.sWindowWidth - this.mStillPreviewTextureWidth) - this.mArrowMargin) - this.mIndicator.getWidth()));
-            this.mPanoramaArrowAnimateDrawable.setTransformationRatio(0.0f);
+            this.mPanoramaArrowAnimateDrawable.setTransformationRatio(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         } else if (this.mMoveDirection == 3) {
             layoutParams.removeRule(11);
             layoutParams.addRule(9);
@@ -333,7 +333,7 @@ public class FragmentPanorama extends BaseFragment implements OnClickListener, R
 
     public void onResume() {
         super.onResume();
-        this.mStillPreview.setAlpha(0.0f);
+        this.mStillPreview.setAlpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         this.mPanoramaViewRoot.setVisibility(4);
         this.mMoveReferenceLine.setVisibility(4);
         this.mIndicator.setVisibility(4);

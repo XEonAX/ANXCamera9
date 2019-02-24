@@ -1,6 +1,6 @@
 package org.jcodec.containers.mp4.boxes;
 
-import android.support.v4.internal.view.SupportMenu;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
@@ -282,7 +282,7 @@ public class AudioSampleEntry extends SampleEntry {
 
     public static AudioSampleEntry audioSampleEntry(String str, int i, int i2, int i3, int i4, ByteOrder byteOrder) {
         int i5 = i3;
-        AudioSampleEntry createAudioSampleEntry = createAudioSampleEntry(Header.createHeader(str, 0), (short) i, (short) i5, (short) 16, i4, (short) 0, 0, SupportMenu.USER_MASK, 0, 1, i2, i5 * i2, i2, (short) 1);
+        AudioSampleEntry createAudioSampleEntry = createAudioSampleEntry(Header.createHeader(str, 0), (short) i, (short) i5, (short) 16, i4, (short) 0, 0, 65535, 0, 1, i2, i5 * i2, i2, (short) 1);
         Box nodeBox = new NodeBox(new Header("wave"));
         createAudioSampleEntry.add(nodeBox);
         nodeBox.add(FormatBox.createFormatBox(str));
@@ -358,7 +358,7 @@ public class AudioSampleEntry extends SampleEntry {
         channelBox.setChannelLayout(ChannelLayout.kCAFChannelLayoutTag_UseChannelDescriptions.getCode());
         ChannelDescription[] channelDescriptionArr = new ChannelDescription[labelArr.length];
         for (int i = 0; i < labelArr.length; i++) {
-            channelDescriptionArr[i] = new ChannelDescription(labelArr[i].getVal(), 0, new float[]{0.0f, 0.0f, 0.0f});
+            channelDescriptionArr[i] = new ChannelDescription(labelArr[i].getVal(), 0, new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO});
         }
         channelBox.setDescriptions(channelDescriptionArr);
     }
@@ -386,7 +386,7 @@ public class AudioSampleEntry extends SampleEntry {
         long channelLayout = (long) channelBox.getChannelLayout();
         int i = 0;
         if ((channelLayout >> 16) == 147) {
-            int i2 = ((int) channelLayout) & SupportMenu.USER_MASK;
+            int i2 = ((int) channelLayout) & 65535;
             Label[] labelArr = new Label[i2];
             while (i < i2) {
                 labelArr[i] = Label.getByVal(65536 | i);

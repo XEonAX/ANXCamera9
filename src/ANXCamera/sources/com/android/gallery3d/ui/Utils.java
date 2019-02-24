@@ -9,6 +9,7 @@ import android.os.Build.VERSION;
 import android.os.ParcelFileDescriptor;
 import android.text.TextUtils;
 import com.android.camera.log.Log;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.io.Closeable;
 import java.io.InterruptedIOException;
 import java.util.Locale;
@@ -205,14 +206,14 @@ public class Utils {
 
     public static float interpolateAngle(float f, float f2, float f3) {
         f2 -= f;
-        if (f2 < 0.0f) {
+        if (f2 < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
             f2 += 360.0f;
         }
         if (f2 > 180.0f) {
             f2 -= 360.0f;
         }
         f += f2 * f3;
-        return f < 0.0f ? f + 360.0f : f;
+        return f < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO ? f + 360.0f : f;
     }
 
     public static float interpolateScale(float f, float f2, float f3) {

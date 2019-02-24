@@ -1,6 +1,8 @@
 package com.android.camera.network.live;
 
+import android.os.Build;
 import com.android.camera.CameraSettings;
+import com.android.camera.Util;
 import com.android.camera.log.Log;
 import com.android.camera.network.net.base.ErrorCode;
 import com.android.camera.network.net.base.ResponseListener;
@@ -14,7 +16,7 @@ import org.json.JSONObject;
 
 public class TTLiveStickerResourceRequest extends BaseJsonRequest<List<LiveStickerInfo>> {
     private static final String ACCESS_KEY = "d4cd3080e95111e89708f1366a45264e";
-    private static final String APP_VERSION = "7.5.0";
+    private static final String APP_VERSION = "3.0.1";
     private static final String BASE_URL = "https://effect.snssdk.com/effect/api/v3/effects";
     private static final String DEVICE_ID = "123456";
     private static final String DEVICE_TYPE = "Xiaomi";
@@ -25,12 +27,12 @@ public class TTLiveStickerResourceRequest extends BaseJsonRequest<List<LiveStick
     public TTLiveStickerResourceRequest(String str, String str2) {
         super(BASE_URL);
         addParam("app_version", APP_VERSION);
-        addParam("device_id", DEVICE_ID);
+        addParam("device_id", Util.sAAID);
         addParam(EffectConfiguration.KEY_ACCESS_KEY, ACCESS_KEY);
         addParam(EffectConfiguration.KEY_SDK_VERSION, SDK_VERSION);
         addParam("channel", str);
         addParam(EffectConfiguration.KEY_DEVICE_PLATFORM, PLATFORM);
-        addParam(EffectConfiguration.KEY_DEVICE_TYPE, DEVICE_TYPE);
+        addParam(EffectConfiguration.KEY_DEVICE_TYPE, Build.MODEL);
         addParam(EffectConfiguration.KEY_PANEL, str2);
     }
 
@@ -39,6 +41,14 @@ public class TTLiveStickerResourceRequest extends BaseJsonRequest<List<LiveStick
             return processJson(new JSONObject(CameraSettings.getTTLiveStickerJsonCache()));
         } catch (Throwable e) {
             throw new BaseRequestException(ErrorCode.PARSE_ERROR, e.getMessage(), e);
+        }
+    }
+
+    protected void hasUpdate(String str) {
+        if (!str.equals(CameraSettings.getTTLiveStickerJsonCache())) {
+            CameraSettings.setTTLiveStickerNeedRedDot(true);
+            CameraSettings.setLiveModuleClicked(false);
+            CameraSettings.setLiveStickerRedDotTime(System.currentTimeMillis());
         }
     }
 
@@ -95,6 +105,7 @@ public class TTLiveStickerResourceRequest extends BaseJsonRequest<List<LiveStick
             throw new BaseRequestException(ErrorCode.BODY_EMPTY, "response empty data");
         } else {
             String jSONObject2 = jSONObject.toString();
+            hasUpdate(jSONObject2);
             jSONObject = jSONObject.optJSONObject("data");
             List arrayList = new ArrayList();
             JSONArray jSONArray = jSONObject.getJSONArray("effects");

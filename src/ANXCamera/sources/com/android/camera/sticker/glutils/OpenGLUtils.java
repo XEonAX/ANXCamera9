@@ -48,6 +48,21 @@ public class OpenGLUtils {
         return iArr[0];
     }
 
+    public static int loadRGBTexture(Buffer buffer, int i, int i2) {
+        if (buffer == null) {
+            return -1;
+        }
+        int[] iArr = new int[1];
+        GLES20.glGenTextures(1, iArr, 0);
+        GLES20.glBindTexture(3553, iArr[0]);
+        GLES20.glTexParameterf(3553, 10240, 9729.0f);
+        GLES20.glTexParameterf(3553, 10241, 9729.0f);
+        GLES20.glTexParameterf(3553, 10242, 33071.0f);
+        GLES20.glTexParameterf(3553, 10243, 33071.0f);
+        GLES20.glTexImage2D(3553, 0, 6407, i, i2, 0, 6407, 5121, buffer);
+        return iArr[0];
+    }
+
     public static int loadTexture(Buffer buffer, int i, int i2, int i3) {
         int i4 = i3;
         if (buffer == null) {

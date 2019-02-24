@@ -2,6 +2,7 @@ package com.ss.android.medialib.common;
 
 import android.opengl.GLES20;
 import android.util.Log;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -33,7 +34,7 @@ public class TextureDrawer {
             Buffer asFloatBuffer = ByteBuffer.allocateDirect(vertices.length * 4).order(ByteOrder.nativeOrder()).asFloatBuffer();
             asFloatBuffer.put(vertices).position(0);
             GLES20.glBufferData(34962, 32, asFloatBuffer, 35044);
-            setRotation(0.0f);
+            setRotation(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
             setFlipScale(1.0f, 1.0f);
             Log.d("TextureDrawer", "init: success.");
             return true;

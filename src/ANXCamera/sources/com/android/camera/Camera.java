@@ -16,7 +16,6 @@ import android.os.Message;
 import android.os.ServiceManager;
 import android.os.SystemClock;
 import android.os.UserHandle;
-import android.provider.MiuiSettings.ScreenEffect;
 import android.support.annotation.MainThread;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
 import android.support.v4.app.DialogFragment;
@@ -31,7 +30,6 @@ import android.view.Window;
 import android.view.WindowManager.LayoutParams;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.aeonax.PermissionsAsker;
 import com.android.camera.LocalParallelService.LocalBinder;
 import com.android.camera.constant.GlobalConstant;
 import com.android.camera.data.DataRepository;
@@ -88,6 +86,7 @@ import com.mi.config.b;
 import com.ss.android.ugc.effectmanager.effect.model.ComposerHelper;
 import io.reactivex.Completable;
 import io.reactivex.Single;
+import io.reactivex.SingleSource;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
@@ -105,11 +104,11 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
     private BiFunction mCameraOpenResult = new BiFunction<NullHolder<BaseModule>, Camera2Result, NullHolder<BaseModule>>() {
         public NullHolder<BaseModule> apply(@NonNull NullHolder<BaseModule> nullHolder, @NonNull Camera2Result camera2Result) throws Exception {
             int result = camera2Result.getResult();
-            String access$400 = Camera.TAG;
+            String access$500 = Camera.TAG;
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("mCameraOpenResult apply : result = ");
             stringBuilder.append(result);
-            Log.d(access$400, stringBuilder.toString());
+            Log.d(access$500, stringBuilder.toString());
             switch (result) {
                 case 3:
                     if (nullHolder.isPresent()) {
@@ -122,6 +121,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
         }
     };
     private Disposable mCameraPendingSetupDisposable;
+    private Object mCameraPendingSetupDisposableGuard = new Object();
     private Consumer<NullHolder<BaseModule>> mCameraSetupConsumer = new Consumer<NullHolder<BaseModule>>() {
         public void accept(@NonNull NullHolder<BaseModule> nullHolder) throws Exception {
             if (nullHolder.isPresent()) {
@@ -132,7 +132,9 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
             }
             Camera.this.getCameraScreenNail().resetFrameAvailableFlag();
             Camera.this.setSwitchingModule(false);
-            Camera.this.mCameraSetupDisposable = null;
+            synchronized (Camera.this.mCameraSetupDisposableGuard) {
+                Camera.this.mCameraSetupDisposable = null;
+            }
             DataRepository.dataCloudMgr().fillCloudValues();
             AutoLockManager.getInstance(Camera.this).hibernateDelayed();
             Camera.this.showFirstUseHintIfNeeded();
@@ -140,6 +142,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
         }
     };
     private Disposable mCameraSetupDisposable;
+    private Object mCameraSetupDisposableGuard = new Object();
     private LogThread mDebugThread;
     private boolean mDidRegister;
     private DisplayFeatureManager mDisplayFeatureManager;
@@ -175,11 +178,11 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
             super.onChange(z);
             if (!Camera.this.mHasFocus && !Camera.this.mActivityPaused) {
                 int i = Util.isScreenSlideOff(Camera.this) ? Util.KEYCODE_SLIDE_OFF : Util.KEYCODE_SLIDE_ON;
-                String access$400 = Camera.TAG;
+                String access$500 = Camera.TAG;
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("focus lost, try key code: ");
                 stringBuilder.append(i);
-                Log.d(access$400, stringBuilder.toString());
+                Log.d(access$500, stringBuilder.toString());
                 Camera.this.onKeyDown(i, new KeyEvent(0, i));
             }
         }
@@ -241,20 +244,20 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
                 Camera.this.mOrientation = Util.roundOrientation(i, Camera.this.mOrientation);
                 if (!Camera.this.mFirstOrientationArrived) {
                     Camera.this.mFirstOrientationArrived = true;
-                    String access$400 = Camera.TAG;
+                    String access$500 = Camera.TAG;
                     StringBuilder stringBuilder = new StringBuilder();
                     stringBuilder.append("onOrientationChanged: first orientation is arrived... , orientation = ");
                     stringBuilder.append(i);
                     stringBuilder.append(", mOrientation = ");
                     stringBuilder.append(Camera.this.mOrientation);
-                    Log.d(access$400, stringBuilder.toString());
+                    Log.d(access$500, stringBuilder.toString());
                 }
                 i = Util.getDisplayRotation(Camera.this);
                 if (i != Camera.this.mDisplayRotation) {
                     Camera.this.mDisplayRotation = i;
                     Camera.this.onDisplayRotationChanged();
                 }
-                Camera.this.mOrientationCompensation = (Camera.this.mOrientation + Camera.this.mDisplayRotation) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+                Camera.this.mOrientationCompensation = (Camera.this.mOrientation + Camera.this.mDisplayRotation) % 360;
                 if (Camera.this.mCurrentModule != null) {
                     Camera.this.mCurrentModule.onOrientationChanged(Camera.this.mOrientation, Camera.this.mOrientationCompensation);
                 }
@@ -287,12 +290,12 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
                 try {
                     Thread.sleep(5000);
                     if (Camera.this.mTick == access$000) {
-                        if (b.he()) {
+                        if (b.hn()) {
                             CameraSettings.setEdgeMode(Camera.this, false);
                         }
                         Camera.this.setBrightnessRampRate(-1);
                         Camera.this.setScreenEffect(false);
-                        if (DataRepository.dataItemFeature().fW() && SystemClock.elapsedRealtime() - CameraSettings.getBroadcastKillServiceTime() > 60000) {
+                        if (DataRepository.dataItemFeature().fY() && SystemClock.elapsedRealtime() - CameraSettings.getBroadcastKillServiceTime() > 60000) {
                             Util.broadcastKillService(Camera.this);
                         }
                         return;
@@ -318,7 +321,6 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
         this.mCameraIntentManager.setReferer(this);
         if (CompatibilityUtils.isInMultiWindowMode(this)) {
             super.onCreate(null);
-            PermissionsAsker.Ask(this);
             ToastUtils.showToast((Context) this, (int) R.string.multi_window_mode_not_supported);
             Log.d(TAG, "isInMultiWindowMode call finish");
             finish();
@@ -327,7 +329,6 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
                 CameraStatUtil.trackVoiceControl(getIntent());
             }
             super.onCreate(bundle);
-            PermissionsAsker.Ask(this);
             Completable.create(new CompletablePreFixCamera2Setup(null, null, null, getIntent(), startFromSecureKeyguard(), this.mCameraIntentManager.checkCallerLegality())).subscribeOn(GlobalConstant.sCameraSetupScheduler).subscribe();
             if (ProximitySensorLock.enabled() && isFromKeyguard()) {
                 if (Util.isNonUIEnabled() && this.mCameraIntentManager.isFromVolumeKey().booleanValue()) {
@@ -360,7 +361,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
             }
             Util.updateCountryIso(this);
             this.mPowerManager = Stub.asInterface(ServiceManager.getService("power"));
-            if (b.hL()) {
+            if (b.hU()) {
                 try {
                     this.mDisplayFeatureManager = DisplayFeatureManager.getInstance();
                 } catch (Throwable e) {
@@ -379,7 +380,6 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
             stringBuilder.append(" use VOICE_CONTROL_INTENT!");
             Log.e(str, stringBuilder.toString());
             super.onCreate(null);
-            PermissionsAsker.Ask(this);
             finish();
         }
     }
@@ -472,14 +472,23 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
         Function functionModuleSetup = new FunctionModuleSetup(startControl.mTargetMode);
         Function functionDataSetup = new FunctionDataSetup(startControl.mTargetMode);
         Function functionUISetup = new FunctionUISetup(startControl.mTargetMode, startControl.needNotifyUI());
-        this.mCameraSetupDisposable = Single.just(NullHolder.ofNullable(this)).observeOn(GlobalConstant.sCameraSetupScheduler).map(functionCameraPrepare).zipWith(Single.create(this.mCamera2OpenOnSubScribe).subscribeOn(GlobalConstant.sCameraSetupScheduler).observeOn(GlobalConstant.sCameraSetupScheduler), this.mCameraOpenResult).map(functionModuleSetup).map(functionDataSetup).observeOn(functionUISetup.getWorkThread()).map(functionUISetup).subscribe(this.mCameraSetupConsumer);
+        Single map = Single.just(NullHolder.ofNullable(this)).observeOn(GlobalConstant.sCameraSetupScheduler).map(functionCameraPrepare);
+        SingleSource observeOn = Single.create(this.mCamera2OpenOnSubScribe).subscribeOn(GlobalConstant.sCameraSetupScheduler).observeOn(GlobalConstant.sCameraSetupScheduler);
+        synchronized (this.mCameraSetupDisposableGuard) {
+            this.mCameraSetupDisposable = map.zipWith(observeOn, this.mCameraOpenResult).map(functionModuleSetup).map(functionDataSetup).observeOn(functionUISetup.getWorkThread()).map(functionUISetup).subscribe(this.mCameraSetupConsumer);
+        }
     }
 
     public void resumeCurrentMode(int i) {
         closeCameraSetup();
         setSwitchingModule(true);
         Function functionCameraLegacySetup = new FunctionCameraLegacySetup(i);
-        this.mCameraSetupDisposable = Single.just(NullHolder.ofNullable((BaseModule) this.mCurrentModule)).observeOn(GlobalConstant.sCameraSetupScheduler).map(functionCameraLegacySetup).zipWith(Single.create(this.mCamera2OpenOnSubScribe).observeOn(GlobalConstant.sCameraSetupScheduler), this.mCameraOpenResult).map(new FunctionResumeModule(i)).observeOn(AndroidSchedulers.mainThread()).subscribe(this.mCameraSetupConsumer);
+        Function functionResumeModule = new FunctionResumeModule(i);
+        Single map = Single.just(NullHolder.ofNullable((BaseModule) this.mCurrentModule)).observeOn(GlobalConstant.sCameraSetupScheduler).map(functionCameraLegacySetup);
+        SingleSource observeOn = Single.create(this.mCamera2OpenOnSubScribe).observeOn(GlobalConstant.sCameraSetupScheduler);
+        synchronized (this.mCameraSetupDisposableGuard) {
+            this.mCameraSetupDisposable = map.zipWith(observeOn, this.mCameraOpenResult).map(functionResumeModule).observeOn(AndroidSchedulers.mainThread()).subscribe(this.mCameraSetupConsumer);
+        }
     }
 
     protected void releaseCameraScreenNail() {
@@ -529,21 +538,19 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
     private void resumeCamera() {
         if (!isSwitchingModule()) {
             if (ModeCoordinatorImpl.isAlive(hashCode())) {
+                int intentType;
                 DataItemGlobal dataItemGlobal = DataRepository.dataItemGlobal();
+                boolean checkCallerLegality = this.mCameraIntentManager.checkCallerLegality();
                 int i = 2;
                 if (this.mJumpedToGallery) {
                     this.mJumpedToGallery = false;
                 } else {
-                    int intentType = dataItemGlobal.getIntentType();
-                    boolean checkCallerLegality = this.mCameraIntentManager.checkCallerLegality();
-                    boolean z = true;
-                    dataItemGlobal.parseIntent(getIntent(), Boolean.valueOf(checkCallerLegality), startFromSecureKeyguard(), false, this.mDelayReleaseCamera ^ 1);
                     int intentType2 = dataItemGlobal.getIntentType();
-                    if (intentType != 0) {
-                        if (this.mCurrentModule == null || !this.mCurrentModule.isSelectingCapturedResult()) {
-                            z = false;
-                        }
-                        if (intentType == intentType2 && z) {
+                    dataItemGlobal.parseIntent(getIntent(), Boolean.valueOf(checkCallerLegality), startFromSecureKeyguard(), false, this.mDelayReleaseCamera ^ 1);
+                    intentType = dataItemGlobal.getIntentType();
+                    if (intentType2 != 0) {
+                        boolean z = this.mCurrentModule != null && this.mCurrentModule.isSelectingCapturedResult();
+                        if (intentType2 == intentType && z) {
                             if (this.mDelayReleaseCamera) {
                                 this.mDelayReleaseCamera = false;
                                 return;
@@ -559,11 +566,17 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
                         return;
                     }
                     if (dataItemGlobal.isTimeOut()) {
-                        i = 3;
                         FragmentUtils.removeFragmentByTag(getSupportFragmentManager(), FragmentLiveMusic.TAG);
+                        intentType = 3;
+                        if (!checkCallerLegality || intentType == 3) {
+                            i = 1;
+                        }
+                        onModeSelected(StartControl.create(dataItemGlobal.getCurrentMode()).setResetType(intentType).setViewConfigType(i));
                     }
                 }
-                onModeSelected(StartControl.create(dataItemGlobal.getCurrentMode()).setResetType(i));
+                intentType = 2;
+                i = 1;
+                onModeSelected(StartControl.create(dataItemGlobal.getCurrentMode()).setResetType(intentType).setViewConfigType(i));
             } else {
                 unRegisterProtocol();
                 registerProtocol();
@@ -724,9 +737,9 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
         Log.d(TAG, "onStop end");
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable), Splitter: B:16:0x0035} */
-    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable), Splitter: B:16:0x0035} */
-    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable), Splitter: B:16:0x0035} */
+    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{Splitter: B:16:0x0035, ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{Splitter: B:16:0x0035, ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{Splitter: B:16:0x0035, ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:18:0x007a, code:
             r0 = move-exception;
      */
@@ -825,11 +838,11 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
                 }
                 if (z2) {
                     boolean containsResumedCameraInStack = Camera.this.mApplication.containsResumedCameraInStack();
-                    String access$400 = Camera.TAG;
+                    String access$500 = Camera.TAG;
                     StringBuilder stringBuilder = new StringBuilder();
                     stringBuilder.append("start releaseCameraDevice: ");
                     stringBuilder.append(containsResumedCameraInStack ^ 1);
-                    Log.d(access$400, stringBuilder.toString());
+                    Log.d(access$500, stringBuilder.toString());
                     if (containsResumedCameraInStack) {
                         Log.d(Camera.TAG, "Camera2OpenManager release ignored.");
                     } else {
@@ -961,7 +974,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
     }
 
     public boolean onEdgeTouchEvent(MotionEvent motionEvent) {
-        if (b.he()) {
+        if (b.hn()) {
             return V6GestureRecognizer.getInstance(this).onEdgeTouchEvent(motionEvent);
         }
         return true;
@@ -1011,7 +1024,10 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
                 this.mBaseFragmentDelegate = new BaseFragmentDelegate(this);
                 this.mBaseFragmentDelegate.init(getSupportFragmentManager(), startControl.mTargetMode, this);
             } else {
-                this.mCameraPendingSetupDisposable = this.mBaseFragmentDelegate.delegateMode(Completable.create(new CompletablePreFixCamera2Setup(baseModule, startControl, getCameraScreenNail(), null, startFromSecureKeyguard(), this.mCameraIntentManager.checkCallerLegality())).subscribeOn(GlobalConstant.sCameraSetupScheduler), startControl, this);
+                Completable subscribeOn = Completable.create(new CompletablePreFixCamera2Setup(baseModule, startControl, getCameraScreenNail(), null, startFromSecureKeyguard(), this.mCameraIntentManager.checkCallerLegality())).subscribeOn(GlobalConstant.sCameraSetupScheduler);
+                synchronized (this.mCameraPendingSetupDisposableGuard) {
+                    this.mCameraPendingSetupDisposable = this.mBaseFragmentDelegate.delegateMode(subscribeOn, startControl, this);
+                }
             }
             return;
         }
@@ -1019,7 +1035,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
     }
 
     private void onDisplayRotationChanged() {
-        if (b.hC()) {
+        if (b.hL()) {
             FrontRotateNewbieDialogFragment frontRotateNewbieDialogFragment = (FrontRotateNewbieDialogFragment) getSupportFragmentManager().findFragmentByTag(FrontRotateNewbieDialogFragment.TAG);
             if (frontRotateNewbieDialogFragment != null) {
                 frontRotateNewbieDialogFragment.animateOut(0);
@@ -1044,7 +1060,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
     }
 
     private void switchEdgeFingerMode(boolean z) {
-        if (b.he()) {
+        if (b.hn()) {
             CameraSettings.setEdgeMode(this, z);
         }
     }
@@ -1055,7 +1071,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
         stringBuilder.append("triggerWatchDog: ");
         stringBuilder.append(z);
         Log.d(str, stringBuilder.toString());
-        if (b.qY && DataRepository.dataItemFeature().fW()) {
+        if (b.qY && DataRepository.dataItemFeature().fY()) {
             if (z) {
                 this.mWatchDog = new WatchDogThread(this, null);
                 this.mWatchDog.start();
@@ -1091,7 +1107,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
     }
 
     public void changeRequestOrientation() {
-        if (b.hC()) {
+        if (b.hL()) {
             if (CameraSettings.isFrontCamera()) {
                 setRequestedOrientation(7);
             } else {
@@ -1100,39 +1116,46 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
         }
     }
 
-    private boolean closeCameraSetup() {
-        if (!(this.mCameraPendingSetupDisposable == null || this.mCameraPendingSetupDisposable.isDisposed())) {
-            this.mCameraPendingSetupDisposable.dispose();
-            this.mCameraPendingSetupDisposable = null;
-        }
-        if (this.mCameraSetupDisposable == null || this.mCameraSetupDisposable.isDisposed()) {
+    /* JADX WARNING: Missing block: B:21:0x0033, code:
             return false;
+     */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private boolean closeCameraSetup() {
+        synchronized (this.mCameraPendingSetupDisposableGuard) {
+            if (!(this.mCameraPendingSetupDisposable == null || this.mCameraPendingSetupDisposable.isDisposed())) {
+                this.mCameraPendingSetupDisposable.dispose();
+                this.mCameraPendingSetupDisposable = null;
+            }
         }
-        this.mCameraSetupDisposable.dispose();
-        this.mCameraSetupDisposable = null;
-        return true;
+        synchronized (this.mCameraSetupDisposableGuard) {
+            if (this.mCameraSetupDisposable == null || this.mCameraSetupDisposable.isDisposed()) {
+            } else {
+                this.mCameraSetupDisposable.dispose();
+                this.mCameraSetupDisposable = null;
+                return true;
+            }
+        }
     }
 
     public boolean showNewBie(int i) {
-        Fragment portraitNewbieDialogFragment;
         switch (i) {
             case 1:
-                portraitNewbieDialogFragment = new PortraitNewbieDialogFragment();
+                PortraitNewbieDialogFragment portraitNewbieDialogFragment = new PortraitNewbieDialogFragment();
                 portraitNewbieDialogFragment.setStyle(2, R.style.DialogFragmentFullScreen);
                 getSupportFragmentManager().beginTransaction().add(portraitNewbieDialogFragment, PortraitNewbieDialogFragment.TAG).commitAllowingStateLoss();
                 this.newbieDialogFragmentTag = PortraitNewbieDialogFragment.TAG;
                 return true;
             case 2:
-                portraitNewbieDialogFragment = new FrontRotateNewbieDialogFragment();
-                portraitNewbieDialogFragment.setStyle(2, R.style.DialogFragmentFullScreen);
-                getSupportFragmentManager().beginTransaction().add(portraitNewbieDialogFragment, FrontRotateNewbieDialogFragment.TAG).commitAllowingStateLoss();
+                FrontRotateNewbieDialogFragment frontRotateNewbieDialogFragment = new FrontRotateNewbieDialogFragment();
+                frontRotateNewbieDialogFragment.setStyle(2, R.style.DialogFragmentFullScreen);
+                getSupportFragmentManager().beginTransaction().add(frontRotateNewbieDialogFragment, FrontRotateNewbieDialogFragment.TAG).commitAllowingStateLoss();
                 this.newbieDialogFragmentTag = FrontRotateNewbieDialogFragment.TAG;
                 return true;
             case 3:
                 this.mHandler.postDelayed(new Runnable() {
                     public void run() {
                         if (!Camera.this.isActivityPaused()) {
-                            Fragment aiSceneNewbieDialogFragment = new AiSceneNewbieDialogFragment();
+                            AiSceneNewbieDialogFragment aiSceneNewbieDialogFragment = new AiSceneNewbieDialogFragment();
                             aiSceneNewbieDialogFragment.setStyle(2, R.style.DialogFragmentFullScreen);
                             Camera.this.getSupportFragmentManager().beginTransaction().add(aiSceneNewbieDialogFragment, AiSceneNewbieDialogFragment.TAG).commitAllowingStateLoss();
                             Camera.this.newbieDialogFragmentTag = AiSceneNewbieDialogFragment.TAG;
@@ -1145,7 +1168,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
                 this.mHandler.postDelayed(new Runnable() {
                     public void run() {
                         if (!Camera.this.isActivityPaused()) {
-                            Fragment ultraWideNewbieDialogFragment = new UltraWideNewbieDialogFragment();
+                            UltraWideNewbieDialogFragment ultraWideNewbieDialogFragment = new UltraWideNewbieDialogFragment();
                             ultraWideNewbieDialogFragment.setStyle(2, R.style.DialogFragmentFullScreen);
                             Camera.this.getSupportFragmentManager().beginTransaction().add(ultraWideNewbieDialogFragment, UltraWideNewbieDialogFragment.TAG).commitAllowingStateLoss();
                             Camera.this.newbieDialogFragmentTag = UltraWideNewbieDialogFragment.TAG;
@@ -1199,7 +1222,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
         beginTransaction.commitAllowingStateLoss();
     }
 
-    public synchronized void updateSurfaceState(int i) {
+    public void updateSurfaceState(int i) {
         super.updateSurfaceState(i);
         if (i == 4) {
             this.mCamera2OpenOnSubScribe.onGlSurfaceCreated();
@@ -1215,7 +1238,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
             this.mBaseFragmentDelegate.getAnimationComposite().notifyAfterFirstFrameArrived(i);
             this.mCurrentModule.enableCameraControls(true);
             this.mCurrentModule.setFrameAvailable(true);
-            if ((getCurrentModuleIndex() == 165 || getCurrentModuleIndex() == 163) && b.hC() && CameraSettings.isFrontCamera() && this.mDisplayRotation == 0 && DataRepository.dataItemGlobal().getBoolean("pref_front_camera_first_use_hint_shown_key", true)) {
+            if ((getCurrentModuleIndex() == 165 || getCurrentModuleIndex() == 163) && b.hL() && CameraSettings.isFrontCamera() && this.mDisplayRotation == 0 && DataRepository.dataItemGlobal().getBoolean("pref_front_camera_first_use_hint_shown_key", true)) {
                 DataRepository.dataItemGlobal().editor().putBoolean("pref_front_camera_first_use_hint_shown_key", false).apply();
                 showNewBie(2);
             }
@@ -1354,7 +1377,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
     }
 
     private void showHibernationFragment() {
-        Fragment hibernationFragment = new HibernationFragment();
+        HibernationFragment hibernationFragment = new HibernationFragment();
         hibernationFragment.setStyle(2, R.style.DialogFragmentFullScreen);
         getSupportFragmentManager().beginTransaction().add(hibernationFragment, HibernationFragment.TAG).commitAllowingStateLoss();
     }
@@ -1367,7 +1390,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
     }
 
     public void showLensDirtyDetectedHint() {
-        if (DataRepository.dataItemFeature().fI()) {
+        if (DataRepository.dataItemFeature().fK()) {
             this.mHandler.post(new Runnable() {
                 public void run() {
                     FragmentTopConfig fragmentTopConfig = (FragmentTopConfig) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
@@ -1387,14 +1410,14 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
                 }
             });
         } else if (getSupportFragmentManager().findFragmentByTag(LensDirtyDetectDialogFragment.TAG) == null) {
-            Fragment lensDirtyDetectDialogFragment = new LensDirtyDetectDialogFragment();
+            LensDirtyDetectDialogFragment lensDirtyDetectDialogFragment = new LensDirtyDetectDialogFragment();
             lensDirtyDetectDialogFragment.setStyle(2, R.style.LensDirtyDetectDialogFragment);
             getSupportFragmentManager().beginTransaction().add(lensDirtyDetectDialogFragment, LensDirtyDetectDialogFragment.TAG).commitAllowingStateLoss();
         }
     }
 
     public void hideLensDirtyDetectedHint() {
-        if (!DataRepository.dataItemFeature().fI()) {
+        if (!DataRepository.dataItemFeature().fK()) {
             Fragment findFragmentByTag = getSupportFragmentManager().findFragmentByTag(LensDirtyDetectDialogFragment.TAG);
             if (findFragmentByTag != null && (findFragmentByTag instanceof DialogFragment)) {
                 ((DialogFragment) findFragmentByTag).dismissAllowingStateLoss();
@@ -1418,7 +1441,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
         boolean z = false;
         int i2 = i == Util.KEYCODE_SLIDE_ON ? 1 : 0;
         int currentMode = dataItemGlobal.getCurrentMode();
-        if ((currentMode == 171 && !b.ht()) || currentMode == 166 || currentMode == 167 || currentMode == 173) {
+        if ((currentMode == 171 && !b.hC()) || currentMode == 166 || currentMode == 167 || currentMode == 173) {
             currentMode = 163;
         } else if (currentMode == 168 || currentMode == 169 || currentMode == 170 || currentMode == 172) {
             currentMode = 162;

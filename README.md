@@ -37,3 +37,9 @@ Amogha Maiya (https://github.com/amog787) for sponsoring, and all-round help
 Sandeep (https://github.com/CodeElixir) for help with the libs
 Psygarden (https://forum.xda-developers.com/member.php?u=7645131) for his general help. 
 
+
+
+Steps to Port MiuiCamera:
+1. Unpack System of Miui
+2. Setup Framework for APKTool
+3. Decompile, Recompile, 

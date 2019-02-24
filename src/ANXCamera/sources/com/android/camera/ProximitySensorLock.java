@@ -21,6 +21,7 @@ import android.widget.FrameLayout;
 import com.android.camera.log.Log;
 import com.android.camera.statistic.CameraStat;
 import com.android.camera.statistic.CameraStatUtil;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.mi.config.b;
 
 public class ProximitySensorLock implements SensorEventListener {
@@ -82,7 +83,7 @@ public class ProximitySensorLock implements SensorEventListener {
     }
 
     public static boolean supported() {
-        return b.hD();
+        return b.hM();
     }
 
     public static boolean enabled() {
@@ -285,10 +286,10 @@ public class ProximitySensorLock implements SensorEventListener {
                     this.mHintView = inflateHint();
                 }
                 frameLayout.addView(this.mHintView);
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this.mHintView, View.ALPHA, new float[]{0.0f, 1.0f});
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this.mHintView, View.ALPHA, new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
                 ofFloat.setDuration(500);
                 ofFloat.start();
-                Animation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
+                Animation alphaAnimation = new AlphaAnimation(1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
                 alphaAnimation.setDuration(500);
                 alphaAnimation.setRepeatCount(-1);
                 alphaAnimation.setRepeatMode(2);

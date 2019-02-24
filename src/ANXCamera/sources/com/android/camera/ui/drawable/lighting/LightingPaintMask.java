@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import com.android.camera.ui.drawable.CameraPaintBase;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class LightingPaintMask extends CameraPaintBase {
     private int mHeight;
@@ -29,7 +30,7 @@ public class LightingPaintMask extends CameraPaintBase {
     protected void draw(Canvas canvas) {
         this.mPaint.reset();
         this.mPaint.setColor(Color.argb(this.mCurrentAlpha, 0, 0, 0));
-        canvas.drawRect(0.0f, 0.0f, (float) this.mWidth, (float) this.mHeight, this.mPaint);
+        canvas.drawRect(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) this.mWidth, (float) this.mHeight, this.mPaint);
         this.mPaint.setXfermode(new PorterDuffXfermode(Mode.CLEAR));
         canvas.drawCircle(this.mMiddleX, this.mMiddleY, this.mBaseRadius * this.mCurrentWidthPercent, this.mPaint);
     }

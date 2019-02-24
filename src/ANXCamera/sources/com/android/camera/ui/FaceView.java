@@ -24,6 +24,7 @@ import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.fragment.top.FragmentTopAlert;
 import com.android.camera.log.Log;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.camera.watermark.WaterMarkData;
 import com.android.camera2.CameraHardwareFace;
 import java.lang.annotation.Retention;
@@ -296,7 +297,7 @@ public class FaceView extends FrameView {
             this.mNormalRectPaint.setAlpha(i == 0 ? 255 : 0);
             return;
         }
-        this.mFaceRectHideAnimator = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
+        this.mFaceRectHideAnimator = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
         this.mFaceRectHideAnimator.setInterpolator(new CubicEaseOutInterpolator() {
             public float getInterpolation(float f) {
                 f = super.getInterpolation(f);
@@ -604,7 +605,7 @@ public class FaceView extends FrameView {
                                 drawFacePopInfo(canvas2, this.mRect, obj != null ? this.mSexFemaleIc : this.mSexMaleIc, obj != null ? this.mFemaleAgeInfoPop : this.mMaleAgeInfoPop, getAgeInfo(this.mDrawingFaces[i]), obj != null ? this.mAgeFemaleHonPadding : this.mAgeMaleHonPadding, this.mAgeVerPadding, this.mFacePopupBottom, this.mPopBottomMargin);
                                 break;
                             case 2:
-                                if (this.mDrawingFaces[i].beautyscore > 0.0f) {
+                                if (this.mDrawingFaces[i].beautyscore > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
                                     initFaceInfoStyle();
                                     drawFacePopInfo(canvas2, this.mRect, this.mBeautyScoreIc, this.mMagicMirrorInfoPop, getScoreInfo(this.mDrawingFaces[i]), this.mAgeFemaleHonPadding, this.mAgeVerPadding, this.mFacePopupBottom, this.mPopBottomMargin);
                                     break;
@@ -613,7 +614,7 @@ public class FaceView extends FrameView {
                             default:
                                 break;
                         }
-                    } else if (this.mDrawingFaces[i].beautyscore > 0.0f) {
+                    } else if (this.mDrawingFaces[i].beautyscore > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
                         initFaceInfoStyle();
                         drawFacePopInfo(canvas2, this.mRect, this.mBeautyScoreIc, this.mMagicMirrorInfoPop, getScoreInfo(this.mDrawingFaces[i]), this.mAgeFemaleHonPadding, this.mAgeVerPadding, this.mFacePopupBottom, this.mPopBottomMargin);
                     }
@@ -648,7 +649,7 @@ public class FaceView extends FrameView {
                     break;
             }
         }
-        if (cameraHardwareFace.beautyscore > 0.0f) {
+        if (cameraHardwareFace.beautyscore > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
             this.mEffectRectPaint.setColor(MAGIC_MIRROR_RECT_COLOR);
             canvas.drawRoundRect(rectF, rectF.width() * 0.015f, rectF.height() * 0.015f, this.mEffectRectPaint);
         }
@@ -663,7 +664,7 @@ public class FaceView extends FrameView {
         String str2 = str;
         int i5 = i;
         Matcher matcher = this.mSplitFaceInfoPattern.matcher(str2);
-        float f = 0.0f;
+        float f = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
         while (matcher.find()) {
             String group = matcher.group();
             if (group.matches("\\d+\\.?\\d*")) {
@@ -685,7 +686,7 @@ public class FaceView extends FrameView {
         rect2.set(rect.left + i5, (int) ((((float) rect.top) + measureText) - ((float) this.mCorrection)), (rect.left + i5) + drawable.getIntrinsicWidth(), (int) (((((float) rect.top) + measureText) - ((float) this.mCorrection)) + ((float) drawable.getIntrinsicHeight())));
         drawable3.setBounds(rect2);
         drawable3.draw(canvas2);
-        if (f != 0.0f) {
+        if (f != PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
             FontMetricsInt fontMetricsInt = this.mFaceInfoTextPaint.getFontMetricsInt();
             drawFaceInfoText(canvas2, str2, rect2.right + this.mGap, (((rect2.bottom + rect2.top) - fontMetricsInt.bottom) - fontMetricsInt.top) / 2);
         }
@@ -718,7 +719,7 @@ public class FaceView extends FrameView {
             int i3 = 0;
             while (i < this.mFaces.length) {
                 CameraHardwareFace cameraHardwareFace = cameraHardwareFaceArr[i];
-                if (cameraHardwareFace.beautyscore > 0.0f) {
+                if (cameraHardwareFace.beautyscore > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
                     i3++;
                     if (this.mWinnerIndex == -1 || cameraHardwareFace.beautyscore > cameraHardwareFaceArr[this.mWinnerIndex].beautyscore) {
                         this.mWinnerIndex = i;
@@ -742,7 +743,7 @@ public class FaceView extends FrameView {
     }
 
     private boolean isValidAGInfo(CameraHardwareFace cameraHardwareFace) {
-        return 0.5f <= cameraHardwareFace.prob && cameraHardwareFace.gender != 0.0f && (cameraHardwareFace.gender <= 0.4f || 0.6f <= cameraHardwareFace.gender);
+        return 0.5f <= cameraHardwareFace.prob && cameraHardwareFace.gender != PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO && (cameraHardwareFace.gender <= 0.4f || 0.6f <= cameraHardwareFace.gender);
     }
 
     public boolean isGroupCapture() {

@@ -7,6 +7,7 @@ import com.android.camera.Util;
 import com.android.camera.effect.EffectController;
 import com.android.camera.log.Log;
 import com.android.camera.module.ModuleManager;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.GLCanvas;
 
 public class GradienterEffectRender extends PixelEffectRender {
@@ -64,9 +65,9 @@ public class GradienterEffectRender extends PixelEffectRender {
 
     private float getRotation() {
         float deviceRotation = EffectController.getInstance().getDeviceRotation();
-        if (deviceRotation < 0.0f) {
+        if (deviceRotation < PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
             this.mLastRotation = -1.0f;
-            return 0.0f;
+            return PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
         }
         boolean z;
         filteRotation(deviceRotation);
@@ -91,7 +92,7 @@ public class GradienterEffectRender extends PixelEffectRender {
             }
         }
         if (this.mZero) {
-            deviceRotation = 0.0f;
+            deviceRotation = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
         }
         return deviceRotation;
     }

@@ -1,10 +1,11 @@
 package com.miui.filtersdk.beauty;
 
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.util.HashMap;
 import java.util.Map;
 
 public abstract class IntelligentBeautyProcessor extends BeautyProcessor {
-    private float mExtraSpan = 0.0f;
+    private float mExtraSpan = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
     protected float[][] mLevelParameters;
 
     public abstract void clearBeautyParameters();

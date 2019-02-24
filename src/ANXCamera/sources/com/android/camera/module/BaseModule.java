@@ -1,6 +1,5 @@
 package com.android.camera.module;
 
-import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -88,6 +87,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
     protected static final boolean DEBUG = Util.isDebugOsBuild();
     public static final int LENS_DIRTY_DETECT_HINT_DURATION = 8000;
     protected static final int LENS_DIRTY_DETECT_TIMEOUT = 15000;
+    protected static final float MOON_MODE_ZOOM_MAX = 20.0f;
     protected static final int SCREEN_DELAY = 60000;
     protected static final int SCREEN_DELAY_KEYGUARD = 30000;
     public static final int SHUTTER_DOWN_FROM_BUTTON = 2;
@@ -98,6 +98,8 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
     private static final float ULTRA_WIDE_ZOOM_MAX = 2.1f;
     private boolean isShowPreviewDebugInfo;
     protected boolean isZooming;
+    protected boolean m3ALockSupported;
+    protected boolean mAELockOnlySupported;
     protected Camera mActivity;
     protected int mActualCameraId;
     protected boolean mAeLockSupported;
@@ -119,6 +121,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
     private int mEvValue;
     protected String mFlashAutoModeState;
     protected boolean mFocusAreaSupported;
+    protected boolean mFocusOrAELockSupported;
     protected boolean mIgnoreFocusChanged;
     private boolean mIgnoreTouchEvent;
     private AtomicBoolean mIsCreated = new AtomicBoolean(false);
@@ -200,6 +203,10 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
     protected void openCamera() {
     }
 
+    public boolean isBlockSnap() {
+        return isDoingAction();
+    }
+
     public Camera getActivity() {
         return this.mActivity;
     }
@@ -227,7 +234,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
                 BaseModule.this.mUpdateWorkThreadEmitter = observableEmitter;
             }
         }).observeOn(GlobalConstant.sCameraSetupScheduler).subscribe((Consumer) this);
-        if (DataRepository.dataItemFeature().fH() && CameraSettings.isLensDirtyDetectEnabled()) {
+        if (DataRepository.dataItemFeature().fJ() && CameraSettings.isLensDirtyDetectEnabled()) {
             this.mLensDirtyDetectDisposable = Completable.complete().delay(15000, TimeUnit.MILLISECONDS, GlobalConstant.sCameraSetupScheduler).doOnComplete(new ActionUpdateLensDirtyDetect(this, true)).subscribe();
         }
         setCreated(true);
@@ -256,6 +263,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
             this.mActivity.getSensorStateManager().setSensorStateListener(null);
         }
         setCreated(false);
+        this.mActivity.getImageSaver().onModuleDestroy();
         Log.d(TAG, "onDestroy");
     }
 
@@ -375,6 +383,9 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
         if (this.mActivity != null) {
             this.mActivity.hideLensDirtyDetectedHint();
         }
+        if (this.mCamera2Device != null && !DataRepository.dataItemFeature().fX()) {
+            this.mCamera2Device.cancelSession();
+        }
     }
 
     public void onWindowFocusChanged(boolean z) {
@@ -454,7 +465,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
     }
 
     protected static String getColorEffectKey() {
-        if (b.gb()) {
+        if (b.gl()) {
             return "pref_camera_shader_coloreffect_key";
         }
         return CameraSettings.KEY_COLOR_EFFECT;
@@ -493,7 +504,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
             Log.e(str, stringBuilder.toString());
             if ((this.mOpenCameraFail || this.mCameraHardwareError) && ((!this.mActivity.isActivityPaused() || this.mOpenCameraFail) && this.mActivity.couldShowErrorDialog())) {
                 int i;
-                Activity activity = this.mActivity;
+                Object obj = this.mActivity;
                 if (Util.isInVideoCall(this.mActivity)) {
                     i = R.string.cannot_connect_camera_volte_call;
                 } else if (CameraSettings.updateOpenCameraFailTimes() > 1) {
@@ -501,7 +512,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
                 } else {
                     i = R.string.cannot_connect_camera_once;
                 }
-                Util.showErrorAndFinish(activity, i);
+                Util.showErrorAndFinish(obj, i);
                 this.mActivity.showErrorDialog();
             }
             if (this.mCameraDisabled && this.mActivity.couldShowErrorDialog()) {
@@ -640,14 +651,35 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
         this.mAwbLockSupported = this.mCameraCapabilities.isAWBLockSupported();
         this.mFocusAreaSupported = this.mCameraCapabilities.isAFRegionSupported();
         this.mMeteringAreaSupported = this.mCameraCapabilities.isAERegionSupported();
+        boolean z = false;
+        boolean z2 = DataRepository.dataItemFeature().gf() && !this.mFocusAreaSupported && this.mMeteringAreaSupported && this.mAeLockSupported;
+        this.mAELockOnlySupported = z2;
+        z2 = this.mFocusAreaSupported || this.mAELockOnlySupported;
+        this.mFocusOrAELockSupported = z2;
+        if (CameraSettings.isAEAFLockSupport() && (isBackCamera() || this.mAELockOnlySupported)) {
+            z = true;
+        }
+        this.m3ALockSupported = z;
         this.mMaxFaceCount = this.mCameraCapabilities.getMaxFaceCount();
-        initializeZoom();
+        initializeZoomForCapabilities();
     }
 
-    private void initializeZoom() {
+    protected void initializeZoomForCapabilities() {
         this.mZoomSupported = this.mCameraCapabilities.isZoomSupported();
         if (this.mZoomSupported) {
-            this.mZoomMaxRatio = this.mCameraCapabilities.getMaxZoomRatio();
+            setZoomMaxRatio(this.mCameraCapabilities.getMaxZoomRatio());
+            String str = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("zoomMaxRatio: ");
+            stringBuilder.append(this.mZoomMaxRatio);
+            Log.d(str, stringBuilder.toString());
+        }
+    }
+
+    protected void initializeZoomForSetting() {
+        this.mZoomSupported = this.mCameraCapabilities.isZoomSupported();
+        if (this.mZoomSupported) {
+            setZoomMaxRatio(MOON_MODE_ZOOM_MAX);
             String str = TAG;
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append("zoomMaxRatio: ");
@@ -765,7 +797,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
         return rect;
     }
 
-    private boolean onZoomValueChanged(float f) {
+    protected boolean onZoomValueChanged(float f) {
         return onZoomValueChanged(f, false);
     }
 
@@ -784,7 +816,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
         z = this.mZoomValue == 1.0f || f == 1.0f;
         if (!CameraSettings.isUltraWideConfigOpen(getModuleIndex())) {
             setZoomValue(f);
-        } else if (f < ULTRA_WIDE_ZOOM_MAX) {
+        } else if (Util.retainDecimal(f) < ULTRA_WIDE_ZOOM_MAX) {
             setZoomValue(f);
         }
         if (z) {
@@ -823,6 +855,10 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
         return this.mZoomMaxRatio;
     }
 
+    protected void setZoomMaxRatio(float f) {
+        this.mZoomMaxRatio = f;
+    }
+
     public void notifyError() {
         this.mCameraHardwareError = true;
         setCameraState(0);
@@ -853,6 +889,10 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
         return false;
     }
 
+    public boolean isSupportAELockOnly() {
+        return this.mAELockOnlySupported;
+    }
+
     public boolean isNeedHapticFeedback() {
         return true;
     }
@@ -867,7 +907,7 @@ public abstract class BaseModule implements MutexCallBack, Module, EvChangedProt
     public void tryRemoveCountDownMessage() {
     }
 
-    public void onSingleTapUp(int i, int i2) {
+    public void onSingleTapUp(int i, int i2, boolean z) {
     }
 
     public boolean onGestureTrack(RectF rectF, boolean z) {

@@ -331,11 +331,11 @@ public class JpegEncoder {
         Log.w(TAG, "sendReprocessRequest: NOT initialized!");
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:62:0x0154  */
+    /* JADX WARNING: Removed duplicated region for block: B:62:0x0153  */
     /* JADX WARNING: Missing block: B:26:0x009f, code:
             return true;
      */
-    /* JADX WARNING: Missing block: B:73:0x0176, code:
+    /* JADX WARNING: Missing block: B:73:0x0175, code:
             return r4;
      */
     /* Code decompiled incorrectly, please refer to instructions dump. */
@@ -622,11 +622,11 @@ public class JpegEncoder {
                         }
                         JpegEncoder.this.mVTCaptureSession = cameraCaptureSession;
                         JpegEncoder.this.mCurrentSessionId = JpegEncoder.this.mCurrentSessionId + 1;
-                        int access$1000 = JpegEncoder.getSessionId(cameraCaptureSession);
-                        Log.d(JpegEncoder.TAG, String.format("sessionId: %d %d", new Object[]{Integer.valueOf(JpegEncoder.this.mCurrentSessionId), Integer.valueOf(access$1000)}));
-                        if (!(access$1000 == -1 || JpegEncoder.this.mCurrentSessionId == access$1000)) {
-                            Log.w(JpegEncoder.TAG, String.format("sessionId: %d->%d", new Object[]{Integer.valueOf(JpegEncoder.this.mCurrentSessionId), Integer.valueOf(access$1000)}));
-                            JpegEncoder.this.mCurrentSessionId = access$1000;
+                        int access$1200 = JpegEncoder.getSessionId(cameraCaptureSession);
+                        Log.d(JpegEncoder.TAG, String.format("sessionId: %d %d", new Object[]{Integer.valueOf(JpegEncoder.this.mCurrentSessionId), Integer.valueOf(access$1200)}));
+                        if (!(access$1200 == -1 || JpegEncoder.this.mCurrentSessionId == access$1200)) {
+                            Log.w(JpegEncoder.TAG, String.format("sessionId: %d->%d", new Object[]{Integer.valueOf(JpegEncoder.this.mCurrentSessionId), Integer.valueOf(access$1200)}));
+                            JpegEncoder.this.mCurrentSessionId = access$1200;
                         }
                         if (JpegEncoder.this.mReprocessImageWriter != null) {
                             JpegEncoder.this.mReprocessImageWriter.close();
@@ -669,10 +669,10 @@ public class JpegEncoder {
                 stringBuilder.append("onImageAvailable: received reprocessed image");
                 stringBuilder.append(acquireNextImage);
                 Log.d(access$100, stringBuilder.toString());
-                byte[] access$1200 = JpegEncoder.getJpegData(acquireNextImage);
+                byte[] access$1400 = JpegEncoder.getJpegData(acquireNextImage);
                 acquireNextImage.close();
                 synchronized (JpegEncoder.this.mDataLock) {
-                    JpegEncoder.this.mCurrentProcessingData.getResultListener().onJpegAvailable(access$1200, JpegEncoder.this.mCurrentProcessingData.getImageTag());
+                    JpegEncoder.this.mCurrentProcessingData.getResultListener().onJpegAvailable(access$1400, JpegEncoder.this.mCurrentProcessingData.getImageTag());
                     Log.d(JpegEncoder.TAG, String.format("jpeg return for %s. cost=%d", new Object[]{JpegEncoder.this.mCurrentProcessingData.getImageTag(), Long.valueOf(System.currentTimeMillis() - JpegEncoder.this.mReprocessStartTime)}));
                     JpegEncoder.this.mCurrentProcessingData = null;
                 }
@@ -725,8 +725,8 @@ public class JpegEncoder {
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:4:0x0017 A:{ExcHandler: java.lang.ClassNotFoundException (r2_2 'e' java.lang.Throwable), Splitter: B:1:0x0002} */
-    /* JADX WARNING: Removed duplicated region for block: B:4:0x0017 A:{ExcHandler: java.lang.ClassNotFoundException (r2_2 'e' java.lang.Throwable), Splitter: B:1:0x0002} */
+    /* JADX WARNING: Removed duplicated region for block: B:4:0x0017 A:{Splitter: B:1:0x0002, ExcHandler: java.lang.ClassNotFoundException (r2_2 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:4:0x0017 A:{Splitter: B:1:0x0002, ExcHandler: java.lang.ClassNotFoundException (r2_2 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:4:0x0017, code:
             r2 = move-exception;
      */

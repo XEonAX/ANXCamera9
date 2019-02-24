@@ -3,7 +3,6 @@ package com.android.camera.statistic;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.provider.MiuiSettings.System;
 import android.text.TextUtils;
 import android.util.SparseArray;
 import com.android.camera.CameraAppImpl;
@@ -79,7 +78,7 @@ public class CameraStatUtil {
         sExposureTimeLessThan1sToName.put(0, "auto");
         sExposureTimeLessThan1sToName.put(1000, "1/1000s");
         sExposureTimeLessThan1sToName.put(2000, "1/500s");
-        sExposureTimeLessThan1sToName.put(System.STATUS_BAR_UPDATE_NETWORK_SPEED_INTERVAL_DEFAULT, "1/250s");
+        sExposureTimeLessThan1sToName.put(4000, "1/250s");
         sExposureTimeLessThan1sToName.put(5000, "1/250s");
         sExposureTimeLessThan1sToName.put(BaseModule.LENS_DIRTY_DETECT_HINT_DURATION, "1/125s");
         sExposureTimeLessThan1sToName.put(16667, "1/60s");
@@ -704,15 +703,15 @@ public class CameraStatUtil {
         boolean z3 = false;
         hashMap.put(CameraStat.PARAM_FILTER, z ? "none" : filterIdToName(EffectController.getInstance().getEffectForSaving(false)));
         hashMap.put(CameraStat.PARAM_LIVESHOT, CameraSettings.isLiveShotOn() ? "on" : "off");
-        int fQ;
+        int fS;
         if (z2) {
             hashMap.put(CameraStat.PARAM_GENDER_AGE, CameraSettings.showGenderAge() ? "on" : "off");
             hashMap.put(CameraStat.PARAM_MAGIC_MIRROR, CameraSettings.isMagicMirrorOn() ? "on" : "off");
-            fQ = DataRepository.dataItemFeature().fQ();
+            fS = DataRepository.dataItemFeature().fS();
             boolean isFrontMenuUltraPixelPhotographyOn = CameraSettings.isFrontMenuUltraPixelPhotographyOn();
-            if (fQ == CameraCapabilities.ULTRA_PIXEL_48M) {
+            if (fS == CameraCapabilities.ULTRA_PIXEL_48M) {
                 hashMap.put(CameraStat.PARAM_ULTRA_PIXEL_48MP, isFrontMenuUltraPixelPhotographyOn ? "on" : "off");
-            } else if (fQ == CameraCapabilities.ULTRA_PIXEL_32M) {
+            } else if (fS == CameraCapabilities.ULTRA_PIXEL_32M) {
                 hashMap.put(CameraStat.PARAM_ULTRA_PIXEL_32MP, isFrontMenuUltraPixelPhotographyOn ? "on" : "off");
             }
             CameraStat.recordCalculateEvent(CameraStat.CATEGORY_CAMERA, CameraStat.KEY_FRONT_CAMERA_INFO, (long) i, hashMap);
@@ -742,13 +741,13 @@ public class CameraStatUtil {
         Object obj4 = (z || mutexModeManager == null || !mutexModeManager.isSuperResolution()) ? "off" : "on";
         hashMap.put(str4, obj4);
         hashMap.put(CameraStat.PARAM_ZOOM, getDualZoomName(i2));
-        fQ = DataRepository.dataItemFeature().fP();
+        fS = DataRepository.dataItemFeature().fR();
         if (CameraSettings.isUltraPixelPhotographyOn() || CameraSettings.isRearMenuUltraPixelPhotographyOn()) {
             z3 = true;
         }
-        if (fQ == CameraCapabilities.ULTRA_PIXEL_48M) {
+        if (fS == CameraCapabilities.ULTRA_PIXEL_48M) {
             hashMap.put(CameraStat.PARAM_ULTRA_PIXEL_48MP, z3 ? "on" : "off");
-        } else if (fQ == CameraCapabilities.ULTRA_PIXEL_32M) {
+        } else if (fS == CameraCapabilities.ULTRA_PIXEL_32M) {
             hashMap.put(CameraStat.PARAM_ULTRA_PIXEL_32MP, z3 ? "on" : "off");
         }
         hashMap.put(CameraStat.PARAM_ULTRA_WIDE_BOKEH, DataRepository.dataItemRunning().isSwitchOn("pref_ultra_wide_bokeh_enabled") ? "on" : "off");
@@ -772,7 +771,7 @@ public class CameraStatUtil {
             hashMap.put(CameraStat.PARAM_LIGHTING, String.valueOf(CameraSettings.getPortraitLightingPattern()));
         }
         hashMap.put(CameraStat.PARAM_LIVESHOT, CameraSettings.isLiveShotOn() ? "on" : "off");
-        i2 = DataRepository.dataItemFeature().fP();
+        i2 = DataRepository.dataItemFeature().fR();
         if (z2) {
             z2 = CameraSettings.isFrontMenuUltraPixelPhotographyOn();
         } else {
@@ -1064,11 +1063,11 @@ public class CameraStatUtil {
         hashMap.put(CameraStat.PARAM_LENS, CameraSettings.getCameraZoomMode(i2));
         hashMap.put(CameraStat.PARAM_FOCUS_PEAK, EffectController.getInstance().isNeedDrawPeaking() ? "on" : "off");
         hashMap.put(CameraStat.PARAM_ZOOM, zoomRatioToName(CameraSettings.readZoom()));
-        int fP = DataRepository.dataItemFeature().fP();
+        int fR = DataRepository.dataItemFeature().fR();
         boolean isUltraPixelPhotographyOn = CameraSettings.isUltraPixelPhotographyOn();
-        if (fP == CameraCapabilities.ULTRA_PIXEL_48M) {
+        if (fR == CameraCapabilities.ULTRA_PIXEL_48M) {
             hashMap.put(CameraStat.PARAM_ULTRA_PIXEL_48MP, isUltraPixelPhotographyOn ? "on" : "off");
-        } else if (fP == CameraCapabilities.ULTRA_PIXEL_32M) {
+        } else if (fR == CameraCapabilities.ULTRA_PIXEL_32M) {
             hashMap.put(CameraStat.PARAM_ULTRA_PIXEL_32MP, isUltraPixelPhotographyOn ? "on" : "off");
         }
         CameraStat.recordCalculateEvent(CameraStat.CATEGORY_CAMERA, CameraStat.KEY_PICTURE_TAKEN_MANUAL, (long) i, hashMap);
@@ -1077,7 +1076,7 @@ public class CameraStatUtil {
     public static void trackBeautyInfo(int i, String str, BeautyValues beautyValues) {
         Map hashMap = new HashMap();
         hashMap.put(CameraStat.PARAM_CAMERA_ID, str);
-        if (b.hR()) {
+        if (b.ia()) {
             for (Type type : BeautyParameters.getInstance().getAdjustableTypes()) {
                 String str2 = (String) sBeautyTypeToName.get(type.ordinal());
                 if (str2 != null) {
@@ -1090,7 +1089,7 @@ public class CameraStatUtil {
             hashMap.put(CameraStat.PARAM_BEAUTY_SKIN_COLOR, faceBeautyRatioToName(beautyValues.mBeautySkinColor));
             hashMap.put(CameraStat.PARAM_BEAUTY_SKIN_SMOOTH, faceBeautyRatioToName(beautyValues.mBeautySkinSmooth));
         }
-        if (b.hG()) {
+        if (b.hP()) {
             Object obj;
             str = CameraStat.PARAM_BEAUTY_LEVEL;
             if (CameraSettings.isAdvancedBeautyOn()) {
@@ -1397,14 +1396,14 @@ public class CameraStatUtil {
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:41:0x0084  */
+    /* JADX WARNING: Removed duplicated region for block: B:41:0x007b  */
     /* JADX WARNING: Removed duplicated region for block: B:13:0x0032  */
-    /* JADX WARNING: Removed duplicated region for block: B:45:0x00e0  */
-    /* JADX WARNING: Removed duplicated region for block: B:44:0x00df A:{RETURN} */
-    /* JADX WARNING: Removed duplicated region for block: B:41:0x0084  */
+    /* JADX WARNING: Removed duplicated region for block: B:45:0x00d2  */
+    /* JADX WARNING: Removed duplicated region for block: B:44:0x00d1 A:{RETURN} */
+    /* JADX WARNING: Removed duplicated region for block: B:41:0x007b  */
     /* JADX WARNING: Removed duplicated region for block: B:13:0x0032  */
-    /* JADX WARNING: Removed duplicated region for block: B:44:0x00df A:{RETURN} */
-    /* JADX WARNING: Removed duplicated region for block: B:45:0x00e0  */
+    /* JADX WARNING: Removed duplicated region for block: B:44:0x00d1 A:{RETURN} */
+    /* JADX WARNING: Removed duplicated region for block: B:45:0x00d2  */
     /* Code decompiled incorrectly, please refer to instructions dump. */
     private static void trackBeautyBodySlim(String str, int i, Type type) {
         Object obj;
@@ -1507,7 +1506,7 @@ public class CameraStatUtil {
     }
 
     private static void trackUltraWide(String str) {
-        if (DataRepository.dataItemFeature().fx() && !TextUtils.isEmpty(str)) {
+        if (DataRepository.dataItemFeature().isSupportUltraWide() && !TextUtils.isEmpty(str)) {
             Map hashMap = new HashMap();
             if (CameraSettings.isUltraWideConfigOpen(ModuleManager.getActiveModuleIndex())) {
                 hashMap.put(CameraStat.PARAM_ULTRA_WIDE, "on");
@@ -1527,7 +1526,7 @@ public class CameraStatUtil {
     }
 
     public static void trackUltraWideManualTaken(int i) {
-        if (DataRepository.dataItemFeature().fx()) {
+        if (DataRepository.dataItemFeature().isSupportUltraWide()) {
             Map hashMap = new HashMap();
             if (ComponentManuallyDualLens.LENS_ULTRA.equalsIgnoreCase(DataRepository.dataItemConfig().getManuallyDualLens().getComponentValue(i))) {
                 hashMap.put(CameraStat.PARAM_ULTRA_WIDE, "on");

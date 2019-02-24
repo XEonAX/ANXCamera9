@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable.Callback;
 import android.graphics.drawable.Drawable.ConstantState;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.bumptech.glide.util.i;
 
 /* compiled from: FixedSizeDrawable */
@@ -64,7 +65,7 @@ public class g extends Drawable {
         this.ot = (Drawable) i.checkNotNull(drawable);
         drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
         this.matrix = new Matrix();
-        this.or = new RectF(0.0f, 0.0f, (float) drawable.getIntrinsicWidth(), (float) drawable.getIntrinsicHeight());
+        this.or = new RectF(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, (float) drawable.getIntrinsicWidth(), (float) drawable.getIntrinsicHeight());
         this.os = new RectF();
     }
 

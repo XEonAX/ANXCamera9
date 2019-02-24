@@ -31,6 +31,7 @@ public class CameraHandler extends Handler {
     public static final int MSG_KEEP_SCREEN_ON = 17;
     public static final int MSG_LYING_FLAG = 39;
     public static final int MSG_NORMAL_SHOT_TIMEOUT = 50;
+    public static final int MSG_RESET_HAND_GESTURE = 57;
     public static final int MSG_RESET_UI = 53;
     public static final int MSG_RESTART_MODULE = 44;
     public static final int MSG_SAVE_POWER = 52;

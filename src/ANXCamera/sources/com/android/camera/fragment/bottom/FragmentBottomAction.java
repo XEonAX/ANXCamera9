@@ -8,11 +8,10 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
-import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorCompat;
 import android.support.v4.view.ViewPropertyAnimatorListener;
@@ -74,6 +73,7 @@ import com.android.camera.ui.CameraSnapView.SnapListener;
 import com.android.camera.ui.EdgeHorizonScrollView;
 import com.android.camera.ui.ModeSelectView;
 import com.android.camera.ui.ModeSelectView.onModeClickedListener;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.mi.config.b;
 import io.reactivex.Completable;
 import java.util.List;
@@ -323,21 +323,21 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
             this.mIsBottomRollDown = z;
             if (z) {
                 ViewCompat.setAlpha(this.mBottomMenuLayout, 1.0f);
-                ViewCompat.animate(this.mBottomMenuLayout).setDuration(150).alpha(0.0f).setInterpolator(this.mCubicEaseOut).start();
-                ViewCompat.setTranslationY(this.mBottomMenuLayout, 0.0f);
+                ViewCompat.animate(this.mBottomMenuLayout).setDuration(150).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setInterpolator(this.mCubicEaseOut).start();
+                ViewCompat.setTranslationY(this.mBottomMenuLayout, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
                 ViewCompat.animate(this.mBottomMenuLayout).setDuration(300).translationY((float) this.mFilterListHeight).setInterpolator(this.mCubicEaseOut).start();
-                ViewCompat.setTranslationY(this.mV9bottomParentLayout, 0.0f);
+                ViewCompat.setTranslationY(this.mV9bottomParentLayout, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
                 ViewCompat.animate(this.mV9bottomParentLayout).setDuration(300).translationY((float) this.mBottomRollDownHeight).setInterpolator(this.mCubicEaseOut).start();
                 ViewCompat.setScaleX(this.mShutterButton, 1.0f);
                 ViewCompat.setScaleY(this.mShutterButton, 1.0f);
                 ViewCompat.animate(this.mShutterButton).setDuration(300).scaleX(0.9f).scaleY(0.9f).setInterpolator(this.mCubicEaseOut).start();
             } else {
-                ViewCompat.setAlpha(this.mBottomMenuLayout, 0.0f);
+                ViewCompat.setAlpha(this.mBottomMenuLayout, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
                 ViewCompat.animate(this.mBottomMenuLayout).setStartDelay(50).setDuration(250).alpha(1.0f).setInterpolator(this.mSineEaseOut).start();
                 ViewCompat.setTranslationY(this.mBottomMenuLayout, (float) this.mFilterListHeight);
-                ViewCompat.animate(this.mBottomMenuLayout).setDuration(300).translationY(0.0f).setInterpolator(this.mCubicEaseOut).start();
+                ViewCompat.animate(this.mBottomMenuLayout).setDuration(300).translationY(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setInterpolator(this.mCubicEaseOut).start();
                 ViewCompat.setTranslationY(this.mV9bottomParentLayout, (float) this.mBottomRollDownHeight);
-                ViewCompat.animate(this.mV9bottomParentLayout).setDuration(300).translationY(0.0f).setInterpolator(this.mCubicEaseOut).start();
+                ViewCompat.animate(this.mV9bottomParentLayout).setDuration(300).translationY(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setInterpolator(this.mCubicEaseOut).start();
                 ViewCompat.setScaleX(this.mShutterButton, 0.9f);
                 ViewCompat.setScaleY(this.mShutterButton, 0.9f);
                 ViewCompat.animate(this.mShutterButton).setDuration(300).scaleX(1.0f).scaleY(1.0f).setInterpolator(this.mCubicEaseOut).start();
@@ -348,8 +348,8 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
     private void startExtraLayoutAnimation(final View view, boolean z) {
         if (z) {
             ViewCompat.setTranslationY(view, (float) (-this.mFilterListHeight));
-            ViewCompat.setAlpha(view, 0.0f);
-            ViewCompat.animate(view).setDuration(300).translationY(0.0f).alpha(1.0f).setInterpolator(this.mCubicEaseOut).setListener(new ViewPropertyAnimatorListener() {
+            ViewCompat.setAlpha(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+            ViewCompat.animate(view).setDuration(300).translationY(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).alpha(1.0f).setInterpolator(this.mCubicEaseOut).setListener(new ViewPropertyAnimatorListener() {
                 public void onAnimationStart(View view) {
                     view.setVisibility(0);
                 }
@@ -364,8 +364,8 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
             return;
         }
         ViewCompat.setAlpha(view, 1.0f);
-        ViewCompat.animate(view).setDuration(150).alpha(0.0f).setInterpolator(this.mSineEaseOut).start();
-        ViewCompat.setTranslationY(view, 0.0f);
+        ViewCompat.animate(view).setDuration(150).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setInterpolator(this.mSineEaseOut).start();
+        ViewCompat.setTranslationY(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
         ViewCompat.animate(view).setDuration(300).translationY((float) (-this.mFilterListHeight)).setInterpolator(this.mCubicEaseOut).setListener(new ViewPropertyAnimatorListener() {
             public void onAnimationStart(View view) {
                 FragmentBottomAction.this.mModeSelectView.setVisibility(0);
@@ -382,8 +382,8 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
 
     private void startExtraLayoutExchangeAnimation(final View view) {
         ViewCompat.setAlpha(view, 1.0f);
-        ViewCompat.setTranslationY(view, 0.0f);
-        ViewCompat.animate(view).alpha(0.0f).translationY((float) this.mFilterListHeight).setDuration(250).setInterpolator(this.mCubicEaseOut).setListener(new ViewPropertyAnimatorListener() {
+        ViewCompat.setTranslationY(view, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        ViewCompat.animate(view).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).translationY((float) this.mFilterListHeight).setDuration(250).setInterpolator(this.mCubicEaseOut).setListener(new ViewPropertyAnimatorListener() {
             public void onAnimationStart(View view) {
             }
 
@@ -431,7 +431,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
                     this.mThumbnailImage.setImageResource(R.drawable.ic_thumbnail_background);
                     return;
                 }
-                Drawable create = RoundedBitmapDrawableFactory.create(getResources(), thumbnail.getBitmap());
+                RoundedBitmapDrawable create = RoundedBitmapDrawableFactory.create(getResources(), thumbnail.getBitmap());
                 create.getPaint().setAntiAlias(true);
                 create.setCircular(true);
                 this.mThumbnailImage.setImageDrawable(create);
@@ -599,9 +599,9 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
         if (this.mPostProcess.getVisibility() != i) {
             ValueAnimator ofFloat;
             if (i == 0) {
-                this.mPostProcess.setAlpha(0.0f);
+                this.mPostProcess.setAlpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
                 this.mPostProcess.setVisibility(0);
-                ofFloat = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
+                ofFloat = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
                 ofFloat.setDuration(300);
                 ofFloat.setStartDelay(160);
                 ofFloat.setInterpolator(new PathInterpolator(0.25f, 0.1f, 0.25f, 1.0f));
@@ -615,7 +615,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
                 });
                 ofFloat.start();
             } else if (this.mPostProcess.getVisibility() != 8) {
-                ofFloat = ValueAnimator.ofFloat(new float[]{1.0f, 0.0f});
+                ofFloat = ValueAnimator.ofFloat(new float[]{1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO});
                 ofFloat.setDuration(300);
                 ofFloat.setInterpolator(new CubicEaseInInterpolator());
                 ofFloat.addUpdateListener(new AnimatorUpdateListener() {
@@ -686,7 +686,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
                     if (id != R.id.v9_thumbnail_layout) {
                         if (id != R.id.v9_recording_pause) {
                             switch (id) {
-                                case R.id.v9_camera_picker /*2131558444*/:
+                                case R.id.v9_camera_picker /*2131558442*/:
                                     if (!cameraAction.isDoingAction() && !isThumbLoading()) {
                                         hideExtra();
                                         changeCamera(view);
@@ -694,7 +694,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
                                     }
                                     return;
                                     break;
-                                case R.id.v9_recording_snap /*2131558445*/:
+                                case R.id.v9_recording_snap /*2131558443*/:
                                     if (this.mVideoCaptureEnable && this.mVideoRecordingStarted) {
                                         ActivityBase activityBase = (ActivityBase) getContext();
                                         if (activityBase != null && (activityBase.getCurrentModule() instanceof VideoModule)) {
@@ -707,7 +707,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
                                     }
                                     return;
                                     break;
-                                case R.id.v9_recording_reverse /*2131558446*/:
+                                case R.id.v9_recording_reverse /*2131558444*/:
                                     if (this.mVideoReverseEnable && this.mVideoRecordingStarted && this.mShutterButton.hasSegments()) {
                                         showReverseConfirmDialog();
                                         break;
@@ -838,7 +838,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
     }
 
     private boolean isFPS960() {
-        if (this.mCurrentMode == 172 && DataRepository.dataItemFeature().fs()) {
+        if (this.mCurrentMode == 172 && DataRepository.dataItemFeature().fu()) {
             return DataRepository.dataItemConfig().getComponentConfigSlowMotion().isSlowMotionFps960();
         }
         return false;
@@ -881,7 +881,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
             if (!DataRepository.dataItemGlobal().isIntentAction()) {
                 this.mVideoCaptureEnable = CameraSettings.isVideoCaptureVisible();
             }
-            if (!b.gn() || CameraSettings.isVideoBokehOn()) {
+            if (!b.gw() || CameraSettings.isVideoBokehOn()) {
                 z3 = false;
             }
             this.mVideoPauseSupported = z3;
@@ -892,13 +892,13 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
                 this.mRecordingSnap.setImageResource(R.drawable.ic_recording_snap);
                 this.mRecordingSnap.setSoundEffectsEnabled(false);
                 this.mRecordingSnap.setVisibility(0);
-                ViewCompat.setAlpha(this.mRecordingSnap, 0.0f);
+                ViewCompat.setAlpha(this.mRecordingSnap, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
             }
             if (this.mVideoPauseSupported) {
                 this.mRecordingPause.setImageResource(R.drawable.ic_recording_pause);
                 this.mRecordingPause.setSoundEffectsEnabled(false);
                 this.mRecordingPause.setVisibility(0);
-                ViewCompat.setAlpha(this.mRecordingPause, 0.0f);
+                ViewCompat.setAlpha(this.mRecordingPause, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
             }
             if (this.mVideoPauseSupported) {
                 this.mRecordingReverse.setImageResource(R.drawable.ic_live_record_delete);
@@ -909,21 +909,21 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
         if (this.mBottomAnimator != null && this.mBottomAnimator.isRunning()) {
             this.mBottomAnimator.cancel();
         }
-        this.mBottomAnimator = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
+        this.mBottomAnimator = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
         this.mBottomAnimator.setDuration(z2 ? 250 : 0);
         this.mBottomAnimator.setInterpolator(new DecelerateInterpolator() {
             public float getInterpolation(float f) {
                 f = super.getInterpolation(f);
                 View view = FragmentBottomAction.this.mModeSelectLayout.getView();
-                float f2 = z ? 1.0f - f : FragmentBottomAction.this.mModeSelectLayout.getView().getAlpha() == 0.0f ? f : 1.0f;
+                float f2 = z ? 1.0f - f : FragmentBottomAction.this.mModeSelectLayout.getView().getAlpha() == PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO ? f : 1.0f;
                 ViewCompat.setAlpha(view, f2);
                 if (FragmentBottomAction.this.mCameraPickEnable) {
                     view = FragmentBottomAction.this.mCameraPicker;
-                    f2 = z ? 1.0f - f : FragmentBottomAction.this.mCameraPicker.getAlpha() == 0.0f ? f : 1.0f;
+                    f2 = z ? 1.0f - f : FragmentBottomAction.this.mCameraPicker.getAlpha() == PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO ? f : 1.0f;
                     ViewCompat.setAlpha(view, f2);
                 }
                 view = FragmentBottomAction.this.mThumbnailImageLayout;
-                f2 = z ? 1.0f - f : FragmentBottomAction.this.mThumbnailImageLayout.getAlpha() == 0.0f ? f : 1.0f;
+                f2 = z ? 1.0f - f : FragmentBottomAction.this.mThumbnailImageLayout.getAlpha() == PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO ? f : 1.0f;
                 ViewCompat.setAlpha(view, f2);
                 if (FragmentBottomAction.this.mVideoPauseSupported) {
                     ViewCompat.setAlpha(FragmentBottomAction.this.mRecordingPause, z ? f : 1.0f - f);
@@ -989,37 +989,37 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
         }
     }
 
-    /* JADX WARNING: Missing block: B:9:0x0016, code:
-            if (r3 != 174) goto L_0x0021;
+    /* JADX WARNING: Missing block: B:9:0x0017, code:
+            if (r4 != 174) goto L_0x0022;
      */
-    /* JADX WARNING: Missing block: B:11:0x001c, code:
-            if (com.android.camera.CameraSettings.isLiveModuleClicked() != false) goto L_0x0021;
+    /* JADX WARNING: Missing block: B:11:0x001d, code:
+            if (com.android.camera.CameraSettings.isLiveModuleClicked() != false) goto L_0x0022;
      */
-    /* JADX WARNING: Missing block: B:12:0x001e, code:
-            com.android.camera.CameraSettings.setLiveModuleClicked();
+    /* JADX WARNING: Missing block: B:12:0x001f, code:
+            com.android.camera.CameraSettings.setLiveModuleClicked(true);
      */
-    /* JADX WARNING: Missing block: B:14:0x0025, code:
-            if (isThumbLoading() == false) goto L_0x0028;
+    /* JADX WARNING: Missing block: B:14:0x0026, code:
+            if (isThumbLoading() == false) goto L_0x0029;
      */
-    /* JADX WARNING: Missing block: B:15:0x0027, code:
+    /* JADX WARNING: Missing block: B:15:0x0028, code:
             return;
      */
-    /* JADX WARNING: Missing block: B:16:0x0028, code:
+    /* JADX WARNING: Missing block: B:16:0x0029, code:
             r0 = (com.android.camera.protocol.ModeProtocol.CameraAction) com.android.camera.protocol.ModeCoordinatorImpl.getInstance().getAttachProtocol(161);
      */
-    /* JADX WARNING: Missing block: B:17:0x0034, code:
-            if (r0 == null) goto L_0x003d;
+    /* JADX WARNING: Missing block: B:17:0x0035, code:
+            if (r0 == null) goto L_0x003e;
      */
-    /* JADX WARNING: Missing block: B:19:0x003a, code:
-            if (r0.isDoingAction() == false) goto L_0x003d;
+    /* JADX WARNING: Missing block: B:19:0x003b, code:
+            if (r0.isDoingAction() == false) goto L_0x003e;
      */
-    /* JADX WARNING: Missing block: B:20:0x003c, code:
+    /* JADX WARNING: Missing block: B:20:0x003d, code:
             return;
      */
-    /* JADX WARNING: Missing block: B:21:0x003d, code:
-            r2.mCurrentMode = r3;
-            ((com.android.camera.data.data.global.DataItemGlobal) com.android.camera.data.DataRepository.provider().dataGlobal()).setCurrentMode(r3);
-            ((com.android.camera.Camera) getContext()).onModeSelected(com.android.camera.module.loader.StartControl.create(r3).setStartDelay(r4).setResetType(4).setViewConfigType(2).setNeedBlurAnimation(true));
+    /* JADX WARNING: Missing block: B:21:0x003e, code:
+            r3.mCurrentMode = r4;
+            ((com.android.camera.data.data.global.DataItemGlobal) com.android.camera.data.DataRepository.provider().dataGlobal()).setCurrentMode(r4);
+            ((com.android.camera.Camera) getContext()).onModeSelected(com.android.camera.module.loader.StartControl.create(r4).setStartDelay(r5).setResetType(4).setViewConfigType(2).setNeedBlurAnimation(true));
      */
     /* JADX WARNING: Missing block: B:22:0x006c, code:
             return;
@@ -1084,7 +1084,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
                     }
                 }
                 if (i == 8388611) {
-                    if (i == GravityCompat.END && i4 < size - 1) {
+                    if (i == 8388613 && i4 < size - 1) {
                         i4++;
                     }
                 } else if (i4 > 0) {
@@ -1093,7 +1093,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
                 changeMode(this.mComponentModuleList.getMode(i4), i2);
             } else if (i != 3) {
             }
-            i = GravityCompat.END;
+            i = 8388613;
             i3 = this.mCurrentMode;
             i3 = 162;
             size = this.mComponentModuleList.getItems().size();
@@ -1143,7 +1143,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
             this.mModeSelectLayout.getView().setBackgroundResource(R.color.black);
         }
         this.mShutterButton.setParameters(i, list != null, isFPS960());
-        if (this.mModeSelectView.getVisibility() != 0) {
+        if (!(this.mIsShowFilter || this.mIsShowLighting || this.mModeSelectView.getVisibility() == 0)) {
             this.mModeSelectView.setVisibility(0);
         }
         this.mModeSelectView.judgePosition(i, list);
@@ -1156,7 +1156,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
                 this.mCameraPickEnable = false;
                 break;
             case 171:
-                if (!b.ht()) {
+                if (!b.hC()) {
                     this.mCameraPickEnable = false;
                     break;
                 }
@@ -1202,7 +1202,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
     }
 
     public void onBeautyRecordingStart() {
-        ViewCompat.animate(this.mModeSelectView).alpha(0.0f).start();
+        ViewCompat.animate(this.mModeSelectView).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).start();
     }
 
     public void onBeautyRecordingStop() {
@@ -1210,10 +1210,11 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
     }
 
     public void showOrHideBottomViewWithAnim(boolean z) {
-        float f = 0.0f;
-        ViewCompat.animate(this.mModeSelectLayout.getView()).setInterpolator(new CubicEaseInInterpolator()).setDuration(300).alpha(z ? 1.0f : 0.0f).setListener(null).start();
-        ViewCompat.animate(this.mThumbnailImage).setInterpolator(new CubicEaseInInterpolator()).setDuration(300).alpha(z ? 1.0f : 0.0f).setListener(null).start();
-        ViewPropertyAnimatorCompat duration = ViewCompat.animate(this.mCameraPicker).setInterpolator(new CubicEaseInInterpolator()).setDuration(300);
+        ViewPropertyAnimatorCompat duration = ViewCompat.animate(this.mModeSelectLayout.getView()).setInterpolator(new CubicEaseInInterpolator()).setDuration(300);
+        float f = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        duration.alpha(z ? 1.0f : PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setListener(null).start();
+        ViewCompat.animate(this.mThumbnailImage).setInterpolator(new CubicEaseInInterpolator()).setDuration(300).alpha(z ? 1.0f : PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).setListener(null).start();
+        duration = ViewCompat.animate(this.mCameraPicker).setInterpolator(new CubicEaseInInterpolator()).setDuration(300);
         if (z) {
             f = 1.0f;
         }
@@ -1274,7 +1275,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
 
     public boolean canSnap() {
         CameraAction cameraAction = (CameraAction) ModeCoordinatorImpl.getInstance().getAttachProtocol(161);
-        return (cameraAction == null || cameraAction.isDoingAction()) ? false : true;
+        return (cameraAction == null || cameraAction.isBlockSnap()) ? false : true;
     }
 
     public void onSnapPrepare() {
@@ -1344,7 +1345,7 @@ public class FragmentBottomAction extends BaseFragment implements OnClickListene
                             }
                             break;
                         default:
-                            if (!cameraAction.isDoingAction()) {
+                            if (!cameraAction.isBlockSnap()) {
                                 cameraAction.onShutterButtonClick(10);
                                 break;
                             }

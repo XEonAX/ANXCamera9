@@ -2,7 +2,6 @@ package com.android.camera.animation;
 
 import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
-import android.provider.MiuiSettings.ScreenEffect;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
 import android.util.SparseArray;
@@ -98,13 +97,13 @@ public class AnimationComposite implements Consumer<Integer> {
     }
 
     public void disposeRotation(int i) {
-        int i2 = ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
-        i = i >= 0 ? i % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT : (i % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+        int i2 = 360;
+        i = i >= 0 ? i % 360 : (i % 360) + 360;
         if (this.mOrientation != i) {
             int i3 = this.mOrientation != -1 ? 1 : 0;
             int i4 = i - this.mOrientation;
             if (i4 < 0) {
-                i4 += ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+                i4 += 360;
             }
             if (i4 > 180) {
                 i4 += VEResult.TER_EGL_BAD_MATCH;
@@ -112,7 +111,7 @@ public class AnimationComposite implements Consumer<Integer> {
             i4 = i4 <= 0 ? 1 : 0;
             this.mOrientation = i;
             if (this.mOrientation != 0 || this.mCurrentDegree != 0) {
-                this.mTargetDegree = (360 - i) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+                this.mTargetDegree = (360 - i) % 360;
                 final List<View> arrayList = new ArrayList();
                 for (int i5 = 0; i5 < this.mResourceSparseArray.size(); i5++) {
                     AnimationResource animationResource = (AnimationResource) this.mResourceSparseArray.valueAt(i5);
@@ -132,7 +131,7 @@ public class AnimationComposite implements Consumer<Integer> {
                 }
                 this.mStartDegree = this.mCurrentDegree;
                 if (i4 != 0) {
-                    if (this.mStartDegree == ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) {
+                    if (this.mStartDegree == 360) {
                         i3 = 0;
                     } else {
                         i3 = this.mStartDegree;
@@ -141,8 +140,12 @@ public class AnimationComposite implements Consumer<Integer> {
                         i2 = this.mTargetDegree;
                     }
                 } else {
-                    i3 = this.mStartDegree == 0 ? ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT : this.mStartDegree;
-                    if (this.mTargetDegree == ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) {
+                    if (this.mStartDegree == 0) {
+                        i3 = 360;
+                    } else {
+                        i3 = this.mStartDegree;
+                    }
+                    if (this.mTargetDegree == 360) {
                         i2 = 0;
                     } else {
                         i2 = this.mTargetDegree;

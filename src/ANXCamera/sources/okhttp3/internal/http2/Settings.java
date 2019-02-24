@@ -65,7 +65,7 @@ public final class Settings {
     }
 
     int getInitialWindowSize() {
-        return (this.set & 128) != 0 ? this.values[7] : 65535;
+        return (this.set & 128) != 0 ? this.values[7] : DEFAULT_INITIAL_WINDOW_SIZE;
     }
 
     void merge(Settings settings) {

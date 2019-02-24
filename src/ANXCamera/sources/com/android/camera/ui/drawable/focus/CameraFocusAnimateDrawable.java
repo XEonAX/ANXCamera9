@@ -20,6 +20,7 @@ import android.view.animation.PathInterpolator;
 import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.ui.drawable.CameraPaintBase;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import miui.view.animation.CubicEaseInOutInterpolator;
 import miui.view.animation.CubicEaseOutInterpolator;
 import miui.view.animation.SineEaseInOutInterpolator;
@@ -99,9 +100,9 @@ public class CameraFocusAnimateDrawable extends Drawable implements Animatable {
 
     public void reset() {
         this.mPaintEvAdjust.setShowLine(false);
-        this.mPaintEvAdjust.setDistanceY(0.0f);
-        this.mPaintEvAdjust.setEvValue(0.0f);
-        this.mPaintEvText.setEvValue(0.0f);
+        this.mPaintEvAdjust.setDistanceY(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        this.mPaintEvAdjust.setEvValue(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
+        this.mPaintEvText.setEvValue(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
     }
 
     public void setEvTextVisible(int i) {
@@ -160,7 +161,7 @@ public class CameraFocusAnimateDrawable extends Drawable implements Animatable {
         this.mPaintBigCircle.setCurrentColor(-1).setTargetColor(-1);
         this.mPaintCenterIndicator.setCurrentColor(-1).setTargetColor(-1);
         this.mPaintEvAdjust.setCurrentColor(-1).setTargetColor(-1);
-        this.mTouchDownAnimator = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
+        this.mTouchDownAnimator = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
         this.mTouchDownAnimator.setDuration(300);
         this.mTouchDownAnimator.setInterpolator(new CubicEaseOutInterpolator() {
             public float getInterpolation(float f) {
@@ -273,7 +274,7 @@ public class CameraFocusAnimateDrawable extends Drawable implements Animatable {
         this.mPaintEvAdjust.setCurrentAlpha(0).setTargetAlpha(255);
         this.mPaintBigCircle.setTargetWidthPercent(1.0f);
         this.mPaintCenterIndicator.setTargetWidthPercent(CENTER_DOWN_SMALL);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
         ofFloat.setDuration(200);
         ofFloat.setInterpolator(new CubicEaseInOutInterpolator() {
             public float getInterpolation(float f) {
@@ -291,7 +292,7 @@ public class CameraFocusAnimateDrawable extends Drawable implements Animatable {
 
             public void onAnimationEnd(Animator animator) {
                 CameraFocusAnimateDrawable.this.mPaintCenterIndicator.setCenterFlag(CameraFocusAnimateDrawable.this.mSuccessFlag);
-                if (CameraFocusAnimateDrawable.this.mPaintEvAdjust.getEvValue() > 0.0f) {
+                if (CameraFocusAnimateDrawable.this.mPaintEvAdjust.getEvValue() > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
                     CameraFocusAnimateDrawable.this.mPaintEvAdjust.setShowLine(true);
                 }
                 CameraFocusAnimateDrawable.this.invalidateSelf();
@@ -313,7 +314,7 @@ public class CameraFocusAnimateDrawable extends Drawable implements Animatable {
         }
         this.mPaintEvAdjust.setStartOffsetY((float) Util.dpToPixel(2.5f));
         this.mPaintEvAdjust.setCurrentAlpha(0).setTargetAlpha(255);
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
         ofFloat.setDuration(200);
         ofFloat.addUpdateListener(new AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -330,7 +331,7 @@ public class CameraFocusAnimateDrawable extends Drawable implements Animatable {
                 CameraFocusAnimateDrawable.this.mPaintCenterIndicator.setCurrentWidthPercent(1.0f).setTargetWidthPercent(0.9f);
             }
         });
-        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
+        ValueAnimator ofFloat2 = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
         ofFloat2.setDuration(200);
         ofFloat2.setStartDelay(200);
         ofFloat2.addUpdateListener(new AnimatorUpdateListener() {
@@ -349,7 +350,7 @@ public class CameraFocusAnimateDrawable extends Drawable implements Animatable {
                 CameraFocusAnimateDrawable.this.mPaintCenterIndicator.setCurrentAlpha(255).setTargetAlpha(0);
             }
         });
-        ValueAnimator ofFloat3 = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
+        ValueAnimator ofFloat3 = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
         ofFloat3.setDuration(300);
         ofFloat3.setStartDelay(400);
         ofFloat3.addUpdateListener(new AnimatorUpdateListener() {
@@ -375,7 +376,7 @@ public class CameraFocusAnimateDrawable extends Drawable implements Animatable {
         this.mSuccessAnimatorSet.addListener(new AnimatorListenerAdapter() {
             public void onAnimationEnd(Animator animator) {
                 CameraFocusAnimateDrawable.this.mPaintCenterIndicator.setCenterFlag(CameraFocusAnimateDrawable.this.mSuccessFlag);
-                if (CameraFocusAnimateDrawable.this.mPaintEvAdjust.getEvValue() > 0.0f) {
+                if (CameraFocusAnimateDrawable.this.mPaintEvAdjust.getEvValue() > PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO) {
                     CameraFocusAnimateDrawable.this.mPaintEvAdjust.setShowLine(true);
                 }
                 CameraFocusAnimateDrawable.this.invalidateSelf();
@@ -394,7 +395,7 @@ public class CameraFocusAnimateDrawable extends Drawable implements Animatable {
         } else {
             this.mPaintBigCircle.setTargetWidthPercent(1.0f).setTargetAlpha(0);
             this.mPaintCenterIndicator.setTargetWidthPercent(CENTER_FOCUSING_SMALL).setTargetAlpha(0);
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(new float[]{0.0f, 1.0f});
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(new float[]{PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, 1.0f});
             ofFloat.setDuration(200);
             ofFloat.setInterpolator(new CubicEaseInOutInterpolator() {
                 public float getInterpolation(float f) {

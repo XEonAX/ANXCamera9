@@ -1,6 +1,9 @@
 package com.android.camera.fragment.music;
 
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnKeyListener;
+import android.media.AudioManager;
+import android.media.AudioManager.OnAudioFocusChangeListener;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnPreparedListener;
@@ -9,7 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.LayoutManager;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -52,6 +55,13 @@ public class FragmentLiveMusicPager extends Fragment implements OnClickListener,
     private static final String TAG = FragmentLiveMusicPager.class.getSimpleName();
     private LiveMusicInfo mCurrentSelectMusic;
     private LinearLayout mCurrentSelectedMusicLayout;
+    private OnAudioFocusChangeListener mFocusChangeListener = new OnAudioFocusChangeListener() {
+        public void onAudioFocusChange(int i) {
+            if (i == -3 && FragmentLiveMusicPager.this.mMediaPlayer != null) {
+                FragmentLiveMusicPager.this.mMediaPlayer.setVolume(0.2f, 0.2f);
+            }
+        }
+    };
     private boolean mIsDestroyed;
     private boolean mIsLoadingAnimationStart;
     private boolean mIsMediaPreparing;
@@ -75,7 +85,9 @@ public class FragmentLiveMusicPager extends Fragment implements OnClickListener,
                         FragmentLiveMusicPager.this.mCurrentSelectedMusicLayout.setBackgroundColor(-1);
                         FragmentLiveMusicPager.this.mCurrentSelectedMusicLayout.setAlpha(1.0f);
                     }
-                    Toast.makeText(FragmentLiveMusicPager.this.getActivity(), R.string.live_music_network_exception, 1).show();
+                    if (FragmentLiveMusicPager.this.getActivity() != null) {
+                        Toast.makeText(FragmentLiveMusicPager.this.getActivity(), R.string.live_music_network_exception, 1).show();
+                    }
                 }
             }).subscribeOn(AndroidSchedulers.mainThread()).subscribe();
         }
@@ -97,7 +109,7 @@ public class FragmentLiveMusicPager extends Fragment implements OnClickListener,
 
     protected void initView(View view) {
         this.mRecyclerView = (RecyclerView) view.findViewById(R.id.music_recycler_view);
-        LayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(1);
         this.mRecyclerView.setLayoutManager(linearLayoutManager);
         this.mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -145,6 +157,7 @@ public class FragmentLiveMusicPager extends Fragment implements OnClickListener,
     public void onResume() {
         super.onResume();
         if (this.mMusicPlayPosition != 0) {
+            ((AudioManager) getContext().getSystemService("audio")).requestAudioFocus(this.mFocusChangeListener, 3, 1);
             this.mMediaPlayer.seekTo(this.mMusicPlayPosition);
             this.mMediaPlayer.start();
             this.mMusicPlayPosition = 0;
@@ -344,6 +357,7 @@ public class FragmentLiveMusicPager extends Fragment implements OnClickListener,
     }
 
     private void startPlayMusic(LiveMusicInfo liveMusicInfo) {
+        ((AudioManager) getContext().getSystemService("audio")).requestAudioFocus(this.mFocusChangeListener, 3, 1);
         if (liveMusicInfo != null && !liveMusicInfo.mPlayUrl.isEmpty() && !this.mIsDestroyed) {
             if (this.mCurrentSelectMusic != null && this.mCurrentSelectMusic.equals(liveMusicInfo) && this.mMediaPlayer.isPlaying()) {
                 this.mMediaPlayer.stop();
@@ -391,7 +405,22 @@ public class FragmentLiveMusicPager extends Fragment implements OnClickListener,
         this.mIsLoadingAnimationStart = true;
         this.mProgressDialog = new ProgressDialog(getActivity());
         CharSequence string = getString(R.string.live_music_downloading_tips);
-        this.mProgressDialog.setCancelable(false);
+        this.mProgressDialog.setCancelable(true);
+        this.mProgressDialog.setOnKeyListener(new OnKeyListener() {
+            public boolean onKey(DialogInterface dialogInterface, int i, KeyEvent keyEvent) {
+                if (i != 4) {
+                    return false;
+                }
+                if (FragmentLiveMusicPager.this.mProgressDialog.isShowing()) {
+                    FragmentLiveMusicPager.this.mProgressDialog.dismiss();
+                    if (FragmentLiveMusicPager.this.mIsLoadingAnimationStart) {
+                        FragmentLiveMusicPager.this.mCurrentSelectedMusicLayout.setBackgroundColor(-1);
+                        FragmentLiveMusicPager.this.mCurrentSelectedMusicLayout.setAlpha(1.0f);
+                    }
+                }
+                return true;
+            }
+        });
         this.mProgressDialog.setMessage(string);
         this.mProgressDialog.show();
     }

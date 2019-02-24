@@ -27,7 +27,9 @@ public class DrawJPEGAttribute extends DrawAttribute {
     public boolean mNeedThumbnail;
     public int mOrientation;
     public int mPreviewHeight;
+    public int mPreviewThumbnailHash;
     public int mPreviewWidth;
+    public int mRequestModuleIdx;
     public float mShootRotation;
     public String mTimeWaterMarkText;
     public String mTitle;
@@ -35,7 +37,7 @@ public class DrawJPEGAttribute extends DrawAttribute {
     public List<WaterMarkData> mWaterInfos;
     public int mWidth;
 
-    public DrawJPEGAttribute(byte[] bArr, boolean z, int i, int i2, int i3, int i4, int i5, EffectRectAttribute effectRectAttribute, Location location, String str, long j, int i6, int i7, float f, boolean z2, String str2, boolean z3, PictureInfo pictureInfo, List<WaterMarkData> list, boolean z4, String str3, boolean z5) {
+    public DrawJPEGAttribute(byte[] bArr, boolean z, int i, int i2, int i3, int i4, int i5, EffectRectAttribute effectRectAttribute, Location location, String str, long j, int i6, int i7, float f, boolean z2, String str2, boolean z3, PictureInfo pictureInfo, List<WaterMarkData> list, boolean z4, String str3, boolean z5, int i8, int i9) {
         this.mPreviewWidth = i;
         this.mPreviewHeight = i2;
         this.mWidth = i3;
@@ -60,6 +62,8 @@ public class DrawJPEGAttribute extends DrawAttribute {
         this.mTimeWaterMarkText = str3;
         this.mIsPortraitRawData = z5;
         this.mTarget = 9;
+        this.mRequestModuleIdx = i8;
+        this.mPreviewThumbnailHash = i9;
     }
 
     protected void finalize() throws Throwable {

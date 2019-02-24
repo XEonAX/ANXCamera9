@@ -29,9 +29,12 @@ public class SupportedConfigFactory {
     public static final String CLOSE_BY_ULTRA_WIDE = "i";
     public static final String CLOSE_BY_VIDEO = "h";
     public static final int DUAL_WATER_MARK = 240;
+    public static final int EYE_LIGHT = 254;
     public static final int FAST = 233;
     public static final int FILTER = 196;
     public static final int FLASH = 193;
+    public static final int FLASH_BLANK = 177;
+    public static final int FLASH_DISABLE = 3089;
     public static final int FOCUS_PEAK = 199;
     public static final int GENDER_AGE = 238;
     public static final int GRADIENTER = 229;
@@ -40,7 +43,7 @@ public class SupportedConfigFactory {
     public static final int HDR = 194;
     public static final int HFR = 202;
     public static final int HHT = 230;
-    public static final int INVALID = 198;
+    public static final int INVALID = 176;
     public static final int LIGHTING = 203;
     public static final int LIVE_MUSIC_SELECT = 245;
     public static final int LIVE_SHOT = 206;
@@ -145,12 +148,16 @@ public class SupportedConfigFactory {
         dataItemConfig.reInitComponent(i, cameraCapabilities);
         List arrayList = new ArrayList();
         if (dataItemConfig.supportFlash()) {
-            arrayList.add(createConfigItem(193));
+            if (CameraSettings.isUltraWideConfigOpen(i)) {
+                arrayList.add(createConfigItem(FLASH_BLANK));
+            } else {
+                arrayList.add(createConfigItem(193));
+            }
         }
-        boolean fC = DataRepository.dataItemFeature().fC();
+        boolean fE = DataRepository.dataItemFeature().fE();
         switch (i) {
             case 161:
-                if (z && i2 != 0 && DataRepository.dataItemFeature().fd()) {
+                if (z && i2 != 0 && DataRepository.dataItemFeature().ff()) {
                     arrayList.add(createConfigItem(243));
                 }
                 if (i2 == 1) {
@@ -170,14 +177,14 @@ public class SupportedConfigFactory {
             case 169:
             case 170:
                 if (i2 != 0) {
-                    if (z && i == 162 && DataRepository.dataItemFeature().fd()) {
+                    if (z && i == 162 && DataRepository.dataItemFeature().ff()) {
                         arrayList.add(createConfigItem(243));
                     }
                     arrayList.add(createConfigItem(225));
                     break;
                 }
                 if (isSupportedAutoZoom()) {
-                    arrayList.add(createConfigItem(253));
+                    arrayList.add(createConfigItem(253, 17));
                 }
                 if (!z) {
                     arrayList.add(createConfigItem(225));
@@ -186,7 +193,7 @@ public class SupportedConfigFactory {
                 if (dataItemConfig.supportHdr()) {
                     arrayList.add(createConfigItem(194));
                 }
-                if (!DataRepository.dataItemFeature().fs() && b.gw() && b.hO()) {
+                if (!DataRepository.dataItemFeature().fv() && b.gF() && b.hX()) {
                     arrayList.add(createConfigItem(202));
                 }
                 arrayList.add(createConfigItem(197));
@@ -195,7 +202,7 @@ public class SupportedConfigFactory {
                 if (dataItemConfig.supportHdr()) {
                     arrayList.add(createConfigItem(194));
                 }
-                if ((b.gF() && i2 == 0) || (DataRepository.dataItemFeature().fb() && i2 == 1)) {
+                if ((b.gO() && i2 == 0) || (DataRepository.dataItemFeature().fd() && i2 == 1)) {
                     arrayList.add(createConfigItem(201));
                 }
                 arrayList.add(createConfigItem(196));
@@ -207,12 +214,12 @@ public class SupportedConfigFactory {
                 break;
             case 167:
                 ComponentManuallyFocus manuallyFocus = dataItemConfig.getManuallyFocus();
-                if (b.gU() && !manuallyFocus.getComponentValue(i).equals(manuallyFocus.getDefaultValue(i))) {
+                if (b.hd() && !manuallyFocus.getComponentValue(i).equals(manuallyFocus.getDefaultValue(i))) {
                     arrayList.add(createConfigItem(199));
                 }
                 if (CameraSettings.isSupportedUltraPixelPhotography(cameraCapabilities) && z) {
                     arrayList.add(createConfigItem(209));
-                    DataRepository.dataItemConfig().getRearComponentConfigUltraPixel().initUltraPixelResource(DataRepository.dataItemFeature().fP());
+                    DataRepository.dataItemConfig().getRearComponentConfigUltraPixel().initUltraPixelResource(DataRepository.dataItemFeature().fR());
                 }
                 arrayList.add(createConfigItem(196));
                 arrayList.add(createConfigItem(197));
@@ -220,17 +227,17 @@ public class SupportedConfigFactory {
             case 171:
                 if (!Util.UI_DEBUG() && z && cameraCapabilities.isSupportPortraitLighting()) {
                     if (i2 == 0) {
-                        if (DataRepository.dataItemFeature().eZ()) {
+                        if (DataRepository.dataItemFeature().fa()) {
                             arrayList.add(createConfigItem(203));
                         }
-                    } else if (i2 == 1 && DataRepository.dataItemFeature().fa()) {
+                    } else if (i2 == 1 && DataRepository.dataItemFeature().fb()) {
                         arrayList.add(createConfigItem(203));
                     }
                 }
-                if (DataRepository.dataItemFeature().fx() && i2 == 0 && z) {
+                if (DataRepository.dataItemFeature().isSupportUltraWide() && i2 == 0 && z) {
                     arrayList.add(createConfigItem(207));
                 }
-                if (DataRepository.dataItemFeature().fc() && (i2 == 0 || (DataRepository.dataItemFeature().fb() && i2 == 1))) {
+                if (DataRepository.dataItemFeature().fe() && (i2 == 0 || (DataRepository.dataItemFeature().fd() && i2 == 1))) {
                     arrayList.add(createConfigItem(201));
                 }
                 arrayList.add(createConfigItem(196, 17));
@@ -244,7 +251,7 @@ public class SupportedConfigFactory {
                 arrayList.add(createConfigItem(225));
                 break;
             case 174:
-                if (z && i2 != 0 && DataRepository.dataItemFeature().fd()) {
+                if (z && i2 != 0 && DataRepository.dataItemFeature().ff()) {
                     arrayList.add(createConfigItem(243));
                 }
                 arrayList.add(createConfigItem(245, 17));
@@ -254,20 +261,17 @@ public class SupportedConfigFactory {
                 if (dataItemConfig.supportHdr()) {
                     arrayList.add(createConfigItem(194));
                 }
-                if ((b.gF() && i2 == 0) || (DataRepository.dataItemFeature().fb() && i2 == 1)) {
+                if ((b.gO() && i2 == 0) || (DataRepository.dataItemFeature().fd() && i2 == 1)) {
                     arrayList.add(createConfigItem(201));
                 }
-                if (fC && z) {
+                if (fE && z) {
                     arrayList.add(createConfigItem(206));
                 }
                 arrayList.add(createConfigItem(196));
                 arrayList.add(createConfigItem(197));
                 break;
         }
-        TopViewPositionArray.fillNotUseViewPosition(arrayList);
-        SupportedConfigs supportedConfigs = new SupportedConfigs();
-        supportedConfigs.add(arrayList);
-        return supportedConfigs;
+        return TopViewPositionArray.fillNotUseViewPosition(arrayList);
     }
 
     private static TopConfigItem createConfigItem(int i, int i2) {
@@ -279,7 +283,7 @@ public class SupportedConfigFactory {
     }
 
     private static boolean isSupportedAutoZoom() {
-        return DataRepository.dataItemFeature().fA();
+        return DataRepository.dataItemFeature().fC();
     }
 
     /* JADX WARNING: Removed duplicated region for block: B:89:0x015e  */
@@ -305,19 +309,19 @@ public class SupportedConfigFactory {
                             break;
                         case 171:
                             supportedConfigs.add(225).add(226);
-                            if (i2 != 1 || !b.ht()) {
-                                if (i2 == 0 && !Util.UI_DEBUG() && CameraSettings.isCameraPortraitWithFaceBeauty() && b.gg()) {
+                            if (i2 != 1 || !b.hC()) {
+                                if (i2 == 0 && !Util.UI_DEBUG() && CameraSettings.isCameraPortraitWithFaceBeauty() && b.gp()) {
                                     supportedConfigs.add(239);
                                     break;
                                 }
                             }
-                            if (b.gh() && b.gg()) {
+                            if (b.gq() && b.gp()) {
                                 supportedConfigs.add(238);
                             }
-                            if (b.hk()) {
+                            if (b.ht()) {
                                 supportedConfigs.add(236);
                             }
-                            if (b.fR()) {
+                            if (b.fT()) {
                                 supportedConfigs.add(252);
                                 break;
                             }
@@ -326,27 +330,27 @@ public class SupportedConfigFactory {
                             supportedConfigs.add(225).add(226);
                             switch (i2) {
                                 case 0:
-                                    if (b.hf()) {
+                                    if (b.ho()) {
                                         supportedConfigs.add(228);
                                     }
-                                    if (b.gY()) {
+                                    if (b.hh()) {
                                         supportedConfigs.add(229);
                                     }
-                                    if (b.gE()) {
+                                    if (b.gN()) {
                                         supportedConfigs.add(234);
                                     }
-                                    if (i != 165 && z && b.hy()) {
+                                    if (i != 165 && z && b.hH()) {
                                         supportedConfigs.add(235);
                                     }
-                                    if (!Util.UI_DEBUG() && ((i == 165 || i == 163) && b.gg())) {
+                                    if (!Util.UI_DEBUG() && ((i == 165 || i == 163) && b.gp())) {
                                         supportedConfigs.add(239);
                                     }
                                     if (z && CameraSettings.checkLensAvailability(CameraAppImpl.getAndroidContext())) {
                                         supportedConfigs.add(242);
                                     }
                                     if (i == 163) {
-                                        i = DataRepository.dataItemFeature().fP();
-                                        if (CameraSettings.isSupportedUltraPixelPhotography(cameraCapabilities) && z && i > 0 && !DataRepository.dataItemFeature().fN()) {
+                                        i = DataRepository.dataItemFeature().fR();
+                                        if (CameraSettings.isSupportedUltraPixelPhotography(cameraCapabilities) && z && i > 0 && !DataRepository.dataItemFeature().fP()) {
                                             supportedConfigs.add(250);
                                             DataRepository.dataItemConfig().getRearComponentConfigUltraPixel().initUltraPixelResource(i);
                                             break;
@@ -354,23 +358,23 @@ public class SupportedConfigFactory {
                                     }
                                     break;
                                 case 1:
-                                    if (z && b.hy() && i != 165) {
+                                    if (z && b.hH() && i != 165) {
                                         supportedConfigs.add(235);
                                     }
                                     if (i == 165 || i == 163) {
-                                        if (b.gh() && b.gg()) {
+                                        if (b.gq() && b.gp()) {
                                             supportedConfigs.add(238);
                                         }
-                                        if (b.hk()) {
+                                        if (b.ht()) {
                                             supportedConfigs.add(236);
                                         }
                                         if (i == 163) {
-                                            i = DataRepository.dataItemFeature().fQ();
+                                            i = DataRepository.dataItemFeature().fS();
                                             if (CameraSettings.isFrontSupportedUltraPixelPhotography(cameraCapabilities) && z && i > 0) {
                                                 supportedConfigs.add(251);
                                                 DataRepository.dataItemConfig().getFrontComponentConfigUltraPixel().initUltraPixelResource(i);
                                             }
-                                            if (b.fR()) {
+                                            if (b.fT()) {
                                                 supportedConfigs.add(252);
                                                 break;
                                             }
@@ -382,7 +386,7 @@ public class SupportedConfigFactory {
                     }
                     if (i2 == 0) {
                         supportedConfigs.add(225).add(233);
-                        if (b.gw() && !DataRepository.dataItemFeature().fs()) {
+                        if (b.gF() && !DataRepository.dataItemFeature().fv()) {
                             supportedConfigs.add(232);
                         }
                         if (!Util.UI_DEBUG() && cameraCapabilities.isSupportVideoBeauty()) {
@@ -400,9 +404,5 @@ public class SupportedConfigFactory {
             }
         }
         return cloudFeature.filterFeature(supportedConfigs);
-    }
-
-    public static int findViewPosition(int i) {
-        return TopViewPositionArray.getCurrentUseViewPositionFromConfig(i);
     }
 }

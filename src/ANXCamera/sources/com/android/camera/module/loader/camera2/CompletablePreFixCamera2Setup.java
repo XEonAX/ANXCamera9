@@ -11,6 +11,7 @@ import com.android.camera.data.data.global.DataItemGlobal;
 import com.android.camera.db.DbRepository;
 import com.android.camera.module.Module;
 import com.android.camera.module.loader.StartControl;
+import com.android.camera.network.util.NetworkUtils;
 import com.android.camera.parallel.AlgoConnector;
 import io.reactivex.CompletableEmitter;
 import io.reactivex.CompletableOnSubscribe;
@@ -67,11 +68,12 @@ public class CompletablePreFixCamera2Setup implements CompletableOnSubscribe, Ob
             Pair parseIntent = dataItemGlobal.parseIntent(this.mIntent, Boolean.valueOf(this.isFromVoiceControl), this.mStartFromKeyguard, true, true);
             intValue = ((Integer) parseIntent.first).intValue();
             intValue2 = ((Integer) parseIntent.second).intValue();
-            if (DataRepository.dataItemFeature().fp()) {
+            if (DataRepository.dataItemFeature().fr()) {
                 DbRepository.dbItemSaveTask().markAllDepartedTask();
                 AlgoConnector.getInstance().startService(CameraAppImpl.getAndroidContext());
             }
             ThermalDetector.getInstance().onCreate(CameraAppImpl.getAndroidContext());
+            NetworkUtils.tryRequestTTSticker();
             int i = intValue;
             intValue = intValue2;
             intValue2 = i;
@@ -79,7 +81,7 @@ public class CompletablePreFixCamera2Setup implements CompletableOnSubscribe, Ob
             intValue2 = dataItemGlobal.getCurrentCameraId();
             intValue = dataItemGlobal.getCurrentMode();
         }
-        Camera2OpenManager.getInstance().openCamera(intValue2, intValue, this, DataRepository.dataItemFeature().fV());
+        Camera2OpenManager.getInstance().openCamera(intValue2, intValue, this, DataRepository.dataItemFeature().fX());
     }
 
     public void onSubscribe(Disposable disposable) {

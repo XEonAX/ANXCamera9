@@ -1,6 +1,7 @@
 package com.ss.android.ugc.effectmanager;
 
 import android.content.Context;
+import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
 import com.ss.android.ugc.effectmanager.common.TaskManager;
 import com.ss.android.ugc.effectmanager.common.listener.ICache;
 import com.ss.android.ugc.effectmanager.common.listener.IEffectNetWorker;
@@ -192,7 +193,7 @@ public class EffectConfiguration {
     }
 
     private EffectConfiguration(Builder builder) {
-        this.mChannel = "default";
+        this.mChannel = MonitorCommonConstants.DEFAULT_AID;
         this.mRetryCount = 3;
         this.mApiAddress = API_ADDRESS;
         this.mAccessKey = builder.accessKey;

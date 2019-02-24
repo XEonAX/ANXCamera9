@@ -14,5 +14,5 @@ public interface SaverCallback {
 
     void postUpdateThumbnail(Thumbnail thumbnail, boolean z);
 
-    void updatePreviewThumbnailUri(Uri uri);
+    void updatePreviewThumbnailUri(int i, Uri uri);
 }

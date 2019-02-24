@@ -30,8 +30,6 @@ import android.os.Message;
 import android.os.ParcelFileDescriptor;
 import android.os.Process;
 import android.provider.MediaStore.Video.Media;
-import android.provider.MiuiSettings.Key;
-import android.provider.MiuiSettings.ScreenEffect;
 import android.provider.Settings.Secure;
 import android.provider.Settings.System;
 import android.support.annotation.NonNull;
@@ -230,11 +228,11 @@ public class SnapCamera implements OnErrorListener, OnInfoListener {
     public static boolean isSnapEnabled(Context context) {
         String string = DataRepository.dataItemGlobal().getString(CameraSettings.KEY_CAMERA_SNAP, null);
         if (string != null) {
-            Secure.putString(context.getContentResolver(), Key.LONG_PRESS_VOLUME_DOWN, CameraSettings.getMiuiSettingsKeyForStreetSnap(string));
+            Secure.putString(context.getContentResolver(), "key_long_press_volume_down", CameraSettings.getMiuiSettingsKeyForStreetSnap(string));
             DataRepository.dataItemGlobal().editor().remove(CameraSettings.KEY_CAMERA_SNAP).apply();
         }
-        String string2 = Secure.getString(context.getContentResolver(), Key.LONG_PRESS_VOLUME_DOWN);
-        if (Key.LONG_PRESS_VOLUME_DOWN_PAY.equals(string2) || "none".equals(string2)) {
+        String string2 = Secure.getString(context.getContentResolver(), "key_long_press_volume_down");
+        if ("public_transportation_shortcuts".equals(string2) || "none".equals(string2)) {
             return false;
         }
         return true;
@@ -254,17 +252,17 @@ public class SnapCamera implements OnErrorListener, OnInfoListener {
     }
 
     private void initSnapType() {
-        String string = Secure.getString(this.mContext.getContentResolver(), Key.LONG_PRESS_VOLUME_DOWN);
-        if (string.equals(Key.LONG_PRESS_VOLUME_DOWN_STREET_SNAP_PICTURE)) {
+        String string = Secure.getString(this.mContext.getContentResolver(), "key_long_press_volume_down");
+        if (string.equals("Street-snap-picture")) {
             this.mIsCamcorder = false;
-        } else if (string.equals(Key.LONG_PRESS_VOLUME_DOWN_STREET_SNAP_MOVIE)) {
+        } else if (string.equals("Street-snap-movie")) {
             this.mIsCamcorder = true;
         } else {
             this.mIsCamcorder = false;
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:14:0x00e0 A:{ExcHandler: android.hardware.camera2.CameraAccessException (r0_11 'e' java.lang.Throwable), Splitter: B:4:0x0022} */
+    /* JADX WARNING: Removed duplicated region for block: B:14:0x00e0 A:{Splitter: B:4:0x0022, ExcHandler: android.hardware.camera2.CameraAccessException (r0_11 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:14:0x00e0, code:
             r0 = move-exception;
      */
@@ -317,7 +315,7 @@ public class SnapCamera implements OnErrorListener, OnInfoListener {
     }
 
     private void initOrientationListener() {
-        this.mOrientationListener = new OrientationEventListener(this.mContext, b.hX() ? 2 : 3) {
+        this.mOrientationListener = new OrientationEventListener(this.mContext, b.ig() ? 2 : 3) {
             public void onOrientationChanged(int i) {
                 SnapCamera.this.mOrientation = Util.roundOrientation(i, SnapCamera.this.mOrientation);
             }
@@ -529,7 +527,7 @@ public class SnapCamera implements OnErrorListener, OnInfoListener {
             this.mContentValues.put("longitude", Double.valueOf(currentLocation.getLongitude()));
         }
         long availableSpace = Storage.getAvailableSpace() - Storage.LOW_STORAGE_THRESHOLD;
-        if (VideoModule.VIDEO_MAX_SINGLE_FILE_SIZE < availableSpace && DataRepository.dataItemFeature().fk()) {
+        if (VideoModule.VIDEO_MAX_SINGLE_FILE_SIZE < availableSpace && DataRepository.dataItemFeature().fm()) {
             stringBuilder2 = TAG;
             StringBuilder stringBuilder6 = new StringBuilder();
             stringBuilder6.append("need reduce , now maxFileSize = ");
@@ -595,9 +593,9 @@ public class SnapCamera implements OnErrorListener, OnInfoListener {
         int sensorOrientation = this.mCameraCapabilities.getSensorOrientation();
         if (this.mOrientation != -1) {
             if (this.mCameraCapabilities.getFacing() == 0) {
-                sensorOrientation = ((sensorOrientation - this.mOrientation) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+                sensorOrientation = ((sensorOrientation - this.mOrientation) + 360) % 360;
             } else {
-                sensorOrientation = (sensorOrientation + this.mOrientation) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+                sensorOrientation = (sensorOrientation + this.mOrientation) % 360;
             }
         }
         String str = TAG;

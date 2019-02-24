@@ -45,7 +45,7 @@ public abstract class CameraPaintBase {
     protected abstract void initPaint(Context context);
 
     public void resetRecordingState() {
-        this.timeAngle = 0.0f;
+        this.timeAngle = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
         this.isClockwise = true;
         this.isRecording = false;
         this.needZero = true;

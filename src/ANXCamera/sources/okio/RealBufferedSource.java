@@ -1,6 +1,5 @@
 package okio;
 
-import android.support.v4.media.session.PlaybackStateCompat;
 import com.ss.android.ttve.utils.UIUtils;
 import java.io.EOFException;
 import java.io.IOException;
@@ -35,7 +34,7 @@ final class RealBufferedSource implements BufferedSource {
             throw new IllegalArgumentException(stringBuilder.toString());
         } else if (this.closed) {
             throw new IllegalStateException("closed");
-        } else if (this.buffer.size == 0 && this.source.read(this.buffer, PlaybackStateCompat.ACTION_PLAY_FROM_URI) == -1) {
+        } else if (this.buffer.size == 0 && this.source.read(this.buffer, 8192) == -1) {
             return -1;
         } else {
             return this.buffer.read(buffer, Math.min(j, this.buffer.size));
@@ -44,7 +43,7 @@ final class RealBufferedSource implements BufferedSource {
 
     public boolean exhausted() throws IOException {
         if (!this.closed) {
-            return this.buffer.exhausted() && this.source.read(this.buffer, PlaybackStateCompat.ACTION_PLAY_FROM_URI) == -1;
+            return this.buffer.exhausted() && this.source.read(this.buffer, 8192) == -1;
         } else {
             throw new IllegalStateException("closed");
         }
@@ -66,7 +65,7 @@ final class RealBufferedSource implements BufferedSource {
             throw new IllegalStateException("closed");
         } else {
             while (this.buffer.size < j) {
-                if (this.source.read(this.buffer, PlaybackStateCompat.ACTION_PLAY_FROM_URI) == -1) {
+                if (this.source.read(this.buffer, 8192) == -1) {
                     return false;
                 }
             }
@@ -102,7 +101,7 @@ final class RealBufferedSource implements BufferedSource {
             if (size <= this.buffer.size) {
                 this.buffer.skip(size);
                 return selectPrefix;
-            } else if (this.source.read(this.buffer, PlaybackStateCompat.ACTION_PLAY_FROM_URI) == -1) {
+            } else if (this.source.read(this.buffer, 8192) == -1) {
                 return -1;
             }
         }
@@ -143,7 +142,7 @@ final class RealBufferedSource implements BufferedSource {
     public int read(byte[] bArr, int i, int i2) throws IOException {
         long j = (long) i2;
         Util.checkOffsetAndCount((long) bArr.length, (long) i, j);
-        if (this.buffer.size == 0 && this.source.read(this.buffer, PlaybackStateCompat.ACTION_PLAY_FROM_URI) == -1) {
+        if (this.buffer.size == 0 && this.source.read(this.buffer, 8192) == -1) {
             return -1;
         }
         return this.buffer.read(bArr, i, (int) Math.min(j, this.buffer.size));
@@ -162,7 +161,7 @@ final class RealBufferedSource implements BufferedSource {
     public long readAll(Sink sink) throws IOException {
         if (sink != null) {
             long j = 0;
-            while (this.source.read(this.buffer, PlaybackStateCompat.ACTION_PLAY_FROM_URI) != -1) {
+            while (this.source.read(this.buffer, 8192) != -1) {
                 long completeSegmentByteCount = this.buffer.completeSegmentByteCount();
                 if (completeSegmentByteCount > 0) {
                     j += completeSegmentByteCount;
@@ -338,7 +337,7 @@ final class RealBufferedSource implements BufferedSource {
             throw new IllegalStateException("closed");
         }
         while (j > 0) {
-            if (this.buffer.size == 0 && this.source.read(this.buffer, PlaybackStateCompat.ACTION_PLAY_FROM_URI) == -1) {
+            if (this.buffer.size == 0 && this.source.read(this.buffer, 8192) == -1) {
                 throw new EOFException();
             }
             long min = Math.min(j, this.buffer.size());
@@ -367,7 +366,7 @@ final class RealBufferedSource implements BufferedSource {
                     return indexOf;
                 }
                 indexOf = this.buffer.size;
-                if (indexOf >= j2 || this.source.read(this.buffer, PlaybackStateCompat.ACTION_PLAY_FROM_URI) == -1) {
+                if (indexOf >= j2 || this.source.read(this.buffer, 8192) == -1) {
                     return -1;
                 }
                 j = Math.max(j, indexOf);
@@ -390,7 +389,7 @@ final class RealBufferedSource implements BufferedSource {
                 return indexOf;
             }
             indexOf = this.buffer.size;
-            if (this.source.read(this.buffer, PlaybackStateCompat.ACTION_PLAY_FROM_URI) == -1) {
+            if (this.source.read(this.buffer, 8192) == -1) {
                 return -1;
             }
             j = Math.max(j, (indexOf - ((long) byteString.size())) + 1);
@@ -411,7 +410,7 @@ final class RealBufferedSource implements BufferedSource {
                 return indexOfElement;
             }
             indexOfElement = this.buffer.size;
-            if (this.source.read(this.buffer, PlaybackStateCompat.ACTION_PLAY_FROM_URI) == -1) {
+            if (this.source.read(this.buffer, 8192) == -1) {
                 return -1;
             }
             j = Math.max(j, indexOfElement);
@@ -445,7 +444,7 @@ final class RealBufferedSource implements BufferedSource {
             public int read() throws IOException {
                 if (RealBufferedSource.this.closed) {
                     throw new IOException("closed");
-                } else if (RealBufferedSource.this.buffer.size == 0 && RealBufferedSource.this.source.read(RealBufferedSource.this.buffer, PlaybackStateCompat.ACTION_PLAY_FROM_URI) == -1) {
+                } else if (RealBufferedSource.this.buffer.size == 0 && RealBufferedSource.this.source.read(RealBufferedSource.this.buffer, 8192) == -1) {
                     return -1;
                 } else {
                     return RealBufferedSource.this.buffer.readByte() & 255;
@@ -457,7 +456,7 @@ final class RealBufferedSource implements BufferedSource {
                     throw new IOException("closed");
                 }
                 Util.checkOffsetAndCount((long) bArr.length, (long) i, (long) i2);
-                if (RealBufferedSource.this.buffer.size == 0 && RealBufferedSource.this.source.read(RealBufferedSource.this.buffer, PlaybackStateCompat.ACTION_PLAY_FROM_URI) == -1) {
+                if (RealBufferedSource.this.buffer.size == 0 && RealBufferedSource.this.source.read(RealBufferedSource.this.buffer, 8192) == -1) {
                     return -1;
                 }
                 return RealBufferedSource.this.buffer.read(bArr, i, i2);

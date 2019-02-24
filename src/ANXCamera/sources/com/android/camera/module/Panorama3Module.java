@@ -1,7 +1,6 @@
 package com.android.camera.module;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -31,7 +30,6 @@ import android.os.Message;
 import android.os.ParcelFileDescriptor;
 import android.os.SystemClock;
 import android.os.SystemProperties;
-import android.provider.MiuiSettings.ScreenEffect;
 import android.text.format.DateFormat;
 import android.util.Size;
 import android.view.KeyEvent;
@@ -821,7 +819,7 @@ public class Panorama3Module extends BaseModule implements SensorEventListener, 
             r0.setDirectionTooFast(false, 0);
      */
             /* JADX WARNING: Missing block: B:25:0x00b7, code:
-            r0.setDirectionTooFast(true, 6000);
+            r0.setDirectionTooFast(true, com.android.camera.constant.DurationConstant.DURATION_LANDSCAPE_HINT);
      */
             /* JADX WARNING: Missing block: B:26:0x00bd, code:
             return;
@@ -1031,9 +1029,9 @@ public class Panorama3Module extends BaseModule implements SensorEventListener, 
 
         protected void onPostExecute(Integer num) {
             Log.d(Panorama3Module.TAG, "PanoramaFinish done");
-            Context context = Panorama3Module.this.mActivity;
-            if (context != null) {
-                AutoLockManager.getInstance(context).hibernateDelayed();
+            Camera camera = Panorama3Module.this.mActivity;
+            if (camera != null) {
+                AutoLockManager.getInstance(camera).hibernateDelayed();
             }
             if (Panorama3Module.this.mPaused) {
                 Panorama3Module.this.mIsShooting = false;
@@ -1043,8 +1041,8 @@ public class Panorama3Module extends BaseModule implements SensorEventListener, 
             if (Panorama3Module.this.mDispPreviewImage != null) {
                 Panorama3Module.this.mDispPreviewImage.eraseColor(0);
             }
-            if (context != null) {
-                context.getThumbnailUpdater().updateThumbnailView(true);
+            if (camera != null) {
+                camera.getThumbnailUpdater().updateThumbnailView(true);
             }
             Panorama3Module.this.onSaveFinish();
             Panorama3Module.this.mMainHandler.post(new Runnable() {
@@ -1162,8 +1160,8 @@ public class Panorama3Module extends BaseModule implements SensorEventListener, 
 
     public void onCreate(int i, int i2) {
         super.onCreate(i, i2);
-        this.mGoalAngle = DataRepository.dataItemFeature().fD();
-        this.mLongSideCropRatio = DataRepository.dataItemFeature().fE();
+        this.mGoalAngle = DataRepository.dataItemFeature().fF();
+        this.mLongSideCropRatio = DataRepository.dataItemFeature().fG();
         this.mSmallPreviewHeight = (int) this.mActivity.getResources().getDimension(R.dimen.pano_preview_hint_frame_height);
         EffectController.getInstance().setEffect(FilterInfo.FILTER_ID_NONE);
         onCameraOpened();
@@ -1733,9 +1731,9 @@ public class Panorama3Module extends BaseModule implements SensorEventListener, 
         this.mInitParam.direction = CameraSettings.getPanoramaMoveDirection();
         int displayRotation = Util.getDisplayRotation(this.mActivity);
         if (this.mOrientation == -1) {
-            this.mInitParam.output_rotation = ((this.mCameraOrientation + displayRotation) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+            this.mInitParam.output_rotation = ((this.mCameraOrientation + displayRotation) + 360) % 360;
         } else {
-            this.mInitParam.output_rotation = (((this.mCameraOrientation + displayRotation) + this.mOrientation) + ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+            this.mInitParam.output_rotation = (((this.mCameraOrientation + displayRotation) + this.mOrientation) + 360) % 360;
         }
         String cameraZoomMode = CameraSettings.getCameraZoomMode(166);
         String str = TAG;
@@ -1992,7 +1990,7 @@ Caused by: jadx.core.utils.exceptions.CodegenException: MERGE can be used only i
         if (!(i == 0 || i == 90 || i == 180 || i == 270)) {
             i = 0;
         }
-        return (i + this.mDeviceOrientationAtCapture) % ScreenEffect.SCREEN_PAPER_MODE_TWILIGHT_START_DEAULT;
+        return (i + this.mDeviceOrientationAtCapture) % 360;
     }
 
     private void addImageAsApplication(String str, String str2, int i, int i2, int i3) {
@@ -2019,14 +2017,14 @@ Caused by: jadx.core.utils.exceptions.CodegenException: MERGE can be used only i
         Log.d(str5, stringBuilder2.toString());
         trackGeneralInfo(1, false);
         trackPictureTaken(1, false, z);
-        Context context = this.mActivity;
-        if (isCreated() && context != null) {
-            context.getScreenHint().updateHint();
+        Camera camera = this.mActivity;
+        if (isCreated() && camera != null) {
+            camera.getScreenHint().updateHint();
             if (addImageForGroupOrPanorama != null) {
-                context.onNewUriArrived(addImageForGroupOrPanorama, str2);
-                Thumbnail createThumbnailFromUri = Thumbnail.createThumbnailFromUri(context.getContentResolver(), addImageForGroupOrPanorama, false);
-                Util.broadcastNewPicture(context, addImageForGroupOrPanorama);
-                context.getThumbnailUpdater().setThumbnail(createThumbnailFromUri, false, false);
+                camera.onNewUriArrived(addImageForGroupOrPanorama, str2);
+                Thumbnail createThumbnailFromUri = Thumbnail.createThumbnailFromUri(camera.getContentResolver(), addImageForGroupOrPanorama, false);
+                Util.broadcastNewPicture(camera, addImageForGroupOrPanorama);
+                camera.getThumbnailUpdater().setThumbnail(createThumbnailFromUri, false, false);
             }
         }
     }

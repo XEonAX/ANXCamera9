@@ -7,7 +7,6 @@ import android.hardware.SensorManager;
 import android.os.Build.VERSION;
 import android.os.Environment;
 import android.os.StatFs;
-import android.support.v4.media.session.PlaybackStateCompat;
 import android.support.v4.util.ArraySet;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
@@ -146,7 +145,7 @@ public class DeviceInfoUtils {
             bufferedReader.close();
         } catch (IOException e) {
         }
-        return j / PlaybackStateCompat.ACTION_PLAY_FROM_MEDIA_ID;
+        return j / 1024;
     }
 
     public static long getInternalStorage() {

@@ -1,7 +1,6 @@
 package com.android.camera.ui;
 
 import android.content.Context;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -43,7 +42,7 @@ public class V6PreviewPanel extends V6RelativeLayout implements OnClickListener 
         this.mVideoReviewImage = (ImageView) findViewById(R.id.v6_video_review_image);
         this.mPreviewCover = findViewById(R.id.preview_cover);
         this.mAutoZoomView = (AutoZoomView) findChildrenById(R.id.autozoom_overlay);
-        this.mVideoReviewImage.setBackgroundColor(ViewCompat.MEASURED_STATE_MASK);
+        this.mVideoReviewImage.setBackgroundColor(-16777216);
         this.mVideoReviewPlay.setOnClickListener(this);
     }
 

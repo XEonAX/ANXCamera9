@@ -66,7 +66,7 @@ public class RecordingStateChangeImpl implements RecordState {
             }
         }
         ((PanoramaProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(176)).setShootUI();
-        if (DataRepository.dataItemFeature().fK()) {
+        if (DataRepository.dataItemFeature().fM()) {
             DualController dualController = (DualController) ModeCoordinatorImpl.getInstance().getAttachProtocol(182);
             if (dualController != null) {
                 dualController.hideZoomButton();
@@ -80,6 +80,7 @@ public class RecordingStateChangeImpl implements RecordState {
         bottomPopupTips.hideLeftTipImage();
         bottomPopupTips.hideSpeedTipImage();
         bottomPopupTips.hideCenterTipImage();
+        bottomPopupTips.directlyHideTips();
     }
 
     public void onStart() {
@@ -128,7 +129,9 @@ public class RecordingStateChangeImpl implements RecordState {
         Log.d(TAG, "onFinish");
         TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
         topAlert.showConfigMenu();
-        ((BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175)).reInitTipImage();
+        BottomPopupTips bottomPopupTips = (BottomPopupTips) ModeCoordinatorImpl.getInstance().getAttachProtocol(175);
+        bottomPopupTips.reInitTipImage();
+        bottomPopupTips.reConfigBottomTipOfUltraWide();
         ((ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162)).processingFinish();
         if (getCurrentModuleIndex() != 174) {
             topAlert.setRecordingTimeState(2);
@@ -149,7 +152,7 @@ public class RecordingStateChangeImpl implements RecordState {
         if (currentModuleIndex == 166) {
             actionProcessing.processingFinish();
             actionProcessing.updateLoading(false);
-            if (DataRepository.dataItemFeature().fK()) {
+            if (DataRepository.dataItemFeature().fM()) {
                 dualController = (DualController) ModeCoordinatorImpl.getInstance().getAttachProtocol(182);
                 if (dualController != null) {
                     dualController.showZoomButton();
@@ -181,7 +184,11 @@ public class RecordingStateChangeImpl implements RecordState {
     public void onPostSavingFinish() {
         Log.d(TAG, "onPostSavingFinish");
         if (getCurrentModuleIndex() != 166) {
-            ((ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162)).processingFinish();
+            ActionProcessing actionProcessing = (ActionProcessing) ModeCoordinatorImpl.getInstance().getAttachProtocol(162);
+            if (actionProcessing != null) {
+                actionProcessing.processingFinish();
+                return;
+            }
             return;
         }
         PanoramaProtocol panoramaProtocol = (PanoramaProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(176);
@@ -215,7 +222,7 @@ public class RecordingStateChangeImpl implements RecordState {
     }
 
     private boolean isFPS960() {
-        if (getCurrentModuleIndex() == 172 && DataRepository.dataItemFeature().fs()) {
+        if (getCurrentModuleIndex() == 172 && DataRepository.dataItemFeature().fu()) {
             return DataRepository.dataItemConfig().getComponentConfigSlowMotion().isSlowMotionFps960();
         }
         return false;

@@ -62,6 +62,8 @@ public interface IRecorder {
 
     int setSlamFace(Bitmap bitmap);
 
+    int setUseLargeMattingModel(boolean z);
+
     int slamDeviceConfig(boolean z, int i, boolean z2, boolean z3, boolean z4, boolean z5, String str);
 
     int slamProcessIngestAcc(double d, double d2, double d3, double d4);
@@ -95,4 +97,6 @@ public interface IRecorder {
     int tryRestore();
 
     int updatePreviewSettings(VEPreviewSettings vEPreviewSettings);
+
+    int updateRotation(float f, float f2, float f3);
 }

@@ -8,6 +8,7 @@ import com.android.camera.CameraAppImpl;
 import com.android.camera.R;
 import com.android.camera.effect.EffectController;
 import com.android.camera.effect.EffectController.EffectRectAttribute;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.android.gallery3d.ui.GLCanvas;
 
 public abstract class RegionEffectRender extends ConvolutionEffectRender {
@@ -59,8 +60,8 @@ public abstract class RegionEffectRender extends ConvolutionEffectRender {
             this.mPreviewEffectRect[3] = rectF.bottom;
             return;
         }
-        this.mPreviewEffectRect[0] = 0.0f;
-        this.mPreviewEffectRect[1] = 0.0f;
+        this.mPreviewEffectRect[0] = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+        this.mPreviewEffectRect[1] = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
         this.mPreviewEffectRect[2] = 1.0f;
         this.mPreviewEffectRect[3] = 1.0f;
     }

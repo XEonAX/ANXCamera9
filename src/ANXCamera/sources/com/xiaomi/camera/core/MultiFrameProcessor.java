@@ -14,6 +14,7 @@ import com.xiaomi.camera.processor.ClearShotProcessor;
 import com.xiaomi.camera.processor.GroupShotProcessor;
 import com.xiaomi.camera.processor.ProcessResultListener;
 import java.io.File;
+import miui.os.Build;
 
 public class MultiFrameProcessor {
     private static final int REPROCESS_TIMEOUT_MS = 8000;
@@ -136,7 +137,7 @@ public class MultiFrameProcessor {
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:9:0x0079 A:{ExcHandler: java.lang.InterruptedException (r14_4 'e' java.lang.Throwable), Splitter: B:4:0x006c} */
+    /* JADX WARNING: Removed duplicated region for block: B:9:0x0079 A:{Splitter: B:4:0x006c, ExcHandler: java.lang.InterruptedException (r14_4 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:9:0x0079, code:
             r14 = move-exception;
      */
@@ -165,6 +166,33 @@ public class MultiFrameProcessor {
                     stringBuilder2.append("onYuvAvailable<<cost=");
                     stringBuilder2.append(System.currentTimeMillis() - MultiFrameProcessor.this.mReprocessStartTime);
                     Log.v(access$1002, stringBuilder2.toString());
+                }
+            }
+
+            public void onError(String str, String str2) {
+                synchronized (MultiFrameProcessor.this.mObjLock) {
+                    String access$100 = MultiFrameProcessor.TAG;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("onError>>tag=");
+                    stringBuilder.append(str2);
+                    stringBuilder.append(" reason=");
+                    stringBuilder.append(str);
+                    Log.v(access$100, stringBuilder.toString());
+                    if (Build.IS_DEBUGGABLE) {
+                        stringBuilder = new StringBuilder();
+                        stringBuilder.append("reprocessImage failed image = ");
+                        stringBuilder.append(str2);
+                        stringBuilder.append(" reason = ");
+                        stringBuilder.append(str);
+                        throw new RuntimeException(stringBuilder.toString());
+                    }
+                    MultiFrameProcessor.this.mReprocessing = false;
+                    MultiFrameProcessor.this.mObjLock.notify();
+                    str = MultiFrameProcessor.TAG;
+                    StringBuilder stringBuilder2 = new StringBuilder();
+                    stringBuilder2.append("onError<<cost=");
+                    stringBuilder2.append(System.currentTimeMillis() - MultiFrameProcessor.this.mReprocessStartTime);
+                    Log.v(str, stringBuilder2.toString());
                 }
             }
         };

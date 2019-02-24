@@ -52,7 +52,15 @@ public class FilterProcessor {
     }
 
     private boolean shouldApplyEffect(@NonNull ParallelTaskData parallelTaskData) {
-        return FilterInfo.FILTER_ID_NONE != parallelTaskData.getDataParameter().getFilterId() || isWatermarkEnabled(parallelTaskData);
+        boolean z = true;
+        if (isWatermarkEnabled(parallelTaskData)) {
+            return true;
+        }
+        ParallelTaskDataParameter dataParameter = parallelTaskData.getDataParameter();
+        if (dataParameter == null || (FilterInfo.FILTER_ID_NONE == dataParameter.getFilterId() && !dataParameter.isGradienterOn() && dataParameter.getTiltShiftMode() == null)) {
+            z = false;
+        }
+        return z;
     }
 
     private void releaseEffectProcessor() {

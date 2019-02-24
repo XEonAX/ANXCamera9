@@ -133,7 +133,7 @@ public class Storage {
 
     public static void initStorage(Context context) {
         initQuota(context);
-        if (b.gt()) {
+        if (b.gC()) {
             FileCompat.updateSDPath();
             String sdcardPath = CompatibilityUtils.getSdcardPath(context);
             String str = TAG;
@@ -160,7 +160,7 @@ public class Storage {
             Class[] clsArr = new Class[]{StorageStatsManager.class};
             Method method = Util.getMethod(clsArr, "isQuotaSupported", "(Ljava/util/UUID;)Z");
             if (method != null) {
-                sQuotaSupported = method.invokeBoolean(clsArr[0], storageStatsManager, StorageManager.UUID_DEFAULT);
+                sQuotaSupported = method.invokeBoolean(clsArr[0], storageStatsManager, new Object[]{StorageManager.UUID_DEFAULT});
                 if (sQuotaSupported) {
                     long totalBytes = new StatFs(PRIMARY_STORAGE_PATH).getTotalBytes();
                     sQuotaBytes = (long) (0.9f * ((float) totalBytes));
@@ -909,10 +909,16 @@ public class Storage {
         }
     }
 
-    public static String generatePrimaryFilepath(String str) {
+    public static String generatePrimaryDirectoryPath() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(PRIMARY_STORAGE_PATH);
         stringBuilder.append(CAMERA_STORAGE_PATH_SUFFIX);
+        return stringBuilder.toString();
+    }
+
+    public static String generatePrimaryFilepath(String str) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(generatePrimaryDirectoryPath());
         stringBuilder.append('/');
         stringBuilder.append(str);
         return stringBuilder.toString();
@@ -1052,12 +1058,12 @@ public class Storage {
     public static boolean hasSecondaryStorage() {
         boolean z = false;
         if (VERSION.SDK_INT == 28) {
-            if (UserHandle.myUserId() == 0 && b.gt() && SECONDARY_STORAGE_PATH != null) {
+            if (UserHandle.myUserId() == 0 && b.gC() && SECONDARY_STORAGE_PATH != null) {
                 z = true;
             }
             return z;
         }
-        if (b.gt() && SECONDARY_STORAGE_PATH != null) {
+        if (b.gC() && SECONDARY_STORAGE_PATH != null) {
             z = true;
         }
         return z;

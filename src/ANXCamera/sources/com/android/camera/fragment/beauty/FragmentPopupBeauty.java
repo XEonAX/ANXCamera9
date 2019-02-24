@@ -19,6 +19,7 @@ import com.android.camera.fragment.BaseFragment;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.BaseDelegate;
 import com.android.camera.protocol.ModeProtocol.HandleBeautyRecording;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import io.reactivex.Completable;
 import java.util.List;
 import miui.view.animation.CubicEaseOutInterpolator;
@@ -77,14 +78,14 @@ public class FragmentPopupBeauty extends BaseFragment implements OnClickListener
         if (isEnableClick()) {
             BaseDelegate baseDelegate;
             switch (view.getId()) {
-                case R.id.icon_sticker /*2131558547*/:
+                case R.id.icon_sticker /*2131558548*/:
                     baseDelegate = (BaseDelegate) ModeCoordinatorImpl.getInstance().getAttachProtocol(160);
                     if (baseDelegate != null) {
                         baseDelegate.delegateEvent(4);
                         break;
                     }
                     return;
-                case R.id.icon_beauty /*2131558548*/:
+                case R.id.icon_beauty /*2131558549*/:
                     baseDelegate = (BaseDelegate) ModeCoordinatorImpl.getInstance().getAttachProtocol(160);
                     if (baseDelegate != null) {
                         baseDelegate.delegateEvent(2);
@@ -100,7 +101,7 @@ public class FragmentPopupBeauty extends BaseFragment implements OnClickListener
     }
 
     public void onBeautyRecordingStart() {
-        ViewCompat.animate(getView()).alpha(0.0f).start();
+        ViewCompat.animate(getView()).alpha(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO).start();
     }
 
     public void onBeautyRecordingStop() {
@@ -108,8 +109,8 @@ public class FragmentPopupBeauty extends BaseFragment implements OnClickListener
     }
 
     private void disappear() {
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this.mIconSticker, "alpha", new float[]{1.0f, 0.0f});
-        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this.mIconBeauty, "alpha", new float[]{1.0f, 0.0f});
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this.mIconSticker, "alpha", new float[]{1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO});
+        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(this.mIconBeauty, "alpha", new float[]{1.0f, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO});
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.playTogether(new Animator[]{ofFloat, ofFloat2});
         animatorSet.setInterpolator(new CubicEaseOutInterpolator());

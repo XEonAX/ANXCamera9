@@ -39,7 +39,7 @@ public class ComponentRunningSceneValue extends ComponentData {
         arrayList.add(new ComponentDataItem(R.drawable.ic_scene_mode_sports_normal, R.drawable.ic_scene_mode_sports_normal, R.string.pref_camera_scenemode_entry_sports, CameraScene.SPORTS));
         arrayList.add(new ComponentDataItem(R.drawable.ic_scene_mode_night_normal, R.drawable.ic_scene_mode_night_normal, R.string.pref_camera_scenemode_entry_night, "5"));
         arrayList.add(new ComponentDataItem(R.drawable.ic_scene_mode_night_portrait_normal, R.drawable.ic_scene_mode_night_portrait_normal, R.string.pref_camera_scenemode_entry_night_portrait, "6"));
-        arrayList.add(new ComponentDataItem(R.drawable.ic_scene_mode_beach_normal, R.drawable.ic_scene_mode_beach_normal, R.string.pref_camera_scenemode_entry_beach, CameraScene.BEACH));
+        arrayList.add(new ComponentDataItem(R.drawable.ic_scene_mode_beach_normal, R.drawable.ic_scene_mode_beach_normal, R.string.pref_camera_scenemode_entry_beach, "8"));
         arrayList.add(new ComponentDataItem(R.drawable.ic_scene_mode_snow_normal, R.drawable.ic_scene_mode_snow_normal, R.string.pref_camera_scenemode_entry_snow, CameraScene.SNOW));
         arrayList.add(new ComponentDataItem(R.drawable.ic_scene_mode_sunset_normal, R.drawable.ic_scene_mode_sunset_normal, R.string.pref_camera_scenemode_entry_sunset, CameraScene.SUNSET));
         arrayList.add(new ComponentDataItem(R.drawable.ic_scene_mode_fireworks_normal, R.drawable.ic_scene_mode_fireworks_normal, R.string.pref_camera_scenemode_entry_fireworks, CameraScene.FIREWORKS));

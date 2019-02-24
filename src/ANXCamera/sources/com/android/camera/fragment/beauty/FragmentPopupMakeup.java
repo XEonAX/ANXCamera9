@@ -34,6 +34,7 @@ import java.util.List;
 
 public class FragmentPopupMakeup extends BaseFragment implements MakeupProtocol, Consumer<Integer> {
     public static final int FRAGMENT_INFO = 252;
+    private static final int INTERVAL = 5;
     private static int SEEKBAR_PROGRESS_MAX = 100;
     private static final int SEEKBAR_PROGRESS_RATIO = 1;
     private int mActiveProgress;
@@ -106,24 +107,26 @@ public class FragmentPopupMakeup extends BaseFragment implements MakeupProtocol,
                     default:
                         return false;
                 }
+                FragmentPopupMakeup.this.mSeekBar.setProgress(getNextProgress(motionEvent));
+                return true;
+            }
+
+            private int getNextProgress(MotionEvent motionEvent) {
                 int width = FragmentPopupMakeup.this.mSeekBar.getWidth();
                 width = (int) (((FragmentPopupMakeup.this.mIsRTL ? ((float) width) - motionEvent.getX() : motionEvent.getX()) / ((float) width)) * ((float) FragmentPopupMakeup.SEEKBAR_PROGRESS_MAX));
-                if (FragmentPopupMakeup.this.mSeekBar.isCenterSeekBarMode()) {
-                    if (motionEvent.getAction() == 1) {
-                        if (width >= FragmentPopupMakeup.this.centerSeekbarValueMap(-15) && width <= FragmentPopupMakeup.this.centerSeekbarValueMap(15) && width != FragmentPopupMakeup.this.centerSeekbarValueMap(0)) {
-                            width = FragmentPopupMakeup.this.centerSeekbarValueMap(0);
-                        } else if (width <= FragmentPopupMakeup.this.centerSeekbarValueMap(-85) && width != FragmentPopupMakeup.this.centerSeekbarValueMap(-100)) {
-                            width = FragmentPopupMakeup.this.centerSeekbarValueMap(-100);
-                        } else if (width >= FragmentPopupMakeup.this.centerSeekbarValueMap(85) && width != FragmentPopupMakeup.this.centerSeekbarValueMap(100)) {
-                            width = FragmentPopupMakeup.this.centerSeekbarValueMap(100);
-                        }
-                    }
-                    width = Util.clamp(width, 0, FragmentPopupMakeup.SEEKBAR_PROGRESS_MAX) - (FragmentPopupMakeup.SEEKBAR_PROGRESS_MAX / 2);
-                } else {
-                    width = Util.clamp(width, 0, FragmentPopupMakeup.SEEKBAR_PROGRESS_MAX);
+                if (!FragmentPopupMakeup.this.mSeekBar.isCenterSeekBarMode()) {
+                    return Util.clamp(width, 0, FragmentPopupMakeup.SEEKBAR_PROGRESS_MAX);
                 }
-                FragmentPopupMakeup.this.mSeekBar.setProgress(width);
-                return true;
+                if (motionEvent.getAction() == 2 || motionEvent.getAction() == 1) {
+                    if (width >= FragmentPopupMakeup.this.centerSeekbarValueMap(-5) && width <= FragmentPopupMakeup.this.centerSeekbarValueMap(5) && width != FragmentPopupMakeup.this.centerSeekbarValueMap(0)) {
+                        width = FragmentPopupMakeup.this.centerSeekbarValueMap(0);
+                    } else if (width <= FragmentPopupMakeup.this.centerSeekbarValueMap(-95) && width != FragmentPopupMakeup.this.centerSeekbarValueMap(-100)) {
+                        width = FragmentPopupMakeup.this.centerSeekbarValueMap(-100);
+                    } else if (width >= FragmentPopupMakeup.this.centerSeekbarValueMap(95) && width != FragmentPopupMakeup.this.centerSeekbarValueMap(100)) {
+                        width = FragmentPopupMakeup.this.centerSeekbarValueMap(100);
+                    }
+                }
+                return Util.clamp(width, 0, FragmentPopupMakeup.SEEKBAR_PROGRESS_MAX) - (FragmentPopupMakeup.SEEKBAR_PROGRESS_MAX / 2);
             }
         });
     }

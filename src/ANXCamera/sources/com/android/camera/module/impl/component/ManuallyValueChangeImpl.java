@@ -8,11 +8,13 @@ import com.android.camera.data.data.config.ComponentManuallyET;
 import com.android.camera.data.data.config.ComponentManuallyFocus;
 import com.android.camera.data.data.config.ComponentManuallyISO;
 import com.android.camera.data.data.config.ComponentManuallyWB;
+import com.android.camera.data.data.config.SupportedConfigFactory;
 import com.android.camera.effect.EffectController;
 import com.android.camera.module.BaseModule;
 import com.android.camera.module.loader.StartControl;
 import com.android.camera.module.loader.camera2.Camera2DataContainer;
 import com.android.camera.protocol.ModeCoordinatorImpl;
+import com.android.camera.protocol.ModeProtocol.ConfigChanges;
 import com.android.camera.protocol.ModeProtocol.ManuallyValueChanged;
 import com.android.camera.protocol.ModeProtocol.TopAlert;
 import com.android.camera.statistic.CameraStatUtil;
@@ -57,7 +59,7 @@ public class ManuallyValueChangeImpl implements ManuallyValueChanged {
         if (!CameraSettings.getMappingFocusMode(Integer.valueOf(str).intValue()).equals(CameraSettings.getMappingFocusMode(Integer.valueOf(str2).intValue()))) {
             CameraSettings.setFocusModeSwitching(true);
             boolean equals = str2.equals(componentManuallyFocus.getDefaultValue(167));
-            if (b.gU()) {
+            if (b.hd()) {
                 TopAlert topAlert = (TopAlert) ModeCoordinatorImpl.getInstance().getAttachProtocol(172);
                 if (equals) {
                     topAlert.removeConfigItem(199);
@@ -101,6 +103,9 @@ public class ManuallyValueChangeImpl implements ManuallyValueChanged {
         String next = ComponentManuallyDualLens.next(componentManuallyDualLens.getComponentValue(i), i);
         componentManuallyDualLens.setComponentValue(i, next);
         CameraSettings.setUltraWideConfig(i, ComponentManuallyDualLens.LENS_ULTRA.equalsIgnoreCase(next));
+        if (ComponentManuallyDualLens.LENS_ULTRA.equalsIgnoreCase(next)) {
+            ((ConfigChanges) ModeCoordinatorImpl.getInstance().getAttachProtocol(164)).closeMutexElement(SupportedConfigFactory.CLOSE_BY_ULTRA_WIDE, 193);
+        }
         if (!ComponentManuallyDualLens.LENS_WIDE.equalsIgnoreCase(next)) {
             CameraSettings.setUltraPixelPhotographyConfig(false);
         }

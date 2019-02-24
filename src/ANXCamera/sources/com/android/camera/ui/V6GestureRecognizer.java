@@ -24,6 +24,7 @@ import com.android.camera.protocol.ModeProtocol.ModeChangeController;
 import com.android.camera.statistic.CameraStat;
 import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.ui.EdgeGestureDetector.EdgeGestureListener;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 
 public class V6GestureRecognizer {
     public static final int GESTURE_EFFECT_CROP_VIEW = 6;
@@ -165,7 +166,7 @@ public class V6GestureRecognizer {
             if (!V6GestureRecognizer.this.couldNotifyGesture(false)) {
                 return false;
             }
-            V6GestureRecognizer.this.mCurrentModule.onSingleTapUp((int) motionEvent.getX(), (int) motionEvent.getY());
+            V6GestureRecognizer.this.mCurrentModule.onSingleTapUp((int) motionEvent.getX(), (int) motionEvent.getY(), false);
             return true;
         }
 
@@ -386,8 +387,8 @@ public class V6GestureRecognizer {
         if (motionEvent.getActionMasked() == 0 || motionEvent.getActionMasked() == 5) {
             this.mScrolled = false;
             this.mScrollDirection = 0;
-            this.mDistanceX = 0.0f;
-            this.mDistanceY = 0.0f;
+            this.mDistanceX = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+            this.mDistanceY = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
         }
         Log.v(TAG, "set to detector");
         if (this.mScaleDetectorEnable) {
@@ -407,38 +408,34 @@ public class V6GestureRecognizer {
             this.mInScaling = false;
             this.mScrolled = false;
             this.mScrollDirection = 0;
-            this.mDistanceX = 0.0f;
-            this.mDistanceY = 0.0f;
+            this.mDistanceX = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
+            this.mDistanceY = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
         }
         return isGestureDetecting;
     }
 
     private boolean checkControlView(MotionEvent motionEvent) {
         MainContentProtocol mainContentProtocol = (MainContentProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(166);
-        if (mainContentProtocol != null) {
-            if (mainContentProtocol.isAutoZoomViewEnabled()) {
-                mainContentProtocol.onViewTouchEvent(R.id.autozoom_overlay, motionEvent);
-            } else {
-                if (mainContentProtocol.isEffectViewVisible()) {
-                    mainContentProtocol.onViewTouchEvent(R.id.v6_effect_crop_view, motionEvent);
-                    if (mainContentProtocol.isEffectViewMoved()) {
-                        if (isGestureDetecting()) {
-                            this.mGesture += 6;
-                        }
-                    } else if (!mainContentProtocol.isEffectViewMoved() && getCurrentGesture() == 6) {
-                        setGesture(0);
+        if (!(mainContentProtocol == null || mainContentProtocol.isAutoZoomViewEnabled())) {
+            if (mainContentProtocol.isEffectViewVisible()) {
+                mainContentProtocol.onViewTouchEvent(R.id.v6_effect_crop_view, motionEvent);
+                if (mainContentProtocol.isEffectViewMoved()) {
+                    if (isGestureDetecting()) {
+                        this.mGesture += 6;
                     }
+                } else if (!mainContentProtocol.isEffectViewMoved() && getCurrentGesture() == 6) {
+                    setGesture(0);
                 }
-                if (mainContentProtocol.isIndicatorVisible(2)) {
-                    boolean isEvAdjusted = mainContentProtocol.isEvAdjusted(false);
-                    mainContentProtocol.onViewTouchEvent(R.id.v6_focus_view, motionEvent);
-                    if (mainContentProtocol.isEvAdjusted(false)) {
-                        if (isGestureDetecting()) {
-                            this.mGesture += 7;
-                        }
-                    } else if (!isEvAdjusted && getCurrentGesture() == 7) {
-                        setGesture(0);
+            }
+            if (mainContentProtocol.isIndicatorVisible(2)) {
+                boolean isEvAdjusted = mainContentProtocol.isEvAdjusted(false);
+                mainContentProtocol.onViewTouchEvent(R.id.v6_focus_view, motionEvent);
+                if (mainContentProtocol.isEvAdjusted(false)) {
+                    if (isGestureDetecting()) {
+                        this.mGesture += 7;
                     }
+                } else if (!isEvAdjusted && getCurrentGesture() == 7) {
+                    setGesture(0);
                 }
             }
         }

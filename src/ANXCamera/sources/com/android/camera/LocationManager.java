@@ -4,6 +4,7 @@ import android.location.Location;
 import android.os.Bundle;
 import com.android.camera.log.Log;
 import com.android.camera.permission.PermissionManager;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.ss.android.ttve.common.TEDefine;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -174,7 +175,7 @@ public class LocationManager {
         }
         if (this.mLocationManager != null) {
             try {
-                this.mLocationManager.requestLocationUpdates("network", 1000, 0.0f, this.mLocationListeners[1]);
+                this.mLocationManager.requestLocationUpdates("network", 1000, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, this.mLocationListeners[1]);
             } catch (Throwable e) {
                 Log.i(TAG, "fail to request location update, ignore", e);
             } catch (IllegalArgumentException e2) {
@@ -185,7 +186,7 @@ public class LocationManager {
                 Log.d(str, stringBuilder.toString());
             }
             try {
-                this.mLocationManager.requestLocationUpdates("gps", 1000, 0.0f, this.mLocationListeners[0]);
+                this.mLocationManager.requestLocationUpdates("gps", 1000, PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, this.mLocationListeners[0]);
                 cancelTimer();
                 this.mTimer = new Timer(true);
                 this.mTimer.schedule(new TimerTask() {

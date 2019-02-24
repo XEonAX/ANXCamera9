@@ -8,6 +8,7 @@ import android.support.annotation.VisibleForTesting;
 import android.text.format.Formatter;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import com.bumptech.glide.util.i;
 
 /* compiled from: MemorySizeCalculator */
@@ -43,31 +44,31 @@ public final class l {
             this.hF = (ActivityManager) context.getSystemService("activity");
             this.hG = new b(context.getResources().getDisplayMetrics());
             if (VERSION.SDK_INT >= 26 && l.a(this.hF)) {
-                this.hI = 0.0f;
+                this.hI = PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO;
             }
         }
 
         public a c(float f) {
-            i.a(f >= 0.0f, "Memory cache screens must be greater than or equal to 0");
+            i.a(f >= PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, "Memory cache screens must be greater than or equal to 0");
             this.hH = f;
             return this;
         }
 
         public a d(float f) {
-            i.a(f >= 0.0f, "Bitmap pool screens must be greater than or equal to 0");
+            i.a(f >= PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO, "Bitmap pool screens must be greater than or equal to 0");
             this.hI = f;
             return this;
         }
 
         public a e(float f) {
-            boolean z = f >= 0.0f && f <= 1.0f;
+            boolean z = f >= PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO && f <= 1.0f;
             i.a(z, "Size multiplier must be between 0 and 1");
             this.hJ = f;
             return this;
         }
 
         public a f(float f) {
-            boolean z = f >= 0.0f && f <= 1.0f;
+            boolean z = f >= PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO && f <= 1.0f;
             i.a(z, "Low memory max size multiplier must be between 0 and 1");
             this.hK = f;
             return this;

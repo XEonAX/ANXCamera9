@@ -14,6 +14,7 @@ import com.android.camera.protocol.ModeProtocol.BaseDelegate;
 import com.android.camera.protocol.ModeProtocol.MakeupProtocol;
 import com.android.camera.protocol.ModeProtocol.MiBeautyProtocol;
 import com.android.camera.ui.ColorImageView;
+import com.android.camera.ui.drawable.PanoramaArrowAnimateDrawable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class MakeupBeautyFragment extends BaseBeautyMakeupFragment {
         arrayList.add(new MakeupItem(R.drawable.icon_eyebrow_dye_n, R.string.edit_eyebrow_dye, CameraBeautyParameterType.EYEBROW_DYE_RATIO));
         arrayList.add(new MakeupItem(R.drawable.icon_pupil_line_n, R.string.edit_pupil_line, CameraBeautyParameterType.PUPIL_LINE_RATIO));
         arrayList.add(new MakeupItem(R.drawable.icon_jelly_lips_n, R.string.edit_jelly_lips, CameraBeautyParameterType.JELLY_LIPS_RATIO));
-        if (1 == currentCameraId && DataRepository.dataItemFeature().ft()) {
+        if (1 == currentCameraId && DataRepository.dataItemFeature().fw()) {
             arrayList.add(new MakeupItem(R.drawable.icon_eye_light, R.string.eye_light, CameraBeautyParameterType.EYE_LIGHT));
         }
         arrayList.add(new MakeupItem(R.drawable.icon_blusher_n, R.string.edit_blusher, CameraBeautyParameterType.BLUSHER_RATIO));
@@ -49,11 +50,11 @@ public class MakeupBeautyFragment extends BaseBeautyMakeupFragment {
     protected void onHeaderClick() {
         if (this.mHeaderImageView != null) {
             this.mHeaderImageView.clearAnimation();
-            this.mHeaderImageView.setRotation(0.0f);
+            this.mHeaderImageView.setRotation(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
             ViewCompat.animate(this.mHeaderImageView).rotation(360.0f).setDuration(500).setListener(new ViewPropertyAnimatorListenerAdapter() {
                 public void onAnimationEnd(View view) {
                     super.onAnimationEnd(view);
-                    MakeupBeautyFragment.this.mHeaderImageView.setRotation(0.0f);
+                    MakeupBeautyFragment.this.mHeaderImageView.setRotation(PanoramaArrowAnimateDrawable.LEFT_ARROW_RATIO);
                 }
             }).start();
         }
