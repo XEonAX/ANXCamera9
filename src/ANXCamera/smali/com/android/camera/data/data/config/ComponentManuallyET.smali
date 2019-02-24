@@ -268,7 +268,7 @@
 
     const v3, 0x7F090474
 
-    const-string v4, "64000000000"
+    const-string v4, "60000000000"
 
     invoke-direct {v2, v5, v5, v3, v4}, Lcom/android/camera/data/data/ComponentDataItem;-><init>(IIILjava/lang/String;)V
 
