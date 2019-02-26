@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Հնարավոր չէ միանալ տեսախցիկին</string>
     <string name="cannot_connect_camera_twice">Դեռ չի միանում տեսախցիկին: Փորձեք վերագործարկել ձեր սարքը:</string>
     <string name="camera_disabled">Տեսախցիկն անջատվել է</string>
-    <string name="camera_label">Տեսախցիկ</string>
+    <string name="camera_label">AnX Տեսախցիկ</string>
     <string name="video_camera_label">Վիդեոխցիկ</string>
     <string name="no_storage">Տեղադրեք SD քարտը՝ նախքան տեսախցիկից օգտվելը</string>
     <string name="not_enough_space">SD քարտը լի է</string>

@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">无法连接到相机，请重新启动相机。</string>
     <string name="cannot_connect_camera_twice">无法连接到相机,请重启您的手机。</string>
     <string name="camera_disabled">由于安全政策的限制，相机已被停用。</string>
-    <string name="camera_label">相机</string>
+    <string name="camera_label">AnX 相机</string>
     <string name="video_camera_label">摄像机</string>
     <string name="no_storage">使用相机前请先插入 SD 卡。</string>
     <string name="not_enough_space">SD卡存储设备空间已满。</string>

@@ -1489,11 +1489,11 @@ public final class Util {
     }
 
     public static Typeface getMFYueYuanTypeface(Context context) {
-        return getTypeface(context, "MFYueYuan-Regular.ttf");
+        return getTypeface(context, "fonts/MFYueYuan-Regular.ttf");
     }
 
     public static Typeface getLanTineGBTypeface(Context context) {
-        return getTypeface(context, "MI+LanTing_GB+Outside+YS_V2.3_20160322.ttf");
+        return getTypeface(context, "fonts/MI+LanTing_GB+Outside+YS_V2.3_20160322.ttf");
     }
 
     public static Typeface getMiuiTimeTypeface(Context context) {

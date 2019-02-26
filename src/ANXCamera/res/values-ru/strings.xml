@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Не удалось подключиться к камере</string>
     <string name="cannot_connect_camera_twice">Не удалось подключиться к камере. Попробуйте перезагрузить устройство.</string>
     <string name="camera_disabled">Камера была отключена из-за политики безопасности</string>
-    <string name="camera_label">Камера</string>
+    <string name="camera_label">AnX Камера</string>
     <string name="video_camera_label">Видеокамера</string>
     <string name="no_storage">Вставьте SD карту перед использованием камеры</string>
     <string name="not_enough_space">SD карта заполнена</string>

@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Tidak dapat terhubung ke kamera</string>
     <string name="cannot_connect_camera_twice">Masih tidak dapat terhubung ke kamera. Coba mulai ulang perangkat.</string>
     <string name="camera_disabled">Kamera telah dinonaktifkan</string>
-    <string name="camera_label">Kamera</string>
+    <string name="camera_label">AnX Kamera</string>
     <string name="video_camera_label">Kamera perekam</string>
     <string name="no_storage">Masukkan kartu SD sebelum pakai kamera</string>
     <string name="not_enough_space">Kartu SD penuh</string>
