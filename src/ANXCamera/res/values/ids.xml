@@ -259,4 +259,5 @@
     <item type="id" name="bottom_popup_eye_light">false</item>
     <item type="id" name="full_screen">false</item>
     <item type="id" name="v9_edge_shutter_view">false</item>
+    <item type="id" name="edit_mode_title">false</item>
 </resources>

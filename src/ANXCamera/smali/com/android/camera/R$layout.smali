@@ -159,6 +159,8 @@
 
 .field public static final v9_smart_camera_control:I = 0x7f040047
 
+.field public static final edit_mode_title:I = 0x7f040048
+
 
 # direct methods
 .method public constructor <init>()V

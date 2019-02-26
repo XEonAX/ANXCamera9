@@ -7402,7 +7402,7 @@
     .locals 1
 
     .line 1432
-    const-string v0, "MI+LanTing_GB+Outside+YS_V2.3_20160322.ttf"
+    const-string v0, "fonts/MI+LanTing_GB+Outside+YS_V2.3_20160322.ttf"
 
     invoke-static {p0, v0}, Lcom/android/camera/Util;->getTypeface(Landroid/content/Context;Ljava/lang/String;)Landroid/graphics/Typeface;
 
@@ -7415,7 +7415,7 @@
     .locals 1
 
     .line 1428
-    const-string v0, "MFYueYuan-Regular.ttf"
+    const-string v0, "fonts/MFYueYuan-Regular.ttf"
 
     invoke-static {p0, v0}, Lcom/android/camera/Util;->getTypeface(Landroid/content/Context;Ljava/lang/String;)Landroid/graphics/Typeface;
 

@@ -587,6 +587,7 @@
     <public type="layout" name="v6_preview_panel" id="0x7f040045" />
     <public type="layout" name="v9_main" id="0x7f040046" />
     <public type="layout" name="v9_smart_camera_control" id="0x7f040047" />
+    <public type="layout" name="edit_mode_title" id="0x7f040048" />
     <public type="anim" name="anim_fade_in" id="0x7f050000" />
     <public type="anim" name="anim_fade_out" id="0x7f050001" />
     <public type="anim" name="anim_screen_slide_fade_in" id="0x7f050002" />

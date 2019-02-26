@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:gravity="center" android:layout_gravity="center_vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <Button android:id="@android:id/button1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@android:string/cancel" android:contentDescription="@android:string/cancel" style="@android:style/TextAppearance.Material.Button" />
+    <FrameLayout android:layout_width="0.0dip" android:layout_height="fill_parent" android:layout_weight="1.0">
+        <TextView android:ellipsize="end" android:gravity="center" android:layout_gravity="center" android:id="@android:id/title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:singleLine="true" style="@android:style/TextAppearance.Material.Widget.ActionMode.Title" />
+    </FrameLayout>
+    <Button android:id="@android:id/button2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@android:string/ok" android:contentDescription="@android:string/ok" style="@android:style/TextAppearance.Material.Button" />
+</LinearLayout>

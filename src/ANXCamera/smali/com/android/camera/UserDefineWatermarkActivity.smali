@@ -421,7 +421,7 @@
     invoke-virtual {v0, v1, v1}, Landroid/app/ActionBar;->setDisplayOptions(II)V
 
     .line 91
-    sget v1, Lmiui/R$layout;->edit_mode_title:I
+    sget v1, Lcom/android/camera/R$layout;->edit_mode_title:I
 
     invoke-virtual {v0, v1}, Landroid/app/ActionBar;->setCustomView(I)V
 

@@ -1085,6 +1085,22 @@ public final class R {
         public static final int video_effect_image_none = 2130837982;
         public static final int video_effect_image_polaroid = 2130837983;
         public static final int waiting_progress = 2130837984;
+        /* added by JADX */
+        public static final int action_mode_title_button_cancel_d_light = 2130837985;
+        /* added by JADX */
+        public static final int action_mode_title_button_cancel_light = 2130837986;
+        /* added by JADX */
+        public static final int action_mode_title_button_cancel_n_light = 2130837987;
+        /* added by JADX */
+        public static final int action_mode_title_button_cancel_p_light = 2130837988;
+        /* added by JADX */
+        public static final int action_mode_title_button_confirm_d_light = 2130837989;
+        /* added by JADX */
+        public static final int action_mode_title_button_confirm_light = 2130837990;
+        /* added by JADX */
+        public static final int action_mode_title_button_confirm_n_light = 2130837991;
+        /* added by JADX */
+        public static final int action_mode_title_button_confirm_p_light = 2130837992;
     }
 
     public static final class id {
@@ -1347,6 +1363,8 @@ public final class R {
         public static final int vertical_view_menu = 2131558588;
         public static final int viewPager = 2131558419;
         public static final int view_privacy_policy = 2131558625;
+        /* added by JADX */
+        public static final int edit_mode_title = 2131558659;
     }
 
     public static final class integer {
@@ -1368,6 +1386,7 @@ public final class R {
         public static final int beauty_level_item = 2130968577;
         public static final int beauty_menu_select_item = 2130968578;
         public static final int bottom_popup_tips_center_live_speed = 2130968579;
+        public static final int edit_mode_title = 2130968648;
         public static final int effect_still_item = 2130968580;
         public static final int eye_light_item = 2130968581;
         public static final int eye_light_popu_tip = 2130968582;
