@@ -7,6 +7,6 @@ vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.camera,com.miui
 persist.vendor.camera.multicam.hwsync=TRUE
 persist.vendor.camera.multicam.fpsmatch=TRUE
 #system property for camera advance feature
-persist.vendor.camera.enableAdvanceFeatures=0x247
+persist.vendor.camera.enableAdvanceFeatures=0x347
 persist.vendor.camera.multicam.framesync=1
 persist.vendor.camera.perfcapture=1
