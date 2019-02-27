@@ -185,7 +185,7 @@ class LogDBHelper {
         return;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:19:0x0063 A:{Splitter: B:9:0x0028, ExcHandler: all (th java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:19:0x0063 A:{ExcHandler: all (th java.lang.Throwable), Splitter: B:9:0x0028} */
     /* JADX WARNING: Failed to process nested try/catch */
     /* JADX WARNING: Missing block: B:16:0x005d, code:
             r13 = e;
