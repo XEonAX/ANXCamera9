@@ -1,6 +1,6 @@
 package com.android.camera.constant;
 
-import com.android.camera.R;
+import com.oneplus.camera.R;
 
 public class EyeLightConstant {
     public static final String ANGEL = "5";

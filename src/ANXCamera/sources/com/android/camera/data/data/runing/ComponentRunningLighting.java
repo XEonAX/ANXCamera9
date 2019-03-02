@@ -1,12 +1,12 @@
 package com.android.camera.data.data.runing;
 
 import com.android.camera.CameraSettings;
-import com.android.camera.R;
 import com.android.camera.constant.LightingConstant;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;
 import com.android.camera.module.loader.camera2.Camera2DataContainer;
+import com.oneplus.camera.R;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -70,7 +70,7 @@ class JdkWithJettyBootPlatform extends Platform {
         this.serverProviderClass = cls2;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:4:0x002e A:{ExcHandler: java.lang.reflect.InvocationTargetException (r6_1 'e' java.lang.Exception), Splitter: B:1:0x0004} */
+    /* JADX WARNING: Removed duplicated region for block: B:4:0x002e A:{Splitter: B:1:0x0004, ExcHandler: java.lang.reflect.InvocationTargetException (r6_1 'e' java.lang.Exception)} */
     /* JADX WARNING: Missing block: B:4:0x002e, code:
             r6 = move-exception;
      */
@@ -87,7 +87,7 @@ class JdkWithJettyBootPlatform extends Platform {
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:3:0x000e A:{ExcHandler: java.lang.IllegalAccessException (r5_1 'e' java.lang.Exception), Splitter: B:0:0x0000} */
+    /* JADX WARNING: Removed duplicated region for block: B:3:0x000e A:{Splitter: B:0:0x0000, ExcHandler: java.lang.IllegalAccessException (r5_1 'e' java.lang.Exception)} */
     /* JADX WARNING: Missing block: B:3:0x000e, code:
             r5 = move-exception;
      */
@@ -102,7 +102,7 @@ class JdkWithJettyBootPlatform extends Platform {
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:11:0x002e A:{ExcHandler: java.lang.reflect.InvocationTargetException (r4_4 'e' java.lang.Exception), Splitter: B:0:0x0000} */
+    /* JADX WARNING: Removed duplicated region for block: B:11:0x002e A:{Splitter: B:0:0x0000, ExcHandler: java.lang.reflect.InvocationTargetException (r4_4 'e' java.lang.Exception)} */
     /* JADX WARNING: Missing block: B:11:0x002e, code:
             r4 = move-exception;
      */
@@ -127,7 +127,7 @@ class JdkWithJettyBootPlatform extends Platform {
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:3:0x0076 A:{ExcHandler: java.lang.ClassNotFoundException (e java.lang.ClassNotFoundException), Splitter: B:0:0x0000} */
+    /* JADX WARNING: Removed duplicated region for block: B:3:0x0076 A:{Splitter: B:0:0x0000, ExcHandler: java.lang.ClassNotFoundException (e java.lang.ClassNotFoundException)} */
     /* JADX WARNING: Missing block: B:5:0x0078, code:
             return null;
      */

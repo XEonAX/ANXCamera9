@@ -5,6 +5,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.hardware.camera2.params.MeteringRectangle;
 import com.android.camera.log.Log;
+import com.oneplus.camera.R;
 
 public abstract class FocusManagerAbstract {
     public static final int FOCUS_FROM_AUTO = 0;

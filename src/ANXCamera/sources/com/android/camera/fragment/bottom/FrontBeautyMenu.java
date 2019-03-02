@@ -9,7 +9,6 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import com.android.camera.CameraAppImpl;
 import com.android.camera.CameraSettings;
-import com.android.camera.R;
 import com.android.camera.constant.ColorConstant;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.global.DataItemGlobal;
@@ -19,6 +18,7 @@ import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.MiBeautyProtocol;
 import com.android.camera.ui.ColorActivateTextView;
 import com.mi.config.b;
+import com.oneplus.camera.R;
 
 public class FrontBeautyMenu extends AbBottomMenu implements OnClickListener {
     private SparseArray mFrontBeautyMenuTabList;

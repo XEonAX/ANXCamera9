@@ -2,7 +2,7 @@ package com.android.camera.constant;
 
 import android.content.res.Resources;
 import com.android.camera.CameraAppImpl;
-import com.android.camera.R;
+import com.oneplus.camera.R;
 
 public interface BeautyConstant {
     public static final String LEVEL_ADVANCED = res.getString(R.string.pref_face_beauty_advanced);

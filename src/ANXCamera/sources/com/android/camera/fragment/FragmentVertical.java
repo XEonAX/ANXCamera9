@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.TextView;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.animation.type.AlphaInOnSubscribe;
 import com.android.camera.animation.type.AlphaOutOnSubscribe;
@@ -13,6 +12,7 @@ import com.android.camera.constant.LightingConstant;
 import com.android.camera.data.DataRepository;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
 import com.android.camera.protocol.ModeProtocol.VerticalProtocol;
+import com.oneplus.camera.R;
 import io.reactivex.Completable;
 import java.util.List;
 

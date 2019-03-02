@@ -11,11 +11,11 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.RelativeLayout.LayoutParams;
 import com.android.camera.ActivityBase;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.log.Log;
 import com.android.camera.statistic.CameraStat;
 import com.android.camera2.CameraHardwareFace;
+import com.oneplus.camera.R;
 
 public class ObjectView extends FrameView {
     private static final int ADJUST_TIME_INTERVAL = 0;

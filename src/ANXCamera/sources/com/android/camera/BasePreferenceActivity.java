@@ -31,6 +31,7 @@ import com.android.camera.storage.PriorityStorageBroadcastReceiver;
 import com.android.camera.storage.Storage;
 import com.android.camera.ui.PreviewListPreference;
 import com.mi.config.b;
+import com.oneplus.camera.R;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;

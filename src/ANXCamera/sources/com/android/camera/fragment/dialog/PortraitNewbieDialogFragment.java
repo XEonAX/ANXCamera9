@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
 import com.android.camera.Camera;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.data.DataRepository;
 import com.android.camera.log.Log;
@@ -22,6 +21,7 @@ import com.android.camera.module.loader.camera2.Camera2OpenManager;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.BackStack;
 import com.android.camera.statistic.ScenarioTrackUtil;
+import com.oneplus.camera.R;
 
 public class PortraitNewbieDialogFragment extends BaseDialogFragment {
     public static final String TAG = "PortraitHint";

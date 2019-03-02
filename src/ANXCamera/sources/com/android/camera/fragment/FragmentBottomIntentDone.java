@@ -5,7 +5,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.view.animation.Animation;
 import android.widget.ImageView;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.animation.FragmentAnimationFactory;
 import com.android.camera.data.DataRepository;
@@ -13,6 +12,7 @@ import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.CameraAction;
 import com.android.camera.protocol.ModeProtocol.HandleBackTrace;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
+import com.oneplus.camera.R;
 
 public class FragmentBottomIntentDone extends BaseFragment implements OnClickListener, HandleBackTrace {
     public static final int FRAGMENT_INFO = 4083;

@@ -7,13 +7,13 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;
 import com.android.camera.data.data.global.DataItemGlobal;
 import com.android.camera.fragment.CommonRecyclerViewHolder;
+import com.oneplus.camera.R;
 
 public class ExpandAdapter extends Adapter<CommonRecyclerViewHolder> implements OnClickListener {
     private ComponentData mComponentData;

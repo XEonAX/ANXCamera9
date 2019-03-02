@@ -15,10 +15,10 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.constant.ColorConstant;
 import com.android.camera.ui.ColorImageView;
+import com.oneplus.camera.R;
 import java.util.List;
 
 public class MakeupSingleCheckAdapter extends Adapter<SingleCheckViewHolder> {

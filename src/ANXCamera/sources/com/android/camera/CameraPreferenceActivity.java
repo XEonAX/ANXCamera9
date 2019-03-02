@@ -15,6 +15,7 @@ import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.ui.PreviewListPreference;
 import com.android.camera2.DetachableClickListener;
 import com.mi.config.b;
+import com.oneplus.camera.R;
 
 public class CameraPreferenceActivity extends BasePreferenceActivity {
     public static final String IS_IMAGE_CAPTURE_INTENT = "IsCaptureIntent";

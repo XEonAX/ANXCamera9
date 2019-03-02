@@ -5,10 +5,10 @@ import android.util.AttributeSet;
 import android.widget.RelativeLayout.LayoutParams;
 import com.android.camera.ActivityBase;
 import com.android.camera.CameraSettings;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.data.DataRepository;
 import com.android.camera.module.ModuleManager;
+import com.oneplus.camera.R;
 
 public class V6PreviewFrame extends V6RelativeLayout {
     public SplitLineDrawer mReferenceGrid;

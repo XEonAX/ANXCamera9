@@ -23,10 +23,10 @@ import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import com.android.camera.Camera;
 import com.android.camera.CameraAppImpl;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.log.Log;
 import com.android.camera.module.ModuleManager;
+import com.oneplus.camera.R;
 import java.util.Locale;
 import miui.view.animation.CubicEaseOutInterpolator;
 

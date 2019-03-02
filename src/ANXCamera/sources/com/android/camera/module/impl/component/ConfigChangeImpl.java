@@ -10,7 +10,6 @@ import com.android.camera.CameraIntentManager;
 import com.android.camera.CameraPreferenceActivity;
 import com.android.camera.CameraSettings;
 import com.android.camera.MutexModeManager;
-import com.android.camera.R;
 import com.android.camera.ThermalDetector;
 import com.android.camera.ToastUtils;
 import com.android.camera.Util;
@@ -58,6 +57,7 @@ import com.android.camera.statistic.CameraStat;
 import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera2.Camera2Proxy;
 import com.android.camera2.CameraCapabilities;
+import com.oneplus.camera.R;
 import java.util.HashMap;
 import java.util.Map;
 

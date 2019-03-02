@@ -85,6 +85,7 @@ import com.android.camera.ui.V6CameraGLSurfaceView;
 import com.android.camera.ui.V6GestureRecognizer;
 import com.android.camera.ui.V9EdgeShutterView;
 import com.mi.config.b;
+import com.oneplus.camera.R;
 import com.ss.android.ugc.effectmanager.effect.model.ComposerHelper;
 import io.reactivex.Completable;
 import io.reactivex.Single;
@@ -742,9 +743,9 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
         Log.d(TAG, "onStop end");
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable), Splitter: B:16:0x0035} */
-    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable), Splitter: B:16:0x0035} */
-    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable), Splitter: B:16:0x0035} */
+    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{Splitter: B:16:0x0035, ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{Splitter: B:16:0x0035, ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable)} */
+    /* JADX WARNING: Removed duplicated region for block: B:18:0x007a A:{Splitter: B:16:0x0035, ExcHandler: java.lang.ClassNotFoundException (r0_16 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:18:0x007a, code:
             r0 = move-exception;
      */
@@ -758,7 +759,7 @@ public class Camera extends ActivityBase implements OnRequestPermissionsResultCa
             LocalBinder localBinder = AlgoConnector.getInstance().getLocalBinder();
             if (!(localBinder == null || localBinder.isIdle())) {
                 try {
-                    Class.forName("miui.process.ProcessManager").getDeclaredMethod("adjBoost", new Class[]{String.class, Integer.TYPE, Long.TYPE, Integer.TYPE}).invoke(null, new Object[]{"com.android.camera", Integer.valueOf(0), Long.valueOf(60000), Integer.valueOf(UserHandle.myUserId())});
+                    Class.forName("miui.process.ProcessManager").getDeclaredMethod("adjBoost", new Class[]{String.class, Integer.TYPE, Long.TYPE, Integer.TYPE}).invoke(null, new Object[]{"com.oneplus.camera", Integer.valueOf(0), Long.valueOf(60000), Integer.valueOf(UserHandle.myUserId())});
                 } catch (Throwable e) {
                 }
             }

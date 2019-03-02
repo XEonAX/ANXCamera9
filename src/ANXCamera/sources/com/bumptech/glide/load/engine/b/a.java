@@ -74,7 +74,7 @@ public final class a implements ExecutorService {
     /* compiled from: GlideExecutor */
     public interface b {
         /* renamed from: if */
-        public static final b f1if = new b() {
+        public static final b f0if = new b() {
             public void a(Throwable th) {
             }
         };

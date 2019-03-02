@@ -5,12 +5,12 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.RelativeLayout;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.fragment.BaseFragment;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.BaseDelegate;
 import com.android.camera.protocol.ModeProtocol.LiveVideoEditor;
+import com.oneplus.camera.R;
 
 public class LiveRecordPreviewFragment extends BaseFragment implements OnClickListener {
     public static final String TAG = "LivePreview";

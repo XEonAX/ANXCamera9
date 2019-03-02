@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.ComponentDataItem;
@@ -20,6 +19,7 @@ import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.CameraAction;
 import com.android.camera.protocol.ModeProtocol.ConfigChanges;
 import com.android.camera.ui.ColorImageView;
+import com.oneplus.camera.R;
 
 public class FragmentLighting extends BaseFragment implements OnClickListener {
     private ComponentRunningLighting mComponentRunningLighting;

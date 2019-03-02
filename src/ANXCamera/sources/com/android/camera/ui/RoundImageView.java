@@ -13,7 +13,7 @@ import android.graphics.Xfermode;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.widget.ImageView;
-import com.android.camera.R;
+import com.oneplus.camera.R;
 
 public class RoundImageView extends ImageView {
     private final PaintFlagsDrawFilter mDrawFilter;

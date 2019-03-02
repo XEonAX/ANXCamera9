@@ -3,6 +3,7 @@ package com.android.camera;
 import com.android.camera.data.DataRepository;
 import com.android.camera.module.ModuleManager;
 import com.mi.config.b;
+import com.oneplus.camera.R;
 import java.util.ArrayList;
 import java.util.List;
 

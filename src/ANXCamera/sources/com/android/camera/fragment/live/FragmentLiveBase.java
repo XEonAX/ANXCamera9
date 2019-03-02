@@ -2,7 +2,6 @@ package com.android.camera.fragment.live;
 
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
-import com.android.camera.R;
 import com.android.camera.animation.FragmentAnimationFactory;
 import com.android.camera.fragment.BaseFragment;
 import com.android.camera.protocol.ModeCoordinatorImpl;
@@ -12,6 +11,7 @@ import com.android.camera.protocol.ModeProtocol.BottomPopupTips;
 import com.android.camera.protocol.ModeProtocol.CameraAction;
 import com.android.camera.protocol.ModeProtocol.HandleBackTrace;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
+import com.oneplus.camera.R;
 import io.reactivex.Completable;
 import java.util.List;
 import miui.view.animation.QuinticEaseInInterpolator;

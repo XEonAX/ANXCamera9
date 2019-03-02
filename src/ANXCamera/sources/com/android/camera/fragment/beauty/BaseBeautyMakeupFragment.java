@@ -17,12 +17,12 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
-import com.android.camera.R;
 import com.android.camera.ToastUtils;
 import com.android.camera.Util;
 import com.android.camera.fragment.DefaultItemAnimator;
 import com.android.camera.fragment.beauty.MakeupSingleCheckAdapter.MakeupItem;
 import com.android.camera.log.Log;
+import com.oneplus.camera.R;
 import java.util.List;
 
 public abstract class BaseBeautyMakeupFragment extends BaseBeautyFragment {

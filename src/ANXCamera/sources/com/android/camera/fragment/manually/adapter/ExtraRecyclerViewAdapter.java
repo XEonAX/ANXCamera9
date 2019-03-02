@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.android.camera.R;
 import com.android.camera.constant.ColorConstant;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;
@@ -15,6 +14,7 @@ import com.android.camera.fragment.manually.ManuallyListener;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.CameraAction;
 import com.android.camera.ui.ColorImageView;
+import com.oneplus.camera.R;
 
 public class ExtraRecyclerViewAdapter extends Adapter<CommonRecyclerViewHolder> implements OnClickListener {
     private ComponentData mComponentData;

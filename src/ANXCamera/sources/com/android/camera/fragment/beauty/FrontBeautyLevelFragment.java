@@ -3,11 +3,11 @@ package com.android.camera.fragment.beauty;
 import android.view.View;
 import android.widget.AdapterView;
 import com.android.camera.CameraSettings;
-import com.android.camera.R;
 import com.android.camera.fragment.beauty.SingleCheckAdapter.LevelItem;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.BottomMenuProtocol;
 import com.mi.config.b;
+import com.oneplus.camera.R;
 import java.util.ArrayList;
 import java.util.List;
 

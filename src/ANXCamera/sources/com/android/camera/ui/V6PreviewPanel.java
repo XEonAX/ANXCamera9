@@ -7,10 +7,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import com.android.camera.ActivityBase;
-import com.android.camera.R;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.PlayVideoProtocol;
 import com.android.camera2.autozoom.AutoZoomView;
+import com.oneplus.camera.R;
 
 public class V6PreviewPanel extends V6RelativeLayout implements OnClickListener {
     public AutoZoomView mAutoZoomView;

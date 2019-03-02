@@ -5,8 +5,8 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint.Align;
 import android.graphics.Paint.Style;
-import com.android.camera.R;
 import com.android.camera.ui.drawable.CameraPaintBase;
+import com.oneplus.camera.R;
 import java.util.Locale;
 
 public class CameraFocusPaintEvText extends CameraPaintBase {

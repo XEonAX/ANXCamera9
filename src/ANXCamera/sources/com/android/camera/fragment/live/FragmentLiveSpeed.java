@@ -15,11 +15,11 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 import com.android.camera.CameraSettings;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.fragment.CommonRecyclerViewHolder;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.LiveConfigChanges;
+import com.oneplus.camera.R;
 import java.util.ArrayList;
 import java.util.List;
 

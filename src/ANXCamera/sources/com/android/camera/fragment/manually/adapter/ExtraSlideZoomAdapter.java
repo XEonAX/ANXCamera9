@@ -14,7 +14,6 @@ import android.text.TextPaint;
 import android.text.style.TextAppearanceSpan;
 import android.util.Spline;
 import com.android.camera.ActivityBase;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.fragment.manually.ManuallyListener;
@@ -23,6 +22,7 @@ import com.android.camera.module.loader.camera2.Camera2DataContainer;
 import com.android.camera.ui.HorizontalSlideView;
 import com.android.camera.ui.HorizontalSlideView.HorizontalDrawAdapter;
 import com.android.camera.ui.HorizontalSlideView.OnPositionSelectListener;
+import com.oneplus.camera.R;
 
 public class ExtraSlideZoomAdapter extends HorizontalDrawAdapter implements OnPositionSelectListener {
     private static final int ENTRY_COUNT_1X_TO_2X = 11;

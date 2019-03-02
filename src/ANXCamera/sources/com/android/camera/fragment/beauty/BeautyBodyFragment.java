@@ -5,7 +5,6 @@ import android.support.v4.view.ViewPropertyAnimatorListenerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
-import com.android.camera.R;
 import com.android.camera.fragment.beauty.BeautyParameters.Type;
 import com.android.camera.fragment.beauty.MakeupSingleCheckAdapter.MakeupItem;
 import com.android.camera.protocol.ModeCoordinatorImpl;
@@ -13,6 +12,7 @@ import com.android.camera.protocol.ModeProtocol.BaseDelegate;
 import com.android.camera.protocol.ModeProtocol.MakeupProtocol;
 import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.ui.ColorImageView;
+import com.oneplus.camera.R;
 import java.util.ArrayList;
 import java.util.List;
 

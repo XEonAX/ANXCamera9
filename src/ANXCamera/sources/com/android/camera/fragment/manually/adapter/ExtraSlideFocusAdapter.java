@@ -7,7 +7,6 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.fragment.manually.ManuallyListener;
@@ -15,6 +14,7 @@ import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.ui.HorizontalSlideView;
 import com.android.camera.ui.HorizontalSlideView.HorizontalDrawAdapter;
 import com.android.camera.ui.HorizontalSlideView.OnItemSelectListener;
+import com.oneplus.camera.R;
 
 public class ExtraSlideFocusAdapter extends HorizontalDrawAdapter implements OnItemSelectListener {
     private static final int ENTRY_GAP = 10;

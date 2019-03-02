@@ -1,5 +1,6 @@
 package com.android.camera;
 
+import com.oneplus.camera.R;
 import java.util.HashMap;
 
 public class JpegEncodingQualityMappings {

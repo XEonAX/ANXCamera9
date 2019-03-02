@@ -10,11 +10,11 @@ import android.os.Message;
 import android.util.AttributeSet;
 import android.view.View;
 import com.android.camera.CameraAppImpl;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.log.Log;
 import com.android.camera.panorama.MorphoPanoramaGP3;
 import com.android.camera.ui.drawable.TriangleIndicatorDrawable;
+import com.oneplus.camera.R;
 import java.util.HashMap;
 import java.util.Objects;
 

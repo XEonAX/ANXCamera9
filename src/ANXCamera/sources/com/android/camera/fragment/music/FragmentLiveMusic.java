@@ -17,10 +17,10 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.fragment.FragmentUtils;
 import com.android.camera.lib.compatibility.util.CompatibilityUtils;
+import com.oneplus.camera.R;
 import java.util.ArrayList;
 import java.util.List;
 

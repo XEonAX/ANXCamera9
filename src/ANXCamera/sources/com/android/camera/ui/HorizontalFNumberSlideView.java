@@ -4,9 +4,9 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import com.android.camera.R;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.CameraAction;
+import com.oneplus.camera.R;
 
 public class HorizontalFNumberSlideView extends HorizontalSlideView {
     private int mLineColorSelected;

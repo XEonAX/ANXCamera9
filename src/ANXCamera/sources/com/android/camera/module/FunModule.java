@@ -16,7 +16,6 @@ import android.view.Surface;
 import com.android.camera.AutoLockManager;
 import com.android.camera.CameraSettings;
 import com.android.camera.CameraSize;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.constant.AutoFocus;
 import com.android.camera.constant.UpdateConstant;
@@ -43,6 +42,7 @@ import com.android.camera.ui.PopupManager;
 import com.android.camera.ui.V6CameraGLSurfaceView;
 import com.android.camera2.CameraCapabilities;
 import com.android.gallery3d.ui.GLCanvasImpl;
+import com.oneplus.camera.R;
 import java.io.FileDescriptor;
 import java.util.ArrayList;
 

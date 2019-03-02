@@ -79,10 +79,10 @@ public class ArcsoftDepthMap {
 
     /* JADX WARNING: Removed duplicated region for block: B:68:0x0255  */
     /* JADX WARNING: Removed duplicated region for block: B:66:0x024b  */
-    /* JADX WARNING: Removed duplicated region for block: B:124:0x02c0 A:{ExcHandler: java.io.IOException (e java.io.IOException), Splitter: B:69:0x0257} */
+    /* JADX WARNING: Removed duplicated region for block: B:124:0x02c0 A:{Splitter: B:69:0x0257, ExcHandler: java.io.IOException (e java.io.IOException)} */
     /* JADX WARNING: Removed duplicated region for block: B:129:0x02ce  */
-    /* JADX WARNING: Removed duplicated region for block: B:123:0x02be A:{ExcHandler: java.io.IOException (e java.io.IOException), Splitter: B:72:0x025b} */
-    /* JADX WARNING: Removed duplicated region for block: B:122:0x02bc A:{PHI: r11 , ExcHandler: java.io.IOException (e java.io.IOException), Splitter: B:92:0x0290} */
+    /* JADX WARNING: Removed duplicated region for block: B:123:0x02be A:{Splitter: B:72:0x025b, ExcHandler: java.io.IOException (e java.io.IOException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:122:0x02bc A:{PHI: r11 , Splitter: B:92:0x0290, ExcHandler: java.io.IOException (e java.io.IOException)} */
     /* JADX WARNING: Removed duplicated region for block: B:66:0x024b  */
     /* JADX WARNING: Removed duplicated region for block: B:68:0x0255  */
     /* JADX WARNING: Missing block: B:125:0x02c1, code:

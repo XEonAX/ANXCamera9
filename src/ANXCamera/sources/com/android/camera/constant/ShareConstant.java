@@ -1,7 +1,7 @@
 package com.android.camera.constant;
 
 import android.provider.MiuiSettings.XSpace;
-import com.android.camera.R;
+import com.oneplus.camera.R;
 
 public class ShareConstant {
     public static final String[] DEFAULT_SHARE_LIST = new String[]{"com.ss.android.ugc.aweme.share.SystemShareActivity", "com.ss.android.ugc.aweme.splash.SplashActivity", XSpace.KEY_WEIXIN_SEND_TO_FRIEND, XSpace.KEY_XSPACE_QQ_SEND_TO_FRIEND, "com.qzonex.module.maxvideo.activity.QzonePublishVideoActivity", XSpace.KEY_WEIBO_SEND};

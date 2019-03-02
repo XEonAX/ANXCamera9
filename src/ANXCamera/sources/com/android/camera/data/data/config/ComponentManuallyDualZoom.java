@@ -1,9 +1,9 @@
 package com.android.camera.data.data.config;
 
-import com.android.camera.R;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;
 import com.android.camera.data.data.runing.DataItemRunning;
+import com.oneplus.camera.R;
 import java.util.List;
 
 public class ComponentManuallyDualZoom extends ComponentData {

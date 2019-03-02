@@ -10,10 +10,10 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.android.camera.R;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.BackStack;
 import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
+import com.oneplus.camera.R;
 import miui.view.animation.CubicEaseInOutInterpolator;
 
 public class FrontRotateNewbieDialogFragment extends BaseDialogFragment {

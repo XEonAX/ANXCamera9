@@ -14,12 +14,12 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.data.DataRepository;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.BackStack;
 import com.android.camera.protocol.ModeProtocol.HandleBackTrace;
+import com.oneplus.camera.R;
 
 public class LensDirtyDetectDialogFragment extends DialogFragment implements OnKeyListener, OnClickListener, HandleBackTrace {
     public static final String TAG = "LensDirtyDetectDialog";

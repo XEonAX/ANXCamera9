@@ -31,7 +31,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.data.DataRepository;
 import com.android.camera.effect.EffectController;
@@ -42,6 +41,7 @@ import com.android.camera.protocol.ModeProtocol.CameraAction;
 import com.android.camera.protocol.ModeProtocol.ConfigChanges;
 import com.android.camera.protocol.ModeProtocol.LiveConfigChanges;
 import com.android.camera.ui.RoundImageView;
+import com.oneplus.camera.R;
 import java.util.List;
 import miui.view.animation.CubicEaseOutInterpolator;
 

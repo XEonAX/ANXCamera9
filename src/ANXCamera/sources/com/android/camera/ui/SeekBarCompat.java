@@ -12,8 +12,8 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
-import com.android.camera.R;
 import com.android.camera.log.Log;
+import com.oneplus.camera.R;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 

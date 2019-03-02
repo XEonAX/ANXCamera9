@@ -4,9 +4,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import com.android.camera.CameraSettings;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.fragment.beauty.SingleCheckAdapter.LevelItem;
+import com.oneplus.camera.R;
 import java.util.ArrayList;
 import java.util.List;
 

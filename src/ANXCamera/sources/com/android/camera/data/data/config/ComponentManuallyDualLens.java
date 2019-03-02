@@ -1,11 +1,11 @@
 package com.android.camera.data.data.config;
 
 import com.android.camera.CameraSettings;
-import com.android.camera.R;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;
 import com.android.camera.data.provider.DataProvider.ProviderEditor;
 import com.mi.config.b;
+import com.oneplus.camera.R;
 import java.util.ArrayList;
 import java.util.List;
 

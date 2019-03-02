@@ -10,7 +10,6 @@ import android.view.ScaleGestureDetector.SimpleOnScaleGestureListener;
 import android.view.ViewConfiguration;
 import com.android.camera.ActivityBase;
 import com.android.camera.Camera;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.data.data.config.SupportedConfigFactory;
 import com.android.camera.effect.EffectController;
@@ -24,6 +23,7 @@ import com.android.camera.protocol.ModeProtocol.ModeChangeController;
 import com.android.camera.statistic.CameraStat;
 import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera.ui.EdgeGestureDetector.EdgeGestureListener;
+import com.oneplus.camera.R;
 
 public class V6GestureRecognizer {
     public static final int GESTURE_EFFECT_CROP_VIEW = 6;

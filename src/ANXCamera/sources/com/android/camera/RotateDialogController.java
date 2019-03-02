@@ -23,6 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.android.camera.ui.Rotatable;
 import com.android.camera.ui.RotateLayout;
+import com.oneplus.camera.R;
 
 public class RotateDialogController implements Rotatable {
     private static final long ANIM_DURATION = 150;

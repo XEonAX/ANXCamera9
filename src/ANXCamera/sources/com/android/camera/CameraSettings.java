@@ -41,6 +41,7 @@ import com.android.camera.preferences.ListPreference;
 import com.android.camera2.CameraCapabilities;
 import com.android.camera2.MiCustomFpsRange;
 import com.mi.config.b;
+import com.oneplus.camera.R;
 import java.io.File;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

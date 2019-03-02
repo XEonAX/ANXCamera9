@@ -23,12 +23,12 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.Interpolator;
 import com.android.camera.CameraSettings;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.runing.ComponentRunningTiltValue;
 import com.android.camera.effect.EffectController;
 import com.mi.config.b;
+import com.oneplus.camera.R;
 import miui.view.animation.CubicEaseOutInterpolator;
 
 public class V6EffectCropView extends View implements V6FunctionUI {

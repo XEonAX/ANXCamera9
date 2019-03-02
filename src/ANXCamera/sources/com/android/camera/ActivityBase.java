@@ -40,6 +40,7 @@ import com.android.camera.ui.V6CameraGLSurfaceView;
 import com.android.camera.ui.V9EdgeShutterView;
 import com.android.camera2.Camera2Proxy;
 import com.mi.config.b;
+import com.oneplus.camera.R;
 import com.ss.android.ttve.common.TEDefine;
 import io.reactivex.Single;
 import io.reactivex.SingleObserver;

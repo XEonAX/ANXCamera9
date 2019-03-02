@@ -2165,32 +2165,32 @@ public final class R {
     }
 
     public static final class styleable {
-        public static final int[] CameraPreference = new int[]{com.android.camera.R.attr.cameraTitle};
+        public static final int[] CameraPreference = new int[]{com.oneplus.camera.R.attr.cameraTitle};
         public static final int CameraPreference_cameraTitle = 0;
-        public static final int[] IconIndicator = new int[]{com.android.camera.R.attr.icons, com.android.camera.R.attr.modes};
+        public static final int[] IconIndicator = new int[]{com.oneplus.camera.R.attr.icons, com.oneplus.camera.R.attr.modes};
         public static final int IconIndicator_icons = 0;
         public static final int IconIndicator_modes = 1;
-        public static final int[] IconListPreference = new int[]{com.android.camera.R.attr.icons, com.android.camera.R.attr.singleIcon, com.android.camera.R.attr.largeIcons, com.android.camera.R.attr.images};
+        public static final int[] IconListPreference = new int[]{com.oneplus.camera.R.attr.icons, com.oneplus.camera.R.attr.singleIcon, com.oneplus.camera.R.attr.largeIcons, com.oneplus.camera.R.attr.images};
         public static final int IconListPreference_icons = 0;
         public static final int IconListPreference_images = 3;
         public static final int IconListPreference_largeIcons = 2;
         public static final int IconListPreference_singleIcon = 1;
-        public static final int[] ListPreference = new int[]{com.android.camera.R.attr.key, com.android.camera.R.attr.defaultValue, com.android.camera.R.attr.entryValues, com.android.camera.R.attr.entries, com.android.camera.R.attr.hasPopup};
+        public static final int[] ListPreference = new int[]{com.oneplus.camera.R.attr.key, com.oneplus.camera.R.attr.defaultValue, com.oneplus.camera.R.attr.entryValues, com.oneplus.camera.R.attr.entries, com.oneplus.camera.R.attr.hasPopup};
         public static final int ListPreference_defaultValue = 1;
         public static final int ListPreference_entries = 3;
         public static final int ListPreference_entryValues = 2;
         public static final int ListPreference_hasPopup = 4;
         public static final int ListPreference_key = 0;
-        public static final int[] PreviewListPreference = new int[]{com.android.camera.R.attr.labelList, com.android.camera.R.attr.showArrow};
+        public static final int[] PreviewListPreference = new int[]{com.oneplus.camera.R.attr.labelList, com.oneplus.camera.R.attr.showArrow};
         public static final int PreviewListPreference_labelList = 0;
         public static final int PreviewListPreference_showArrow = 1;
-        public static final int[] RecyclerView = new int[]{16842948, com.android.camera.R.attr.layoutManager, com.android.camera.R.attr.spanCount, com.android.camera.R.attr.reverseLayout, com.android.camera.R.attr.stackFromEnd};
+        public static final int[] RecyclerView = new int[]{16842948, com.oneplus.camera.R.attr.layoutManager, com.oneplus.camera.R.attr.spanCount, com.oneplus.camera.R.attr.reverseLayout, com.oneplus.camera.R.attr.stackFromEnd};
         public static final int RecyclerView_android_orientation = 0;
         public static final int RecyclerView_layoutManager = 1;
         public static final int RecyclerView_reverseLayout = 3;
         public static final int RecyclerView_spanCount = 2;
         public static final int RecyclerView_stackFromEnd = 4;
-        public static final int[] ToggleSwitch = new int[]{com.android.camera.R.attr.backgroundColor, com.android.camera.R.attr.backgroundStrokeColor, com.android.camera.R.attr.backgroundStrokeWidth, com.android.camera.R.attr.thumbPadding, com.android.camera.R.attr.thumbColor, com.android.camera.R.attr.thumbShadowColor, com.android.camera.R.attr.thumbShadowRadius, com.android.camera.R.attr.textOn, com.android.camera.R.attr.textOnColor, com.android.camera.R.attr.textOff, com.android.camera.R.attr.textOffColor, com.android.camera.R.attr.textOffShadowColor, com.android.camera.R.attr.textSize, com.android.camera.R.attr.textOffShadowRadius, com.android.camera.R.attr.duration, com.android.camera.R.attr.checked};
+        public static final int[] ToggleSwitch = new int[]{com.oneplus.camera.R.attr.backgroundColor, com.oneplus.camera.R.attr.backgroundStrokeColor, com.oneplus.camera.R.attr.backgroundStrokeWidth, com.oneplus.camera.R.attr.thumbPadding, com.oneplus.camera.R.attr.thumbColor, com.oneplus.camera.R.attr.thumbShadowColor, com.oneplus.camera.R.attr.thumbShadowRadius, com.oneplus.camera.R.attr.textOn, com.oneplus.camera.R.attr.textOnColor, com.oneplus.camera.R.attr.textOff, com.oneplus.camera.R.attr.textOffColor, com.oneplus.camera.R.attr.textOffShadowColor, com.oneplus.camera.R.attr.textSize, com.oneplus.camera.R.attr.textOffShadowRadius, com.oneplus.camera.R.attr.duration, com.oneplus.camera.R.attr.checked};
         public static final int ToggleSwitch_backgroundColor = 0;
         public static final int ToggleSwitch_backgroundStrokeColor = 1;
         public static final int ToggleSwitch_backgroundStrokeWidth = 2;

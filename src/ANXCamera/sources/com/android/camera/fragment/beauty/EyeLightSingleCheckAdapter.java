@@ -16,9 +16,9 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.MarginLayoutParams;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.data.DataRepository;
+import com.oneplus.camera.R;
 import java.util.List;
 
 public class EyeLightSingleCheckAdapter extends Adapter<SingleCheckViewHolder> {

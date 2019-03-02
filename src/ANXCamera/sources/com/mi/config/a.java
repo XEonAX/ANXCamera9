@@ -48,7 +48,7 @@ public class a extends DataItemBase implements c {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("feature_");
         stringBuilder.append(b.pE);
-        int identifier = resources.getIdentifier(stringBuilder.toString(), "raw", "com.android.camera");
+        int identifier = resources.getIdentifier(stringBuilder.toString(), "raw", "com.oneplus.camera");
         if (identifier <= 0) {
             Log.e(TAG, "feature list default");
             return;

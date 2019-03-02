@@ -2,7 +2,7 @@
 # Example: Change dpi
 # ro.sf.lcd_density=320
 #Expose aux camera for below packages
-vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.android.camera,com.miui.cit,com.qualcomm.qti.qmmi,com.aeonax.camera
+vendor.camera.aux.packagelist=org.codeaurora.snapcam,com.oneplus.camera,com.miui.cit,com.qualcomm.qti.qmmi,com.aeonax.camera
 #system property for camera
 persist.vendor.camera.multicam.hwsync=TRUE
 persist.vendor.camera.multicam.fpsmatch=TRUE

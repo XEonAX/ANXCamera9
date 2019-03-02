@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import com.android.camera.CameraSettings;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.constant.ColorConstant;
 import com.android.camera.data.DataRepository;
@@ -20,6 +19,7 @@ import com.android.camera.data.data.runing.ComponentRunningTimer;
 import com.android.camera.data.data.runing.DataItemRunning;
 import com.android.camera.fragment.CommonRecyclerViewHolder;
 import com.android.camera.module.ModuleManager;
+import com.oneplus.camera.R;
 
 public class ExtraAdapter extends Adapter<CommonRecyclerViewHolder> {
     private DataItemConfig mDataItemConfig;
@@ -65,8 +65,8 @@ public class ExtraAdapter extends Adapter<CommonRecyclerViewHolder> {
             r1 = r7;
      */
     /* JADX WARNING: Missing block: B:35:0x019a, code:
-            r5 = (android.widget.TextView) r9.getView(com.android.camera.R.id.extra_item_text);
-            r6 = (com.android.camera.ui.ColorImageView) r9.getView(com.android.camera.R.id.extra_item_image);
+            r5 = (android.widget.TextView) r9.getView(com.oneplus.camera.R.id.extra_item_text);
+            r6 = (com.android.camera.ui.ColorImageView) r9.getView(com.oneplus.camera.R.id.extra_item_image);
      */
     /* JADX WARNING: Missing block: B:36:0x01ac, code:
             if (r1 == -1) goto L_0x01b2;
@@ -117,10 +117,10 @@ public class ExtraAdapter extends Adapter<CommonRecyclerViewHolder> {
             if (r4 == false) goto L_0x01fb;
      */
     /* JADX WARNING: Missing block: B:53:0x01ea, code:
-            r10.append(r9.itemView.getResources().getString(com.android.camera.R.string.accessibility_open));
+            r10.append(r9.itemView.getResources().getString(com.oneplus.camera.R.string.accessibility_open));
      */
     /* JADX WARNING: Missing block: B:54:0x01fb, code:
-            r10.append(r9.itemView.getResources().getString(com.android.camera.R.string.accessibility_closed));
+            r10.append(r9.itemView.getResources().getString(com.oneplus.camera.R.string.accessibility_closed));
      */
     /* JADX WARNING: Missing block: B:55:0x020b, code:
             r9.itemView.setContentDescription(r10);

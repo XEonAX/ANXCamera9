@@ -13,10 +13,10 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import com.android.camera.Camera;
-import com.android.camera.R;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.BackStack;
 import com.android.camera.protocol.ModeProtocol.HandleBackTrace;
+import com.oneplus.camera.R;
 
 public class HibernationFragment extends DialogFragment implements OnKeyListener, OnClickListener, HandleBackTrace {
     public static final String TAG = "Hibernation";

@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.os.Handler;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.android.camera.R;
 import com.android.camera.Util;
+import com.oneplus.camera.R;
 
 public class RotateTextToast {
     private static final int TOAST_DURATION = 5000;

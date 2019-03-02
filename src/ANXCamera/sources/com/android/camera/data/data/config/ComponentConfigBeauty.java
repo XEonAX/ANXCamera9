@@ -2,7 +2,6 @@ package com.android.camera.data.data.config;
 
 import android.text.TextUtils;
 import android.util.SparseBooleanArray;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.constant.BeautyConstant;
 import com.android.camera.data.DataRepository;
@@ -10,6 +9,7 @@ import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;
 import com.android.camera.log.Log;
 import com.mi.config.b;
+import com.oneplus.camera.R;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;

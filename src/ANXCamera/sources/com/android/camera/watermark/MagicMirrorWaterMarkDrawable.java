@@ -4,7 +4,7 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.drawable.Drawable;
 import com.android.camera.CameraAppImpl;
-import com.android.camera.R;
+import com.oneplus.camera.R;
 import java.util.List;
 
 public class MagicMirrorWaterMarkDrawable extends BaseWaterMarkDrawable {

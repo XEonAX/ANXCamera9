@@ -105,6 +105,7 @@ import com.android.gallery3d.ui.StringTexture;
 import com.bytedance.frameworks.core.monitor.MonitorCommonConstants;
 import com.mi.config.b;
 import com.mi.config.d;
+import com.oneplus.camera.R;
 import com.ss.android.ttve.BuildConfig;
 import com.ss.android.ttve.common.TEDefine;
 import com.xiaomi.camera.core.PictureInfo;
@@ -143,7 +144,6 @@ import java.util.Objects;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
-import miui.R;
 import miui.hardware.display.DisplayFeatureManager;
 import miui.os.Build;
 import miui.reflect.Field;
@@ -644,9 +644,9 @@ public final class Util {
         return z;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:25:0x005b A:{ExcHandler: java.io.IOException (e java.io.IOException), Splitter: B:8:0x0014} */
+    /* JADX WARNING: Removed duplicated region for block: B:25:0x005b A:{Splitter: B:8:0x0014, ExcHandler: java.io.IOException (e java.io.IOException)} */
     /* JADX WARNING: Removed duplicated region for block: B:29:0x0067 A:{SYNTHETIC, Splitter: B:29:0x0067} */
-    /* JADX WARNING: Removed duplicated region for block: B:21:0x0055 A:{ExcHandler: java.io.IOException (e java.io.IOException), Splitter: B:10:0x001f} */
+    /* JADX WARNING: Removed duplicated region for block: B:21:0x0055 A:{Splitter: B:10:0x001f, ExcHandler: java.io.IOException (e java.io.IOException)} */
     /* JADX WARNING: Removed duplicated region for block: B:35:0x0079 A:{SYNTHETIC, Splitter: B:35:0x0079} */
     /* JADX WARNING: Missing block: B:21:0x0055, code:
             r6 = e;
@@ -766,7 +766,7 @@ public final class Util {
                     broadcastKillService(activity);
                 }
                 final Button button = show.getButton(-3);
-                button.setTextAppearance(R.style.Widget_Button_Dialog);
+                button.setTextAppearance(miui.R.style.Widget_Button_Dialog);
                 button.setEnabled(false);
                 final Activity activity2 = activity;
                 final CountDownTimer start = new CountDownTimer(5000, 1000) {
@@ -2267,11 +2267,11 @@ public final class Util {
 
     /* JADX WARNING: Removed duplicated region for block: B:20:0x0040  */
     /* JADX WARNING: Removed duplicated region for block: B:28:0x007c A:{Catch:{ XmlPullParserException -> 0x0123, IOException -> 0x011a, all -> 0x010c }} */
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0035 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException), Splitter: B:6:0x001c} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0035 A:{Splitter: B:6:0x001c, ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException)} */
     /* JADX WARNING: Removed duplicated region for block: B:20:0x0040  */
     /* JADX WARNING: Removed duplicated region for block: B:28:0x007c A:{Catch:{ XmlPullParserException -> 0x0123, IOException -> 0x011a, all -> 0x010c }} */
-    /* JADX WARNING: Removed duplicated region for block: B:13:0x0032 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException), Splitter: B:8:0x0021} */
-    /* JADX WARNING: Removed duplicated region for block: B:12:0x0030 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException), Splitter: B:10:0x002c} */
+    /* JADX WARNING: Removed duplicated region for block: B:13:0x0032 A:{Splitter: B:8:0x0021, ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:12:0x0030 A:{Splitter: B:10:0x002c, ExcHandler: org.xmlpull.v1.XmlPullParserException (e org.xmlpull.v1.XmlPullParserException)} */
     /* JADX WARNING: Missing block: B:12:0x0030, code:
             r4 = e;
      */
@@ -2665,7 +2665,7 @@ public final class Util {
         return bitmap2;
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:7:0x0028 A:{ExcHandler: java.lang.OutOfMemoryError (r1_2 'e' java.lang.Throwable), Splitter: B:4:0x001f} */
+    /* JADX WARNING: Removed duplicated region for block: B:7:0x0028 A:{Splitter: B:4:0x001f, ExcHandler: java.lang.OutOfMemoryError (r1_2 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:7:0x0028, code:
             r1 = move-exception;
      */

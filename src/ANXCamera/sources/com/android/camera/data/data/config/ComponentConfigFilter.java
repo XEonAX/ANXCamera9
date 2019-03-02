@@ -1,7 +1,6 @@
 package com.android.camera.data.data.config;
 
 import android.util.SparseBooleanArray;
-import com.android.camera.R;
 import com.android.camera.constant.ModeConstant;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;
@@ -9,6 +8,7 @@ import com.android.camera.data.data.runing.DataItemRunning;
 import com.android.camera.data.provider.DataProvider.ProviderEditor;
 import com.android.camera.effect.FilterInfo;
 import com.android.camera.log.Log;
+import com.oneplus.camera.R;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

@@ -1,9 +1,9 @@
 package com.android.camera.effect;
 
-import com.android.camera.R;
 import com.miui.filtersdk.filter.helper.FilterFactory;
 import com.miui.filtersdk.filter.helper.FilterFactory.FilterScene;
 import com.miui.filtersdk.filter.helper.FilterType;
+import com.oneplus.camera.R;
 import java.util.ArrayList;
 import java.util.Collections;
 

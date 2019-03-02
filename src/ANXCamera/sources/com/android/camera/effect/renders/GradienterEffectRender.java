@@ -2,12 +2,12 @@ package com.android.camera.effect.renders;
 
 import android.opengl.GLES20;
 import com.android.camera.CameraAppImpl;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.effect.EffectController;
 import com.android.camera.log.Log;
 import com.android.camera.module.ModuleManager;
 import com.android.gallery3d.ui.GLCanvas;
+import com.oneplus.camera.R;
 
 public class GradienterEffectRender extends PixelEffectRender {
     private static final float FILTER = 0.7f;

@@ -5,10 +5,10 @@ import android.content.SharedPreferences.Editor;
 import android.content.res.XmlResourceParser;
 import com.android.camera.CameraAppImpl;
 import com.android.camera.CameraSettings;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.constant.CameraScene;
 import com.android.camera.log.Log;
+import com.oneplus.camera.R;
 import com.xiaomi.settingsdk.backup.data.DataPackage;
 import com.xiaomi.settingsdk.backup.data.KeyStringSettingItem;
 import com.xiaomi.settingsdk.backup.data.PrefsBackupHelper.PrefEntry;
@@ -121,7 +121,7 @@ public class CameraBackupHelper {
         edit.commit();
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:15:0x0039 A:{ExcHandler: org.xmlpull.v1.XmlPullParserException (r2_7 'e' java.lang.Throwable), Splitter: B:1:0x0013} */
+    /* JADX WARNING: Removed duplicated region for block: B:15:0x0039 A:{Splitter: B:1:0x0013, ExcHandler: org.xmlpull.v1.XmlPullParserException (r2_7 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:15:0x0039, code:
             r2 = move-exception;
      */

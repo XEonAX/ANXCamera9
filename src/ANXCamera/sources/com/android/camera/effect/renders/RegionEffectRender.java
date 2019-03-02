@@ -5,10 +5,10 @@ import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.opengl.GLES20;
 import com.android.camera.CameraAppImpl;
-import com.android.camera.R;
 import com.android.camera.effect.EffectController;
 import com.android.camera.effect.EffectController.EffectRectAttribute;
 import com.android.gallery3d.ui.GLCanvas;
+import com.oneplus.camera.R;
 
 public abstract class RegionEffectRender extends ConvolutionEffectRender {
     private EffectRectAttribute mAttribute;

@@ -43,7 +43,6 @@ import com.android.camera.Exif;
 import com.android.camera.FileCompat;
 import com.android.camera.LocationManager;
 import com.android.camera.PictureSizeManager;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.data.DataRepository;
 import com.android.camera.log.Log;
@@ -53,6 +52,7 @@ import com.android.camera.storage.MediaProviderUtil;
 import com.android.camera.storage.Storage;
 import com.android.camera2.CameraCapabilities;
 import com.mi.config.b;
+import com.oneplus.camera.R;
 import com.xiaomi.camera.core.PictureInfo;
 import java.io.Closeable;
 import java.io.File;
@@ -264,7 +264,7 @@ public class SnapCamera implements OnErrorListener, OnInfoListener {
         }
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:14:0x00e0 A:{ExcHandler: android.hardware.camera2.CameraAccessException (r0_11 'e' java.lang.Throwable), Splitter: B:4:0x0022} */
+    /* JADX WARNING: Removed duplicated region for block: B:14:0x00e0 A:{Splitter: B:4:0x0022, ExcHandler: android.hardware.camera2.CameraAccessException (r0_11 'e' java.lang.Throwable)} */
     /* JADX WARNING: Missing block: B:14:0x00e0, code:
             r0 = move-exception;
      */

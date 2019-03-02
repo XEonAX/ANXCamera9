@@ -2,8 +2,8 @@ package com.android.camera.fragment.live;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import com.android.camera.R;
 import com.android.camera.fragment.sticker.download.DownloadView;
+import com.oneplus.camera.R;
 
 public class LiveDownloadView extends DownloadView {
     public LiveDownloadView(Context context) {

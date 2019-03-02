@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.net.Uri.Builder;
 import android.os.Bundle;
-import com.android.camera.R;
+import com.oneplus.camera.R;
 import com.ss.android.ugc.effectmanager.effect.model.ComposerHelper;
 
 public final class PhotosOemApi {

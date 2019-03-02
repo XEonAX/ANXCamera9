@@ -4,11 +4,11 @@ import android.content.res.Resources;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import com.android.camera.CameraAppImpl;
-import com.android.camera.R;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;
 import com.android.camera.log.Log;
 import com.android.camera2.CameraCapabilities;
+import com.oneplus.camera.R;
 import java.util.List;
 
 public class ComponentConfigUltraPixel extends ComponentData {

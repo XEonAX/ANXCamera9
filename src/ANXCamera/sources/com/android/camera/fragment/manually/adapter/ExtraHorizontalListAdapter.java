@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
-import com.android.camera.R;
 import com.android.camera.constant.ColorConstant;
 import com.android.camera.data.data.ComponentData;
 import com.android.camera.data.data.ComponentDataItem;
@@ -17,6 +16,7 @@ import com.android.camera.ui.ColorActivateTextView;
 import com.android.camera.ui.ColorImageView;
 import com.android.camera.ui.HorizontalListView;
 import com.android.camera.ui.HorizontalListView.OnSingleTapDownListener;
+import com.oneplus.camera.R;
 
 public class ExtraHorizontalListAdapter extends BaseAdapter implements OnItemClickListener, OnSingleTapDownListener {
     private ComponentData mComponentData;

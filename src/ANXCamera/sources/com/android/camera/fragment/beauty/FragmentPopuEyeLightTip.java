@@ -2,10 +2,10 @@ package com.android.camera.fragment.beauty;
 
 import android.view.View;
 import android.view.ViewGroup.MarginLayoutParams;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.fragment.BaseFragment;
 import com.android.camera.protocol.ModeProtocol.ModeCoordinator;
+import com.oneplus.camera.R;
 
 public class FragmentPopuEyeLightTip extends BaseFragment {
     public static final int FRAGMENT_INFO = 4089;

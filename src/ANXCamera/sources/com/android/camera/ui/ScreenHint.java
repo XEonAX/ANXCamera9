@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import com.android.camera.CameraSettings;
 import com.android.camera.LocationManager;
 import com.android.camera.OnScreenHint;
-import com.android.camera.R;
 import com.android.camera.RotateDialogController;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.global.DataItemGlobal;
@@ -13,6 +12,7 @@ import com.android.camera.data.provider.DataProvider.ProviderEditor;
 import com.android.camera.permission.PermissionManager;
 import com.android.camera.storage.Storage;
 import com.mi.config.b;
+import com.oneplus.camera.R;
 
 public class ScreenHint {
     private final Activity mActivity;

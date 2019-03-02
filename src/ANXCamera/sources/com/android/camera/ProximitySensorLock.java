@@ -22,6 +22,7 @@ import com.android.camera.log.Log;
 import com.android.camera.statistic.CameraStat;
 import com.android.camera.statistic.CameraStatUtil;
 import com.mi.config.b;
+import com.oneplus.camera.R;
 
 public class ProximitySensorLock implements SensorEventListener {
     private static final int DELAY_CHECK_TIMEOUT = 300;

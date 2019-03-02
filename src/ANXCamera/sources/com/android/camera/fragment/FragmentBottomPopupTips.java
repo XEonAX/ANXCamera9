@@ -26,7 +26,6 @@ import android.widget.TextView;
 import com.android.camera.ActivityBase;
 import com.android.camera.Camera;
 import com.android.camera.CameraSettings;
-import com.android.camera.R;
 import com.android.camera.Util;
 import com.android.camera.animation.FragmentAnimationFactory;
 import com.android.camera.animation.type.AlphaInOnSubscribe;
@@ -58,6 +57,7 @@ import com.android.camera.statistic.CameraStat;
 import com.android.camera.statistic.CameraStatUtil;
 import com.android.camera2.CameraCapabilities;
 import com.mi.config.b;
+import com.oneplus.camera.R;
 import io.reactivex.Completable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -1128,22 +1128,22 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
             r3 = r2;
      */
     /* JADX WARNING: Missing block: B:36:0x0097, code:
-            r2 = com.android.camera.R.drawable.ic_light;
-            r3 = com.android.camera.R.string.accessibility_lighting_panel_on;
+            r2 = com.oneplus.camera.R.drawable.ic_light;
+            r3 = com.oneplus.camera.R.string.accessibility_lighting_panel_on;
             r4 = 1;
      */
     /* JADX WARNING: Missing block: B:38:0x00aa, code:
             if ("".equals(com.android.camera.CameraSettings.getCurrentLiveSticker()) == false) goto L_0x00b2;
      */
     /* JADX WARNING: Missing block: B:39:0x00ac, code:
-            r2 = com.android.camera.R.drawable.ic_live_sticker_normal;
+            r2 = com.oneplus.camera.R.drawable.ic_live_sticker_normal;
      */
     /* JADX WARNING: Missing block: B:40:0x00af, code:
             r4 = 1;
             r3 = 0;
      */
     /* JADX WARNING: Missing block: B:41:0x00b2, code:
-            r2 = com.android.camera.R.drawable.ic_live_sticker_on;
+            r2 = com.oneplus.camera.R.drawable.ic_live_sticker_on;
      */
     /* JADX WARNING: Missing block: B:42:0x00b6, code:
             r2 = com.android.camera.CameraSettings.isUltraWideConfigOpen(r7.mCurrentMode);
@@ -1152,19 +1152,19 @@ public class FragmentBottomPopupTips extends BaseFragment implements OnClickList
             if (r2 == false) goto L_0x00c2;
      */
     /* JADX WARNING: Missing block: B:44:0x00be, code:
-            r3 = com.android.camera.R.drawable.icon_config_ultra_wide_on;
+            r3 = com.oneplus.camera.R.drawable.icon_config_ultra_wide_on;
      */
     /* JADX WARNING: Missing block: B:45:0x00c2, code:
-            r3 = com.android.camera.R.drawable.icon_config_ultra_wide_off;
+            r3 = com.oneplus.camera.R.drawable.icon_config_ultra_wide_off;
      */
     /* JADX WARNING: Missing block: B:46:0x00c5, code:
             if (r2 == false) goto L_0x00cb;
      */
     /* JADX WARNING: Missing block: B:47:0x00c7, code:
-            r2 = com.android.camera.R.string.accessibility_ultra_wide_on;
+            r2 = com.oneplus.camera.R.string.accessibility_ultra_wide_on;
      */
     /* JADX WARNING: Missing block: B:48:0x00cb, code:
-            r2 = com.android.camera.R.string.accessibility_ultra_wide_off;
+            r2 = com.oneplus.camera.R.string.accessibility_ultra_wide_off;
      */
     /* JADX WARNING: Missing block: B:49:0x00ce, code:
             r4 = 1;

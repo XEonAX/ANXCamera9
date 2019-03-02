@@ -96,7 +96,7 @@ public class PreviewListPreference extends ListPreference {
         TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.PreviewListPreference, 0, 0);
         this.mLabels = obtainStyledAttributes.getTextArray(0);
         this.mShowArrow = obtainStyledAttributes.getBoolean(1, true);
-        this.mExtraPaddingEnd = context.getResources().getDimensionPixelSize(R.dimen.preference_entry_padding_end);
+        this.mExtraPaddingEnd = context.getResources().getDimensionPixelSize(com.oneplus.camera.R.dimen.preference_entry_padding_end);
         obtainStyledAttributes.recycle();
     }
 
@@ -157,8 +157,8 @@ public class PreviewListPreference extends ListPreference {
 
     protected void onBindView(View view) {
         super.onBindView(view);
-        TextView textView = (TextView) view.findViewById(R.id.value_right);
-        ImageView imageView = (ImageView) view.findViewById(R.id.arrow_right);
+        TextView textView = (TextView) view.findViewById(com.oneplus.camera.R.id.value_right);
+        ImageView imageView = (ImageView) view.findViewById(com.oneplus.camera.R.id.arrow_right);
         if (textView != null) {
             CharSequence entry = this.mLabels == null ? getEntry() : getLabel();
             if (TextUtils.isEmpty(entry)) {
