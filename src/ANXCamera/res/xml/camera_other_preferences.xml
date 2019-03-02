@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen android:title="@string/camera_settings_label"
   xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:camera="http://schemas.android.com/apk/res/com.android.camera">
+  xmlns:camera="http://schemas.android.com/apk/res/com.oneplus.camera">
     <PreferenceCategory android:title="@string/pref_camera_settings" android:key="category_device_setting">
         <CheckBoxPreference android:persistent="false" android:title="@string/pref_camera_recordlocation_title" android:key="pref_camera_recordlocation_key" android:defaultValue="@string/pref_camera_recordlocation_default" />
         <CheckBoxPreference android:persistent="false" android:title="@string/pref_camera_sound_title" android:key="pref_camerasound_key" android:defaultValue="true" />

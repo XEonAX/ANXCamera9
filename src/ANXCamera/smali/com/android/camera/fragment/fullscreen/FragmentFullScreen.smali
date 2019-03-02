@@ -1347,7 +1347,7 @@
 
     add-int/lit8 v6, v2, 0x1
 
-    const-string v7, "com.android.camera"
+    const-string v7, "com.oneplus.camera"
 
     const-string v8, "more"
 

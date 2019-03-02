@@ -271,7 +271,7 @@
     <!--These app has permission to access aux camera -->
     <string-array name="camera_aux_package_list">
         <item>org.codeaurora.snapcam</item>
-        <item>com.android.camera</item>
+        <item>com.oneplus.camera</item>
         <item>com.miui.cit</item>
         <item>com.qualcomm.qti.qmmi</item>
         <item>com.android.keyguard</item>
