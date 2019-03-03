@@ -10696,26 +10696,26 @@
 
     sput v0, Lcom/android/camera/Util;->sFullScreenExtraMargin:I
 
-    .line 339
-    invoke-static {p0}, Lcom/android/camera/Util;->checkDeviceHasNavigationBar(Landroid/content/Context;)Z
+    # .line 339
+    # invoke-static {p0}, Lcom/android/camera/Util;->checkDeviceHasNavigationBar(Landroid/content/Context;)Z
 
-    move-result v0
+    # move-result v0
 
-    if-eqz v0, :cond_2
+    # if-eqz v0, :cond_2
 
     .line 340
     invoke-static {p0}, Lcom/android/camera/Util;->getNavigationBarHeight(Landroid/content/Context;)I
 
     move-result v0
 
-    goto :goto_2
+    # goto :goto_2
 
-    :cond_2
-    invoke-static {p0}, Lcom/android/camera/Util;->calcNavigationBarHeight(Landroid/content/Context;)I
+    # :cond_2
+    # invoke-static {p0}, Lcom/android/camera/Util;->calcNavigationBarHeight(Landroid/content/Context;)I
 
-    move-result v0
+    # move-result v0
 
-    :goto_2
+    # :goto_2
     sput v0, Lcom/android/camera/Util;->sNavigationBarHeight:I
 
     .line 341
