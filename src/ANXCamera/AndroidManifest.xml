@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
     android:compileSdkVersion="28" 
     android:compileSdkVersionCodename="9" 
-    android:versionCode="60" 
-    android:versionName="60.ProbableRedBullmastiff" 
+    android:versionCode="61" 
+    android:versionName="61.DownrightMenacingQuoll" 
     package="com.oneplus.camera" 
     platformBuildVersionCode="28" 
     platformBuildVersionName="9">
