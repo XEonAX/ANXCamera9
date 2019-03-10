@@ -351,7 +351,7 @@ public class GroupShot {
         return setBestFace(this.mNative);
     }
 
-    /* JADX WARNING: Removed duplicated region for block: B:3:0x0011 A:{Splitter: B:0:0x0000, ExcHandler: java.lang.NoSuchFieldException (e java.lang.NoSuchFieldException)} */
+    /* JADX WARNING: Removed duplicated region for block: B:3:0x0011 A:{ExcHandler: java.lang.NoSuchFieldException (e java.lang.NoSuchFieldException), Splitter: B:0:0x0000} */
     /* JADX WARNING: Missing block: B:5:0x0013, code:
             return -1;
      */
