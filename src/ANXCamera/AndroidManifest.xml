@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" 
     android:compileSdkVersion="28" 
     android:compileSdkVersionCodename="9" 
-    android:versionCode="62" 
-    android:versionName="62.CrowdedExaltedImpala" 
+    android:versionCode="67" 
+    android:versionName="67.PersonalUntriedGreyhounddog" 
     package="com.android.camera" 
     platformBuildVersionCode="28" 
     platformBuildVersionName="9">
@@ -41,6 +41,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application android:allowBackup="false" 
+        android:debuggable="true"
         android:backupAgent="miui.app.backup.FullBackupAgent" 
         android:hardwareAccelerated="true" 
         android:icon="@mipmap/ic_launcher" 

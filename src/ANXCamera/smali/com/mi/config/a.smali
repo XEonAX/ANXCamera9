@@ -619,19 +619,19 @@
     .locals 2
 
     .line 302
-    invoke-static {}, Lcom/android/camera/Util;->isGlobalVersion()Z
+    # invoke-static {}, Lcom/android/camera/Util;->isGlobalVersion()Z
 
-    move-result v0
+    # move-result v0
 
     const/4 v1, 0x0
 
-    if-eqz v0, :cond_0
+    # if-eqz v0, :cond_0
 
-    .line 303
-    return v1
+    # .line 303
+    # return v1
 
-    .line 305
-    :cond_0
+    # .line 305
+    # :cond_0
     const-string v0, "c_0x00_s_l_s"
 
     invoke-virtual {p0, v0, v1}, Lcom/mi/config/a;->getBoolean(Ljava/lang/String;Z)Z
