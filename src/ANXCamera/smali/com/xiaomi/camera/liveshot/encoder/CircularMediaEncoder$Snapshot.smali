@@ -44,39 +44,30 @@
 .method public constructor <init>(JJJLandroid/media/MediaFormat;)V
     .locals 0
 
-    .line 631
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 632
     iput-wide p1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->head:J
 
-    .line 633
     iput-wide p3, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->tail:J
 
-    .line 634
     iput-wide p5, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->time:J
 
-    .line 635
     iput-object p7, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->format:Landroid/media/MediaFormat;
 
-    .line 636
     new-instance p1, Ljava/util/concurrent/LinkedBlockingQueue;
 
     invoke-direct {p1}, Ljava/util/concurrent/LinkedBlockingQueue;-><init>()V
 
     iput-object p1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->samples:Ljava/util/concurrent/BlockingQueue;
 
-    .line 637
     const-wide/16 p1, -0x1
 
     iput-wide p1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->position:J
 
-    .line 638
     const/4 p1, 0x0
 
     iput-boolean p1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->forceEos:Z
 
-    .line 639
     return-void
 .end method
 
@@ -85,7 +76,6 @@
 .method public clear()V
     .locals 1
 
-    .line 664
     :goto_0
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->samples:Ljava/util/concurrent/BlockingQueue;
 
@@ -95,7 +85,6 @@
 
     if-nez v0, :cond_0
 
-    .line 665
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->samples:Ljava/util/concurrent/BlockingQueue;
 
     invoke-interface {v0}, Ljava/util/concurrent/BlockingQueue;->poll()Ljava/lang/Object;
@@ -104,15 +93,12 @@
 
     check-cast v0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Sample;
 
-    .line 666
     iget-object v0, v0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Sample;->data:Ljava/nio/ByteBuffer;
 
     invoke-virtual {v0}, Ljava/nio/ByteBuffer;->clear()Ljava/nio/Buffer;
 
-    .line 667
     goto :goto_0
 
-    .line 668
     :cond_0
     return-void
 .end method
@@ -120,7 +106,6 @@
 .method public eos()Z
     .locals 4
 
-    .line 671
     iget-boolean v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->forceEos:Z
 
     if-nez v0, :cond_1
@@ -156,17 +141,14 @@
         }
     .end annotation
 
-    .line 642
     invoke-virtual {p0}, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->eos()Z
 
     move-result v0
 
     if-eqz v0, :cond_0
 
-    .line 643
     return-void
 
-    .line 646
     :cond_0
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->samples:Ljava/util/concurrent/BlockingQueue;
 
@@ -176,19 +158,16 @@
 
     invoke-interface {v0, p1}, Ljava/util/concurrent/BlockingQueue;->put(Ljava/lang/Object;)V
 
-    .line 647
     iget-wide p1, p2, Landroid/media/MediaCodec$BufferInfo;->presentationTimeUs:J
 
     iput-wide p1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->position:J
 
-    .line 649
     invoke-virtual {p0}, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->eos()Z
 
     move-result p1
 
     if-eqz p1, :cond_1
 
-    .line 651
     iget-object p1, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->format:Landroid/media/MediaFormat;
 
     const-string p2, "mime"
@@ -207,7 +186,6 @@
 
     aget-object p1, p1, p2
 
-    .line 652
     const-string p2, "Snapshot"
 
     new-instance v0, Ljava/lang/StringBuilder;
@@ -246,10 +224,8 @@
 
     invoke-static {p2, p1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 654
     invoke-virtual {p0}, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->putEos()V
 
-    .line 656
     :cond_1
     return-void
 .end method
@@ -262,18 +238,15 @@
         }
     .end annotation
 
-    .line 659
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->samples:Ljava/util/concurrent/BlockingQueue;
 
     sget-object v1, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Sample;->EOS_SAMPLE_ENTRY:Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Sample;
 
     invoke-interface {v0, v1}, Ljava/util/concurrent/BlockingQueue;->put(Ljava/lang/Object;)V
 
-    .line 660
     const/4 v0, 0x1
 
     iput-boolean v0, p0, Lcom/xiaomi/camera/liveshot/encoder/CircularMediaEncoder$Snapshot;->forceEos:Z
 
-    .line 661
     return-void
 .end method

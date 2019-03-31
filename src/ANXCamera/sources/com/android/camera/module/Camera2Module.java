@@ -714,6 +714,165 @@ public class Camera2Module extends BaseModule implements Listener, CameraAction,
         }
     }
 
+    /* JADX WARNING: Removed duplicated region for block: B:38:0x00f1  */
+    /* JADX WARNING: Removed duplicated region for block: B:50:0x017d  */
+    /* JADX WARNING: Removed duplicated region for block: B:62:0x01af  */
+    /* JADX WARNING: Removed duplicated region for block: B:65:0x01b8  */
+    /* JADX WARNING: Removed duplicated region for block: B:25:0x007c  */
+    /* JADX WARNING: Removed duplicated region for block: B:24:0x0077  */
+    /* JADX WARNING: Removed duplicated region for block: B:29:0x00bd  */
+    /* JADX WARNING: Removed duplicated region for block: B:28:0x00bb  */
+    /* JADX WARNING: Removed duplicated region for block: B:32:0x00cf  */
+    /* JADX WARNING: Removed duplicated region for block: B:38:0x00f1  */
+    /* JADX WARNING: Removed duplicated region for block: B:50:0x017d  */
+    /* JADX WARNING: Removed duplicated region for block: B:62:0x01af  */
+    /* JADX WARNING: Removed duplicated region for block: B:65:0x01b8  */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public ParallelTaskData onCaptureStart(ParallelTaskData parallelTaskData, CameraSize cameraSize) {
+        String str = null;
+        if (isDeparted()) {
+            Log.w(TAG, "onCaptureStart: departed");
+            return null;
+        }
+        List arrayList;
+        String str2;
+        StringBuilder stringBuilder;
+        boolean z;
+        Builder filterId;
+        boolean z2;
+        float f;
+        Object imageSaver;
+        String str3;
+        StringBuilder stringBuilder2;
+        if (CameraSettings.isLiveShotOn()) {
+            startLiveShotAnimation();
+        }
+        if (!this.mQuickShotAnimateEnable || (CameraSettings.isGroupShotOn() && !isParallelSessionEnable())) {
+            onShutter();
+        }
+        if (CameraSettings.isAgeGenderAndMagicMirrorWaterOpen()) {
+            Collection faceWaterMarkInfos = ((MainContentProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(166)).getFaceWaterMarkInfos();
+            if (!(faceWaterMarkInfos == null || faceWaterMarkInfos.isEmpty())) {
+                arrayList = new ArrayList(faceWaterMarkInfos);
+                str2 = TAG;
+                stringBuilder = new StringBuilder();
+                stringBuilder.append("onCaptureStart: ");
+                stringBuilder.append(cameraSize.width);
+                stringBuilder.append("x");
+                stringBuilder.append(cameraSize.height);
+                Log.d(str2, stringBuilder.toString());
+                z = false;
+                filterId = new Builder(this.mPreviewSize.toSizeObject(), cameraSize.toSizeObject(), this.mOutPutSize != null ? cameraSize.toSizeObject() : this.mOutPutSize.toSizeObject()).setHasDualWaterMark(CameraSettings.isDualCameraWaterMarkOpen()).setMirror(isFrontMirror()).setLightingPattern(CameraSettings.getPortraitLightingPattern()).setFilterId(EffectController.getInstance().getEffectForSaving(false));
+                z2 = this.mOrientation;
+                filterId = filterId.setOrientation(true != z2 ? 0 : this.mOrientation).setJpegRotation(this.mJpegRotation);
+                if (CameraSettings.isGradienterOn()) {
+                    z2 = true;
+                    if (this.mShootRotation == -1.0f) {
+                        f = 0.0f;
+                        filterId = filterId.setShootRotation(f).setShootOrientation(this.mShootOrientation).setLocation(this.mLocation);
+                        if (CameraSettings.isTimeWaterMarkOpen()) {
+                            str = Util.getTimeWatermark();
+                        }
+                        parallelTaskData.fillParameter(filterId.setTimeWaterMarkString(str).setFaceWaterMarkList(arrayList).setAgeGenderAndMagicMirrorWater(CameraSettings.isAgeGenderAndMagicMirrorWaterOpen()).setFrontCamera(isFrontCamera()).setBokehFrontCamera(isBokehFrontCamera()).setAlgorithmName(this.mAlgorithmName).setPictureInfo(getPictureInfo()).setSuffix(getSuffix()).setGradienterOn(this.mIsGradienterOn).setTiltShiftMode(getTiltShiftMode()).setSaveGroupshotPrimitive(CameraSettings.isSaveGroushotPrimitiveOn()).setDualWatermarkParam(getDualWaterMarkParam()).setJpegQuality(BaseModule.getJpegQuality(false)).build());
+                        if (!(this.mQuickShotAnimateEnable || this.mEnabledPreviewThumbnail)) {
+                            z = true;
+                        }
+                        parallelTaskData.setNeedThumbnail(z);
+                        parallelTaskData.setCurrentModuleIndex(this.mModuleIndex);
+                        parallelTaskData.setLiveShotTask(z2);
+                        if (!(1 == null || this.mActivity == null)) {
+                            imageSaver = this.mActivity.getImageSaver();
+                            if (imageSaver != null) {
+                                synchronized (this.mCircularMediaRecorderStateLock) {
+                                    if (this.mCircularMediaRecorder != null) {
+                                        parallelTaskData.setLiveShotTask(z);
+                                        this.mCircularMediaRecorder.snapshot(this.mOrientationCompensation, imageSaver, parallelTaskData);
+                                    }
+                                }
+                            }
+                        }
+                        str3 = TAG;
+                        stringBuilder2 = new StringBuilder();
+                        stringBuilder2.append("onCaptureStart: ");
+                        stringBuilder2.append(this.mIsCurrentTaskIsParallel);
+                        Log.d(str3, stringBuilder2.toString());
+                        if (this.mIsCurrentTaskIsParallel) {
+                            beginParallelProcess(parallelTaskData, true);
+                        }
+                        if (CameraSettings.isHandGestureOpen()) {
+                            Log.d(TAG, "send msg: reset hand gesture");
+                            this.mHandler.removeMessages(57);
+                            this.mHandler.sendEmptyMessageDelayed(57, 0);
+                        }
+                        return parallelTaskData;
+                    }
+                }
+                f = this.mShootRotation;
+                filterId = filterId.setShootRotation(f).setShootOrientation(this.mShootOrientation).setLocation(this.mLocation);
+                if (CameraSettings.isTimeWaterMarkOpen()) {
+                }
+                parallelTaskData.fillParameter(filterId.setTimeWaterMarkString(str).setFaceWaterMarkList(arrayList).setAgeGenderAndMagicMirrorWater(CameraSettings.isAgeGenderAndMagicMirrorWaterOpen()).setFrontCamera(isFrontCamera()).setBokehFrontCamera(isBokehFrontCamera()).setAlgorithmName(this.mAlgorithmName).setPictureInfo(getPictureInfo()).setSuffix(getSuffix()).setGradienterOn(this.mIsGradienterOn).setTiltShiftMode(getTiltShiftMode()).setSaveGroupshotPrimitive(CameraSettings.isSaveGroushotPrimitiveOn()).setDualWatermarkParam(getDualWaterMarkParam()).setJpegQuality(BaseModule.getJpegQuality(false)).build());
+                z = true;
+                parallelTaskData.setNeedThumbnail(z);
+                parallelTaskData.setCurrentModuleIndex(this.mModuleIndex);
+                parallelTaskData.setLiveShotTask(z2);
+                imageSaver = this.mActivity.getImageSaver();
+                if (imageSaver != null) {
+                }
+                str3 = TAG;
+                stringBuilder2 = new StringBuilder();
+                stringBuilder2.append("onCaptureStart: ");
+                stringBuilder2.append(this.mIsCurrentTaskIsParallel);
+                Log.d(str3, stringBuilder2.toString());
+                if (this.mIsCurrentTaskIsParallel) {
+                }
+                if (CameraSettings.isHandGestureOpen()) {
+                }
+                return parallelTaskData;
+            }
+        }
+        arrayList = null;
+        str2 = TAG;
+        stringBuilder = new StringBuilder();
+        stringBuilder.append("onCaptureStart: ");
+        stringBuilder.append(cameraSize.width);
+        stringBuilder.append("x");
+        stringBuilder.append(cameraSize.height);
+        Log.d(str2, stringBuilder.toString());
+        if (this.mOutPutSize != null) {
+        }
+        z = false;
+        filterId = new Builder(this.mPreviewSize.toSizeObject(), cameraSize.toSizeObject(), this.mOutPutSize != null ? cameraSize.toSizeObject() : this.mOutPutSize.toSizeObject()).setHasDualWaterMark(CameraSettings.isDualCameraWaterMarkOpen()).setMirror(isFrontMirror()).setLightingPattern(CameraSettings.getPortraitLightingPattern()).setFilterId(EffectController.getInstance().getEffectForSaving(false));
+        z2 = this.mOrientation;
+        if (true != z2) {
+        }
+        filterId = filterId.setOrientation(true != z2 ? 0 : this.mOrientation).setJpegRotation(this.mJpegRotation);
+        if (CameraSettings.isGradienterOn()) {
+        }
+        f = this.mShootRotation;
+        filterId = filterId.setShootRotation(f).setShootOrientation(this.mShootOrientation).setLocation(this.mLocation);
+        if (CameraSettings.isTimeWaterMarkOpen()) {
+        }
+        parallelTaskData.fillParameter(filterId.setTimeWaterMarkString(str).setFaceWaterMarkList(arrayList).setAgeGenderAndMagicMirrorWater(CameraSettings.isAgeGenderAndMagicMirrorWaterOpen()).setFrontCamera(isFrontCamera()).setBokehFrontCamera(isBokehFrontCamera()).setAlgorithmName(this.mAlgorithmName).setPictureInfo(getPictureInfo()).setSuffix(getSuffix()).setGradienterOn(this.mIsGradienterOn).setTiltShiftMode(getTiltShiftMode()).setSaveGroupshotPrimitive(CameraSettings.isSaveGroushotPrimitiveOn()).setDualWatermarkParam(getDualWaterMarkParam()).setJpegQuality(BaseModule.getJpegQuality(false)).build());
+        z = true;
+        parallelTaskData.setNeedThumbnail(z);
+        parallelTaskData.setCurrentModuleIndex(this.mModuleIndex);
+        parallelTaskData.setLiveShotTask(z2);
+        imageSaver = this.mActivity.getImageSaver();
+        if (imageSaver != null) {
+        }
+        str3 = TAG;
+        stringBuilder2 = new StringBuilder();
+        stringBuilder2.append("onCaptureStart: ");
+        stringBuilder2.append(this.mIsCurrentTaskIsParallel);
+        Log.d(str3, stringBuilder2.toString());
+        if (this.mIsCurrentTaskIsParallel) {
+        }
+        if (CameraSettings.isHandGestureOpen()) {
+        }
+        return parallelTaskData;
+    }
+
     static /* synthetic */ int access$1004(Camera2Module camera2Module) {
         int i = camera2Module.mReceivedJpegCallbackNum + 1;
         camera2Module.mReceivedJpegCallbackNum = i;
@@ -2357,115 +2516,6 @@ public class Camera2Module extends BaseModule implements Listener, CameraAction,
             str = this.mMutexModePicker.getAlgorithmName();
         }
         this.mAlgorithmName = str;
-    }
-
-    /* JADX WARNING: Removed duplicated region for block: B:25:0x007c  */
-    /* JADX WARNING: Removed duplicated region for block: B:24:0x0077  */
-    /* JADX WARNING: Removed duplicated region for block: B:29:0x00bd  */
-    /* JADX WARNING: Removed duplicated region for block: B:28:0x00bb  */
-    /* JADX WARNING: Removed duplicated region for block: B:38:0x00f1  */
-    /* JADX WARNING: Removed duplicated region for block: B:46:0x0188  */
-    /* JADX WARNING: Removed duplicated region for block: B:49:0x0191  */
-    /* Code decompiled incorrectly, please refer to instructions dump. */
-    public ParallelTaskData onCaptureStart(ParallelTaskData parallelTaskData, CameraSize cameraSize) {
-        String str = null;
-        if (isDeparted()) {
-            Log.w(TAG, "onCaptureStart: departed");
-            return null;
-        }
-        List arrayList;
-        String str2;
-        StringBuilder stringBuilder;
-        Size toSizeObject;
-        boolean z;
-        Builder jpegRotation;
-        float f;
-        String str3;
-        StringBuilder stringBuilder2;
-        if (CameraSettings.isLiveShotOn()) {
-            startLiveShotAnimation();
-        }
-        if (!this.mQuickShotAnimateEnable || (CameraSettings.isGroupShotOn() && !isParallelSessionEnable())) {
-            onShutter();
-        }
-        if (CameraSettings.isAgeGenderAndMagicMirrorWaterOpen()) {
-            Collection faceWaterMarkInfos = ((MainContentProtocol) ModeCoordinatorImpl.getInstance().getAttachProtocol(166)).getFaceWaterMarkInfos();
-            if (!(faceWaterMarkInfos == null || faceWaterMarkInfos.isEmpty())) {
-                arrayList = new ArrayList(faceWaterMarkInfos);
-                str2 = TAG;
-                stringBuilder = new StringBuilder();
-                stringBuilder.append("onCaptureStart: ");
-                stringBuilder.append(cameraSize.width);
-                stringBuilder.append("x");
-                stringBuilder.append(cameraSize.height);
-                Log.d(str2, stringBuilder.toString());
-                if (this.mOutPutSize != null) {
-                    toSizeObject = cameraSize.toSizeObject();
-                } else {
-                    toSizeObject = this.mOutPutSize.toSizeObject();
-                }
-                z = false;
-                jpegRotation = new Builder(this.mPreviewSize.toSizeObject(), cameraSize.toSizeObject(), toSizeObject).setHasDualWaterMark(CameraSettings.isDualCameraWaterMarkOpen()).setMirror(isFrontMirror()).setLightingPattern(CameraSettings.getPortraitLightingPattern()).setFilterId(EffectController.getInstance().getEffectForSaving(false)).setOrientation(-1 != this.mOrientation ? 0 : this.mOrientation).setJpegRotation(this.mJpegRotation);
-                f = (CameraSettings.isGradienterOn() || this.mShootRotation != -1.0f) ? this.mShootRotation : 0.0f;
-                jpegRotation = jpegRotation.setShootRotation(f).setShootOrientation(this.mShootOrientation).setLocation(this.mLocation);
-                if (CameraSettings.isTimeWaterMarkOpen()) {
-                    str = Util.getTimeWatermark();
-                }
-                parallelTaskData.fillParameter(jpegRotation.setTimeWaterMarkString(str).setFaceWaterMarkList(arrayList).setAgeGenderAndMagicMirrorWater(CameraSettings.isAgeGenderAndMagicMirrorWaterOpen()).setFrontCamera(isFrontCamera()).setBokehFrontCamera(isBokehFrontCamera()).setAlgorithmName(this.mAlgorithmName).setPictureInfo(getPictureInfo()).setSuffix(getSuffix()).setGradienterOn(this.mIsGradienterOn).setTiltShiftMode(getTiltShiftMode()).setSaveGroupshotPrimitive(CameraSettings.isSaveGroushotPrimitiveOn()).setDualWatermarkParam(getDualWaterMarkParam()).setJpegQuality(BaseModule.getJpegQuality(false)).build());
-                if (!(this.mQuickShotAnimateEnable || this.mEnabledPreviewThumbnail)) {
-                    z = true;
-                }
-                parallelTaskData.setNeedThumbnail(z);
-                parallelTaskData.setCurrentModuleIndex(this.mModuleIndex);
-                str3 = TAG;
-                stringBuilder2 = new StringBuilder();
-                stringBuilder2.append("onCaptureStart: ");
-                stringBuilder2.append(this.mIsCurrentTaskIsParallel);
-                Log.d(str3, stringBuilder2.toString());
-                if (this.mIsCurrentTaskIsParallel) {
-                    beginParallelProcess(parallelTaskData, true);
-                }
-                if (CameraSettings.isHandGestureOpen()) {
-                    Log.d(TAG, "send msg: reset hand gesture");
-                    this.mHandler.removeMessages(57);
-                    this.mHandler.sendEmptyMessageDelayed(57, 0);
-                }
-                return parallelTaskData;
-            }
-        }
-        arrayList = null;
-        str2 = TAG;
-        stringBuilder = new StringBuilder();
-        stringBuilder.append("onCaptureStart: ");
-        stringBuilder.append(cameraSize.width);
-        stringBuilder.append("x");
-        stringBuilder.append(cameraSize.height);
-        Log.d(str2, stringBuilder.toString());
-        if (this.mOutPutSize != null) {
-        }
-        z = false;
-        if (-1 != this.mOrientation) {
-        }
-        jpegRotation = new Builder(this.mPreviewSize.toSizeObject(), cameraSize.toSizeObject(), toSizeObject).setHasDualWaterMark(CameraSettings.isDualCameraWaterMarkOpen()).setMirror(isFrontMirror()).setLightingPattern(CameraSettings.getPortraitLightingPattern()).setFilterId(EffectController.getInstance().getEffectForSaving(false)).setOrientation(-1 != this.mOrientation ? 0 : this.mOrientation).setJpegRotation(this.mJpegRotation);
-        if (CameraSettings.isGradienterOn()) {
-        }
-        jpegRotation = jpegRotation.setShootRotation(f).setShootOrientation(this.mShootOrientation).setLocation(this.mLocation);
-        if (CameraSettings.isTimeWaterMarkOpen()) {
-        }
-        parallelTaskData.fillParameter(jpegRotation.setTimeWaterMarkString(str).setFaceWaterMarkList(arrayList).setAgeGenderAndMagicMirrorWater(CameraSettings.isAgeGenderAndMagicMirrorWaterOpen()).setFrontCamera(isFrontCamera()).setBokehFrontCamera(isBokehFrontCamera()).setAlgorithmName(this.mAlgorithmName).setPictureInfo(getPictureInfo()).setSuffix(getSuffix()).setGradienterOn(this.mIsGradienterOn).setTiltShiftMode(getTiltShiftMode()).setSaveGroupshotPrimitive(CameraSettings.isSaveGroushotPrimitiveOn()).setDualWatermarkParam(getDualWaterMarkParam()).setJpegQuality(BaseModule.getJpegQuality(false)).build());
-        z = true;
-        parallelTaskData.setNeedThumbnail(z);
-        parallelTaskData.setCurrentModuleIndex(this.mModuleIndex);
-        str3 = TAG;
-        stringBuilder2 = new StringBuilder();
-        stringBuilder2.append("onCaptureStart: ");
-        stringBuilder2.append(this.mIsCurrentTaskIsParallel);
-        Log.d(str3, stringBuilder2.toString());
-        if (this.mIsCurrentTaskIsParallel) {
-        }
-        if (CameraSettings.isHandGestureOpen()) {
-        }
-        return parallelTaskData;
     }
 
     private void onShutter() {

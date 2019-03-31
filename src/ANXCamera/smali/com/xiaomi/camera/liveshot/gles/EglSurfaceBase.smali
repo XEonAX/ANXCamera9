@@ -21,7 +21,6 @@
 .method static constructor <clinit>()V
     .locals 1
 
-    .line 9
     const-class v0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;
 
     invoke-virtual {v0}, Ljava/lang/Class;->getSimpleName()Ljava/lang/String;
@@ -36,26 +35,20 @@
 .method protected constructor <init>(Lcom/xiaomi/camera/liveshot/gles/EglCore;)V
     .locals 1
 
-    .line 18
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 14
     sget-object v0, Landroid/opengl/EGL14;->EGL_NO_SURFACE:Landroid/opengl/EGLSurface;
 
     iput-object v0, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mEGLSurface:Landroid/opengl/EGLSurface;
 
-    .line 15
     const/4 v0, -0x1
 
     iput v0, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mWidth:I
 
-    .line 16
     iput v0, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mHeight:I
 
-    .line 19
     iput-object p1, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mEglCore:Lcom/xiaomi/camera/liveshot/gles/EglCore;
 
-    .line 20
     return-void
 .end method
 
@@ -64,14 +57,12 @@
 .method public createWindowSurface(Ljava/lang/Object;)V
     .locals 2
 
-    .line 28
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mEGLSurface:Landroid/opengl/EGLSurface;
 
     sget-object v1, Landroid/opengl/EGL14;->EGL_NO_SURFACE:Landroid/opengl/EGLSurface;
 
     if-ne v0, v1, :cond_0
 
-    .line 31
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mEglCore:Lcom/xiaomi/camera/liveshot/gles/EglCore;
 
     invoke-virtual {v0, p1}, Lcom/xiaomi/camera/liveshot/gles/EglCore;->createWindowSurface(Ljava/lang/Object;)Landroid/opengl/EGLSurface;
@@ -80,10 +71,8 @@
 
     iput-object p1, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mEGLSurface:Landroid/opengl/EGLSurface;
 
-    .line 37
     return-void
 
-    .line 29
     :cond_0
     new-instance p1, Ljava/lang/IllegalStateException;
 
@@ -97,12 +86,10 @@
 .method public getHeight()I
     .locals 3
 
-    .line 58
     iget v0, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mHeight:I
 
     if-gez v0, :cond_0
 
-    .line 59
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mEglCore:Lcom/xiaomi/camera/liveshot/gles/EglCore;
 
     iget-object v1, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mEGLSurface:Landroid/opengl/EGLSurface;
@@ -115,7 +102,6 @@
 
     return v0
 
-    .line 61
     :cond_0
     iget v0, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mHeight:I
 
@@ -125,12 +111,10 @@
 .method public getWidth()I
     .locals 3
 
-    .line 47
     iget v0, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mWidth:I
 
     if-gez v0, :cond_0
 
-    .line 48
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mEglCore:Lcom/xiaomi/camera/liveshot/gles/EglCore;
 
     iget-object v1, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mEGLSurface:Landroid/opengl/EGLSurface;
@@ -143,7 +127,6 @@
 
     return v0
 
-    .line 50
     :cond_0
     iget v0, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mWidth:I
 
@@ -153,47 +136,40 @@
 .method public makeCurrent()V
     .locals 2
 
-    .line 78
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mEglCore:Lcom/xiaomi/camera/liveshot/gles/EglCore;
 
     iget-object v1, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mEGLSurface:Landroid/opengl/EGLSurface;
 
     invoke-virtual {v0, v1}, Lcom/xiaomi/camera/liveshot/gles/EglCore;->makeCurrent(Landroid/opengl/EGLSurface;)V
 
-    .line 79
     return-void
 .end method
 
 .method public releaseEglSurface()V
     .locals 2
 
-    .line 69
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mEglCore:Lcom/xiaomi/camera/liveshot/gles/EglCore;
 
     iget-object v1, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mEGLSurface:Landroid/opengl/EGLSurface;
 
     invoke-virtual {v0, v1}, Lcom/xiaomi/camera/liveshot/gles/EglCore;->releaseSurface(Landroid/opengl/EGLSurface;)V
 
-    .line 70
     sget-object v0, Landroid/opengl/EGL14;->EGL_NO_SURFACE:Landroid/opengl/EGLSurface;
 
     iput-object v0, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mEGLSurface:Landroid/opengl/EGLSurface;
 
-    .line 71
     const/4 v0, -0x1
 
     iput v0, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mHeight:I
 
     iput v0, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mWidth:I
 
-    .line 72
     return-void
 .end method
 
 .method public swapBuffers()Z
     .locals 3
 
-    .line 87
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mEglCore:Lcom/xiaomi/camera/liveshot/gles/EglCore;
 
     iget-object v1, p0, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->mEGLSurface:Landroid/opengl/EGLSurface;
@@ -202,17 +178,14 @@
 
     move-result v0
 
-    .line 88
     if-nez v0, :cond_0
 
-    .line 89
     sget-object v1, Lcom/xiaomi/camera/liveshot/gles/EglSurfaceBase;->TAG:Ljava/lang/String;
 
     const-string v2, "WARNING: swapBuffers() failed"
 
     invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 91
     :cond_0
     return v0
 .end method

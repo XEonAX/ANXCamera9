@@ -15,12 +15,12 @@ public class BackgroundTaskScheduler {
     public static abstract class CancellableTask implements Runnable {
         private final AtomicBoolean mCancelled = new AtomicBoolean();
 
-        protected void setCancelled() {
-            this.mCancelled.set(true);
-        }
-
         protected boolean isCancelled() {
             return this.mCancelled.get();
+        }
+
+        protected void setCancelled() {
+            this.mCancelled.set(true);
         }
     }
 
@@ -49,26 +49,20 @@ public class BackgroundTaskScheduler {
         this.mExecutor = executorService;
     }
 
+    public void abortRemainingTasks() {
+        synchronized (this.mTaskList) {
+            for (BackgroundTaskContainer access$100 : this.mTaskList) {
+                access$100.cancel();
+            }
+        }
+    }
+
     public void execute(CancellableTask cancellableTask) {
         synchronized (this.mTaskList) {
             Runnable backgroundTaskContainer = new BackgroundTaskContainer(cancellableTask);
             this.mTaskList.add(backgroundTaskContainer);
             this.mExecutor.execute(backgroundTaskContainer);
         }
-    }
-
-    public Future<?> submit(CancellableTask cancellableTask) {
-        Future<?> submit;
-        synchronized (this.mTaskList) {
-            Runnable backgroundTaskContainer = new BackgroundTaskContainer(cancellableTask);
-            this.mTaskList.add(backgroundTaskContainer);
-            submit = this.mExecutor.submit(backgroundTaskContainer);
-        }
-        return submit;
-    }
-
-    public void shutdown() {
-        this.mExecutor.shutdown();
     }
 
     public int getRemainingTaskCount() {
@@ -79,11 +73,17 @@ public class BackgroundTaskScheduler {
         return size;
     }
 
-    public void abortRemainingTasks() {
+    public void shutdown() {
+        this.mExecutor.shutdown();
+    }
+
+    public Future<?> submit(CancellableTask cancellableTask) {
+        Future<?> submit;
         synchronized (this.mTaskList) {
-            for (BackgroundTaskContainer access$100 : this.mTaskList) {
-                access$100.cancel();
-            }
+            Runnable backgroundTaskContainer = new BackgroundTaskContainer(cancellableTask);
+            this.mTaskList.add(backgroundTaskContainer);
+            submit = this.mExecutor.submit(backgroundTaskContainer);
         }
+        return submit;
     }
 }

@@ -23,18 +23,16 @@ public class EglSurfaceBase {
         throw new IllegalStateException("surface already created");
     }
 
-    public int getWidth() {
-        if (this.mWidth < 0) {
-            return this.mEglCore.querySurface(this.mEGLSurface, 12375);
-        }
-        return this.mWidth;
+    public int getHeight() {
+        return this.mHeight < 0 ? this.mEglCore.querySurface(this.mEGLSurface, 12374) : this.mHeight;
     }
 
-    public int getHeight() {
-        if (this.mHeight < 0) {
-            return this.mEglCore.querySurface(this.mEGLSurface, 12374);
-        }
-        return this.mHeight;
+    public int getWidth() {
+        return this.mWidth < 0 ? this.mEglCore.querySurface(this.mEGLSurface, 12375) : this.mWidth;
+    }
+
+    public void makeCurrent() {
+        this.mEglCore.makeCurrent(this.mEGLSurface);
     }
 
     public void releaseEglSurface() {
@@ -42,10 +40,6 @@ public class EglSurfaceBase {
         this.mEGLSurface = EGL14.EGL_NO_SURFACE;
         this.mHeight = -1;
         this.mWidth = -1;
-    }
-
-    public void makeCurrent() {
-        this.mEglCore.makeCurrent(this.mEGLSurface);
     }
 
     public boolean swapBuffers() {

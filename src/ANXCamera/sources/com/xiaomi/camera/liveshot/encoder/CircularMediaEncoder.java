@@ -58,21 +58,15 @@ public abstract class CircularMediaEncoder extends Callback {
             if (mediaFormat != null) {
                 String string = mediaFormat.getString("mime");
                 if (string != null) {
-                    double integer;
-                    int integer2 = mediaFormat.getInteger("bitrate");
-                    int i = (int) ((((long) integer2) * j) / 8000);
+                    int integer = mediaFormat.getInteger("bitrate");
+                    int i = (int) ((((long) integer) * j) / 8000);
                     this.mDataBuffer = new byte[i];
-                    if (string.contains("video")) {
-                        integer = (double) mediaFormat.getInteger("frame-rate");
-                    } else {
-                        integer = ((double) mediaFormat.getInteger("sample-rate")) / 1024.0d;
-                    }
-                    int i2 = (int) ((((double) i) / ((((double) integer2) / integer) / 8.0d)) + 1.0d);
-                    int i3 = i2 * 2;
-                    this.mPacketFlags = new int[i3];
-                    this.mPacketPtsUs = new long[i3];
-                    this.mPacketStart = new int[i3];
-                    this.mPacketLength = new int[i3];
+                    int integer2 = (int) ((((double) i) / ((((double) integer) / (string.contains("video") ? (double) mediaFormat.getInteger("frame-rate") : ((double) mediaFormat.getInteger("sample-rate")) / 1024.0d)) / 8.0d)) + 1.0d);
+                    int i2 = integer2 * 2;
+                    this.mPacketFlags = new int[i2];
+                    this.mPacketPtsUs = new long[i2];
+                    this.mPacketStart = new int[i2];
+                    this.mPacketLength = new int[i2];
                     String str = TAG;
                     StringBuilder stringBuilder = new StringBuilder();
                     stringBuilder.append("DesiredSpan = ");
@@ -80,120 +74,15 @@ public abstract class CircularMediaEncoder extends Callback {
                     stringBuilder.append(", dataBufferSize = ");
                     stringBuilder.append(i);
                     stringBuilder.append(", metaBufferCount = ");
-                    stringBuilder.append(i3);
-                    stringBuilder.append(", estimatedPacketCount = ");
                     stringBuilder.append(i2);
+                    stringBuilder.append(", estimatedPacketCount = ");
+                    stringBuilder.append(integer2);
                     Log.d(str, stringBuilder.toString());
                     return;
                 }
                 throw new IllegalArgumentException("The desired mimeType is not specified");
             }
             throw new IllegalArgumentException("The desired MediaFormat must not be null");
-        }
-
-        public void clear() {
-            Arrays.fill(this.mDataBuffer, (byte) 0);
-            Arrays.fill(this.mPacketFlags, 0);
-            Arrays.fill(this.mPacketPtsUs, 0);
-            Arrays.fill(this.mPacketStart, 0);
-            Arrays.fill(this.mPacketLength, 0);
-            this.mMetaHead = 0;
-            this.mMetaTail = 0;
-        }
-
-        public long computeTimeSpanUsec() {
-            int length = this.mPacketStart.length;
-            if (this.mMetaHead == this.mMetaTail) {
-                return 0;
-            }
-            return this.mPacketPtsUs[((this.mMetaHead + length) - 1) % length] - this.mPacketPtsUs[this.mMetaTail];
-        }
-
-        public void add(ByteBuffer byteBuffer, int i, long j) {
-            int limit = byteBuffer.limit() - byteBuffer.position();
-            String str = TAG;
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("Add size=");
-            stringBuilder.append(limit);
-            stringBuilder.append(" flags=0x");
-            stringBuilder.append(Integer.toHexString(i));
-            stringBuilder.append(" pts=");
-            stringBuilder.append(j);
-            Log.d(str, stringBuilder.toString());
-            while (!canAdd(limit)) {
-                Log.d(TAG, "Cached buffer removed from tail");
-                removeTail();
-            }
-            int length = this.mDataBuffer.length;
-            int length2 = this.mPacketStart.length;
-            int headStart = getHeadStart();
-            this.mPacketFlags[this.mMetaHead] = i;
-            this.mPacketPtsUs[this.mMetaHead] = j;
-            this.mPacketStart[this.mMetaHead] = headStart;
-            this.mPacketLength[this.mMetaHead] = limit;
-            if (headStart + limit < length) {
-                byteBuffer.get(this.mDataBuffer, headStart, limit);
-            } else {
-                length -= headStart;
-                String str2 = TAG;
-                StringBuilder stringBuilder2 = new StringBuilder();
-                stringBuilder2.append("Split, firstsize=");
-                stringBuilder2.append(length);
-                stringBuilder2.append(" size=");
-                stringBuilder2.append(limit);
-                Log.v(str2, stringBuilder2.toString());
-                byteBuffer.get(this.mDataBuffer, headStart, length);
-                byteBuffer.get(this.mDataBuffer, 0, limit - length);
-            }
-            this.mMetaHead = (this.mMetaHead + 1) % length2;
-        }
-
-        public int getFirstIndex() {
-            int i = this.mMetaTail;
-            if (i == this.mMetaHead) {
-                return -1;
-            }
-            return i;
-        }
-
-        public int getNextIndex(int i) {
-            i = (i + 1) % this.mPacketStart.length;
-            if (i == this.mMetaHead) {
-                return -1;
-            }
-            return i;
-        }
-
-        public ByteBuffer getChunk(int i, BufferInfo bufferInfo) {
-            int length = this.mDataBuffer.length;
-            int i2 = this.mPacketStart[i];
-            int i3 = this.mPacketLength[i];
-            bufferInfo.flags = this.mPacketFlags[i];
-            bufferInfo.offset = i2;
-            bufferInfo.presentationTimeUs = this.mPacketPtsUs[i];
-            bufferInfo.size = i3;
-            if (i2 + i3 <= length) {
-                ByteBuffer allocateDirect = ByteBuffer.allocateDirect(i3);
-                allocateDirect.put(this.mDataBuffer, i2, i3);
-                bufferInfo.offset = 0;
-                return allocateDirect;
-            }
-            ByteBuffer allocateDirect2 = ByteBuffer.allocateDirect(i3);
-            length -= i2;
-            allocateDirect2.put(this.mDataBuffer, this.mPacketStart[i], length);
-            allocateDirect2.put(this.mDataBuffer, 0, i3 - length);
-            bufferInfo.offset = 0;
-            return allocateDirect2;
-        }
-
-        private int getHeadStart() {
-            if (this.mMetaHead == this.mMetaTail) {
-                return 0;
-            }
-            int length = this.mDataBuffer.length;
-            int length2 = this.mPacketStart.length;
-            int i = ((this.mMetaHead + length2) - 1) % length2;
-            return ((this.mPacketStart[i] + this.mPacketLength[i]) + 1) % length;
         }
 
         private boolean canAdd(int i) {
@@ -253,12 +142,111 @@ public abstract class CircularMediaEncoder extends Callback {
             }
         }
 
+        private int getHeadStart() {
+            if (this.mMetaHead == this.mMetaTail) {
+                return 0;
+            }
+            int length = this.mDataBuffer.length;
+            int length2 = this.mPacketStart.length;
+            int i = ((this.mMetaHead + length2) - 1) % length2;
+            return ((this.mPacketStart[i] + this.mPacketLength[i]) + 1) % length;
+        }
+
         private void removeTail() {
             if (this.mMetaHead != this.mMetaTail) {
                 this.mMetaTail = (this.mMetaTail + 1) % this.mPacketStart.length;
                 return;
             }
             throw new RuntimeException("Can't removeTail() in empty buffer");
+        }
+
+        public void add(ByteBuffer byteBuffer, int i, long j) {
+            int limit = byteBuffer.limit() - byteBuffer.position();
+            String str = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Add size=");
+            stringBuilder.append(limit);
+            stringBuilder.append(" flags=0x");
+            stringBuilder.append(Integer.toHexString(i));
+            stringBuilder.append(" pts=");
+            stringBuilder.append(j);
+            Log.d(str, stringBuilder.toString());
+            while (!canAdd(limit)) {
+                Log.d(TAG, "Cached buffer removed from tail");
+                removeTail();
+            }
+            int length = this.mDataBuffer.length;
+            int length2 = this.mPacketStart.length;
+            int headStart = getHeadStart();
+            this.mPacketFlags[this.mMetaHead] = i;
+            this.mPacketPtsUs[this.mMetaHead] = j;
+            this.mPacketStart[this.mMetaHead] = headStart;
+            this.mPacketLength[this.mMetaHead] = limit;
+            if (headStart + limit < length) {
+                byteBuffer.get(this.mDataBuffer, headStart, limit);
+            } else {
+                length -= headStart;
+                String str2 = TAG;
+                StringBuilder stringBuilder2 = new StringBuilder();
+                stringBuilder2.append("Split, firstsize=");
+                stringBuilder2.append(length);
+                stringBuilder2.append(" size=");
+                stringBuilder2.append(limit);
+                Log.v(str2, stringBuilder2.toString());
+                byteBuffer.get(this.mDataBuffer, headStart, length);
+                byteBuffer.get(this.mDataBuffer, 0, limit - length);
+            }
+            this.mMetaHead = (this.mMetaHead + 1) % length2;
+        }
+
+        public void clear() {
+            Arrays.fill(this.mDataBuffer, (byte) 0);
+            Arrays.fill(this.mPacketFlags, 0);
+            Arrays.fill(this.mPacketPtsUs, 0);
+            Arrays.fill(this.mPacketStart, 0);
+            Arrays.fill(this.mPacketLength, 0);
+            this.mMetaHead = 0;
+            this.mMetaTail = 0;
+        }
+
+        public long computeTimeSpanUsec() {
+            int length = this.mPacketStart.length;
+            if (this.mMetaHead == this.mMetaTail) {
+                return 0;
+            }
+            return this.mPacketPtsUs[((this.mMetaHead + length) - 1) % length] - this.mPacketPtsUs[this.mMetaTail];
+        }
+
+        public ByteBuffer getChunk(int i, BufferInfo bufferInfo) {
+            int length = this.mDataBuffer.length;
+            int i2 = this.mPacketStart[i];
+            int i3 = this.mPacketLength[i];
+            bufferInfo.flags = this.mPacketFlags[i];
+            bufferInfo.offset = i2;
+            bufferInfo.presentationTimeUs = this.mPacketPtsUs[i];
+            bufferInfo.size = i3;
+            if (i2 + i3 <= length) {
+                ByteBuffer allocateDirect = ByteBuffer.allocateDirect(i3);
+                allocateDirect.put(this.mDataBuffer, i2, i3);
+                bufferInfo.offset = 0;
+                return allocateDirect;
+            }
+            ByteBuffer allocateDirect2 = ByteBuffer.allocateDirect(i3);
+            length -= i2;
+            allocateDirect2.put(this.mDataBuffer, this.mPacketStart[i], length);
+            allocateDirect2.put(this.mDataBuffer, 0, i3 - length);
+            bufferInfo.offset = 0;
+            return allocateDirect2;
+        }
+
+        public int getFirstIndex() {
+            int i = this.mMetaTail;
+            return i == this.mMetaHead ? -1 : i;
+        }
+
+        public int getNextIndex(int i) {
+            i = (i + 1) % this.mPacketStart.length;
+            return i == this.mMetaHead ? -1 : i;
         }
     }
 
@@ -309,15 +297,15 @@ public abstract class CircularMediaEncoder extends Callback {
             EOS_SAMPLE_ENTRY = create(ByteBuffer.allocate(0), bufferInfo);
         }
 
-        public static Sample create(ByteBuffer byteBuffer, BufferInfo bufferInfo) {
-            return new Sample(byteBuffer, bufferInfo);
-        }
-
         private Sample(ByteBuffer byteBuffer, BufferInfo bufferInfo) {
             this.data = byteBuffer;
             BufferInfo bufferInfo2 = new BufferInfo();
             bufferInfo2.set(bufferInfo.offset, bufferInfo.size, bufferInfo.presentationTimeUs, bufferInfo.flags);
             this.info = bufferInfo2;
+        }
+
+        public static Sample create(ByteBuffer byteBuffer, BufferInfo bufferInfo) {
+            return new Sample(byteBuffer, bufferInfo);
         }
     }
 
@@ -336,6 +324,16 @@ public abstract class CircularMediaEncoder extends Callback {
             this.tail = j2;
             this.time = j3;
             this.format = mediaFormat;
+        }
+
+        public void clear() {
+            while (!this.samples.isEmpty()) {
+                ((Sample) this.samples.poll()).data.clear();
+            }
+        }
+
+        public boolean eos() {
+            return this.forceEos || this.position >= this.tail;
         }
 
         public void put(ByteBuffer byteBuffer, BufferInfo bufferInfo) throws InterruptedException {
@@ -361,16 +359,6 @@ public abstract class CircularMediaEncoder extends Callback {
         public void putEos() throws InterruptedException {
             this.samples.put(Sample.EOS_SAMPLE_ENTRY);
             this.forceEos = true;
-        }
-
-        public void clear() {
-            while (!this.samples.isEmpty()) {
-                ((Sample) this.samples.poll()).data.clear();
-            }
-        }
-
-        public boolean eos() {
-            return this.forceEos || this.position >= this.tail;
         }
     }
 
@@ -404,76 +392,6 @@ public abstract class CircularMediaEncoder extends Callback {
         }
     }
 
-    public Snapshot snapshot() {
-        if (this.mIsBuffering) {
-            long j = this.mCurrentPresentationTimeUs + this.mPostCaptureDurationUs;
-            long max = Math.max(0, j - this.mCaptureDurationUs);
-            String str = TAG;
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("Snapshot[");
-            stringBuilder.append(max);
-            stringBuilder.append(", ");
-            stringBuilder.append(this.mCurrentPresentationTimeUs);
-            stringBuilder.append(", ");
-            stringBuilder.append(j);
-            stringBuilder.append("]");
-            Log.d(str, stringBuilder.toString());
-            Snapshot snapshot = new Snapshot(max, j, this.mCurrentPresentationTimeUs, this.mMediaCodec.getOutputFormat());
-            synchronized (this.mSnapshots) {
-                this.mSnapshots.add(snapshot);
-            }
-            return snapshot;
-        }
-        throw new IllegalStateException("MediaCodec has not been started yet");
-    }
-
-    public void start() {
-        Log.d(TAG, "start");
-        this.mHandlerHelper.sendMessageAndAwaitResponse(this.mEventHandler.obtainMessage(0));
-    }
-
-    protected void doStart() {
-        this.mOutputFormatChanged = false;
-        if (this.mMediaCodec != null) {
-            this.mMediaCodec.start();
-        }
-    }
-
-    public void stop() {
-        int i;
-        Log.d(TAG, "stop");
-        synchronized (this) {
-            i = 10;
-            while (!this.mOutputFormatChanged && i > 0) {
-                i--;
-                Log.d(TAG, "waiting for MediaCodec getting stable before stop: E");
-                try {
-                    wait(200);
-                } catch (InterruptedException e) {
-                }
-                Log.d(TAG, "waiting for MediaCodec getting stable before stop: X");
-            }
-        }
-        if (i == 0) {
-            Log.d(TAG, "waiting for MediaCodec getting stable before stop has timed out");
-        }
-        this.mHandlerHelper.sendMessageAndAwaitResponse(this.mEventHandler.obtainMessage(1));
-    }
-
-    protected void doStop() {
-        if (this.mMediaCodec != null) {
-            this.mMediaCodec.flush();
-            this.mMediaCodec.stop();
-            this.mMediaCodec.reset();
-        }
-    }
-
-    public void release() {
-        Log.d(TAG, "release");
-        this.mHandlerHelper.sendMessageAndAwaitResponse(this.mEventHandler.obtainMessage(2));
-        this.mHandlerHelper.release();
-    }
-
     protected void doRelease() {
         if (this.mMediaCodec != null) {
             this.mMediaCodec.release();
@@ -490,6 +408,33 @@ public abstract class CircularMediaEncoder extends Callback {
                 Log.d(str, stringBuilder.toString());
             }
         }
+    }
+
+    protected void doStart() {
+        this.mOutputFormatChanged = false;
+        if (this.mMediaCodec != null) {
+            this.mMediaCodec.start();
+        }
+    }
+
+    protected void doStop() {
+        if (this.mMediaCodec != null) {
+            this.mMediaCodec.flush();
+            this.mMediaCodec.stop();
+            this.mMediaCodec.reset();
+        }
+    }
+
+    protected long getNextPresentationTimeUs(long j) {
+        return j;
+    }
+
+    public void onError(MediaCodec mediaCodec, CodecException codecException) {
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("MediaCodec Exception occurred: ");
+        stringBuilder.append(codecException);
+        Log.e(str, stringBuilder.toString());
     }
 
     public void onInputBufferAvailable(MediaCodec mediaCodec, int i) {
@@ -612,14 +557,6 @@ public abstract class CircularMediaEncoder extends Callback {
         mediaCodec.releaseOutputBuffer(i, false);
     }
 
-    public void onError(MediaCodec mediaCodec, CodecException codecException) {
-        String str = TAG;
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("MediaCodec Exception occurred: ");
-        stringBuilder.append(codecException);
-        Log.e(str, stringBuilder.toString());
-    }
-
     public void onOutputFormatChanged(MediaCodec mediaCodec, MediaFormat mediaFormat) {
         String str = TAG;
         StringBuilder stringBuilder = new StringBuilder();
@@ -632,7 +569,58 @@ public abstract class CircularMediaEncoder extends Callback {
         }
     }
 
-    protected long getNextPresentationTimeUs(long j) {
-        return j;
+    public void release() {
+        Log.d(TAG, "release");
+        this.mHandlerHelper.sendMessageAndAwaitResponse(this.mEventHandler.obtainMessage(2));
+        this.mHandlerHelper.release();
+    }
+
+    public Snapshot snapshot() {
+        if (this.mIsBuffering) {
+            long j = this.mCurrentPresentationTimeUs + this.mPostCaptureDurationUs;
+            long max = Math.max(0, j - this.mCaptureDurationUs);
+            String str = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Snapshot[");
+            stringBuilder.append(max);
+            stringBuilder.append(", ");
+            stringBuilder.append(this.mCurrentPresentationTimeUs);
+            stringBuilder.append(", ");
+            stringBuilder.append(j);
+            stringBuilder.append("]");
+            Log.d(str, stringBuilder.toString());
+            Snapshot snapshot = new Snapshot(max, j, this.mCurrentPresentationTimeUs, this.mMediaCodec.getOutputFormat());
+            synchronized (this.mSnapshots) {
+                this.mSnapshots.add(snapshot);
+            }
+            return snapshot;
+        }
+        throw new IllegalStateException("MediaCodec has not been started yet");
+    }
+
+    public void start() {
+        Log.d(TAG, "start");
+        this.mHandlerHelper.sendMessageAndAwaitResponse(this.mEventHandler.obtainMessage(0));
+    }
+
+    public void stop() {
+        int i;
+        Log.d(TAG, "stop");
+        synchronized (this) {
+            i = 10;
+            while (!this.mOutputFormatChanged && i > 0) {
+                i--;
+                Log.d(TAG, "waiting for MediaCodec getting stable before stop: E");
+                try {
+                    wait(200);
+                } catch (InterruptedException e) {
+                }
+                Log.d(TAG, "waiting for MediaCodec getting stable before stop: X");
+            }
+        }
+        if (i == 0) {
+            Log.d(TAG, "waiting for MediaCodec getting stable before stop has timed out");
+        }
+        this.mHandlerHelper.sendMessageAndAwaitResponse(this.mEventHandler.obtainMessage(1));
     }
 }

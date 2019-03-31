@@ -21,29 +21,24 @@
 .method public constructor <init>(Ljava/lang/String;)V
     .locals 2
 
-    .line 19
     invoke-direct {p0}, Ljava/lang/Object;-><init>()V
 
-    .line 13
     new-instance v0, Ljava/lang/Object;
 
     invoke-direct {v0}, Ljava/lang/Object;-><init>()V
 
     iput-object v0, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->mLock:Ljava/lang/Object;
 
-    .line 14
     const/4 v0, 0x0
 
     iput-boolean v0, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->mReady:Z
 
-    .line 20
     invoke-static {}, Ljava/util/concurrent/Executors;->newSingleThreadExecutor()Ljava/util/concurrent/ExecutorService;
 
     move-result-object v0
 
     iput-object v0, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->mExecutor:Ljava/util/concurrent/ExecutorService;
 
-    .line 21
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->mExecutor:Ljava/util/concurrent/ExecutorService;
 
     new-instance v1, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker$1;
@@ -52,14 +47,12 @@
 
     invoke-interface {v0, v1}, Ljava/util/concurrent/ExecutorService;->execute(Ljava/lang/Runnable;)V
 
-    .line 43
     return-void
 .end method
 
 .method static synthetic access$002(Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;Landroid/os/Looper;)Landroid/os/Looper;
     .locals 0
 
-    .line 10
     iput-object p1, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->mLooper:Landroid/os/Looper;
 
     return-object p1
@@ -68,7 +61,6 @@
 .method static synthetic access$100(Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;)Ljava/lang/Object;
     .locals 0
 
-    .line 10
     iget-object p0, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->mLock:Ljava/lang/Object;
 
     return-object p0
@@ -77,7 +69,6 @@
 .method static synthetic access$202(Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;Z)Z
     .locals 0
 
-    .line 10
     iput-boolean p1, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->mReady:Z
 
     return p1
@@ -86,12 +77,10 @@
 .method private waitUntilReady()V
     .locals 2
 
-    .line 58
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->mLock:Ljava/lang/Object;
 
     monitor-enter v0
 
-    .line 59
     :goto_0
     :try_start_0
     iget-boolean v1, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->mReady:Z
@@ -100,7 +89,6 @@
 
     if-nez v1, :cond_0
 
-    .line 61
     :try_start_1
     iget-object v1, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->mLock:Ljava/lang/Object;
 
@@ -111,23 +99,18 @@
 
     goto :goto_1
 
-    .line 62
     :catch_0
     move-exception v1
 
-    .line 64
     :goto_1
     goto :goto_0
 
-    .line 66
     :cond_0
     :try_start_2
     monitor-exit v0
 
-    .line 67
     return-void
 
-    .line 66
     :catchall_0
     move-exception v1
 
@@ -143,10 +126,8 @@
 .method public getLooper()Landroid/os/Looper;
     .locals 1
 
-    .line 46
     invoke-direct {p0}, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->waitUntilReady()V
 
-    .line 47
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->mLooper:Landroid/os/Looper;
 
     return-object v0
@@ -160,19 +141,15 @@
         }
     .end annotation
 
-    .line 51
     invoke-direct {p0}, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->waitUntilReady()V
 
-    .line 52
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->mLooper:Landroid/os/Looper;
 
     invoke-virtual {v0}, Landroid/os/Looper;->quitSafely()V
 
-    .line 53
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->mExecutor:Ljava/util/concurrent/ExecutorService;
 
     invoke-interface {v0}, Ljava/util/concurrent/ExecutorService;->shutdown()V
 
-    .line 55
     return-void
 .end method

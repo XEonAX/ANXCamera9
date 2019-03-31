@@ -8,13 +8,13 @@ public class ParallelTaskData {
     private static final String GROUPSHOT_ORIGINAL_SUFFIX = "_ORG";
     private static final String TAG = ParallelTaskData.class.getSimpleName();
     private int currentModuleIndex = -1;
+    private boolean isLiveShotTask;
     private boolean isNeedThumbnail;
     private int mAlgoType;
     private int mBurstNum;
     private ICustomCaptureResult mCaptureResult;
     private long mCoverFrameTimestamp;
     private ParallelTaskDataParameter mDataParameter;
-    private boolean mDeparted;
     private byte[] mJpegImageData;
     private int mParallelType;
     private byte[] mPortraitDepthData;
@@ -38,147 +38,14 @@ public class ParallelTaskData {
         this.mPortraitRawData = parallelTaskData.mPortraitRawData;
         this.mPortraitDepthData = parallelTaskData.mPortraitDepthData;
         this.mSavePath = parallelTaskData.mSavePath;
-        this.mDeparted = parallelTaskData.mDeparted;
         this.mDataParameter = parallelTaskData.mDataParameter;
         this.isNeedThumbnail = parallelTaskData.isNeedThumbnail;
         this.mVideoRawData = parallelTaskData.mVideoRawData;
         this.mCoverFrameTimestamp = parallelTaskData.mCoverFrameTimestamp;
-    }
-
-    public void setCaptureResult(ICustomCaptureResult iCustomCaptureResult) {
-        this.mCaptureResult = iCustomCaptureResult;
+        this.isLiveShotTask = parallelTaskData.isLiveShotTask;
     }
 
     public void checkThread() {
-    }
-
-    public synchronized void fillMp4Data(byte[] bArr, long j) {
-        checkThread();
-        if (this.mVideoRawData == null) {
-            this.mVideoRawData = bArr;
-            this.mCoverFrameTimestamp = j;
-            String str = TAG;
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("fillMp4Data: video = ");
-            stringBuilder.append(bArr);
-            stringBuilder.append("; timestamp = ");
-            stringBuilder.append(j);
-            Log.d(str, stringBuilder.toString());
-        } else {
-            throw new IllegalStateException("algo fillMp4Data: microvideo already set");
-        }
-    }
-
-    public void refillJpegData(byte[] bArr) {
-        this.mJpegImageData = bArr;
-    }
-
-    public synchronized void fillJpegData(byte[] bArr, int i) {
-        checkThread();
-        switch (i) {
-            case 0:
-                if (this.mJpegImageData == null) {
-                    this.mJpegImageData = bArr;
-                    break;
-                }
-                throw new RuntimeException("algo fillJpegData: jpeg already set");
-            case 1:
-                if (this.mPortraitRawData == null) {
-                    this.mPortraitRawData = bArr;
-                    break;
-                }
-                throw new RuntimeException("algo fillJpegData: raw already set");
-            case 2:
-                if (this.mPortraitDepthData == null) {
-                    this.mPortraitDepthData = new byte[bArr.length];
-                    System.arraycopy(bArr, 0, this.mPortraitDepthData, 0, bArr.length);
-                    break;
-                }
-                throw new RuntimeException("algo fillJpegData: depth already set");
-        }
-        String str = TAG;
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("fillJpegData: jpegData=");
-        stringBuilder.append(bArr);
-        stringBuilder.append("; imageType=");
-        stringBuilder.append(i);
-        Log.d(str, stringBuilder.toString());
-    }
-
-    /* JADX WARNING: Missing block: B:29:0x00a4, code:
-            return r1;
-     */
-    /* Code decompiled incorrectly, please refer to instructions dump. */
-    public synchronized boolean isJpegDataReady() {
-        boolean z = false;
-        if (this.mDeparted) {
-            return false;
-        }
-        switch (this.mParallelType) {
-            case -3:
-            case 2:
-            case 6:
-            case 7:
-                if (!(this.mJpegImageData == null || this.mPortraitRawData == null || this.mPortraitDepthData == null)) {
-                    z = true;
-                    break;
-                }
-            case -2:
-            case -1:
-            case 0:
-            case 5:
-            case 8:
-            case 9:
-                if (this.mJpegImageData != null) {
-                    z = true;
-                    break;
-                }
-                break;
-            case 1:
-                if (!(this.mJpegImageData == null || this.mVideoRawData == null)) {
-                    z = true;
-                    break;
-                }
-        }
-        String str;
-        StringBuilder stringBuilder;
-        if (z) {
-            str = TAG;
-            stringBuilder = new StringBuilder();
-            stringBuilder.append("isJpegDataReady: object = ");
-            stringBuilder.append(this);
-            stringBuilder.append("; mParallelType = ");
-            stringBuilder.append(this.mParallelType);
-            Log.d(str, stringBuilder.toString());
-        } else {
-            str = TAG;
-            stringBuilder = new StringBuilder();
-            stringBuilder.append("isJpegDataReady: object = ");
-            stringBuilder.append(this);
-            stringBuilder.append("; mParallelType = ");
-            stringBuilder.append(this.mParallelType);
-            stringBuilder.append("; mJpegImageData = ");
-            stringBuilder.append(this.mJpegImageData);
-            stringBuilder.append("; mPortraitRawData = ");
-            stringBuilder.append(this.mPortraitRawData);
-            stringBuilder.append("; mPortraitDepthData = ");
-            stringBuilder.append(this.mPortraitDepthData);
-            stringBuilder.append("; mVideoRawData = ");
-            stringBuilder.append(this.mVideoRawData);
-            stringBuilder.append("; result = false");
-            Log.d(str, stringBuilder.toString());
-        }
-    }
-
-    public void fillParameter(ParallelTaskDataParameter parallelTaskDataParameter) {
-        this.mDataParameter = parallelTaskDataParameter;
-    }
-
-    public void setDeparted() {
-        this.mDeparted = true;
-        this.mJpegImageData = null;
-        this.mPortraitRawData = null;
-        this.mPortraitDepthData = null;
     }
 
     public ParallelTaskData cloneTaskData(int i) {
@@ -221,52 +88,57 @@ public class ParallelTaskData {
         return parallelTaskData;
     }
 
-    public synchronized byte[] getMicroVideoData() {
-        if (this.mVideoRawData != null) {
-        } else {
-            throw new IllegalStateException("algo fillMp4Data: microvideo not set yet");
+    public synchronized void fillJpegData(byte[] bArr, int i) {
+        checkThread();
+        switch (i) {
+            case 0:
+                if (this.mJpegImageData == null) {
+                    this.mJpegImageData = bArr;
+                    break;
+                }
+                throw new RuntimeException("algo fillJpegData: jpeg already set");
+            case 1:
+                if (this.mPortraitRawData == null) {
+                    this.mPortraitRawData = bArr;
+                    break;
+                }
+                throw new RuntimeException("algo fillJpegData: raw already set");
+            case 2:
+                if (this.mPortraitDepthData == null) {
+                    this.mPortraitDepthData = new byte[bArr.length];
+                    System.arraycopy(bArr, 0, this.mPortraitDepthData, 0, bArr.length);
+                    break;
+                }
+                throw new RuntimeException("algo fillJpegData: depth already set");
         }
-        return this.mVideoRawData;
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("fillJpegData: jpegData=");
+        stringBuilder.append(bArr);
+        stringBuilder.append("; imageType=");
+        stringBuilder.append(i);
+        Log.d(str, stringBuilder.toString());
     }
 
-    public synchronized long getCoverFrameTimestamp() {
-        return this.mCoverFrameTimestamp;
+    public void fillParameter(ParallelTaskDataParameter parallelTaskDataParameter) {
+        this.mDataParameter = parallelTaskDataParameter;
     }
 
-    public byte[] getJpegImageData() {
-        return this.mJpegImageData;
-    }
-
-    public long getTimestamp() {
-        return this.mTimestamp;
-    }
-
-    public byte[] getPortraitRawData() {
-        return this.mPortraitRawData;
-    }
-
-    public byte[] getPortraitDepthData() {
-        return this.mPortraitDepthData;
-    }
-
-    public ICustomCaptureResult getCaptureResult() {
-        return this.mCaptureResult;
-    }
-
-    public int getParallelType() {
-        return this.mParallelType;
-    }
-
-    public String getSavePath() {
-        return this.mSavePath;
-    }
-
-    public ParallelTaskDataParameter getDataParameter() {
-        return this.mDataParameter;
-    }
-
-    public boolean isNeedThumbnail() {
-        return this.isNeedThumbnail;
+    public synchronized void fillVideoData(byte[] bArr, long j) {
+        checkThread();
+        if (this.mVideoRawData == null) {
+            this.mVideoRawData = bArr;
+            this.mCoverFrameTimestamp = j;
+            String str = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("fillVideoData: video = ");
+            stringBuilder.append(bArr);
+            stringBuilder.append(", timestamp = ");
+            stringBuilder.append(j);
+            Log.d(str, stringBuilder.toString());
+        } else {
+            throw new IllegalStateException("algo fillVideoData: microvideo already set");
+        }
     }
 
     public int getAlgoType() {
@@ -277,16 +149,115 @@ public class ParallelTaskData {
         return this.mBurstNum;
     }
 
-    public void setSavePath(String str) {
-        this.mSavePath = str;
+    public ICustomCaptureResult getCaptureResult() {
+        return this.mCaptureResult;
     }
 
-    public void setTimestamp(long j) {
-        this.mTimestamp = j;
+    public synchronized long getCoverFrameTimestamp() {
+        return this.mCoverFrameTimestamp;
     }
 
-    public void setNeedThumbnail(boolean z) {
-        this.isNeedThumbnail = z;
+    public int getCurrentModuleIndex() {
+        return this.currentModuleIndex;
+    }
+
+    public ParallelTaskDataParameter getDataParameter() {
+        return this.mDataParameter;
+    }
+
+    public byte[] getJpegImageData() {
+        return this.mJpegImageData;
+    }
+
+    public synchronized byte[] getMicroVideoData() {
+        return this.mVideoRawData;
+    }
+
+    public int getParallelType() {
+        return this.mParallelType;
+    }
+
+    public byte[] getPortraitDepthData() {
+        return this.mPortraitDepthData;
+    }
+
+    public byte[] getPortraitRawData() {
+        return this.mPortraitRawData;
+    }
+
+    public int getPreviewThumbnailHash() {
+        return this.previewThumbnailHash;
+    }
+
+    public String getSavePath() {
+        return this.mSavePath;
+    }
+
+    public long getTimestamp() {
+        return this.mTimestamp;
+    }
+
+    public synchronized boolean isJpegDataReady() {
+        boolean z;
+        z = false;
+        switch (this.mParallelType) {
+            case -3:
+            case 2:
+            case 6:
+            case 7:
+                if (!(this.mJpegImageData == null || this.mPortraitRawData == null || this.mPortraitDepthData == null)) {
+                    z = true;
+                    break;
+                }
+            case -2:
+            case -1:
+            case 0:
+            case 5:
+            case 8:
+            case 9:
+                if (this.mJpegImageData != null) {
+                    z = true;
+                    break;
+                }
+                break;
+        }
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("isJpegDataReady: object = ");
+        stringBuilder.append(this);
+        stringBuilder.append("; mParallelType = ");
+        stringBuilder.append(this.mParallelType);
+        stringBuilder.append("; mJpegImageData = ");
+        stringBuilder.append(this.mJpegImageData);
+        stringBuilder.append("; mPortraitRawData = ");
+        stringBuilder.append(this.mPortraitRawData);
+        stringBuilder.append("; mPortraitDepthData = ");
+        stringBuilder.append(this.mPortraitDepthData);
+        stringBuilder.append("; mVideoRawData = ");
+        stringBuilder.append(this.mVideoRawData);
+        stringBuilder.append("; result = ");
+        stringBuilder.append(z);
+        Log.d(str, stringBuilder.toString());
+        return z;
+    }
+
+    public synchronized boolean isLiveShotTask() {
+        return this.isLiveShotTask;
+    }
+
+    public boolean isNeedThumbnail() {
+        return this.isNeedThumbnail;
+    }
+
+    public void refillJpegData(byte[] bArr) {
+        this.mJpegImageData = bArr;
+    }
+
+    public void releaseImageData() {
+        this.mVideoRawData = null;
+        this.mJpegImageData = null;
+        this.mPortraitRawData = null;
+        this.mPortraitDepthData = null;
     }
 
     public void setAlgoType(int i) {
@@ -297,19 +268,31 @@ public class ParallelTaskData {
         this.mBurstNum = i;
     }
 
-    public int getPreviewThumbnailHash() {
-        return this.previewThumbnailHash;
-    }
-
-    public void setPreviewThumbnailHash(int i) {
-        this.previewThumbnailHash = i;
+    public void setCaptureResult(ICustomCaptureResult iCustomCaptureResult) {
+        this.mCaptureResult = iCustomCaptureResult;
     }
 
     public void setCurrentModuleIndex(int i) {
         this.currentModuleIndex = i;
     }
 
-    public int getCurrentModuleIndex() {
-        return this.currentModuleIndex;
+    public synchronized void setLiveShotTask(boolean z) {
+        this.isLiveShotTask = z;
+    }
+
+    public void setNeedThumbnail(boolean z) {
+        this.isNeedThumbnail = z;
+    }
+
+    public void setPreviewThumbnailHash(int i) {
+        this.previewThumbnailHash = i;
+    }
+
+    public void setSavePath(String str) {
+        this.mSavePath = str;
+    }
+
+    public void setTimestamp(long j) {
+        this.mTimestamp = j;
     }
 }

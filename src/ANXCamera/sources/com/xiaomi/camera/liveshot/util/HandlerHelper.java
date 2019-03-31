@@ -41,6 +41,17 @@ public class HandlerHelper {
         }
     }
 
+    public void release() {
+        synchronized (this.mPendingMessageQueueLock) {
+            for (ResponseReceiverHandler responseReceiverHandler : this.mPendingMessageQueue) {
+                synchronized (responseReceiverHandler.lock) {
+                    responseReceiverHandler.releaseRequested = true;
+                    responseReceiverHandler.lock.notifyAll();
+                }
+            }
+        }
+    }
+
     public Object sendMessageAndAwaitResponse(Message message) {
         HandlerThread handlerThread = new HandlerThread("ResponseReceiverThread");
         Object obj = new Object();
@@ -78,16 +89,5 @@ public class HandlerHelper {
             this.mPendingMessageQueue.remove(responseReceiverHandler);
         }
         return obj2;
-    }
-
-    public void release() {
-        synchronized (this.mPendingMessageQueueLock) {
-            for (ResponseReceiverHandler responseReceiverHandler : this.mPendingMessageQueue) {
-                synchronized (responseReceiverHandler.lock) {
-                    responseReceiverHandler.releaseRequested = true;
-                    responseReceiverHandler.lock.notifyAll();
-                }
-            }
-        }
     }
 }

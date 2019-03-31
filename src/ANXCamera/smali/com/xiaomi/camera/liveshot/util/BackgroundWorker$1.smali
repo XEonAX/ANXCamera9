@@ -27,7 +27,6 @@
 .method constructor <init>(Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;Ljava/lang/String;)V
     .locals 0
 
-    .line 21
     iput-object p1, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker$1;->this$0:Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;
 
     iput-object p2, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker$1;->val$name:Ljava/lang/String;
@@ -42,7 +41,6 @@
 .method public run()V
     .locals 3
 
-    .line 25
     invoke-static {}, Ljava/lang/Thread;->currentThread()Ljava/lang/Thread;
 
     move-result-object v0
@@ -51,10 +49,8 @@
 
     invoke-virtual {v0, v1}, Ljava/lang/Thread;->setName(Ljava/lang/String;)V
 
-    .line 27
     invoke-static {}, Landroid/os/Looper;->prepare()V
 
-    .line 29
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker$1;->this$0:Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;
 
     invoke-static {}, Landroid/os/Looper;->myLooper()Landroid/os/Looper;
@@ -63,7 +59,6 @@
 
     invoke-static {v0, v1}, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->access$002(Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;Landroid/os/Looper;)Landroid/os/Looper;
 
-    .line 31
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker$1;->this$0:Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;
 
     invoke-static {v0}, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->access$100(Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;)Ljava/lang/Object;
@@ -72,7 +67,6 @@
 
     monitor-enter v0
 
-    .line 32
     :try_start_0
     iget-object v1, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker$1;->this$0:Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;
 
@@ -80,7 +74,6 @@
 
     invoke-static {v1, v2}, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->access$202(Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;Z)Z
 
-    .line 33
     iget-object v1, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker$1;->this$0:Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;
 
     invoke-static {v1}, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->access$100(Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;)Ljava/lang/Object;
@@ -89,15 +82,12 @@
 
     invoke-virtual {v1}, Ljava/lang/Object;->notifyAll()V
 
-    .line 34
     monitor-exit v0
     :try_end_0
     .catchall {:try_start_0 .. :try_end_0} :catchall_1
 
-    .line 36
     invoke-static {}, Landroid/os/Looper;->loop()V
 
-    .line 38
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker$1;->this$0:Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;
 
     invoke-static {v0}, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->access$100(Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;)Ljava/lang/Object;
@@ -106,7 +96,6 @@
 
     monitor-enter v1
 
-    .line 39
     :try_start_1
     iget-object v0, p0, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker$1;->this$0:Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;
 
@@ -114,13 +103,10 @@
 
     invoke-static {v0, v2}, Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;->access$202(Lcom/xiaomi/camera/liveshot/util/BackgroundWorker;Z)Z
 
-    .line 40
     monitor-exit v1
 
-    .line 41
     return-void
 
-    .line 40
     :catchall_0
     move-exception v0
 
@@ -130,7 +116,6 @@
 
     throw v0
 
-    .line 34
     :catchall_1
     move-exception v1
 

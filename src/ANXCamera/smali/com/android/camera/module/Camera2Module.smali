@@ -14248,7 +14248,6 @@
 .method public onCaptureStart(Lcom/xiaomi/camera/core/ParallelTaskData;Lcom/android/camera/CameraSize;)Lcom/xiaomi/camera/core/ParallelTaskData;
     .locals 5
 
-    .line 3039
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isDeparted()Z
 
     move-result v0
@@ -14257,17 +14256,14 @@
 
     if-eqz v0, :cond_0
 
-    .line 3040
     sget-object p1, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string p2, "onCaptureStart: departed"
 
     invoke-static {p1, p2}, Lcom/android/camera/log/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3041
     return-object v1
 
-    .line 3044
     :cond_0
     invoke-static {}, Lcom/android/camera/CameraSettings;->isLiveShotOn()Z
 
@@ -14275,10 +14271,8 @@
 
     if-eqz v0, :cond_1
 
-    .line 3045
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->startLiveShotAnimation()V
 
-    .line 3048
     :cond_1
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mQuickShotAnimateEnable:Z
 
@@ -14296,41 +14290,34 @@
 
     if-nez v0, :cond_3
 
-    .line 3049
     :cond_2
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->onShutter()V
 
-    .line 3052
     :cond_3
     nop
 
-    .line 3053
     invoke-static {}, Lcom/android/camera/CameraSettings;->isAgeGenderAndMagicMirrorWaterOpen()Z
 
     move-result v0
 
     if-eqz v0, :cond_4
 
-    .line 3054
     invoke-static {}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getInstance()Lcom/android/camera/protocol/ModeCoordinatorImpl;
 
     move-result-object v0
 
     const/16 v2, 0xa6
 
-    .line 3055
     invoke-virtual {v0, v2}, Lcom/android/camera/protocol/ModeCoordinatorImpl;->getAttachProtocol(I)Lcom/android/camera/protocol/ModeProtocol$BaseProtocol;
 
     move-result-object v0
 
     check-cast v0, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;
 
-    .line 3056
     invoke-interface {v0}, Lcom/android/camera/protocol/ModeProtocol$MainContentProtocol;->getFaceWaterMarkInfos()Ljava/util/List;
 
     move-result-object v0
 
-    .line 3057
     if-eqz v0, :cond_4
 
     invoke-interface {v0}, Ljava/util/List;->isEmpty()Z
@@ -14339,14 +14326,12 @@
 
     if-nez v2, :cond_4
 
-    .line 3058
     new-instance v2, Ljava/util/ArrayList;
 
     invoke-direct {v2, v0}, Ljava/util/ArrayList;-><init>(Ljava/util/Collection;)V
 
     goto :goto_0
 
-    .line 3061
     :cond_4
     move-object v2, v1
 
@@ -14379,19 +14364,16 @@
 
     invoke-static {v0, v3}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3064
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mOutPutSize:Lcom/android/camera/CameraSize;
 
     if-nez v0, :cond_5
 
-    .line 3065
     invoke-virtual {p2}, Lcom/android/camera/CameraSize;->toSizeObject()Landroid/util/Size;
 
     move-result-object v0
 
     goto :goto_1
 
-    .line 3067
     :cond_5
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mOutPutSize:Lcom/android/camera/CameraSize;
 
@@ -14399,13 +14381,11 @@
 
     move-result-object v0
 
-    .line 3070
     :goto_1
     new-instance v3, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
 
     iget-object v4, p0, Lcom/android/camera/module/Camera2Module;->mPreviewSize:Lcom/android/camera/CameraSize;
 
-    .line 3071
     invoke-virtual {v4}, Lcom/android/camera/CameraSize;->toSizeObject()Landroid/util/Size;
 
     move-result-object v4
@@ -14416,7 +14396,6 @@
 
     invoke-direct {v3, v4, p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;-><init>(Landroid/util/Size;Landroid/util/Size;Landroid/util/Size;)V
 
-    .line 3072
     invoke-static {}, Lcom/android/camera/CameraSettings;->isDualCameraWaterMarkOpen()Z
 
     move-result p2
@@ -14425,7 +14404,6 @@
 
     move-result-object p2
 
-    .line 3073
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->isFrontMirror()Z
 
     move-result v0
@@ -14434,7 +14412,6 @@
 
     move-result-object p2
 
-    .line 3074
     invoke-static {}, Lcom/android/camera/CameraSettings;->getPortraitLightingPattern()I
 
     move-result v0
@@ -14443,7 +14420,6 @@
 
     move-result-object p2
 
-    .line 3075
     invoke-static {}, Lcom/android/camera/effect/EffectController;->getInstance()Lcom/android/camera/effect/EffectController;
 
     move-result-object v0
@@ -14458,7 +14434,6 @@
 
     move-result-object p2
 
-    .line 3076
     const/4 v0, -0x1
 
     iget v4, p0, Lcom/android/camera/module/Camera2Module;->mOrientation:I
@@ -14479,12 +14454,10 @@
 
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mJpegRotation:I
 
-    .line 3077
     invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setJpegRotation(I)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
 
     move-result-object p2
 
-    .line 3078
     invoke-static {}, Lcom/android/camera/CameraSettings;->isGradienterOn()Z
 
     move-result v0
@@ -14513,19 +14486,16 @@
 
     iget v0, p0, Lcom/android/camera/module/Camera2Module;->mShootOrientation:I
 
-    .line 3079
     invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setShootOrientation(I)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
 
     move-result-object p2
 
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mLocation:Landroid/location/Location;
 
-    .line 3080
     invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setLocation(Landroid/location/Location;)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
 
     move-result-object p2
 
-    .line 3081
     invoke-static {}, Lcom/android/camera/CameraSettings;->isTimeWaterMarkOpen()Z
 
     move-result v0
@@ -14543,12 +14513,10 @@
 
     move-result-object p2
 
-    .line 3082
     invoke-virtual {p2, v2}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setFaceWaterMarkList(Ljava/util/List;)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
 
     move-result-object p2
 
-    .line 3083
     invoke-static {}, Lcom/android/camera/CameraSettings;->isAgeGenderAndMagicMirrorWaterOpen()Z
 
     move-result v0
@@ -14557,7 +14525,6 @@
 
     move-result-object p2
 
-    .line 3084
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isFrontCamera()Z
 
     move-result v0
@@ -14566,7 +14533,6 @@
 
     move-result-object p2
 
-    .line 3085
     invoke-virtual {p0}, Lcom/android/camera/module/Camera2Module;->isBokehFrontCamera()Z
 
     move-result v0
@@ -14577,12 +14543,10 @@
 
     iget-object v0, p0, Lcom/android/camera/module/Camera2Module;->mAlgorithmName:Ljava/lang/String;
 
-    .line 3086
     invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setAlgorithmName(Ljava/lang/String;)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
 
     move-result-object p2
 
-    .line 3087
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->getPictureInfo()Lcom/xiaomi/camera/core/PictureInfo;
 
     move-result-object v0
@@ -14591,7 +14555,6 @@
 
     move-result-object p2
 
-    .line 3088
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->getSuffix()Ljava/lang/String;
 
     move-result-object v0
@@ -14602,12 +14565,10 @@
 
     iget-boolean v0, p0, Lcom/android/camera/module/Camera2Module;->mIsGradienterOn:Z
 
-    .line 3089
     invoke-virtual {p2, v0}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->setGradienterOn(Z)Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;
 
     move-result-object p2
 
-    .line 3090
     invoke-static {}, Lcom/android/camera/module/Camera2Module;->getTiltShiftMode()Ljava/lang/String;
 
     move-result-object v0
@@ -14616,7 +14577,6 @@
 
     move-result-object p2
 
-    .line 3091
     invoke-static {}, Lcom/android/camera/CameraSettings;->isSaveGroushotPrimitiveOn()Z
 
     move-result v0
@@ -14625,7 +14585,6 @@
 
     move-result-object p2
 
-    .line 3092
     invoke-direct {p0}, Lcom/android/camera/module/Camera2Module;->getDualWaterMarkParam()Lcom/android/camera/effect/renders/DualWatermarkParam;
 
     move-result-object v0
@@ -14634,7 +14593,6 @@
 
     move-result-object p2
 
-    .line 3093
     invoke-static {v3}, Lcom/android/camera/module/Camera2Module;->getJpegQuality(Z)I
 
     move-result v0
@@ -14643,15 +14601,12 @@
 
     move-result-object p2
 
-    .line 3094
     invoke-virtual {p2}, Lcom/xiaomi/camera/core/ParallelTaskDataParameter$Builder;->build()Lcom/xiaomi/camera/core/ParallelTaskDataParameter;
 
     move-result-object p2
 
-    .line 3096
     invoke-virtual {p1, p2}, Lcom/xiaomi/camera/core/ParallelTaskData;->fillParameter(Lcom/xiaomi/camera/core/ParallelTaskDataParameter;)V
 
-    .line 3097
     iget-boolean p2, p0, Lcom/android/camera/module/Camera2Module;->mQuickShotAnimateEnable:Z
 
     const/4 v0, 0x1
@@ -14669,12 +14624,59 @@
     :cond_9
     invoke-virtual {p1, v3}, Lcom/xiaomi/camera/core/ParallelTaskData;->setNeedThumbnail(Z)V
 
-    .line 3098
     iget p2, p0, Lcom/android/camera/module/Camera2Module;->mModuleIndex:I
 
     invoke-virtual {p1, p2}, Lcom/xiaomi/camera/core/ParallelTaskData;->setCurrentModuleIndex(I)V
 
-    .line 3100
+    invoke-virtual {p1, v4}, Lcom/xiaomi/camera/core/ParallelTaskData;->setLiveShotTask(Z)V
+
+    if-eqz v0, :cond_c
+
+    iget-object p2, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
+
+    if-eqz p2, :cond_c
+
+    iget-object p2, p0, Lcom/android/camera/module/Camera2Module;->mActivity:Lcom/android/camera/Camera;
+
+    invoke-virtual {p2}, Lcom/android/camera/Camera;->getImageSaver()Lcom/android/camera/storage/ImageSaver;
+
+    move-result-object p2
+
+    if-eqz p2, :cond_c
+
+    iget-object v1, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorderStateLock:Ljava/lang/Object;
+
+    monitor-enter v1
+
+    :try_start_0
+    iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorder:Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
+
+    if-eqz v2, :cond_g
+
+    invoke-virtual {p1, v3}, Lcom/xiaomi/camera/core/ParallelTaskData;->setLiveShotTask(Z)V
+
+    iget-object v2, p0, Lcom/android/camera/module/Camera2Module;->mCircularMediaRecorder:Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;
+
+    iget v4, p0, Lcom/android/camera/module/Camera2Module;->mOrientationCompensation:I
+
+    invoke-virtual {v2, v4, p2, p1}, Lcom/xiaomi/camera/liveshot/CircularMediaRecorder;->snapshot(ILcom/xiaomi/camera/liveshot/CircularMediaRecorder$VideoClipSavingCallback;Ljava/lang/Object;)V
+
+    :cond_g
+    monitor-exit v1
+
+    goto :goto_6
+
+    :catchall_0
+    move-exception p1
+
+    monitor-exit v1
+    :try_end_0
+    .catchall {:try_start_0 .. :try_end_0} :catchall_0
+
+    throw p1
+
+    :cond_c
+    :goto_6
     sget-object p2, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     new-instance v1, Ljava/lang/StringBuilder;
@@ -14695,15 +14697,12 @@
 
     invoke-static {p2, v1}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3101
     iget-boolean p2, p0, Lcom/android/camera/module/Camera2Module;->mIsCurrentTaskIsParallel:Z
 
     if-eqz p2, :cond_a
 
-    .line 3102
     invoke-direct {p0, p1, v0}, Lcom/android/camera/module/Camera2Module;->beginParallelProcess(Lcom/xiaomi/camera/core/ParallelTaskData;Z)V
 
-    .line 3105
     :cond_a
     invoke-static {}, Lcom/android/camera/CameraSettings;->isHandGestureOpen()Z
 
@@ -14711,28 +14710,24 @@
 
     if-eqz p2, :cond_b
 
-    .line 3106
     sget-object p2, Lcom/android/camera/module/Camera2Module;->TAG:Ljava/lang/String;
 
     const-string v0, "send msg: reset hand gesture"
 
     invoke-static {p2, v0}, Lcom/android/camera/log/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
 
-    .line 3107
     iget-object p2, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const/16 v0, 0x39
 
     invoke-virtual {p2, v0}, Lcom/android/camera/module/Camera2Module$MainHandler;->removeMessages(I)V
 
-    .line 3108
     iget-object p2, p0, Lcom/android/camera/module/Camera2Module;->mHandler:Lcom/android/camera/module/Camera2Module$MainHandler;
 
     const-wide/16 v1, 0x0
 
     invoke-virtual {p2, v0, v1, v2}, Lcom/android/camera/module/Camera2Module$MainHandler;->sendEmptyMessageDelayed(IJ)Z
 
-    .line 3110
     :cond_b
     return-object p1
 .end method

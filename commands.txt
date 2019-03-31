@@ -72,8 +72,18 @@ xcopy /s /y .\out\MiuiCamera.apk .\src\ANXMiuiCameraMagisk\system\priv-app\MiuiC
 "C:\Program Files\7-Zip\7z.exe" a -tzip .\out\ANXMiuiCameraMagisk.zip .\src\ANXMiuiCameraMagisk\*
 copy .\out\ANXMiuiCameraMagisk.zip /B .\out\ANXMiuiCameraMagisk_%anxversion%.zip
 
+decompile apks
+java  -jar ..\ANXMiuiPortTools\apktool.jar d -p ..\ANXMiuiPortTools\MiuiFrameworks -f -b  -o "G:\Downloads\Android\miuicompare\MiuiCameraBery9221" "G:\Downloads\Android\miuicompare\MiuiCameraBery9221.apk"
+
+java  -jar ..\ANXMiuiPortTools\apktool.jar d -p ..\ANXMiuiPortTools\MiuiFrameworks -f -b  -o "G:\Downloads\Android\miuicompare\MiuiCameraeu9328" "G:\Downloads\Android\miuicompare\MiuiCameraeu9328.apk"
+..\ANXMiuiPortTools\jadx\bin\jadx -d "G:\Downloads\Android\miuicompare\MiuiCameraeu9328" -r "G:\Downloads\Android\miuicompare\MiuiCameraeu9328.apk" --show-bad-code
+
+
 
 
 deodex system
 cd /mnt/g/downloads/android/vdex/vdexExtractor
 /mnt/g/Downloads/Android/vdex/vdexExtractor/tools/deodex/run.sh -i /mnt/g/Downloads/Android/systembery9221/framework -o /mnt/g/Downloads/Android/systembery9221deodex/framework
+
+
+cls && adb logcat -c && adb logcat

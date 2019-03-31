@@ -1,12 +1,10 @@
 package com.xiaomi.camera.liveshot.gles;
 
-import android.graphics.SurfaceTexture;
 import android.opengl.EGLContext;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.view.Surface;
-import android.view.SurfaceHolder;
 import com.android.camera.effect.VideoRecorderCanvas;
 import com.android.camera.effect.draw_mode.DrawExtTexAttribute;
 import com.android.camera.log.Log;
@@ -19,6 +17,7 @@ public final class RenderThread extends Thread {
     private static final String TAG = RenderThread.class.getSimpleName();
     private VideoRecorderCanvas mCanvas;
     private DrawExtTexAttribute mDrawExtTexAttribute = new DrawExtTexAttribute();
+    private volatile boolean mEglContextPrepared = false;
     private EglCore mEglCore;
     private EglSurfaceBase mEglSurfaceBase;
     private RenderHandler mHandler;
@@ -30,12 +29,12 @@ public final class RenderThread extends Thread {
     private volatile int mRequestDraw;
     private volatile boolean mRequestRelease = false;
     private final EGLContext mShardContext;
-    private Object mSurface;
+    private Surface mSurface;
 
-    public class RenderHandler extends Handler {
+    public static class RenderHandler extends Handler {
         private final WeakReference<RenderThread> mRenderThread;
 
-        public RenderHandler(RenderThread renderThread) {
+        private RenderHandler(RenderThread renderThread) {
             this.mRenderThread = new WeakReference(renderThread);
         }
 
@@ -54,104 +53,26 @@ public final class RenderThread extends Thread {
         }
     }
 
-    public RenderThread(String str, int i, int i2, EGLContext eGLContext, Object obj, boolean z) {
+    public RenderThread(String str, int i, int i2, EGLContext eGLContext, Surface surface, boolean z) {
         super(str);
-        if ((obj instanceof Surface) || (obj instanceof SurfaceTexture) || (obj instanceof SurfaceHolder)) {
-            this.mPreviewWidth = i;
-            this.mPreviewHeight = i2;
-            this.mShardContext = eGLContext;
-            this.mSurface = obj;
-            this.mIsRecordable = z;
-            return;
-        }
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Unsupported surface type:");
-        stringBuilder.append(obj);
-        throw new IllegalArgumentException(stringBuilder.toString());
+        this.mPreviewWidth = i;
+        this.mPreviewHeight = i2;
+        this.mShardContext = eGLContext;
+        this.mSurface = surface;
+        this.mIsRecordable = z;
     }
 
-    public void run() {
-        Looper.prepare();
-        this.mHandler = new RenderHandler(this);
-        Log.d(TAG, "encoder thread ready");
-        synchronized (this.mLock) {
-            this.mReady = true;
-            this.mLock.notify();
-        }
-        release();
-        prepare();
-        Looper.loop();
-        synchronized (this.mLock) {
-            this.mReady = false;
-            this.mHandler = null;
-        }
-        Log.d(TAG, "looper quit");
-    }
-
-    public void waitUntilReady() {
-        synchronized (this.mLock) {
-            if (!this.mReady) {
-                try {
-                    this.mLock.wait();
-                } catch (InterruptedException e) {
-                    String str = TAG;
-                    StringBuilder stringBuilder = new StringBuilder();
-                    stringBuilder.append("start() interrupted: ");
-                    stringBuilder.append(e);
-                    Log.e(str, stringBuilder.toString());
-                }
-            }
-        }
-    }
-
-    public RenderHandler getHandler() {
-        synchronized (this.mLock) {
-            if (this.mReady) {
-            } else {
-                throw new RuntimeException("not ready");
-            }
-        }
-        return this.mHandler;
-    }
-
-    public void draw(DrawExtTexAttribute drawExtTexAttribute) {
-        synchronized (this.mLock) {
-            if (this.mRequestRelease) {
-                return;
-            }
-            this.mDrawExtTexAttribute.init(drawExtTexAttribute.mExtTexture, drawExtTexAttribute.mTextureTransform, 0, 0, this.mPreviewWidth, this.mPreviewHeight);
-            this.mRequestDraw++;
-            this.mHandler.obtainMessage(16).sendToTarget();
-        }
-    }
-
-    public void quit() {
-        this.mHandler.obtainMessage(48).sendToTarget();
-    }
-
-    public void setFilterId(int i) {
-        Message obtainMessage = this.mHandler.obtainMessage(32);
-        obtainMessage.arg1 = i;
-        obtainMessage.sendToTarget();
-    }
-
-    private void doQuit() {
-        if (!this.mRequestRelease) {
-            this.mRequestRelease = true;
-            release();
-            Looper.myLooper().quit();
+    private void applyFilterId(int i) {
+        if (this.mCanvas != null && this.mEglContextPrepared) {
+            this.mCanvas.applyFilterId(i);
         }
     }
 
     private void doDraw() {
-        if (!this.mRequestRelease) {
+        if (!this.mRequestRelease && this.mEglContextPrepared) {
             int i;
             synchronized (this.mLock) {
-                if (this.mRequestDraw > 0) {
-                    i = 1;
-                } else {
-                    i = 0;
-                }
+                i = this.mRequestDraw > 0 ? 1 : 0;
                 if (i != 0) {
                     this.mRequestDraw--;
                 }
@@ -164,20 +85,16 @@ public final class RenderThread extends Thread {
         }
     }
 
-    private void applyFilterId(int i) {
-        if (this.mCanvas != null) {
-            this.mCanvas.applyFilterId(i);
+    private void doQuit() {
+        if (!this.mRequestRelease) {
+            this.mRequestRelease = true;
+            release();
+            Looper.myLooper().quit();
         }
     }
 
     private void prepare() {
-        int i;
-        if (this.mIsRecordable) {
-            i = 3;
-        } else {
-            i = 2;
-        }
-        this.mEglCore = new EglCore(this.mShardContext, i);
+        this.mEglCore = new EglCore(this.mShardContext, this.mIsRecordable ? 3 : 2);
         this.mEglSurfaceBase = new EglSurfaceBase(this.mEglCore);
         this.mEglSurfaceBase.createWindowSurface(this.mSurface);
         this.mEglSurfaceBase.makeCurrent();
@@ -190,6 +107,10 @@ public final class RenderThread extends Thread {
             this.mEglSurfaceBase.releaseEglSurface();
             this.mEglSurfaceBase = null;
         }
+        if (this.mSurface != null) {
+            this.mSurface.release();
+            this.mSurface = null;
+        }
         if (this.mCanvas != null) {
             this.mCanvas.deleteProgram();
             this.mCanvas.recycledResources();
@@ -198,6 +119,77 @@ public final class RenderThread extends Thread {
         if (this.mEglCore != null) {
             this.mEglCore.release();
             this.mEglCore = null;
+        }
+    }
+
+    public void draw(DrawExtTexAttribute drawExtTexAttribute) {
+        synchronized (this.mLock) {
+            if (this.mRequestRelease) {
+            } else if (this.mEglContextPrepared) {
+                this.mDrawExtTexAttribute.init(drawExtTexAttribute.mExtTexture, drawExtTexAttribute.mTextureTransform, 0, 0, this.mPreviewWidth, this.mPreviewHeight);
+                this.mRequestDraw++;
+                this.mHandler.obtainMessage(16).sendToTarget();
+            }
+        }
+    }
+
+    public RenderHandler getHandler() {
+        synchronized (this.mLock) {
+            if (this.mReady) {
+            } else {
+                throw new IllegalStateException("render thread is not ready yet");
+            }
+        }
+        return this.mHandler;
+    }
+
+    public void quit() {
+        this.mHandler.obtainMessage(48).sendToTarget();
+    }
+
+    public void run() {
+        Looper.prepare();
+        this.mHandler = new RenderHandler();
+        Log.d(TAG, "prepare render thread: E");
+        try {
+            this.mEglContextPrepared = false;
+            prepare();
+            this.mEglContextPrepared = true;
+        } catch (Throwable e) {
+            Log.d(TAG, "FATAL: failed to prepare render thread", e);
+            release();
+        }
+        synchronized (this.mLock) {
+            this.mReady = true;
+            this.mLock.notify();
+        }
+        Looper.loop();
+        synchronized (this.mLock) {
+            this.mReady = false;
+            this.mHandler = null;
+        }
+        Log.d(TAG, "prepare render thread: X");
+    }
+
+    public void setFilterId(int i) {
+        Message obtainMessage = this.mHandler.obtainMessage(32);
+        obtainMessage.arg1 = i;
+        obtainMessage.sendToTarget();
+    }
+
+    public void waitUntilReady() {
+        synchronized (this.mLock) {
+            if (!this.mReady) {
+                try {
+                    this.mLock.wait();
+                } catch (InterruptedException e) {
+                    String str = TAG;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("waitUntilReady() interrupted: ");
+                    stringBuilder.append(e);
+                    Log.e(str, stringBuilder.toString());
+                }
+            }
         }
     }
 }

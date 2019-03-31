@@ -12,11 +12,6 @@ public abstract class SampleWriter implements Runnable {
             this.mStatus = t;
         }
 
-        public void notify(T t) {
-            this.mStatus = t;
-            this.mCountDownLatch.countDown();
-        }
-
         public T getStatus() {
             try {
                 this.mCountDownLatch.await();
@@ -25,11 +20,16 @@ public abstract class SampleWriter implements Runnable {
             }
             return this.mStatus;
         }
-    }
 
-    protected abstract void writeSample();
+        public void notify(T t) {
+            this.mStatus = t;
+            this.mCountDownLatch.countDown();
+        }
+    }
 
     public void run() {
         writeSample();
     }
+
+    protected abstract void writeSample();
 }

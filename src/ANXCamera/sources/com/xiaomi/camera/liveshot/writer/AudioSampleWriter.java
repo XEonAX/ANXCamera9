@@ -24,13 +24,8 @@ public class AudioSampleWriter extends SampleWriter {
     }
 
     protected void writeSample() {
-        long longValue;
         Log.d(TAG, "writeAudioSamples: E");
-        if (this.mVideoFirstKeyFrameArrivedNotifier != null) {
-            longValue = ((Long) this.mVideoFirstKeyFrameArrivedNotifier.getStatus()).longValue();
-        } else {
-            longValue = 0;
-        }
+        long longValue = this.mVideoFirstKeyFrameArrivedNotifier != null ? ((Long) this.mVideoFirstKeyFrameArrivedNotifier.getStatus()).longValue() : 0;
         long j = this.mAudioSnapshot.head;
         if (longValue < 0) {
             longValue = 0;

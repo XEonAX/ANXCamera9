@@ -29,17 +29,6 @@ public class BackgroundWorker {
         });
     }
 
-    public Looper getLooper() {
-        waitUntilReady();
-        return this.mLooper;
-    }
-
-    public void quit() throws InterruptedException {
-        waitUntilReady();
-        this.mLooper.quitSafely();
-        this.mExecutor.shutdown();
-    }
-
     private void waitUntilReady() {
         synchronized (this.mLock) {
             while (!this.mReady) {
@@ -49,5 +38,16 @@ public class BackgroundWorker {
                 }
             }
         }
+    }
+
+    public Looper getLooper() {
+        waitUntilReady();
+        return this.mLooper;
+    }
+
+    public void quit() throws InterruptedException {
+        waitUntilReady();
+        this.mLooper.quitSafely();
+        this.mExecutor.shutdown();
     }
 }

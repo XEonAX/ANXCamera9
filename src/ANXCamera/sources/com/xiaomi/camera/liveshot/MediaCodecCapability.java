@@ -18,30 +18,6 @@ public class MediaCodecCapability {
         return sRegularCodecList;
     }
 
-    public static boolean isH265EncodingSupported() {
-        MediaCodecInfo[] codecInfos = getRegularCodecList().getCodecInfos();
-        int i = 0;
-        boolean z = false;
-        while (i < codecInfos.length && !z) {
-            MediaCodecInfo mediaCodecInfo = codecInfos[i];
-            String str = TAG;
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("codec.name = ");
-            stringBuilder.append(mediaCodecInfo.getName());
-            Log.d(str, stringBuilder.toString());
-            if (mediaCodecInfo.getName().equals(HW_VIDEO_CODEC_HEVC)) {
-                z = true;
-            }
-            i++;
-        }
-        String str2 = TAG;
-        StringBuilder stringBuilder2 = new StringBuilder();
-        stringBuilder2.append("isH265EncodingSupported(): ");
-        stringBuilder2.append(z);
-        Log.d(str2, stringBuilder2.toString());
-        return z;
-    }
-
     public static boolean isFormatSupported(MediaFormat mediaFormat, String str) {
         MediaCodecInfo[] codecInfos = getRegularCodecList().getCodecInfos();
         int i = 0;
@@ -66,6 +42,30 @@ public class MediaCodecCapability {
         stringBuilder.append(", supported = ");
         stringBuilder.append(z);
         Log.d(str2, stringBuilder.toString());
+        return z;
+    }
+
+    public static boolean isH265EncodingSupported() {
+        MediaCodecInfo[] codecInfos = getRegularCodecList().getCodecInfos();
+        int i = 0;
+        boolean z = false;
+        while (i < codecInfos.length && !z) {
+            MediaCodecInfo mediaCodecInfo = codecInfos[i];
+            String str = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("codec.name = ");
+            stringBuilder.append(mediaCodecInfo.getName());
+            Log.d(str, stringBuilder.toString());
+            if (mediaCodecInfo.getName().equals(HW_VIDEO_CODEC_HEVC)) {
+                z = true;
+            }
+            i++;
+        }
+        String str2 = TAG;
+        StringBuilder stringBuilder2 = new StringBuilder();
+        stringBuilder2.append("isH265EncodingSupported(): ");
+        stringBuilder2.append(z);
+        Log.d(str2, stringBuilder2.toString());
         return z;
     }
 }
