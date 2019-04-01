@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Kan geen verbinding maken met de camera</string>
     <string name="cannot_connect_camera_twice">Kan nog steeds geen verbinding maken met de camera. Probeer uw telefoon opnieuw te starten.</string>
     <string name="camera_disabled">Camera is uitgeschakeld</string>
-    <string name="camera_label">AnX Camera</string>
+    <string name="camera_label">H6D Camera</string>
     <string name="video_camera_label">Videocamera</string>
     <string name="no_storage">Plaats een SD-kaart voordat u de camera gebruikt</string>
     <string name="not_enough_space">Intern geheugen is vol</string>

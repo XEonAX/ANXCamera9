@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Yhteys kameraan epäonnistui</string>
     <string name="cannot_connect_camera_twice">Yhteys kameraan epäonnistui edelleen. Yritä laitteen uudelleenkäynnistystä.</string>
     <string name="camera_disabled">Kamera on otettu pois käytöstä</string>
-    <string name="camera_label">AnX Kamera</string>
+    <string name="camera_label">H6D Kamera</string>
     <string name="video_camera_label">Videokamera</string>
     <string name="no_storage">Aseta SD kortti puhelimeen ennen kameran käyttöönottoa</string>
     <string name="not_enough_space">SD-kortti on täynnä</string>

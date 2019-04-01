@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">ကင်မရာသို့ ချိတ်ဆက်၍ မရပါ</string>
     <string name="cannot_connect_camera_twice">ကင်မရာသို့ ချိတ်ဆက်၍ မရသေးပါ။ သင့်စက်အား ပိတ်ပြီးပြန်ဖွင့်ကြည့်ပါ။</string>
     <string name="camera_disabled">ကင်မရာအား ပိတ်ထားသည်</string>
-    <string name="camera_label">AnX ကင်မရာ</string>
+    <string name="camera_label">H6D ကင်မရာ</string>
     <string name="video_camera_label">တီဗွီကင်မရာ</string>
     <string name="no_storage">ကင်မရာ မသုံးမီ SD ကဒ်ကို ထည့်သွင်းပါ</string>
     <string name="not_enough_space">SD ကဒ် ပြည့်နေပြီ</string>

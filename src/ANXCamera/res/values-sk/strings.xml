@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Nie je možné sa pripojiť k fotoaparátu</string>
     <string name="cannot_connect_camera_twice">Opakovane sa nedá pripojiť k fotoaparátu. Skúste reštartovať zariadenie.</string>
     <string name="camera_disabled">Fotoaparát bol deaktivovaný</string>
-    <string name="camera_label">AnX Fotoaparát</string>
+    <string name="camera_label">H6D Fotoaparát</string>
     <string name="video_camera_label">Videokamera</string>
     <string name="no_storage">Pred použitím fotoaparátu vložte SD kartu</string>
     <string name="not_enough_space">SD karta je plná</string>

@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Kan ikke koble til kameraet</string>
     <string name="cannot_connect_camera_twice">Kan fremdeles ikke koble til kameraet. Prøv å starte enheten din på nytt.</string>
     <string name="camera_disabled">Kameraet har blitt deaktivert</string>
-    <string name="camera_label">AnX Kamera</string>
+    <string name="camera_label">H6D Kamera</string>
     <string name="video_camera_label">Videokamera</string>
     <string name="no_storage">Sett inn SD-kortet før du bruker kameraet</string>
     <string name="not_enough_space">SD-kortet er full</string>

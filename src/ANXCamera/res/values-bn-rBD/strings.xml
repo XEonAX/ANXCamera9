@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">ক্যামেরার সঙ্গে সংযোগ করা যাবে না</string>
     <string name="cannot_connect_camera_twice">এখনও ক্যামেরার সঙ্গে সংযোগ করতে পারেন নি? আপনার ফোন পুনরায় শুরু করুন।</string>
     <string name="camera_disabled">ক্যামেরা অক্ষম করা আছে</string>
-    <string name="camera_label">AnX ক্যামেরা</string>
+    <string name="camera_label">H6D ক্যামেরা</string>
     <string name="video_camera_label">ক্যামকর্ডার</string>
     <string name="no_storage">ক্যামেরা ব্যবহার করার আগে SD কার্ড ঢোকান</string>
     <string name="not_enough_space">SD কার্ড পূর্ণ</string>

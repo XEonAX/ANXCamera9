@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Nie można połączyć z Aparatem</string>
     <string name="cannot_connect_camera_twice">Nie można nawiązać połączenia z aparatem, uruchom ponownie telefon.</string>
     <string name="camera_disabled">Aparat został zablokowany</string>
-    <string name="camera_label">AnX Aparat</string>
+    <string name="camera_label">H6D Aparat</string>
     <string name="video_camera_label">Kamera</string>
     <string name="no_storage">Włóż kartę SD przed użyciem aparatu</string>
     <string name="not_enough_space">Karta SD jest pełna</string>

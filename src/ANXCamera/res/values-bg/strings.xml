@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Няма връзка с камерата, затворете приложението</string>
     <string name="cannot_connect_camera_twice">Няма връзка с камерата, рестартирайте устройството</string>
     <string name="camera_disabled">Камерата беше деактивирана.</string>
-    <string name="camera_label">AnX Камера</string>
+    <string name="camera_label">H6D Камера</string>
     <string name="video_camera_label">Видеокамера</string>
     <string name="no_storage">Поставете SD карта преди да използвате камерата.</string>
     <string name="not_enough_space">Вътрешната памет е пълна.</string>

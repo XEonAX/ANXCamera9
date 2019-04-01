@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">"Connexion impossible à l'appareil photo"</string>
     <string name="cannot_connect_camera_twice">"Impossible de se connecter à l'app. photo. Essayez de redémarrer votre appareil."</string>
     <string name="camera_disabled">"L'appareil photo a été désactivé"</string>
-    <string name="camera_label">AnX App. photo</string>
+    <string name="camera_label">H6D App. photo</string>
     <string name="video_camera_label">Caméscope</string>
     <string name="no_storage">"Merci d’insérer une carte SD avant d'utiliser l'appareil photo"</string>
     <string name="not_enough_space">Votre carte SD est pleine</string>

@@ -12,10 +12,9 @@
 print_modname() {
   ui_print " "
   ui_print "************************************"
-  ui_print "   MIUI Camera Port for Poco F1     "
+  ui_print "Hasselblad H6D-400c MS for Nokia 6610"
   ui_print "                                    "
-  ui_print "         Created by AEonAX,         "
-  ui_print "     CodeElixir and Abhishek987     "
+  ui_print "  Discovered by AEonAX and Fiends   "
   ui_print "************************************"
   ui_print " "
 }
