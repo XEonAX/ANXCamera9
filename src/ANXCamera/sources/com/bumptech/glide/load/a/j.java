@@ -27,7 +27,7 @@ public class j implements d<InputStream> {
     private static final int dl = -1;
     private final g dm;
     /* renamed from: do */
-    private final b f2do;
+    private final b f3do;
     private InputStream dp;
     private volatile boolean dq;
     private final int timeout;
@@ -56,7 +56,7 @@ public class j implements d<InputStream> {
     j(g gVar, int i, b bVar) {
         this.dm = gVar;
         this.timeout = i;
-        this.f2do = bVar;
+        this.f3do = bVar;
     }
 
     public void a(@NonNull Priority priority, @NonNull com.bumptech.glide.load.a.d.a<? super InputStream> aVar) {
@@ -101,7 +101,7 @@ public class j implements d<InputStream> {
                 } catch (URISyntaxException e) {
                 }
             }
-            this.urlConnection = this.f2do.c(url);
+            this.urlConnection = this.f3do.c(url);
             for (Entry entry : map.entrySet()) {
                 this.urlConnection.addRequestProperty((String) entry.getKey(), (String) entry.getValue());
             }

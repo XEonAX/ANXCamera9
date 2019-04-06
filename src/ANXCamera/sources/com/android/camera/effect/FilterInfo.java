@@ -2,7 +2,6 @@ package com.android.camera.effect;
 
 import android.support.annotation.NonNull;
 import android.support.v4.internal.view.SupportMenu;
-import com.xiaomi.engine.CameraCombinationMode;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -25,7 +24,7 @@ public class FilterInfo implements Comparable<FilterInfo> {
     public static final int FILTER_ID_TILTSHIFT = getId(0, 259);
     public static final int FILTER_ID_YUV2RGB = getId(0, 263);
     public static final int RENDER_CATEGORY_MAKEUP = 4;
-    public static final int RENDER_ID_MAKEUP = getId(4, CameraCombinationMode.CAM_COMBINATION_MODE_REAR_BOKEH_WT);
+    public static final int RENDER_ID_MAKEUP = getId(4, 769);
     private int mCategory;
     private int mIconResId;
     private int mIndex;

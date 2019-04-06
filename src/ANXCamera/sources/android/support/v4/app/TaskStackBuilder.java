@@ -10,6 +10,7 @@ import android.os.Build.VERSION;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import com.arcsoft.camera.wideselfie.WideSelfieEngine;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -33,7 +34,7 @@ public class TaskStackBuilder implements Iterable<Intent> {
 
         public PendingIntent getPendingIntent(Context context, Intent[] intents, int requestCode, int flags, Bundle options) {
             Intent topIntent = new Intent(intents[intents.length - 1]);
-            topIntent.addFlags(268435456);
+            topIntent.addFlags(WideSelfieEngine.MPAF_RGB_BASE);
             return PendingIntent.getActivity(context, requestCode, topIntent, flags);
         }
     }
@@ -161,7 +162,7 @@ public class TaskStackBuilder implements Iterable<Intent> {
         intents[0] = new Intent(intents[0]).addFlags(268484608);
         if (!ContextCompat.startActivities(this.mSourceContext, intents, options)) {
             Intent topIntent = new Intent(intents[intents.length - 1]);
-            topIntent.addFlags(268435456);
+            topIntent.addFlags(WideSelfieEngine.MPAF_RGB_BASE);
             this.mSourceContext.startActivity(topIntent);
         }
     }

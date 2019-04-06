@@ -65,7 +65,7 @@ public class ComponentManuallyDualLens extends ComponentData {
         if (!LENS_WIDE.equals(componentValue)) {
             providerEditor.putString(getKey(167), LENS_WIDE);
             if (LENS_ULTRA.equals(componentValue)) {
-                providerEditor.putString(componentConfigUltraWide.getKey(167), ComponentConfigUltraWide.ULTRA_WIDE_VALUE_OFF);
+                providerEditor.putString(componentConfigUltraWide.getKey(167), "OFF");
             }
         }
     }

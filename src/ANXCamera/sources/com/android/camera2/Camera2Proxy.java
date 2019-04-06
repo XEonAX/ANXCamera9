@@ -123,6 +123,14 @@ public abstract class Camera2Proxy {
         void onVideoRecordStopped();
     }
 
+    public interface CaptureBusyCallback {
+        void onCaptureComplete(boolean z);
+    }
+
+    public interface CaptureCallback {
+        void onCaptureCompleted(boolean z);
+    }
+
     public interface PreviewCallback {
         void onPreviewFrame(Image image, Camera2Proxy camera2Proxy, int i);
     }

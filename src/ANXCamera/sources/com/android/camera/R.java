@@ -67,6 +67,10 @@ public final class R {
         public static final int pref_video_time_lapse_frame_interval_entryvalues = 2131623948;
         public static final int pref_video_volumekey_function_entries = 2131623969;
         public static final int pref_video_volumekey_function_entryvalues = 2131623970;
+        /* added by JADX */
+        public static final int pref_camera_long_press_viewfinder_entries = 2131623982;
+        /* added by JADX */
+        public static final int pref_camera_long_press_viewfinder_entryvalues = 2131623983;
     }
 
     public static final class attr {
@@ -259,6 +263,20 @@ public final class R {
         public static final int zoom_popup_dot_color_activated = 2131427407;
         public static final int zoom_popup_line_color_default = 2131427406;
         public static final int zoom_popup_text_item_text_color = 2131427452;
+        /* added by JADX */
+        public static final int wide_selfie_thumbnail_border_color = 2131427453;
+        /* added by JADX */
+        public static final int mimoji_edit_icon_color = 2131427454;
+        /* added by JADX */
+        public static final int mimoji_edit_icon_highlight_color = 2131427455;
+        /* added by JADX */
+        public static final int color_323232 = 2131427456;
+        /* added by JADX */
+        public static final int color_0077cc = 2131427457;
+        /* added by JADX */
+        public static final int color_999999 = 2131427458;
+        /* added by JADX */
+        public static final int color_333333 = 2131427459;
     }
 
     public static final class dimen {
@@ -601,6 +619,68 @@ public final class R {
         public static final int zoom_popup_dot_radius = 2131361817;
         public static final int zoom_popup_line_dot_y_gap = 2131361818;
         public static final int zoom_popup_x_textSize = 2131361846;
+        /* added by JADX */
+        public static final int live_sticker_none_item_size = 2131362131;
+        /* added by JADX */
+        public static final int live_sticker_divider_height = 2131362132;
+        /* added by JADX */
+        public static final int video_ultra_tip_size = 2131362133;
+        /* added by JADX */
+        public static final int video_ultra_tip_margin_top = 2131362134;
+        /* added by JADX */
+        public static final int video_ultra_tip_margin_end = 2131362135;
+        /* added by JADX */
+        public static final int chips_margin_preview_rect_bottom = 2131362136;
+        /* added by JADX */
+        public static final int chips_text_size = 2131362137;
+        /* added by JADX */
+        public static final int chips_text_margin_bottom = 2131362138;
+        /* added by JADX */
+        public static final int chips_height = 2131362139;
+        /* added by JADX */
+        public static final int chips_radius = 2131362140;
+        /* added by JADX */
+        public static final int chips_icon_margin_left = 2131362141;
+        /* added by JADX */
+        public static final int chips_icon_margin_right = 2131362142;
+        /* added by JADX */
+        public static final int chips_close_padding = 2131362143;
+        /* added by JADX */
+        public static final int chips_close_margin_left = 2131362144;
+        /* added by JADX */
+        public static final int chips_close_margin_right = 2131362145;
+        /* added by JADX */
+        public static final int chip_animation_size = 2131362146;
+        /* added by JADX */
+        public static final int chip_animation_margin_left = 2131362147;
+        /* added by JADX */
+        public static final int wide_selfie_thumbnail_border_size = 2131362148;
+        /* added by JADX */
+        public static final int wide_selfie_use_hint_area_top_margin = 2131362149;
+        /* added by JADX */
+        public static final int wide_selfie_progress_thumbnail_background_width = 2131362150;
+        /* added by JADX */
+        public static final int wide_selfie_progress_thumbnail_background_height = 2131362151;
+        /* added by JADX */
+        public static final int wide_selfie_progress_thumbnail_background_top_margin = 2131362152;
+        /* added by JADX */
+        public static final int wide_selfie_progress_thumbnail_background_width_vertical = 2131362153;
+        /* added by JADX */
+        public static final int wide_selfie_progress_thumbnail_background_height_vertical = 2131362154;
+        /* added by JADX */
+        public static final int wide_selfie_progress_thumbnail_background_top_margin_vertical = 2131362155;
+        /* added by JADX */
+        public static final int wide_selfie_still_preview_height = 2131362156;
+        /* added by JADX */
+        public static final int wide_selfie_still_preview_width = 2131362157;
+        /* added by JADX */
+        public static final int wideselfie_use_hint_text_marginStart = 2131362158;
+        /* added by JADX */
+        public static final int wideselfie_use_hint_text_marginTop = 2131362159;
+        /* added by JADX */
+        public static final int mimoji_text_size = 2131362160;
+        /* added by JADX */
+        public static final int wideselfie_toast_offset_y = 2131362161;
     }
 
     public static final class drawable {
@@ -1101,6 +1181,58 @@ public final class R {
         public static final int action_mode_title_button_confirm_n_light = 2130837991;
         /* added by JADX */
         public static final int action_mode_title_button_confirm_p_light = 2130837992;
+        /* added by JADX */
+        public static final int bg_mimoji_dialog_corner = 2130837993;
+        /* added by JADX */
+        public static final int bg_wide_selfie_preview = 2130837994;
+        /* added by JADX */
+        public static final int chips_bg = 2130837995;
+        /* added by JADX */
+        public static final int chips_browser = 2130837996;
+        /* added by JADX */
+        public static final int chips_calendar = 2130837997;
+        /* added by JADX */
+        public static final int chips_close = 2130837998;
+        /* added by JADX */
+        public static final int chips_contact = 2130837999;
+        /* added by JADX */
+        public static final int chips_location = 2130838000;
+        /* added by JADX */
+        public static final int chips_mail = 2130838001;
+        /* added by JADX */
+        public static final int chips_no_result = 2130838002;
+        /* added by JADX */
+        public static final int chips_phone = 2130838003;
+        /* added by JADX */
+        public static final int chips_qrcode = 2130838004;
+        /* added by JADX */
+        public static final int chips_wifi = 2130838005;
+        /* added by JADX */
+        public static final int empty_tall_divider = 2130838006;
+        /* added by JADX */
+        public static final int ic_config_square = 2130838007;
+        /* added by JADX */
+        public static final int ic_menu_macro_mode_off = 2130838008;
+        /* added by JADX */
+        public static final int ic_menu_macro_mode_on = 2130838009;
+        /* added by JADX */
+        public static final int ic_portrait_button_normal = 2130838010;
+        /* added by JADX */
+        public static final int ic_portrait_button_on = 2130838011;
+        /* added by JADX */
+        public static final int mimoji_add = 2130838012;
+        /* added by JADX */
+        public static final int selector_mimoji_menu = 2130838013;
+        /* added by JADX */
+        public static final int shape_round_corner_default = 2130838014;
+        /* added by JADX */
+        public static final int shape_round_corner_selected = 2130838015;
+        /* added by JADX */
+        public static final int tri_point = 2130838016;
+        /* added by JADX */
+        public static final int tv_round_corner_blue = 2130838017;
+        /* added by JADX */
+        public static final int tv_round_corner_gray = 2130838018;
     }
 
     public static final class id {
@@ -1364,7 +1496,107 @@ public final class R {
         public static final int viewPager = 2131558419;
         public static final int view_privacy_policy = 2131558625;
         /* added by JADX */
-        public static final int edit_mode_title = 2131558659;
+        public static final int smarts_chip_icon = 2131558659;
+        /* added by JADX */
+        public static final int smarts_chip_text = 2131558660;
+        /* added by JADX */
+        public static final int smarts_chip_close_button = 2131558661;
+        /* added by JADX */
+        public static final int chip_contents = 2131558662;
+        /* added by JADX */
+        public static final int chip_animation_container = 2131558663;
+        /* added by JADX */
+        public static final int second_image = 2131558664;
+        /* added by JADX */
+        public static final int tv_title = 2131558665;
+        /* added by JADX */
+        public static final int tv_edit = 2131558666;
+        /* added by JADX */
+        public static final int tv_dialog_delete = 2131558667;
+        /* added by JADX */
+        public static final int tv_cancle = 2131558668;
+        /* added by JADX */
+        public static final int mimoji_create_back = 2131558669;
+        /* added by JADX */
+        public static final int mimoji_create_progress = 2131558670;
+        /* added by JADX */
+        public static final int popup_tips_mimoji = 2131558671;
+        /* added by JADX */
+        public static final int mimoji_create = 2131558672;
+        /* added by JADX */
+        public static final int full_screen_lift = 2131558673;
+        /* added by JADX */
+        public static final int mimoji_edit = 2131558674;
+        /* added by JADX */
+        public static final int live_sticker_none_item = 2131558675;
+        /* added by JADX */
+        public static final int live_sticker_none_selected_indicator = 2131558676;
+        /* added by JADX */
+        public static final int mimoji_none_item = 2131558677;
+        /* added by JADX */
+        public static final int mimoji_selected_indicator = 2131558678;
+        /* added by JADX */
+        public static final int mimoji_add_item = 2131558679;
+        /* added by JADX */
+        public static final int mimoji_list = 2131558680;
+        /* added by JADX */
+        public static final int tv_back = 2131558681;
+        /* added by JADX */
+        public static final int btn_confirm = 2131558682;
+        /* added by JADX */
+        public static final int mimoji_edit_preview = 2131558683;
+        /* added by JADX */
+        public static final int popup_tips_no_face = 2131558684;
+        /* added by JADX */
+        public static final int operate_select_layout = 2131558685;
+        /* added by JADX */
+        public static final int tv_recapture = 2131558686;
+        /* added by JADX */
+        public static final int tv_save = 2131558687;
+        /* added by JADX */
+        public static final int mimoji_config_adjust_layout = 2131558688;
+        /* added by JADX */
+        public static final int mimoji_type_scroll_view = 2131558689;
+        /* added by JADX */
+        public static final int mimoji_type_select_view = 2131558690;
+        /* added by JADX */
+        public static final int color_select = 2131558691;
+        /* added by JADX */
+        public static final int thumbnail_gride_view = 2131558692;
+        /* added by JADX */
+        public static final int mimoji_item_image = 2131558693;
+        /* added by JADX */
+        public static final int mimoji_item_selected_indicator = 2131558694;
+        /* added by JADX */
+        public static final int mimoji_long_item_selected_indicator = 2131558695;
+        /* added by JADX */
+        public static final int video_ultra_clear_tip = 2131558696;
+        /* added by JADX */
+        public static final int mimoji_create_viewstub = 2131558697;
+        /* added by JADX */
+        public static final int thumbnail_image_view = 2131558698;
+        /* added by JADX */
+        public static final int thumbnail_select_view = 2131558699;
+        /* added by JADX */
+        public static final int mimoji_lighting_view = 2131558700;
+        /* added by JADX */
+        public static final int wideselfie_content = 2131558701;
+        /* added by JADX */
+        public static final int edit_mode_title = 2131558702;
+        /* added by JADX */
+        public static final int wideselfie_thumbnail_layout = 2131558703;
+        /* added by JADX */
+        public static final int wideselfie_still_preview_layout = 2131558704;
+        /* added by JADX */
+        public static final int wideselfie_still_preview = 2131558705;
+        /* added by JADX */
+        public static final int wideselfie_progress_image = 2131558706;
+        /* added by JADX */
+        public static final int wideselfie_use_hint_text = 2131558707;
+        /* added by JADX */
+        public static final int wideselfie_use_hint_text_left = 2131558708;
+        /* added by JADX */
+        public static final int wideselfie_use_hint_text_right = 2131558709;
     }
 
     public static final class integer {
@@ -1455,6 +1687,30 @@ public final class R {
         public static final int v6_preview_panel = 2130968645;
         public static final int v9_main = 2130968646;
         public static final int v9_smart_camera_control = 2130968647;
+        /* added by JADX */
+        public static final int alert_top_hint_text = 2130968649;
+        /* added by JADX */
+        public static final int dialog_mimoji_edit = 2130968650;
+        /* added by JADX */
+        public static final int fragment_full_screen_mimoji = 2130968651;
+        /* added by JADX */
+        public static final int fragment_mimoji = 2130968652;
+        /* added by JADX */
+        public static final int fragment_mimoji_create = 2130968653;
+        /* added by JADX */
+        public static final int fragment_mimoji_create_top = 2130968654;
+        /* added by JADX */
+        public static final int fragment_mimoji_edit = 2130968655;
+        /* added by JADX */
+        public static final int fragment_mimoji_item = 2130968656;
+        /* added by JADX */
+        public static final int layout_google_lens = 2130968657;
+        /* added by JADX */
+        public static final int mimoji_thumbnail_view = 2130968658;
+        /* added by JADX */
+        public static final int mimoji_type_select_view = 2130968659;
+        /* added by JADX */
+        public static final int wideselfie_view = 2130968660;
     }
 
     public static final class mipmap {
@@ -1484,11 +1740,13 @@ public final class R {
         public static final int goofy_face = 2131230723;
         public static final int xiaomi_static_config = 2131230724;
         /* added by JADX */
-        public static final int feature_dipper = 2131230725;
+        public static final int feature_cepheus = 2131230725;
         /* added by JADX */
-        public static final int feature_perseus = 2131230726;
+        public static final int feature_dipper = 2131230726;
         /* added by JADX */
-        public static final int feature_polaris = 2131230727;
+        public static final int feature_perseus = 2131230727;
+        /* added by JADX */
+        public static final int feature_polaris = 2131230728;
     }
 
     public static final class string {
@@ -3105,6 +3363,110 @@ public final class R {
         public static final int accessibility_mode_dismiss_button = 2131297395;
         /* added by JADX */
         public static final int pref_camera_exposuretime_entry_64s = 2131297396;
+        /* added by JADX */
+        public static final int pref_video_quality_entry_value_720p_60fps = 2131297397;
+        /* added by JADX */
+        public static final int pref_video_quality_value_autozoom = 2131297398;
+        /* added by JADX */
+        public static final int pref_video_quality_entry_720p_60fps = 2131297399;
+        /* added by JADX */
+        public static final int pref_camera_picturesize_entry_1_1 = 2131297400;
+        /* added by JADX */
+        public static final int module_name_pixel_48M = 2131297401;
+        /* added by JADX */
+        public static final int module_name_fun_ar = 2131297402;
+        /* added by JADX */
+        public static final int config_name_ratio = 2131297403;
+        /* added by JADX */
+        public static final int permission_contacts = 2131297404;
+        /* added by JADX */
+        public static final int permission_location = 2131297405;
+        /* added by JADX */
+        public static final int permission_camera = 2131297406;
+        /* added by JADX */
+        public static final int permission_phone_state = 2131297407;
+        /* added by JADX */
+        public static final int permission_storage = 2131297408;
+        /* added by JADX */
+        public static final int permission_microphone = 2131297409;
+        /* added by JADX */
+        public static final int video_ultra_clear_tip = 2131297410;
+        /* added by JADX */
+        public static final int pref_google_lens_title = 2131297411;
+        /* added by JADX */
+        public static final int pref_google_lens_summary = 2131297412;
+        /* added by JADX */
+        public static final int pref_google_lens_default = 2131297413;
+        /* added by JADX */
+        public static final int pref_camera_long_press_viewfinder_title = 2131297414;
+        /* added by JADX */
+        public static final int pref_camera_long_pressing_viewfinder_entry_google_lens = 2131297415;
+        /* added by JADX */
+        public static final int pref_camera_long_pressing_viewfinder_entry_lock_ae_af = 2131297416;
+        /* added by JADX */
+        public static final int pref_camera_long_press_viewfinder_default = 2131297417;
+        /* added by JADX */
+        public static final int macro_mode = 2131297418;
+        /* added by JADX */
+        public static final int macro_mode_tip = 2131297419;
+        /* added by JADX */
+        public static final int out_line_no_face = 2131297420;
+        /* added by JADX */
+        public static final int out_line_face_occlusion = 2131297421;
+        /* added by JADX */
+        public static final int out_line_left_eyes_occlusion = 2131297422;
+        /* added by JADX */
+        public static final int out_line_right_eyes_occlusion = 2131297423;
+        /* added by JADX */
+        public static final int out_line_mouth_occlusion = 2131297424;
+        /* added by JADX */
+        public static final int out_line_nose_occlusion = 2131297425;
+        /* added by JADX */
+        public static final int out_line_error_prompt = 2131297426;
+        /* added by JADX */
+        public static final int recapture_dialog_title = 2131297427;
+        /* added by JADX */
+        public static final int recapture_dialog_message = 2131297428;
+        /* added by JADX */
+        public static final int mimoji_tips = 2131297429;
+        /* added by JADX */
+        public static final int mimoji_detect_tips = 2131297430;
+        /* added by JADX */
+        public static final int mimoji_cancle = 2131297431;
+        /* added by JADX */
+        public static final int mimoji_back = 2131297432;
+        /* added by JADX */
+        public static final int mimoji_confirm = 2131297433;
+        /* added by JADX */
+        public static final int mimoji_editor = 2131297434;
+        /* added by JADX */
+        public static final int mimoji_save = 2131297435;
+        /* added by JADX */
+        public static final int mimoji_recapture = 2131297436;
+        /* added by JADX */
+        public static final int mimoji_selected = 2131297437;
+        /* added by JADX */
+        public static final int mimoji_edit_mimoji = 2131297438;
+        /* added by JADX */
+        public static final int mimoji_delete_mimoji = 2131297439;
+        /* added by JADX */
+        public static final int mimoji_delete_success = 2131297440;
+        /* added by JADX */
+        public static final int mimoji_save_success = 2131297441;
+        /* added by JADX */
+        public static final int wideselfie_press_shoot_key_to_start = 2131297442;
+        /* added by JADX */
+        public static final int wideselfie_rotate_slowly = 2131297443;
+        /* added by JADX */
+        public static final int wideselfie_rotate_to_left_slowly = 2131297444;
+        /* added by JADX */
+        public static final int wideselfie_rotate_to_right_slowly = 2131297445;
+        /* added by JADX */
+        public static final int wideselfie_rotate_to_front = 2131297446;
+        /* added by JADX */
+        public static final int wideselfie_rotate_to_back = 2131297447;
+        /* added by JADX */
+        public static final int wideselfie_result_image_lossless = 2131297448;
     }
 
     public static final class style {
@@ -3144,6 +3506,14 @@ public final class R {
         /* added by JADX */
         /* renamed from: OnScreenHintTextAppearance.Small */
         public static final int f0OnScreenHintTextAppearance.Small = 2131492868;
+        /* added by JADX */
+        public static final int ChipsGoogleLens = 2131492897;
+        /* added by JADX */
+        public static final int mimojiText = 2131492898;
+        /* added by JADX */
+        public static final int mimojiTextGray = 2131492899;
+        /* added by JADX */
+        public static final int mimojiTextBlack = 2131492900;
     }
 
     public static final class styleable {

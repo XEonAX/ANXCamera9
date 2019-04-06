@@ -16,7 +16,7 @@ class LogDBHelper {
     static final String COL_VALUE = "value";
     static final String DB_NAME = "lib_log_queue.db";
     static final int DB_VERSION = 1;
-    static final String[] QUEUE_COLS = new String[]{COL_ID, COL_VALUE, "type", COL_TIMESTAMP, COL_RETRY_COUNT, COL_RETRY_TIME};
+    static final String[] QUEUE_COLS = new String[]{"_id", COL_VALUE, "type", COL_TIMESTAMP, COL_RETRY_COUNT, COL_RETRY_TIME};
     static final String TABLE_QUEUE = "queue";
     static final String createTableQueue = "CREATE TABLE queue ( _id INTEGER PRIMARY KEY AUTOINCREMENT, value BLOB, type TEXT, timestamp INTEGER, retry_count INTEGER, retry_time INTEGER )";
     private static LogDBHelper sInstance = null;

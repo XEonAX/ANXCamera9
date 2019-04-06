@@ -82,6 +82,7 @@ import android.view.animation.Animation;
 import android.widget.Button;
 import com.adobe.xmp.XMPMeta;
 import com.android.camera.data.DataRepository;
+import com.android.camera.data.data.config.ComponentConfigRatio;
 import com.android.camera.effect.FilterInfo;
 import com.android.camera.effect.MiYuvImage;
 import com.android.camera.effect.renders.CustomTextWaterMark;
@@ -3085,27 +3086,27 @@ public final class Util {
         Object obj;
         switch (str.hashCode()) {
             case 50858:
-                if (str.equals("1x1")) {
+                if (str.equals(ComponentConfigRatio.RATIO_1X1)) {
                     obj = 2;
                     break;
                 }
             case 53743:
-                if (str.equals("4x3")) {
+                if (str.equals(ComponentConfigRatio.RATIO_4X3)) {
                     obj = null;
                     break;
                 }
             case 1515430:
-                if (str.equals("16x9")) {
+                if (str.equals(ComponentConfigRatio.RATIO_16X9)) {
                     obj = 1;
                     break;
                 }
             case 1517352:
-                if (str.equals("18x9")) {
+                if (str.equals(ComponentConfigRatio.RATIO_FULL_18X9)) {
                     obj = 3;
                     break;
                 }
             case 1456894192:
-                if (str.equals("19.5x9")) {
+                if (str.equals(ComponentConfigRatio.RATIO_FULL_195X9)) {
                     obj = 4;
                     break;
                 }

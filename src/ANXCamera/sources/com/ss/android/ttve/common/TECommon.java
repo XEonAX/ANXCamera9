@@ -5,6 +5,7 @@ import android.graphics.Bitmap.Config;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
 import android.util.Log;
+import com.arcsoft.camera.wideselfie.ArcWideSelfieDef.MAsvlOffScreen;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -39,16 +40,16 @@ public class TECommon {
                 case 1280:
                     str2 = "invalid enum";
                     break;
-                case 1281:
+                case MAsvlOffScreen.ASVL_PAF_YUYV /*1281*/:
                     str2 = "invalid value";
                     break;
-                case 1282:
+                case MAsvlOffScreen.ASVL_PAF_YVYU /*1282*/:
                     str2 = "invalid operation";
                     break;
-                case 1285:
+                case MAsvlOffScreen.ASVL_PAF_YUYV2 /*1285*/:
                     str2 = "out of memory";
                     break;
-                case 1286:
+                case MAsvlOffScreen.ASVL_PAF_YVYU2 /*1286*/:
                     str2 = "invalid framebuffer operation";
                     break;
                 default:

@@ -8,6 +8,7 @@ import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
 import android.hardware.SensorEvent;
 import android.hardware.camera2.params.MeteringRectangle;
+import android.media.Image;
 import android.net.Uri;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
@@ -475,6 +476,24 @@ public interface ModeProtocol {
         void setLightingPattern(String str);
     }
 
+    public interface WideSelfieProtocol extends BaseProtocol {
+        public static final int TYPE_TAG = 216;
+
+        void initPreviewLayout(int i, int i2, int i3, int i4);
+
+        void requestRender();
+
+        void resetShootUI();
+
+        void setShootingUI();
+
+        void updateHintText(@StringRes int i);
+
+        void updatePreviewBitmap(Bitmap bitmap, Rect rect, Rect rect2);
+
+        void updateThumbBackgroudLayout(boolean z, boolean z2, int i);
+    }
+
     public interface HandleBeautyRecording {
         void onAngleChanged(float f);
 
@@ -644,6 +663,22 @@ public interface ModeProtocol {
         int setManuallyVisible(int i, int i2, ManuallyListener manuallyListener);
 
         int visibleHeight();
+    }
+
+    public interface MimojiEditor extends BaseProtocol {
+        public static final int TYPE_TAG = 224;
+
+        void onDeviceRotationChange(int i);
+
+        void onTypeConfigSelect(int i);
+
+        void requestRender();
+
+        void showTips();
+
+        void startMimojiEdit();
+
+        void updateThumbnail();
     }
 
     public interface TopAlert extends BaseProtocol {
@@ -1044,6 +1079,40 @@ public interface ModeProtocol {
         void onISOValueChanged(ComponentManuallyISO componentManuallyISO, String str);
 
         void onWBValueChanged(ComponentManuallyWB componentManuallyWB, String str, boolean z);
+    }
+
+    public interface MimojiAvatarEngine extends BaseProtocol {
+        public static final int TYPE_TAG = 217;
+
+        void initAvatarEngine(int i, int i2, int i3, int i4, boolean z);
+
+        void initResource();
+
+        boolean isOnCreateMimoji();
+
+        boolean isRecording();
+
+        void onBack(boolean z);
+
+        void onCapture();
+
+        void onCaptureTaken();
+
+        void onDeviceRotationChange(int i);
+
+        void onDrawFrame();
+
+        void onMimojiCreate();
+
+        void onMimojiSelect(String str, String str2);
+
+        void onPreviewFrame(Image image);
+
+        void onRecordStart(ContentValues contentValues);
+
+        void onRecordStop();
+
+        void onResume();
     }
 
     public interface RecordState extends BaseProtocol {

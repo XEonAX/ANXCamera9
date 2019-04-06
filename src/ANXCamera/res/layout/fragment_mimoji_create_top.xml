@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="50.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="20.0sp" android:textColor="@color/white" android:gravity="center_horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="创建拟我表情" />
+</LinearLayout>

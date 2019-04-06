@@ -42,7 +42,7 @@ LATESTARTSERVICE=false
 print_modname() {
   ui_print " "
   ui_print "************************************"
-  ui_print "   MIUI Camera Port for Poco F1     "
+  ui_print "       MIUI Camera Port for Mi9     "
   ui_print "                                    "
   ui_print "         Created by AEonAX,         "
   ui_print "     CodeElixir and Abhishek987     "

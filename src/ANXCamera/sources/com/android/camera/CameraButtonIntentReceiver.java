@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import com.android.camera.log.Log;
 import com.android.camera.permission.PermissionManager;
+import com.arcsoft.camera.wideselfie.WideSelfieEngine;
 
 public class CameraButtonIntentReceiver extends BroadcastReceiver {
     private static final String TAG = CameraButtonIntentReceiver.class.getSimpleName();
@@ -14,7 +15,7 @@ public class CameraButtonIntentReceiver extends BroadcastReceiver {
             intent = new Intent("android.intent.action.MAIN");
             intent.setClass(context, Camera.class);
             intent.addCategory("android.intent.category.LAUNCHER");
-            intent.setFlags(268435456);
+            intent.setFlags(WideSelfieEngine.MPAF_RGB_BASE);
             context.startActivity(intent);
             return;
         }

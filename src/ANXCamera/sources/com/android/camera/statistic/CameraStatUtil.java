@@ -15,6 +15,7 @@ import com.android.camera.Util;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.config.ComponentConfigFlash;
 import com.android.camera.data.data.config.ComponentConfigHdr;
+import com.android.camera.data.data.config.ComponentConfigRatio;
 import com.android.camera.data.data.config.ComponentConfigSlowMotion;
 import com.android.camera.data.data.config.ComponentManuallyDualLens;
 import com.android.camera.data.data.config.DataItemConfig;
@@ -758,7 +759,7 @@ public class CameraStatUtil {
     public static void trackPictureTaken(int i, boolean z, int i2, boolean z2, boolean z3, String str) {
         Map hashMap = new HashMap();
         hashMap.put(CameraStat.PARAM_CAMERA_ID, z2 ? CameraStat.VALUE_FRONT_CAMERA : CameraStat.VALUE_BACK_CAMERA);
-        hashMap.put(CameraStat.PARAM_PICTURE_RATIO, 165 == i2 ? "1x1" : CameraSettings.getPictureSizeRatioString("4x3"));
+        hashMap.put(CameraStat.PARAM_PICTURE_RATIO, 165 == i2 ? ComponentConfigRatio.RATIO_1X1 : CameraSettings.getPictureSizeRatioString(ComponentConfigRatio.RATIO_4X3));
         hashMap.put(CameraStat.PARAM_QUALITY, CameraSettings.getJpegQuality(z));
         hashMap.put(CameraStat.PARAM_TIME_WATERMARK, CameraSettings.isTimeWaterMarkOpen() ? "on" : "off");
         hashMap.put(CameraStat.PARAM_DUAL_WATERMARK, CameraSettings.isDualCameraWaterMarkOpen() ? "on" : "off");

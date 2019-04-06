@@ -20,7 +20,6 @@ import android.widget.Checkable;
 import android.widget.CompoundButton;
 import com.android.camera.R;
 import com.android.camera.constant.ColorConstant;
-import com.android.camera.data.data.config.ComponentConfigUltraWide;
 import com.android.camera.protocol.ModeCoordinatorImpl;
 import com.android.camera.protocol.ModeProtocol.CameraAction;
 import miui.view.animation.QuarticEaseInOutInterpolator;
@@ -81,8 +80,8 @@ public class ToggleSwitch extends CompoundButton implements Checkable {
 
     public ToggleSwitch(Context context) {
         super(context);
-        this.mTextOn = ComponentConfigUltraWide.ULTRA_WIDE_VALUE_ON;
-        this.mTextOff = ComponentConfigUltraWide.ULTRA_WIDE_VALUE_OFF;
+        this.mTextOn = "ON";
+        this.mTextOff = "OFF";
         this.mSwitchBackgroundColor = DEFAULT_SWITCH_BACKGROUND_COLOR;
         this.mSwitchBackgroundStrokeColor = ColorConstant.COLOR_COMMON_NORMAL;
         this.mStrokeWidth = dp2px(1.0f);
@@ -99,8 +98,8 @@ public class ToggleSwitch extends CompoundButton implements Checkable {
 
     public ToggleSwitch(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        this.mTextOn = ComponentConfigUltraWide.ULTRA_WIDE_VALUE_ON;
-        this.mTextOff = ComponentConfigUltraWide.ULTRA_WIDE_VALUE_OFF;
+        this.mTextOn = "ON";
+        this.mTextOff = "OFF";
         TypedArray obtainStyledAttributes = context.obtainStyledAttributes(attributeSet, R.styleable.ToggleSwitch);
         this.mSwitchBackgroundColor = obtainStyledAttributes.getColor(0, DEFAULT_SWITCH_BACKGROUND_COLOR);
         this.mSwitchBackgroundStrokeColor = obtainStyledAttributes.getColor(1, ColorConstant.COLOR_COMMON_NORMAL);

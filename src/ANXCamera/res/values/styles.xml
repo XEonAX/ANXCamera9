@@ -208,4 +208,39 @@
         <item name="android:windowIsFloating">false</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
+    <style name="ChipsGoogleLens">
+        <item name="android:textSize">@dimen/chips_text_size</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="mimojiText">
+        <item name="android:textSize">@dimen/mimoji_text_size</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginLeft">10.0dip</item>
+        <item name="android:layout_marginTop">5.0dip</item>
+        <item name="android:layout_marginRight">10.0dip</item>
+        <item name="android:layout_marginBottom">5.0dip</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="mimojiTextGray">
+        <item name="android:textSize">@dimen/mimoji_text_size</item>
+        <item name="android:textColor">#ff999999</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginLeft">10.0dip</item>
+        <item name="android:layout_marginTop">5.0dip</item>
+        <item name="android:layout_marginRight">10.0dip</item>
+        <item name="android:layout_marginBottom">5.0dip</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="mimojiTextBlack">
+        <item name="android:textSize">@dimen/mimoji_text_size</item>
+        <item name="android:textColor">#ff000000</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginLeft">10.0dip</item>
+        <item name="android:layout_marginTop">5.0dip</item>
+        <item name="android:layout_marginRight">10.0dip</item>
+        <item name="android:layout_marginBottom">5.0dip</item>
+        <item name="android:singleLine">true</item>
+    </style>
 </resources>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <View android:background="@color/effect_divider_color" android:layout_width="fill_parent" android:layout_height="1.0px" />
+    <FrameLayout android:layout_width="fill_parent" android:layout_height="@dimen/live_sticker_list_height">
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <RelativeLayout android:id="@id/mimoji_none_item" android:layout_width="@dimen/live_sticker_none_item_size" android:layout_height="fill_parent">
+                <ImageView android:layout_width="@dimen/live_sticker_image_size" android:layout_height="@dimen/live_sticker_image_size" android:src="@drawable/ic_config_front_beauty_off" android:scaleType="centerInside" android:layout_centerInParent="true" android:contentDescription="@null" />
+                <ImageView android:id="@id/mimoji_selected_indicator" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/bg_live_sticker_selected" android:layout_centerInParent="true" android:contentDescription="@null" />
+            </RelativeLayout>
+            <RelativeLayout android:id="@id/mimoji_add_item" android:layout_width="@dimen/live_sticker_none_item_size" android:layout_height="fill_parent">
+                <ImageView android:layout_width="@dimen/live_sticker_image_size" android:layout_height="@dimen/live_sticker_image_size" android:src="@drawable/mimoji_add" android:scaleType="centerInside" android:layout_centerInParent="true" android:contentDescription="@null" />
+            </RelativeLayout>
+            <TextView android:background="@color/beauty_divider_line" android:layout_width="@dimen/beauty_divider_stroke" android:layout_height="@dimen/live_sticker_divider_height" android:includeFontPadding="false" />
+            <android.support.v7.widget.RecyclerView android:layout_gravity="center_vertical" android:id="@id/mimoji_list" android:focusable="false" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

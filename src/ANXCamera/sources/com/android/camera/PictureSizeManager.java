@@ -1,24 +1,25 @@
 package com.android.camera;
 
 import com.android.camera.data.DataRepository;
+import com.android.camera.data.data.config.ComponentConfigRatio;
 import com.android.camera.module.ModuleManager;
 import com.mi.config.b;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PictureSizeManager {
-    private static String sDefaultValue = "4x3";
+    private static String sDefaultValue = ComponentConfigRatio.RATIO_4X3;
     private static final ArrayList<String> sEntryValues = new ArrayList();
     private static final ArrayList<CameraSize> sPictureList = new ArrayList();
 
     static {
-        sEntryValues.add("4x3");
-        sEntryValues.add("16x9");
+        sEntryValues.add(ComponentConfigRatio.RATIO_4X3);
+        sEntryValues.add(ComponentConfigRatio.RATIO_16X9);
         if (b.gs()) {
-            sEntryValues.add("18x9");
+            sEntryValues.add(ComponentConfigRatio.RATIO_FULL_18X9);
         }
         if (DataRepository.dataItemFeature().fh()) {
-            sEntryValues.add("19.5x9");
+            sEntryValues.add(ComponentConfigRatio.RATIO_FULL_195X9);
         }
     }
 
@@ -36,7 +37,7 @@ public class PictureSizeManager {
 
     public static String[] getEntryValues() {
         if (ModuleManager.isPortraitModule() && CameraSettings.isBackCamera() && DataRepository.dataItemFeature().fB()) {
-            return new String[]{"4x3"};
+            return new String[]{ComponentConfigRatio.RATIO_4X3};
         }
         String[] strArr = new String[sEntryValues.size()];
         sEntryValues.toArray(strArr);
@@ -49,7 +50,7 @@ public class PictureSizeManager {
 
     public static String getPictureSizeRatioString() {
         if (CameraSettings.isUnsolicited4X3Ratio()) {
-            return "4x3";
+            return ComponentConfigRatio.RATIO_4X3;
         }
         return CameraSettings.getPictureSizeRatioString(getDefaultValue());
     }
@@ -243,7 +244,7 @@ public class PictureSizeManager {
 
     private static void initSensorRatio(List<CameraSize> list) {
         if (b.qj || b.qq) {
-            sDefaultValue = "16x9";
+            sDefaultValue = ComponentConfigRatio.RATIO_16X9;
             return;
         }
         CameraSize cameraSize = new CameraSize();
@@ -260,9 +261,9 @@ public class PictureSizeManager {
         }
         cameraSize.parseSize((CameraSize) list.get(i2));
         if (((double) Math.abs(cameraSize.getRatio() - 1.33f)) < 0.02d) {
-            sDefaultValue = "4x3";
+            sDefaultValue = ComponentConfigRatio.RATIO_4X3;
         } else {
-            sDefaultValue = "16x9";
+            sDefaultValue = ComponentConfigRatio.RATIO_16X9;
         }
     }
 }

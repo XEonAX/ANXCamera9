@@ -261,7 +261,7 @@ class NotificationCompatJellybean {
             if (sActionsField == null) {
                 sActionClass = Class.forName("android.app.Notification$Action");
                 sActionIconField = sActionClass.getDeclaredField("icon");
-                sActionTitleField = sActionClass.getDeclaredField(KEY_TITLE);
+                sActionTitleField = sActionClass.getDeclaredField("title");
                 sActionIntentField = sActionClass.getDeclaredField(KEY_ACTION_INTENT);
                 sActionsField = Notification.class.getDeclaredField("actions");
                 sActionsField.setAccessible(true);
@@ -288,7 +288,7 @@ class NotificationCompatJellybean {
     }
 
     private static Action getActionFromBundle(Bundle bundle, Factory actionFactory, RemoteInput.Factory remoteInputFactory) {
-        return actionFactory.build(bundle.getInt("icon"), bundle.getCharSequence(KEY_TITLE), (PendingIntent) bundle.getParcelable(KEY_ACTION_INTENT), bundle.getBundle(KEY_EXTRAS), RemoteInputCompatJellybean.fromBundleArray(BundleUtil.getBundleArrayFromBundle(bundle, KEY_REMOTE_INPUTS), remoteInputFactory));
+        return actionFactory.build(bundle.getInt("icon"), bundle.getCharSequence("title"), (PendingIntent) bundle.getParcelable(KEY_ACTION_INTENT), bundle.getBundle(KEY_EXTRAS), RemoteInputCompatJellybean.fromBundleArray(BundleUtil.getBundleArrayFromBundle(bundle, KEY_REMOTE_INPUTS), remoteInputFactory));
     }
 
     public static ArrayList<Parcelable> getParcelableArrayListForActions(Action[] actions) {
@@ -305,7 +305,7 @@ class NotificationCompatJellybean {
     private static Bundle getBundleForAction(Action action) {
         Bundle bundle = new Bundle();
         bundle.putInt("icon", action.getIcon());
-        bundle.putCharSequence(KEY_TITLE, action.getTitle());
+        bundle.putCharSequence("title", action.getTitle());
         bundle.putParcelable(KEY_ACTION_INTENT, action.getActionIntent());
         bundle.putBundle(KEY_EXTRAS, action.getExtras());
         bundle.putParcelableArray(KEY_REMOTE_INPUTS, RemoteInputCompatJellybean.toBundleArray(action.getRemoteInputs()));

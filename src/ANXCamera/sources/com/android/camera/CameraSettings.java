@@ -24,6 +24,7 @@ import com.android.camera.constant.EyeLightConstant;
 import com.android.camera.data.DataRepository;
 import com.android.camera.data.data.config.ComponentConfigBeautyBody;
 import com.android.camera.data.data.config.ComponentConfigFilter;
+import com.android.camera.data.data.config.ComponentConfigRatio;
 import com.android.camera.data.data.config.ComponentConfigUltraWide;
 import com.android.camera.data.data.config.DataItemConfig;
 import com.android.camera.data.data.global.DataItemGlobal;
@@ -363,12 +364,12 @@ public class CameraSettings {
     public static String getPictureSizeRatioString(String str) {
         if (ModuleManager.isSquareModule()) {
             Log.d("size", "#1: getPictureSize ratio return 4x3");
-            return "4x3";
+            return ComponentConfigRatio.RATIO_4X3;
         } else if (!ModuleManager.isPortraitModule() || !isBackCamera() || !DataRepository.dataItemFeature().fB()) {
             return DataRepository.dataItemConfig().getString("pref_camera_picturesize_key", str);
         } else {
             Log.d("size", "#2: getPictureSize ratio return 4x3");
-            return "4x3";
+            return ComponentConfigRatio.RATIO_4X3;
         }
     }
 
@@ -2133,9 +2134,9 @@ public class CameraSettings {
     public static void setUltraWideConfig(int i, boolean z) {
         String str;
         if (z) {
-            str = ComponentConfigUltraWide.ULTRA_WIDE_VALUE_ON;
+            str = "ON";
         } else {
-            str = ComponentConfigUltraWide.ULTRA_WIDE_VALUE_OFF;
+            str = "OFF";
         }
         DataRepository.dataItemConfig().getComponentConfigUltraWide().setComponentValue(i, str);
     }

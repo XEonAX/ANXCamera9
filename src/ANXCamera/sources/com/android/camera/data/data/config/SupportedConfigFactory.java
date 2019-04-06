@@ -73,6 +73,10 @@ public class SupportedConfigFactory {
     public static int[] gRecordingMutexElements;
 
     @Retention(RetentionPolicy.SOURCE)
+    public @interface ClosableElement {
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
     public @interface CloseElementTrigger {
     }
 

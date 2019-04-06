@@ -41,7 +41,7 @@ public class ComponentConfigUltraWide extends ComponentData {
 
     @NonNull
     public String getDefaultValue(int i) {
-        return ULTRA_WIDE_VALUE_OFF;
+        return "OFF";
     }
 
     public void setComponentValue(int i, String str) {
@@ -68,8 +68,8 @@ public class ComponentConfigUltraWide extends ComponentData {
                 case 172:
                     break;
                 default:
-                    this.mItems.add(new ComponentDataItem(R.drawable.icon_config_ultra_wide_off, R.drawable.icon_config_ultra_wide_off, 0, ULTRA_WIDE_VALUE_OFF));
-                    this.mItems.add(new ComponentDataItem(R.drawable.icon_config_ultra_wide_on, R.drawable.icon_config_ultra_wide_on, 0, ULTRA_WIDE_VALUE_ON));
+                    this.mItems.add(new ComponentDataItem(R.drawable.icon_config_ultra_wide_off, R.drawable.icon_config_ultra_wide_off, 0, "OFF"));
+                    this.mItems.add(new ComponentDataItem(R.drawable.icon_config_ultra_wide_on, R.drawable.icon_config_ultra_wide_on, 0, "ON"));
                     return this.mItems;
             }
         }
@@ -78,10 +78,10 @@ public class ComponentConfigUltraWide extends ComponentData {
 
     public int getValueSelectedDrawableIgnoreClose(int i) {
         String componentValue = getComponentValue(i);
-        if (ULTRA_WIDE_VALUE_ON.equals(componentValue)) {
+        if ("ON".equals(componentValue)) {
             return this.mUltraWideResource[1];
         }
-        if (ULTRA_WIDE_VALUE_OFF.equals(componentValue)) {
+        if ("OFF".equals(componentValue)) {
             return this.mUltraWideResource[0];
         }
         return -1;
@@ -89,10 +89,10 @@ public class ComponentConfigUltraWide extends ComponentData {
 
     public int getValueSelectedStringIdIgnoreClose(int i) {
         String componentValue = getComponentValue(i);
-        if (ULTRA_WIDE_VALUE_ON.equals(componentValue)) {
+        if ("ON".equals(componentValue)) {
             return R.string.accessibility_ultra_wide_on;
         }
-        if (ULTRA_WIDE_VALUE_OFF.equals(componentValue)) {
+        if ("OFF".equals(componentValue)) {
             return R.string.accessibility_ultra_wide_off;
         }
         return -1;
@@ -107,27 +107,27 @@ public class ComponentConfigUltraWide extends ComponentData {
     }
 
     public boolean isUltraWideOnInMode(int i) {
-        return ULTRA_WIDE_VALUE_ON.equals(getComponentValue(i));
+        return "ON".equals(getComponentValue(i));
     }
 
     public void resetUltraWide(ProviderEditor providerEditor) {
-        if (!ULTRA_WIDE_VALUE_OFF.equals(getComponentValue(163))) {
-            providerEditor.putString(getKey(163), ULTRA_WIDE_VALUE_OFF);
+        if (!"OFF".equals(getComponentValue(163))) {
+            providerEditor.putString(getKey(163), "OFF");
         }
-        if (!ULTRA_WIDE_VALUE_OFF.equals(getComponentValue(161))) {
-            providerEditor.putString(getKey(161), ULTRA_WIDE_VALUE_OFF);
+        if (!"OFF".equals(getComponentValue(161))) {
+            providerEditor.putString(getKey(161), "OFF");
         }
-        if (!ULTRA_WIDE_VALUE_OFF.equals(getComponentValue(172))) {
-            providerEditor.putString(getKey(172), ULTRA_WIDE_VALUE_OFF);
+        if (!"OFF".equals(getComponentValue(172))) {
+            providerEditor.putString(getKey(172), "OFF");
         }
-        if (!ULTRA_WIDE_VALUE_OFF.equals(getComponentValue(162))) {
-            providerEditor.putString(getKey(162), ULTRA_WIDE_VALUE_OFF);
+        if (!"OFF".equals(getComponentValue(162))) {
+            providerEditor.putString(getKey(162), "OFF");
         }
-        if (!ULTRA_WIDE_VALUE_OFF.equals(getComponentValue(173))) {
-            providerEditor.putString(getKey(173), ULTRA_WIDE_VALUE_OFF);
+        if (!"OFF".equals(getComponentValue(173))) {
+            providerEditor.putString(getKey(173), "OFF");
         }
-        if (!ULTRA_WIDE_VALUE_OFF.equals(getComponentValue(165))) {
-            providerEditor.putString(getKey(165), ULTRA_WIDE_VALUE_OFF);
+        if (!"OFF".equals(getComponentValue(165))) {
+            providerEditor.putString(getKey(165), "OFF");
         }
     }
 }

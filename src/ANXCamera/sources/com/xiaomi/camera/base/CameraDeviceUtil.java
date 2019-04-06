@@ -7,7 +7,6 @@ import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CaptureResult;
 import android.os.Parcelable;
 import com.android.camera.log.Log;
-import com.xiaomi.engine.CameraCombinationMode;
 import com.xiaomi.protocol.ICustomCaptureResult;
 import java.lang.reflect.Method;
 
@@ -82,7 +81,7 @@ public final class CameraDeviceUtil {
     }
 
     /* JADX WARNING: Missing block: B:19:0x0022, code:
-            return com.xiaomi.engine.CameraCombinationMode.CAM_COMBINATION_MODE_REAR_BOKEH_WT;
+            return 769;
      */
     /* JADX WARNING: Missing block: B:21:0x0025, code:
             return 513;
@@ -119,15 +118,15 @@ public final class CameraDeviceUtil {
                             case 61:
                                 break;
                             case 62:
-                                return CameraCombinationMode.CAM_COMBINATION_MODE_REAR_SAT_WU;
+                                return 514;
                             case 63:
-                                return CameraCombinationMode.CAM_COMBINATION_MODE_REAR_BOKEH_WU;
+                                return 770;
                             default:
                                 switch (i) {
                                     case 80:
-                                        return CameraCombinationMode.CAM_COMBINATION_MODE_FRONT_SAT;
+                                        return 515;
                                     case 81:
-                                        return CameraCombinationMode.CAM_COMBINATION_MODE_FRONT_BOKEH;
+                                        return 771;
                                     default:
                                         return 0;
                                 }

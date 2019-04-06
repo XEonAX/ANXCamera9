@@ -6,7 +6,6 @@ import com.android.camera.effect.FrameBuffer;
 import com.android.camera.effect.GLCanvasState;
 import com.android.camera.effect.draw_mode.DrawAttribute;
 import com.android.camera.effect.renders.RenderGroup;
-import com.xiaomi.engine.CameraCombinationMode;
 import java.util.ArrayList;
 
 public class BaseGLCanvas implements GLCanvas {
@@ -31,7 +30,7 @@ public class BaseGLCanvas implements GLCanvas {
         GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
         GLES20.glClearStencil(0);
         GLES20.glEnable(3042);
-        GLES20.glBlendFunc(CameraCombinationMode.CAM_COMBINATION_MODE_REAR_BOKEH_WU, CameraCombinationMode.CAM_COMBINATION_MODE_FRONT_BOKEH);
+        GLES20.glBlendFunc(770, 771);
         GLES20.glPixelStorei(3317, 1);
         GLES20.glPixelStorei(3333, 1);
     }

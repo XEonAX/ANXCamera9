@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@color/black" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="30.0dip" android:layout_marginLeft="20.0dip" android:layout_marginTop="30.0dip" android:layout_marginRight="20.0dip">
+        <TextView android:id="@id/tv_back" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/mimoji_back" style="@style/mimojiText" />
+        <TextView android:id="@id/btn_confirm" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/mimoji_confirm" android:layout_alignParentRight="true" style="@style/mimojiText" />
+    </RelativeLayout>
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="400.0dip" android:layout_marginTop="10.0dip">
+        <com.android.camera.ui.MimojiEditGLSurfaceView android:id="@id/mimoji_edit_preview" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    </RelativeLayout>
+    <TextView android:textSize="@dimen/qrcode_viewfinder_text_size" android:textColor="@color/white" android:gravity="center" android:layout_gravity="bottom|center" android:id="@id/popup_tips_no_face" android:paddingLeft="22.0dip" android:paddingRight="22.0dip" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minWidth="100.0dip" android:text="@string/mimoji_detect_tips" />
+    <FrameLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <LinearLayout android:orientation="vertical" android:id="@id/operate_select_layout" android:visibility="visible" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginTop="20.0dip">
+            <TextView android:id="@id/tv_recapture" android:background="@drawable/selector_mimoji_menu" android:layout_width="fill_parent" android:layout_height="46.0dip" android:text="@string/mimoji_recapture" style="@style/mimojiText" />
+            <TextView android:gravity="center" android:id="@id/tv_edit" android:background="@drawable/selector_mimoji_menu" android:layout_width="fill_parent" android:layout_height="46.0dip" android:text="@string/mimoji_editor" style="@style/mimojiText" />
+            <TextView android:id="@id/tv_save" android:background="@drawable/selector_mimoji_menu" android:layout_width="fill_parent" android:layout_height="46.0dip" android:text="@string/mimoji_save" style="@style/mimojiText" />
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical" android:id="@id/mimoji_config_adjust_layout" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <com.android.camera.ui.MimojiTypeHorizonScrollView android:id="@id/mimoji_type_scroll_view" android:focusable="false" android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <com.android.camera.ui.MimojiTypeSelectView android:gravity="top" android:orientation="horizontal" android:id="@id/mimoji_type_select_view" android:layout_width="fill_parent" android:layout_height="50.0dip" />
+            </com.android.camera.ui.MimojiTypeHorizonScrollView>
+            <android.support.v7.widget.RecyclerView android:id="@id/color_select" android:layout_width="fill_parent" android:layout_height="30.0dip" />
+            <GridView android:id="@id/thumbnail_gride_view" android:layout_width="fill_parent" android:layout_height="wrap_content" android:verticalSpacing="10.0dip" android:stretchMode="columnWidth" android:numColumns="3" />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

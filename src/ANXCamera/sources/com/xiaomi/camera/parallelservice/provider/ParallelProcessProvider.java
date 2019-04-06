@@ -19,6 +19,7 @@ import com.android.camera.db.DbRepository;
 import com.android.camera.db.element.SaveTask;
 import com.android.camera.db.item.DbItemSaveTask;
 import com.android.camera.log.Log;
+import com.arcsoft.camera.wideselfie.WideSelfieEngine;
 import com.google.android.apps.photos.api.ProcessingMetadataQuery;
 import com.google.android.apps.photos.api.ProcessingMetadataQuery.ProgressStatus;
 import com.xiaomi.camera.parallelservice.util.ParallelUtil.DEBUG;
@@ -246,7 +247,7 @@ public class ParallelProcessProvider extends ContentProvider {
     private ParcelFileDescriptor loadProcessingImage(long j) throws FileNotFoundException {
         SaveTask itemByMediaId = this.dbItemSaveTask.getItemByMediaId(Long.valueOf(j));
         if (itemByMediaId != null) {
-            return ParcelFileDescriptor.open(new File(itemByMediaId.getPath()), 268435456);
+            return ParcelFileDescriptor.open(new File(itemByMediaId.getPath()), WideSelfieEngine.MPAF_RGB_BASE);
         }
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Media removed: ");

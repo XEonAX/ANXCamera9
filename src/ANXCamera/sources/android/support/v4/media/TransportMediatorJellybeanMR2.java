@@ -15,6 +15,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewTreeObserver.OnWindowAttachListener;
 import android.view.ViewTreeObserver.OnWindowFocusChangeListener;
+import com.arcsoft.camera.wideselfie.WideSelfieEngine;
 
 class TransportMediatorJellybeanMR2 implements OnGetPlaybackPositionListener, OnPlaybackPositionUpdateListener {
     OnAudioFocusChangeListener mAudioFocusChangeListener = new OnAudioFocusChangeListener() {
@@ -92,7 +93,7 @@ class TransportMediatorJellybeanMR2 implements OnGetPlaybackPositionListener, On
 
     void windowAttached() {
         this.mContext.registerReceiver(this.mMediaButtonReceiver, this.mReceiverFilter);
-        this.mPendingIntent = PendingIntent.getBroadcast(this.mContext, 0, this.mIntent, 268435456);
+        this.mPendingIntent = PendingIntent.getBroadcast(this.mContext, 0, this.mIntent, WideSelfieEngine.MPAF_RGB_BASE);
         this.mRemoteControl = new RemoteControlClient(this.mPendingIntent);
         this.mRemoteControl.setOnGetPlaybackPositionListener(this);
         this.mRemoteControl.setPlaybackPositionUpdateListener(this);

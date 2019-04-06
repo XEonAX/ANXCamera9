@@ -119,4 +119,11 @@
     <color name="front_camera_hint_popup_background_color">#d9000000</color>
     <color name="front_camera_hint_text_rotate_color">#ffffffff</color>
     <color name="front_camera_hint_text_place_color">#99ffffff</color>
+    <color name="wide_selfie_thumbnail_border_color">#ff46cdff</color>
+    <color name="mimoji_edit_icon_color">#ff323232</color>
+    <color name="mimoji_edit_icon_highlight_color">#ff0077cc</color>
+    <color name="color_323232">#ff323232</color>
+    <color name="color_0077cc">#ff0077cc</color>
+    <color name="color_999999">#ff999999</color>
+    <color name="color_333333">#ff333333</color>
 </resources>

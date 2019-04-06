@@ -1,0 +1,51 @@
+package com.arcsoft.avatar.d;
+
+/* compiled from: NotifyMessage */
+public class j {
+    private static final int a = 0;
+    private static final int b = 0;
+    private static final int c = 16;
+    private static final int cH = 512;
+    private static final int cI = 768;
+    private static final int d = 32;
+    private static final int e = 256;
+    private static final int f = 256;
+    public static final int fA = 2;
+    public static final int fB = 3;
+    public static final int fC = 4;
+    public static final int fD = 5;
+    public static final int fE = 17;
+    public static final int fF = 33;
+    public static final int fG = 257;
+    public static final int fH = 258;
+    public static final int fI = 259;
+    public static final int fJ = 260;
+    public static final int fK = 528;
+    public static final int fL = 544;
+    public static final int fM = 560;
+    public static final int fN = 608;
+    public static final int fO = 624;
+    public static final int fP = 545;
+    public static final int fQ = 546;
+    public static final int fR = 547;
+    public static final int fS = 548;
+    public static final int fT = 549;
+    public static final int fU = 561;
+    public static final int fV = 562;
+    public static final int fW = 563;
+    public static final int fX = 564;
+    public static final int fY = 565;
+    public static final int fZ = 609;
+    public static final int fz = 1;
+    public static final int ga = 610;
+    public static final int gb = 611;
+    public static final int gc = 612;
+    public static final int gd = 613;
+    public static final int ge = 614;
+    public static final int gf = 625;
+    public static final int gg = 626;
+    public static final int gh = 627;
+    public static final int gi = 769;
+    public static final int gj = 769;
+    private static final int i = 1024;
+}

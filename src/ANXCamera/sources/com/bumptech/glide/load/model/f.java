@@ -3,6 +3,7 @@ package com.bumptech.glide.load.model;
 import android.os.ParcelFileDescriptor;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import com.arcsoft.camera.wideselfie.WideSelfieEngine;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.DataSource;
 import java.io.File;
@@ -48,7 +49,7 @@ public class f<Data> implements m<File, Data> {
             super(new d<ParcelFileDescriptor>() {
                 /* renamed from: i */
                 public ParcelFileDescriptor j(File file) throws FileNotFoundException {
-                    return ParcelFileDescriptor.open(file, 268435456);
+                    return ParcelFileDescriptor.open(file, WideSelfieEngine.MPAF_RGB_BASE);
                 }
 
                 /* renamed from: a */

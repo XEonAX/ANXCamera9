@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.os.ParcelFileDescriptor;
 import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
+import com.arcsoft.camera.wideselfie.WideSelfieEngine;
 import com.ss.android.ugc.effectmanager.effect.model.ComposerHelper;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -259,7 +260,7 @@ public class FileProvider extends ContentProvider {
 
     private static int modeToMode(String mode) {
         if ("r".equals(mode)) {
-            return 268435456;
+            return WideSelfieEngine.MPAF_RGB_BASE;
         }
         if ("w".equals(mode) || "wt".equals(mode)) {
             return 738197504;
