@@ -12,8 +12,8 @@
 print_modname() {
   ui_print " "
   ui_print "************************************"
-  ui_print "   MIUI Camera Port for Poco F1     "
-  ui_print "                                    "
+  ui_print "          MIUI Camera Port          "
+  ui_print "    For Xiaomi's SD845 Devices      "
   ui_print "         Created by AEonAX,         "
   ui_print "     CodeElixir and Abhishek987     "
   ui_print "************************************"
