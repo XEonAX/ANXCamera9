@@ -2544,9 +2544,11 @@ public class MiCamera2 extends Camera2Proxy {
                 case -3:
                 case -2:
                 case 0:
-                case 1:
                 case 2:
                     miCamera2Shot = new MiCamera2ShotStill(this);
+                    break;
+                case 1:
+                    miCamera2Shot = new MiCamera2ShotLive(this);
                     break;
                 case 5:
                 case 6:

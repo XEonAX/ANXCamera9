@@ -63,11 +63,31 @@ public class CircularVideoEncoder extends CircularMediaEncoder {
         }
     }
 
-    public void doRelease() {
-        if (this.mIsInitialized) {
-            super.doRelease();
-            this.mIsInitialized = false;
+    public void setFpsReduction(float f) {
+        String str = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("setFpsReduction: ");
+        stringBuilder.append(f);
+        Log.d(str, stringBuilder.toString());
+        if (f <= 0.0f) {
+            this.mMinFrameRenderPeriodNs = Long.MAX_VALUE;
+        } else {
+            this.mMinFrameRenderPeriodNs = (long) (((float) TimeUnit.SECONDS.toNanos(1)) / f);
         }
+    }
+
+    protected long getNextPresentationTimeUs(long j) {
+        if (this.mFirstPresentationTimeUs == 0) {
+            this.mFirstPresentationTimeUs = j;
+            return 0;
+        }
+        j -= this.mFirstPresentationTimeUs;
+        if (this.mLastPresentationTimeUs >= j) {
+            this.mLastPresentationTimeUs += 9643;
+            return this.mLastPresentationTimeUs;
+        }
+        this.mLastPresentationTimeUs = j;
+        return j;
     }
 
     public void doStart() {
@@ -137,18 +157,20 @@ public class CircularVideoEncoder extends CircularMediaEncoder {
         }
     }
 
-    protected long getNextPresentationTimeUs(long j) {
-        if (this.mFirstPresentationTimeUs == 0) {
-            this.mFirstPresentationTimeUs = j;
-            return 0;
+    public void doRelease() {
+        if (this.mIsInitialized) {
+            super.doRelease();
+            this.mIsInitialized = false;
         }
-        j -= this.mFirstPresentationTimeUs;
-        if (this.mLastPresentationTimeUs >= j) {
-            this.mLastPresentationTimeUs += 9643;
-            return this.mLastPresentationTimeUs;
+    }
+
+    public synchronized void setFilterId(int i) {
+        if (!this.mIsInitialized) {
+            return;
         }
-        this.mLastPresentationTimeUs = j;
-        return j;
+        if (this.mIsBuffering) {
+            this.mRenderThread.setFilterId(i);
+        }
     }
 
     /* JADX WARNING: Missing block: B:28:0x0083, code:
@@ -189,28 +211,6 @@ public class CircularVideoEncoder extends CircularMediaEncoder {
             } else {
                 this.mFrameStartTimestampNs = nanoTime;
             }
-        }
-    }
-
-    public synchronized void setFilterId(int i) {
-        if (!this.mIsInitialized) {
-            return;
-        }
-        if (this.mIsBuffering) {
-            this.mRenderThread.setFilterId(i);
-        }
-    }
-
-    public void setFpsReduction(float f) {
-        String str = TAG;
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("setFpsReduction: ");
-        stringBuilder.append(f);
-        Log.d(str, stringBuilder.toString());
-        if (f <= 0.0f) {
-            this.mMinFrameRenderPeriodNs = Long.MAX_VALUE;
-        } else {
-            this.mMinFrameRenderPeriodNs = (long) (((float) TimeUnit.SECONDS.toNanos(1)) / f);
         }
     }
 }

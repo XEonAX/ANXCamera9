@@ -2224,15 +2224,15 @@
 
     .line 2318
     :pswitch_3
-    # new-instance v0, Lcom/android/camera2/MiCamera2ShotLive;
+    new-instance v0, Lcom/android/camera2/MiCamera2ShotLive;
 
-    # invoke-direct {v0, p0}, Lcom/android/camera2/MiCamera2ShotLive;-><init>(Lcom/android/camera2/MiCamera2;)V
+    invoke-direct {v0, p0}, Lcom/android/camera2/MiCamera2ShotLive;-><init>(Lcom/android/camera2/MiCamera2;)V
 
-    # .line 2319
-    # goto :goto_0
+    .line 2319
+    goto :goto_0
 
-    # .line 2315
-    # :pswitch_4
+    .line 2315
+    :pswitch_4
     new-instance v0, Lcom/android/camera2/MiCamera2ShotStill;
 
     invoke-direct {v0, p0}, Lcom/android/camera2/MiCamera2ShotStill;-><init>(Lcom/android/camera2/MiCamera2;)V
@@ -2417,12 +2417,12 @@
 
     :pswitch_data_0
     .packed-switch -0x3
-        :pswitch_3
-        :pswitch_3
+        :pswitch_4
+        :pswitch_4
         :pswitch_0
+        :pswitch_4
         :pswitch_3
-        :pswitch_3
-        :pswitch_3
+        :pswitch_4
         :pswitch_0
         :pswitch_0
         :pswitch_2

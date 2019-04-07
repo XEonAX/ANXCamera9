@@ -39,8 +39,8 @@ public class CircularAudioEncoder extends CircularMediaEncoder {
             try {
                 this.mMediaCodec = MediaCodec.createByCodecName(MediaCodecCapability.HW_AUDIO_CODEC_AAC);
                 z = true;
-            } catch (Throwable e) {
-                Log.d(TAG, "HW AAC encoder not found fallback to default instead", e);
+            } catch (IOException e) {
+                Log.d(TAG, "HW AAC encoder not found fallback to default instead");
             }
             if (!z) {
                 try {
@@ -57,56 +57,6 @@ public class CircularAudioEncoder extends CircularMediaEncoder {
         }
         this.mAudioRecord.release();
         throw new IllegalStateException("Failed to initialize AudioRecord");
-    }
-
-    private void addSampleCount(long j) {
-        this.mSampleCount += j;
-    }
-
-    private int channelConfig() {
-        switch (this.mChannelCount) {
-            case 1:
-                return 16;
-            case 2:
-                return 12;
-            default:
-                return 16;
-        }
-    }
-
-    private long getPresentationTime(long j) {
-        return (TimeUnit.SECONDS.toMicros(1) * (this.mSampleCount + j)) / ((long) this.mSampleRate);
-    }
-
-    private int getSampleDataBytes() {
-        return this.mFrameBytes;
-    }
-
-    private int sampleBytes(int i) {
-        switch (i) {
-            case 2:
-                return 2;
-            case 3:
-                return 1;
-            default:
-                throw new IllegalStateException("Specified Audio format is not supported.");
-        }
-    }
-
-    public void doRelease() {
-        if (this.mIsInitialized) {
-            super.doRelease();
-            try {
-                this.mAudioRecord.release();
-            } catch (IllegalStateException e) {
-                String str = TAG;
-                StringBuilder stringBuilder = new StringBuilder();
-                stringBuilder.append("Meet exception when mAudioRecord.release(): ");
-                stringBuilder.append(e);
-                Log.d(str, stringBuilder.toString());
-            }
-            this.mIsInitialized = false;
-        }
     }
 
     public void doStart() {
@@ -199,6 +149,56 @@ public class CircularAudioEncoder extends CircularMediaEncoder {
                 Log.d(TAG, "stop() X");
             }
         }
+    }
+
+    public void doRelease() {
+        if (this.mIsInitialized) {
+            super.doRelease();
+            try {
+                this.mAudioRecord.release();
+            } catch (IllegalStateException e) {
+                String str = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("Meet exception when mAudioRecord.release(): ");
+                stringBuilder.append(e);
+                Log.d(str, stringBuilder.toString());
+            }
+            this.mIsInitialized = false;
+        }
+    }
+
+    private int sampleBytes(int i) {
+        switch (i) {
+            case 2:
+                return 2;
+            case 3:
+                return 1;
+            default:
+                throw new IllegalStateException("Specified Audio format is not supported.");
+        }
+    }
+
+    private int channelConfig() {
+        switch (this.mChannelCount) {
+            case 1:
+                return 16;
+            case 2:
+                return 12;
+            default:
+                return 16;
+        }
+    }
+
+    private void addSampleCount(long j) {
+        this.mSampleCount += j;
+    }
+
+    private long getPresentationTime(long j) {
+        return (TimeUnit.SECONDS.toMicros(1) * (this.mSampleCount + j)) / ((long) this.mSampleRate);
+    }
+
+    private int getSampleDataBytes() {
+        return this.mFrameBytes;
     }
 
     public void onInputBufferAvailable(MediaCodec mediaCodec, int i) {

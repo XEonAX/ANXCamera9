@@ -68,19 +68,13 @@ public final class EglCore {
         throw new RuntimeException("EGL already set up");
     }
 
-    private void checkEglError(String str) {
-        int eglGetError = EGL14.eglGetError();
-        if (eglGetError != 12288) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(str);
-            stringBuilder.append(": EGL error: 0x");
-            stringBuilder.append(Integer.toHexString(eglGetError));
-            throw new RuntimeException(stringBuilder.toString());
-        }
-    }
-
     private EGLConfig getConfig(int i, int i2) {
-        int i3 = i2 >= 3 ? 68 : 4;
+        int i3;
+        if (i2 >= 3) {
+            i3 = 68;
+        } else {
+            i3 = 4;
+        }
         int[] iArr = new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, i3, 12344, 0, 12344};
         if ((i & 1) != 0) {
             iArr[iArr.length - 3] = 12610;
@@ -99,6 +93,34 @@ public final class EglCore {
         return null;
     }
 
+    public void release() {
+        if (this.mEGLDisplay != EGL14.EGL_NO_DISPLAY) {
+            EGL14.eglMakeCurrent(this.mEGLDisplay, EGL14.EGL_NO_SURFACE, EGL14.EGL_NO_SURFACE, EGL14.EGL_NO_CONTEXT);
+            EGL14.eglDestroyContext(this.mEGLDisplay, this.mEGLContext);
+            EGL14.eglReleaseThread();
+            EGL14.eglTerminate(this.mEGLDisplay);
+        }
+        this.mEGLDisplay = EGL14.EGL_NO_DISPLAY;
+        this.mEGLContext = EGL14.EGL_NO_CONTEXT;
+        this.mEGLConfig = null;
+    }
+
+    protected void finalize() throws Throwable {
+        try {
+            if (this.mEGLDisplay != EGL14.EGL_NO_DISPLAY) {
+                Log.w(TAG, "WARNING: EglCore was not explicitly released -- state may be leaked");
+                release();
+            }
+            super.finalize();
+        } catch (Throwable th) {
+            super.finalize();
+        }
+    }
+
+    public void releaseSurface(EGLSurface eGLSurface) {
+        EGL14.eglDestroySurface(this.mEGLDisplay, eGLSurface);
+    }
+
     public EGLSurface createWindowSurface(Object obj) {
         if ((obj instanceof Surface) || (obj instanceof SurfaceTexture)) {
             EGLSurface eglCreateWindowSurface = EGL14.eglCreateWindowSurface(this.mEGLDisplay, this.mEGLConfig, obj, new int[]{12344}, 0);
@@ -114,22 +136,6 @@ public final class EglCore {
         throw new RuntimeException(stringBuilder.toString());
     }
 
-    protected void finalize() throws Throwable {
-        try {
-            if (this.mEGLDisplay != EGL14.EGL_NO_DISPLAY) {
-                Log.w(TAG, "WARNING: EglCore was not explicitly released -- state may be leaked");
-                release();
-            }
-            super.finalize();
-        } catch (Throwable th) {
-            super.finalize();
-        }
-    }
-
-    public int getGlVersion() {
-        return this.mGlVersion;
-    }
-
     public void makeCurrent(EGLSurface eGLSurface) {
         if (this.mEGLDisplay == EGL14.EGL_NO_DISPLAY) {
             Log.d(TAG, "NOTE: makeCurrent w/o display");
@@ -139,29 +145,28 @@ public final class EglCore {
         }
     }
 
+    public boolean swapBuffers(EGLSurface eGLSurface) {
+        return EGL14.eglSwapBuffers(this.mEGLDisplay, eGLSurface);
+    }
+
     public int querySurface(EGLSurface eGLSurface, int i) {
         int[] iArr = new int[1];
         EGL14.eglQuerySurface(this.mEGLDisplay, eGLSurface, i, iArr, 0);
         return iArr[0];
     }
 
-    public void release() {
-        if (this.mEGLDisplay != EGL14.EGL_NO_DISPLAY) {
-            EGL14.eglMakeCurrent(this.mEGLDisplay, EGL14.EGL_NO_SURFACE, EGL14.EGL_NO_SURFACE, EGL14.EGL_NO_CONTEXT);
-            EGL14.eglDestroyContext(this.mEGLDisplay, this.mEGLContext);
-            EGL14.eglReleaseThread();
-            EGL14.eglTerminate(this.mEGLDisplay);
+    public int getGlVersion() {
+        return this.mGlVersion;
+    }
+
+    private void checkEglError(String str) {
+        int eglGetError = EGL14.eglGetError();
+        if (eglGetError != 12288) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(str);
+            stringBuilder.append(": EGL error: 0x");
+            stringBuilder.append(Integer.toHexString(eglGetError));
+            throw new RuntimeException(stringBuilder.toString());
         }
-        this.mEGLDisplay = EGL14.EGL_NO_DISPLAY;
-        this.mEGLContext = EGL14.EGL_NO_CONTEXT;
-        this.mEGLConfig = null;
-    }
-
-    public void releaseSurface(EGLSurface eGLSurface) {
-        EGL14.eglDestroySurface(this.mEGLDisplay, eGLSurface);
-    }
-
-    public boolean swapBuffers(EGLSurface eGLSurface) {
-        return EGL14.eglSwapBuffers(this.mEGLDisplay, eGLSurface);
     }
 }
