@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Nije moguće povezivanje s kamerom</string>
     <string name="cannot_connect_camera_twice">Još uvijek nije moguće povezati se s kamerom. Pokušajte restartovati svoj uređaj.</string>
     <string name="camera_disabled">Kamera je onemogućena</string>
-    <string name="camera_label">H6D Kamera</string>
+    <string name="camera_label">AnX Kamera</string>
     <string name="video_camera_label">Videokamera</string>
     <string name="no_storage">Ubacite SD karticu prije upotrebe kamere</string>
     <string name="not_enough_space">SD kartica je puna</string>

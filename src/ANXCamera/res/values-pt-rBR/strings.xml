@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Não é possível conectar-se à câmera</string>
     <string name="cannot_connect_camera_twice">Ainda não é possível conectar-se à câmera. Tente reiniciar seu dispositivo.</string>
     <string name="camera_disabled">A câmera foi desativada</string>
-    <string name="camera_label">H6D Câmera</string>
+    <string name="camera_label">AnX Câmera</string>
     <string name="video_camera_label">Filmadora</string>
     <string name="no_storage">Insira o cartão SD antes de usar a câmera</string>
     <string name="not_enough_space">O cartão SD está cheio</string>

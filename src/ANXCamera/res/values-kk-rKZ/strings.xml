@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Камераға қосылу мүмкін болмады</string>
     <string name="cannot_connect_camera_twice">Камераға қосылу әлі мүмкін болмай тұр. Құрылғыны қайта іске қосып көріңіз.</string>
     <string name="camera_disabled">Камера қауіпсіздік саясат бойынша өшірілген</string>
-    <string name="camera_label">H6D Камера</string>
+    <string name="camera_label">AnX Камера</string>
     <string name="video_camera_label">Бейнекамера</string>
     <string name="no_storage">Камераны пайдалану алдында SD картаны ішке салыңыз</string>
     <string name="not_enough_space">SD карта толтырылған</string>

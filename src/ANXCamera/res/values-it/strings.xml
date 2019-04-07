@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Impossibile avviare fotocamera</string>
     <string name="cannot_connect_camera_twice">Impossibile avviare fotocamera. Prova a riavviare il tuo dispositivo.</string>
     <string name="camera_disabled">Fotocamera disabilitata</string>
-    <string name="camera_label">H6D Fotocamera</string>
+    <string name="camera_label">AnX Fotocamera</string>
     <string name="video_camera_label">Videocamera</string>
     <string name="no_storage">Inserisci una scheda SD prima di usare la fotocamera</string>
     <string name="not_enough_space">La scheda SD è piena</string>

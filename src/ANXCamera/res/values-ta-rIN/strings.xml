@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">கேமராவுடன் இணைக்க முடியவில்லை</string>
     <string name="cannot_connect_camera_twice">இன்னும் கேமராவுடன் இணைக்க முடியவில்லை . உங்கள் ஃபோனை மறுதொடக்கம் செய்வதை முயலவும்.</string>
     <string name="camera_disabled">கேமரா முடக்கப்பட்டுள்ளது</string>
-    <string name="camera_label">H6D கேமரா</string>
+    <string name="camera_label">AnX கேமரா</string>
     <string name="video_camera_label">கேம்கார்டர்</string>
     <string name="no_storage">கேமராவைப் பயன்படுத்தும் முன் SD கார்டை செருகவும்</string>
     <string name="not_enough_space">சேமிப்பிடம் நிரம்பி விட்டது</string>

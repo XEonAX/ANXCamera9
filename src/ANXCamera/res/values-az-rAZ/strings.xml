@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Kameraya qoşula bilmir</string>
     <string name="cannot_connect_camera_twice">Kameraya hələ də qoşula bilmir. Cihazınızı yenidən başlatmağa cəhd edin.</string>
     <string name="camera_disabled">Kamera söndürüldü</string>
-    <string name="camera_label">H6D Kamera</string>
+    <string name="camera_label">AnX Kamera</string>
     <string name="video_camera_label">Video kamera</string>
     <string name="no_storage">Kameranı istifadə etməzdən əvvəl SD kart daxil edin</string>
     <string name="not_enough_space">SD kart doludur</string>

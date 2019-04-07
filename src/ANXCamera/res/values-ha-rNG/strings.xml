@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Bai iya ya hadu da kamara</string>
     <string name="cannot_connect_camera_twice">"Har yanzu baza'a iya hadawa da kamara ba, ka sake kunna wayar."</string>
     <string name="camera_disabled">An kashe aikin kyamara</string>
-    <string name="camera_label">H6D Kyamara</string>
+    <string name="camera_label">AnX Kyamara</string>
     <string name="video_camera_label">Kyamara</string>
     <string name="no_storage">Sa katin SD kafin yi amfani da kyamara</string>
     <string name="not_enough_space">Katin SD ya cika</string>

@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Не вдалося підключитися до камери</string>
     <string name="cannot_connect_camera_twice">Не вдалося підключитися до камери. Спробуйте перезавантажити пристрій.</string>
     <string name="camera_disabled">Камера була вимкнута через політику безпеки</string>
-    <string name="camera_label">H6D Камера</string>
+    <string name="camera_label">AnX Камера</string>
     <string name="video_camera_label">Відеокамера</string>
     <string name="no_storage">Вставте SD карту перед використанням камери</string>
     <string name="not_enough_space">SD карта заповнена</string>

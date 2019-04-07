@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">ക്യാമറയിലേക്ക് കണക്റ്റുചെയ്യാൻ കഴിഞ്ഞില്ല</string>
     <string name="cannot_connect_camera_twice">ഇനിയും ക്യാമറയിലേക്ക് കണക്റ്റുചെയ്യാൻ കഴിഞ്ഞില്ല. നിങ്ങളുടെ ഫോൺ റീസ്റ്റാർട്ട് ചെയ്യുന്നത് പരീക്ഷിച്ചുനോക്കുക.</string>
     <string name="camera_disabled">ക്യാമറ പ്രവർത്തനരഹിതമാക്കിയിരിക്കുന്നു</string>
-    <string name="camera_label">H6D ക്യാമറ</string>
+    <string name="camera_label">AnX ക്യാമറ</string>
     <string name="video_camera_label">കാംകോർഡർ</string>
     <string name="no_storage">ക്യാമറ ഉപയോഗിക്കുന്നതിനു മുമ്പ് SD കാർഡ് ചേർക്കുക</string>
     <string name="not_enough_space">SD കാർഡ് നിറഞ്ഞു</string>

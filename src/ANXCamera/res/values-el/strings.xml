@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">Αδυναμία σύνδεσης με την Κάμερα</string>
     <string name="cannot_connect_camera_twice">Αδυναμία σύνδεσης με την κάμερα. Προσπαθήστε να επανεκκινήστε την συσκευή σας.</string>
     <string name="camera_disabled">Η κάμερα έχει απενεργοποιηθεί</string>
-    <string name="camera_label">H6D Κάμερα</string>
+    <string name="camera_label">AnX Κάμερα</string>
     <string name="video_camera_label">Εγγραφή βίντεου</string>
     <string name="no_storage">Τοποθετείστε κάρτα SD πριν τη χρήση της Κάμερας</string>
     <string name="not_enough_space">Η κάρτα SD είναι γεμάτη</string>

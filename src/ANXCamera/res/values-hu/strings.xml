@@ -8,7 +8,7 @@
     <string name="cannot_connect_camera_once">A kamera indítása nem sikerült, indítsa újra az alkalmazást</string>
     <string name="cannot_connect_camera_twice">A kamera indítása nem sikerült, indítsa újra a készüléket</string>
     <string name="camera_disabled">Biztonsági okokból a Kamera letiltva</string>
-    <string name="camera_label">H6D Kamera</string>
+    <string name="camera_label">AnX Kamera</string>
     <string name="video_camera_label">Videókamera</string>
     <string name="no_storage">Kamerahasználat előtt helyezzen be egy SD-kártyát</string>
     <string name="not_enough_space">Az SD-kártya megtelt</string>
