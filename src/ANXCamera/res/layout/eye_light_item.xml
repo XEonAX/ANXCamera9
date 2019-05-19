@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:gravity="center" android:orientation="vertical" android:focusable="false" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <ImageView android:id="@id/eye_light_item_icon" android:background="@drawable/bg_lighting_normal" android:layout_width="@dimen/eye_light_item_width" android:layout_height="@dimen/eye_light_item_height" android:scaleType="center" />
-</LinearLayout>
