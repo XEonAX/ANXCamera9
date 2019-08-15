@@ -24,7 +24,7 @@ Instructions for Development:
   
 Instructions for Testing:
 
- 1. Download the `zip` from https://github.com/XEonAX/ANXCamera10/releases/
+ 1. Download the `zip` from https://camera.aeonax.com/
  2. Install the Magisk `zip` with Magisk, or Unity `zip` with recovery
  3. Reboot Once, if it doesn't work properly, reboot twice.
  4. Start Testing
